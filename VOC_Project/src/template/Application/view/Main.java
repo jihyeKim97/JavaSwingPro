@@ -1,4 +1,4 @@
-package template.Application.view.main;
+package template.Application.view;
 
 public class Main {
 	public static void main(String[] args) {
