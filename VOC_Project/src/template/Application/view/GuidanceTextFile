@@ -1,0 +1,7 @@
+보여지는 페이지 들의 정의를 기재하며 관리 하는 파일
+
+관리자 : admin
+회원 : member
+로그인 : login
+메인  : main
+예약 : reservation
