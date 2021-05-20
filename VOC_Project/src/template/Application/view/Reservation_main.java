@@ -40,7 +40,7 @@ public class Reservation_main extends JFrame {
 	 */
 	public Reservation_main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 750);
+		setBounds(100, 100, 487, 829);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,7 +55,7 @@ public class Reservation_main extends JFrame {
 		btn_Logout.setBounds(0, 0, 79, 27);
 		btn_Logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showConfirmDialog(null, "�α׾ƿ� �Ͻðڽ��ϱ�?", "�α׾ƿ�", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showConfirmDialog(null, "�α׾ƿ� �Ͻðڽ��ϱ�?", "�α׾ƿ�", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 		pn_head.setLayout(null);
