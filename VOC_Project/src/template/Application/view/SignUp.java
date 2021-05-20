@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
@@ -126,8 +127,7 @@ public class SignUp extends JFrame {
 				String strPw1 = new String(pwf_userPw1.getPassword());// 문자배열 => 문자열
 				if (strPw1.isEmpty()) {
 					pwf_userPw1.requestFocusInWindow();
-					// 첫번째 pw필드로 포커스를 강제 이동 요청..
-					// 자동으로 두번� pw필드의 focusLost()가 일어남..
+				
 				}
 			}
 
@@ -138,16 +138,14 @@ public class SignUp extends JFrame {
 				String strPw2 = new String(pwf_userPw2.getPassword());
 				if (strPw1.length() > 0 && strPw2.isEmpty()) {
 
-//					pwSecond.requestFocusInWindow();
-					// 두번째 pw필드로 포커스를 강제 이동 요청..
-					// } else if(글자수 최소, 최대...) {
+//				
 				} else {
 					if (strPw1.length() > 0 && strPw2.length() > 0) {
-						// 두개 암호 필드값의 내용 비교 일치/불일치
+						
 						if (strPw2.equals(strPw1)) {
 							System.out.println("암호 일치");
 
-							// 가입버튼 활성화 판단 함수
+							
 							checkJoinAvailable();
 						} else {
 							System.out.println("암호 불일치");
@@ -172,7 +170,7 @@ public class SignUp extends JFrame {
 				txt_userName.setForeground(Color.black);
 				txt_userName.setBackground(Color.yellow);
 				if (txt_userName.getText().equals("ex) 홍길동"))
-					txt_userName.setText(""); // 안내 문구일 때만 지움.
+					txt_userName.setText(""); 
 			}
 
 			@Override
@@ -277,7 +275,7 @@ public class SignUp extends JFrame {
 				txt_phone1.setForeground(Color.black);
 				txt_phone1.setBackground(Color.yellow);
 				if (txt_phone1.getText().equals("010"))
-					txt_phone1.setText(""); // 안내 문구일 때만 지움.
+					txt_phone1.setText(""); 
 			}
 
 			@Override
@@ -307,7 +305,7 @@ public class SignUp extends JFrame {
 				txt_phone2.setForeground(Color.black);
 				txt_phone2.setBackground(Color.yellow);
 				if (txt_phone2.getText().equals("1234"))
-					txt_phone2.setText(""); // 안내 문구일 때만 지움.
+					txt_phone2.setText(""); 
 			}
 
 			@Override
@@ -337,7 +335,7 @@ public class SignUp extends JFrame {
 				txt_phone3.setForeground(Color.black);
 				txt_phone3.setBackground(Color.yellow);
 				if (txt_phone3.getText().equals("5678"))
-					txt_phone3.setText(""); // 안내 문구일 때만 지움.
+					txt_phone3.setText(""); 
 			}
 
 			@Override
@@ -358,15 +356,22 @@ public class SignUp extends JFrame {
 		JButton btn_DupCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
 		btn_DupCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bLoginAvail = true;// 일단 더미 중복x
-				checkJoinAvailable();
+					JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
+		
+			bLoginAvail = true;
+			checkJoinAvailable();
 			}
-		});
+			});
 		btn_DupCheck.setFont(new Font("굴림", Font.PLAIN, 14));
 		btn_DupCheck.setBounds(454, 73, 96, 36);
 		contentPane.add(btn_DupCheck);
 
 		JButton btn_userJoin = new JButton("\uAC00\uC785\uC644\uB8CC");
+		btn_userJoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+			}
+		});
 		btn_userJoin.setBounds(414, 503, 136, 50);
 		contentPane.add(btn_userJoin);
 
@@ -379,20 +384,19 @@ public class SignUp extends JFrame {
 	private boolean bLoginAvail; // false(중복)
 
 	protected void checkJoinAvailable() {
-		// 가입 가능한 상태의 입력들이 준비되었는지 체크...
-		// 길이, 중복유무, 범위, 구성.. 체크 => 검증 validation (필터링)
+		
 
 		String strPw1 = new String(pwf_userPw1.getPassword());
 		String strPw2 = new String(pwf_userPw2.getPassword());
 		if ((strPw1.length() > 0 && strPw2.length() > 0) && bLoginAvail == true
 				&& (!txt_emailAdd.getText().isEmpty() == false)
 				&& (txt_userName.getText().isEmpty() == false && txt_userName.getText().equals("ex) 홍길동") == false)) {
-			// 두개 암호 필드값의 내용 비교 일치/불일치
+			
 			if (strPw2.equals(strPw1)) {
 
 				btn_userJoin.setEnabled(true);
-//					lbJoinResult.setText("암호 일치 ^^");
-//					lbJoinResult.setForeground(Color.blue);
+
+//				
 			} else {
 				btn_userJoin.setEnabled(false);
 			}
