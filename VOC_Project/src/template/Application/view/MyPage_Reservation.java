@@ -50,7 +50,7 @@ public class MyPage_Reservation extends JFrame {
 		JPanel pn_Head = new JPanel();
 		pn_Head.setLayout(null);
 		pn_Head.setBackground(Color.WHITE);
-		pn_Head.setBounds(0, 0, 434, 24);
+		pn_Head.setBounds(0, 0, 434, 40);
 		contentPane.add(pn_Head);
 		
 		JButton btn_Logout = new JButton("Logout");
@@ -58,7 +58,7 @@ public class MyPage_Reservation extends JFrame {
 		pn_Head.add(btn_Logout);
 		
 		JLabel lb_UserInformation = new JLabel("=");
-		lb_UserInformation.setFont(new Font("±¼¸²", Font.PLAIN, 16));
+		lb_UserInformation.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 16));
 		lb_UserInformation.setBounds(419, 3, 15, 15);
 		pn_Head.add(lb_UserInformation);
 		
@@ -69,7 +69,7 @@ public class MyPage_Reservation extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		panel_1.setBounds(10, 36, 408, 505);
+		panel_1.setBounds(10, 50, 408, 491);
 		contentPane.add(panel_1);
 		
 		JPanel pn_ReservationTitle = new JPanel();
@@ -79,31 +79,31 @@ public class MyPage_Reservation extends JFrame {
 		pn_ReservationTitle.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lb_ReservaitonTitle = new JLabel("\uC608\uB9E4 \uC815\uBCF4 \uD655\uC778 \uBC0F \uCDE8\uC18C");
-		lb_ReservaitonTitle.setFont(new Font("±¼¸²", Font.BOLD, 20));
+		lb_ReservaitonTitle.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 20));
 		lb_ReservaitonTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		pn_ReservationTitle.add(lb_ReservaitonTitle, BorderLayout.CENTER);
 		
 		JButton btn_UserImfomation = new JButton("\uD68C\uC6D0\uC815\uBCF4\r\n");
 		btn_UserImfomation.setHorizontalAlignment(SwingConstants.LEFT);
-		btn_UserImfomation.setFont(new Font("±¼¸²", Font.PLAIN, 12));
-		btn_UserImfomation.setBounds(0, 82, 86, 54);
+		btn_UserImfomation.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 12));
+		btn_UserImfomation.setBounds(10, 64, 90, 60);
 		panel_1.add(btn_UserImfomation);
 		
 		JButton btn_UserReservaution = new JButton("\uC608\uB9E4\uD655\uC778");
 		btn_UserReservaution.setHorizontalAlignment(SwingConstants.LEFT);
-		btn_UserReservaution.setFont(new Font("±¼¸²", Font.PLAIN, 12));
+		btn_UserReservaution.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 12));
 		btn_UserReservaution.setBounds(0, 162, 86, 54);
 		panel_1.add(btn_UserReservaution);
 		
 		JButton btn_Review = new JButton("\uB9AC\uBDF0\uB0B4\uC5ED");
 		btn_Review.setHorizontalAlignment(SwingConstants.LEFT);
-		btn_Review.setFont(new Font("±¼¸²", Font.PLAIN, 12));
+		btn_Review.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 12));
 		btn_Review.setBounds(0, 243, 86, 54);
 		panel_1.add(btn_Review);
 		
 		JPanel pn_UserReservation = new JPanel();
 		pn_UserReservation.setBackground(Color.WHITE);
-		pn_UserReservation.setBounds(141, 75, 253, 151);
+		pn_UserReservation.setBounds(111, 75, 283, 151);
 		panel_1.add(pn_UserReservation);
 		pn_UserReservation.setLayout(null);
 		
@@ -112,7 +112,7 @@ public class MyPage_Reservation extends JFrame {
 		pn_UserReservation.add(btn_ReservationCancle);
 		btn_ReservationCancle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showConfirmDialog(null, "¿¹¸Å¸¦ Ãë¼ÒÇÏ½Ã°Ú½À´Ï±î?", "¿¹¸ÅÃë¼Ò", JOptionPane.YES_NO_OPTION , JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showConfirmDialog(null, "ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", JOptionPane.YES_NO_OPTION , JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 		btn_ReservationCancle.setHorizontalAlignment(SwingConstants.LEFT);
