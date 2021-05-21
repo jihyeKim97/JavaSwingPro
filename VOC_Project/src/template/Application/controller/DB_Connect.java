@@ -16,15 +16,15 @@ public class DB_Connect {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, account, pw);
-			System.out.println("DB 접속 성공! " + new Date());
+			System.out.println("DB connect success" + new Date());
 			return true;
 		} catch (ClassNotFoundException e) {
-			System.out.println("ojdbc.jar의 오라클DB 드라이버 로딩 실패");
+			System.out.println("ojdbc.jar Database driver loading failure");
 		} catch (SQLException e) {
-			System.out.println("통신 연결 실패");
+			System.out.println("Database connection failure");
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("java 일반 예외");
+			System.out.println("Unkonwn error");
 		}
 		return false;
 	}
@@ -33,10 +33,10 @@ public class DB_Connect {
 		if (conn != null) {
 			try {
 				conn.close();
-				System.out.println("DB 종료 성공");
+				System.out.println("HI~~~~^^");
 				return true;
 			} catch (SQLException e) {
-				System.out.println("DB 종료 실패");
+				System.out.println("DB catch error");
 				e.printStackTrace();
 			}
 		}
@@ -44,8 +44,8 @@ public class DB_Connect {
 	}
 
 	public static void main(String[] args) {
-		beginConnection(); // 접속
-		endConnection(); // 해제
+		beginConnection(); 
+		endConnection(); 
 	}
 
 }
