@@ -20,55 +20,27 @@ import java.awt.SystemColor;
 import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+import template.Application.controller.RoundedButtonD;
 
 public class Notice_Detail extends JFrame {
 
 	private JPanel contentPane;
-
+	Notice_main NM;
 	/**
 	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Notice_Detail frame = new Notice_Detail();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public Notice_Detail() {
+	public Notice_Detail(Notice_main NM) {
+		this.NM = NM;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		Panel panel = new Panel();
-		panel.setLayout(null);
-		panel.setBackground(SystemColor.controlShadow);
-		panel.setBounds(0, 0, 484, 55);
-		contentPane.add(panel);
-		
-		JButton button = new JButton("LogOut");
-		button.setBounds(12, 10, 100, 35);
-		panel.add(button);
-		
-		JButton button_1 = new JButton("Home");
-		button_1.setBounds(310, 10, 100, 35);
-		panel.add(button_1);
-		
-		JButton button_2 = new JButton("〓");
-		button_2.setBounds(422, 10, 50, 35);
-		panel.add(button_2);
 		
 		Panel panel_1 = new Panel();
 		panel_1.setLayout(null);
@@ -77,7 +49,7 @@ public class Notice_Detail extends JFrame {
 		contentPane.add(panel_1);
 		
 		Panel panel_2 = new Panel();
-		panel_2.setBackground(SystemColor.scrollbar);
+		panel_2.setBackground(SystemColor.activeCaption);
 		panel_2.setBounds(10, 10, 464, 682);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
@@ -92,14 +64,6 @@ public class Notice_Detail extends JFrame {
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
 		panel_3.add(lblNewLabel, BorderLayout.CENTER);
 		
-		JButton btnNewButton = new JButton("공지사항으로");
-		btnNewButton.setBounds(70, 632, 120, 40);
-		panel_2.add(btnNewButton);
-		
-		JButton button_3 = new JButton("메인화면으로");
-		button_3.setBounds(276, 632, 120, 40);
-		panel_2.add(button_3);
-		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(10, 75, 444, 547);
 		panel_2.add(panel_4);
@@ -108,5 +72,39 @@ public class Notice_Detail extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Notice");
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
 		panel_4.add(lblNewLabel_1, BorderLayout.CENTER);
+		
+		RoundedButtonD roundedButtonD_3 = new RoundedButtonD("LOGOUT");
+		roundedButtonD_3.setText("메인으로");
+		roundedButtonD_3.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_3.setBounds(70, 632, 120, 40);
+		panel_2.add(roundedButtonD_3);
+		
+		RoundedButtonD roundedButtonD_4 = new RoundedButtonD("LOGOUT");
+		roundedButtonD_4.setText("공지사항으로");
+		roundedButtonD_4.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_4.setBounds(276, 632, 120, 40);
+		panel_2.add(roundedButtonD_4);
+		
+		Panel panel = new Panel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(169, 169, 169));
+		panel.setBounds(0, 0, 484, 55);
+		contentPane.add(panel);
+		
+		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
+		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD.setBounds(12, 10, 100, 35);
+		panel.add(roundedButtonD);
+		
+		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
+		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_1.setBounds(320, 10, 100, 35);
+		panel.add(roundedButtonD_1);
+		
+		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
+		roundedButtonD_2.setText("=");
+		roundedButtonD_2.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_2.setBounds(430, 10, 41, 35);
+		panel.add(roundedButtonD_2);
 	}
 }
