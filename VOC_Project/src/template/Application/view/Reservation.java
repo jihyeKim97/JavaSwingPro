@@ -74,6 +74,16 @@ public class Reservation extends JFrame {
 	private Panel panel_2;
 	private Panel panel_3;
 	private Button button_3;
+	private Panel panel_4;
+	private Panel panel_5;
+	private Button button_4;
+	private Panel panel_6;
+	private Panel panel_7;
+	private Button button_5;
+	private Panel panel_8;
+	private Panel panel_9;
+	private Button button_6;
+	private Panel panel_10;
 
 	/**
 	 * Launch the application.
@@ -286,17 +296,56 @@ public class Reservation extends JFrame {
 		panel_1.setLayout(null);
 		
 		panel_2 = new Panel();
-		panel_2.setBounds(0, 0, 106, 171);
+		panel_2.setBounds(10, 0, 94, 171);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
 		panel_3 = new Panel();
-		panel_3.setBounds(0, 0, 106, 125);
+		panel_3.setBounds(0, 0, 94, 125);
 		panel_2.add(panel_3);
 		
 		button_3 = new Button("New button");
-		button_3.setBounds(0, 131, 106, 30);
+		button_3.setBounds(0, 131, 94, 30);
 		panel_2.add(button_3);
+		
+		panel_4 = new Panel();
+		panel_4.setLayout(null);
+		panel_4.setBounds(320, 0, 94, 171);
+		panel_1.add(panel_4);
+		
+		panel_5 = new Panel();
+		panel_5.setBounds(0, 0, 94, 125);
+		panel_4.add(panel_5);
+		
+		button_4 = new Button("New button");
+		button_4.setBounds(0, 131, 94, 30);
+		panel_4.add(button_4);
+		
+		panel_6 = new Panel();
+		panel_6.setLayout(null);
+		panel_6.setBounds(217, 0, 94, 171);
+		panel_1.add(panel_6);
+		
+		panel_7 = new Panel();
+		panel_7.setBounds(0, 0, 94, 125);
+		panel_6.add(panel_7);
+		
+		button_5 = new Button("New button");
+		button_5.setBounds(0, 131, 94, 30);
+		panel_6.add(button_5);
+		
+		panel_8 = new Panel();
+		panel_8.setLayout(null);
+		panel_8.setBounds(113, 0, 94, 171);
+		panel_1.add(panel_8);
+		
+		panel_9 = new Panel();
+		panel_9.setBounds(0, 0, 94, 125);
+		panel_8.add(panel_9);
+		
+		button_6 = new Button("New button");
+		button_6.setBounds(0, 131, 94, 30);
+		panel_8.add(button_6);
 		
 		panel = new Panel();
 		panel.setLayout(null);
@@ -308,6 +357,11 @@ public class Reservation extends JFrame {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(0, 0, 424, 44);
 		panel.add(label);
+		
+		panel_10 = new Panel();
+		panel_10.setBounds(0, 43, 423, 250);
+		panel.add(panel_10);
+		panel_10.setLayout(null);
 		
 		button_2 = new Button("New button");
 		button_2.setBounds(10, 527, 424, 76);
