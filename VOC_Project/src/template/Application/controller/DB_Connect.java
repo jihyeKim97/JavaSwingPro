@@ -19,12 +19,12 @@ public class DB_Connect {
 			System.out.println("DB connect success" + new Date());
 			return true;
 		} catch (ClassNotFoundException e) {
-			System.out.println("ojdbc.jar error");
+			System.out.println("ojdbc.jar Database driver loading failure");
 		} catch (SQLException e) {
-			System.out.println("no.one");
+			System.out.println("Database connection failure");
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("on.two");
+			System.out.println("Unkonwn error");
 		}
 		return false;
 	}
@@ -33,7 +33,7 @@ public class DB_Connect {
 		if (conn != null) {
 			try {
 				conn.close();
-				System.out.println("DB try error");
+				System.out.println("HI~~~~^^");
 				return true;
 			} catch (SQLException e) {
 				System.out.println("DB catch error");
