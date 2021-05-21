@@ -5,10 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import template.Application.controller.GUICalendarFrame;
+
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Point;
+
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -42,29 +48,36 @@ public class SignUp extends JFrame {
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
 	private final ButtonGroup genderGrp = new ButtonGroup();
-	SignUp dlg;
+	SignUp mj;
 	JButton btn_userJoin;
-
+	GUICalendarFrame frm;
+	Login mln;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SignUp frame = new SignUp();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MemberJoin frame = new MemberJoin();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param mln
 	 */
-	public SignUp() {
+	public SignUp(Login mln) {
+
+		this.mln = mln;
+
+//		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
 		setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,11 +87,11 @@ public class SignUp extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		lblNewLabel.setBounds(116, 17, 508, 36);
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 35));
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		contentPane.add(lblNewLabel);
+		JLabel lb_userJoin = new JLabel("\uD68C\uC6D0\uAC00\uC785");
+		lb_userJoin.setBounds(116, 17, 508, 36);
+		lb_userJoin.setFont(new Font("굴림", Font.BOLD, 35));
+		lb_userJoin.setVerticalAlignment(SwingConstants.TOP);
+		contentPane.add(lb_userJoin);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(-12, 63, 453, 416);
@@ -138,16 +151,12 @@ public class SignUp extends JFrame {
 				String strPw2 = new String(pwf_userPw2.getPassword());
 				if (strPw1.length() > 0 && strPw2.isEmpty()) {
 
-//					pwSecond.requestFocusInWindow();
-					// 두번째 pw필드로 포커스를 강제 이동 요청..
-					// } else if(글자수 최소, 최대...) {
+//					
 				} else {
 					if (strPw1.length() > 0 && strPw2.length() > 0) {
-						// 두개 암호 필드값의 내용 비교 일치/불일치
 						if (strPw2.equals(strPw1)) {
 							System.out.println("암호 일치");
 
-							// 가입버튼 활성화 판단 함수
 							checkJoinAvailable();
 						} else {
 							System.out.println("암호 불일치");
@@ -172,7 +181,7 @@ public class SignUp extends JFrame {
 				txt_userName.setForeground(Color.black);
 				txt_userName.setBackground(Color.yellow);
 				if (txt_userName.getText().equals("ex) 홍길동"))
-					txt_userName.setText(""); // 안내 문구일 때만 지움.
+					txt_userName.setText("");
 			}
 
 			@Override
@@ -217,24 +226,31 @@ public class SignUp extends JFrame {
 		lb_DoB.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_DoB);
 
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		JPanel panel_bday = new JPanel();
+		panel.add(panel_bday);
+		panel_bday.setLayout(null);
 
-		JLabel lb_DoBEnter = new JLabel("\uC0DD\uB144\uC6D4\uC77C ");
-		lb_DoBEnter.setBounds(38, 10, 57, 15);
-		panel_1.add(lb_DoBEnter);
-
-		JButton btn_Calendar = new JButton("");
-		btn_Calendar.addMouseListener(new MouseAdapter() {
+		JLabel lb_Calendar = new JLabel("");
+		lb_Calendar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				GUICalendarFrame cal = new GUICalendarFrame();
+				cal.setVisible(true);
 
+				Point pt = lb_Calendar.getLocationOnScreen();
+
+				cal.setLocation(pt.x - 100, pt.y - 50);
 			}
 		});
-		btn_Calendar.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
-		btn_Calendar.setBounds(101, 6, 57, 25);
-		panel_1.add(btn_Calendar);
+		lb_Calendar.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
+		lb_Calendar.setBounds(110, 10, 31, 25);
+		panel_bday.add(lb_Calendar);
+
+		txt_DoB = new JTextField();
+
+		txt_DoB.setBounds(5, 10, 93, 32);
+		panel_bday.add(txt_DoB);
+		txt_DoB.setColumns(10);
 
 		JLabel lb_Email = new JLabel("\uC774\uBA54\uC77C:");
 		lb_Email.setFont(new Font("굴림", Font.PLAIN, 14));
@@ -251,9 +267,24 @@ public class SignUp extends JFrame {
 		txt_emailAdd.setColumns(10);
 
 		JComboBox combo_emailAddress = new JComboBox();
+		combo_emailAddress.setEditable(true);
+		combo_emailAddress.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				combo_emailAddress.getSelectedIndex();
+				System.out.println(combo_emailAddress.getSelectedIndex());
+				System.out.println(combo_emailAddress.getSelectedItem());
+			}
+		});
+
 		combo_emailAddress.setBounds(121, 7, 93, 32);
-		combo_emailAddress.setModel(new DefaultComboBoxModel(new String[] { "hanmail.net", "naver.com", "gmail.com" }));
+		combo_emailAddress.setModel(new DefaultComboBoxModel(
+				new String[] { "메일 주소", "hanmail.net", "naver.com", "gmail.com", "nate.com", "직접 입력" }));
 		panel_Email.add(combo_emailAddress);
+		String emailAdd = (String) combo_emailAddress.getSelectedItem();
+		if (emailAdd.equals("직접 입력")) {
+			combo_emailAddress.setVisible(false);
+//			txt_fillEmail.setVisible(true);
+		}
 
 		JLabel lblNewLabel_3 = new JLabel("@");
 		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 17));
@@ -358,6 +389,7 @@ public class SignUp extends JFrame {
 		JButton btn_DupCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
 		btn_DupCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
 				bLoginAvail = true;// 일단 더미 중복x
 				checkJoinAvailable();
 			}
@@ -366,17 +398,36 @@ public class SignUp extends JFrame {
 		btn_DupCheck.setBounds(454, 73, 96, 36);
 		contentPane.add(btn_DupCheck);
 
-		JButton btn_userJoin = new JButton("\uAC00\uC785\uC644\uB8CC");
-		btn_userJoin.setBounds(414, 503, 136, 50);
-		contentPane.add(btn_userJoin);
+		JButton btn_cancel = new JButton("\uCDE8\uC18C");
+		btn_cancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		btn_cancel.setBackground(Color.LIGHT_GRAY);
+		btn_cancel.setBounds(269, 503, 136, 50);
+		contentPane.add(btn_cancel);
 
-		JButton btnNewButton = new JButton("\uCDE8\uC18C");
-		btnNewButton.setBounds(269, 503, 136, 50);
-		contentPane.add(btnNewButton);
+		JButton btn_userJoin = new JButton("가입 완료");
+		btn_userJoin.setForeground(Color.BLACK);
+		btn_userJoin.setBackground(new Color(255, 175, 175));
+		btn_userJoin.setFont(new Font("굴림", Font.BOLD, 14));
+		btn_userJoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("가입완료 클릭");
+				checkJoinAvailable();
+				JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+				System.out.println(combo_emailAddress.getSelectedItem());
+			}
+		});
+		btn_userJoin.setBounds(417, 503, 136, 50);
+		contentPane.add(btn_userJoin);
 
 	}
 
 	private boolean bLoginAvail; // false(중복)
+	private JTextField txt_DoB;
 
 	protected void checkJoinAvailable() {
 		// 가입 가능한 상태의 입력들이 준비되었는지 체크...

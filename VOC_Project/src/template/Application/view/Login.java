@@ -12,6 +12,8 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+
+
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.Font;
@@ -41,6 +43,7 @@ public class Login {
 	private JTextField txt_number4;
 	private JTextField txt_number5;
 	private JTextField txt_number6;
+	Login mln;
 	/**
 	 * Launch the application.
 	 */
@@ -141,6 +144,8 @@ public class Login {
 		lb_SignUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				SignUp mbj = new SignUp (mln);
+				mbj.setVisible(true);
 				System.out.println("회원가입 누름");
 				lb_SignUp.setOpaque(true);// 배경 불투명도 조정
 				lb_SignUp.setBackground(Color.LIGHT_GRAY);
