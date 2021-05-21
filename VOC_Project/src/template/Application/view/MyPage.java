@@ -70,10 +70,6 @@ public class MyPage extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	/**
-	 * @wbp.nonvisual location=520,129
-	 */
-	private final JLabel label = new JLabel("New label");
 
 	/**
 	 * Launch the application.
