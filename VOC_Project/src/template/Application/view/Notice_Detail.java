@@ -1,17 +1,24 @@
 package template.Application.view;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
+import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Panel;
+import java.awt.SystemColor;
+import java.awt.GridLayout;
+import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 public class Notice_Detail extends JFrame {
@@ -39,71 +46,67 @@ public class Notice_Detail extends JFrame {
 	 */
 	public Notice_Detail() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 750);
+		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel pn_head = new JPanel();
-		pn_head.setBackground(Color.WHITE);
-		pn_head.setBounds(0, 0, 432, 28);
-		contentPane.add(pn_head);
+		Panel panel = new Panel();
+		panel.setLayout(null);
+		panel.setBackground(SystemColor.controlShadow);
+		panel.setBounds(0, 0, 484, 55);
+		contentPane.add(panel);
 		
-		JButton btn_Logout = new JButton("Logout");
-		btn_Logout.setBounds(0, 0, 79, 27);
-		btn_Logout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showConfirmDialog(null, "�α׾ƿ� �Ͻðڽ��ϱ�?", "�α׾ƿ�", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-			}
-		});
-		pn_head.setLayout(null);
-		btn_Logout.setHorizontalAlignment(SwingConstants.LEFT);
-		pn_head.add(btn_Logout);
+		JButton button = new JButton("LogOut");
+		button.setBounds(12, 10, 100, 35);
+		panel.add(button);
 		
-		JLabel lblNewLabel = new JLabel("=");
-		lblNewLabel.setBounds(404, 4, 14, 18);
-		pn_head.add(lblNewLabel);
+		JButton button_1 = new JButton("Home");
+		button_1.setBounds(310, 10, 100, 35);
+		panel.add(button_1);
 		
-		JButton btn_home = new JButton("home");
-		btn_home.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_home.setBounds(335, 0, 69, 27);
-		pn_head.add(btn_home);
+		JButton button_2 = new JButton("〓");
+		button_2.setBounds(422, 10, 50, 35);
+		panel.add(button_2);
 		
-		JPanel pn_NoticeContent = new JPanel();
-		pn_NoticeContent.setBackground(Color.WHITE);
-		pn_NoticeContent.setBorder(new LineBorder(new Color(0, 0, 0)));
-		pn_NoticeContent.setBounds(14, 74, 404, 525);
-		contentPane.add(pn_NoticeContent);
-		pn_NoticeContent.setLayout(new BorderLayout(0, 0));
+		Panel panel_1 = new Panel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(SystemColor.controlHighlight);
+		panel_1.setBounds(0, 55, 484, 705);
+		contentPane.add(panel_1);
 		
-		JLabel lb_NoticeContent = new JLabel("\uB0B4\uC6A9");
-		lb_NoticeContent.setBackground(Color.WHITE);
-		lb_NoticeContent.setVerticalAlignment(SwingConstants.TOP);
-		pn_NoticeContent.add(lb_NoticeContent, BorderLayout.CENTER);
+		Panel panel_2 = new Panel();
+		panel_2.setBackground(SystemColor.scrollbar);
+		panel_2.setBounds(10, 10, 464, 682);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
 		
-		JLabel lb_NoticeTitle = new JLabel("\uACF5\uC9C0\uC0AC\uD56D \uC81C\uBAA9");
-		lb_NoticeTitle.setBounds(14, 40, 404, 22);
-		contentPane.add(lb_NoticeTitle);
+		Panel panel_3 = new Panel();
+		panel_3.setBounds(10, 10, 444, 55);
+		panel_3.setBackground(SystemColor.controlShadow);
+		panel_2.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JButton btn_GoToMain = new JButton("\uBA54\uC778\uC73C\uB85C");
-		btn_GoToMain.setBounds(42, 627, 148, 49);
-		contentPane.add(btn_GoToMain);
+		JLabel lblNewLabel = new JLabel("Notice_Title");
+		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
+		panel_3.add(lblNewLabel, BorderLayout.CENTER);
 		
-		JButton btn_GoToNotice = new JButton("\uACF5\uC9C0\uC0AC\uD56D\uC73C\uB85C");
-		btn_GoToNotice.setBounds(235, 627, 148, 49);
-		contentPane.add(btn_GoToNotice);
+		JButton btnNewButton = new JButton("공지사항으로");
+		btnNewButton.setBounds(70, 632, 120, 40);
+		panel_2.add(btnNewButton);
 		
-		JLabel lb_ViewNumber = new JLabel("\uC22B\uC790");
-		lb_ViewNumber.setBounds(387, 56, 31, 18);
-		contentPane.add(lb_ViewNumber);
+		JButton button_3 = new JButton("메인화면으로");
+		button_3.setBounds(276, 632, 120, 40);
+		panel_2.add(button_3);
 		
-		JLabel lb_View = new JLabel("\uC870\uD68C\uC218:");
-		lb_View.setBounds(339, 56, 47, 18);
-		contentPane.add(lb_View);
-	}	
-
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(10, 75, 444, 547);
+		panel_2.add(panel_4);
+		panel_4.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_1 = new JLabel("Notice");
+		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
+		panel_4.add(lblNewLabel_1, BorderLayout.CENTER);
+	}
 }
