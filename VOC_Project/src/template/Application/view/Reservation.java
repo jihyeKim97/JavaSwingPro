@@ -31,6 +31,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.TextField;
 import javax.swing.JTextPane;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class Reservation extends JFrame {
 
@@ -40,10 +42,10 @@ public class Reservation extends JFrame {
 	private Panel content_panel;
 	private Panel div_panel;
 	private Panel title_panel;
-	private final Panel re_panel = new Panel();
+	private final Panel cpn_panel = new Panel();
 	private Panel mem_panel;
 	private Panel mem_detail;
-	private Panel re_detail;
+	private Panel screening_panel;
 	private RoundedButtonD btn_edit;
 	private Panel txt_panel;
 	private JLabel lb_name;
@@ -66,23 +68,23 @@ public class Reservation extends JFrame {
 	private Button button;
 	private JLabel lblNewLabel;
 	private Button button_1;
-	private Panel panel;
-	private Button button_2;
-	private JLabel lblNewLabel_1;
-	private JLabel label;
-	private Panel panel_1;
-	private Panel panel_2;
-	private Panel panel_3;
-	private Button button_3;
-	private Panel panel_4;
-	private Panel panel_5;
-	private Button button_4;
-	private Panel panel_6;
-	private Panel panel_7;
-	private Button button_5;
-	private Panel panel_8;
-	private Panel panel_9;
-	private Button button_6;
+	private Panel released_panel;
+	private Button btn_notice;
+	private JLabel lb_title1;
+	private JLabel lb_title2;
+	private Panel screen_guid_line;
+	private Panel movie1_panel;
+	private Panel poster_1;
+	private Button btn_poster_1;
+	private Panel movie4_panel;
+	private Panel poster_4;
+	private Button btn_poster_4;
+	private Panel movie3_panel;
+	private Panel poster_3;
+	private Button btn_poster_3;
+	private Panel movie2_panel;
+	private Panel poster_2;
+	private Button btn_poster_2;
 	private Panel panel_10;
 
 	/**
@@ -117,13 +119,13 @@ public class Reservation extends JFrame {
 		contentPane.add(header_panel);
 		header_panel.setLayout(null);
 
-		RoundedButtonD btn_logout = new RoundedButtonD("LOGOUT");
-		btn_logout.setFont(new Font("SansSerif", Font.BOLD, 15));
+		RoundedButtonR btn_logout = new RoundedButtonR("LOGOUT");
+		btn_logout.setFont(new Font("Dialog", Font.BOLD, 15));
 		btn_logout.setBounds(12, 10, 100, 35);
 		header_panel.add(btn_logout);
 
 		btn_home = new RoundedButtonD("HOME");
-		btn_home.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btn_home.setFont(new Font("Dialog", Font.BOLD, 15));
 		btn_home.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -137,7 +139,7 @@ public class Reservation extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn_myPage.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btn_myPage.setFont(new Font("Dialog", Font.BOLD, 15));
 		btn_myPage.setBounds(430, 10, 41, 35);
 		header_panel.add(btn_myPage);
 
@@ -157,16 +159,22 @@ public class Reservation extends JFrame {
 		title_panel.setBackground(new Color(255, 255, 255));
 		title_panel.setBounds(10, 16, 444, 55);
 		div_panel.add(title_panel);
-		title_panel.setLayout(new GridLayout(1, 0, 0, 0));
+		title_panel.setLayout(null);
 		
-		button = new Button("New button");
+		button = new Button("prev");
+		button.setFont(new Font("Dialog", Font.PLAIN, 15));
+		button.setBounds(0, 0, 73, 55);
 		title_panel.add(button);
 		
-		lblNewLabel = new JLabel("New label");
+		lblNewLabel = new JLabel("2020-05-17");
+		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		lblNewLabel.setBounds(79, 0, 280, 55);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		title_panel.add(lblNewLabel);
 		
-		button_1 = new Button("New button");
+		button_1 = new Button("next");
+		button_1.setFont(new Font("Dialog", Font.PLAIN, 15));
+		button_1.setBounds(365, 0, 79, 55);
 		title_panel.add(button_1);
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
@@ -274,98 +282,139 @@ public class Reservation extends JFrame {
 		textField_7.setColumns(10);
 		textField_7.setBounds(0, 412, 246, 40);
 		txtF_panel.add(textField_7);
-		re_panel.setBackground(new Color(135, 206, 235));
-		re_panel.setBounds(10, 77, 444, 613);
-		div_panel.add(re_panel);
-		re_panel.setLayout(null);
+		cpn_panel.setBackground(Color.WHITE);
+		cpn_panel.setBounds(10, 77, 444, 613);
+		div_panel.add(cpn_panel);
+		cpn_panel.setLayout(null);
 
-		re_detail = new Panel();
-		re_detail.setBackground(new Color(255, 255, 255));
-		re_detail.setBounds(10, 10, 424, 210);
-		re_panel.add(re_detail);
-		re_detail.setLayout(null);
+		screening_panel = new Panel();
+		screening_panel.setBackground(new Color(255, 255, 255));
+		screening_panel.setBounds(10, 10, 424, 210);
+		cpn_panel.add(screening_panel);
+		screening_panel.setLayout(null);
 		
-		lblNewLabel_1 = new JLabel("상영중인 영화");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(0, 0, 424, 39);
-		re_detail.add(lblNewLabel_1);
+		lb_title1 = new JLabel("상영중인 영화");
+		lb_title1.setFont(new Font("한컴 고딕", Font.BOLD, 19));
+		lb_title1.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_title1.setBounds(0, 0, 424, 39);
+		screening_panel.add(lb_title1);
 		
-		panel_1 = new Panel();
-		panel_1.setBounds(0, 39, 424, 171);
-		re_detail.add(panel_1);
-		panel_1.setLayout(null);
+		screen_guid_line = new Panel();
+		screen_guid_line.setBounds(0, 39, 424, 171);
+		screening_panel.add(screen_guid_line);
+		screen_guid_line.setLayout(null);
 		
-		panel_2 = new Panel();
-		panel_2.setBounds(10, 0, 94, 171);
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
+		movie1_panel = new Panel();
+		movie1_panel.setBounds(10, 0, 94, 161);
+		screen_guid_line.add(movie1_panel);
+		movie1_panel.setLayout(null);
 		
-		panel_3 = new Panel();
-		panel_3.setBounds(0, 0, 94, 125);
-		panel_2.add(panel_3);
+		poster_1 = new Panel();
+		poster_1.setBounds(0, 0, 94, 125);
+		movie1_panel.add(poster_1);
 		
-		button_3 = new Button("New button");
-		button_3.setBounds(0, 131, 94, 30);
-		panel_2.add(button_3);
+		btn_poster_1 = new Button("예매");
+		btn_poster_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btn_poster_1.setBounds(0, 131, 94, 30);
+		movie1_panel.add(btn_poster_1);
+		movie1_panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_poster_1, poster_1}));
 		
-		panel_4 = new Panel();
-		panel_4.setLayout(null);
-		panel_4.setBounds(320, 0, 94, 171);
-		panel_1.add(panel_4);
+		movie4_panel = new Panel();
+		movie4_panel.setLayout(null);
+		movie4_panel.setBounds(320, 0, 94, 161);
+		screen_guid_line.add(movie4_panel);
 		
-		panel_5 = new Panel();
-		panel_5.setBounds(0, 0, 94, 125);
-		panel_4.add(panel_5);
+		poster_4 = new Panel();
+		poster_4.setBounds(0, 0, 94, 125);
+		movie4_panel.add(poster_4);
 		
-		button_4 = new Button("New button");
-		button_4.setBounds(0, 131, 94, 30);
-		panel_4.add(button_4);
+		btn_poster_4 = new Button("예매");
+		btn_poster_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btn_poster_4.setBounds(0, 131, 94, 30);
+		movie4_panel.add(btn_poster_4);
 		
-		panel_6 = new Panel();
-		panel_6.setLayout(null);
-		panel_6.setBounds(217, 0, 94, 171);
-		panel_1.add(panel_6);
+		movie3_panel = new Panel();
+		movie3_panel.setLayout(null);
+		movie3_panel.setBounds(217, 0, 94, 161);
+		screen_guid_line.add(movie3_panel);
 		
-		panel_7 = new Panel();
-		panel_7.setBounds(0, 0, 94, 125);
-		panel_6.add(panel_7);
+		poster_3 = new Panel();
+		poster_3.setBounds(0, 0, 94, 125);
+		movie3_panel.add(poster_3);
 		
-		button_5 = new Button("New button");
-		button_5.setBounds(0, 131, 94, 30);
-		panel_6.add(button_5);
+		btn_poster_3 = new Button("예매");
+		btn_poster_3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btn_poster_3.setBounds(0, 131, 94, 30);
+		movie3_panel.add(btn_poster_3);
 		
-		panel_8 = new Panel();
-		panel_8.setLayout(null);
-		panel_8.setBounds(113, 0, 94, 171);
-		panel_1.add(panel_8);
+		movie2_panel = new Panel();
+		movie2_panel.setLayout(null);
+		movie2_panel.setBounds(113, 0, 94, 161);
+		screen_guid_line.add(movie2_panel);
 		
-		panel_9 = new Panel();
-		panel_9.setBounds(0, 0, 94, 125);
-		panel_8.add(panel_9);
+		poster_2 = new Panel();
+		poster_2.setBounds(0, 0, 94, 125);
+		movie2_panel.add(poster_2);
 		
-		button_6 = new Button("New button");
-		button_6.setBounds(0, 131, 94, 30);
-		panel_8.add(button_6);
+		btn_poster_2 = new Button("예매");
+		btn_poster_2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btn_poster_2.setBounds(0, 131, 94, 30);
+		movie2_panel.add(btn_poster_2);
 		
-		panel = new Panel();
-		panel.setLayout(null);
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 226, 424, 295);
-		re_panel.add(panel);
+		released_panel = new Panel();
+		released_panel.setLayout(null);
+		released_panel.setBackground(Color.WHITE);
+		released_panel.setBounds(10, 226, 424, 309);
+		cpn_panel.add(released_panel);
 		
-		label = new JLabel("개봉예정 영화");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(0, 0, 424, 44);
-		panel.add(label);
+		lb_title2 = new JLabel("개봉예정 영화");
+		lb_title2.setFont(new Font("한컴 고딕", Font.BOLD, 19));
+		lb_title2.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_title2.setBounds(0, 0, 424, 44);
+		released_panel.add(lb_title2);
 		
 		panel_10 = new Panel();
-		panel_10.setBounds(0, 43, 423, 250);
-		panel.add(panel_10);
+		panel_10.setBounds(0, 43, 423, 265);
+		released_panel.add(panel_10);
 		panel_10.setLayout(null);
 		
-		button_2 = new Button("New button");
-		button_2.setBounds(10, 527, 424, 76);
-		re_panel.add(button_2);
+		Panel poster_re_1 = new Panel();
+		poster_re_1.setBounds(10, 0, 94, 125);
+		panel_10.add(poster_re_1);
+		
+		Panel poster_re_2 = new Panel();
+		poster_re_2.setBounds(113, 0, 94, 125);
+		panel_10.add(poster_re_2);
+		
+		Panel poster_re_3 = new Panel();
+		poster_re_3.setBounds(217, 0, 94, 125);
+		panel_10.add(poster_re_3);
+		
+		Panel poster_re_4 = new Panel();
+		poster_re_4.setBounds(320, 0, 94, 125);
+		panel_10.add(poster_re_4);
+		
+		Panel poster_re_5 = new Panel();
+		poster_re_5.setBounds(10, 131, 94, 125);
+		panel_10.add(poster_re_5);
+		
+		Panel poster_re_6 = new Panel();
+		poster_re_6.setBounds(113, 131, 94, 125);
+		panel_10.add(poster_re_6);
+		
+		Panel poster_re_7 = new Panel();
+		poster_re_7.setBounds(217, 131, 94, 125);
+		panel_10.add(poster_re_7);
+		
+		Panel poster_re_8 = new Panel();
+		poster_re_8.setBounds(320, 131, 94, 125);
+		panel_10.add(poster_re_8);
+		
+		btn_notice = new Button("공지사항");
+		btn_notice.setBounds(10, 543, 424, 60);
+		cpn_panel.add(btn_notice);
+		cpn_panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lb_title1, screening_panel, btn_poster_1, screen_guid_line, movie1_panel, poster_1, movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_myPage, contentPane, header_panel, btn_logout, btn_home, content_panel, div_panel, title_panel, button, lblNewLabel, button_1, cpn_panel, screening_panel, lb_title1, screen_guid_line, movie1_panel, poster_1, btn_poster_1, movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice}));
 
 	}
 }

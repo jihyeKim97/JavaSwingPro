@@ -216,7 +216,7 @@ public class MyPage extends JFrame {
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);
-//		div_panel.add(mem_panel);
+		div_panel.add(mem_panel);
 		mem_panel.setLayout(null);
 
 		mem_detail = new Panel();
