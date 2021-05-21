@@ -32,7 +32,7 @@ import javax.swing.JTextField;
 import java.awt.TextField;
 import javax.swing.JTextPane;
 
-public class MyPage extends JFrame {
+public class Reservation extends JFrame {
 
 	private JPanel contentPane;
 	private final Panel header_panel = new Panel();
@@ -40,17 +40,10 @@ public class MyPage extends JFrame {
 	private Panel content_panel;
 	private Panel div_panel;
 	private Panel title_panel;
-	private JLabel lb_title;
-	private JButton btnMember;
-	private JButton btnReservation;
-	private JButton btnReview;
-	private Panel tab_panel;
 	private final Panel re_panel = new Panel();
 	private Panel mem_panel;
-	private Panel res_panel;
 	private Panel mem_detail;
 	private Panel re_detail;
-	private Panel res_detail;
 	private RoundedButtonD btn_edit;
 	private Panel txt_panel;
 	private JLabel lb_name;
@@ -70,6 +63,17 @@ public class MyPage extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
+	private Button button;
+	private JLabel lblNewLabel;
+	private Button button_1;
+	private Panel panel;
+	private Button button_2;
+	private JLabel lblNewLabel_1;
+	private JLabel label;
+	private Panel panel_1;
+	private Panel panel_2;
+	private Panel panel_3;
+	private Button button_3;
 
 	/**
 	 * Launch the application.
@@ -78,7 +82,7 @@ public class MyPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MyPage frame = new MyPage();
+					Reservation frame = new Reservation();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -90,7 +94,7 @@ public class MyPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyPage() {
+	public Reservation() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -143,76 +147,17 @@ public class MyPage extends JFrame {
 		title_panel.setBackground(new Color(255, 255, 255));
 		title_panel.setBounds(10, 16, 444, 55);
 		div_panel.add(title_panel);
-		title_panel.setLayout(new BorderLayout(0, 0));
-
-		lb_title = new JLabel("Member");
-		lb_title.setBackground(new Color(255, 255, 255));
-		lb_title.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_title.setFont(new Font("SansSerif", Font.BOLD, 35));
-		title_panel.add(lb_title, BorderLayout.CENTER);
-
-		tab_panel = new Panel();
-		tab_panel.setBackground(Color.LIGHT_GRAY);
-//		tab_panel.setBackground(SystemColor.controlShadow);
-		tab_panel.setBounds(10, 77, 444, 45);
-		div_panel.add(tab_panel);
-		tab_panel.setLayout(new GridLayout(0, 3, 0, 0));
-
-		btnMember = new JButton("Member");
-		btnMember.setBackground(Color.LIGHT_GRAY);
-		btnMember.setFont(new Font("SansSerif", Font.BOLD, 15));
-//		btnMember.setBorderPainted(false);
-//		btnMember.setContentAreaFilled(false);
-//		btnMember.setFocusPainted(false);
-		tab_panel.add(btnMember);
-		btnMember.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mem_panel.setVisible(true);
-				re_panel.setVisible(false);
-				res_panel.setVisible(false);
-				mem_detail.setVisible(true);
-				re_detail.setVisible(false);
-				res_detail.setVisible(false);
-				lb_title.setText("Member");
-			}
-		});
+		title_panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		btnReservation = new JButton("Reservation");
-		btnReservation.setBackground(Color.LIGHT_GRAY);
-		btnReservation.setFont(new Font("SansSerif", Font.BOLD, 15));
-//		btnReservation.setBorderPainted(false);
-//		btnReservation.setContentAreaFilled(false);
-//		btnReservation.setFocusPainted(false);
-		btnReservation.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mem_panel.setVisible(false);
-				re_panel.setVisible(false);
-				res_panel.setVisible(true);
-				mem_detail.setVisible(false);
-				re_detail.setVisible(false);
-				res_detail.setVisible(true);
-				lb_title.setText("Reservation");
-			}
-		});
-		tab_panel.add(btnReservation);
-
-		btnReview = new JButton("Review");
-		btnReview.setBackground(Color.LIGHT_GRAY);
-		btnReview.setFont(new Font("SansSerif", Font.BOLD, 15));
-//		btnReview.setBorderPainted(false);
-//		btnReview.setContentAreaFilled(false);
-//		btnReview.setFocusPainted(false);
-		btnReview.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mem_panel.setVisible(false);
-				re_panel.setVisible(true);
-				res_panel.setVisible(false);
-				mem_detail.setVisible(false);
-				re_detail.setVisible(true);
-				res_detail.setVisible(false);
-				lb_title.setText("Review");
-			}
-		});
+		button = new Button("New button");
+		title_panel.add(button);
+		
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		title_panel.add(lblNewLabel);
+		
+		button_1 = new Button("New button");
+		title_panel.add(button_1);
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);
@@ -319,30 +264,54 @@ public class MyPage extends JFrame {
 		textField_7.setColumns(10);
 		textField_7.setBounds(0, 412, 246, 40);
 		txtF_panel.add(textField_7);
-
-		tab_panel.add(btnReview);
 		re_panel.setBackground(new Color(135, 206, 235));
-		re_panel.setBounds(10, 120, 444, 570);
+		re_panel.setBounds(10, 77, 444, 613);
 		div_panel.add(re_panel);
 		re_panel.setLayout(null);
 
 		re_detail = new Panel();
 		re_detail.setBackground(new Color(255, 255, 255));
-		re_detail.setBounds(10, 10, 424, 550);
+		re_detail.setBounds(10, 10, 424, 210);
 		re_panel.add(re_detail);
 		re_detail.setLayout(null);
-
-		res_panel = new Panel();
-		res_panel.setBackground(new Color(255, 192, 203));
-		res_panel.setBounds(10, 120, 444, 570);
-		div_panel.add(res_panel);
-		res_panel.setLayout(null);
-
-		res_detail = new Panel();
-		res_detail.setBackground(new Color(255, 255, 255));
-		res_detail.setBounds(10, 10, 424, 550);
-		res_panel.add(res_detail);
-		res_detail.setLayout(null);
+		
+		lblNewLabel_1 = new JLabel("상영중인 영화");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(0, 0, 424, 39);
+		re_detail.add(lblNewLabel_1);
+		
+		panel_1 = new Panel();
+		panel_1.setBounds(0, 39, 424, 171);
+		re_detail.add(panel_1);
+		panel_1.setLayout(null);
+		
+		panel_2 = new Panel();
+		panel_2.setBounds(0, 0, 106, 171);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+		
+		panel_3 = new Panel();
+		panel_3.setBounds(0, 0, 106, 125);
+		panel_2.add(panel_3);
+		
+		button_3 = new Button("New button");
+		button_3.setBounds(0, 131, 106, 30);
+		panel_2.add(button_3);
+		
+		panel = new Panel();
+		panel.setLayout(null);
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(10, 226, 424, 295);
+		re_panel.add(panel);
+		
+		label = new JLabel("개봉예정 영화");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(0, 0, 424, 44);
+		panel.add(label);
+		
+		button_2 = new Button("New button");
+		button_2.setBounds(10, 527, 424, 76);
+		re_panel.add(button_2);
 
 	}
 }
