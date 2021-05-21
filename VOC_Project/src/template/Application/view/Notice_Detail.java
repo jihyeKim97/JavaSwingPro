@@ -1,109 +1,110 @@
 package template.Application.view;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
+import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Panel;
+import java.awt.SystemColor;
+import java.awt.GridLayout;
+import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+import template.Application.controller.RoundedButtonD;
 
 public class Notice_Detail extends JFrame {
 
 	private JPanel contentPane;
-
+	Notice_main NM;
 	/**
 	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Notice_Detail frame = new Notice_Detail();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public Notice_Detail() {
+	public Notice_Detail(Notice_main NM) {
+		this.NM = NM;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 750);
+		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel pn_head = new JPanel();
-		pn_head.setBackground(Color.WHITE);
-		pn_head.setBounds(0, 0, 432, 28);
-		contentPane.add(pn_head);
+		Panel panel_1 = new Panel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(SystemColor.controlHighlight);
+		panel_1.setBounds(0, 55, 484, 705);
+		contentPane.add(panel_1);
 		
-		JButton btn_Logout = new JButton("Logout");
-		btn_Logout.setBounds(0, 0, 79, 27);
-		btn_Logout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showConfirmDialog(null, "�α׾ƿ� �Ͻðڽ��ϱ�?", "�α׾ƿ�", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-			}
-		});
-		pn_head.setLayout(null);
-		btn_Logout.setHorizontalAlignment(SwingConstants.LEFT);
-		pn_head.add(btn_Logout);
+		Panel panel_2 = new Panel();
+		panel_2.setBackground(SystemColor.activeCaption);
+		panel_2.setBounds(10, 10, 464, 682);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("=");
-		lblNewLabel.setBounds(404, 4, 14, 18);
-		pn_head.add(lblNewLabel);
+		Panel panel_3 = new Panel();
+		panel_3.setBounds(10, 10, 444, 55);
+		panel_3.setBackground(SystemColor.controlShadow);
+		panel_2.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JButton btn_home = new JButton("home");
-		btn_home.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_home.setBounds(335, 0, 69, 27);
-		pn_head.add(btn_home);
+		JLabel lblNewLabel = new JLabel("Notice_Title");
+		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
+		panel_3.add(lblNewLabel, BorderLayout.CENTER);
 		
-		JPanel pn_NoticeContent = new JPanel();
-		pn_NoticeContent.setBackground(Color.WHITE);
-		pn_NoticeContent.setBorder(new LineBorder(new Color(0, 0, 0)));
-		pn_NoticeContent.setBounds(14, 74, 404, 525);
-		contentPane.add(pn_NoticeContent);
-		pn_NoticeContent.setLayout(new BorderLayout(0, 0));
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(10, 75, 444, 547);
+		panel_2.add(panel_4);
+		panel_4.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lb_NoticeContent = new JLabel("\uB0B4\uC6A9");
-		lb_NoticeContent.setBackground(Color.WHITE);
-		lb_NoticeContent.setVerticalAlignment(SwingConstants.TOP);
-		pn_NoticeContent.add(lb_NoticeContent, BorderLayout.CENTER);
+		JLabel lblNewLabel_1 = new JLabel("Notice");
+		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
+		panel_4.add(lblNewLabel_1, BorderLayout.CENTER);
 		
-		JLabel lb_NoticeTitle = new JLabel("\uACF5\uC9C0\uC0AC\uD56D \uC81C\uBAA9");
-		lb_NoticeTitle.setBounds(14, 40, 404, 22);
-		contentPane.add(lb_NoticeTitle);
+		RoundedButtonD roundedButtonD_3 = new RoundedButtonD("LOGOUT");
+		roundedButtonD_3.setText("메인으로");
+		roundedButtonD_3.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_3.setBounds(70, 632, 120, 40);
+		panel_2.add(roundedButtonD_3);
 		
-		JButton btn_GoToMain = new JButton("\uBA54\uC778\uC73C\uB85C");
-		btn_GoToMain.setBounds(42, 627, 148, 49);
-		contentPane.add(btn_GoToMain);
+		RoundedButtonD roundedButtonD_4 = new RoundedButtonD("LOGOUT");
+		roundedButtonD_4.setText("공지사항으로");
+		roundedButtonD_4.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_4.setBounds(276, 632, 120, 40);
+		panel_2.add(roundedButtonD_4);
 		
-		JButton btn_GoToNotice = new JButton("\uACF5\uC9C0\uC0AC\uD56D\uC73C\uB85C");
-		btn_GoToNotice.setBounds(235, 627, 148, 49);
-		contentPane.add(btn_GoToNotice);
+		Panel panel = new Panel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(169, 169, 169));
+		panel.setBounds(0, 0, 484, 55);
+		contentPane.add(panel);
 		
-		JLabel lb_ViewNumber = new JLabel("\uC22B\uC790");
-		lb_ViewNumber.setBounds(387, 56, 31, 18);
-		contentPane.add(lb_ViewNumber);
+		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
+		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD.setBounds(12, 10, 100, 35);
+		panel.add(roundedButtonD);
 		
-		JLabel lb_View = new JLabel("\uC870\uD68C\uC218:");
-		lb_View.setBounds(339, 56, 47, 18);
-		contentPane.add(lb_View);
-	}	
-
+		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
+		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_1.setBounds(320, 10, 100, 35);
+		panel.add(roundedButtonD_1);
+		
+		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
+		roundedButtonD_2.setText("=");
+		roundedButtonD_2.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_2.setBounds(430, 10, 41, 35);
+		panel.add(roundedButtonD_2);
+	}
 }

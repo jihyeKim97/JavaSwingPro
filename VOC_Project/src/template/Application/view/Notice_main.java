@@ -4,8 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,6 +23,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.Panel;
+import java.awt.SystemColor;
+import template.Application.controller.RoundedButtonD;
+import javax.swing.ScrollPaneConstants;
 
 public class Notice_main extends JFrame {
 
@@ -46,112 +53,123 @@ public class Notice_main extends JFrame {
 	 */
 	public Notice_main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 750);
+		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel pn_Head = new JPanel();
-		pn_Head.setLayout(null);
-		pn_Head.setBackground(Color.WHITE);
-		pn_Head.setBounds(0, 0, 434, 24);
-		contentPane.add(pn_Head);
+		Panel panel_1 = new Panel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(SystemColor.controlHighlight);
+		panel_1.setBounds(0, 55, 484, 705);
+		contentPane.add(panel_1);
 		
-		JButton btn_Logout = new JButton("Logout");
-		btn_Logout.setBounds(0, 0, 79, 23);
-		pn_Head.add(btn_Logout);
+		Panel panel_2 = new Panel();
+		panel_2.setLayout(null);
+		panel_2.setBackground(SystemColor.scrollbar);
+		panel_2.setBounds(10, 10, 464, 682);
+		panel_1.add(panel_2);
 		
-		JLabel lb_profile = new JLabel("=");
-		lb_profile.setFont(new Font("±º∏≤", Font.PLAIN, 16));
-		lb_profile.setBounds(419, 3, 15, 15);
-		pn_Head.add(lb_profile);
+		Panel panel_3 = new Panel();
+		panel_3.setBackground(SystemColor.controlShadow);
+		panel_3.setBounds(10, 10, 444, 55);
+		panel_2.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JButton btn_Home = new JButton("home");
-		btn_Home.setToolTipText("\uBA54\uC778\uD654\uBA74\uC73C\uB85C \uB3CC\uC544\uAC00\uAE30");
-		btn_Home.setBounds(341, 0, 69, 23);
-		pn_Head.add(btn_Home);
+		JLabel lblNewLabel = new JLabel("Í≥µÏßÄ ÏÇ¨Ìï≠");
+		lblNewLabel.setFont(new Font("Íµ¥Î¶º", Font.BOLD, 40));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(lblNewLabel, BorderLayout.CENTER);
 		
-		JLabel lb_NoticeTitle = new JLabel("\uACF5\uC9C0\uC0AC\uD56D");
-		lb_NoticeTitle.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 34));
-		lb_NoticeTitle.setBounds(136, 23, 145, 60);
-		contentPane.add(lb_NoticeTitle);
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(10, 472, 444, 200);
+		panel_2.add(panel_4);
+		panel_4.setLayout(new BorderLayout(0, 0));
 		
-		JPanel pn_Introduction = new JPanel();
-		pn_Introduction.setBackground(Color.WHITE);
-		pn_Introduction.setBounds(0, 434, 434, 269);
-		contentPane.add(pn_Introduction);
-		pn_Introduction.setLayout(null);
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(SystemColor.activeCaption);
+		panel_4.add(panel_5, BorderLayout.NORTH);
 		
-		JPanel pn_IntroductionTitle = new JPanel();
-		pn_IntroductionTitle.setBackground(Color.LIGHT_GRAY);
-		pn_IntroductionTitle.setBounds(0, 0, 434, 65);
-		pn_Introduction.add(pn_IntroductionTitle);
-		pn_IntroductionTitle.setLayout(new BorderLayout(0, 0));
+		JLabel lblNewLabel_1 = new JLabel("Movie Theater Introducer");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Íµ¥Î¶º", Font.BOLD, 25));
+		panel_5.add(lblNewLabel_1);
 		
-		JLabel lb_IntroductionTtitle = new JLabel("Movie Theater Introduction");
-		lb_IntroductionTtitle.setFont(new Font("±º∏≤", Font.BOLD, 30));
-		lb_IntroductionTtitle.setHorizontalAlignment(SwingConstants.CENTER);
-		pn_IntroductionTitle.add(lb_IntroductionTtitle, BorderLayout.CENTER);
+		JPanel panel_6 = new JPanel();
+		panel_4.add(panel_6, BorderLayout.CENTER);
+		panel_6.setLayout(null);
 		
-		JLabel lb_TheaterNumber = new JLabel("\uC804\uD654\uBC88\uD638:");
-		lb_TheaterNumber.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheaterNumber.setBounds(60, 93, 74, 18);
-		pn_Introduction.add(lb_TheaterNumber);
+		JLabel lblNewLabel_2 = new JLabel("‚óè Ï†ÑÌôîÎ≤àÌò∏ : 02 - 333 - 4848 ");
+		lblNewLabel_2.setBounds(10, 10, 210, 30);
+		panel_6.add(lblNewLabel_2);
 		
-		JLabel lb_TheatorNumber2 = new JLabel("03-5652-5658");
-		lb_TheatorNumber2.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheatorNumber2.setBounds(144, 93, 122, 18);
-		pn_Introduction.add(lb_TheatorNumber2);
+		JLabel label = new JLabel("‚óè ÏòÅÏóÖÏãúÍ∞Ñ : 18:00 ~ 03:00");
+		label.setBounds(10, 40, 198, 30);
+		panel_6.add(label);
 		
-		JLabel lb_TheaterDaytime = new JLabel("\uC601\uC5C5\uC2DC\uAC04:");
-		lb_TheaterDaytime.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheaterDaytime.setBounds(60, 123, 74, 18);
-		pn_Introduction.add(lb_TheaterDaytime);
+		JLabel label_1 = new JLabel("‚óè ÎåÄÌëúÏûê : Í≥†Ï¶êÎßÅ");
+		label_1.setBounds(10, 70, 198, 30);
+		panel_6.add(label_1);
 		
-		JLabel lb_TheaterDaytime1 = new JLabel("18:00 ~ 03:00");
-		lb_TheaterDaytime1.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheaterDaytime1.setBounds(144, 123, 122, 18);
-		pn_Introduction.add(lb_TheaterDaytime1);
+		JLabel label_2 = new JLabel("‚óè ÏÇ¨ÏóÖÏûê Î≤àÌò∏: 653-25-0698");
+		label_2.setBounds(10, 100, 198, 30);
+		panel_6.add(label_2);
+
+		JLabel label_3 = new JLabel("‚óè ÏúÑÏπò: ÏÑúÏö∏ ÏÑ±ÎèôÍµ¨ ÏôïÏã≠Î¶¨Î°ú 303");
+		label_3.setBounds(10, 130, 236, 30);
+		panel_6.add(label_3);
 		
-		JLabel lb_TheaterCEO = new JLabel("\uB300\uD45C\uC790:");
-		lb_TheaterCEO.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheaterCEO.setBounds(60, 153, 57, 18);
-		pn_Introduction.add(lb_TheaterCEO);
-		
-		JLabel lb_TheaterCEO1 = new JLabel("\uACE0\uC990\uB9C1");
-		lb_TheaterCEO1.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheaterCEO1.setBounds(121, 153, 122, 18);
-		pn_Introduction.add(lb_TheaterCEO1);
-		
-		JLabel lb_BusinessNumber = new JLabel("\uC0AC\uC5C5\uC790 \uBC88\uD638:");
-		lb_BusinessNumber.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_BusinessNumber.setBounds(60, 183, 103, 18);
-		pn_Introduction.add(lb_BusinessNumber);
-		
-		JLabel lb_BusinessNumber1 = new JLabel("03-5652-5658");
-		lb_BusinessNumber1.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_BusinessNumber1.setBounds(165, 183, 122, 18);
-		pn_Introduction.add(lb_BusinessNumber1);
-		
-		JLabel lb_TheaterLocation = new JLabel("\uC704\uCE58:");
-		lb_TheaterLocation.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheaterLocation.setBounds(60, 215, 46, 18);
-		pn_Introduction.add(lb_TheaterLocation);
-		
-		JLabel lb_TheaterLocation1 = new JLabel("03-5652-5658");
-		lb_TheaterLocation1.addMouseListener(new MouseAdapter() {
+		JPanel panel_7 = new JPanel();
+		panel_7.setBounds(10, 75, 444, 376);
+		panel_2.add(panel_7);
+		String[] Notice = new String[] {"Î≤àÌò∏","Ï†úÎ™©", "ÏûëÏÑ±Ïûê", "Îì±Î°ùÏùº" }; 
+		Object[][] data = new Object[][] {
+			{"         1", "ÌöåÏõê Ï†ïÎ≥¥ ÏãúÏä§ÌÖú Ï†êÍ≤Ä", "Í¥ÄÎ¶¨Ïûê", "21.05.18"},
+			{"         2", "Î∂àÎ≤ïÏ¥¨ÏòÅ Í∏àÏßÄ", "Í¥ÄÎ¶¨Ïûê", "21.05.19"},
+			{"         3", "", "", ""},{"         4", "", "", ""},
+			{"         5", "", "", ""},{"         6", "", "", ""},
+			{"         7", "", "", ""},{"         8", "", "", ""},
+			{"         9", "", "", ""},{"        10", "", "", ""},
+			{"        11", "", "", ""},{"        12", "", "", ""},
+			{"        13", "", "", ""},{"        14", "", "", ""},
+			{"        15", "", "", ""},{"        16", "", "", ""}
+		};
+		JTable Notice2 = new JTable(data, Notice);
+		Notice2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
 			}
 		});
-		lb_TheaterLocation1.setFont(new Font("±º∏≤", Font.BOLD, 17));
-		lb_TheaterLocation1.setBounds(109, 215, 122, 18);
-		pn_Introduction.add(lb_TheaterLocation1);
+		Notice2.setFillsViewportHeight(true);
+		Notice2.setPreferredScrollableViewportSize(new Dimension(444, 376));
+		panel_7.add(Notice2);
+		Notice2.setLocation(0, 0);
+		Notice2.setFont(new Font("Íµ¥Î¶º", Font.BOLD, 15));
+		JScrollPane scrollPane = new JScrollPane(Notice2);
+		panel_7.add(scrollPane);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 79, 434, 330);
+		Panel panel = new Panel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(169, 169, 169));
+		panel.setBounds(0, 0, 484, 55);
 		contentPane.add(panel);
+		
+		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
+		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD.setBounds(12, 10, 100, 35);
+		panel.add(roundedButtonD);
+		
+		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
+		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_1.setBounds(320, 10, 100, 35);
+		panel.add(roundedButtonD_1);
+		
+		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
+		roundedButtonD_2.setText("=");
+		roundedButtonD_2.setFont(new Font("SansSerif", Font.BOLD, 15));
+		roundedButtonD_2.setBounds(430, 10, 41, 35);
+		panel.add(roundedButtonD_2);
 	}
 }
