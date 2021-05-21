@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ui.calendar.main.GUICalendarFrame;
+
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,7 +50,7 @@ public class SignUp extends JFrame {
 	private final ButtonGroup genderGrp = new ButtonGroup();
 	SignUp snu;
 	JButton btn_userJoin;
-
+	Login lgn;
 
 	/**
 	 * Launch the application.
@@ -230,10 +233,15 @@ public class SignUp extends JFrame {
 		JLabel lb_Calendar = new JLabel("");
 		lb_Calendar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("달력클릭");
-				JOptionPane.showMessageDialog(null, " 달력 화면 노출.");
+			public void mouseClicked(MouseEvent arg0) {
+				GUICalendarFrame cal = new GUICalendarFrame();
+				cal.setVisible(true);
+//				cal.setLocation(100,100);
 				
+				Point pt = lb_Calendar.getLocationOnScreen();
+			
+			
+				cal.setLocation(pt.x - 100 ,pt.y - 50);
 			}
 		});
 		lb_Calendar.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
@@ -362,7 +370,9 @@ public class SignUp extends JFrame {
 		JButton btn_DupCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
 		btn_DupCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				System.out.println("중복확인 클릭");
+			
 				JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
 				bLoginAvail = true;
 				checkJoinAvailable();
@@ -387,6 +397,11 @@ public class SignUp extends JFrame {
 		btn_cancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				SignUp snu = new SignUp();
+				Login lgn = new Login();
+				
+				snu.setVisible(false);
+				//lgn.setVisible(true);
 			
 			}
 		});
