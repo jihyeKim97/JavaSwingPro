@@ -73,16 +73,10 @@ public class Notice_Detail extends JFrame {
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
 		panel_4.add(lblNewLabel_1, BorderLayout.CENTER);
 		
-		RoundedButtonD roundedButtonD_3 = new RoundedButtonD("LOGOUT");
-		roundedButtonD_3.setText("메인으로");
-		roundedButtonD_3.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_3.setBounds(70, 632, 120, 40);
-		panel_2.add(roundedButtonD_3);
-		
 		RoundedButtonD roundedButtonD_4 = new RoundedButtonD("LOGOUT");
-		roundedButtonD_4.setText("공지사항으로");
+		roundedButtonD_4.setText("돌아가기");
 		roundedButtonD_4.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_4.setBounds(276, 632, 120, 40);
+		roundedButtonD_4.setBounds(172, 634, 120, 40);
 		panel_2.add(roundedButtonD_4);
 		
 		Panel panel = new Panel();

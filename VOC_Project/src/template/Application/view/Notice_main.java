@@ -27,10 +27,12 @@ import java.awt.Panel;
 import java.awt.SystemColor;
 import template.Application.controller.RoundedButtonD;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ListSelectionModel;
 
 public class Notice_main extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -121,8 +123,13 @@ public class Notice_main extends JFrame {
 		panel_6.add(label_3);
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(10, 75, 444, 376);
+		panel_7.setBounds(10, 71, 444, 389);
 		panel_2.add(panel_7);
+		panel_7.setLayout(new BorderLayout(0, 0));
+		
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		panel_7.add(table, BorderLayout.CENTER);
 		String[] Notice = new String[] {"번호","제목", "작성자", "등록일" }; 
 		Object[][] data = new Object[][] {
 			{"         1", "회원 정보 시스템 점검", "관리자", "21.05.18"},
@@ -135,20 +142,6 @@ public class Notice_main extends JFrame {
 			{"        13", "", "", ""},{"        14", "", "", ""},
 			{"        15", "", "", ""},{"        16", "", "", ""}
 		};
-		JTable Notice2 = new JTable(data, Notice);
-		Notice2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-			}
-		});
-		Notice2.setFillsViewportHeight(true);
-		Notice2.setPreferredScrollableViewportSize(new Dimension(444, 376));
-		panel_7.add(Notice2);
-		Notice2.setLocation(0, 0);
-		Notice2.setFont(new Font("굴림", Font.BOLD, 15));
-		JScrollPane scrollPane = new JScrollPane(Notice2);
-		panel_7.add(scrollPane);
 		
 		Panel panel = new Panel();
 		panel.setLayout(null);

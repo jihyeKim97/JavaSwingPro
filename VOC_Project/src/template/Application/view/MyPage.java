@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import sun.net.www.content.image.jpeg;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
@@ -31,6 +32,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.TextField;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 
 public class MyPage extends JFrame {
 
@@ -216,7 +218,7 @@ public class MyPage extends JFrame {
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);
-		div_panel.add(mem_panel);
+//		div_panel.add(mem_panel);
 		mem_panel.setLayout(null);
 
 		mem_detail = new Panel();
@@ -331,7 +333,32 @@ public class MyPage extends JFrame {
 		re_detail.setBounds(10, 10, 424, 550);
 		re_panel.add(re_detail);
 		re_detail.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(10, 10, 404, 530);
+		re_detail.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+//		for (int i = 0; i < 12; i++) {
+//			JPanel JP = new JPanel();
+//			JP.setBounds(10, 10 * (i + 1) + ( 120 * i), 370, 120);
+//			JP.setBackground(new Color(0,0,255));
+//			
+//			panel.add(JP);
+//		}
+//	
 
+		for (int i = 0; i < 50; i++) { // 리뷰 개수
+			String text = "리뷰";
+			JLabel Review = new JLabel(text);
+			Review.setSize(new Dimension(370, 120));
+			panel.add(Review);
+		}	
+		
 		res_panel = new Panel();
 		res_panel.setBackground(new Color(255, 192, 203));
 		res_panel.setBounds(10, 120, 444, 570);
