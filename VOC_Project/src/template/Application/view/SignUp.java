@@ -1,6 +1,5 @@
 package template.Application.view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,12 +21,10 @@ import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import java.awt.Color;
-import java.awt.Component;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JRadioButtonMenuItem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,35 +33,43 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import template.Application.controller.*;
-
+import template.Application.controller.DB_Connect;
+import template.Application.controller.DB_UserInfo;
+import template.Application.controller.DB_UserDbMgr;
 
 public class SignUp extends JFrame {
 
-private JPanel contentPane;
-private JTextField txt_userId;
-private JTextField txt_userName;
-private JTextField txt_emailAdd;
-private JPasswordField pwf_userPw2;
-private JPasswordField pwf_userPw1;
-private JTextField txt_phone3;
-private JTextField txt_phone1;
-private JTextField txt_phone2;
-private final ButtonGroup genderGrp = new ButtonGroup();
-SignUp mj;
-JButton btn_userJoin;
-GUICalendarFrame frm;
-Login mln;
-Connection conn;
-
-
-/**
-* Launch the application.
-*/
+	
+	private JPanel contentPane;
+	private JTextField txt_userId;
+	private JTextField txt_userName;
+	private JTextField txt_emailAdd;
+	private JPasswordField pwf_userPw2;
+	private JPasswordField pwf_userPw1;
+	private JTextField txt_phone3;
+	private JTextField txt_phone1;
+	private JTextField txt_phone2;
+	private final ButtonGroup genderGrp = new ButtonGroup();
+	SignUp mj;
+	JButton btn_userJoin;
+	GUICalendarFrame frm;
+	Login mln;
+	Connection conn;
+	DB_UserInfo Dbui;
+	DB_UserDbMgr mgr;
+	JLabel lb_NoDup;
+	
+	
+//	public SignUp() {
+//		this.conn = DB_Connect.getConn();
+//	}
+	
+	/**
+	 * Launch the application.
+	 */
 // public static void main(String[] args) {
 // EventQueue.invokeLater(new Runnable() {
 // public void run() {
@@ -78,509 +83,416 @@ Connection conn;
 // });
 // }
 
-/**
-* Create the frame.
-* @param mln
-*/
-public SignUp(Login mln) {
+	/**
+	 * Create the frame.
+	 * 
+	 * @param mln
+	 */
+	
+	
+	public SignUp(Login mln) {
 
-this.mln = mln;
+		this.mln = mln;
 
 //
-setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
-setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
-setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-setBounds(100, 100, 578, 618);
-contentPane = new JPanel();
-contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-setContentPane(contentPane);
-contentPane.setLayout(null);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
+		setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 578, 618);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-JLabel lb_userJoin = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-lb_userJoin.setBounds(116, 17, 508, 36);
-lb_userJoin.setFont(new Font("굴림", Font.BOLD, 35));
-lb_userJoin.setVerticalAlignment(SwingConstants.TOP);
-contentPane.add(lb_userJoin);
+		JLabel lb_userJoin = new JLabel("\uD68C\uC6D0\uAC00\uC785");
+		lb_userJoin.setBounds(116, 17, 508, 36);
+		lb_userJoin.setFont(new Font("굴림", Font.BOLD, 35));
+		lb_userJoin.setVerticalAlignment(SwingConstants.TOP);
+		contentPane.add(lb_userJoin);
 
-JPanel panel = new JPanel();
-panel.setBounds(-12, 63, 453, 416);
-contentPane.add(panel);
-panel.setLayout(new GridLayout(0, 2, 0, 0));
+		JPanel panel = new JPanel();
+		panel.setBounds(-12, 63, 453, 416);
+		contentPane.add(panel);
+		panel.setLayout(new GridLayout(0, 2, 0, 0));
 
-JLabel lb_userId = new JLabel("ID:");
-lb_userId.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_userId.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_userId);
+		JLabel lb_userId = new JLabel("ID:");
+		lb_userId.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userId.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_userId);
 
-txt_userId = new JTextField();
-panel.add(txt_userId);
-txt_userId.setColumns(10);
+		txt_userId = new JTextField();
+		panel.add(txt_userId);
+		txt_userId.setColumns(10);
 
-JLabel lb_userPw1 = new JLabel("\uBE44\uBC00\uBC88\uD638:");
-lb_userPw1.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_userPw1.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_userPw1);
+		JLabel lb_userPw1 = new JLabel("\uBE44\uBC00\uBC88\uD638:");
+		lb_userPw1.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userPw1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_userPw1);
 
-pwf_userPw1 = new JPasswordField();
-pwf_userPw1.addFocusListener(new FocusAdapter() {
-@Override
-public void focusGained(FocusEvent arg0) {
-pwf_userPw1.setBackground(Color.yellow);
-}
-@Override
-public void focusLost(FocusEvent e) {
-pwf_userPw1.setBackground(Color.white);
-}
-});
-panel.add(pwf_userPw1);
+		pwf_userPw1 = new JPasswordField();
+		pwf_userPw1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				pwf_userPw1.setBackground(Color.yellow);
+			}
 
-JLabel lb_userPw2 = new JLabel("\uBE44\uBC00\uBC88\uD638 \uD655\uC778:");
-lb_userPw2.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_userPw2.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_userPw2);
+			@Override
+			public void focusLost(FocusEvent e) {
+				pwf_userPw1.setBackground(Color.white);
+			}
+		});
+		panel.add(pwf_userPw1);
 
-pwf_userPw2 = new JPasswordField();
-pwf_userPw2.addFocusListener(new FocusAdapter() {
-@Override
-public void focusGained(FocusEvent e) {
-pwf_userPw2.setBackground(Color.yellow);
-String strPw1 = new String(
-pwf_userPw1.getPassword());// 문자배열 => 문자열
-if( strPw1.isEmpty() ) {
-pwf_userPw1.requestFocusInWindow();
+		JLabel lb_userPw2 = new JLabel("\uBE44\uBC00\uBC88\uD638 \uD655\uC778:");
+		lb_userPw2.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userPw2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_userPw2);
+
+		pwf_userPw2 = new JPasswordField();
+		pwf_userPw2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				pwf_userPw2.setBackground(Color.yellow);
+				String strPw1 = new String(pwf_userPw1.getPassword());// 문자배열 => 문자열
+				if (strPw1.isEmpty()) {
+					pwf_userPw1.requestFocusInWindow();
 // 첫번째 pw필드로 포커스를 강제 이동 요청..  
 // 자동으로 두번� pw필드의 focusLost()가 일어남..
-}
-}
-@Override
-public void focusLost(FocusEvent e) {
-pwf_userPw2.setBackground(Color.white);
-String strPw1 = new String(
-pwf_userPw1.getPassword());
-String strPw2 = new String(
-pwf_userPw2.getPassword());
-if( strPw1.length() > 0 && strPw2.isEmpty() ) {
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				pwf_userPw2.setBackground(Color.white);
+				String strPw1 = new String(pwf_userPw1.getPassword());
+				String strPw2 = new String(pwf_userPw2.getPassword());
+				if (strPw1.length() > 0 && strPw2.isEmpty()) {
 
 //
-} else {
-if( strPw1.length() > 0 &&
-strPw2.length() > 0 ) {
-if( strPw2.equals(strPw1) ) {
-System.out.println("암호 일치");
+				} else {
+					if (strPw1.length() > 0 && strPw2.length() > 0) {
+						if (strPw2.equals(strPw1)) {
+							System.out.println("암호 일치");
 
-checkJoinAvailable();
-} else {
-System.out.println("암호 불일치");
-pwf_userPw1.requestFocusInWindow();
-}
-}
-}
-}
-});
-panel.add(pwf_userPw2);
+							checkJoinAvailable();
+						} else {
+							System.out.println("암호 불일치");
+							pwf_userPw1.requestFocusInWindow();
+						}
+					}
+				}
+			}
+		});
+		panel.add(pwf_userPw2);
 
-JLabel lb_userName = new JLabel("\uC774\uB984:");
-lb_userName.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_userName.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_userName);
+		JLabel lb_userName = new JLabel("\uC774\uB984:");
+		lb_userName.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userName.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_userName);
 
-txt_userName = new JTextField();
-txt_userName.addFocusListener(new FocusAdapter() {
-@Override
-public void focusGained(FocusEvent e) {
-System.out.println("focus get");
-txt_userName.setForeground(Color.black);
-txt_userName.setBackground(Color.yellow);
-if( txt_userName.getText()
-.equals("ex) 홍길동") )
-txt_userName.setText("");
-}
+		txt_userName = new JTextField();
+		txt_userName.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				System.out.println("focus get");
+				txt_userName.setForeground(Color.black);
+				txt_userName.setBackground(Color.yellow);
+				if (txt_userName.getText().equals("ex) 홍길동"))
+					txt_userName.setText("");
+			}
 
-@Override
-public void focusLost(FocusEvent e) {
-System.out.println("focus lost");
-txt_userName.setForeground(Color.LIGHT_GRAY);
-txt_userName.setBackground(Color.WHITE);
-if( txt_userName.getText()
-.isEmpty() )
-txt_userName.setText("ex) 홍길동");
-}
-});
-txt_userName.setForeground(Color.LIGHT_GRAY);
-txt_userName.setFont(new Font("굴림", Font.PLAIN, 14));
-txt_userName.setText("ex) \uD64D\uAE38\uB3D9");
-panel.add(txt_userName);
-txt_userName.setColumns(10);
+			@Override
+			public void focusLost(FocusEvent e) {
+				System.out.println("focus lost");
+				txt_userName.setForeground(Color.LIGHT_GRAY);
+				txt_userName.setBackground(Color.WHITE);
+				if (txt_userName.getText().isEmpty())
+					txt_userName.setText("ex) 홍길동");
+			}
+		});
+		txt_userName.setForeground(Color.LIGHT_GRAY);
+		txt_userName.setFont(new Font("굴림", Font.PLAIN, 14));
+		txt_userName.setText("ex) \uD64D\uAE38\uB3D9");
+		panel.add(txt_userName);
+		txt_userName.setColumns(10);
 
-JLabel lb_Gender = new JLabel("\uC131\uBCC4:");
-lb_Gender.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_Gender.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_Gender);
+		JLabel lb_Gender = new JLabel("\uC131\uBCC4:");
+		lb_Gender.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_Gender.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_Gender);
 
-JPanel panel_Gender = new JPanel();
-panel.add(panel_Gender);
-panel_Gender.setLayout(new GridLayout(0, 2, 0, 0));
+		JPanel panel_Gender = new JPanel();
+		panel.add(panel_Gender);
+		panel_Gender.setLayout(new GridLayout(0, 2, 0, 0));
 
-JRadioButton rdFemale = new JRadioButton("\uC5EC\uC131");
-genderGrp.add(rdFemale);
-rdFemale.setSelected(true);
-rdFemale.setFont(new Font("굴림", Font.PLAIN, 14));
-rdFemale.setHorizontalAlignment(SwingConstants.CENTER);
-panel_Gender.add(rdFemale);
+		JRadioButton rd_Female = new JRadioButton("\uC5EC\uC131");
+		genderGrp.add(rd_Female);
+		rd_Female.setSelected(true);
+		rd_Female.setFont(new Font("굴림", Font.PLAIN, 14));
+		rd_Female.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_Gender.add(rd_Female);
 
-JRadioButton rdMale = new JRadioButton("\uB0A8\uC131");
-genderGrp.add(rdMale);
-rdMale.setFont(new Font("굴림", Font.PLAIN, 14));
-rdMale.setHorizontalAlignment(SwingConstants.CENTER);
-panel_Gender.add(rdMale);
+		JRadioButton rd_Male = new JRadioButton("\uB0A8\uC131");
+		genderGrp.add(rd_Male);
+		rd_Male.setFont(new Font("굴림", Font.PLAIN, 14));
+		rd_Male.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_Gender.add(rd_Male);
 
-JLabel lb_DoB = new JLabel("\uC0DD\uB144\uC6D4\uC77C:");
-lb_DoB.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_DoB.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_DoB);
+		JLabel lb_DoB = new JLabel("\uC0DD\uB144\uC6D4\uC77C:");
+		lb_DoB.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_DoB.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_DoB);
 
-JPanel panel_bday = new JPanel();
-panel.add(panel_bday);
-panel_bday.setLayout(null);
+		JPanel panel_bday = new JPanel();
+		panel.add(panel_bday);
+		panel_bday.setLayout(null);
 
-JLabel lb_Calendar = new JLabel("");
-lb_Calendar.addMouseListener(new MouseAdapter() {
-@Override
-public void mouseClicked(MouseEvent arg0) {
-GUICalendarFrame cal = new GUICalendarFrame();
-cal.setVisible(true);
+		JLabel lb_Calendar = new JLabel("");
+		lb_Calendar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				GUICalendarFrame cal = new GUICalendarFrame();
+				cal.setVisible(true);
 
-Point pt = lb_Calendar.getLocationOnScreen();
+				Point pt = lb_Calendar.getLocationOnScreen();
 
+				cal.setLocation(pt.x - 100, pt.y - 50);
+			}
+		});
+		lb_Calendar.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
+		lb_Calendar.setBounds(110, 10, 31, 25);
+		panel_bday.add(lb_Calendar);
 
-cal.setLocation(pt.x - 100 ,pt.y - 50);
-}
-});
-lb_Calendar.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
-lb_Calendar.setBounds(110, 10, 31, 25);
-panel_bday.add(lb_Calendar);
+		txt_DoB = new JTextField();
 
-txt_DoB = new JTextField();
+		txt_DoB.setBounds(5, 10, 93, 32);
+		panel_bday.add(txt_DoB);
+		txt_DoB.setColumns(10);
 
-txt_DoB.setBounds(5, 10, 93, 32);
-panel_bday.add(txt_DoB);
-txt_DoB.setColumns(10);
+		JLabel lb_Email = new JLabel("\uC774\uBA54\uC77C:");
+		lb_Email.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_Email.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_Email);
 
-JLabel lb_Email = new JLabel("\uC774\uBA54\uC77C:");
-lb_Email.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_Email.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_Email);
+		JPanel panel_Email = new JPanel();
+		panel.add(panel_Email);
+		panel_Email.setLayout(null);
 
-JPanel panel_Email = new JPanel();
-panel.add(panel_Email);
-panel_Email.setLayout(null);
+		txt_emailAdd = new JTextField();
+		txt_emailAdd.setBounds(5, 8, 93, 32);
+		panel_Email.add(txt_emailAdd);
+		txt_emailAdd.setColumns(10);
 
-txt_emailAdd = new JTextField();
-txt_emailAdd.setBounds(5, 8, 93, 32);
-panel_Email.add(txt_emailAdd);
-txt_emailAdd.setColumns(10);
+		JComboBox combo_emailAddress = new JComboBox();
+		combo_emailAddress.setEditable(true);
+		combo_emailAddress.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				combo_emailAddress.getSelectedIndex();
+				System.out.println(combo_emailAddress.getSelectedIndex());
+				System.out.println(combo_emailAddress.getSelectedItem());
+			}
+		});
 
-JComboBox combo_emailAddress = new JComboBox();
-combo_emailAddress.setEditable(true);
-combo_emailAddress.addActionListener(new ActionListener() {
-public void actionPerformed(ActionEvent e) {
-combo_emailAddress.getSelectedIndex();
-System.out.println(combo_emailAddress.getSelectedIndex());
-System.out.println(combo_emailAddress.getSelectedItem());
-}
-});
-
-
-combo_emailAddress.setBounds(121, 7, 93, 32);
-combo_emailAddress.setModel(new DefaultComboBoxModel(
-            new String[] {"메일 주소" ,"hanmail.net", "naver.com", "gmail.com", "nate.com", "직접 입력"}));
-panel_Email.add(combo_emailAddress);
-String emailAdd = (String) combo_emailAddress.getSelectedItem();
-if( emailAdd.equals("직접 입력" )) {
-combo_emailAddress.setVisible(false);
+		combo_emailAddress.setBounds(121, 7, 93, 32);
+		combo_emailAddress.setModel(new DefaultComboBoxModel(
+				new String[] { "메일 주소", "hanmail.net", "naver.com", "gmail.com", "nate.com", "직접 입력" }));
+		panel_Email.add(combo_emailAddress);
+		String emailAdd = (String) combo_emailAddress.getSelectedItem();
+		if (emailAdd.equals("직접 입력")) {
+			combo_emailAddress.setVisible(false);
 // txt_fillEmail.setVisible(true);
-}
+		}
 
-JLabel lblNewLabel_3 = new JLabel("@");
-lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 17));
-lblNewLabel_3.setBounds(99, 8, 19, 29);
-panel_Email.add(lblNewLabel_3);
+		JLabel lblNewLabel_3 = new JLabel("@");
+		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 17));
+		lblNewLabel_3.setBounds(99, 8, 19, 29);
+		panel_Email.add(lblNewLabel_3);
 
-JLabel lb_phoneNumber = new JLabel("\uC804\uD654\uBC88\uD638:");
-lb_phoneNumber.setFont(new Font("굴림", Font.PLAIN, 14));
-lb_phoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
-panel.add(lb_phoneNumber);
+		JLabel lb_phoneNumber = new JLabel("\uC804\uD654\uBC88\uD638:");
+		lb_phoneNumber.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_phoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lb_phoneNumber);
 
-JPanel panel_phoneNum = new JPanel();
-panel.add(panel_phoneNum);
-panel_phoneNum.setLayout(new GridLayout(1, 5, 0, 0));
+		JPanel panel_phoneNum = new JPanel();
+		panel.add(panel_phoneNum);
+		panel_phoneNum.setLayout(new GridLayout(1, 5, 0, 0));
 
-txt_phone1 = new JTextField();
-txt_phone1.addFocusListener(new FocusAdapter() {
-@Override
-public void focusGained(FocusEvent e) {
-System.out.println("focus get");
-txt_phone1.setForeground(Color.black);
-txt_phone1.setBackground(Color.yellow);
-if( txt_phone1.getText()
-.equals("010") )
-txt_phone1.setText(""); // 안내 문구일 때만 지움.
-}
+		txt_phone1 = new JTextField();
+		txt_phone1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				System.out.println("focus get");
+				txt_phone1.setForeground(Color.black);
+				txt_phone1.setBackground(Color.yellow);
+				if (txt_phone1.getText().equals("010"))
+					txt_phone1.setText(""); // 안내 문구일 때만 지움.
+			}
 
-@Override
-public void focusLost(FocusEvent e) {
-System.out.println("focus lost");
-txt_phone1.setForeground(Color.LIGHT_GRAY);
-txt_phone1.setBackground(Color.WHITE);
-if( txt_phone1.getText()
-.isEmpty() )
-txt_phone1.setText("010");
-}
-});
-txt_phone1.setHorizontalAlignment(SwingConstants.CENTER);
-txt_phone1.setForeground(Color.LIGHT_GRAY);
-txt_phone1.setText("010");
-panel_phoneNum.add(txt_phone1);
-txt_phone1.setColumns(10);
+			@Override
+			public void focusLost(FocusEvent e) {
+				System.out.println("focus lost");
+				txt_phone1.setForeground(Color.LIGHT_GRAY);
+				txt_phone1.setBackground(Color.WHITE);
+				if (txt_phone1.getText().isEmpty())
+					txt_phone1.setText("010");
+			}
+		});
+		txt_phone1.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_phone1.setForeground(Color.LIGHT_GRAY);
+		txt_phone1.setText("010");
+		panel_phoneNum.add(txt_phone1);
+		txt_phone1.setColumns(10);
 
-JLabel lb_phoneNum1 = new JLabel("-");
-lb_phoneNum1.setHorizontalAlignment(SwingConstants.CENTER);
-panel_phoneNum.add(lb_phoneNum1);
+		JLabel lb_phoneNum1 = new JLabel("-");
+		lb_phoneNum1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_phoneNum.add(lb_phoneNum1);
 
-txt_phone2 = new JTextField();
-txt_phone2.addFocusListener(new FocusAdapter() {
-@Override
-public void focusGained(FocusEvent e) {
-System.out.println("focus get");
-txt_phone2.setForeground(Color.black);
-txt_phone2.setBackground(Color.yellow);
-if( txt_phone2.getText()
-.equals("1234") )
-txt_phone2.setText(""); // 안내 문구일 때만 지움.
-}
+		txt_phone2 = new JTextField();
+		txt_phone2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				System.out.println("focus get");
+				txt_phone2.setForeground(Color.black);
+				txt_phone2.setBackground(Color.yellow);
+				if (txt_phone2.getText().equals("1234"))
+					txt_phone2.setText(""); // 안내 문구일 때만 지움.
+			}
 
-@Override
-public void focusLost(FocusEvent e) {
-System.out.println("focus lost");
-txt_phone2.setForeground(Color.LIGHT_GRAY);
-txt_phone2.setBackground(Color.WHITE);
-if( txt_phone2.getText()
-.isEmpty() )
-txt_phone2.setText("1234");
-}
-});
-txt_phone2.setHorizontalAlignment(SwingConstants.CENTER);
-txt_phone2.setForeground(Color.LIGHT_GRAY);
-txt_phone2.setText("1234");
-panel_phoneNum.add(txt_phone2);
-txt_phone2.setColumns(10);
+			@Override
+			public void focusLost(FocusEvent e) {
+				System.out.println("focus lost");
+				txt_phone2.setForeground(Color.LIGHT_GRAY);
+				txt_phone2.setBackground(Color.WHITE);
+				if (txt_phone2.getText().isEmpty())
+					txt_phone2.setText("1234");
+			}
+		});
+		txt_phone2.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_phone2.setForeground(Color.LIGHT_GRAY);
+		txt_phone2.setText("1234");
+		panel_phoneNum.add(txt_phone2);
+		txt_phone2.setColumns(10);
 
-JLabel lb_phoneNum2 = new JLabel(" -");
-lb_phoneNum2.setHorizontalAlignment(SwingConstants.CENTER);
-panel_phoneNum.add(lb_phoneNum2);
+		JLabel lb_phoneNum2 = new JLabel(" -");
+		lb_phoneNum2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_phoneNum.add(lb_phoneNum2);
 
-txt_phone3 = new JTextField();
-txt_phone3.addFocusListener(new FocusAdapter() {
-@Override
-public void focusGained(FocusEvent e) {
-System.out.println("focus get");
-txt_phone3.setForeground(Color.black);
-txt_phone3.setBackground(Color.yellow);
-if( txt_phone3.getText()
-.equals("5678") )
-txt_phone3.setText(""); // 안내 문구일 때만 지움.
-}
+		txt_phone3 = new JTextField();
+		txt_phone3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				System.out.println("focus get");
+				txt_phone3.setForeground(Color.black);
+				txt_phone3.setBackground(Color.yellow);
+				if (txt_phone3.getText().equals("5678"))
+					txt_phone3.setText(""); // 안내 문구일 때만 지움.
+			}
 
-@Override
-public void focusLost(FocusEvent e) {
-System.out.println("focus lost");
-txt_phone3.setForeground(Color.LIGHT_GRAY);
-txt_phone3.setBackground(Color.WHITE);
-if( txt_phone3.getText()
-.isEmpty() )
-txt_phone3.setText("5678");
-}
-});
-txt_phone3.setHorizontalAlignment(SwingConstants.CENTER);
-txt_phone3.setForeground(Color.LIGHT_GRAY);
-txt_phone3.setText("5678");
-panel_phoneNum.add(txt_phone3);
-txt_phone3.setColumns(10);
+			@Override
+			public void focusLost(FocusEvent e) {
+				System.out.println("focus lost");
+				txt_phone3.setForeground(Color.LIGHT_GRAY);
+				txt_phone3.setBackground(Color.WHITE);
+				if (txt_phone3.getText().isEmpty())
+					txt_phone3.setText("5678");
+			}
+		});
+		txt_phone3.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_phone3.setForeground(Color.LIGHT_GRAY);
+		txt_phone3.setText("5678");
+		panel_phoneNum.add(txt_phone3);
+		txt_phone3.setColumns(10);
 
-JButton btn_DupCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
-btn_DupCheck.addActionListener(new ActionListener() {
-public void actionPerformed(ActionEvent e) {
-JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
-bLoginAvail = true;// 일단 더미 중복x
-checkJoinAvailable();
-}
-});
-btn_DupCheck.setFont(new Font("굴림", Font.PLAIN, 14));
-btn_DupCheck.setBounds(454, 73, 96, 36);
-contentPane.add(btn_DupCheck);
+		JButton btn_DupCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
+		btn_DupCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String inLogin = txt_userId.getText();
+				DB_UserInfo mb = mgr.selectOneMemberByUserId(inLogin);
+					if( mb == null ) { // 사용가능
+						bLoginAvail = true;// 일단 더미 중복x
+						JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
+					
+					} else {
+						bLoginAvail = false;
+						JOptionPane.showMessageDialog(null, "사용불가능한 id 입니다");
 
+					}			
+			}
+		});
+		
+		btn_DupCheck.setFont(new Font("굴림", Font.PLAIN, 14));
+		btn_DupCheck.setBounds(454, 73, 96, 36);
+		contentPane.add(btn_DupCheck);
+		
+		
+	
+		
+		JButton btn_cancel = new JButton("\uCDE8\uC18C");
+		btn_cancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		btn_cancel.setBackground(Color.LIGHT_GRAY);
+		btn_cancel.setBounds(269, 503, 136, 50);
+		contentPane.add(btn_cancel);
 
-JButton btn_cancel = new JButton("\uCDE8\uC18C");
-btn_cancel.addMouseListener(new MouseAdapter() {
-@Override
-public void mouseClicked(MouseEvent e) {
-dispose();
-}
-});
-btn_cancel.setBackground(Color.LIGHT_GRAY);
-btn_cancel.setBounds(269, 503, 136, 50);
-contentPane.add(btn_cancel);
+		JButton btn_userJoin = new JButton("가입 완료");
+		btn_userJoin.setForeground(Color.BLACK);
+		btn_userJoin.setBackground(new Color(255, 175, 175));
+		btn_userJoin.setFont(new Font("굴림", Font.BOLD, 14));
+		btn_userJoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("가입완료 클릭");
+				//회원가입 DB
+				//insertNewMember(String UserId, String UserPw, String UserName, int Gender, Date UserDoB,
+//				String UserEmail, int UserPhoneNum)
+				String UserId = txt_userId.getText();
+				String UserPw = new String (pwf_userPw1.getPassword());
+				String UserName = txt_userId.getText();
+				int Gender = rd_Female.isSelected() ? DB_UserInfo.GENDER_FEMALE: DB_UserInfo.GENDER_MALE;
+				String UserDoB = txt_DoB.getText();
+				String UserEmail = txt_emailAdd.getText();
+				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
+				DB_UserInfo newUI = new DB_UserInfo( UserId, UserPw,  UserName, Gender, UserDoB, UserEmail, UserPhoneNum);
+				boolean r = mgr.insertNewMember(newUI);
+				JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+				System.out.println(combo_emailAddress.getSelectedItem());
+				//insertNewMember();
+			}
+		});
+		
+		btn_userJoin.setEnabled(false);
+		btn_userJoin.setBounds(417, 503, 136, 50);
+		contentPane.add(btn_userJoin);
 
-JButton btn_userJoin = new JButton("가입 완료");
-btn_userJoin.setForeground(Color.BLACK);
-btn_userJoin.setBackground(new Color(255, 175, 175));
-btn_userJoin.setFont(new Font("굴림", Font.BOLD, 14));
-btn_userJoin.addActionListener(new ActionListener() {
-public void actionPerformed(ActionEvent e) {
-System.out.println("가입완료 클릭");
-checkJoinAvailable();
-JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
-System.out.println(
-combo_emailAddress.getSelectedItem());
-insertNewMember(mj);
-}
-});
+	}
 
-btn_userJoin.setBounds(417, 503, 136, 50);
-contentPane.add(btn_userJoin);
+	private boolean bLoginAvail; // false(중복)
+	private JTextField txt_DoB;
 
-}
-private boolean bLoginAvail; // false(중복)
-private JTextField txt_DoB;
-
-protected void checkJoinAvailable() {
+	protected void checkJoinAvailable() {
 // 가입 가능한 상태의 입력들이 준비되었는지 체크...
 // 길이, 중복유무, 범위, 구성.. 체크  => 검증 validation (필터링)
 
-String strPw1 = new String(
-pwf_userPw1.getPassword());
-String strPw2 = new String(
-pwf_userPw2.getPassword());
-if( (strPw1.length() > 0 &&
-strPw2.length() > 0) && bLoginAvail == true
-&&
-(!txt_emailAdd.getText().isEmpty() == false )
-&&
-(txt_userName.getText().isEmpty() == false
-&& txt_userName.getText().equals("ex) 홍길동") == false)
-) {
+		String strPw1 = new String(pwf_userPw1.getPassword());
+		String strPw2 = new String(pwf_userPw2.getPassword());
+		if ((strPw1.length() > 0 && strPw2.length() > 0) && bLoginAvail == true
+				&& (!txt_emailAdd.getText().isEmpty() == false)
+				&& (txt_userName.getText().isEmpty() == false && txt_userName.getText().equals("ex) 홍길동") == false)) {
 // 두개 암호 필드값의 내용 비교 일치/불일치
-if( strPw2.equals(strPw1) ) {
+			if (strPw2.equals(strPw1)) {
 
-btn_userJoin.setEnabled(true);
-// lbJoinResult.setText("암호 일치 ^^");
-// lbJoinResult.setForeground(Color.blue);
-} else {
-btn_userJoin.setEnabled(false);
-}
-}
+				btn_userJoin.setEnabled(true);
 
+			} else {
+				btn_userJoin.setEnabled(false);
+			}
+		}
 
-}
-
-// - 신규 회원 가입 할 수 있다. C Member 객체를 입력
-public boolean insertNewMember(DB_UserInfo ui) {
-if( this.conn != null && ui != null ) {
-String sql   // 순서, 개수, 타입.. 띄어쓰기
-= "INSERT INTO members VALUES ("
-+ "MEMBER_SEQ.nextval, ?, ?, ?, ?, ?,?,? ";
-System.out.println(sql); // ? 서식자는 값을 '값' 자동 감싸줌..
-try {
-// Statement stmt = conn.createStatement();
-PreparedStatement pstmt
-= conn.prepareStatement(sql); // 사전문장준비
-// ?서식자의 순서, 개수, 타입 set...
-pstmt.setString(1, ui.getUserId());
-pstmt.setString(2, ui.getUserPw());
-pstmt.setString(3, ui.getUserName());
-pstmt.setInt(4, ui.getGender());
-pstmt.setDate(5, (Date) ui.getUserDoB());
-pstmt.setString(6,ui.getUserEmail());
-pstmt.setInt(7, ui.getUserPhoneNum());
-int r = pstmt.executeUpdate(); // 전송
-// 데이터 변화(DML insert, update, delete)
-// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
-if( r == 1 ) {
-System.out.println("DBMgr: 회원 가입 성공! "
-+ ui);
-} else {
-System.out.println("DBMgr: 회원 가입 실패! "
-+ ui);
-}
-} catch (SQLException e) {
-e.printStackTrace();
-}
-} else {
-System.out.println("DB 통신 에러!!");
-}
-return false;
+	}
 }
 
-public boolean insertNewMember2(DB_UserInfo ui) {
-if( this.conn != null && ui != null ) {
-String sql   // 순서, 개수, 타입.. 띄어쓰기
-= "INSERT INTO members VALUES ("
- + "MEMBER_SEQ.nextval, '"+ui.getUserId()+"', "
- + "'"+ui.getUserPw()+"', '"+ui.getUserName()+"'" +
-", "+ui.getGender()+"', '"+ui.getUserDoB()+
-"', '"+ui.getUserEmail()+"', '"+ui.getUserPhoneNum()+"'";
-System.out.println(sql);
-try {
-Statement stmt = conn.createStatement();
-int r = stmt.executeUpdate(sql);
-// 데이터 변화(DML insert, update, delete)
-// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
-if( r == 1 ) {
-System.out.println("DBMgr: 회원 가입 성공! "
-+ ui);
-} else {
-System.out.println("DBMgr: 회원 가입 실패! "
-+ ui);
-}
-} catch (SQLException e) {
-e.printStackTrace();
-}
-} else {
-System.out.println("DB 통신 에러!!");
-}
-return false;
-}
 
-// - 신규 회원 가입 할 수 있다. C 회원 스키마의 재료들 입력
-public boolean insertNewMember(
-String UserId, String UserPw, String UserName, int Gender, Date UserDoB,
-String UserEmail,int UserPhoneNum) {
-if( this.conn != null ) {
-String sql   // 순서, 개수, 타입.. 띄어쓰기
-= "INSERT INTO members VALUES ("
- + "MEMBER_SEQ.nextval, '"+UserId+"', "
- + "'"+UserPw+"', '"+UserName+"'" +
-", "+Gender+"', '"+UserDoB+
-"', '"+UserEmail+"', '"+UserPhoneNum+"'";
-System.out.println(sql);
-try {
-Statement stmt = conn.createStatement();
-int r = stmt.executeUpdate(sql);
-// 데이터 변화(DML insert, update, delete)
-// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
-if( r == 1 ) {
-System.out.println("DBMgr: 회원 가입 성공! "
-+ UserId);
-} else {
-System.out.println("DBMgr: 회원 가입 실패! "
-+ UserId);
-}
-} catch (SQLException e) {
-e.printStackTrace();
-}
-} else {
-System.out.println("DB 통신 에러!!");
-}
-return false;
-}
-}
