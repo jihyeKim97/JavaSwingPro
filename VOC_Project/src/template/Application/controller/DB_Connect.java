@@ -18,15 +18,13 @@ public class DB_Connect {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, account, pw);
-			System.out.println("DB connect success" + new Date());
 			return true;
 		} catch (ClassNotFoundException e) {
-			System.out.println("ojdbc.jar Database driver loading failure");
+			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Database connection failure");
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("Unkonwn error");
+			e.printStackTrace();
 		}
 		return false;
 	}
@@ -35,6 +33,8 @@ public class DB_Connect {
 		Statement st = conn.createStatement();
 		String sql = "select * from member";
 		ResultSet rs = st.executeQuery(sql);
+		String ism = "";
+		String gen = "";
 
 		while (rs.next()) {
 			int member_id = rs.getInt("member_id");
@@ -46,19 +46,26 @@ public class DB_Connect {
 			int is_member = rs.getInt("is_member");
 			Date birthday = rs.getDate("birthday");
 
-			System.out.println(member_id);
-			System.out.println(id);
-			System.out.println(password);
-			System.out.println(name);
-			System.out.println(gender);
-			System.out.println(phone_number);
-			System.out.println(is_member);
-			System.out.println(birthday);
-			System.out.println("-----------------");
+			if (is_member == 0) {
+				ism = "회원";
+			} else {
+				ism = "관리자";
+			}
+			
+			if (gender == 1) {
+				gen = "여";
+			} else {
+				gen = "남";
+			}
+			System.out.println(member_id + " " + id + " " + password + " " + name + " " + gen + " " + phone_number + " "
+					+ birthday + " " + ism);
 		}
-		if (rs != null)rs.close();
-		if (st != null)st.close();
-		if (conn != null)conn.close();
+		if (rs != null)
+			rs.close();
+		if (st != null)
+			st.close();
+		if (conn != null)
+			conn.close();
 
 	}
 
@@ -66,10 +73,8 @@ public class DB_Connect {
 		if (conn != null) {
 			try {
 				conn.close();
-				System.out.println("end Connection.");
 				return true;
 			} catch (SQLException e) {
-				System.out.println("DB catch error");
 				e.printStackTrace();
 			}
 		}
