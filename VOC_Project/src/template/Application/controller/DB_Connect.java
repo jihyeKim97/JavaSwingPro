@@ -1,7 +1,9 @@
 package template.Application.controller;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -29,11 +31,42 @@ public class DB_Connect {
 		return false;
 	}
 
+	public static void select() throws SQLException {
+		Statement st = conn.createStatement();
+		String sql = "select * from member";
+		ResultSet rs = st.executeQuery(sql);
+
+		while (rs.next()) {
+			int member_id = rs.getInt("member_id");
+			String id = rs.getString("id");
+			String password = rs.getString("password");
+			String name = rs.getString("name");
+			int gender = rs.getInt("gender");
+			int phone_number = rs.getInt("phone_number");
+			int is_member = rs.getInt("is_member");
+			Date birthday = rs.getDate("birthday");
+
+			System.out.println(member_id);
+			System.out.println(id);
+			System.out.println(password);
+			System.out.println(name);
+			System.out.println(gender);
+			System.out.println(phone_number);
+			System.out.println(is_member);
+			System.out.println(birthday);
+			System.out.println("-----------------");
+		}
+		if (rs != null)rs.close();
+		if (st != null)st.close();
+		if (conn != null)conn.close();
+
+	}
+
 	public static boolean endConnection() {
 		if (conn != null) {
 			try {
 				conn.close();
-				System.out.println("HI~~~~^^");
+				System.out.println("end Connection.");
 				return true;
 			} catch (SQLException e) {
 				System.out.println("DB catch error");
@@ -43,9 +76,11 @@ public class DB_Connect {
 		return false;
 	}
 
-	public static void main(String[] args) {
-		beginConnection(); 
-		endConnection(); 
+	public static void main(String[] args) throws SQLException {
+
+		beginConnection();
+		select();
+		endConnection();
 	}
 
 }
