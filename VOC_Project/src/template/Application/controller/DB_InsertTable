@@ -1,0 +1,12 @@
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'admin','1234','관리자',null,null,1,null);
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user1','1234','사용자1',1,'01021106711',0,to_date('11-23-2012-10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user2','1234','사용자2',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user3','1234','사용자3',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user4','1234','사용자4',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user5','1234','사용자5',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user6','1234','사용자6',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user7','1234','사용자7',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user8','1234','사용자8',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user9','1234','사용자9',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user0','1234','사용자0',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user10','1234','사용자10',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
