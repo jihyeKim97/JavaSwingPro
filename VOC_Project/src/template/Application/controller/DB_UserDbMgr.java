@@ -13,7 +13,6 @@ import java.sql.Statement;
 //import java.sql.Connection;
 //import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 
@@ -29,7 +28,7 @@ public class DB_UserDbMgr {
 		public boolean insertNewMember(DB_UserInfo ui) {
 			if (this.conn != null && ui != null) {
 				String sql 
-						= "INSERT INTO member VALUES (" + "MEMBER_SEQ.nextval,?,?, ?, ?, ?, ?,abc, ?,? )";
+						= "INSERT INTO member(member_id,name,birthday,gender,id,is_member,password,phone_number) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, ?,? )";
 				System.out.println(sql); 
 				try {
 	//
@@ -43,7 +42,6 @@ public class DB_UserDbMgr {
 					pstmt.setString(6, ui.getUserPhoneNum());
 					pstmt.setInt(7,ui.getIsMember());
 					pstmt.setString(8, ui.getUserDoB());
-					pstmt.setString(9, ui.getUserEmail());
 					int r = pstmt.executeUpdate(); // 전송
 	// 데이터 변화(DML insert, update, delete)
 	// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
@@ -64,9 +62,9 @@ public class DB_UserDbMgr {
 		public boolean insertNewMember2(DB_UserInfo ui) {
 			if (this.conn != null && ui != null) {
 				String sql // 순서, 개수, 타입.. 띄어쓰기
-						= "INSERT INTO members VALUES (" + "MEMBER_SEQ.nextval, '" + ui.getUserId() + "', " + "'"
+						= "INSERT INTO member(member_id,name,birthday,gender,id,is_member,password,phone_number) VALUES (" + "MEMBER_SEQ.nextval, '" + ui.getUserId() + "', " + "'"
 								+ ui.getUserPw() + "', '" + ui.getUserName() + "'" + ", " + ui.getGender() + "', '"
-								+ ui.getUserDoB() + "', '" + ui.getUserEmail() + "', '" + ui.getUserPhoneNum() + "'";
+								+ ui.getUserDoB() + "', '" + ui.getUserPhoneNum() + "'";
 				System.out.println(sql);
 				try {
 					Statement stmt = conn.createStatement();
@@ -93,7 +91,7 @@ public class DB_UserDbMgr {
 			if (this.conn != null) {
 				String sql // 순서, 개수, 타입.. 띄어쓰기
 						= "INSERT INTO members VALUES (" + "MEMBER_SEQ.nextval, '" + UserId + "', " + "'" + UserPw + "', '"
-								+ UserName + "'" + ", " + Gender + "', '" + UserDoB + "', '" + UserEmail + "', '"
+								+ UserName + "'" + ", " + Gender + "', '" + UserDoB +  "', '"
 								+ UserPhoneNum + "'";
 				System.out.println(sql);
 				try {
@@ -164,7 +162,6 @@ public class DB_UserDbMgr {
 							rs.getString("userName"),
 							rs.getInt("gender"),
 							rs.getString("userDoB"),
-							rs.getString("userEmail"),
 							rs.getString("userPhoneNum"));
 					
 				uiList.add(ui);
@@ -180,8 +177,8 @@ public class DB_UserDbMgr {
 		return null;
 	}
 	
-//	- 특정 기존 회원 한 명을 조회할 수 있다. R (로그인명, 관리번호)	
-	public DB_UserInfo selectOneMemberById(String dbui) {
+//	- 특정 기존 회원 한 명을 조회할 수 있다. R (id, 관리번호)	
+	public DB_UserInfo selectOneMemberById(int dbui) {
 		if( this.conn != null ) {
 			String sql = "select * from member"
 					+ " where id = " + dbui;
@@ -196,7 +193,6 @@ public class DB_UserDbMgr {
 							rs.getString("userName"),
 							rs.getInt("gender"),
 							rs.getString("userDoB"),
-							rs.getString("userEmail"),
 							rs.getString("userPhoneNum"),
 							rs.getInt("isMember"));
 					return ui;
@@ -208,7 +204,7 @@ public class DB_UserDbMgr {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB 통신 에러!!");
+			System.out.println("DB error!!");
 		}		
 		return null;
 	}
@@ -216,8 +212,8 @@ public class DB_UserDbMgr {
 		if( this.conn != null ) {
 //			String sql = "select * from members"
 //				+ " where login = '" + mbLogin + "'";
-			String sql = "select * from members"
-					+ " where login = ?";
+			String sql = "select * from member"
+					+ " where userId = ?";
 			try {
 //				Statement stmt = conn.createStatement();
 				PreparedStatement pstmt =
@@ -233,7 +229,6 @@ public class DB_UserDbMgr {
 							rs.getString("userName"),
 							rs.getInt("gender"),
 							rs.getString("userDoB"),
-							rs.getString("userEmail"),
 							rs.getString("userPhoneNum"));
 					return ui;
 				} else {
@@ -306,9 +301,9 @@ public class DB_UserDbMgr {
 		
 		System.out.println("레코드 2개 추가....");
 		dbmgr.insertNewMember(
-				new DB_UserInfo(1, "olaf4", "1234","올라프", DB_UserInfo.GENDER_MALE, "950116", "zczxc", "0105641234"));
+				new DB_UserInfo(1, "olaf4", "1234","올라프", DB_UserInfo.GENDER_MALE, "950116", "0105641234"));
 		DB_UserInfo newMB = new DB_UserInfo(2, "sven4", "1234",
-				"스벤", DB_UserInfo.GENDER_MALE,"921021","asdasda", "01012315462");
+				"스벤", DB_UserInfo.GENDER_MALE,"921021", "01012315462");
 		dbmgr.insertNewMember(newMB);
 //		mbMgr.insertNewMember("올라프", "olaf", "1234",
 //				18, Member.GENDER_MALE);

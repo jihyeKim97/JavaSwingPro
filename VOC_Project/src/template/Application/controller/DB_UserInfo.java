@@ -15,16 +15,13 @@ public class DB_UserInfo {
 	private	String userName;
 	private int gender;
 	private	String userDoB;
-	private String userEmail;
 	private String userPhoneNum;
 	private int isMember;
 	
-	
-
 
 
 	public DB_UserInfo(int id, String userId, String userPw, String userName, int gender, String userDoB,
-			String userEmail, String userPhoneNum, int isMember) {
+		 String userPhoneNum, int isMember) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -32,7 +29,6 @@ public class DB_UserInfo {
 		this.userName = userName;
 		this.gender = gender;
 		this.userDoB = userDoB;
-		this.userEmail = userEmail;
 		this.userPhoneNum = userPhoneNum;
 		this.isMember = isMember;
 	}
@@ -44,7 +40,7 @@ public class DB_UserInfo {
 	
 
 	public DB_UserInfo(int id, String userId, String userPw, String userName, int gender, String userDoB,
-			String userEmail, String userPhoneNum) {
+			String userPhoneNum) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -52,12 +48,11 @@ public class DB_UserInfo {
 		this.userName = userName;
 		this.gender = gender;
 		this.userDoB = userDoB;
-		this.userEmail = userEmail;
 		this.userPhoneNum = userPhoneNum;
 	}
 
 
-	public DB_UserInfo(String userId, String userPw, String userName, int gender, String userDoB, String userEmail,
+	public DB_UserInfo(String userId, String userPw, String userName, int gender, String userDoB,
 			String userPhoneNum) {
 		super();
 		this.userId = userId;
@@ -65,7 +60,6 @@ public class DB_UserInfo {
 		this.userName = userName;
 		this.gender = gender;
 		this.userDoB = userDoB;
-		this.userEmail = userEmail;
 		this.userPhoneNum = userPhoneNum;
 	}
 
@@ -131,15 +125,6 @@ public class DB_UserInfo {
 	}
 
 
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-
 
 	public String getUserPhoneNum() {
 		return userPhoneNum;
@@ -166,7 +151,7 @@ public class DB_UserInfo {
 	@Override
 	public String toString() {
 		return "DB_UserInfo [id=" + id + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
-				+ ", gender=" + gender + ", userDoB=" + userDoB + ", userEmail=" + userEmail + ", userPhoneNum="
+				+ ", gender=" + gender + ", userDoB=" + userDoB + ", userPhoneNum="
 				+ userPhoneNum + "]";
 	}
 

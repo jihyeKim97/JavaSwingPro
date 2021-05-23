@@ -46,7 +46,6 @@ public class SignUp extends JFrame {
 	private JPanel contentPane;
 	private JTextField txt_userId;
 	private JTextField txt_userName;
-	private JTextField txt_emailAdd;
 	private JPasswordField pwf_userPw2;
 	private JPasswordField pwf_userPw1;
 	private JTextField txt_phone3;
@@ -61,6 +60,7 @@ public class SignUp extends JFrame {
 	DB_UserInfo Dbui;
 	DB_UserDbMgr mgr;
 	JLabel lb_NoDup;
+	DB_Connect dbc;
 	
 	
 //	public SignUp() {
@@ -262,51 +262,36 @@ public class SignUp extends JFrame {
 		lb_Calendar.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
 		lb_Calendar.setBounds(110, 10, 31, 25);
 		panel_bday.add(lb_Calendar);
+		txt_DoB = new JTextField();
+		txt_DoB.setBounds(0, 0, 226, 46);
+		panel_bday.add(txt_DoB);
+		txt_DoB.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				System.out.println("focus get");
+				txt_DoB.setForeground(Color.black);
+				txt_DoB.setBackground(Color.yellow);
+				if (txt_DoB.getText().equals("ex) 920101"))
+					txt_DoB.setText("");
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				System.out.println("focus lost");
+				txt_DoB.setForeground(Color.LIGHT_GRAY);
+				txt_DoB.setBackground(Color.WHITE);
+				if (txt_DoB.getText().isEmpty())
+					txt_DoB.setText("ex) 920101");
+			}
+		});
+		txt_DoB.setForeground(Color.LIGHT_GRAY);
+		txt_DoB.setFont(new Font("굴림", Font.PLAIN, 14));
+		txt_DoB.setText("ex) 920101");
+		txt_DoB.setColumns(10);
 
 		txt_DoB = new JTextField();
 
-		txt_DoB.setBounds(5, 10, 93, 32);
-		panel_bday.add(txt_DoB);
-		txt_DoB.setColumns(10);
 
-		JLabel lb_Email = new JLabel("\uC774\uBA54\uC77C:");
-		lb_Email.setFont(new Font("굴림", Font.PLAIN, 14));
-		lb_Email.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lb_Email);
-
-		JPanel panel_Email = new JPanel();
-		panel.add(panel_Email);
-		panel_Email.setLayout(null);
-
-		txt_emailAdd = new JTextField();
-		txt_emailAdd.setBounds(5, 8, 93, 32);
-		panel_Email.add(txt_emailAdd);
-		txt_emailAdd.setColumns(10);
-
-		JComboBox combo_emailAddress = new JComboBox();
-		combo_emailAddress.setEditable(true);
-		combo_emailAddress.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				combo_emailAddress.getSelectedIndex();
-				System.out.println(combo_emailAddress.getSelectedIndex());
-				System.out.println(combo_emailAddress.getSelectedItem());
-			}
-		});
-
-		combo_emailAddress.setBounds(121, 7, 93, 32);
-		combo_emailAddress.setModel(new DefaultComboBoxModel(
-				new String[] { "메일 주소", "hanmail.net", "naver.com", "gmail.com", "nate.com", "직접 입력" }));
-		panel_Email.add(combo_emailAddress);
-		String emailAdd = (String) combo_emailAddress.getSelectedItem();
-		if (emailAdd.equals("직접 입력")) {
-			combo_emailAddress.setVisible(false);
-// txt_fillEmail.setVisible(true);
-		}
-
-		JLabel lblNewLabel_3 = new JLabel("@");
-		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 17));
-		lblNewLabel_3.setBounds(99, 8, 19, 29);
-		panel_Email.add(lblNewLabel_3);
 
 		JLabel lb_phoneNumber = new JLabel("\uC804\uD654\uBC88\uD638:");
 		lb_phoneNumber.setFont(new Font("굴림", Font.PLAIN, 14));
@@ -409,14 +394,14 @@ public class SignUp extends JFrame {
 				
 				String inLogin = txt_userId.getText();
 				DB_UserInfo mb = mgr.selectOneMemberByUserId(inLogin);
-					if( mb == null ) { // 사용가능
+					if( !mb.equals(inLogin) ) { // 사용가능
 						bLoginAvail = true;// 일단 더미 중복x
 						JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
 					
 					} else {
 						bLoginAvail = false;
 						JOptionPane.showMessageDialog(null, "사용불가능한 id 입니다");
-
+						
 					}			
 			}
 		});
@@ -454,13 +439,12 @@ public class SignUp extends JFrame {
 				String UserName = txt_userId.getText();
 				int Gender = rd_Female.isSelected() ? DB_UserInfo.GENDER_FEMALE: DB_UserInfo.GENDER_MALE;
 				String UserDoB = txt_DoB.getText();
-				String UserEmail = txt_emailAdd.getText();
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
-				DB_UserInfo newUI = new DB_UserInfo( UserId, UserPw,  UserName, Gender, UserDoB, UserEmail, UserPhoneNum);
+				DB_UserInfo newUI = new DB_UserInfo( UserId, UserPw,  UserName, Gender, UserDoB, UserPhoneNum);
 				boolean r = mgr.insertNewMember(newUI);
 				JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
-				System.out.println(combo_emailAddress.getSelectedItem());
-				//insertNewMember();
+		
+	
 			}
 		});
 		
@@ -480,7 +464,7 @@ public class SignUp extends JFrame {
 		String strPw1 = new String(pwf_userPw1.getPassword());
 		String strPw2 = new String(pwf_userPw2.getPassword());
 		if ((strPw1.length() > 0 && strPw2.length() > 0) && bLoginAvail == true
-				&& (!txt_emailAdd.getText().isEmpty() == false)
+				&& (!txt_DoB.getText().isEmpty() == false)
 				&& (txt_userName.getText().isEmpty() == false && txt_userName.getText().equals("ex) 홍길동") == false)) {
 // 두개 암호 필드값의 내용 비교 일치/불일치
 			if (strPw2.equals(strPw1)) {
