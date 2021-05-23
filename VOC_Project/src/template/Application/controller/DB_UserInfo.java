@@ -5,9 +5,9 @@ package template.Application.controller;
 public class DB_UserInfo {
 
 	public static final int GENDER_FEMALE = 1;
-	public static final int GENDER_MALE = 2;
-	public static final int IS_MEMBER = 3;
-	public static final int IS_NOT_MEMBER = 4;
+	public static final int GENDER_MALE = 0;
+	public static final int IS_MEMBER = 0;
+	public static final int IS_NOT_MEMBER = 1;
 	
 	private int id;
 	private String userId;

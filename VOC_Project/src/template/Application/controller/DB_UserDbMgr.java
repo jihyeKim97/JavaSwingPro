@@ -28,7 +28,7 @@ public class DB_UserDbMgr {
 		public boolean insertNewMember(DB_UserInfo ui) {
 			if (this.conn != null && ui != null) {
 				String sql 
-						= "INSERT INTO member(member_id,name,birthday,gender,id,is_member,password,phone_number) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, ?,? )";
+						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,birthday) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, ?,? )";
 				System.out.println(sql); 
 				try {
 	//
@@ -39,8 +39,8 @@ public class DB_UserDbMgr {
 					pstmt.setString(3, ui.getUserPw());
 					pstmt.setString(4, ui.getUserName());
 					pstmt.setInt(5, ui.getGender());
-					pstmt.setString(6, ui.getUserPhoneNum());
-					pstmt.setInt(7,ui.getIsMember());
+					pstmt.setInt(6, ui.getIsMember());
+					pstmt.setString(7,ui.getUserPhoneNum());
 					pstmt.setString(8, ui.getUserDoB());
 					int r = pstmt.executeUpdate(); // 전송
 	// 데이터 변화(DML insert, update, delete)
@@ -62,9 +62,10 @@ public class DB_UserDbMgr {
 		public boolean insertNewMember2(DB_UserInfo ui) {
 			if (this.conn != null && ui != null) {
 				String sql // 순서, 개수, 타입.. 띄어쓰기
-						= "INSERT INTO member(member_id,name,birthday,gender,id,is_member,password,phone_number) VALUES (" + "MEMBER_SEQ.nextval, '" + ui.getUserId() + "', " + "'"
+						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,birthday) VALUES (" + "VOCPRO_SEQ.nextval, '" +
+								ui.getId() + "', "+ ui.getUserId() + "', " + "'"
 								+ ui.getUserPw() + "', '" + ui.getUserName() + "'" + ", " + ui.getGender() + "', '"
-								+ ui.getUserDoB() + "', '" + ui.getUserPhoneNum() + "'";
+								+ ui.getIsMember() + "', " + ui.getUserPhoneNum() + "', '" + ui.getUserDoB() + "'";
 				System.out.println(sql);
 				try {
 					Statement stmt = conn.createStatement();
@@ -90,9 +91,9 @@ public class DB_UserDbMgr {
 				String UserEmail, String UserPhoneNum) {
 			if (this.conn != null) {
 				String sql // 순서, 개수, 타입.. 띄어쓰기
-						= "INSERT INTO members VALUES (" + "MEMBER_SEQ.nextval, '" + UserId + "', " + "'" + UserPw + "', '"
-								+ UserName + "'" + ", " + Gender + "', '" + UserDoB +  "', '"
-								+ UserPhoneNum + "'";
+						= "INSERT INTO members VALUES (" + "VOCPRO_SEQ.nextval, '" + UserId + "', " + "'" + UserPw + "', '"
+								+ UserName + "'" + ", " + Gender + "', '" + UserPhoneNum +  "', '"
+								+ UserDoB + "'";
 				System.out.println(sql);
 				try {
 					Statement stmt = conn.createStatement();
@@ -118,15 +119,12 @@ public class DB_UserDbMgr {
 //	- 기존 회원의 총 명수를 계산하여 조회할 수 있다.
 	public int checkTotalNumberOfMembers() {
 		if( this.conn != null ) {
-//			String sql = "select COUNT(*) from members";
 			String sql = "select COUNT(*) "
 					+ "as member_cnt from member";
 			try {
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				if( rs.next() ) {
-					//int mbCnt = rs.getInt("COUNT(*)");
-//					int mbCnt = rs.getInt(1); // 첫번째 컬럼
 					int mbCnt = rs.getInt("member_cnt");
 					return mbCnt;
 				} else 
@@ -151,10 +149,8 @@ public class DB_UserDbMgr {
 				Statement stmt =  conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while( rs.next() ) {	
-					String userPhoneNum = rs.getString("userPhoneNum");
-						// varchar --> date
-//					java.sql.Date joinDay 
-//						= (java.sql.Date)rs.getDate("joined_at");
+					String userDoBString = rs.getString("");
+
 					DB_UserInfo ui 
 					= new DB_UserInfo(rs.getInt("id"),
 							rs.getString("userId"), 
