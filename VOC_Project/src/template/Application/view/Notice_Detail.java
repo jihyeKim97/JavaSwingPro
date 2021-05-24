@@ -39,7 +39,7 @@ public class Notice_Detail extends JFrame {
 
 	public Notice_Detail(Notice_main NM) {
 		this.NM = NM;
-		this.ND = this;
+//		this.ND = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();

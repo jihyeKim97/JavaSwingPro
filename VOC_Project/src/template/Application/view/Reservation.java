@@ -20,6 +20,8 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Reservation extends JFrame {
 
@@ -64,7 +66,8 @@ public class Reservation extends JFrame {
 	private Panel poster_2;
 	private RoundedButtonD btn_poster_2;
 	private Panel panel_10;
-	Reservation frm;
+	Reservation reserfrm;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,7 +86,7 @@ public class Reservation extends JFrame {
 	 * Create the frame.
 	 */
 	public Reservation() {
-		this.frm = this;
+		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -101,9 +104,9 @@ public class Reservation extends JFrame {
 		btn_my.setBounds(372, 10, 100, 35);
 		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyPage mypage = new MyPage(frm);
-				Point fPt = frm.getLocationOnScreen();
-				mypage.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
+				MyPage mypage = new MyPage(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				mypage.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 				mypage.setVisible(true);
 			}
 		});
@@ -235,14 +238,22 @@ public class Reservation extends JFrame {
 		movie1_panel.setLayout(null);
 
 		poster_1 = new Panel();
+		poster_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				info.setVisible(true);
+			}
+		});
 		poster_1.setBounds(0, 0, 94, 125);
 		movie1_panel.add(poster_1);
 
 		btn_poster_1 = new RoundedButtonD("click");
 		btn_poster_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Movie_Informaiton info = new Movie_Informaiton();
-				info.setVisible(true);
+				
 			}
 		});
 		btn_poster_1.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -256,14 +267,22 @@ public class Reservation extends JFrame {
 		screen_guid_line.add(movie4_panel);
 
 		poster_4 = new Panel();
+		poster_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				info.setVisible(true);
+			}
+		});
 		poster_4.setBounds(0, 0, 94, 125);
 		movie4_panel.add(poster_4);
 
 		btn_poster_4 = new RoundedButtonD("click");
 		btn_poster_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Movie_Informaiton info = new Movie_Informaiton();
-				info.setVisible(true);
+				
 			}
 		});
 		btn_poster_4.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -276,14 +295,22 @@ public class Reservation extends JFrame {
 		screen_guid_line.add(movie3_panel);
 
 		poster_3 = new Panel();
+		poster_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				info.setVisible(true);
+			}
+		});
 		poster_3.setBounds(0, 0, 94, 125);
 		movie3_panel.add(poster_3);
 
 		btn_poster_3 = new RoundedButtonD("click");
 		btn_poster_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Movie_Informaiton info = new Movie_Informaiton();
-				info.setVisible(true);
+				
 			}
 		});
 		btn_poster_3.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -296,13 +323,24 @@ public class Reservation extends JFrame {
 		screen_guid_line.add(movie2_panel);
 
 		poster_2 = new Panel();
+		poster_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				info.setVisible(true);
+			}
+		});
 		poster_2.setBounds(0, 0, 94, 125);
 		movie2_panel.add(poster_2);
 
 		btn_poster_2 = new RoundedButtonD("click");
 		btn_poster_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Movie_Informaiton info = new Movie_Informaiton();
+				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 				info.setVisible(true);
 			}
 		});
@@ -363,11 +401,10 @@ public class Reservation extends JFrame {
 		btn_notice.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// 옆에 나란히 창이 표시됨.
-//				Notice_main noti = new Notice_main();
-//				Point fPt = frm.getLocationOnScreen();
-//				noti.setLocation(fPt.x+frm.getWidth()+20,fPt.y);
-//				noti.setVisible(true);
+				Notice_main noti = new Notice_main(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				noti.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				noti.setVisible(true);
 			}
 		});
 		btn_notice.setBounds(10, 543, 424, 60);
