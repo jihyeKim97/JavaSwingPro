@@ -103,6 +103,10 @@ public class Notice_Detail extends JFrame {
 		contentPane.add(panel);
 		
 		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);

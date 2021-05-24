@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import template.Application.controller.DB_Connect;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
@@ -18,6 +19,9 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
@@ -100,9 +104,7 @@ public class Movie_Informaiton extends JFrame {
 	private JScrollPane scrollPane_1;
 	private JPanel pn_Review;
 
-	/**
-	 * Launch the application.
-	 */
+	DB_Connect connect;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -120,6 +122,29 @@ public class Movie_Informaiton extends JFrame {
 	 * Create the frame.
 	 */
 	public Movie_Informaiton() {
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		if (connect.conn != null) {
+		String sql = "select * from Notice";
+		try {
+			Statement st = connect.conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				int Id = rs.getInt("NOTICE_ID");
+				String Title = rs.getString("Title");
+				String content = rs.getString("content");
+				int ViewCount = rs.getInt("View_Count");
+				int MemberId = rs.getInt("Member_Id");
+				NoticeArr.add(new Notice(Id, Title, content, ViewCount, MemberId));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+		
+		
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 850);
 		contentPane = new JPanel();
