@@ -362,6 +362,7 @@ public class MyPage extends JFrame {
 		res_panel = new Panel();
 		res_panel.setBackground(new Color(255, 192, 203));
 		res_panel.setBounds(10, 120, 444, 570);
+		
 		div_panel.add(res_panel);
 		res_panel.setLayout(null);
 

@@ -32,6 +32,9 @@ import javax.swing.JTextField;
 import java.awt.TextField;
 import javax.swing.JTextPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import com.sun.javafx.scene.paint.GradientUtils.Point;
+
 import java.awt.Component;
 
 public class Reservation extends JFrame {
@@ -86,6 +89,8 @@ public class Reservation extends JFrame {
 	private Panel poster_2;
 	private Button btn_poster_2;
 	private Panel panel_10;
+	
+	Reservation Reserve;
 
 	/**
 	 * Launch the application.
@@ -107,6 +112,7 @@ public class Reservation extends JFrame {
 	 * Create the frame.
 	 */
 	public Reservation() {
+		this.Reserve = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -411,6 +417,14 @@ public class Reservation extends JFrame {
 		panel_10.add(poster_re_8);
 		
 		btn_notice = new Button("공지사항");
+		btn_notice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Notice_main NM = new Notice_main(Reserve);
+				java.awt.Point fPt = Reserve.getLocationOnScreen();
+				NM.setLocation(fPt.x + Reserve.getWidth() + 20, fPt.x);
+				NM.setVisible(true);
+			}
+		});
 		btn_notice.setBounds(10, 543, 424, 60);
 		cpn_panel.add(btn_notice);
 		cpn_panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lb_title1, screening_panel, btn_poster_1, screen_guid_line, movie1_panel, poster_1, movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice}));
