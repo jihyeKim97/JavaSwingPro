@@ -26,18 +26,19 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import template.Application.controller.DB_Connect;
+import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 
 public class Notice_Detail extends JFrame {
 
 	private JPanel contentPane;
-	Notice_main NM;
-	Notice Notice;
-	ArrayList<Notice> NoticeArr;
+	Notice NM;
+	Notice_data Notice;
+	ArrayList<Notice_data> NoticeArr;
 	Notice_Detail ND;
 
 
-	public Notice_Detail(Notice_main NM) {
+	public Notice_Detail(Notice NM) {
 		this.NM = NM;
 //		this.ND = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

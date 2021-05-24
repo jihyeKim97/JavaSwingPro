@@ -401,7 +401,7 @@ public class Reservation extends JFrame {
 		btn_notice.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Notice_main noti = new Notice_main(reserfrm);
+				Notice noti = new Notice(reserfrm);
 				Point fPt = reserfrm.getLocationOnScreen();
 				noti.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 				noti.setVisible(true);

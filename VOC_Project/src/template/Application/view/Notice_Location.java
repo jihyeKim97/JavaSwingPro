@@ -10,13 +10,13 @@ import javax.swing.ImageIcon;
 public class Notice_Location extends JDialog {
 
 	private final JPanel pn_Location = new JPanel();
-	Notice_main NM;
+	Notice NM;
 
 
 	/**
 	 * Create the dialog.
 	 */
-	public Notice_Location(Notice_main NM) {
+	public Notice_Location(Notice NM) {
 		this.NM = NM;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
