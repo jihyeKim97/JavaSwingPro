@@ -23,7 +23,7 @@ import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Reservation extends JFrame {
+public class Main extends JFrame {
 
 	private JPanel contentPane;
 	private final Panel header_panel = new Panel();
@@ -66,14 +66,14 @@ public class Reservation extends JFrame {
 	private Panel poster_2;
 	private RoundedButtonD btn_poster_2;
 	private Panel panel_10;
-	Reservation reserfrm;
+	Main reserfrm;
 
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Reservation frame = new Reservation();
+					Main frame = new Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -85,7 +85,7 @@ public class Reservation extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Reservation() {
+	public Main() {
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
