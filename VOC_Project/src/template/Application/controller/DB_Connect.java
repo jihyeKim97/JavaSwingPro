@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class DB_Connect {
 
-	static Connection conn;
+	public static Connection conn;
 	private static final String account = "VOCPRO";
 	private static final String pw = "1234";
 	static final String url = "jdbc:oracle:thin:@localhost:1521:xe";

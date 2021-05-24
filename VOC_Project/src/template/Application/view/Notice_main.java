@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -19,12 +21,20 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTable;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
+
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Panel;
 import java.awt.SystemColor;
+
+import template.Application.controller.DB_Connect;
 import template.Application.controller.RoundedButtonD;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
@@ -32,28 +42,43 @@ import javax.swing.ListSelectionModel;
 public class Notice_main extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Notice_main frame = new Notice_main();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	Reservation Reserve;
+	DB_Connect connect;
+	Notice_main NM;
+	Notice Notice;
+	ArrayList<Notice> NoticeArr;
 
 	/**
 	 * Create the frame.
 	 */
-	public Notice_main() {
+	public Notice_main(Reservation Reserve) {
+		this.Reserve = Reserve;
+		this.NM = this;
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		if (connect.conn != null) {
+		String sql = "select * from Notice";
+		try {
+			Statement st = connect.conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				int Id = rs.getInt("NOTICE_ID");
+				String Title = rs.getString("Title");
+				String content = rs.getString("content");
+				int ViewCount = rs.getInt("View_Count");
+				int MemberId = rs.getInt("Member_Id");
+				NoticeArr.add(new Notice(Id, Title, content, ViewCount, MemberId));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		}
+		
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -79,69 +104,79 @@ public class Notice_main extends JFrame {
 		panel_2.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("공지 사항");
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_3.add(lblNewLabel, BorderLayout.CENTER);
+		JLabel lb_Title = new JLabel("공지 사항");
+		lb_Title.setFont(new Font("굴림", Font.BOLD, 40));
+		lb_Title.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(lb_Title, BorderLayout.CENTER);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(10, 472, 444, 200);
 		panel_2.add(panel_4);
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(SystemColor.activeCaption);
-		panel_4.add(panel_5, BorderLayout.NORTH);
+		JPanel pn_TheaterTitle = new JPanel();
+		pn_TheaterTitle.setBackground(SystemColor.activeCaption);
+		panel_4.add(pn_TheaterTitle, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel_1 = new JLabel("Movie Theater Introducer");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 25));
-		panel_5.add(lblNewLabel_1);
+		pn_TheaterTitle.add(lblNewLabel_1);
 		
-		JPanel panel_6 = new JPanel();
-		panel_4.add(panel_6, BorderLayout.CENTER);
-		panel_6.setLayout(null);
+		JPanel pn_MovieInformaiton = new JPanel();
+		panel_4.add(pn_MovieInformaiton, BorderLayout.CENTER);
+		pn_MovieInformaiton.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("● 전화번호 : 02 - 333 - 4848 ");
-		lblNewLabel_2.setBounds(10, 10, 210, 30);
-		panel_6.add(lblNewLabel_2);
+		JLabel lb_TheaterNumber = new JLabel("● 전화번호 : 02 - 333 - 4848 ");
+		lb_TheaterNumber.setBounds(10, 10, 210, 30);
+		pn_MovieInformaiton.add(lb_TheaterNumber);
 		
-		JLabel label = new JLabel("● 영업시간 : 18:00 ~ 03:00");
-		label.setBounds(10, 40, 198, 30);
-		panel_6.add(label);
+		JLabel lb_TheaterTime = new JLabel("● 영업시간 : 18:00 ~ 03:00");
+		lb_TheaterTime.setBounds(10, 40, 198, 30);
+		pn_MovieInformaiton.add(lb_TheaterTime);
 		
-		JLabel label_1 = new JLabel("● 대표자 : 고즐링");
-		label_1.setBounds(10, 70, 198, 30);
-		panel_6.add(label_1);
+		JLabel lb_TheaterCEO = new JLabel("● 대표자 : 고즐링");
+		lb_TheaterCEO.setBounds(10, 70, 198, 30);
+		pn_MovieInformaiton.add(lb_TheaterCEO);
 		
-		JLabel label_2 = new JLabel("● 사업자 번호: 653-25-0698");
-		label_2.setBounds(10, 100, 198, 30);
-		panel_6.add(label_2);
+		JLabel lb_Theater = new JLabel("● 사업자 번호: 653-25-0698");
+		lb_Theater.setBounds(10, 100, 198, 30);
+		pn_MovieInformaiton.add(lb_Theater);
 
-		JLabel label_3 = new JLabel("● 위치: 서울 성동구 왕십리로 303");
-		label_3.setBounds(10, 130, 236, 30);
-		panel_6.add(label_3);
+		JLabel lb_TheaterLocaiton = new JLabel("● 위치: 서울 성동구 왕십리로 303");
+		lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Notice_Location NL = new Notice_Location(NM);
+				NL.setVisible(true);
+			}
+		});
+		lb_TheaterLocaiton.setBounds(10, 130, 236, 30);
+		pn_MovieInformaiton.add(lb_TheaterLocaiton);
 		
-		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(10, 71, 444, 389);
-		panel_2.add(panel_7);
-		panel_7.setLayout(new BorderLayout(0, 0));
+		JPanel pn_NoticeMain = new JPanel();
+		pn_NoticeMain.setBounds(10, 71, 444, 389);
+		panel_2.add(pn_NoticeMain);
+		pn_NoticeMain.setLayout(null);
 		
-		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		panel_7.add(table, BorderLayout.CENTER);
-		String[] Notice = new String[] {"번호","제목", "작성자", "등록일" }; 
-		Object[][] data = new Object[][] {
-			{"         1", "회원 정보 시스템 점검", "관리자", "21.05.18"},
-			{"         2", "불법촬영 금지", "관리자", "21.05.19"},
-			{"         3", "", "", ""},{"         4", "", "", ""},
-			{"         5", "", "", ""},{"         6", "", "", ""},
-			{"         7", "", "", ""},{"         8", "", "", ""},
-			{"         9", "", "", ""},{"        10", "", "", ""},
-			{"        11", "", "", ""},{"        12", "", "", ""},
-			{"        13", "", "", ""},{"        14", "", "", ""},
-			{"        15", "", "", ""},{"        16", "", "", ""}
-		};
+		
+		for (int i = 0; i < NoticeArr.size(); i++) {
+		String text = NoticeArr.get(i).getTitle();
+		JPanel JPNotice = new JPanel();
+		JLabel lbNotice = new JLabel(text);
+		Notice = NoticeArr.get(i);
+		JPNotice.add(lbNotice);
+		JPNotice.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				java.awt.Point fPt = NM.getLocationOnScreen();
+				NM.setLocation(fPt.x + NM.getWidth() + 20, fPt.x);
+			}
+		});
+		JPNotice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
+		pn_NoticeMain.add(JPNotice);
+	
+		}
 		
 		Panel panel = new Panel();
 		panel.setLayout(null);
@@ -164,5 +199,6 @@ public class Notice_main extends JFrame {
 		roundedButtonD_2.setFont(new Font("SansSerif", Font.BOLD, 15));
 		roundedButtonD_2.setBounds(430, 10, 41, 35);
 		panel.add(roundedButtonD_2);
+		connect.endConnection();
 	}
 }
