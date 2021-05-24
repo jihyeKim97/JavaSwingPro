@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
 import java.awt.Panel;
 import java.awt.Color;
 
@@ -24,15 +23,20 @@ import java.awt.event.ActionEvent;
 
 public class MyPage extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField nameField;
-	private JTextField idField;
-	private JTextField pwField;
-	private JTextField genField;
-	private JTextField birField;
-	private JTextField currField;
-	private JTextField newpwField;
-	private JTextField newpwckField;
+	JPanel contentPane;
+	JTextField nameField;
+	JTextField idField;
+	JTextField pwField;
+	JTextField genField;
+	JTextField birField;
+	JTextField currField;
+	JTextField newpwField;
+	JTextField newpwckField;
+	Panel header;
+	RoundedButtonD roundedButtonD;
+	RoundedButtonD roundedButtonD_1;
+	RoundedButtonD roundedButtonD_2;
+	
 
 	public MyPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,23 +46,28 @@ public class MyPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		Panel header = new Panel();
+		 header = new Panel();
 		header.setLayout(null);
 		header.setBackground(new Color(169, 169, 169));
 		header.setBounds(0, 0, 484, 55);
 		contentPane.add(header);
 
-		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
+		 roundedButtonD = new RoundedButtonD("LOGOUT");
 		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		header.add(roundedButtonD);
 
-		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
+		 roundedButtonD_1 = new RoundedButtonD("HOME");
+		roundedButtonD_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		roundedButtonD_1.setFont(new Font("Corbel Light", Font.PLAIN, 20));
 		roundedButtonD_1.setBounds(320, 10, 100, 35);
 		header.add(roundedButtonD_1);
 
-		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
+		 roundedButtonD_2 = new RoundedButtonD("HOME");
 		roundedButtonD_2.setText("=");
 		roundedButtonD_2.setFont(new Font("Corbel Light", Font.PLAIN, 20));
 		roundedButtonD_2.setBounds(430, 10, 41, 35);
@@ -159,7 +168,7 @@ public class MyPage extends JFrame {
 		RoundedButtonD wirte_review = new RoundedButtonD("Go to write a review");
 		wirte_review.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Mypage_writePage WinReport = new Mypage_writePage(); 
+				Mypage_writePage WinReport = new Mypage_writePage();
 				WinReport.setVisible(true);
 			}
 		});
