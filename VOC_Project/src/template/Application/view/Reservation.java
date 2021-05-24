@@ -23,7 +23,6 @@ public class Reservation extends JFrame {
 
 	private JPanel contentPane;
 	private final Panel header_panel = new Panel();
-	private RoundedButtonD btn_home;
 	private Panel content_panel;
 	private Panel div_panel;
 	private Panel title_panel;
@@ -82,6 +81,7 @@ public class Reservation extends JFrame {
 	 * Create the frame.
 	 */
 	public Reservation() {
+		this.frm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -103,15 +103,6 @@ public class Reservation extends JFrame {
 		btn_logout.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_logout.setBounds(12, 10, 100, 35);
 		header_panel.add(btn_logout);
-
-		btn_home = new RoundedButtonD("HOME");
-		btn_home.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_home.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_home.setBounds(320, 10, 100, 35);
-		header_panel.add(btn_home);
 
 		RoundedButtonD btn_myPage = new RoundedButtonD("HOME");
 		btn_myPage.setText("=");
@@ -383,7 +374,7 @@ public class Reservation extends JFrame {
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					// 옆에 나란히 창이 표시됨.
-//				Notice_main noti = new Notice_main();
+//				Notice_main noti = new Notice_main(frm);
 //				Point fPt = frm.getLocationOnScreen();
 //				noti.setLocation(fPt.x+frm.getWidth()+20,fPt.y);
 //				noti.setVisible(true);
@@ -396,12 +387,7 @@ public class Reservation extends JFrame {
 						movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel,
 						poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2,
 						poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice }));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { btn_myPage, contentPane, header_panel,
-				btn_logout, btn_home, content_panel, div_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel,
-				screening_panel, lb_title1, screen_guid_line, movie1_panel, poster_1, btn_poster_1, movie4_panel,
-				poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2,
-				released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5,
-				poster_re_6, poster_re_7, poster_re_8, btn_notice }));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_myPage, contentPane, header_panel, btn_logout, content_panel, div_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line, movie1_panel, poster_1, btn_poster_1, movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice}));
 
 	}
 }

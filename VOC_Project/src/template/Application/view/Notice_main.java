@@ -38,6 +38,7 @@ import template.Application.controller.DB_Connect;
 import template.Application.controller.RoundedButtonD;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
+import java.awt.event.ActionEvent;
 
 public class Notice_main extends JFrame {
 
@@ -54,6 +55,11 @@ public class Notice_main extends JFrame {
 	public Notice_main(Reservation Reserve) {
 		this.Reserve = Reserve;
 		this.NM = this;
+		
+		
+		
+		
+		
 		connect.beginConnection();
 		// DB에서 정보 가져오기
 		if (connect.conn != null) {
@@ -79,7 +85,7 @@ public class Notice_main extends JFrame {
 		
 		
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -155,7 +161,7 @@ public class Notice_main extends JFrame {
 		pn_MovieInformaiton.add(lb_TheaterLocaiton);
 		
 		JPanel pn_NoticeMain = new JPanel();
-		pn_NoticeMain.setBounds(10, 71, 444, 389);
+		pn_NoticeMain.setBounds(10, 75, 444, 387);
 		panel_2.add(pn_NoticeMain);
 		pn_NoticeMain.setLayout(null);
 		
@@ -190,15 +196,14 @@ public class Notice_main extends JFrame {
 		panel.add(roundedButtonD);
 		
 		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
+		roundedButtonD_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_1.setBounds(320, 10, 100, 35);
+		roundedButtonD_1.setBounds(372, 10, 100, 35);
 		panel.add(roundedButtonD_1);
-		
-		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
-		roundedButtonD_2.setText("=");
-		roundedButtonD_2.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_2.setBounds(430, 10, 41, 35);
-		panel.add(roundedButtonD_2);
 		connect.endConnection();
 	}
 }
