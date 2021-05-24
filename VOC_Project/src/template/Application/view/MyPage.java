@@ -53,16 +53,21 @@ public class MyPage extends JFrame {
 		contentPane.add(header);
 
 		 roundedButtonD = new RoundedButtonD("LOGOUT");
+		 roundedButtonD.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 dispose();
+			 }
+		 });
 		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		header.add(roundedButtonD);
 
 		 roundedButtonD_1 = new RoundedButtonD("HOME");
-		roundedButtonD_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+			roundedButtonD_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
 		roundedButtonD_1.setFont(new Font("Corbel Light", Font.PLAIN, 20));
 		roundedButtonD_1.setBounds(320, 10, 100, 35);
 		header.add(roundedButtonD_1);

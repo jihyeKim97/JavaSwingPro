@@ -94,7 +94,7 @@ public class Reservation extends JFrame {
 		contentPane.add(header_panel);
 		header_panel.setLayout(null);
 
-		RoundedButtonR btn_logout = new RoundedButtonR("LOGOUT");
+		RoundedButtonD btn_logout = new RoundedButtonD("LOGOUT");
 		btn_logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
