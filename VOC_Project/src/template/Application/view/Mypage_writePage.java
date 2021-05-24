@@ -17,10 +17,13 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
+import javax.swing.ButtonGroup;
 
 public class Mypage_writePage extends JFrame {
 
 	private JPanel contentPane;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -56,7 +59,7 @@ public class Mypage_writePage extends JFrame {
 		
 		Panel poster = new Panel();
 		poster.setBackground(new Color(255, 192, 203));
-		poster.setBounds(10, 68, 116, 208);
+		poster.setBounds(10, 78, 116, 208);
 		review_box.add(poster);
 		
 		JLabel title = new JLabel("Title : ");
@@ -73,7 +76,7 @@ public class Mypage_writePage extends JFrame {
 		Button btn_cancel = new Button("cancel");
 		btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		btn_cancel.setFont(new Font("Candara Light", Font.PLAIN, 12));
@@ -86,39 +89,49 @@ public class Mypage_writePage extends JFrame {
 		content.setLayout(null);
 		
 		JTextArea reviewtxtA = new JTextArea();
-		reviewtxtA.setBounds(12, 58, 299, 208);
+		reviewtxtA.setBounds(12, 97, 299, 169);
 		content.add(reviewtxtA);
 		
-		JRadioButton score_1 = new JRadioButton("1point");
-		score_1.setFont(new Font("Candara Light", Font.PLAIN, 11));
-		score_1.setBounds(24, 29, 53, 23);
-		content.add(score_1);
+		JPanel panel = new JPanel();
+		panel.setBounds(12, 10, 299, 77);
+		content.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JRadioButton score_2 = new JRadioButton("2point");
-		score_2.setFont(new Font("Candara Light", Font.PLAIN, 11));
-		score_2.setBounds(81, 29, 53, 23);
-		content.add(score_2);
+		JLabel lblNewLabel = new JLabel("Give me a Score");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblNewLabel);
 		
-		JRadioButton score_3 = new JRadioButton("3point");
-		score_3.setFont(new Font("Candara Light", Font.PLAIN, 11));
-		score_3.setBounds(138, 29, 60, 23);
-		content.add(score_3);
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
 		
-		JRadioButton score_4 = new JRadioButton("4point");
-		score_4.setFont(new Font("Candara Light", Font.PLAIN, 11));
-		score_4.setBounds(195, 29, 61, 23);
-		content.add(score_4);
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1);
+		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JRadioButton score_5 = new JRadioButton("5point");
-		score_5.setFont(new Font("Candara Light", Font.PLAIN, 11));
-		score_5.setBounds(252, 29, 61, 23);
-		content.add(score_5);
+		JRadioButton rd_1 = new JRadioButton("1점");
+		rd_1.setHorizontalAlignment(SwingConstants.CENTER);
+		buttonGroup.add(rd_1);
+		panel_1.add(rd_1);
 		
-		JLabel lbscore = new JLabel("Give me a Score!");
-		lbscore.setHorizontalAlignment(SwingConstants.CENTER);
-		lbscore.setFont(new Font("Candara Light", Font.PLAIN, 15));
-		lbscore.setBounds(12, 14, 299, 15);
-		content.add(lbscore);
+		JRadioButton rd_2 = new JRadioButton("2점");
+		rd_2.setHorizontalAlignment(SwingConstants.CENTER);
+		buttonGroup.add(rd_2);
+		panel_1.add(rd_2);
+		
+		JRadioButton rd_3 = new JRadioButton("3점");
+		rd_3.setHorizontalAlignment(SwingConstants.CENTER);
+		buttonGroup.add(rd_3);
+		panel_1.add(rd_3);
+		
+		JRadioButton rd_4 = new JRadioButton("4점");
+		rd_4.setHorizontalAlignment(SwingConstants.CENTER);
+		buttonGroup.add(rd_4);
+		panel_1.add(rd_4);
+		
+		JRadioButton rd_5 = new JRadioButton("5점");
+		rd_5.setHorizontalAlignment(SwingConstants.CENTER);
+		buttonGroup.add(rd_5);
+		panel_1.add(rd_5);
 		
 		JLabel lblD = new JLabel("Date : ");
 		lblD.setHorizontalAlignment(SwingConstants.LEFT);

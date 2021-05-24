@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.Panel;
 import java.awt.Color;
+
+import template.Application.controller.DB_Connect;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
 import javax.swing.JLabel;
