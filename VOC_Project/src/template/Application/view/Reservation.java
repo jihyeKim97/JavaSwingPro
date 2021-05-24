@@ -420,8 +420,8 @@ public class Reservation extends JFrame {
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Notice_main NM = new Notice_main(Reserve);
-				java.awt.Point fPt = Reserve.getLocationOnScreen();
-				NM.setLocation(fPt.x + Reserve.getWidth() + 20, fPt.x);
+//				java.awt.Point fPt = Reserve.getLocationOnScreen();
+//				NM.setLocation(fPt.x + Reserve.getWidth() + 20, fPt.x);
 				NM.setVisible(true);
 			}
 		});
