@@ -18,14 +18,15 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import java.awt.BorderLayout;
+import java.awt.Button;
 
 public class Reservation extends JFrame {
 
 	private JPanel contentPane;
 	private final Panel header_panel = new Panel();
-	private RoundedButtonD btn_home;
-	private Panel content_panel;
-	private Panel div_panel;
+	private Panel mainPanel;
+	private Panel main_panel;
 	private Panel title_panel;
 	private final Panel cpn_panel = new Panel();
 	private Panel mem_panel;
@@ -64,7 +65,7 @@ public class Reservation extends JFrame {
 	private RoundedButtonD btn_poster_2;
 	private Panel panel_10;
 	Reservation frm;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -82,6 +83,7 @@ public class Reservation extends JFrame {
 	 * Create the frame.
 	 */
 	public Reservation() {
+		this.frm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -93,56 +95,36 @@ public class Reservation extends JFrame {
 		header_panel.setBounds(0, 0, 484, 55);
 		contentPane.add(header_panel);
 		header_panel.setLayout(null);
-
-		RoundedButtonD btn_logout = new RoundedButtonD("LOGOUT");
-		btn_logout.addActionListener(new ActionListener() {
+		
+		RoundedButtonD btn_my = new RoundedButtonD("MYPAGE");
+		btn_my.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_my.setBounds(372, 10, 100, 35);
+		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btn_logout.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_logout.setBounds(12, 10, 100, 35);
-		header_panel.add(btn_logout);
-
-		btn_home = new RoundedButtonD("HOME");
-		btn_home.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_home.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_home.setBounds(320, 10, 100, 35);
-		header_panel.add(btn_home);
-
-		RoundedButtonD btn_myPage = new RoundedButtonD("HOME");
-		btn_myPage.setText("=");
-		btn_myPage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MyPage mypage = new MyPage();
-//				Point fPt = frm.getLocationOnScreen();
-//				mypage.setLocation(fPt.x+frm.getWidth()+20,fPt.y);
+				MyPage mypage = new MyPage(frm);
+				Point fPt = frm.getLocationOnScreen();
+				mypage.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 				mypage.setVisible(true);
 			}
 		});
-		btn_myPage.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_myPage.setBounds(430, 10, 41, 35);
-		header_panel.add(btn_myPage);
 
-		content_panel = new Panel();
-		content_panel.setBackground(new Color(255, 255, 255));
-		content_panel.setBounds(0, 55, 484, 705);
-		contentPane.add(content_panel);
-		content_panel.setLayout(null);
+		header_panel.add(btn_my);
+		
+		mainPanel = new Panel();
+		mainPanel.setBackground(new Color(255, 255, 255));
+		mainPanel.setBounds(0, 55, 484, 705);
+		contentPane.add(mainPanel);
+		mainPanel.setLayout(null);
 
-		div_panel = new Panel();
-		div_panel.setBackground(new Color(255, 255, 255));
-		div_panel.setBounds(10, 0, 464, 705);
-		content_panel.add(div_panel);
-		div_panel.setLayout(null);
-
+		main_panel = new Panel();
+		main_panel.setBackground(new Color(255, 255, 255));
+		main_panel.setBounds(10, 0, 464, 705);
+		mainPanel.add(main_panel);
+		main_panel.setLayout(null);
 		title_panel = new Panel();
 		title_panel.setBackground(new Color(255, 255, 255));
 		title_panel.setBounds(10, 16, 444, 50);
-		div_panel.add(title_panel);
+		main_panel.add(title_panel);
 		title_panel.setLayout(null);
 
 		btnprev = new RoundedButtonD("prev");
@@ -163,7 +145,6 @@ public class Reservation extends JFrame {
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);
-//		div_panel.add(mem_panel);
 		mem_panel.setLayout(null);
 
 		mem_detail = new Panel();
@@ -228,7 +209,7 @@ public class Reservation extends JFrame {
 		txtF_panel.add(textField_7);
 		cpn_panel.setBackground(Color.WHITE);
 		cpn_panel.setBounds(10, 77, 444, 613);
-		div_panel.add(cpn_panel);
+		main_panel.add(cpn_panel);
 		cpn_panel.setLayout(null);
 
 		screening_panel = new Panel();
@@ -382,7 +363,7 @@ public class Reservation extends JFrame {
 		btn_notice.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					// 옆에 나란히 창이 표시됨.
+				// 옆에 나란히 창이 표시됨.
 //				Notice_main noti = new Notice_main();
 //				Point fPt = frm.getLocationOnScreen();
 //				noti.setLocation(fPt.x+frm.getWidth()+20,fPt.y);
@@ -396,12 +377,7 @@ public class Reservation extends JFrame {
 						movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel,
 						poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2,
 						poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice }));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { btn_myPage, contentPane, header_panel,
-				btn_logout, btn_home, content_panel, div_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel,
-				screening_panel, lb_title1, screen_guid_line, movie1_panel, poster_1, btn_poster_1, movie4_panel,
-				poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2,
-				released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5,
-				poster_re_6, poster_re_7, poster_re_8, btn_notice }));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line, movie1_panel, poster_1, btn_poster_1, movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice}));
 
 	}
 }

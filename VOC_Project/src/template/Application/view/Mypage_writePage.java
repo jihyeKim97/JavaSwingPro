@@ -1,8 +1,5 @@
 package template.Application.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +7,6 @@ import java.awt.Panel;
 import javax.swing.JLabel;
 import java.awt.Button;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import java.awt.Font;
@@ -20,32 +16,20 @@ import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import javax.swing.ButtonGroup;
 
+import template.Application.view.MyPage;
+
+
+
 public class Mypage_writePage extends JFrame {
 
-	private JPanel contentPane;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	JPanel contentPane;
+	ButtonGroup buttonGroup = new ButtonGroup();
+	MyPage frm;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Mypage_writePage frame = new Mypage_writePage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public Mypage_writePage() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Mypage_writePage(MyPage frm) {
+		this.frm = frm;
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 391);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -84,12 +68,12 @@ public class Mypage_writePage extends JFrame {
 		review_box.add(btn_cancel);
 		
 		Panel content = new Panel();
-		content.setBounds(132, 10, 323, 276);
+		content.setBounds(132, 0, 323, 286);
 		review_box.add(content);
 		content.setLayout(null);
 		
 		JTextArea reviewtxtA = new JTextArea();
-		reviewtxtA.setBounds(12, 97, 299, 169);
+		reviewtxtA.setBounds(12, 97, 299, 179);
 		content.add(reviewtxtA);
 		
 		JPanel panel = new JPanel();
