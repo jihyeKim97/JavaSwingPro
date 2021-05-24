@@ -56,7 +56,7 @@ public class MyPage extends JFrame {
 		RoundedButtonD btn_main = new RoundedButtonD("HOME");
 		btn_main.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
 			}
 		});
 		btn_main.setFont(new Font("Candara Light", Font.PLAIN, 20));
