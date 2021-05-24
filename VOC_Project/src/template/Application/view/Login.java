@@ -28,11 +28,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
-public class Login {
+public class Login extends JFrame {
 
-	private JFrame frmVoc;
-	private JTextField txt_id;
-	private JPasswordField txt_pw;
+	public JFrame frmVoc;
+	public JTextField txt_id;
+	public JPasswordField txt_pw;
 
 	/**
 	 * Launch the application.
@@ -146,6 +146,9 @@ public class Login {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("아이디 찾기 누름");
+				panel.setVisible(false);
+			
+			
 				
 				lb_FindID.setOpaque(true);// 배경 불투명도 조정
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
@@ -193,7 +196,7 @@ public class Login {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("비밀번호 찾기 누름");
-			
+				
 				lb_FindID.setOpaque(true);
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
 			}
