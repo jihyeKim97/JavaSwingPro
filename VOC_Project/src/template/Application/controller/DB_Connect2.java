@@ -21,12 +21,15 @@ public class DB_Connect2 {
 		this.conn = OracleDBUtil.getConn();
 	}
 
+	
+	
 	public static void select() throws SQLException {
 		Statement st = conn.createStatement();
 		String sql = "select * from member";
 		ResultSet rs = st.executeQuery(sql);
 		String ism = "";
 		String gen = "";
+		
 
 		while (rs.next()) {
 			int member_id = rs.getInt("member_id");
@@ -61,10 +64,40 @@ public class DB_Connect2 {
 
 	}
 
+	public Login_data changeBypass(String mbpassword, String mbid , int phone_number, String name) {
+		if (this.conn != null) {
+			String sql = "UPDATE MEMBER SET PASSWORD = ? WHERE id = ? AND PHONE_NUMBER = ? AND NAME = ?";
+			try {
+
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mbpassword);
+				pstmt.setString(2, mbid);
+				pstmt.setInt(3, phone_number);
+				pstmt.setString(4, name);
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+					Login_data mb = new Login_data(rs.getInt("member_id"), rs.getString("id"), rs.getString("password"),
+							rs.getString("name"), rs.getInt("gender"), rs.getInt("phone_number"),
+							rs.getInt("is_member"), rs.getDate("birthday"));
+					return mb;
+				} else {
+					System.out.println(mbpassword + " 로그인명의 회원 레코드 조회 DB 에러!");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB 통신 에러!!");
+		}
+		return null;
+	}
+	
+
+
 	public Login_data selectOneMemberByLogin(String mbLogin) {
 		if (this.conn != null) {
 
-			String sql = "select * from member" + " where id = ?";
+			String sql = "select * from member where id = ?";
 			try {
 
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -90,7 +123,7 @@ public class DB_Connect2 {
 	public Login_data selectOneMemberByName(String mbname) {
 		if (this.conn != null) {
 
-			String sql = "select * from member" + " where name = ?";
+			String sql = "select * from member where name = ?";
 			try {
 
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -183,27 +216,46 @@ public class DB_Connect2 {
 		}
 		return FIND_ERROR;
 	}
+	
+	public static String setPassword(int length) {
+		int num = 0;
+		char[]  pwset = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'
+				, 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 
+				'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'
+				, 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '@', '#', '$', '%', '^', '&' };
 
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < length; i++) {
+			num = (int)(pwset.length * Math.random());
+			sb.append(pwset[num]);
+		}
+		return sb.toString();
+	}
+	
+	
+	
 	public int findpw(String name, String login, String phone_number) {
 		if (name == null || login == null || phone_number == null || name.isEmpty() || login.isEmpty()
 				|| phone_number.isEmpty()) {
 			return FIND_NULL;
 		}
+		String setpassword = setPassword(8);
 		if (this.conn != null) {
 			Login_data mb = selectOneMemberByLogin(login);
 			if (mb != null) {
 				int mbPhn = mb.getPhone_number();
 				int Phn = Integer.parseInt(phone_number);
-				if (mbPhn != 0) {
-					if (mbPhn == Phn) {
+					if (mbPhn == Phn && mbPhn != 0) {
 						String mbname = mb.getName();
 						if (mbname != null && !mbname.isEmpty()) {
 							if (mbname.equals(name)) {
-								String mbpw = mb.getPassword();
-								JOptionPane.showMessageDialog(null, mbpw + "입니다.");
+//								String mbpw = mb.getPassword();
+								Login_data mb1 = changeBypass(setpassword, login, Phn, name);
+								JOptionPane.showMessageDialog(null, setpassword + "입니다.");
 								return FIND_SUCCESS;
 							}
-						}
+						
 					} else {
 						return PHN_MISMATCH;
 
@@ -219,6 +271,9 @@ public class DB_Connect2 {
 		}
 		return FIND_ERROR;
 	}
+
+	
+
 
 	public static void main(String[] args) throws SQLException {
 		DB_Connect2 mbMgr = new DB_Connect2();

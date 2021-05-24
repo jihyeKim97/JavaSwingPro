@@ -25,19 +25,19 @@ import template.Application.controller.DB_Connect2;
 
 
 
-public class Pindpw {
+public class Login_FindPW extends JFrame{
 	
-	private JFrame frmVoc;
-	private JTextField txt_id;
-	private JPasswordField txt_pw;
+	public JFrame frmVoc;
+	public JTextField txt_id;
+	public JPasswordField txt_pw;
 	JPanel panel_2;
-	private JTextField txt_IssuedName;
-	private JTextField txt_IssuedId;
-	private JTextField txt_number4;
-	private JTextField txt_number5;
-	private JTextField txt_number6;
+	public JTextField txt_IssuedName;
+	public JTextField txt_IssuedId;
+	public JTextField txt_number4;
+	public JTextField txt_number5;
+	public JTextField txt_number6;
 
-	private JFrame frame2;
+	public JFrame frame2;
 
 	/**
 	 * Launch the application.
@@ -46,7 +46,7 @@ public class Pindpw {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Pindpw window = new Pindpw();
+					Login_FindPW window = new Login_FindPW();
 					window.frmVoc.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +58,7 @@ public class Pindpw {
 	/**
 	 * Create the application.
 	 */
-	public Pindpw() {
+	public Login_FindPW() {
 		initialize();
 	}
 

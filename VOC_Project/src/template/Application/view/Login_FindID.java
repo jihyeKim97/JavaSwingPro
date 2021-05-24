@@ -30,21 +30,21 @@ import template.Application.controller.DB_Connect2;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class Pindid {
+public class Login_FindID extends JFrame{
 
-	private JFrame frame;
-	private JFrame frmVoc;
-	private JTextField txt_id;
-	private JPasswordField txt_pw;
+	public JFrame frame;
+	public JFrame frmVoc;
+	public JTextField txt_id;
+	public JPasswordField txt_pw;
 	JPanel panel_1;
 	JPanel panel_2;
-	private JTextField txt_name;
-	private JTextField txt_number1;
-	private JTextField txt_number2;
-	private JTextField txt_number3;
+	public JTextField txt_name;
+	public JTextField txt_number1;
+	public JTextField txt_number2;
+	public JTextField txt_number3;
 
 	
-	private JFrame frame1;
+	public JFrame frame1;
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +52,7 @@ public class Pindid {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Pindid window = new Pindid();
+					Login_FindID window = new Login_FindID();
 					window.frmVoc.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +64,7 @@ public class Pindid {
 	/**
 	 * Create the application.
 	 */
-	public Pindid() {
+	public Login_FindID() {
 		initialize();
 	}
 

@@ -36,6 +36,16 @@ public class Login_data {
 
 
 
+	public Login_data(String id, String password, String name, int phone_number) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.phone_number = phone_number;
+	}
+
+
+
 	public Login_data(int member_id, String id, String password, String name, int gender, int phone_number, int is_member,
 			Date birthday) {
 		super();
