@@ -36,8 +36,9 @@ public class MyPage extends JFrame {
    RoundedButtonD roundedButtonD;
    RoundedButtonD roundedButtonD_1;
    RoundedButtonD roundedButtonD_2;
+   
 
-   public MyPage(Reservation frm) {
+   public MyPage() {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 500, 800);
       contentPane = new JPanel();
@@ -312,5 +313,18 @@ public class MyPage extends JFrame {
       newpwckField.setBounds(0, 412, 246, 40);
       fieldPanel.add(newpwckField);
 
+   }
+
+   public static void main(String[] args) {
+      EventQueue.invokeLater(new Runnable() {
+         public void run() {
+            try {
+               MyPage frame = new MyPage();
+               frame.setVisible(true);
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         }
+      });
    }
 }

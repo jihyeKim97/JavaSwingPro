@@ -160,18 +160,22 @@ public class Notice_main extends JFrame {
 		panel_2.add(pn_NoticeMain);
 		pn_NoticeMain.setLayout(null);
 		
+		
 		for (int i = 0; i < NoticeArr.size(); i++) {
 		String text = NoticeArr.get(i).getTitle();
-		JPanel Notice = new JPanel();
+		JPanel JPNotice = new JPanel();
 		JLabel lbNotice = new JLabel(text);
-		Notice.add(lbNotice);
-		Notice.addMouseListener(new MouseAdapter() {
+		Notice = NoticeArr.get(i);
+		JPNotice.add(lbNotice);
+		JPNotice.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				java.awt.Point fPt = NM.getLocationOnScreen();
+				NM.setLocation(fPt.x + NM.getWidth() + 20, fPt.x);
 			}
 		});
-		Notice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
-		pn_NoticeMain.add(Notice);
+		JPNotice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
+		pn_NoticeMain.add(JPNotice);
 	
 		}
 		
