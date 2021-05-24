@@ -76,7 +76,7 @@ public class Login extends JFrame {
 		
 		JLabel lb_id = new JLabel("");
 		lb_id.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_id.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\status_online.png"));
+		lb_id.setIcon(new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\status_online.png"));
 		lb_id.setBackground(SystemColor.activeCaptionText);
 		lb_id.setBounds(169, 211, 35, 31);
 		
@@ -88,7 +88,7 @@ public class Login extends JFrame {
 		txt_id.setColumns(10);
 		
 		JLabel lb_pw = new JLabel("");
-		lb_pw.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\key.png"));
+		lb_pw.setIcon(new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\key.png"));
 		lb_pw.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_pw.setBackground(Color.WHITE);
 		lb_pw.setBounds(169, 252, 35, 31);
@@ -137,7 +137,7 @@ public class Login extends JFrame {
 		panel.add(btn_Login);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\82102\\Desktop\\movie\\VOC.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\VOC.png"));
 		lblNewLabel_1.setBounds(216, 20, 212, 181);
 		panel.add(lblNewLabel_1);
 		
@@ -146,9 +146,6 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("아이디 찾기 누름");
-				panel.setVisible(false);
-			
-			
 				
 				lb_FindID.setOpaque(true);// 배경 불투명도 조정
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
