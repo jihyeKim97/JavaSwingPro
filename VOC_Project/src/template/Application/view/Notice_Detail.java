@@ -26,21 +26,22 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import template.Application.controller.DB_Connect;
+import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 
 public class Notice_Detail extends JFrame {
 
 	private JPanel contentPane;
-	Notice_main NM;
-	Notice Notice;
-	ArrayList<Notice> NoticeArr;
+	Notice NM;
+	Notice_data Notice;
+	ArrayList<Notice_data> NoticeArr;
 	Notice_Detail ND;
 
 
-	public Notice_Detail(Notice_main NM) {
+	public Notice_Detail(Notice NM) {
 		this.NM = NM;
-		this.ND = this;
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//		this.ND = this;
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,7 +89,7 @@ public class Notice_Detail extends JFrame {
 		RoundedButtonD btn_End = new RoundedButtonD("LOGOUT");
 		btn_End.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ND.setVisible(false);
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 		btn_End.setText("돌아가기");
@@ -103,20 +104,23 @@ public class Notice_Detail extends JFrame {
 		contentPane.add(panel);
 		
 		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 		
 		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
+		roundedButtonD_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
 		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_1.setBounds(320, 10, 100, 35);
+		roundedButtonD_1.setBounds(372, 10, 100, 35);
 		panel.add(roundedButtonD_1);
-		
-		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
-		roundedButtonD_2.setText("=");
-		roundedButtonD_2.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_2.setBounds(430, 10, 41, 35);
-		panel.add(roundedButtonD_2);
 
 	}
 }
