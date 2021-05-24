@@ -1,37 +1,21 @@
 package template.Application.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import template.Application.controller.RoundedButtonD;
-import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
-import template.Application.controller.RoundedButtonY;
-
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
-import java.awt.SystemColor;
 import java.awt.Font;
-import javax.swing.JScrollPane;
-import java.awt.Button;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
-import java.awt.TextField;
-import javax.swing.JTextPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
@@ -49,15 +33,7 @@ public class Reservation extends JFrame {
 	private Panel screening_panel;
 	private RoundedButtonD btn_edit;
 	private Panel txt_panel;
-	private JLabel lb_name;
-	private JLabel lb_ld;
-	private JLabel lb_phone;
-	private JLabel lb_bir;
-	private JLabel lb_cp;
-	private JLabel lb_np;
-	private JLabel lb_cnp;
 	private Panel txtF_panel;
-	private JLabel lb_gen;
 	private JTextField textField_1;
 	private JTextField textField;
 	private JTextField textField_2;
@@ -141,9 +117,9 @@ public class Reservation extends JFrame {
 		btn_myPage.setText("=");
 		btn_myPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyPage mypage = new MyPage(frm);
-				Point fPt = frm.getLocationOnScreen();
-				mypage.setLocation(fPt.x+frm.getWidth()+20,fPt.y);
+				MyPage mypage = new MyPage();
+//				Point fPt = frm.getLocationOnScreen();
+//				mypage.setLocation(fPt.x+frm.getWidth()+20,fPt.y);
 				mypage.setVisible(true);
 			}
 		});
@@ -407,7 +383,7 @@ public class Reservation extends JFrame {
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					// 옆에 나란히 창이 표시됨.
-//				Notice_main noti = new Notice_main(frm);
+//				Notice_main noti = new Notice_main();
 //				Point fPt = frm.getLocationOnScreen();
 //				noti.setLocation(fPt.x+frm.getWidth()+20,fPt.y);
 //				noti.setVisible(true);
