@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import template.Application.controller.DB_Connect;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
@@ -18,6 +19,11 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
@@ -100,9 +106,9 @@ public class Movie_Informaiton extends JFrame {
 	private JScrollPane scrollPane_1;
 	private JPanel pn_Review;
 
-	/**
-	 * Launch the application.
-	 */
+	DB_Connect connect;
+	Movie Movie;
+	ArrayList<Movie> MovieList;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -120,6 +126,38 @@ public class Movie_Informaiton extends JFrame {
 	 * Create the frame.
 	 */
 	public Movie_Informaiton() {
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		if (connect.conn != null) {
+		String sql = "select * from Movies";
+		try {
+			Statement st = connect.conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				int MoviesId = rs.getInt("Movie_id");
+				String Title = rs.getString("Title");
+				String genre = rs.getString("genre");
+				String directer = rs.getString("directer");
+				int ageGroup = rs.getInt("age_group");
+				String story = rs.getString("story");
+				int averageScore = rs.getInt("average_score");
+				String gee = rs.getString("gee");
+				Date openDate = rs.getDate("open_date");
+				String production = rs.getString("production");
+				String imageFileName = rs.getString("image_file_name");
+				String scheduleDate = rs.getString("schedule_date");
+				String runningTime = rs.getString("running_time");
+				
+				MovieList.add(new Movie(MoviesId, Title, genre, directer, ageGroup, story, averageScore, gee, openDate, production, imageFileName, scheduleDate, runningTime));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+		
+		
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 850);
 		contentPane = new JPanel();
@@ -146,20 +184,11 @@ public class Movie_Informaiton extends JFrame {
 		btn_home.setFont(new Font("SansSerif", Font.BOLD, 15));
 		btn_home.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btn_home.setBounds(320, 10, 100, 35);
+		btn_home.setBounds(372, 10, 100, 35);
 		header_panel.add(btn_home);
-
-		RoundedButtonD btn_myPage = new RoundedButtonD("HOME");
-		btn_myPage.setText("=");
-		btn_myPage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_myPage.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btn_myPage.setBounds(430, 10, 41, 35);
-		header_panel.add(btn_myPage);
 
 		content_panel = new Panel();
 		content_panel.setBackground(new Color(255, 255, 255));
