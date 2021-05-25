@@ -1,4 +1,5 @@
 package template.Application.view;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
@@ -12,7 +13,6 @@ public class Notice_Location extends JDialog {
 	private final JPanel pn_Location = new JPanel();
 	Notice NM;
 
-
 	/**
 	 * Create the dialog.
 	 */
@@ -23,7 +23,7 @@ public class Notice_Location extends JDialog {
 		pn_Location.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(pn_Location, BorderLayout.CENTER);
 		pn_Location.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		pn_Location.add(lblNewLabel, BorderLayout.CENTER);
 	}

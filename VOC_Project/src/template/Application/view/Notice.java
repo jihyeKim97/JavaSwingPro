@@ -158,7 +158,7 @@ public class Notice extends JFrame {
 		panel_2.add(pn_NoticeMain);
 		pn_NoticeMain.setLayout(null);
 
-		for (int i = 0; i <0; i++) {
+		for (int i = 0; i < 0; i++) {
 //			String text = NoticeArr.get(i).getTitle();
 //			JPanel JPNotice = new JPanel();
 //			JLabel lbNotice = new JLabel(text);
