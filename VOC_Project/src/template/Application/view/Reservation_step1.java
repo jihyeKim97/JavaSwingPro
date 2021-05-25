@@ -286,84 +286,88 @@ public class Reservation_step1 extends JFrame {
 		optionContent.add(optionimgpanel);
 		optionimgpanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		Panel panel_8 = new Panel();
-		optionimgpanel.add(panel_8);
+		Panel img1 = new Panel();
+		optionimgpanel.add(img1);
 		
-		Panel panel_9 = new Panel();
-		optionimgpanel.add(panel_9);
+		Panel img2 = new Panel();
+		optionimgpanel.add(img2);
 		
-		Panel panel_10 = new Panel();
-		optionimgpanel.add(panel_10);
+		Panel img3 = new Panel();
+		optionimgpanel.add(img3);
 		
-		Panel panel_11 = new Panel();
-		optionimgpanel.add(panel_11);
+		Panel img4 = new Panel();
+		optionimgpanel.add(img4);
 		
-		Panel panel_12 = new Panel();
-		optionimgpanel.add(panel_12);
-
-		JPanel add_option_line = new JPanel();
-		add_option_line.setBackground(new Color(220, 220, 220));
-		add_option_line.setBounds(0, 600, 484, 44);
-		content.add(add_option_line);
-		add_option_line.setLayout(null);
-
-		JLabel OPtionName = new JLabel("팝콘");
-		OPtionName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		OPtionName.setBounds(17, 0, 102, 44);
-		OPtionName.setHorizontalAlignment(SwingConstants.CENTER);
-		add_option_line.add(OPtionName);
-
-		RoundedButtonD btn_plus = new RoundedButtonD("+");
-		btn_plus.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 19));
-		btn_plus.setBounds(131, 8, 43, 26);
-		add_option_line.add(btn_plus);
-
-		JLabel option_sum_count = new JLabel("2");
-		option_sum_count.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		option_sum_count.setBounds(172, 0, 70, 44);
-		option_sum_count.setHorizontalAlignment(SwingConstants.CENTER);
-		add_option_line.add(option_sum_count);
-
-		RoundedButtonD btn_miu = new RoundedButtonD("-");
-		btn_miu.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 19));
-		btn_miu.setBounds(242, 8, 43, 26);
-		add_option_line.add(btn_miu);
-
-		JLabel option_sum_price = new JLabel("+10000원");
-		option_sum_price.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		option_sum_price.setBounds(294, 0, 130, 44);
-		option_sum_price.setHorizontalAlignment(SwingConstants.CENTER);
-		add_option_line.add(option_sum_price);
-
-		RoundedButtonD btn_delete = new RoundedButtonD("X");
-		btn_delete.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		btn_delete.setBounds(430, 8, 43, 26);
-		add_option_line.add(btn_delete);
+		Panel img5 = new Panel();
+		optionimgpanel.add(img5);
 
 		RoundedButtonD btn_payment = new RoundedButtonD("결제 하기");
 		btn_payment.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		btn_payment.setBounds(10, 812, 462, 34);
+		btn_payment.setBounds(253, 812, 217, 34);
 		content.add(btn_payment);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(117, 779, 240, 23);
-		content.add(panel);
-		panel.setLayout(null);
+		JLabel won = new JLabel("원");
+		won.setHorizontalAlignment(SwingConstants.CENTER);
+		won.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		won.setBounds(222, 823, 19, 23);
+		content.add(won);
 		
-		JLabel lblNewLabel_3 = new JLabel("예상 결제 금액 : ");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(12, 0, 92, 23);
-		panel.add(lblNewLabel_3);
+		JLabel sum_price_pay = new JLabel("");
+		sum_price_pay.setHorizontalAlignment(SwingConstants.CENTER);
+		sum_price_pay.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		sum_price_pay.setBounds(113, 823, 109, 23);
+		content.add(sum_price_pay);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(93, 0, 104, 23);
-		panel.add(lblNewLabel);
+		JLabel txtprice = new JLabel("예상 결제 금액 : ");
+		txtprice.setHorizontalAlignment(SwingConstants.CENTER);
+		txtprice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		txtprice.setBounds(0, 819, 127, 23);
+		content.add(txtprice);
 		
-		JLabel label_3 = new JLabel("원");
-		label_3.setBounds(197, 0, 19, 23);
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(label_3);
+		JPanel option_add_panel = new JPanel();
+		option_add_panel.setBackground(new Color(220, 220, 220));
+		option_add_panel.setBounds(0, 600, 484, 202);
+		content.add(option_add_panel);
+		option_add_panel.setLayout(null);
+		
+		JPanel option_add_line = new JPanel();
+		option_add_line.setLayout(null);
+		option_add_line.setBackground(new Color(220, 220, 220));
+		option_add_line.setBounds(0, 0, 484, 44);
+		option_add_panel.add(option_add_line);
+		
+		JLabel optionName = new JLabel("팝콘");
+		optionName.setHorizontalAlignment(SwingConstants.CENTER);
+		optionName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		optionName.setBounds(17, 0, 102, 44);
+		option_add_line.add(optionName);
+		
+		RoundedButtonD btn_add = new RoundedButtonD("+");
+		btn_add.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 19));
+		btn_add.setBounds(131, 8, 43, 26);
+		option_add_line.add(btn_add);
+		
+		JLabel optionCount = new JLabel("2");
+		optionCount.setHorizontalAlignment(SwingConstants.CENTER);
+		optionCount.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		optionCount.setBounds(172, 0, 70, 44);
+		option_add_line.add(optionCount);
+		
+		RoundedButtonD btn_miu = new RoundedButtonD("-");
+		btn_miu.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 19));
+		btn_miu.setBounds(242, 8, 43, 26);
+		option_add_line.add(btn_miu);
+		
+		JLabel optionPrice = new JLabel("+10000원");
+		optionPrice.setHorizontalAlignment(SwingConstants.CENTER);
+		optionPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		optionPrice.setBounds(294, 0, 130, 44);
+		option_add_line.add(optionPrice);
+		
+		RoundedButtonD btn_delete = new RoundedButtonD("X");
+		btn_delete.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		btn_delete.setBounds(430, 8, 43, 26);
+		option_add_line.add(btn_delete);
 
 		Panel header = new Panel();
 		header.setBounds(0, 0, 484, 55);
