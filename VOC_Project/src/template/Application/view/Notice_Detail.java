@@ -14,27 +14,33 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Panel;
 import java.awt.SystemColor;
 import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+
+import template.Application.controller.DB_Connect;
+import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 
 public class Notice_Detail extends JFrame {
 
 	private JPanel contentPane;
-	Notice_main NM;
-	/**
-	 * Launch the application.
+	Notice NM;
+	Notice_data Notice;
+	ArrayList<Notice_data> NoticeArr;
+	Notice_Detail ND;
 
 
-	/**
-	 * Create the frame.
-	 */
-	public Notice_Detail(Notice_main NM) {
+	public Notice_Detail(Notice NM) {
 		this.NM = NM;
+//		this.ND = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -54,30 +60,42 @@ public class Notice_Detail extends JFrame {
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
-		Panel panel_3 = new Panel();
-		panel_3.setBounds(10, 10, 444, 55);
-		panel_3.setBackground(SystemColor.controlShadow);
-		panel_2.add(panel_3);
-		panel_3.setLayout(new BorderLayout(0, 0));
+		Panel pn_Title = new Panel();
+		pn_Title.setBounds(10, 10, 444, 55);
+		pn_Title.setBackground(SystemColor.controlShadow);
+		panel_2.add(pn_Title);
+		pn_Title.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Notice_Title");
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 30));
-		panel_3.add(lblNewLabel, BorderLayout.CENTER);
+		String title = NM.Notice.getTitle();
+		JLabel lb_Title = new JLabel(title);
+		lb_Title.setFont(new Font("굴림", Font.BOLD, 30));
+		pn_Title.add(lb_Title, BorderLayout.CENTER);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(10, 75, 444, 547);
-		panel_2.add(panel_4);
-		panel_4.setLayout(new BorderLayout(0, 0));
+		int ViewCount = NM.Notice.getViewCount();
+		JLabel lblNewLabel = new JLabel("조회수:" + ViewCount);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		pn_Title.add(lblNewLabel, BorderLayout.SOUTH);
 		
-		JLabel lblNewLabel_1 = new JLabel("Notice");
-		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
-		panel_4.add(lblNewLabel_1, BorderLayout.CENTER);
+		JPanel pn_Content = new JPanel();
+		pn_Content.setBounds(10, 75, 444, 547);
+		panel_2.add(pn_Content);
+		pn_Content.setLayout(new BorderLayout(0, 0));
 		
-		RoundedButtonD roundedButtonD_4 = new RoundedButtonD("LOGOUT");
-		roundedButtonD_4.setText("돌아가기");
-		roundedButtonD_4.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_4.setBounds(172, 634, 120, 40);
-		panel_2.add(roundedButtonD_4);
+		String content = NM.Notice.getContent();
+		JLabel lb_Content = new JLabel(content);
+		lb_Content.setVerticalAlignment(SwingConstants.TOP);
+		pn_Content.add(lb_Content, BorderLayout.CENTER);
+		
+		RoundedButtonD btn_End = new RoundedButtonD("LOGOUT");
+		btn_End.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		btn_End.setText("돌아가기");
+		btn_End.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btn_End.setBounds(172, 634, 120, 40);
+		panel_2.add(btn_End);
 		
 		Panel panel = new Panel();
 		panel.setLayout(null);
@@ -86,19 +104,23 @@ public class Notice_Detail extends JFrame {
 		contentPane.add(panel);
 		
 		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 		
 		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
+		roundedButtonD_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
 		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_1.setBounds(320, 10, 100, 35);
+		roundedButtonD_1.setBounds(372, 10, 100, 35);
 		panel.add(roundedButtonD_1);
-		
-		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
-		roundedButtonD_2.setText("=");
-		roundedButtonD_2.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_2.setBounds(430, 10, 41, 35);
-		panel.add(roundedButtonD_2);
+
 	}
 }

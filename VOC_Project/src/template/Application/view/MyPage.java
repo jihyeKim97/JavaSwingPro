@@ -2,65 +2,66 @@ package template.Application.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-
 import java.awt.Panel;
+import java.awt.Point;
 import java.awt.Color;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import java.awt.Button;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import template.Application.view.Mypage_writePage;
 
 public class MyPage extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField nameField;
-	private JTextField idField;
-	private JTextField pwField;
-	private JTextField genField;
-	private JTextField birField;
-	private JTextField currField;
-	private JTextField newpwField;
-	private JTextField newpwckField;
+	JPanel contentPane;
+	JTextField nameField;
+	JTextField idField;
+	JTextField pwField;
+	JTextField genField;
+	JTextField birField;
+	JTextField currField;
+	JTextField newpwField;
+	JTextField newpwckField;
+	Panel header;
+	MyPage frm;
+	RoundedButtonD btn_logout;
+	RoundedButtonD wirte_review;
+	Mypage_writePage wirteP;
+	Point fPt;
+	Main mafrm;
 
-	public MyPage() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public MyPage(Main mafrm) {
+		this.frm = this;
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		Panel header = new Panel();
+		header = new Panel();
 		header.setLayout(null);
 		header.setBackground(new Color(169, 169, 169));
 		header.setBounds(0, 0, 484, 55);
 		contentPane.add(header);
 
-		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
-		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		roundedButtonD.setBounds(12, 10, 100, 35);
-		header.add(roundedButtonD);
-
-		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
-		roundedButtonD_1.setFont(new Font("Corbel Light", Font.PLAIN, 20));
-		roundedButtonD_1.setBounds(320, 10, 100, 35);
-		header.add(roundedButtonD_1);
-
-		RoundedButtonD roundedButtonD_2 = new RoundedButtonD("HOME");
-		roundedButtonD_2.setText("=");
-		roundedButtonD_2.setFont(new Font("Corbel Light", Font.PLAIN, 20));
-		roundedButtonD_2.setBounds(430, 10, 41, 35);
-		header.add(roundedButtonD_2);
+		RoundedButtonD btn_main = new RoundedButtonD("HOME");
+		btn_main.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btn_main.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_main.setBounds(12, 10, 100, 35);
+		header.add(btn_main);
 
 		JPanel content = new JPanel();
 		content.setBackground(Color.WHITE);
@@ -70,13 +71,13 @@ public class MyPage extends JFrame {
 
 		Panel detail = new Panel();
 		detail.setBackground(Color.WHITE);
-		detail.setBounds(10, 10, 464, 685);
+		detail.setBounds(10, 0, 464, 705);
 		content.add(detail);
 		detail.setLayout(null);
 
 		Panel title = new Panel();
 		title.setBackground(Color.WHITE);
-		title.setBounds(10, 0, 444, 55);
+		title.setBounds(10, 10, 444, 55);
 		detail.add(title);
 		title.setLayout(new BorderLayout(0, 0));
 
@@ -87,13 +88,13 @@ public class MyPage extends JFrame {
 
 		JPanel mem_panel = new JPanel();
 		mem_panel.setBackground(new Color(220, 220, 220));
-		mem_panel.setBounds(10, 90, 444, 585);
+		mem_panel.setBounds(10, 110, 444, 585);
 		detail.add(mem_panel);
 		mem_panel.setLayout(null);
 
 		JPanel res_panel = new JPanel();
 		res_panel.setBackground(new Color(211, 211, 211));
-		res_panel.setBounds(10, 90, 444, 585);
+		res_panel.setBounds(10, 110, 444, 585);
 		detail.add(res_panel);
 		res_panel.setLayout(null);
 
@@ -154,11 +155,13 @@ public class MyPage extends JFrame {
 		seat_sett.setBounds(133, 81, 259, 15);
 		reser_box.add(seat_sett);
 
-		RoundedButtonD wirte_review = new RoundedButtonD("Go to write a review");
+		wirte_review = new RoundedButtonD("Go to write a review");
 		wirte_review.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Mypage_writePage WinReport = new Mypage_writePage(); 
-				WinReport.setVisible(true);
+				wirteP = new Mypage_writePage(frm);
+				fPt = frm.getLocationOnScreen();
+				wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
+				wirteP.setVisible(true);
 			}
 		});
 		wirte_review.setBounds(103, 106, 291, 34);
@@ -177,8 +180,9 @@ public class MyPage extends JFrame {
 		nonereservatiompanel.setBounds(51, 10, 324, 15);
 		none_resdetail_panel.add(nonereservatiompanel);
 
-		Button btn_meminfo = new Button("member info");
-		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 13));
+		RoundedButtonD btn_meminfo = new RoundedButtonD("member info");
+		btn_meminfo.setBackground(new Color(128, 128, 128));
+		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_meminfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mem_panel.setVisible(true);
@@ -186,11 +190,11 @@ public class MyPage extends JFrame {
 				lbTitle.setText("Member Info");
 			}
 		});
-		btn_meminfo.setBounds(10, 61, 100, 30);
+		btn_meminfo.setBounds(13, 80, 130, 35);
 		detail.add(btn_meminfo);
 
-		Button btn_reser = new Button("reservtion");
-		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 13));
+		RoundedButtonD btn_reser = new RoundedButtonD("reservtion");
+		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_reser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mem_panel.setVisible(false);
@@ -198,7 +202,7 @@ public class MyPage extends JFrame {
 				lbTitle.setText("Reservtion");
 			}
 		});
-		btn_reser.setBounds(110, 61, 100, 30);
+		btn_reser.setBounds(146, 80, 105, 35);
 		detail.add(btn_reser);
 
 		Panel memdetail_panel = new Panel();
@@ -209,11 +213,11 @@ public class MyPage extends JFrame {
 
 		RoundedButtonD btn_edit = new RoundedButtonD("Edit");
 		btn_edit.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_edit.setBounds(162, 515, 100, 35);
+		btn_edit.setBounds(12, 515, 400, 40);
 		memdetail_panel.add(btn_edit);
 
 		Panel lbPanel = new Panel();
-		lbPanel.setBounds(0, 0, 162, 462);
+		lbPanel.setBounds(0, 0, 162, 463);
 		memdetail_panel.add(lbPanel);
 		lbPanel.setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -259,7 +263,7 @@ public class MyPage extends JFrame {
 
 		Panel fieldPanel = new Panel();
 		fieldPanel.setLayout(null);
-		fieldPanel.setBounds(168, 0, 256, 462);
+		fieldPanel.setBounds(168, 0, 256, 463);
 		memdetail_panel.add(fieldPanel);
 
 		nameField = new JTextField();
@@ -302,18 +306,21 @@ public class MyPage extends JFrame {
 		newpwckField.setBounds(0, 412, 246, 40);
 		fieldPanel.add(newpwckField);
 
-	}
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MyPage frame = new MyPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+		btn_logout = new RoundedButtonD("LOGOUT");
+		btn_logout.setBounds(350, 80, 100, 35);
+		detail.add(btn_logout);
+		btn_logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+//					System.out.println("안닫기 누름");
+					System.exit(0);
 				}
+				Login loginpage = new Login();
+				loginpage.setVisible(true);
 			}
 		});
+		btn_logout.setFont(new Font("Candara Light", Font.PLAIN, 20));
+
 	}
 }

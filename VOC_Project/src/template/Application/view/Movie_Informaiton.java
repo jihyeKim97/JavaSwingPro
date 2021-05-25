@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import template.Application.controller.DB_Connect;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
@@ -18,9 +19,16 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JScrollPane;
@@ -61,69 +69,84 @@ public class Movie_Informaiton extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JPanel panel;
+	private JPanel pn_Poster;
 	private JPanel panel_1;
-	private JLabel lblNewLabel;
+	private JLabel lb_MovieTime;
 	private JPanel panel_2;
 	private JScrollPane scrollPane;
-	private JPanel panel_3;
+	private JPanel pn_MovieStoryTitle;
 	private JLabel lblNewLabel_1;
-	private JPanel panel_5;
+	private JPanel pn_MovieStory;
 	private JLabel lblNewLabel_2;
-	private JPanel panel_6;
+	private JPanel pn_MovieFirstTime;
 	private JPanel panel_4;
 	private JPanel panel_7;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label_4;
-	private JLabel label_5;
-	private JLabel label_6;
-	private JLabel label_7;
-	private JLabel label_8;
-	private JLabel label_9;
-	private JLabel label_10;
-	private JLabel label_11;
-	private JLabel label_12;
-	private JLabel label_13;
-	private JLabel label_14;
-	private JLabel label_15;
-	private JPanel panel_8;
+	private JLabel lb_Title;
+	private JLabel lb_MVTitle;
+	private JLabel lb_Directer;
+	private JLabel lb_MVDirecter;
+	private JLabel lb_Genre;
+	private JLabel lb_MVGenre;
+	private JLabel lb_Rate;
+	private JLabel lb_MVRate;
+	private JLabel lb_producte;
+	private JLabel lb_MVProducte;
+	private JLabel lb_Age;
+	private JLabel lb_MVAge;
+	private JLabel lb_Character;
+	private JLabel lb_MVCharacter;
+	private JLabel lb_Year;
+	private JLabel lb_MVYear;
 	private JLabel lblNewLabel_3;
 	private JLabel label_16;
-	private JLabel label_17;
-	private JLabel label_18;
 	private JLabel label_19;
-	private JLabel label_20;
-	private JLabel lblNewLabel_4;
-	private JLabel label_21;
+	private JLabel lb_MovieTitle;
+	private JLabel lb_MovieInfomaiton;
 	private JPanel panel_9;
 	private JScrollPane scrollPane_1;
-	private JPanel panel_10;
+	private JPanel pn_Review;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Movie_Informaiton frame = new Movie_Informaiton();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+	DB_Connect connect;
+	Movie Movie;
+	ArrayList<Movie> MovieList;
+	Main refrm;
+	Movie_Informaiton frm;
+
+	public Movie_Informaiton(Main refrm) {
+		this.frm = this;
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		if (connect.conn != null) {
+			String sql = "select * from Movies";
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					int MoviesId = rs.getInt("Movie_id");
+					String Title = rs.getString("Title");
+					String genre = rs.getString("genre");
+					String directer = rs.getString("directer");
+					int ageGroup = rs.getInt("age_group");
+					String story = rs.getString("story");
+					int averageScore = rs.getInt("average_score");
+					String gee = rs.getString("gee");
+					Date openDate = rs.getDate("open_date");
+					String production = rs.getString("production");
+					String imageFileName = rs.getString("image_file_name");
+					String scheduleDate = rs.getString("schedule_date");
+					String runningTime = rs.getString("running_time");
+
+					MovieList.add(new Movie(MoviesId, Title, genre, directer, ageGroup, story, averageScore, gee,
+							openDate, production, imageFileName, scheduleDate, runningTime));
 				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public Movie_Informaiton() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 800);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 500, 850);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -135,6 +158,12 @@ public class Movie_Informaiton extends JFrame {
 		header_panel.setLayout(null);
 
 		RoundedButtonD btn_logout = new RoundedButtonD("LOGOUT");
+		btn_logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showConfirmDialog(null, "로그아웃 되었습니다.", "로그아웃", JOptionPane.CANCEL_OPTION,
+						JOptionPane.PLAIN_MESSAGE);
+			}
+		});
 		btn_logout.setFont(new Font("SansSerif", Font.BOLD, 15));
 		btn_logout.setBounds(12, 10, 100, 35);
 		header_panel.add(btn_logout);
@@ -143,24 +172,15 @@ public class Movie_Informaiton extends JFrame {
 		btn_home.setFont(new Font("SansSerif", Font.BOLD, 15));
 		btn_home.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btn_home.setBounds(320, 10, 100, 35);
+		btn_home.setBounds(372, 10, 100, 35);
 		header_panel.add(btn_home);
-
-		RoundedButtonD btn_myPage = new RoundedButtonD("HOME");
-		btn_myPage.setText("=");
-		btn_myPage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_myPage.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btn_myPage.setBounds(430, 10, 41, 35);
-		header_panel.add(btn_myPage);
 
 		content_panel = new Panel();
 		content_panel.setBackground(new Color(255, 255, 255));
-		content_panel.setBounds(0, 55, 484, 698);
+		content_panel.setBounds(0, 55, 484, 950);
 		contentPane.add(content_panel);
 		content_panel.setLayout(null);
 
@@ -169,190 +189,184 @@ public class Movie_Informaiton extends JFrame {
 		div_panel.setBounds(10, 0, 464, 260);
 		content_panel.add(div_panel);
 		div_panel.setLayout(null);
-		
-		panel = new JPanel();
-		panel.setBounds(10, 10, 180, 240);
-		div_panel.add(panel);
-		
+
+		pn_Poster = new JPanel();
+		pn_Poster.setBounds(10, 10, 180, 240);
+		div_panel.add(pn_Poster);
+
 		panel_1 = new JPanel();
 		panel_1.setBounds(204, 10, 250, 35);
 		div_panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
-		
-		lblNewLabel = new JLabel("   NO       상영날자     상영시간");
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 15));
-		panel_1.add(lblNewLabel, BorderLayout.CENTER);
-		
+
+		lb_MovieTime = new JLabel("   NO       상영날자     상영시간");
+		lb_MovieTime.setFont(new Font("굴림", Font.BOLD, 15));
+		panel_1.add(lb_MovieTime, BorderLayout.CENTER);
+
 		panel_2 = new JPanel();
-		panel_2.setBounds(204, 150, 250, 100);
+		panel_2.setBounds(204, 102, 250, 148);
 		div_panel.add(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
-		
+
 		scrollPane = new JScrollPane();
 		panel_2.add(scrollPane, BorderLayout.CENTER);
-		
-		panel_3 = new JPanel();
-		scrollPane.setColumnHeaderView(panel_3);
-		
+
+		pn_MovieStoryTitle = new JPanel();
+		pn_MovieStoryTitle.setBorder(new LineBorder(new Color(0, 0, 0)));
+		scrollPane.setColumnHeaderView(pn_MovieStoryTitle);
+
 		lblNewLabel_1 = new JLabel("줄거리");
-		panel_3.add(lblNewLabel_1);
-		
-		panel_5 = new JPanel();
-		scrollPane.setViewportView(panel_5);
-		panel_5.setLayout(new BorderLayout(0, 0));
-		
+		pn_MovieStoryTitle.add(lblNewLabel_1);
+
+		pn_MovieStory = new JPanel();
+		scrollPane.setViewportView(pn_MovieStory);
+		pn_MovieStory.setLayout(new BorderLayout(0, 0));
+
 		lblNewLabel_2 = new JLabel("영화 줄거리");
 		lblNewLabel_2.setVerticalAlignment(SwingConstants.TOP);
-		panel_5.add(lblNewLabel_2, BorderLayout.CENTER);
-		
-		panel_6 = new JPanel();
-		panel_6.setBounds(204, 57, 250, 35);
-		div_panel.add(panel_6);
-		panel_6.setLayout(null);
-		
+		pn_MovieStory.add(lblNewLabel_2, BorderLayout.CENTER);
+
+		pn_MovieFirstTime = new JPanel();
+		pn_MovieFirstTime.setBounds(204, 57, 250, 35);
+		div_panel.add(pn_MovieFirstTime);
+		pn_MovieFirstTime.setLayout(null);
+
 		lblNewLabel_3 = new JLabel("1");
 		lblNewLabel_3.setBounds(23, 10, 20, 15);
-		panel_6.add(lblNewLabel_3);
-		
+		pn_MovieFirstTime.add(lblNewLabel_3);
+
 		label_16 = new JLabel("05/21");
 		label_16.setBounds(95, 10, 40, 15);
-		panel_6.add(label_16);
-		
+		pn_MovieFirstTime.add(label_16);
+
 		label_19 = new JLabel("20:10");
 		label_19.setBounds(184, 8, 40, 15);
-		panel_6.add(label_19);
-		
-		panel_8 = new JPanel();
-		panel_8.setBounds(204, 105, 250, 35);
-		div_panel.add(panel_8);
-		panel_8.setLayout(null);
-		
-		label_17 = new JLabel("2");
-		label_17.setBounds(23, 10, 20, 15);
-		panel_8.add(label_17);
-		
-		label_18 = new JLabel("05/21");
-		label_18.setBounds(95, 10, 40, 15);
-		panel_8.add(label_18);
-		
-		label_20 = new JLabel("23:30");
-		label_20.setBounds(184, 8, 40, 15);
-		panel_8.add(label_20);
-		
+		pn_MovieFirstTime.add(label_19);
+
 		panel_4 = new JPanel();
-		panel_4.setBounds(10, 266, 464, 290);
+		panel_4.setBounds(10, 266, 464, 360);
 		content_panel.add(panel_4);
 		panel_4.setLayout(null);
-		
+
 		panel_7 = new JPanel();
 		panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_7.setBounds(0, 40, 464, 250);
+		panel_7.setBounds(0, 40, 464, 320);
 		panel_4.add(panel_7);
-		panel_7.setLayout(new GridLayout(8, 2, 0, 0));
-		
-		label = new JLabel("제목");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label);
-		
-		label_1 = new JLabel("New label");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_1);
-		
-		label_2 = new JLabel("감독");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_2);
-		
-		label_3 = new JLabel("New label");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_3);
-		
-		label_4 = new JLabel("장르");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_4);
-		
-		label_5 = new JLabel("New label");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_5);
-		
-		label_6 = new JLabel("별점");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_6);
-		
-		label_7 = new JLabel("New label");
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_7);
-		
-		label_8 = new JLabel("제작사");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_8);
-		
-		label_9 = new JLabel("New label");
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_9);
-		
-		label_10 = new JLabel("연령등급");
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_10);
-		
-		label_11 = new JLabel("New label");
-		label_11.setHorizontalAlignment(SwingConstants.CENTER);
-		label_11.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_11);
-		
-		label_12 = new JLabel("등장인물");
-		label_12.setHorizontalAlignment(SwingConstants.CENTER);
-		label_12.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_12);
-		
-		label_13 = new JLabel("New label");
-		label_13.setHorizontalAlignment(SwingConstants.CENTER);
-		label_13.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_13);
-		
-		label_14 = new JLabel("개봉연도");
-		label_14.setHorizontalAlignment(SwingConstants.CENTER);
-		label_14.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_14);
-		
-		label_15 = new JLabel("New label");
-		label_15.setHorizontalAlignment(SwingConstants.CENTER);
-		label_15.setFont(new Font("Dialog", Font.PLAIN, 20));
-		panel_7.add(label_15);
-		
-		lblNewLabel_4 = new JLabel("영화 정보");
-		lblNewLabel_4.setFont(new Font("굴림", Font.BOLD, 20));
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(0, 0, 232, 40);
-		panel_4.add(lblNewLabel_4);
-		
-		label_21 = new JLabel("내용");
-		label_21.setFont(new Font("굴림", Font.BOLD, 20));
-		label_21.setHorizontalAlignment(SwingConstants.CENTER);
-		label_21.setBounds(232, 0, 232, 40);
-		panel_4.add(label_21);
-		
+		panel_7.setLayout(new GridLayout(9, 2, 0, 0));
+
+		lb_Title = new JLabel("제목");
+		lb_Title.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Title.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Title);
+
+		lb_MVTitle = new JLabel("New label");
+		lb_MVTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVTitle.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVTitle);
+
+		lb_Genre = new JLabel("장르");
+		lb_Genre.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Genre.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Genre);
+
+		lb_MVGenre = new JLabel("New label");
+		lb_MVGenre.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVGenre.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVGenre);
+
+		lb_Directer = new JLabel("감독");
+		lb_Directer.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Directer.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Directer);
+
+		lb_MVDirecter = new JLabel("New label");
+		lb_MVDirecter.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVDirecter.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVDirecter);
+
+		lb_Age = new JLabel("연령등급");
+		lb_Age.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Age.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Age);
+
+		lb_MVAge = new JLabel("New label");
+		lb_MVAge.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVAge.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVAge);
+
+		lb_Rate = new JLabel("별점");
+		lb_Rate.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Rate.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Rate);
+
+		lb_MVRate = new JLabel("New label");
+		lb_MVRate.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVRate.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVRate);
+
+		lb_Character = new JLabel("등장인물");
+		lb_Character.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Character.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Character);
+
+		lb_MVCharacter = new JLabel("New label");
+		lb_MVCharacter.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVCharacter.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVCharacter);
+
+		lb_Year = new JLabel("개봉일");
+		lb_Year.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Year.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Year);
+
+		lb_MVYear = new JLabel("New label");
+		lb_MVYear.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVYear.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVYear);
+
+		lb_producte = new JLabel("제작사");
+		lb_producte.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_producte.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_producte);
+
+		lb_MVProducte = new JLabel("New label");
+		lb_MVProducte.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MVProducte.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_MVProducte);
+
+		JLabel lb_Runningtime = new JLabel("영화 상영 시간");
+		lb_Runningtime.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Runningtime.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_7.add(lb_Runningtime);
+
+		JLabel lb_MVRunningTime = new JLabel("New label");
+		lb_MVRunningTime.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lb_MVRunningTime.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_7.add(lb_MVRunningTime);
+
+		lb_MovieTitle = new JLabel("영화 정보");
+		lb_MovieTitle.setFont(new Font("굴림", Font.BOLD, 20));
+		lb_MovieTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MovieTitle.setBounds(0, 0, 232, 40);
+		panel_4.add(lb_MovieTitle);
+
+		lb_MovieInfomaiton = new JLabel("내용");
+		lb_MovieInfomaiton.setFont(new Font("굴림", Font.BOLD, 20));
+		lb_MovieInfomaiton.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_MovieInfomaiton.setBounds(232, 0, 232, 40);
+		panel_4.add(lb_MovieInfomaiton);
+
 		panel_9 = new JPanel();
-		panel_9.setBounds(10, 570, 464, 118);
+		panel_9.setBounds(10, 634, 464, 118);
 		content_panel.add(panel_9);
 		panel_9.setLayout(new BorderLayout(0, 0));
-		
+
 		scrollPane_1 = new JScrollPane();
 		panel_9.add(scrollPane_1, BorderLayout.CENTER);
-		
-		panel_10 = new JPanel();
-		scrollPane_1.setViewportView(panel_10);
-		panel_10.setLayout(new GridLayout(0, 1, 0, 0));
+
+		pn_Review = new JPanel();
+		scrollPane_1.setViewportView(pn_Review);
+		pn_Review.setLayout(new GridLayout(0, 1, 0, 0));
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);
@@ -419,53 +433,53 @@ public class Movie_Informaiton extends JFrame {
 		txtF_panel.setBounds(168, 0, 256, 462);
 		mem_detail.add(txtF_panel);
 		txtF_panel.setLayout(null);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(0, 10, 246, 40);
 		txtF_panel.add(textField_1);
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(0, 65, 246, 40);
 		txtF_panel.add(textField);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(0, 123, 246, 40);
 		txtF_panel.add(textField_2);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(0, 183, 246, 40);
 		txtF_panel.add(textField_3);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(0, 242, 246, 40);
 		txtF_panel.add(textField_4);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		textField_5.setBounds(0, 302, 246, 40);
 		txtF_panel.add(textField_5);
-		
+
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(0, 358, 246, 40);
 		txtF_panel.add(textField_6);
-		
+
 		textField_7 = new JTextField();
 		textField_7.setColumns(10);
 		textField_7.setBounds(0, 412, 246, 40);
 		txtF_panel.add(textField_7);
-		
+
 		for (int i = 0; i < 30; i++) { // 리뷰 개수
 			String text = "리뷰";
 			JLabel Review = new JLabel(text);
 			Review.setSize(new Dimension(400, 50));
-			panel_10.add(Review);
-		}	
+			pn_Review.add(Review);
+		}
 
 	}
 }
