@@ -5,15 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-/*
-> CAFE.members TBL 테이블
-> db.data.Member 데이터 클래스
-> db.mgr.MemberDBMgr 데이터 DB중개자 클래스 
- */
+
+
 //import java.sql.Connection;
 //import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 
 public class DB_UserDbMgr {
@@ -28,7 +25,7 @@ public class DB_UserDbMgr {
 		public boolean insertNewMember(DB_UserInfo ui) {
 			if (this.conn != null && ui != null) {
 				String sql 
-						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,birthday) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, ?,? )";
+						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, ?,? )";
 				System.out.println(sql); 
 				try {
 	//
@@ -87,12 +84,12 @@ public class DB_UserDbMgr {
 		}
 
 	// - 신규 회원 가입 할 수 있다. C 회원 스키마의 재료들 입력
-		public boolean insertNewMember(String UserId, String UserPw, String UserName, int Gender, String UserDoB,
-				String UserEmail, String UserPhoneNum) {
+		public boolean insertNewMember(String UserId, String UserPw, String UserName, int Gender, String UserPhoneNum, int isMember,
+				String UserDoB) {
 			if (this.conn != null) {
 				String sql // 순서, 개수, 타입.. 띄어쓰기
 						= "INSERT INTO members VALUES (" + "VOCPRO_SEQ.nextval, '" + UserId + "', " + "'" + UserPw + "', '"
-								+ UserName + "'" + ", " + Gender + "', '" + UserPhoneNum +  "', '"
+								+ UserName + "'" + ", " + Gender + "', '" + UserPhoneNum +  "', '" + isMember+"', '"
 								+ UserDoB + "'";
 				System.out.println(sql);
 				try {
@@ -149,16 +146,17 @@ public class DB_UserDbMgr {
 				Statement stmt =  conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while( rs.next() ) {	
-					String userDoBString = rs.getString("");
+					String userDoB= rs.getString("");
 
 					DB_UserInfo ui 
-					= new DB_UserInfo(rs.getInt("id"),
-							rs.getString("userId"), 
-							rs.getString("userPw"),
-							rs.getString("userName"),
-							rs.getInt("gender"),
-							rs.getString("userDoB"),
-							rs.getString("userPhoneNum"));
+					= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+							rs.getString("ID"), 
+							rs.getString("PASSWORD"),
+							rs.getString("NAME"),
+							rs.getInt("GENDER"),
+							rs.getInt("IS_MEMBER"),
+							rs.getString("PHONE_NUMBER"),
+							rs.getString("BIRTHDAY"));
 					
 				uiList.add(ui);
 				}
@@ -183,14 +181,14 @@ public class DB_UserDbMgr {
 				ResultSet rs = stmt.executeQuery(sql);
 				if( rs.next() ) { // 한 개의 레코드만...
 					DB_UserInfo ui 
-					= new DB_UserInfo(rs.getInt("id"),
-							rs.getString("userId"), 
-							rs.getString("userPw"),
-							rs.getString("userName"),
-							rs.getInt("gender"),
-							rs.getString("userDoB"),
-							rs.getString("userPhoneNum"),
-							rs.getInt("isMember"));
+					= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+							rs.getString("ID"), 
+							rs.getString("PASSWORD"),
+							rs.getString("NAME"),
+							rs.getInt("GENDER"),
+							rs.getInt("ISMEMBER"),
+							rs.getString("PHONENUM"),
+							rs.getString("userPhoneNum"));
 					return ui;
 				} else {
 					System.out.println(dbui + 
@@ -206,25 +204,23 @@ public class DB_UserDbMgr {
 	}
 	public DB_UserInfo selectOneMemberByUserId(String usid) {
 		if( this.conn != null ) {
-//			String sql = "select * from members"
-//				+ " where login = '" + mbLogin + "'";
 			String sql = "select * from member"
-					+ " where userId = ?";
+					+ " where Id = ?";
 			try {
-//				Statement stmt = conn.createStatement();
+//			
 				PreparedStatement pstmt =
 							conn.prepareStatement(sql);
-//				ResultSet rs = stmt.executeQuery(sql);
-				pstmt.setString(1, usid);				
+				pstmt.setString(2, usid);				
 				ResultSet rs = pstmt.executeQuery();
-				if( rs.next() ) { // 한 개의 레코드만...
+				if( rs.next() ) { 
 					DB_UserInfo ui 
-					= new DB_UserInfo(rs.getInt("id"),
-							rs.getString("userId"), 
-							rs.getString("userPw"),
-							rs.getString("userName"),
-							rs.getInt("gender"),
-							rs.getString("userDoB"),
+					= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+							rs.getString("ID"), 
+							rs.getString("PASSWORD"),
+							rs.getString("NAME"),
+							rs.getInt("GENDER"),
+							rs.getInt("ISMEMBER"),
+							rs.getString("PHONENUM"),
 							rs.getString("userPhoneNum"));
 					return ui;
 				} else {
@@ -283,54 +279,55 @@ public class DB_UserDbMgr {
 		}		
 		return LOGIN_ERROR;
 	}
+
 	
 	
 //	- 회원 통계
 	
 	public static void main(String[] args) {
-		DB_UserDbMgr dbmgr = new DB_UserDbMgr();
-		System.out.println("기존 -----------");
-		ArrayList<DB_UserInfo> oldList = dbmgr.selectAllMembers();
-		for (DB_UserInfo ui : oldList) {
-			System.out.println(ui.toString());
-		}
+	//	DB_UserDbMgr dbmgr = new DB_UserDbMgr();
+//		System.out.println("기존 -----------");
+//		ArrayList<DB_UserInfo> oldList = dbmgr.selectAllMembers();
+//		for (DB_UserInfo ui : oldList) {
+//			System.out.println(ui.toString());
+//		}
 		
-		System.out.println("레코드 2개 추가....");
-		dbmgr.insertNewMember(
-				new DB_UserInfo(1, "olaf4", "1234","올라프", DB_UserInfo.GENDER_MALE, "950116", "0105641234"));
-		DB_UserInfo newMB = new DB_UserInfo(2, "sven4", "1234",
-				"스벤", DB_UserInfo.GENDER_MALE,"921021", "01012315462");
-		dbmgr.insertNewMember(newMB);
-//		mbMgr.insertNewMember("올라프", "olaf", "1234",
-//				18, Member.GENDER_MALE);
-//		mbMgr.insertNewMember("스벤", "sven", "1234",
-//				33, Member.GENDER_MALE);
-		
-		System.out.println("추가 -----------");
-		ArrayList<DB_UserInfo> newList = dbmgr.selectAllMembers();
-		for (DB_UserInfo ui : newList) {
-			System.out.println(ui);
-		}
-		
-		System.out.println(">> 최종 회원 레코드 수: " 
-				+ dbmgr.checkTotalNumberOfMembers() + "명");
-		Scanner sc = new Scanner(System.in);
-		System.out.print(">> ���̵�: " );
-		String mbInputLogin = sc.next();
-		System.out.print(">> ��ȣ: " );
-		String mbInputPW = sc.next();
-		
-		int loginR = dbmgr.loginProcess(mbInputLogin, mbInputPW);
-		if( loginR == LOGIN_SUCCESS ) {
-			DB_UserInfo mb = dbmgr.selectOneMemberByUserId(mbInputLogin);
-//			System.out.println(mbInputLogin + " ȸ���� ���� ����!");
-			System.out.println(mbInputLogin + "("+ 
-						mb.getUserName() +") 님 로그인중!");
-			System.out.println("... 로그인!!");
-		}
-		
-		DB_Connect.endConnection();
+//		System.out.println("레코드 2개 추가....");
+//		dbmgr.insertNewMember(
+//				new DB_UserInfo(1, "olaf4", "1234","올라프", DB_UserInfo.GENDER_MALE, "950116", "0105641234"));
+//		DB_UserInfo newMB = new DB_UserInfo(2, "sven4", "1234",
+//				"스벤", DB_UserInfo.GENDER_MALE,"921021", "01012315462");
+//		dbmgr.insertNewMember(newMB);
+////		mbMgr.insertNewMember("올라프", "olaf", "1234",
+////				18, Member.GENDER_MALE);
+////		mbMgr.insertNewMember("스벤", "sven", "1234",
+////				33, Member.GENDER_MALE);
+//		
+//		System.out.println("추가 -----------");
+//		ArrayList<DB_UserInfo> newList = dbmgr.selectAllMembers();
+//		for (DB_UserInfo ui : newList) {
+//			System.out.println(ui);
+//		
+//		
+//		System.out.println(">> 최종 회원 레코드 수: " 
+//				+ dbmgr.checkTotalNumberOfMembers() + "명");
+//		Scanner sc = new Scanner(System.in);
+//		System.out.print(">> ���̵�: " );
+//		String mbInputLogin = sc.next();
+//		System.out.print(">> ��ȣ: " );
+//		String mbInputPW = sc.next();
+//		
+//		int loginR = dbmgr.loginProcess(mbInputLogin, mbInputPW);
+//		if( loginR == LOGIN_SUCCESS ) {
+//			DB_UserInfo mb = dbmgr.selectOneMemberByUserId(mbInputLogin);
+////			System.out.println(mbInputLogin + " ȸ���� ���� ����!");
+//			System.out.println(mbInputLogin + "("+ 
+//						mb.getUserName() +") 님 로그인중!");
+//			System.out.println("... 로그인!!");
 	}
+//		
+//		DB_Connect.endConnection();
 }
+
 
 

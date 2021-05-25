@@ -6,65 +6,50 @@ public class DB_UserInfo {
 
 	public static final int GENDER_FEMALE = 1;
 	public static final int GENDER_MALE = 0;
-	public static final int IS_MEMBER = 0;
-	public static final int IS_NOT_MEMBER = 1;
+	public static final int MEMBER= 0;
+	public static final int NOT_MEMBER = 1;
 	
-	private int id;
+	public int id;
 	private String userId;
 	private String userPw;
 	private	String userName;
 	private int gender;
-	private	String userDoB;
-	private String userPhoneNum;
 	private int isMember;
+	private String userPhoneNum;
+	private	String userDoB;
 	
 
-
-	public DB_UserInfo(int id, String userId, String userPw, String userName, int gender, String userDoB,
-		 String userPhoneNum, int isMember) {
+	public DB_UserInfo(int id, String userId, String userPw, String userName, int gender, int isMember,
+			String userPhoneNum, String userDoB) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
 		this.gender = gender;
-		this.userDoB = userDoB;
-		this.userPhoneNum = userPhoneNum;
 		this.isMember = isMember;
+		this.userPhoneNum = userPhoneNum;
+		this.userDoB = userDoB;
 	}
-
-
-
-	public DB_UserInfo () {}
-
+	
 	
 
-	public DB_UserInfo(int id, String userId, String userPw, String userName, int gender, String userDoB,
-			String userPhoneNum) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.userPw = userPw;
-		this.userName = userName;
-		this.gender = gender;
-		this.userDoB = userDoB;
-		this.userPhoneNum = userPhoneNum;
-	}
 
-
-	public DB_UserInfo(String userId, String userPw, String userName, int gender, String userDoB,
-			String userPhoneNum) {
+	public DB_UserInfo(String userId, String userPw, String userName, int gender, String userPhoneNum, int isMember,
+			String userDoB) {
 		super();
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
 		this.gender = gender;
-		this.userDoB = userDoB;
+		this.isMember = isMember;
 		this.userPhoneNum = userPhoneNum;
+		this.userDoB = userDoB;
 	}
 
 
-	
+
+
 	public int getId() {
 		return id;
 	}
@@ -115,15 +100,14 @@ public class DB_UserInfo {
 	}
 
 
-	public String getUserDoB() {
-		return userDoB;
+	public int getIsMember() {
+		return isMember;
 	}
 
 
-	public void setUserDoB(String userDoB) {
-		this.userDoB = userDoB;
+	public void setIsMember(int isMember) {
+		this.isMember = isMember;
 	}
-
 
 
 	public String getUserPhoneNum() {
@@ -136,31 +120,24 @@ public class DB_UserInfo {
 	}
 
 
-	public int getIsMember() {
-		return isMember;
+	public String getUserDoB() {
+		return userDoB;
 	}
 
 
-
-	public void setIsMember(int isMember) {
-		this.isMember = isMember;
+	public void setUserDoB(String userDoB) {
+		this.userDoB = userDoB;
 	}
+
 
 
 
 	@Override
 	public String toString() {
 		return "DB_UserInfo [id=" + id + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
-				+ ", gender=" + gender + ", userDoB=" + userDoB + ", userPhoneNum="
-				+ userPhoneNum + "]";
+				+ ", gender=" + gender + ", isMember=" + isMember + ", userPhoneNum=" + userPhoneNum + ", userDoB="
+				+ userDoB + "]";
 	}
 
 
-	
-	
-	
 }
-
-
-
-

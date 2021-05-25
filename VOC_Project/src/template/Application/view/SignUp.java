@@ -52,6 +52,8 @@ public class SignUp extends JFrame {
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
 	private final ButtonGroup genderGrp = new ButtonGroup();
+	private final int MEMBER = 0 , NOT_MEMBER =1;
+	
 	SignUp mj;
 	JButton btn_userJoin;
 	GUICalendarFrame frm;
@@ -246,22 +248,6 @@ public class SignUp extends JFrame {
 		JPanel panel_bday = new JPanel();
 		panel.add(panel_bday);
 		panel_bday.setLayout(null);
-
-		JLabel lb_Calendar = new JLabel("");
-		lb_Calendar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				GUICalendarFrame cal = new GUICalendarFrame();
-				cal.setVisible(true);
-
-				Point pt = lb_Calendar.getLocationOnScreen();
-
-				cal.setLocation(pt.x - 100, pt.y - 50);
-			}
-		});
-		lb_Calendar.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
-		lb_Calendar.setBounds(110, 10, 31, 25);
-		panel_bday.add(lb_Calendar);
 		txt_DoB = new JTextField();
 		txt_DoB.setBounds(0, 0, 226, 46);
 		panel_bday.add(txt_DoB);
@@ -271,7 +257,7 @@ public class SignUp extends JFrame {
 				System.out.println("focus get");
 				txt_DoB.setForeground(Color.black);
 				txt_DoB.setBackground(Color.yellow);
-				if (txt_DoB.getText().equals("ex) 920101"))
+				if (txt_DoB.getText().equals("ex) 910101"))
 					txt_DoB.setText("");
 			}
 
@@ -281,16 +267,13 @@ public class SignUp extends JFrame {
 				txt_DoB.setForeground(Color.LIGHT_GRAY);
 				txt_DoB.setBackground(Color.WHITE);
 				if (txt_DoB.getText().isEmpty())
-					txt_DoB.setText("ex) 920101");
+					txt_DoB.setText("ex) 910101");
 			}
 		});
 		txt_DoB.setForeground(Color.LIGHT_GRAY);
 		txt_DoB.setFont(new Font("굴림", Font.PLAIN, 14));
-		txt_DoB.setText("ex) 920101");
+		txt_DoB.setText("ex) 910101");
 		txt_DoB.setColumns(10);
-
-		txt_DoB = new JTextField();
-
 
 
 		JLabel lb_phoneNumber = new JLabel("\uC804\uD654\uBC88\uD638:");
@@ -440,15 +423,15 @@ public class SignUp extends JFrame {
 				int Gender = rd_Female.isSelected() ? DB_UserInfo.GENDER_FEMALE: DB_UserInfo.GENDER_MALE;
 				String UserDoB = txt_DoB.getText();
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
-				DB_UserInfo newUI = new DB_UserInfo( UserId, UserPw,  UserName, Gender, UserDoB, UserPhoneNum);
+				DB_UserInfo newUI = new DB_UserInfo(UserId, UserPw, UserName, Gender, UserPhoneNum, MEMBER, UserDoB);
 				boolean r = mgr.insertNewMember(newUI);
 				JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
-		
-	
+				dispose();
 			}
+	
 		});
 		
-		btn_userJoin.setEnabled(false);
+		btn_userJoin.setEnabled(true);
 		btn_userJoin.setBounds(417, 503, 136, 50);
 		contentPane.add(btn_userJoin);
 
