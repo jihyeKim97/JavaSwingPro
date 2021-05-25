@@ -1,3 +1,6 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+사용자 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'admin','1234','관리자',null,null,1,null);
 INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user1','1234','사용자1',1,'01021106711',0,to_date('11-23-2012-10:26:11','MM-DD-YYYY HH24:MI:SS'));
 INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user2','1234','사용자2',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
@@ -10,3 +13,12 @@ INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_memb
 INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user9','1234','사용자9',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
 INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user0','1234','사용자0',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
 INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user10','1234','사용자10',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+영화 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'제목','장르','감독',15,'줄거리',3.5,'출연진',to_date('20200101','YYYY-MM-DD' ),'제작사','./template/Reference/images/귀멸의칼날.jpg',to_date(SYSDATE+1),'러닝타임'); 
+
