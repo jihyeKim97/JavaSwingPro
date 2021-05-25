@@ -44,7 +44,7 @@ import java.awt.event.ActionEvent;
 public class Notice extends JFrame {
 
 	private JPanel contentPane;
-	Reservation reserfrm;
+	Main reserfrm;
 	DB_Connect connect;
 	Notice NM;
 	Notice_data Notice;
@@ -53,7 +53,7 @@ public class Notice extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Notice(Reservation reserfrm) {
+	public Notice(Main reserfrm) {
 //		this.reserfrm = reserfrm;
 		this.NM = this;
 

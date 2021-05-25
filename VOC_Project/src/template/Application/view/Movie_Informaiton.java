@@ -109,10 +109,10 @@ public class Movie_Informaiton extends JFrame {
 	DB_Connect connect;
 	Movie Movie;
 	ArrayList<Movie> MovieList;
-	Reservation refrm;
+	Main refrm;
 	Movie_Informaiton frm;
 
-	public Movie_Informaiton(Reservation refrm) {
+	public Movie_Informaiton(Main refrm) {
 		this.frm = this;
 		connect.beginConnection();
 		// DB에서 정보 가져오기

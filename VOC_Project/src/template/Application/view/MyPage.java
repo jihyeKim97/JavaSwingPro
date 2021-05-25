@@ -11,6 +11,7 @@ import java.awt.Color;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
@@ -35,10 +36,9 @@ public class MyPage extends JFrame {
 	RoundedButtonD wirte_review;
 	Mypage_writePage wirteP;
 	Point fPt;
-	Reservation refrm;
-	
-	
-	public MyPage(Reservation refrm) { 
+	Main mafrm;
+
+	public MyPage(Main mafrm) {
 		this.frm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -154,7 +154,6 @@ public class MyPage extends JFrame {
 		seat_sett.setFont(new Font("Candara Light", Font.PLAIN, 10));
 		seat_sett.setBounds(133, 81, 259, 15);
 		reser_box.add(seat_sett);
-		
 
 		wirte_review = new RoundedButtonD("Go to write a review");
 		wirte_review.addActionListener(new ActionListener() {
@@ -312,8 +311,13 @@ public class MyPage extends JFrame {
 		detail.add(btn_logout);
 		btn_logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				Login loginpa  = new Login();
-//				loginpa.setVisible(true);
+				int result = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+//					System.out.println("안닫기 누름");
+					System.exit(0);
+				}
+				Login loginpage = new Login();
+				loginpage.setVisible(true);
 			}
 		});
 		btn_logout.setFont(new Font("Candara Light", Font.PLAIN, 20));
