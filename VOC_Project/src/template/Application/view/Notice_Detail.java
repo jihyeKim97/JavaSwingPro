@@ -129,6 +129,11 @@ public class Notice_Detail extends JFrame {
 		contentPane.add(panel);
 		
 		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);

@@ -1,50 +1,31 @@
 package template.Application.view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import com.sun.xml.internal.ws.org.objectweb.asm.Label;
-
 import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.GridLayout;
-import javax.swing.JToolBar;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTable;
-import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.Panel;
+import java.awt.Point;
 import java.awt.SystemColor;
 
 import template.Application.controller.DB_Connect;
 import template.Application.controller.Notice_DB;
 import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.ListSelectionModel;
 import java.awt.event.ActionEvent;
 
 public class Notice extends JFrame {
@@ -153,19 +134,27 @@ public class Notice extends JFrame {
 			String text = NoticeArray.get(i).getTitle();
 			JLabel lbNotice = new JLabel( (i + 1) + ". " + text);
 			lbNotice.setHorizontalAlignment(JLabel.LEFT);
-			lbNotice.setFont(new Font("굴림", Font.BOLD, 25));
+			lbNotice.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 			LineBorder Line = new LineBorder(Color.RED,3);
 			lbNotice.setBorder(Line);
 			Notice_data NB = NoticeArray.get(i);
 			lbNotice.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					boolean b = false;
+					Notice_DB NDB = null;
+					int count = 0;
+					String title = "";
+					count = NB.getViewcount() + 1;
+					title = NB.getTitle();
+					b = changeViewCount(title, count);
 					ND = new Notice_Detail(NM, NB);
+					Point fPt = NM.getLocationOnScreen();
+					ND.setLocation(fPt.x + NM.getWidth() + 20, fPt.y);
 					ND.setVisible(true);
 					}
-				
 			});
-			lbNotice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
+			lbNotice.setBounds(10, 10 * (i + 1) + (i * 40), 416, 40);
 			pn_NoticeMain.add(lbNotice);
 
 		}
@@ -177,11 +166,42 @@ public class Notice extends JFrame {
 		contentPane.add(panel);
 		
 		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 		
 	}
+	protected boolean changeViewCount(String title, int count) {
+		DB_Connect connect = null;
+		Notice NM;
+		Notice_data Notice;
+		
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "UPDATE NOTICE SET viewcount = ? WHERE title = ?";
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setInt(1, count);
+				pstmt.setString(2, title);
+				int rs = pstmt.executeUpdate();
+				if( rs == 1 ) {
+					System.out.println("조회수 증가 성공");
+					return true;
+				} else 
+					System.out.println("조회수 증가 실패");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
+	}
+	
 }
 
 class Locaiton extends JDialog {
