@@ -1,0 +1,143 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+사용자 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'admin','1234','관리자',null,null,1,null);
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user1','1234','사용자1',1,'01021106711',0,to_date('11-23-2012-10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user2','1234','사용자2',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user3','1234','사용자3',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user4','1234','사용자4',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user5','1234','사용자5',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user6','1234','사용자6',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user7','1234','사용자7',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user8','1234','사용자8',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user9','1234','사용자9',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user0','1234','사용자0',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_member,birthday) VALUES (MEMBER_SEQ.nextval,'user10','1234','사용자10',1,'01011112222',0,to_date('11-23-2012 10:26:11','MM-DD-YYYY HH24:MI:SS'));
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+영화 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'승리호','SF','조성희',12,'2092년, 지구는 병들고 우주 위성궤도에 인류의 새로운 보금자리인 UTS가 만들어졌다. 돈 되는 일이라면, 뭐든 하는 조종사 태호 과거, 우주 해적단을 이끌었던 장선장 갱단 두목이었지만 이제는 기관사가 된 타이거 박 평생 이루고 싶은 꿈을 가진 작살잡이 로봇 업동이 이들은 우주쓰레기를 주워 돈을 버는 청소선 ‘승리호’의 선원들이다.
+어느날, 사고 우주정을 수거한 ‘승리호’는 그 안에 숨어있던 대량살상무기로 알려진 인간형 로봇 ‘도로시’를 발견한다. 돈이 절실한 선원들은 ‘도로시’를 거액의 돈과 맞바꾸기 위한 위험한 거래를 계획하는데…',4.2,'송중기,김태리,진선규',to_date('20210205','YYYY-MM-DD' ),'비단길','./template/Reference/images/승리호.jpg',to_date(SYSDATE+1),'140분');
+
+INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'인터스텔라','SF','크리스토퍼 놀란',12,'“우린 답을 찾을 거야, 늘 그랬듯이” 세계 각국의 정부와 경제가 완전히 붕괴된 미래가 다가온다. 지난 20세기에 범한 잘못이 전 세계적인 식량 부족을 불러왔고, NASA도 해체되었다. 이때 시공간에 불가사의한 틈이 열리고, 남은 자들에게는 이 곳을 탐험해 인류를 구해야 하는 임무가 지워진다.
+ 사랑하는 가족들을 뒤로 한 채 인류라는 더 큰 가족을 위해, 그들은 이제 희망을 찾아 우주로 간다. 그리고 우린 답을 찾을 것이다. 늘 그랬듯이…',4.2,'매튜 맥커너히, 앤 해서웨이, 마이클 케인',to_date('20141106','YYYY-MM-DD' ),'신카피','./template/Reference/images/인터스텔라.jpg',to_date(SYSDATE+1),'170분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'그것','공포','안드레스 무시에티',15,'아이들이 사라지는 마을, ‘그것’이 나타났다 살인과 실종사건이 이상하게 많이 생기는 데리라는 마을, 비 오는 어느 날 종이배를 들고 나간 동생이 사라졌다. 형 빌은 ‘루저 클럽’ 친구들과 함께 동생을 찾아 나서고, 27년마다 가장 무서워하는 것의 모습을 한 채 
+아이들을 잡아먹는다는 ‘그것’이 빨간 풍선을 든 삐에로의 모습으로 그들 앞에 나타나는데… 빌과 친구들은 공포를 이겨내고 ‘그것’에 맞서 동생과 사라진 아이들을 찾을 수 있을까?',3.7,'빌 스카스가드, 제이든 리버허, 하비에르 보텟',to_date('20170906','YYYY-MM-DD' ),'카츠스미스 프로덕션','./template/Reference/images/그것.jpg',to_date(SYSDATE+1),'130분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'컨저링','공포','제임스 완',15,'믿을 수 없겠지만… 이번에도 실화다! 1977년 영국 엔필드. 엄마 페기와 네 남매가 살고 있는 가족의 집에 정체를 알 수 없는 존재가 나타난다. 일명 폴터가이스트 유령. 벽을 두드리는 소리, 사악한 목소리, 유령은 밤마다 가구와 물건들, 
+심지어 아이들까지 공중에 띄우는 등 기이한 일들을 일으킨다. 결국 교회의 요청을 받은 워렌 부부가 영국 엔필드의 집을 찾아가 사건을 조사한다. 그러나 워렌 부부는 그 집에서 예상보다 더욱 엄청난 상대를 만나게 되고, 워렌 부부의 목숨까지 위협받는데…',3.4,'출연진',to_date('20200101','YYYY-MM-DD' ),'제작사','./template/Reference/images/귀멸의칼날.jpg',to_date(SYSDATE+1),'러닝타임'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'미나리','드라마','정이삭',12,'어느 한국 가족의 원더풀한 이야기 미나리는 어디서든 잘 자라 낯선 미국, 아칸소로 떠나온 한국 가족. 가족들에게 뭔가 해내는 걸 보여주고 싶은 아빠 제이콥은 자신만의 농장을 가꾸기 시작하고 엄마 모니카도 다시 일자리를 찾는다.
+ 아직 어린 아이들을 위해 모니카의 엄마 순자가 함께 살기로 하고 가방 가득 고춧가루, 멸치, 한약 그리고 미나리씨를 담은 할머니가 도착한다. 의젓한 큰딸 앤과 장난꾸러기 막내아들 데이빗은 여느 그랜마같지 않은 할머니가 영 못마땅한데…
+ 함께 있다면, 새로 시작할 수 있다는 희망으로 하루하루 뿌리 내리며 살아가는 어느 가족의 아주 특별한 여정이 시작된다!',4.5,'스티븐연, 한예리, 윤여정',to_date('20210303','YYYY-MM-DD' ),'A24','./template/Reference/images/미나리.jpg',to_date(SYSDATE+1),'115분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'비긴 어게인','드라마','감독',15,'싱어송라이터인 ‘그레타’는 남자친구 ‘데이브’가 메이저 음반회사와 계약을 하게 되면서 뉴욕으로 오게 된다. 그러나 행복도 잠시, 오랜 연인이자 음악적 파트너로서 함께 노래를 만들고 부르는 것이 좋았던 그레타와 달리 스타가 된 데이브의 마음은 어느새 변해버린다.
+ 스타 음반프로듀서였지만 이제는 해고된 ‘댄’은 미치기 일보직전 들른 뮤직바에서 그레타의 자작곡을 듣게 되고 아직 녹슬지 않은 촉을 살려 음반제작을 제안한다. 거리 밴드를 결성한 그들은 뉴욕의 거리를 스튜디오 삼아 진짜로 부르고 싶었던 노래를 만들어가는데…',4.8,'키이라 나이틀리, 마크 러팔로, 애덤 리바인',to_date('20140813','YYYY-MM-DD' ),'와인스타인 컴퍼니','./template/Reference/images/비긴 어게인.jpg',to_date(SYSDATE+1),'104분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'서치','드라마','감독',12,'목요일 11:30 PM 딸의 부재중전화 3통 그리고 딸이 사라지다 목요일 저녁, 딸 마고에게 걸려온 부재중전화 3통 아빠 데이빗은 그 후 연락이 닿지 않는 딸이 실종됐음을 알게된다.
+ 경찰의 조사는 본격적으로 시작되지만 결정적인 단서들이 나오지 않는 가운데, 실종된 날 밤 마고가 향하던 곳이 밝혀지며 새로운 사실들이 발견된다. 사건의 실마리를 찾은 곳은 다름 아닌 딸 마고의 노트북
+ 구글, 유튜브, 페이스북 등 SNS에서 상상조차하지 못한 딸의 진실이 펼쳐지는데…  현실에서는 찾을 수 없는 딸의 흔적을 검색하다!',3.8,'존 조, 데브라 메싱, 미셸 라',to_date('20180829','YYYY-MM-DD' ),'스테이지 6 필름스','./template/Reference/images/서치.jpg',to_date(SYSDATE+1),'101분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'라라랜드','멜로/로맨스','데이미언 셔젤',12,'황홀한 사랑, 순수한 희망, 격렬한 열정… 이 곳에서 모든 감정이 폭발한다! 꿈을 꾸는 사람들을 위한 별들의 도시 라라랜드
+ 재즈 피아니스트 세바스찬과 배우 지망생 미아 인생에서 가장 빛나는 순간 만난 두 사람은 미완성인 서로의 무대를 만들어가기 시작한다.',4.9,'라이언 고슬링, 엠마 스톤, 존 레전드',to_date('20161207','YYYY-MM-DD' ),'서밋엔터테인먼트','./template/Reference/images/라라랜드.jpg',to_date(SYSDATE+1),'128분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'어바웃타임','멜로/로맨스','리차드 커티스',15,'모태솔로 팀은 성인이 된 날, 아버지로부터 놀랄만한 가문의 비밀을 듣게 된다. 바로 시간을 되돌릴 수 있는 능력이 있다는 것! 그것이 비록 히틀러를 죽이거나 여신과 뜨거운 사랑을 할 수는 없지만,
+ 여자친구는 만들어 줄 순 있으리..',4.2,'도널 글리슨, 레이첼 맥아담스, 빌 나이',to_date('20131205','YYYY-MM-DD' ),'워킹 타이틀','./template/Reference/images/어바웃타임.jpg',to_date(SYSDATE+1),'123분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'타이타닉','멜로/로맨스','제임스 카메론',15,'우연한 기회로 티켓을 구해 타이타닉호에 올라탄 자유로운 영혼을 가진 화가 잭은 막강한 재력의 약혼자와 함께 1등실에 승선한 로즈에게 한 눈에 반한다.
+ 진실한 사랑을 꿈꾸던 로즈 또한 생애 처음 황홀한 감정에 휩싸이고, 둘은 운명 같은 사랑에 빠지는데…',5.0,'레오나르도 디카프리오, 케이트 윈슬렛, 빌리 제인',to_date('19980220','YYYY-MM-DD' ),'파라마운트 픽처스','./template/Reference/images/타이타닉.jpg',to_date(SYSDATE+1),'197분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'나이브스 아웃','미스터리','라이언 존슨',12,'베스트셀러 미스터리 작가 할란이 자신의 85세 생일 파티를 지낸 다음 날, 자신의 방에서 숨진 채 발견된다. 그의 생일을 축하하기 위해 모든 가족들이 그의 저택에 모여있던 상황, 심지어 해당 저택은 타인들로부터
+고립되어 있는 위치에 있는 대저택이었기에 단순 자살로 판명될 예정이였다. 하지만 그의 죽음의 원인을 파헤치기 위해 사립탐정 브누아 블랑이 오면서 상황은 달라진다..',3.2,'다니엘 크레이그, 크리스 에반스 ,아나 디 아르마스',to_date('20191204','YYYY-MM-DD' ),'미디어 라이츠 캐피탈','./template/Reference/images/나이브스 아웃.jpg',to_date(SYSDATE+1),'130분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'나우유씨미','범죄/미스터리','루이스 리터리어',12,'1년 전만 해도 무명이었던 길거리 마술사 포 호스맨은단 3초만에 파리 은행의 비자금을 통째로 털어 관객들에게 뿌리는 매직쇼를 성공시켜 전세계의 이목을 끈다.
+ 하지만 이것은 시선 끌기였을 뿐! 포 호스맨의 범행은 점점 더 거대해지고 치밀해지는데... 전세계를 무대로 한 통쾌하고 짜릿한 완전범죄 매직쇼가 시작된다!',4.0,'제시 아이젠버그, 마크 러팔로, 우디 해럴슨',to_date('20130822','YYYY-MM-DD' ),'K/O 페이퍼 프로덕츠','./template/Reference/images/나우유씨미.jpg',to_date(SYSDATE+1),'115분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'내부자들','범죄/드라마','우민호',15,'자신을 폐인으로 만든 일당에게 복수를 계획하는 정치깡패 안상구 비자금 파일과 안상구라는 존재를 이용해 성공하고 싶은 무족보 검사 우장훈 그리고 비자금 스캔들을 덮어야 하는 대통령 후보와 재벌, 그들의 설계자 이강희
+ 과연 살아남는 자는 누가 될 것인가?',4.2,'이병헌, 조승우, 백윤식',to_date('20151119','YYYY-MM-DD' ),'하이브미디어코프','./template/Reference/images/내부자들.jpg',to_date(SYSDATE+1),'130분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'신세계','범죄/드라마','박훈정',19,'경찰청 수사 기획과 강과장은 국내 최대 범죄 조직인 골드문이 기업형 조직으로 그 세력이 점점 확장되자 신입경찰 이자성에게 잠입 수사를 명한다. 그리고 8년, 자성은 
+골드문의 2인자이자 그룹 실세인 정청의 오른팔이 되기에 이른다. 골드문 회장이 갑자기 사망하자, 강과장은 후계자 결정에 직접 개입하는 신세계 작전을 설계한다. 피도 눈물도 없는 후계자 전쟁의 한 가운데, 정청은 8년 전,
+ 고향 여수에서 처음 만나 지금까지 친형제처럼 모든 순간을 함께 해 온 자성에게 더욱 강한 신뢰를 보낸다. 한편, 작전의 성공만 생각하는 강과장은 계속해서 자성의 목을 조여만 간다. 
+시시각각 신분이 노출될 위기에 처한 자성은 언제 자신을 배신할 지 모르는 경찰과, 형제의 의리로 대하는 정청 사이에서 갈등하게 되는데…',4.7,'이정재, 최민식, 황정민',to_date('20130221','YYYY-MM-DD' ),'페퍼민트앤컴퍼니','./template/Reference/images/신세계.jpg',to_date(SYSDATE+1),'134분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'귀멸의칼날','애니메이션','소토자키 하루오',15,'혈귀로 변해버린 여동생 ‘네즈코’를 인간으로 되돌릴 단서를 찾아 비밀조직 귀살대에 들어간 탄지로, 젠이츠, 이노스케와 새로운 임무 수행을 위해 무한열차에 탑승 후 귀살대 최강 검사 염주 렌고쿠와 합류한다.
+ 달리는 무한열차에서 승객들이 하나 둘 흔적 없이 사라지자 숨어있는 식인 혈귀의 존재를 직감하는 렌고쿠 귀살대 탄지로 일행과 최강 검사 염주 렌고쿠는 어둠 속을 달리는 무한열차에서 모두의 목숨을 구하기 위해
+ 예측불가능한 능력을 가진 혈귀와 목숨을 건 혈전을 시작하는데…',4.5,'하나에 나츠키 , 키토 아카리, 시모노 히로',to_date('20210428','YYYY-MM-DD' ),'유포테이블','./template/Reference/images/귀멸의칼날.jpg',to_date(SYSDATE+1),'117분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'공조','액션','김성훈',15,'비밀리에 제작된 위조 지폐 동판을 탈취하려는 내부 조직에 의해 작전 중 아내와 동료들을 잃게 된 특수 정예부대 출신의 북한형사 림철령 동판을 찾아야만 하는 북한은 남한으로 숨어든 조직의 리더 차기성을 잡기 위해
+ 역사상 최초의 남북 공조수사를 요청하고, 그 적임자로 철령을 서울에 파견한다. 한편, 북한의 속내가 의심스런 남한은 먼저 차기성을 잡기 위한 작전을 계획하고, 정직 처분 중인 생계형 형사 강진태에게 공조수사를 위장한 철령의 밀착 감시를 지시한다. 임무를 완수해야 하는 철령과 임무를 막아야만 하는 진태.
+ 그들에게 주어진 시간은 단 3일, 한 팀이 될 수 없는 남북 형사의 예측불가 공조수사가 시작된다!',4.3,'현빈, 유해진, 김주혁',to_date('20170118','YYYY-MM-DD' ),'JK필름','./template/Reference/images/공조.jpg',to_date(SYSDATE+1),'125분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'명량','액션/사극','김한민',15,'1597년 임진왜란 6년, 오랜 전쟁으로 인해 혼란이 극에 달한 조선. 무서운 속도로 한양으로 북상하는 왜군에 의해 국가존망의 위기에 처하자 누명을 쓰고 파면 당했던 이순신 장군이 삼도수군통제사로 재임명된다.
+ 하지만 그에게 남은 건 전의를 상실한 병사와 두려움에 가득 찬 백성, 그리고 12척의 배 뿐. 마지막 희망이었던 거북선마저 불타고 잔혹한 성격과 뛰어난 지략을 지닌 용병 구루지마가 왜군 수장으로 나서자 조선은 더욱 술렁인다.
+ 330척에 달하는 왜군의 배가 속속 집결하고 압도적인 수의 열세에 모두가 패배를 직감하는 순간, 이순신 장군은 단 12척의 배를 이끌고 명량 바다를 향해 나서는데…!',4.9,'최민식, 류승룡, 조진웅',to_date('20140730','YYYY-MM-DD' ),'빅스톤픽쳐스','./template/Reference/images/명량.jpg',to_date(SYSDATE+1),'128분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'엑시트','액션/코미디','이상근',12,'짠내 폭발 청년백수, 전대미문의 진짜 재난을 만나다! 대학교 산악 동아리 에이스 출신이지만 졸업 후 몇 년째 취업 실패로 눈칫밥만 먹는 용남은
+ 온 가족이 참석한 어머니의 칠순 잔치에서 연회장 직원으로 취업한 동아리 후배 의주를 만난다 어색한 재회도 잠시, 칠순 잔치가 무르익던 중 의문의 연기가 빌딩에서 피어 오르며 피할 새도 없이 순식간에 도심 전체는 유독가스로 뒤덮여 일대혼란에 휩싸이게 된다.
+ 용남과 의주는 산악 동아리 시절 쌓아 뒀던 모든 체력과 스킬을 동원해 탈출을 향한 기지를 발휘하기 시작하는데…',4.0,'조정석, 윤아, 고두심',to_date('20190731','YYYY-MM-DD' ),'외유내강','./template/Reference/images/엑시트.jpg',to_date(SYSDATE+1),'103분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'청년경찰','액션','김주환',15,'현장경험 전무, 수사는 책으로 배웠다!그냥 우리가 잡아볼게요 의욕충만 경찰대생 기준 X 이론백단 경찰대생 희열 둘도 없는 친구인 두 사람은 외출을 나왔다 우연히 납치 사건을 목격하게 된다.
+ 목격자는 오직 두 사람 뿐! 기준과 희열은 학교에서 배운 대로 지체 없이 경찰에 신고한다. 하지만 복잡한 절차와 부족한 증거로 수사는 전혀 진행될 기미가 보이지 않는 상황! 1분 1초가 급박한 상황에서 아까운 시간만 흘러가자,
+ 기준과 희열은 직접 발로 뛰는 수사에 나서기로 하고 예측 불가능한 상황을 마주하게 되는데… 전공지식 총동원! 파릇파릇한 놈들의 혈기왕성 실전수사가 시작된다!',4.0,'박서준, 강하늘, 성동일',to_date('20170809','YYYY-MM-DD' ),'무비락','./template/Reference/images/청년경찰.jpg',to_date(SYSDATE+1),'109분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'7번방의 선물','코미디','이환경',15,'최악의 흉악범들이 모인 교도소 7번방에 이상한 놈이 들어왔다 그는 바로 6살 지능의 딸바보 용구! 평생 죄만 짓고 살아온 7번방 패밀리들에게
+ 떨어진 미션은 바로 용구 딸 예승이를 외부인 절대 출입금지인 교도소에 반.입.하.는.것! 2013년 새해, 웃음과 감동 가득한 사상초유의 합동작전이 시작된다!',4.8,'류승룡, 박신혜, 갈소원',to_date('20130123','YYYY-MM-DD' ),'CL엔터테인먼트','./template/Reference/images/7번방의 선물.jpg',to_date(SYSDATE+1),'127분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'극한직업','코미디','이병헌',15,'불철주야 달리고 구르지만 실적은 바닥, 급기야 해체 위기를 맞는 마약반! 더 이상 물러설 곳이 없는 팀의 맏형 고반장은 국제 범죄조직의 국내 마약 밀반입 정황을 포착하고
+ 장형사, 마형사, 영호, 재훈까지 4명의 팀원들과 함께 잠복 수사에 나선다. 마약반은 24시간 감시를 위해 범죄조직의 아지트 앞 치킨집을 인수해 위장 창업을 하게 되고, 뜻밖의 절대미각을 지닌 마형사의 숨은 재능으로 치킨집은 일약 맛집으로 입소문이 나기 시작한다.
+ 수사는 뒷전, 치킨장사로 눈코 뜰 새 없이 바빠진 마약반에게 어느 날 절호의 기회가 찾아오는데… 범인을 잡을 것인가, 닭을 잡을 것인가!',4.2,'류승룡, 이하늬, 진선규',to_date('20190123','YYYY-MM-DD' ),'어바웃필름','./template/Reference/images/극한직업.jpg',to_date(SYSDATE+1),'111분'); 
+ 
+ INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,running_time) 
+VALUES
+(MOVIE_SEQ.nextval,'닥터 두리틀','판타지/모험','스티븐 개건',12,'동물들과 소통하는 특별한 능력을 지닌 닥터 두리틀은 사랑하는 사람을 잃고 세상과 단절한 채 동물들과 친구가 되어 살아간다. 어느 날, 여왕에게 알 수 없는 불치병이 생기고 왕국마저 위험에 빠지게 되자, 그의 놀라운 능력만이
+ 모든 것을 해결할 수 있음을 알게 된다. 세상을 구하기 위해서는 반드시 주어진 시간 안에 누구도 가보지 못했던 신비의 섬을 찾아내야만 하고, 두리틀은 친구들과 함께 위험천만한 모험을 떠나게 되는데…',3.5,'로버트 다우니 주니어, 톰 홀랜드, 라미 말렉',to_date('20200108','YYYY-MM-DD' ),'유니버셜 픽처스','./template/Reference/images/닥터 두리틀.jpg',to_date(SYSDATE+1),'101분'); 
+ 
+ 
+
