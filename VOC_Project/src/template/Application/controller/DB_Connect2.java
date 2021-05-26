@@ -257,4 +257,5 @@ public class DB_Connect2 {
 		OracleDBUtil.endConnection();
 
 	}
+
 }
