@@ -33,7 +33,8 @@ public class Login extends JFrame {
 	public JFrame frmVoc;
 	public JTextField txt_id;
 	public JPasswordField txt_pw;
-
+	Login ln;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -124,18 +125,22 @@ public class Login extends JFrame {
 					break;
 				case DB_Connect2.LOGIN_FAIL_PW_MISMATCH:
 					JOptionPane.showMessageDialog(null, "�α��� ��ȣ�� ����ġ!!");
+
 					break;
 				case DB_Connect2.LOGIN_ERROR:
 					JOptionPane.showMessageDialog(null, "�α��� ���� �Է�/DB����!!");
 					break;
+
 				default:
 					System.out.println("������!!");
 					break;
 				}
 			}
 		});
+
 		btn_Login.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		btn_Login.setForeground(new Color(255, 255, 255));
+
 		btn_Login.setBackground(Color.BLUE);
 		btn_Login.setBounds(395, 211, 112, 77);
 		panel.add(btn_Login);
@@ -177,6 +182,9 @@ public class Login extends JFrame {
 				System.out.println("ȸ������ ����");
 				lb_SignUp.setOpaque(true);// ��� ������ ����
 				lb_SignUp.setBackground(Color.LIGHT_GRAY);
+				SignUp su = new SignUp(ln);
+				su.setVisible(true);
+				
 			}
 
 			@Override
@@ -203,7 +211,6 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("��й�ȣ ã�� ����");
-
 				lb_FindID.setOpaque(true);
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
 			}

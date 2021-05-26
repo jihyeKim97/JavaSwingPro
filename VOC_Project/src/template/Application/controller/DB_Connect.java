@@ -13,6 +13,14 @@ public class DB_Connect {
 	private static final String account = "VOCPRO";
 	private static final String pw = "1234";
 	static final String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	
+	public static Connection getConn() {
+		if( conn != null ) return conn;
+		else {
+			boolean c = beginConnection();
+			return c ? conn : null;
+		}
+	}
 
 	public static boolean beginConnection() {
 		try {
@@ -42,10 +50,11 @@ public class DB_Connect {
 			String password = rs.getString("password");
 			String name = rs.getString("name");
 			int gender = rs.getInt("gender");
-			int phone_number = rs.getInt("phone_number");
+			String phone_number = rs.getString("phone_number");
 			int is_member = rs.getInt("is_member");
-			Date birthday = rs.getDate("birthday");
-
+			String birthday = rs.getString("birthday");
+		
+			
 			if (is_member == 0) {
 				ism = "회원";
 			} else {
