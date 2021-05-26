@@ -37,6 +37,8 @@ public class MyPage extends JFrame {
 	Mypage_writePage wirteP;
 	Point fPt;
 	Main mafrm;
+	
+	int memberID = 25 ;
 
 	public MyPage(Main mafrm) {
 		this.frm = this;
