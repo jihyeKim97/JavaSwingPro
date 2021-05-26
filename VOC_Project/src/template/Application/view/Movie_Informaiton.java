@@ -12,9 +12,6 @@ import template.Application.controller.DB_Connect;
 import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
-import template.Application.controller.RoundedButtonG;
-import template.Application.controller.RoundedButtonR;
-import template.Application.controller.RoundedButtonY;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;

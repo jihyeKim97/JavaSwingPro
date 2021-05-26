@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
-import template.Application.controller.RoundedButtonR;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Panel;
