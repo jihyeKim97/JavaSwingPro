@@ -60,7 +60,7 @@ public class DB_Connect {
 			} else {
 				ism = "관리자";
 			}
-			
+
 			if (gender == 1) {
 				gen = "여";
 			} else {

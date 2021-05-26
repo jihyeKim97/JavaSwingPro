@@ -414,7 +414,9 @@ public class SignUp extends JFrame {
 		btn_userJoin.setForeground(Color.BLACK);
 		btn_userJoin.setBackground(new Color(255, 175, 175));
 		btn_userJoin.setFont(new Font("굴림", Font.BOLD, 14));
+		DB_UserDbMgr mgr = new DB_UserDbMgr();
 		btn_userJoin.addActionListener(new ActionListener() {
+	
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("가입완료 클릭");
 				//회원가입 DB

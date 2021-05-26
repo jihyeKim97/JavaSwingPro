@@ -2,76 +2,82 @@ package template.Application.controller;
 
 public class Notice_data {
 
-	private int NoticeId;
-	private String Title;
-	private String Content;
-	private int ViewCount;
-	private int NumberID;
+	private int noticeid;
+	private String title;
+	private String content;
+	private int viewcount;
+	private int numberid;
 
 	public Notice_data() {
 	}
 
-	public Notice_data(int noticeId, String title, String content, int viewCount) {
+	public Notice_data(int noticeid, String title) {
 		super();
-		NoticeId = noticeId;
-		Title = title;
-		Content = content;
-		ViewCount = viewCount;
+		this.noticeid = noticeid;
+		this.title = title;
 	}
 
-	public Notice_data(int noticeId, String title, String content, int viewCount, int numberID) {
+	public Notice_data(int noticeid, String title, String content, int viewcount) {
 		super();
-		NoticeId = noticeId;
-		Title = title;
-		Content = content;
-		ViewCount = viewCount;
-		NumberID = numberID;
+		this.noticeid = noticeid;
+		this.title = title;
+		this.content = content;
+		this.viewcount = viewcount;
+	}
+
+	public Notice_data(int noticeid, String title, String content, int viewcount, int numberid) {
+		super();
+		this.noticeid = noticeid;
+		this.title = title;
+		this.content = content;
+		this.viewcount = viewcount;
+		this.numberid = numberid;
 	}
 
 	@Override
 	public String toString() {
-		return "Notice [NoticeId=" + NoticeId + ", Title=" + Title + ", Content=" + Content + ", ViewCount=" + ViewCount
-				+ ", NumberID=" + NumberID + "]";
+		return "Notice_data [noticeid=" + noticeid + ", title=" + title + ", content=" + content + ", viewcount="
+				+ viewcount + ", numberid=" + numberid + "]";
 	}
 
-	public int getNoticeId() {
-		return NoticeId;
+	public int getNoticeid() {
+		return noticeid;
 	}
 
-	public void setNoticeId(int noticeId) {
-		NoticeId = noticeId;
+	public void setNoticeid(int noticeid) {
+		this.noticeid = noticeid;
 	}
 
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
 
 	public String getContent() {
-		return Content;
+		return content;
 	}
 
 	public void setContent(String content) {
-		Content = content;
+		this.content = content;
 	}
 
-	public int getViewCount() {
-		return ViewCount;
+	public int getViewcount() {
+		return viewcount;
 	}
 
-	public void setViewCount(int viewCount) {
-		ViewCount = viewCount;
+	public void setViewcount(int viewcount) {
+		this.viewcount = viewcount;
 	}
 
-	public int getNumberID() {
-		return NumberID;
+	public int getNumberid() {
+		return numberid;
 	}
 
-	public void setNumberID(int numberID) {
-		NumberID = numberID;
+	public void setNumberid(int numberid) {
+		this.numberid = numberid;
 	}
 
 }

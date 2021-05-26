@@ -5,70 +5,69 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
 
-// °øÅë DB ¿¬°á/ÇØÁ¦ À¯Æ¿ Å¬·¡½º
+// ï¿½ï¿½ï¿½ï¿½ DB ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¿ Å¬ï¿½ï¿½ï¿½ï¿½
 public class OracleDBUtil {
 
-	public static Connection conn = null; // DBMS ¼­¹ö¿Í Á¢¼ÓÇÏ´Â Åë·Î ±âÁØ°´Ã¼
-	private static final String account = "VOCPRO"; // ½ºÅ°¸¶¸í/À¯Àú¸í
+	public static Connection conn = null; // DBMS ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø°ï¿½Ã¼
+	private static final String account = "VOCPRO"; // ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private static final String pw = "1234";
-	static final String url 
-		= "jdbc:oracle:thin:@localhost:1521:xe"; 
-			// IP ÁÖ¼Ò, port Æ÷Æ® 1521, SID ¼­ºñ½º¾ÆÀÌµð xe 
-				// XE ¼­ºñ½º Áö¿ª ¿À¶óÅ¬ ¼­¹ö (127.0.0.1 ÁÖ¼Ò °°ÀºÄÄ¿¡ ÀÖ´Â ¼­¹ö - ·çÇÁ¹éÁÖ¼Ò)
-		//= "jdbc:oracle:thin:@localhost:1521:orcl"; // ORCL »ó¿ë
-	
-	// Åë½ÅÃ¤³ÎÀ» ÀçÈ°¿ë°¡´ÉÇÏ°Ô ÇÔ¼ö conn getter
+	static final String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	// IP ï¿½Ö¼ï¿½, port ï¿½ï¿½Æ® 1521, SID ï¿½ï¿½ï¿½ñ½º¾ï¿½ï¿½Ìµï¿½ xe
+	// XE ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½ (127.0.0.1 ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½)
+	// = "jdbc:oracle:thin:@localhost:1521:orcl"; // ORCL ï¿½ï¿½ï¿½
+
+	// ï¿½ï¿½ï¿½Ã¤ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ë°¡ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ô¼ï¿½ conn getter
 	public static Connection getConn() {
-		if( conn != null ) return conn;
+		if (conn != null)
+			return conn;
 		else {
 			boolean c = beginConnection();
 			return c ? conn : null;
 		}
 	}
-	
-	// DB¿¡ ¿¬°áÇÏ±â (Á¢¼ÓÇÏ±â - Åë½ÅÃ¤³Î ¼Â¾÷)
+
+	// DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ - ï¿½ï¿½ï¿½Ã¤ï¿½ï¿½ ï¿½Â¾ï¿½)
 	private static boolean beginConnection() {
 //	public static boolean beginConnection() {
 		try {
-		// 1. ¿À¶óÅ¬ JDBC ¿¬°áÀÚ(µå¶óÀÌ¹ö) Å¬·¡½º 'µ¿Àû' ·Îµù
-		//Class.forName("oracle.jdbc.driver.racleDriver");
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		
-		// 2. ¿À¶óÅ¬ DBMS ¼­¹ö¿Í Åë½Å¿¬°áÀ» ¼öÇà (°èÁ¤ ÀÎÁõ) 
+			// 1. ï¿½ï¿½ï¿½ï¿½Å¬ JDBC ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½) Å¬ï¿½ï¿½ï¿½ï¿½ 'ï¿½ï¿½ï¿½ï¿½' ï¿½Îµï¿½
+			// Class.forName("oracle.jdbc.driver.racleDriver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			// 2. ï¿½ï¿½ï¿½ï¿½Å¬ DBMS ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 //		Connection conn = 
 			conn = DriverManager.getConnection(url, account, pw);
-			System.out.println("DB Á¢¼Ó ¼º°ø! "
-					+ new Date());
-					//+ new java.util.Date());
-		// 3. ÀÎÁõÀ¸·Î Á¤»óÀÌ¸é nullÀÌ ¾Æ´Ñ ¿¬°á°´Ã¼°¡ ¸®ÅÏµÊ 
+			System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! " + new Date());
+			// + new java.util.Date());
+			// 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ nullï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½á°´Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½
 			return true;
 		} catch (ClassNotFoundException e) {
-			System.out.println("ojdbc.jarÀÇ ¿À¶óÅ¬DB µå¶óÀÌ¹ö ·Îµù ½ÇÆÐ!");
+			System.out.println("ojdbc.jarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¬DB ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½!");
 		} catch (SQLException e) {
-			System.out.println("Åë½Å ¿¬°á ½ÇÆÐ!!! ");
+			System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!! ");
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("java ÀÏ¹Ý ¿¹¿Ü!!!");
+			System.out.println("java ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½!!!");
 //			e.printStackTrace();
 		}
 		return false;
 	}
-	
-	// DB¿¡¼­ Á¢¼ÓÇØÁ¦ÇÏ±â
+
+	// DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public static boolean endConnection() {
-		if( conn != null ) {
+		if (conn != null) {
 			try {
 				conn.close();
-				System.out.println("DB Á¾·á ¼º°ø!!");
+				System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 				return true;
 			} catch (SQLException e) {
-				System.out.println("DB Á¾·á ½ÇÆÐ!!");
+				System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 				e.printStackTrace();
 			}
-		}		
+		}
 		return false;
 	}
-	
+
 	public static void main(String[] args) {
 		Connection con = OracleDBUtil.getConn();
 		OracleDBUtil.endConnection();

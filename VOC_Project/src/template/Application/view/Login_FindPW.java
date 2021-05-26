@@ -20,13 +20,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import template.Application.controller.DB_Connect;
 import template.Application.controller.DB_Connect2;
 
+public class Login_FindPW extends JFrame {
 
-
-public class Login_FindPW extends JFrame{
-	
 	public JFrame frmVoc;
 	public JTextField txt_id;
 	public JPasswordField txt_pw;
@@ -80,55 +77,55 @@ public class Login_FindPW extends JFrame{
 		panel_2.setLayout(null);
 
 		JLabel lblNewLabel_2 = new JLabel("\uC784\uC2DC \uBE44\uBC00\uBC88\uD638 \uBC1C\uAE09");
-		lblNewLabel_2.setFont(new Font("±¼¸²", Font.BOLD, 27));
+		lblNewLabel_2.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.BOLD, 27));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(173, 10, 272, 55);
 		panel_2.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("\uC774\uB984 :");
-		lblNewLabel_3.setFont(new Font("±¼¸²", Font.BOLD, 18));
+		lblNewLabel_3.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.BOLD, 18));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(133, 103, 72, 37);
 		panel_2.add(lblNewLabel_3);
 
 		JLabel lblId = new JLabel("ID :");
-		lblId.setFont(new Font("±¼¸²", Font.BOLD, 18));
+		lblId.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.BOLD, 18));
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblId.setBounds(133, 165, 72, 37);
 		panel_2.add(lblId);
 
 		JLabel label_3 = new JLabel("\uC804\uD654\uBC88\uD638 :");
-		label_3.setFont(new Font("±¼¸²", Font.BOLD, 18));
+		label_3.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.BOLD, 18));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setBounds(108, 233, 97, 37);
 		panel_2.add(label_3);
 
 		txt_IssuedName = new JTextField();
-		txt_IssuedName.setFont(new Font("±¼¸²", Font.PLAIN, 17));
+		txt_IssuedName.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 17));
 		txt_IssuedName.setBounds(213, 109, 165, 30);
 		panel_2.add(txt_IssuedName);
 		txt_IssuedName.setColumns(10);
 
 		txt_IssuedId = new JTextField();
-		txt_IssuedId.setFont(new Font("±¼¸²", Font.PLAIN, 17));
+		txt_IssuedId.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 17));
 		txt_IssuedId.setColumns(10);
 		txt_IssuedId.setBounds(213, 171, 165, 30);
 		panel_2.add(txt_IssuedId);
 
 		txt_number4 = new JTextField();
-		txt_number4.setFont(new Font("±¼¸²", Font.PLAIN, 17));
+		txt_number4.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 17));
 		txt_number4.setColumns(3);
 		txt_number4.setBounds(213, 238, 53, 30);
 		panel_2.add(txt_number4);
 
 		txt_number5 = new JTextField();
-		txt_number5.setFont(new Font("±¼¸²", Font.PLAIN, 17));
+		txt_number5.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 17));
 		txt_number5.setColumns(4);
 		txt_number5.setBounds(287, 239, 79, 30);
 		panel_2.add(txt_number5);
 
 		txt_number6 = new JTextField();
-		txt_number6.setFont(new Font("±¼¸²", Font.PLAIN, 17));
+		txt_number6.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 17));
 		txt_number6.setColumns(4);
 		txt_number6.setBounds(393, 239, 72, 30);
 		panel_2.add(txt_number6);
@@ -157,7 +154,7 @@ public class Login_FindPW extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn_Cancel2.setFont(new Font("±¼¸²", Font.BOLD, 16));
+		btn_Cancel2.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.BOLD, 16));
 		btn_Cancel2.setBounds(169, 298, 97, 47);
 		panel_2.add(btn_Cancel2);
 
@@ -173,41 +170,37 @@ public class Login_FindPW extends JFrame{
 				btn_Issued.setForeground(Color.black);
 			}
 		});
-		btn_Issued.setFont(new Font("±¼¸²", Font.BOLD, 16));
+		btn_Issued.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.BOLD, 16));
 
-		// PW Ã£±â@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		// PW Ã£ï¿½ï¿½@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		btn_Issued.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = txt_IssuedName.getText();
 				String id = txt_IssuedId.getText();
 				DB_Connect2 db = new DB_Connect2();
-				String Phonenumber = new String(txt_number4.getText() +""+ txt_number5.getText() +""+ txt_number6.getText());
+				String Phonenumber = new String(
+						txt_number4.getText() + "" + txt_number5.getText() + "" + txt_number6.getText());
 				int find = db.findpw(name, id, Phonenumber);
 				switch (find) {
 				case 1:
-					JOptionPane.showMessageDialog(null, "ÀÔ·ÂÇÏ½ÅÁ¤º¸¸¦ È®ÀÎÇØÁÖ¼¼¿ä");
+					JOptionPane.showMessageDialog(null, "ì…ë ¥í•˜ì‹ ì •ë³´ë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”");
 					break;
 				case 2:
 					break;
 				case 3:
-					JOptionPane.showMessageDialog(null, "ÀÔ·ÂÇÏ½ÅÁ¤º¸¸¦ È®ÀÎ");
+					JOptionPane.showMessageDialog(null, "ì…ë ¥í•˜ì‹ ì •ë³´ë¥¼ í™•ì¸");
 					break;
 				case 4:
-					JOptionPane.showMessageDialog(null, "ÇÚµåÆù¹øÈ£¸¦ È®ÀÎÇØÁÖ¼¼¿ä");
+					JOptionPane.showMessageDialog(null, "í•¸ë“œí°ë²ˆí˜¸ë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”");
 					break;
 				default:
 					break;
 				}
-			
 
 			}
 		});
 		btn_Issued.setBounds(348, 298, 97, 47);
 		panel_2.add(btn_Issued);
-	
-
 
 	}
 }
-
-

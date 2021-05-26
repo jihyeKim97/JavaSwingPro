@@ -28,18 +28,18 @@ public class DB_Connect2 {
 	public DB_Connect2() {
 		this.conn = OracleDBUtil.getConn();
 	}
-	
-	public boolean insertNewMember(int member_id,String id,String password,String name,int gender,
-									String phone_number,int is_member, String birthday) {
+
+	public boolean insertNewMember(int member_id, String id, String password, String name, int gender,
+			String phone_number, int is_member, String birthday) {
 		if (this.conn != null) {
-			String sql 
-					= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, '0',? )";
-			System.out.println(sql); 
+			String sql = "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES ("
+					+ "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, '0',? )";
+			System.out.println(sql);
 			try {
 //
 				PreparedStatement pstmt = conn.prepareStatement(sql); // 사전문장준비
 // ?서식자의 순서, 개수, 타입 set...
-				
+
 				int r = pstmt.executeUpdate(); // 전송
 // 데이터 변화(DML insert, update, delete)
 // 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
@@ -75,25 +75,19 @@ public class DB_Connect2 {
 			Date birthday = rs.getDate("birthday");
 
 			if (is_member == 0) {
-				ism = "ȸ��";
+
+				ism = "회원";
 			} else {
-				ism = "������";
+				ism = "관리자";
 			}
 
 			if (gender == 1) {
-				gen = "��";
+				gen = "여";
 			} else {
-				gen = "��";
+				gen = "남";
 			}
-			System.out.println(member_id 
-								+ " " + id 
-								+ " " + password 
-								+ " " + name 
-								+ " " + gen 
-								+ " " + phone_number 
-								+ " " + birthday 
-								+ " " + ism
-								);
+			System.out.println(member_id + " " + id + " " + password + " " + name + " " + gen + " " + phone_number + " "
+					+ birthday + " " + ism);
 		}
 		if (rs != null)
 			rs.close();
@@ -114,16 +108,17 @@ public class DB_Connect2 {
 				pstmt.setInt(3, phone_number);
 				pstmt.setString(4, name);
 				int rs = pstmt.executeUpdate();
-				if( rs == 1) {
-					System.out.println("db ��й�ȣ ���� ����");
+
+				if (rs == 1) {
+					System.out.println("db 임시비밀번호 발급 성공");
 					return true;
 				} else {
-					System.out.println("db ��й�ȣ ���� ����");
+					System.out.println("db 임시비밀번호 발급 실패");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		}
 		return false;
 	}
 
@@ -136,23 +131,17 @@ public class DB_Connect2 {
 				pstmt.setString(1, mbLogin);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
-					Login_data mb = new Login_data(rs.getInt("member_id"),
-													rs.getString("id"),
-													rs.getString("password"),
-													rs.getString("name"),
-													rs.getInt("gender"),
-													rs.getInt("phone_number"),
-													rs.getInt("is_member"),
-													rs.getString("birthday"));
+					Login_data mb = new Login_data(rs.getInt("member_id"), rs.getString("id"), rs.getString("password"),
+							rs.getString("name"), rs.getInt("gender"), rs.getInt("phone_number"),
+							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
 				} else {
-					System.out.println(mbLogin + " �α��θ��� ȸ�� ���ڵ� ��ȸ DB ����!");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return null;
 	}
@@ -166,31 +155,24 @@ public class DB_Connect2 {
 				pstmt.setString(1, mbname);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
-					Login_data mb = new Login_data(rs.getInt("member_id"),
-													rs.getString("id"),
-													rs.getString("password"),
-													rs.getString("name"),
-													rs.getInt("gender"),
-													rs.getInt("phone_number"),
-													rs.getInt("is_member"),
-													rs.getString("birthday"));
+					Login_data mb = new Login_data(rs.getInt("member_id"), rs.getString("id"), rs.getString("password"),
+							rs.getString("name"), rs.getInt("gender"), rs.getInt("phone_number"),
+							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
 				} else {
-					System.out.println(mbname + " �α��θ��� ȸ�� ���ڵ� ��ȸ DB ����!");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러");
 		}
 		return null;
 	}
 
-
 	public int loginProcess(String login, String pw) {
 		if (login == null || pw == null || login.isEmpty() || pw.isEmpty()) {
-			System.out.println("�α��� ������ ���� �Է� ����!!");
+			System.out.println("로그인 인증에 대한 입력에러");
 			return LOGIN_ERROR;
 		}
 		if (this.conn != null) {
@@ -199,27 +181,27 @@ public class DB_Connect2 {
 				String mbPw = mb.getPassword();
 				if (mbPw != null && !mbPw.isEmpty()) {
 					if (mbPw.equals(pw)) {
-						System.out.println("�α��� ���� ����!!");
+						System.out.println("로그인 인증 성공!");
 						return LOGIN_SUCCESS;
 					} else {
-						System.out.println("��ȣ ����ġ!!");
+						System.out.println("암호 불일치");
 						return LOGIN_FAIL_PW_MISMATCH;
 					}
-				} else {
-					System.out.println("�α��� ������ ���� PW ����!!");
+				} else
+
+				{
+					System.out.println("로그인 인증에 대한 PW 에러!");
 					return LOGIN_ERROR;
 				}
 			} else {
-				System.out.println("�߸��� �α��� �̸��̰ų� ���� ȸ��!");
+				System.out.println("잘못된 로그인 이름이거나 없는 회원");
 				return LOGIN_FAIL_NOT_FOUND;
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return LOGIN_ERROR;
 	}
-
-
 
 	public int findid(String name, String phone_number) {
 		if (name == null || phone_number == null || name.isEmpty() || phone_number.isEmpty()) {
@@ -233,7 +215,7 @@ public class DB_Connect2 {
 				if (mbPhn != 0) {
 					if (mbPhn == Phn) {
 						String mblogin = mb.getId();
-						JOptionPane.showMessageDialog(null, mblogin + "�Դϴ�.");
+						JOptionPane.showMessageDialog(null, mblogin + "입니다.");
 						return FIND_SUCCESS;
 					} else {
 						return PHN_MISMATCH;
@@ -245,7 +227,7 @@ public class DB_Connect2 {
 				return FIND_ERROR;
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return FIND_ERROR;
 	}
@@ -266,7 +248,8 @@ public class DB_Connect2 {
 	}
 
 	public int findpw(String name, String login, String phone_number) {
-		if (name == null || login == null || phone_number == null || name.isEmpty() || login.isEmpty() || phone_number.isEmpty()) {
+		if (name == null || login == null || phone_number == null || name.isEmpty() || login.isEmpty()
+				|| phone_number.isEmpty()) {
 			return FIND_NULL;
 		}
 		if (this.conn != null) {
@@ -280,7 +263,7 @@ public class DB_Connect2 {
 						if (mbname.equals(name)) {
 							String setpassword = setPassword(8);
 							boolean mb1 = changeBypass(setpassword, login, Phn, name);
-							JOptionPane.showMessageDialog(null, setpassword + "�Դϴ�.");
+							JOptionPane.showMessageDialog(null, setpassword + "입니다.");
 							return FIND_SUCCESS;
 						}
 					} else {
@@ -293,7 +276,7 @@ public class DB_Connect2 {
 				return FIND_ERROR;
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return FIND_ERROR;
 	}

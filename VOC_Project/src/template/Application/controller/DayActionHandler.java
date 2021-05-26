@@ -7,10 +7,9 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-
 public class DayActionHandler implements ActionListener {
 	GUICalendarFrame frm;
-	
+
 	public DayActionHandler(GUICalendarFrame frm) {
 		this.frm = frm;
 	}
@@ -18,49 +17,50 @@ public class DayActionHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton dayBtn = (JButton) e.getSource();
-		// ³â³â³â³â-¿ù¿ù-ÀÏÀÏ 
+		// ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½
 //		String strYear = frm.getTxtYear().getText();
 		String strYear = frm.getTxtYearText().trim();
-		String strMonth = frm.getTxtMonth().getText().trim();		
+		String strMonth = frm.getTxtMonth().getText().trim();
 		String strDay = dayBtn.getText().trim();
-		
-		if( strMonth.length() == 1 ) strMonth = "0" + strMonth;
-		if( strDay.length() == 1 ) strDay = "0" + strDay;
-		String strDate = strYear + "-" 
-					+ strMonth + "-" + strDay; 
-		
-		System.out.println("³¯ÀÚ ¹öÆ° ´­·¶À½! " + strDate );
-		
-		// strDate Æ¯Á¤ ³¯ÀÚ¸¸ DB¿¡ Àû¿ë!!
-		
+
+		if (strMonth.length() == 1)
+			strMonth = "0" + strMonth;
+		if (strDay.length() == 1)
+			strDay = "0" + strDay;
+		String strDate = strYear + "-" + strMonth + "-" + strDay;
+
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! " + strDate);
+
+		// strDate Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!
+
 //		TodoDBMgr tdMgr = new TodoDBMgr(); // beginConnection()
 //		
 //     	ArrayList<Todo> todos 
-////     		=	tdMgr.selectAllTodos(); // ¸ðµç todos ·¹ÄÚµåµé
+////     		=	tdMgr.selectAllTodos(); // ï¿½ï¿½ï¿½ todos ï¿½ï¿½ï¿½Úµï¿½ï¿½
 //     		=	tdMgr.selectAllTodos(strDate); 
-//     				// Æ¯Á¤³¯ÀÚ strDate¿¡¸¸ ÇØ´çµÇ´Â todos ·¹ÄÚµåµé
+//     				// Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ strDateï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½Ç´ï¿½ todos ï¿½ï¿½ï¿½Úµï¿½ï¿½
 ////     	for (Todo td : todos) {
 ////     		System.out.println(td.toList());
 ////     	}
 //     	String dbResult = "";
-//     	int nTdSize = 0; //todos.size(); // ÇØ´ç ³¯ÀÚÀÇ todo °³¼ö
+//     	int nTdSize = 0; //todos.size(); // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ todo ï¿½ï¿½ï¿½ï¿½
 //     	if( todos != null && todos.size() > 0 ) {  //  !todos.isEmpty() )
 //     		for (Todo td : todos) {
 //     			dbResult += td.toList();
 //     		}
 //     		nTdSize = todos.size();
 //     	} else {
-//     		dbResult = strDate + " ³¯ÀÚ¿¡´Â Todos Å×ÀÌºí DB ·¹ÄÚµå°¡ ¾øÀ½";
+//     		dbResult = strDate + " ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Todos ï¿½ï¿½ï¿½Ìºï¿½ DB ï¿½ï¿½ï¿½Úµå°¡ ï¿½ï¿½ï¿½ï¿½";
 //     	}
-//     	// º°µµ ³¯ÀÚÀü¿ë ´ëÈ­»óÀÚ¿¡ ¶ç¿ì±â
+//     	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 //     	TodoDialog tdDlg = 
 //     		new TodoDialog(this.frm, dbResult, 
 //     					strDate, nTdSize);
-//     	// ÀÌº¥Æ®°¡ ¹ß»ýÇÑ ¹öÆ° À§Ä¡...
+//     	// ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½Ä¡...
 ////     	Point btnPos = dayBtn.getLocation(); 
-////     			// ÇÁ·¹ÀÓÃ¢ÀÇ ÁÂ»ó´Ü ±âÁØÀ¸·Î ÇÏ´Â ¹öÆ°ÀÇ ÁÂ»ó´Ü À§Ä¡
+////     			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½Â»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Â»ï¿½ï¿½ ï¿½ï¿½Ä¡
 //     	Point btnPos = dayBtn.getLocationOnScreen();
-//     			// È­¸é screen ÁÂ»ó´Ü ±âÁØÀ¸·Î ÇÏ´Â À§Ä¡..
+//     			// È­ï¿½ï¿½ screen ï¿½Â»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½Ä¡..
 //     	tdDlg.setLocation(
 //     			btnPos.x + (int)(dayBtn.getWidth()*0.7)
 //     		, btnPos.y + (int)(dayBtn.getHeight()*0.7));
@@ -69,42 +69,31 @@ public class DayActionHandler implements ActionListener {
 //     	
 //		
 //		tdMgr.endConnection();
-}
-
+	}
 
 }
 
 /*
-³¯ÀÚ ¹öÆ° ´­·¶À½! 2021-05-14
-DB Á¢¼Ó ¼º°ø! Fri May 14 13:36:19 KST 2021
-sql: select * from todos where created_at >= TO_DATE('2021-05-14','YYYY-MM-DD')  and created_at < TO_DATE('2021-05-14','YYYY-MM-DD')+1
-DB¿¡¼­ Á¶È¸ÇÑ todo °³¼ö: 6
-[ ] #21 | ¼ö¹Ú ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-14 | 
-[ ] #22 | ¼ö¹Ú ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-14 | 
-[ ] #50 | ÆÄÀÎ¾ÖÇÃ ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-14 | 
-[ ] #23 | ÆÄÀÎ¾ÖÇÃ ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-14 | 
-[ ] #7 | ¸¸¼·¾¾¶û ½ºÅ×ÀÌÅ© ¸Ô±â | 1. ¾à¼Ó | Áø¿µ | 2021-05-14 | 
-[v] #24 | Åë±âÅ¸ A ±¸¸ÅÇÏ±â | 3. ±¸¸Å | µ¿±Ù | 2021-05-14 | 
-DB Á¾·á ¼º°ø!!
-³¯ÀÚ ¹öÆ° ´­·¶À½! 2021-05-13
-DB Á¢¼Ó ¼º°ø! Fri May 14 13:36:35 KST 2021
-sql: select * from todos where created_at >= TO_DATE('2021-05-13','YYYY-MM-DD')  and created_at < TO_DATE('2021-05-13','YYYY-MM-DD')+1
-DB¿¡¼­ Á¶È¸ÇÑ todo °³¼ö: 4
-[ ] #3 | »ï°ã»ì ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-13 | 
-[ ] #4 | »ï°ã»ì ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-13 | 
-[ ] #5 | »ï°ã»ì ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-13 | 
-[ ] #6 | »ï°ã»ì ±¸¸Å | 3. ±¸¸Å | Áø¿µ | 2021-05-13 | 
-DB Á¾·á ¼º°ø!!
-³¯ÀÚ ¹öÆ° ´­·¶À½! 2021-05-12
-DB Á¢¼Ó ¼º°ø! Fri May 14 13:36:38 KST 2021
-sql: select * from todos where created_at >= TO_DATE('2021-05-12','YYYY-MM-DD')  and created_at < TO_DATE('2021-05-12','YYYY-MM-DD')+1
-DB¿¡¼­ Á¶È¸ÇÑ todo °³¼ö: 1
-[ ] #25 | Åë±âÅ¸ B ±¸¸ÅÇÏ±â | 3. ±¸¸Å | µ¿±Ù | 2021-05-12 | 
-DB Á¾·á ¼º°ø!!
-³¯ÀÚ ¹öÆ° ´­·¶À½! 2021-05-11
-DB Á¢¼Ó ¼º°ø! Fri May 14 13:36:44 KST 2021
-sql: select * from todos where created_at >= TO_DATE('2021-05-11','YYYY-MM-DD')  and created_at < TO_DATE('2021-05-11','YYYY-MM-DD')+1
-DB¿¡¼­ Á¶È¸ÇÑ todo °³¼ö: 0
-DB Á¾·á ¼º°ø!!
-
-*/
+ * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! 2021-05-14 DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! Fri May 14 13:36:19 KST 2021 sql:
+ * select * from todos where created_at >= TO_DATE('2021-05-14','YYYY-MM-DD')
+ * and created_at < TO_DATE('2021-05-14','YYYY-MM-DD')+1 DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ todo ï¿½ï¿½ï¿½ï¿½:
+ * 6 [ ] #21 | ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-14 | [ ] #22 | ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ |
+ * 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-14 | [ ] #50 | ï¿½ï¿½ï¿½Î¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ |
+ * 2021-05-14 | [ ] #23 | ï¿½ï¿½ï¿½Î¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-14 | [ ] #7 |
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ô±ï¿½ | 1. ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-14 | [v] #24 | ï¿½ï¿½ï¿½Å¸ A ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+ * | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-14 | DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! 2021-05-13 DB
+ * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! Fri May 14 13:36:35 KST 2021 sql: select * from todos where
+ * created_at >= TO_DATE('2021-05-13','YYYY-MM-DD') and created_at <
+ * TO_DATE('2021-05-13','YYYY-MM-DD')+1 DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ todo ï¿½ï¿½ï¿½ï¿½: 4 [ ] #3 | ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-13 | [ ] #4 | ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ |
+ * 2021-05-13 | [ ] #5 | ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-13 | [ ] #6 | ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-13 | DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
+ * 2021-05-12 DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! Fri May 14 13:36:38 KST 2021 sql: select * from
+ * todos where created_at >= TO_DATE('2021-05-12','YYYY-MM-DD') and created_at <
+ * TO_DATE('2021-05-12','YYYY-MM-DD')+1 DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ todo ï¿½ï¿½ï¿½ï¿½: 1 [ ] #25 | ï¿½ï¿½ï¿½Å¸
+ * B ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ | 3. ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½ï¿½ï¿½ | 2021-05-12 | DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
+ * 2021-05-11 DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! Fri May 14 13:36:44 KST 2021 sql: select * from
+ * todos where created_at >= TO_DATE('2021-05-11','YYYY-MM-DD') and created_at <
+ * TO_DATE('2021-05-11','YYYY-MM-DD')+1 DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ todo ï¿½ï¿½ï¿½ï¿½: 0 DB ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!
+ * 
+ */

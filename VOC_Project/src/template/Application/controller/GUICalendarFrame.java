@@ -23,24 +23,23 @@ import java.util.Calendar;
 import java.awt.event.ActionEvent;
 
 public class GUICalendarFrame extends JFrame {
-	public static final Font ftDAY = 
-				new Font("Gulim", Font.PLAIN, 20);
-	public static final Font ftSDAY = 
-				new Font("Gulim", Font.BOLD, 20);
+	public static final Font ftDAY = new Font("Gulim", Font.PLAIN, 20);
+	public static final Font ftSDAY = new Font("Gulim", Font.BOLD, 20);
 	private JPanel contentPane;
 	private JTextField txtYear;
-	private JTextField txtMonth;	
-	JLabel[] lbDayOfWeek; // ¿äÀÏ ·¹ÀÌºí ¹è¿­	 7
-	JButton[] btnDays;  // ³¯ÀÚ ¹öÆ° ¹è¿­ 42 (6ÁÖ ºÐ·®)
-	
-	
+	private JTextField txtMonth;
+	JLabel[] lbDayOfWeek; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½è¿­ 7
+	JButton[] btnDays; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½è¿­ 42 (6ï¿½ï¿½ ï¿½Ð·ï¿½)
+
 	// readonly getter
 	public String getTxtYearText() {
 		return txtYear.getText();
 	}
+
 	public JTextField getTxtYear() {
 		return txtYear;
 	}
+
 	public JTextField getTxtMonth() {
 		return txtMonth;
 	}
@@ -49,83 +48,88 @@ public class GUICalendarFrame extends JFrame {
 	 * Launch the application.
 	 */
 
-	// º¹»çÇØ¿Â ´Þ·Â ¾Ë°í¸®Áò ÇÔ¼ö
-	// ³í¸®´Þ·Â ÇÔ¼ö (MyCalendar2 º¹»çÇØ¿È)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½ ï¿½Þ·ï¿½ ï¿½Ë°ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+	// ï¿½ï¿½ï¿½Þ·ï¿½ ï¿½Ô¼ï¿½ (MyCalendar2 ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½)
 	public void showMyCalGUI(int year, int month) {
-		// ±×·¹°í¸®¾È ¿ª¹ýÀ» ´Þ·ÂÀ¸·Î Ç¥Çö (³í¸®»óÀÇ ´Þ·Â)
-		// ³âµµÀÇ ¹üÀ§ 1582. 10/4 ¸ñ => 10/15 ±Ý (10ÀÏÄ¡ ³¯ÀÚ°¡ »ç¶óÁü)
-		// 1583³âºÎÅÍ Á¤»ó ³âµµ ÀÔ·Â...
-		// ÀÔ·Â : ³âµµ, ¿ù  
+		// ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ·ï¿½)
+		// ï¿½âµµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1582. 10/4 ï¿½ï¿½ => 10/15 ï¿½ï¿½ (10ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
+		// 1583ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âµµ ï¿½Ô·ï¿½...
+		// ï¿½Ô·ï¿½ : ï¿½âµµ, ï¿½ï¿½
 //		int year = 2020; //2021;
-//		int month = 2; //5; // => 5/1 ³¯ÀÚÀÇ ¿äÀÏ¸¸ ³¡³ª´Â ¹®Á¦.
-		// ¼­±â·ÂÀÇ ÃÑ ÀÏ¼ö, °¢ ¿ùº° (ÃÑ)ÀÏ¼ö, ¿äÀÏ(°¢ ¿ùÀÇ ½ÃÀÛ1ÀÏÀÇ ¿äÀÏ),
-		// + ±×·¹°í¸®¾È Ä¢·É ´Þ·ÂÀ» Ç¥Çö(À±³âÆÇ´Ü) 
-		
-		int totalDays = 0; // 2021. 5. 1ÀÏ±îÁöÀÇ ÃÑ ÀÏ¼öÇÕ...
-		
-		// ¼­±â 1 ~ ¼­±â 2020 ³âµµº° ÃÑ ÀÏ¼ö °è»ê (2021ÀÇ Àü³âµµ/ÀÛ³â±îÁöÀÇ ÃÑÀÏ¼ö ÇÕ)
+//		int month = 2; //5; // => 5/1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï¼ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½)ï¿½Ï¼ï¿½, ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½),
+		// + ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¢ï¿½ï¿½ ï¿½Þ·ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½)
+
+		int totalDays = 0; // 2021. 5. 1ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½...
+
+		// ï¿½ï¿½ï¿½ï¿½ 1 ~ ï¿½ï¿½ï¿½ï¿½ 2020 ï¿½âµµï¿½ï¿½ ï¿½ï¿½ ï¿½Ï¼ï¿½ ï¿½ï¿½ï¿½ (2021ï¿½ï¿½ ï¿½ï¿½ï¿½âµµ/ï¿½Û³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¼ï¿½ ï¿½ï¿½)
 		for (int y = 1; y < year; y++) {
-			if( y % 400 == 0 ) totalDays += 366; // À±³â
-			else if( y % 100 == 0 ) totalDays += 365;// Æò³â
-			else if( y % 4 == 0 ) totalDays += 366; // À±³â
-			else totalDays += 365;// Æò³â
-		} // 2020.12.31±îÁöÀÇ ¸ðµç ÀÏ¼ö ÇÕ...
-		
-		// Å¸ÄÏ¿¬µµ 2021ÀÇ À±³âÆÇ´Ü
-		boolean bLeap = false;// Æò³â
-		if( year % 400 == 0 ) bLeap = true; // À±³â
-		else if( year % 100 == 0 ) bLeap = false;// Æò³â
-		else if( year % 4 == 0 ) bLeap = true; // À±³â
-		else bLeap = false;// Æò³â
-		
-		// Å¸ÄÏ¿¬µµÀÇ Å¸ÄÏ¿ù Àü¿ù±îÁöÀÇ ÃÑ ÀÏ¼ö ÇÕ ±¸ÇÏ±â (2¿ù À±³âÀ¯¹« 29ÀÏ/28ÀÏ?)
-		// Áì¸®¾î½º·Â
-		int daysInMonth[] = {
-			0, 31, bLeap ? 29 : 28, 31, 30, 31, 30,
-			31, 31, 30, 31, 30, 31
-		};
+			if (y % 400 == 0)
+				totalDays += 366; // ï¿½ï¿½ï¿½ï¿½
+			else if (y % 100 == 0)
+				totalDays += 365;// ï¿½ï¿½ï¿½
+			else if (y % 4 == 0)
+				totalDays += 366; // ï¿½ï¿½ï¿½ï¿½
+			else
+				totalDays += 365;// ï¿½ï¿½ï¿½
+		} // 2020.12.31ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ ï¿½ï¿½...
+
+		// Å¸ï¿½Ï¿ï¿½ï¿½ï¿½ 2021ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½
+		boolean bLeap = false;// ï¿½ï¿½ï¿½
+		if (year % 400 == 0)
+			bLeap = true; // ï¿½ï¿½ï¿½ï¿½
+		else if (year % 100 == 0)
+			bLeap = false;// ï¿½ï¿½ï¿½
+		else if (year % 4 == 0)
+			bLeap = true; // ï¿½ï¿½ï¿½ï¿½
+		else
+			bLeap = false;// ï¿½ï¿½ï¿½
+
+		// Å¸ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ (2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 29ï¿½ï¿½/28ï¿½ï¿½?)
+		// ï¿½ì¸®ï¿½î½ºï¿½ï¿½
+		int daysInMonth[] = { 0, 31, bLeap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 		for (int m = 1; m < month; m++) {
 			totalDays += daysInMonth[m];
-		} // 4.30±îÁö..
-		
-		// Å¸ÄÏ³âÅ¸ÄÏ¿ùÀÇ 1ÀÏÀ» Ãß°¡
+		} // 4.30ï¿½ï¿½ï¿½ï¿½..
+
+		// Å¸ï¿½Ï³ï¿½Å¸ï¿½Ï¿ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 		totalDays++; // 5.1
-		// ¼­¾ç·ÂÀº ÀÏ¿äÀÏºÎÅÍ ½ÃÀÛÇÏ´Â ´Þ·ÂÀ¸·Î ¸¸µé¾î¾ßÇÔ.
-		// 0À» ÀÏ¿äÀÏ, 1À» ¿ù¿äÀÏ ~ 6 Åä¿äÀÏ  // ÀÏÁÖÀÏ 7ÀÏ·Î ³ª´« ³ª¸ÓÁö°¡ ¿äÀÏ ¼ø¼­¹øÈ£.
-		// 0 ~ 6 ¿ù ~ Åä
-		int yoil = totalDays % 7; 
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½Ïºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+		// 0ï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½, 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ~ 6 ï¿½ï¿½ï¿½ï¿½ï¿½ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 7ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£.
+		// 0 ~ 6 ï¿½ï¿½ ~ ï¿½ï¿½
+		int yoil = totalDays % 7;
 //		System.out.println("yoil => " + yoil); // 6
-		
-		// ÅØ½ºÆ® ¸ðµå ¿ù´ÜÀ§ ´Þ·Â Ãâ·Â (°íÁ¤ °¡·ÎÆø ÆùÆ® fixed width)
+
+		// ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ·ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® fixed width)
 //		System.out.println("MyCalendar: ");
-//		System.out.println( year + "³â " + month + "¿ù");
-		// ÇÏ·ç ³¯ÀÚÄ­À» ½ºÆäÀÌ½º¹Ù4°³ÀÇ Ä­À¸·Î °¡Á¤.
+//		System.out.println( year + "ï¿½ï¿½ " + month + "ï¿½ï¿½");
+		// ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ Ä­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 //		System.out.println("============================"); // 28
-//		System.out.println(" SUN MON TUE WED THU FRI SAT"); // ¿äÀÏ ÄÃ·³ Çì´õ
+//		System.out.println(" SUN MON TUE WED THU FRI SAT"); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½
 //		System.out.println("============================"); // 28
-		
-		// ¿äÀÏ°ø¹é º¸Á¤ Ãâ·Â
+
+		// ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		final String SPC = "    ";
 //		for (int i = 0; i < yoil; i++) {
-//			System.out.print(SPC); // °ø¹é 4Ä­À» °¢ ¿äÀÏ¸¶´Ù Ãâ·Â
+//			System.out.print(SPC); // ï¿½ï¿½ï¿½ï¿½ 4Ä­ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 //		}
-		// 42°³ ³¯ÀÚ ¹öÆ° ¸®¼Â
+		// 42ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
 		for (JButton dayBtn : btnDays) {
 			dayBtn.setText("");
 			dayBtn.setEnabled(false);
 			dayBtn.setBorder(new EmptyBorder(0, 0, 0, 0));
 		}
-		
-		// ¿äÀÏº° ³¯ÀÚ ÁÖ´ÜÀ§ Ãâ·Â
+
+		// ï¿½ï¿½ï¿½Ïºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		for (int day = 1; day <= daysInMonth[month]; day++) {
 //			System.out.printf("%4d", day);
-			//System.out.printf(" %2d ", day);
+			// System.out.printf(" %2d ", day);
 			String dayStr = String.format("%2d", day);
-			//btnDays[?].setText(dayStr);
-			JButton btnDay = btnDays[day+yoil-1];
+			// btnDays[?].setText(dayStr);
+			JButton btnDay = btnDays[day + yoil - 1];
 			btnDay.setText(dayStr);
-			btnDay.setEnabled(true); // È°¼ºÈ­
-			// Åä¿äÀÏ¸¶´Ù ÇÑ ÁÖ°¡ ³¡³ª¼­ °³Çà
+			btnDay.setEnabled(true); // È°ï¿½ï¿½È­
+			// ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //			if( (day+yoil) % 7 == 0 )
 //				System.out.println();
 		}
@@ -133,17 +137,13 @@ public class GUICalendarFrame extends JFrame {
 //		System.out.println("============================"); // 28
 	}
 
-	
-	
-	
-	
 	/**
 	 * Create the frame.
 	 */
 	public GUICalendarFrame() {
 		this(1990, 1); // epoch
 	}
-	
+
 	public GUICalendarFrame(int year, int month) {
 		setTitle("GUI \uCE98\uB9B0\uB354");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUIMemoProject\\icons\\calendar.png"));
@@ -153,37 +153,37 @@ public class GUICalendarFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel pnTop = new JPanel();
 		contentPane.add(pnTop, BorderLayout.NORTH);
-		
+
 		JLabel lblNewLabel = new JLabel("\uB144:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
 		pnTop.add(lblNewLabel);
-		
+
 		txtYear = new JTextField();
 		txtYear.setHorizontalAlignment(SwingConstants.CENTER);
 		txtYear.setFont(new Font("Dialog", Font.PLAIN, 14));
 		pnTop.add(txtYear);
 		txtYear.setColumns(4);
-		txtYear.setText(""+year);
-		
+		txtYear.setText("" + year);
+
 		JLabel lblNewLabel_1 = new JLabel("\uC6D4:");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 14));
 		pnTop.add(lblNewLabel_1);
-		
+
 		txtMonth = new JTextField();
 		txtMonth.setHorizontalAlignment(SwingConstants.CENTER);
 		txtMonth.setFont(new Font("Dialog", Font.PLAIN, 14));
 		pnTop.add(txtMonth);
 		txtMonth.setColumns(2);
 		txtMonth.setText(String.valueOf(month));
-		
+
 		JToolBar toolBar = new JToolBar();
 		pnTop.add(toolBar);
-		
+
 		JButton bthShow = new JButton("");
 		bthShow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -195,112 +195,109 @@ public class GUICalendarFrame extends JFrame {
 		bthShow.setToolTipText("\uB2EC\uB825 \uBCF4\uAE30");
 		bthShow.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\DraftProject\\icons\\calendar.gif"));
 		toolBar.add(bthShow);
-		
+
 		JButton btnPrevMonth = new JButton("");
 		btnPrevMonth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// ÀÌÀü ´Þ Ç¥½Ã
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ç¥ï¿½ï¿½
 				int pyear = Integer.parseInt(txtYear.getText());
 				int pmonth = Integer.parseInt(txtMonth.getText());
-				
-				pmonth--; // 1¿ù´Þ¿¡¼­ »©¸é 0¿ù´Þ?  ÀÌÀü³âµµÀÇ 12¿ù!
-				if( pmonth == 0 ) {
+
+				pmonth--; // 1ï¿½ï¿½ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½âµµï¿½ï¿½ 12ï¿½ï¿½!
+				if (pmonth == 0) {
 					pmonth = 12;
 					pyear--;
-					txtYear.setText(""+pyear);
-				}				
-				txtMonth.setText(""+pmonth);
-				
-				showMyCalGUI(pyear, pmonth);			
+					txtYear.setText("" + pyear);
+				}
+				txtMonth.setText("" + pmonth);
+
+				showMyCalGUI(pyear, pmonth);
 			}
 		});
 		btnPrevMonth.setToolTipText("\uC774\uC804 \uB2EC \uD45C\uC2DC");
 		toolBar.add(btnPrevMonth);
 		btnPrevMonth.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUIMemoProject\\icons\\arrow_left.png"));
-		
+
 		JButton btnNextMonth = new JButton("");
 		btnNextMonth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// ´ÙÀ½ ´Þ Ç¥½Ã
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ç¥ï¿½ï¿½
 				int qyear = Integer.parseInt(txtYear.getText());
 				int qmonth = Integer.parseInt(txtMonth.getText());
-				
-				qmonth++; // 12¿ù´Þ¿¡¼­ ´õÇÏ¸é 13¿ù´Þ?  ´ÙÀ½³âµµÀÇ 1¿ù!
-				if( qmonth == 13 ) {
+
+				qmonth++; // 12ï¿½ï¿½ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ 13ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½âµµï¿½ï¿½ 1ï¿½ï¿½!
+				if (qmonth == 13) {
 					qmonth = 1;
 					qyear++;
-					txtYear.setText(""+qyear);
-				}				
-				txtMonth.setText(""+qmonth);
-				
+					txtYear.setText("" + qyear);
+				}
+				txtMonth.setText("" + qmonth);
+
 				showMyCalGUI(qyear, qmonth);
 			}
 		});
 		btnNextMonth.setToolTipText("\uB2E4\uC74C \uB2EC \uD45C\uC2DC");
 		toolBar.add(btnNextMonth);
 		btnNextMonth.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUIMemoProject\\icons\\arrow_right.png"));
-		
+
 		JButton btnNewButton = new JButton("New button");
 		pnTop.add(btnNewButton);
-		
+
 		JPanel pnCenter = new JPanel();
 		contentPane.add(pnCenter, BorderLayout.CENTER);
 		pnCenter.setLayout(new GridLayout(7, 7, 0, 0));
-			// 49Ä­ÀÇ ´Þ·Â ¿µ¿ª
-			// 1Çà 7Ä­¿­À» ¿äÀÏÇì´õ ·¹ÀÌºí·Î Ã¤¿ò..
-		
-		
+		// 49Ä­ï¿½ï¿½ ï¿½Þ·ï¿½ ï¿½ï¿½ï¿½ï¿½
+		// 1ï¿½ï¿½ 7Ä­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ Ã¤ï¿½ï¿½..
+
 		JLabel lbSunday = new JLabel("SUN");
 		lbSunday.setFont(new Font("Broadway", Font.BOLD, 14));
 		lbSunday.setHorizontalAlignment(SwingConstants.CENTER);
 		lbSunday.setForeground(Color.RED);
 		pnCenter.add(lbSunday);
-		
+
 		JLabel lbMonday = new JLabel("MON");
 		lbMonday.setFont(new Font("Broadway", Font.BOLD, 14));
 		lbMonday.setHorizontalAlignment(SwingConstants.CENTER);
 		pnCenter.add(lbMonday);
-		
+
 		JLabel lbTuesday = new JLabel("TUE");
 		lbTuesday.setFont(new Font("Broadway", Font.BOLD, 14));
 		lbTuesday.setHorizontalAlignment(SwingConstants.CENTER);
 		pnCenter.add(lbTuesday);
-		
+
 		JLabel lbWednesday = new JLabel("WED");
 		lbWednesday.setFont(new Font("Broadway", Font.BOLD, 14));
 		lbWednesday.setHorizontalAlignment(SwingConstants.CENTER);
 		pnCenter.add(lbWednesday);
-		
+
 		JLabel lbThursday = new JLabel("THU");
 		lbThursday.setFont(new Font("Broadway", Font.BOLD, 14));
 		lbThursday.setHorizontalAlignment(SwingConstants.CENTER);
 		pnCenter.add(lbThursday);
-		
+
 		JLabel lbFriday = new JLabel("FRI");
 		lbFriday.setFont(new Font("Broadway", Font.BOLD, 14));
 		lbFriday.setHorizontalAlignment(SwingConstants.CENTER);
 		pnCenter.add(lbFriday);
-		
+
 		JLabel lbSaturday = new JLabel("SAT");
 		lbSaturday.setFont(new Font("Broadway", Font.BOLD, 14));
 		lbSaturday.setHorizontalAlignment(SwingConstants.CENTER);
 		lbSaturday.setForeground(Color.BLUE);
 		pnCenter.add(lbSaturday);
-		
-		// ¿äÀÏ ·¹ÀÌºí ¹è¿­	 7
-		this.lbDayOfWeek = new JLabel[] {
-			lbSunday, lbMonday, lbTuesday, lbWednesday,
-			lbThursday, lbFriday, lbSaturday
-		};		
-		
-		// ³¯ÀÚ ¹öÆ° ¹è¿­ 42 (6ÁÖ ºÐ·®)
+
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½è¿­ 7
+		this.lbDayOfWeek = new JLabel[] { lbSunday, lbMonday, lbTuesday, lbWednesday, lbThursday, lbFriday,
+				lbSaturday };
+
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½è¿­ 42 (6ï¿½ï¿½ ï¿½Ð·ï¿½)
 		final int BTN_LIMIT = 42;
 		this.btnDays = new JButton[BTN_LIMIT];
-		for (int i = 0; i < btnDays.length; i++) {//0~41
-//			JButton btnDay = new JButton("0"); // ³¯ÀÚ¹èÄ¡¾ø´Â»óÅÂ¹öÆ°
-			JButton btnDay = new JButton(""); // ³¯ÀÚ¹èÄ¡¾ø´Â»óÅÂ¹öÆ°
-			btnDay.setHorizontalAlignment(JButton.CENTER);			
-			if( i % 7 == 0 ) {
+		for (int i = 0; i < btnDays.length; i++) {// 0~41
+//			JButton btnDay = new JButton("0"); // ï¿½ï¿½ï¿½Ú¹ï¿½Ä¡ï¿½ï¿½ï¿½Â»ï¿½ï¿½Â¹ï¿½Æ°
+			JButton btnDay = new JButton(""); // ï¿½ï¿½ï¿½Ú¹ï¿½Ä¡ï¿½ï¿½ï¿½Â»ï¿½ï¿½Â¹ï¿½Æ°
+			btnDay.setHorizontalAlignment(JButton.CENTER);
+			if (i % 7 == 0) {
 				btnDay.setForeground(Color.RED); // sunday
 				btnDay.setFont(ftSDAY);
 			} else if (i % 7 == 6) {
@@ -311,16 +308,15 @@ public class GUICalendarFrame extends JFrame {
 				btnDay.setFont(ftDAY);
 			}
 			btnDays[i] = btnDay;
-			pnCenter.add(btnDay);// gridlayout 7 ~ 48¹ø Ä­
-			btnDay.setEnabled(false); // ºñÈ°¼ºÈ­
+			pnCenter.add(btnDay);// gridlayout 7 ~ 48ï¿½ï¿½ Ä­
+			btnDay.setEnabled(false); // ï¿½ï¿½È°ï¿½ï¿½È­
 		}
-		
-		// ¹öÆ° ÀÌº¥Æ® Ã³¸® (°øÅë)
-		DayActionHandler dayHanlder = 
-				new DayActionHandler(this);
+
+		// ï¿½ï¿½Æ° ï¿½Ìºï¿½Æ® Ã³ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
+		DayActionHandler dayHanlder = new DayActionHandler(this);
 		for (JButton btnDay : btnDays) { // 42
 			btnDay.addActionListener(dayHanlder);
-				// ÇÏ³ªÀÇ °øÅë actionPerformed() »ç¿ë
+			// ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ actionPerformed() ï¿½ï¿½ï¿½
 		}
 	}
 
