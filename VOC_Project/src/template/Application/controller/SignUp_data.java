@@ -13,80 +13,68 @@ public class SignUp_data {
 	public static final int MEMBER = 0;
 	public static final int NOT_MEMBER = 1;
 
-	public int id;
-	private String userId;
-	private String userPw;
-	private String userName;
+	private int member_id;
+	private String id;
+	private String password;
+	private String name;
 	private int gender;
-	private String userPhoneNum;
-	private int isMember;
-	private String userDoB;
+	private String phone_number;
+	private int is_member;
+	private String birthday;
+	
+	public SignUp_data(int member_id, String id, String password, String name, int gender, String phone_number,
+			int is_member, String birthday) {
+		super();
+		this.member_id = member_id;
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.gender = gender;
+		this.phone_number = phone_number;
+		this.is_member = is_member;
+		this.birthday = birthday;
+	}
 
-	public SignUp_data(int id, String userId, String userPw, String userName, int gender, String userPhoneNum,
-			int isMember, String userDoB) {
+	public SignUp_data(String id, String password, String name, int gender, String phone_number, String birthday) {
 		super();
 		this.id = id;
-		this.userId = userId;
-		this.userPw = userPw;
-		this.userName = userName;
+		this.password = password;
+		this.name = name;
 		this.gender = gender;
-		this.userPhoneNum = userPhoneNum;
-		this.isMember = isMember;
-		this.userDoB = userDoB;
+		this.phone_number = phone_number;
+		this.birthday = birthday;
 	}
 
-	public SignUp_data(String userId, String userPw, String userName, int gender, String userPhoneNum, int isMember,
-			String userDoB) {
-		super();
-		this.userId = userId;
-		this.userPw = userPw;
-		this.userName = userName;
-		this.gender = gender;
-		this.userPhoneNum = userPhoneNum;
-		this.isMember = isMember;
-		this.userDoB = userDoB;
+	public int getMember_id() {
+		return member_id;
 	}
 
-	public SignUp_data(String userId, String userPw, String userName, int gender, String userPhoneNum, String userDoB) {
-		super();
-		this.userId = userId;
-		this.userPw = userPw;
-		this.userName = userName;
-		this.gender = gender;
-		this.userPhoneNum = userPhoneNum;
-		this.userDoB = userDoB;
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getUserPw() {
-		return userPw;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getGender() {
@@ -97,27 +85,38 @@ public class SignUp_data {
 		this.gender = gender;
 	}
 
-	public String getUserPhoneNum() {
-		return userPhoneNum;
+	public String getPhone_number() {
+		return phone_number;
 	}
 
-	public void setUserPhoneNum(String userPhoneNum) {
-		this.userPhoneNum = userPhoneNum;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 
-	public int getIsMember() {
-		return isMember;
+	public int getIs_member() {
+		return is_member;
 	}
 
-	public void setIsMember(int isMember) {
-		this.isMember = isMember;
+	public void setIs_member(int is_member) {
+		this.is_member = is_member;
 	}
 
-	public String getUserDoB() {
-		return userDoB;
+	public String getBirthday() {
+		return birthday;
 	}
 
-	public void setUserDoB(String userDoB) {
-		this.userDoB = userDoB;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
+
+	@Override
+	public String toString() {
+		return "SignUp_data [member_id=" + member_id + ", id=" + id + ", password=" + password + ", name=" + name
+				+ ", gender=" + gender + ", phone_number=" + phone_number + ", is_member=" + is_member + ", birthday="
+				+ birthday + "]";
+	}
+	
+	
 }
+	
+	
