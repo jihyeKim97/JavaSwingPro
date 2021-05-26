@@ -86,40 +86,40 @@ public class Login_FindID extends JFrame {
 		panel_1.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("\uC544\uC774\uB514 \uCC3E\uAE30");
-		lblNewLabel.setFont(new Font("����", Font.PLAIN, 30));
+		lblNewLabel.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 30));
 		lblNewLabel.setBounds(216, 51, 187, 61);
 		panel_1.add(lblNewLabel);
 
 		JLabel lb_Name = new JLabel("\uC774\uB984");
-		lb_Name.setFont(new Font("����", Font.BOLD, 17));
+		lb_Name.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 17));
 		lb_Name.setBounds(149, 139, 66, 40);
 		panel_1.add(lb_Name);
 
 		JLabel lb_number = new JLabel("\uC804\uD654\uBC88\uD638");
-		lb_number.setFont(new Font("����", Font.BOLD, 17));
+		lb_number.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 17));
 		lb_number.setBounds(149, 201, 79, 40);
 		panel_1.add(lb_number);
 
 		txt_name = new JTextField();
-		txt_name.setFont(new Font("����", Font.PLAIN, 16));
+		txt_name.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_name.setBounds(216, 144, 144, 27);
 		panel_1.add(txt_name);
 		txt_name.setColumns(10);
 
 		txt_number1 = new JTextField();
-		txt_number1.setFont(new Font("����", Font.PLAIN, 16));
+		txt_number1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_number1.setBounds(240, 206, 50, 27);
 		panel_1.add(txt_number1);
 		txt_number1.setColumns(3);
 
 		txt_number2 = new JTextField();
-		txt_number2.setFont(new Font("����", Font.PLAIN, 16));
+		txt_number2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_number2.setColumns(4);
 		txt_number2.setBounds(302, 206, 66, 27);
 		panel_1.add(txt_number2);
 
 		txt_number3 = new JTextField();
-		txt_number3.setFont(new Font("����", Font.PLAIN, 16));
+		txt_number3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_number3.setColumns(4);
 		txt_number3.setBounds(380, 206, 66, 27);
 		panel_1.add(txt_number3);
@@ -166,15 +166,15 @@ public class Login_FindID extends JFrame {
 				int find = db.findid(name, Phonenumber);
 				switch (find) {
 				case 1:
-					JOptionPane.showMessageDialog(null, "�Է��Ͻ������� Ȯ�����ּ���");
+					JOptionPane.showMessageDialog(null, "입력하신정보를 확인해주세요");
 					break;
 				case 2:
 					break;
 				case 3:
-					JOptionPane.showMessageDialog(null, "�Է��Ͻ������� Ȯ��");
+					JOptionPane.showMessageDialog(null, "입력하신정보를 확인");
 					break;
 				case 4:
-					JOptionPane.showMessageDialog(null, "�ڵ�����ȣ�� Ȯ�����ּ���");
+					JOptionPane.showMessageDialog(null, "핸드폰번호를 확인해주세요");
 					break;
 				default:
 					break;
