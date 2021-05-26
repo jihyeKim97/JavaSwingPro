@@ -6,16 +6,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-
-public class Notice_Location extends JDialog {
+class Notice_Location extends JDialog {
 
 	private final JPanel pn_Location = new JPanel();
 	Notice NM;
 
-
-	/**
-	 * Create the dialog.
-	 */
 	public Notice_Location(Notice NM) {
 		this.NM = NM;
 		setBounds(100, 100, 450, 300);

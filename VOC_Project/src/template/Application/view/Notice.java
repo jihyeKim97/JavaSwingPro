@@ -7,11 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -35,6 +39,7 @@ import java.awt.Panel;
 import java.awt.SystemColor;
 
 import template.Application.controller.DB_Connect;
+import template.Application.controller.Notice_DB;
 import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 import javax.swing.ScrollPaneConstants;
@@ -48,35 +53,18 @@ public class Notice extends JFrame {
 	DB_Connect connect;
 	Notice NM;
 	Notice_data Notice;
-	ArrayList<Notice_data> NoticeArr;
-
+	Notice_Detail ND;
+	ArrayList<Notice_data> NoticeArray;
 	/**
 	 * Create the frame.
 	 */
 	public Notice(Main reserfrm) {
-//		this.reserfrm = reserfrm;
+		Notice_DB NDB = null;
+		NoticeArray = new ArrayList<>();
+		this.reserfrm = reserfrm;
 		this.NM = this;
 
-		connect.beginConnection();
-		// DB에서 정보 가져오기
-		if (connect.conn != null) {
-			String sql = "select * from Notice";
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
-					int Id = rs.getInt("notice_id");
-					String Title = rs.getString("title");
-					String content = rs.getString("content");
-					int ViewCount = rs.getInt("viewcount");
-//					NoticeArr.add(new Notice(Id, Title, content, ViewCount));
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
+		NoticeArray = NDB.takeNoticetitle();
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -142,7 +130,9 @@ public class Notice extends JFrame {
 		lb_Theater.setBounds(10, 100, 198, 30);
 		pn_MovieInformaiton.add(lb_Theater);
 
+//		LineBorder LineB = new LineBorder(Color.black,1);
 		JLabel lb_TheaterLocaiton = new JLabel("● 위치: 서울 성동구 왕십리로 303");
+//		lb_TheaterLocaiton.setBorder(LineB);
 		lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -158,21 +148,25 @@ public class Notice extends JFrame {
 		panel_2.add(pn_NoticeMain);
 		pn_NoticeMain.setLayout(null);
 
-		for (int i = 0; i <0; i++) {
-//			String text = NoticeArr.get(i).getTitle();
-//			JPanel JPNotice = new JPanel();
-//			JLabel lbNotice = new JLabel(text);
-//			Notice = NoticeArr.get(i);
-//			JPNotice.add(lbNotice);
-//			JPNotice.addMouseListener(new MouseAdapter() {
-//				@Override
-//				public void mouseClicked(MouseEvent e) {
-//					java.awt.Point fPt = NM.getLocationOnScreen();
-//					NM.setLocation(fPt.x + NM.getWidth() + 20, fPt.x);
-//				}
-//			});
-//			JPNotice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
-//			pn_NoticeMain.add(JPNotice);
+		for (int i = 0; i <NoticeArray.size(); i++) {
+			String text = NoticeArray.get(i).getTitle();
+			JLabel lbNotice = new JLabel( (i + 1) + ". " + text);
+			lbNotice.setHorizontalAlignment(JLabel.LEFT);
+			lbNotice.setFont(new Font("굴림", Font.BOLD, 25));
+			LineBorder Line = new LineBorder(Color.RED,3);
+			lbNotice.setBorder(Line);
+			lbNotice.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					for (int j = 0; j <NM.NoticeArray.size(); j++) {
+					Notice_data NB = NM.NoticeArray.get(j);
+					ND = new Notice_Detail(NM, NB);
+					ND.setVisible(true);
+					}
+				}
+			});
+			lbNotice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
+			pn_NoticeMain.add(lbNotice);
 
 		}
 
@@ -190,12 +184,34 @@ public class Notice extends JFrame {
 		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
 		roundedButtonD_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
 			}
 		});
 		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
 		roundedButtonD_1.setBounds(372, 10, 100, 35);
 		panel.add(roundedButtonD_1);
-		connect.endConnection();
+		
 	}
+
+
 }
+
+//class Notice_Location extends JDialog {
+//
+//	
+//	JPanel pn_Location;
+//	Notice NM;
+//
+//	public Notice_Location(Notice NM) {
+//		this.NM = NM;
+//		setBounds(100, 100, 450, 300);
+//		getContentPane().setLayout(new BorderLayout());
+//		pn_Location.setBorder(new EmptyBorder(5, 5, 5, 5));
+//		getContentPane().add(pn_Location, BorderLayout.CENTER);
+//		pn_Location.setLayout(new BorderLayout(0, 0));
+//		
+//		JLabel lblNewLabel = new JLabel("");
+//		pn_Location.add(lblNewLabel, BorderLayout.CENTER);
+//	}
+//
+//}
