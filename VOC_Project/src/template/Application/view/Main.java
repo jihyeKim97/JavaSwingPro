@@ -68,7 +68,6 @@ public class Main extends JFrame {
 	private Panel panel_10;
 	Main reserfrm;
 
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -98,7 +97,7 @@ public class Main extends JFrame {
 		header_panel.setBounds(0, 0, 484, 55);
 		contentPane.add(header_panel);
 		header_panel.setLayout(null);
-		
+
 		RoundedButtonD btn_my = new RoundedButtonD("MYPAGE");
 		btn_my.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_my.setBounds(372, 10, 100, 35);
@@ -112,7 +111,7 @@ public class Main extends JFrame {
 		});
 
 		header_panel.add(btn_my);
-		
+
 		mainPanel = new Panel();
 		mainPanel.setBackground(new Color(255, 255, 255));
 		mainPanel.setBounds(0, 55, 484, 705);
@@ -253,7 +252,7 @@ public class Main extends JFrame {
 		btn_poster_1 = new RoundedButtonD("click");
 		btn_poster_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 			}
 		});
 		btn_poster_1.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -282,7 +281,7 @@ public class Main extends JFrame {
 		btn_poster_4 = new RoundedButtonD("click");
 		btn_poster_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		btn_poster_4.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -310,7 +309,7 @@ public class Main extends JFrame {
 		btn_poster_3 = new RoundedButtonD("click");
 		btn_poster_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		btn_poster_3.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -414,7 +413,12 @@ public class Main extends JFrame {
 						movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel,
 						poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2,
 						poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice }));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line, movie1_panel, poster_1, btn_poster_1, movie4_panel, poster_4, btn_poster_4, movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2, released_panel, lb_title2, panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7, poster_re_8, btn_notice}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { btn_my, contentPane, header_panel,
+				mainPanel, main_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel, screening_panel,
+				lb_title1, screen_guid_line, movie1_panel, poster_1, btn_poster_1, movie4_panel, poster_4, btn_poster_4,
+				movie3_panel, poster_3, btn_poster_3, movie2_panel, poster_2, btn_poster_2, released_panel, lb_title2,
+				panel_10, poster_re_1, poster_re_2, poster_re_3, poster_re_4, poster_re_5, poster_re_6, poster_re_7,
+				poster_re_8, btn_notice }));
 
 	}
 }

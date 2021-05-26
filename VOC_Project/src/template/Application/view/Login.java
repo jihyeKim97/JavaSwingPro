@@ -63,43 +63,48 @@ public class Login extends JFrame {
 	private void initialize() {
 		frmVoc = new JFrame();
 		frmVoc.setTitle("Vehicle Outdoor Cinema");
-		frmVoc.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\82102\\Desktop\\movie\\iconfinder-video-film-camera-movie-photography-4593167_122280.png"));
+		frmVoc.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				"C:\\Users\\82102\\Desktop\\movie\\iconfinder-video-film-camera-movie-photography-4593167_122280.png"));
 		frmVoc.setBounds(100, 100, 635, 429);
 		frmVoc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmVoc.getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 619, 390);
-		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBackground(new Color(220, 220, 220));
 		frmVoc.getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lb_id = new JLabel("");
 		lb_id.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_id.setIcon(new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\status_online.png"));
+		lb_id.setIcon(new ImageIcon(
+				"D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\status_online.png"));
 		lb_id.setBackground(SystemColor.activeCaptionText);
 		lb_id.setBounds(169, 211, 35, 31);
-		
+
 		panel.add(lb_id);
-		
+
 		txt_id = new JTextField();
-		txt_id.setBounds(204, 211, 185, 31);
+		txt_id.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 16));
+		txt_id.setBounds(204, 211, 185, 35);
 		panel.add(txt_id);
 		txt_id.setColumns(10);
-		
+
 		JLabel lb_pw = new JLabel("");
-		lb_pw.setIcon(new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\key.png"));
+		lb_pw.setIcon(
+				new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\key.png"));
 		lb_pw.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_pw.setBackground(Color.WHITE);
 		lb_pw.setBounds(169, 252, 35, 31);
 		panel.add(lb_pw);
-		
+
 		JButton btn_Login = new JButton("Login");
 		btn_Login.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btn_Login.setBackground(Color.yellow);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btn_Login.setBackground(Color.blue);
@@ -108,116 +113,124 @@ public class Login extends JFrame {
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String login = txt_id.getText();
-				String pw = new String(
-						txt_pw.getPassword());
+				String pw = new String(txt_pw.getPassword());
 				DB_Connect2 mgr = new DB_Connect2();
 				int r = mgr.loginProcess(login, pw);
 				switch (r) {
 				case DB_Connect2.LOGIN_SUCCESS:
 					break;
 				case DB_Connect2.LOGIN_FAIL_NOT_FOUND:
-					JOptionPane.showMessageDialog(null, "·Î±×ÀÎ È¸¿ø °èÁ¤¸í ¾øÀ½!!");
+					JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 					break;
 				case DB_Connect2.LOGIN_FAIL_PW_MISMATCH:
-					JOptionPane.showMessageDialog(null, "·Î±×ÀÎ ¾ÏÈ£°¡ ºÒÀÏÄ¡!!");
+					JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡!!");
 					break;
-				case DB_Connect2.LOGIN_ERROR:	
-					JOptionPane.showMessageDialog(null, "·Î±×ÀÎ ÀÎÁõ ÀÔ·Â/DB¿¡·¯!!");
-					break;	
+				case DB_Connect2.LOGIN_ERROR:
+					JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½/DBï¿½ï¿½ï¿½ï¿½!!");
+					break;
 				default:
-					System.out.println("¹ÌÁö¿ø!!");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!!");
 					break;
 				}
 			}
 		});
-		btn_Login.setFont(new Font("±¼¸²", Font.BOLD, 16));
-		btn_Login.setForeground(SystemColor.desktop);
+		btn_Login.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.BOLD, 25));
+		btn_Login.setForeground(new Color(255, 255, 255));
 		btn_Login.setBackground(Color.BLUE);
-		btn_Login.setBounds(401, 209, 112, 74);
+		btn_Login.setBounds(395, 211, 112, 77);
 		panel.add(btn_Login);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\VOC.png"));
+		lblNewLabel_1.setIcon(
+				new ImageIcon("D:\\java-for-git\\JavaSwingPro\\VOC_Project\\src\\template\\Reference\\icons\\VOC.png"));
 		lblNewLabel_1.setBounds(216, 20, 212, 181);
 		panel.add(lblNewLabel_1);
-		
+
 		JLabel lb_FindID = new JLabel("\uC544\uC774\uB514");
 		lb_FindID.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("¾ÆÀÌµğ Ã£±â ´©¸§");
-				
-				lb_FindID.setOpaque(true);// ¹è°æ ºÒÅõ¸íµµ Á¶Á¤
+				System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+
+				lb_FindID.setOpaque(true);// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lb_FindID.setForeground(Color.red);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lb_FindID.setForeground(Color.black);
 			}
 		});
-		lb_FindID.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		lb_FindID.setBounds(204, 293, 46, 25);
+		lb_FindID.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 16));
+		lb_FindID.setBounds(204, 300, 56, 25);
 		panel.add(lb_FindID);
-		
+
 		JLabel lb_SignUp = new JLabel("\uD68C\uC6D0\uAC00\uC785");
 		lb_SignUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("È¸¿ø°¡ÀÔ ´©¸§");
-				lb_SignUp.setOpaque(true);// ¹è°æ ºÒÅõ¸íµµ Á¶Á¤
+				System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+				lb_SignUp.setOpaque(true);// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				lb_SignUp.setBackground(Color.LIGHT_GRAY);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lb_SignUp.setForeground(Color.red);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lb_SignUp.setForeground(Color.black);
 			}
 		});
-		lb_SignUp.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		lb_SignUp.setBounds(401, 293, 56, 25);
+		lb_SignUp.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 16));
+		lb_SignUp.setBounds(411, 300, 70, 25);
 		panel.add(lb_SignUp);
-		
+
 		txt_pw = new JPasswordField();
-		txt_pw.setBounds(204, 252, 185, 31);
+		txt_pw.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 16));
+		txt_pw.setBounds(204, 252, 185, 35);
 		panel.add(txt_pw);
-		
+
 		JLabel lb_FindPW = new JLabel("\uBE44\uBC00\uBC88\uD638");
 		lb_FindPW.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("ºñ¹Ğ¹øÈ£ Ã£±â ´©¸§");
-				
+				System.out.println("ï¿½ï¿½Ğ¹ï¿½È£ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+
 				lb_FindID.setOpaque(true);
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lb_FindPW.setForeground(Color.red); 
+				lb_FindPW.setForeground(Color.red);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lb_FindPW.setForeground(Color.black);
 			}
 		});
-		lb_FindPW.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		lb_FindPW.setBounds(256, 293, 56, 25);
+		lb_FindPW.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 16));
+		lb_FindPW.setBounds(279, 300, 73, 25);
 		panel.add(lb_FindPW);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("/");
-		lblNewLabel_5.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		lblNewLabel_5.setBounds(247, 279, 13, 52);
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_5.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 16));
+		lblNewLabel_5.setBounds(256, 295, 20, 31);
 		panel.add(lblNewLabel_5);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("\uCC3E\uAE30");
-		lblNewLabel_6.setFont(new Font("±¼¸²", Font.BOLD, 13));
-		lblNewLabel_6.setBounds(314, 298, 30, 15);
+		lblNewLabel_6.setFont(new Font("ë§‘ì€ ê³ ë”• Semilight", Font.PLAIN, 16));
+		lblNewLabel_6.setBounds(348, 300, 59, 25);
 		panel.add(lblNewLabel_6);
 	}
 }

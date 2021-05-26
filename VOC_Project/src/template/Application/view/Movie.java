@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Movie {
 
+<<<<<<< HEAD
 	private int moviesid;
 	private String title;
 	private String genre;
@@ -23,6 +24,23 @@ public class Movie {
 	
 	
 	public Movie(int moviesid, String title, String imagefilename, String scheduledate) {
+=======
+	private int MoviesId;
+	private String Title;
+	private String Genre;
+	private String Directer;
+	private int AgeGroup;
+	private String Story;
+	private int AverageScore;
+	private String Gee;
+	private Date OpenDate;
+	private String Production;
+	private String ImageFileName;
+	private String ScheduleDate;
+	private String RunningTime;
+
+	public Movie(int moviesId, String title, int averageScore) {
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 		super();
 		this.moviesid = moviesid;
 		this.title = title;
@@ -30,12 +48,16 @@ public class Movie {
 		this.scheduledate = scheduledate;
 	}
 
+<<<<<<< HEAD
 
 
 
 	public Movie(int moviesid, String title, String genre, String directer, int agegroup, String story,
 			int averageScore, String gee, Date opendate, String production, String imagefilename, String scheduledate,
 			String runningtime) {
+=======
+	public Movie(int moviesId, String title, String imageFileName, String scheduleDate) {
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 		super();
 		this.moviesid = moviesid;
 		this.title = title;
@@ -52,6 +74,7 @@ public class Movie {
 		this.runningtime = runningtime;
 	}
 
+<<<<<<< HEAD
 
 
 	@Override
@@ -76,40 +99,85 @@ public class Movie {
 
 
 
+=======
+	public Movie(int moviesId, String title, String genre, String directer, int ageGroup, String story,
+			int averageScore, String gee, Date openDate, String production, String imageFileName, String scheduleDate,
+			String runningTime) {
+		super();
+		MoviesId = moviesId;
+		Title = title;
+		Genre = genre;
+		Directer = directer;
+		AgeGroup = ageGroup;
+		Story = story;
+		AverageScore = averageScore;
+		Gee = gee;
+		OpenDate = openDate;
+		Production = production;
+		ImageFileName = imageFileName;
+		ScheduleDate = scheduleDate;
+		RunningTime = runningTime;
+	}
+
+	public int getMoviesId() {
+		return MoviesId;
+	}
+
+	public void setMoviesId(int moviessId) {
+		MoviesId = moviessId;
+	}
+
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public String getTitle() {
 		return title;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public String getGenre() {
 		return genre;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public String getDirecter() {
 		return directer;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public void setDirecter(String directer) {
 		this.directer = directer;
 	}
 
+<<<<<<< HEAD
 
 
 	public int getAgegroup() {
@@ -124,40 +192,66 @@ public class Movie {
 
 
 
+=======
+	public int getAgeGroup() {
+		return AgeGroup;
+	}
+
+	public void setAgeGroup(int ageGroup) {
+		AgeGroup = ageGroup;
+	}
+
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public String getStory() {
 		return story;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public void setStory(String story) {
 		this.story = story;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public int getAverageScore() {
 		return averageScore;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public void setAverageScore(int averageScore) {
 		this.averageScore = averageScore;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public String getGee() {
 		return gee;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public void setGee(String gee) {
 		this.gee = gee;
 	}
 
+<<<<<<< HEAD
 
 
 	public Date getOpendate() {
@@ -172,16 +266,30 @@ public class Movie {
 
 
 
+=======
+	public Date getOpenDate() {
+		return OpenDate;
+	}
+
+	public void setOpenDate(Date openDate) {
+		OpenDate = openDate;
+	}
+
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public String getProduction() {
 		return production;
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 	public void setProduction(String production) {
 		this.production = production;
 	}
 
+<<<<<<< HEAD
 
 
 	public String getImagefilename() {
@@ -220,5 +328,31 @@ public class Movie {
 	
 	
 	
+=======
+	public String getImageFileName() {
+		return ImageFileName;
+	}
+
+	public void setImageFileName(String imageFileName) {
+		ImageFileName = imageFileName;
+	}
+
+	public String getScheduleDate() {
+		return ScheduleDate;
+	}
+
+	public void setScheduleDate(String scheduleDate) {
+		ScheduleDate = scheduleDate;
+	}
+
+	public String getRunningTime() {
+		return RunningTime;
+	}
+
+	public void setRunningTime(String runningTime) {
+		RunningTime = runningTime;
+	}
+
+>>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 }
 	
