@@ -335,22 +335,22 @@ public class SignUp extends JFrame {
 		txt_phone3.setColumns(10);
 
 		JButton btn_DupCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
-		//btn_DupCheck.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				
-//				String inLogin = txt_userId.getText();
-//				Login_data ld = dbc2.selectOneMemberByLogin(inLogin); 
-//						if( !ld.equals(inLogin) ) { // 사용가능
-//						bLoginAvail = true;// 일단 더미 중복x
-//						JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
-//					
-//					} else {
-//						bLoginAvail = false;
-//						JOptionPane.showMessageDialog(null, "사용불가능한 id 입니다");
-//						
-//					}			
-//			}
-//		});
+		btn_DupCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String inLogin = txt_userId.getText();
+				Login_data ld = dbc2.selectOneMemberByLogin(inLogin); 
+						if( !ld.equals(inLogin) ) { // 사용가능
+						bLoginAvail = true;// 일단 더미 중복x
+						JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
+					
+					} else {
+						bLoginAvail = false;
+						JOptionPane.showMessageDialog(null, "사용불가능한 id 입니다");
+						
+					}			
+			}
+		});
 		
 		btn_DupCheck.setFont(new Font("굴림", Font.PLAIN, 14));
 		btn_DupCheck.setBounds(454, 73, 96, 36);
@@ -391,10 +391,12 @@ public class SignUp extends JFrame {
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
 				SignUp_data newUI = new SignUp_data(UserId, UserPw, 
 						UserName, Gender, UserPhoneNum, UserDoB);
-
+				
+				
 				boolean r = mgr.insertNewMember(newUI);
 				if (r) {
-					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+					
+					JOptionPane.showMessageDialog (null, "가입이 완료되었습니다.");
 				} else JOptionPane.showMessageDialog(null, "회원 가입 실패! ");
 			}
 	
@@ -417,12 +419,11 @@ public class SignUp extends JFrame {
 		String strPw2 = new String(pwf_userPw2.getPassword());
 		if ((strPw1.length() > 0 && strPw2.length() > 0) && bLoginAvail == true
 				&& (!txt_DoB.getText().isEmpty() == false)
-				&& (txt_userName.getText().isEmpty() == false && txt_userName.getText().equals("ex) 홍길동") == false)) {
+				&& (txt_userName.getText().isEmpty() == false &&
+				txt_userName.getText().equals("ex) 홍길동") == false)){
 // 두개 암호 필드값의 내용 비교 일치/불일치
 			if (strPw2.equals(strPw1)) {
-
 				btn_userJoin.setEnabled(true);
-
 			} else {
 				btn_userJoin.setEnabled(false);
 			}

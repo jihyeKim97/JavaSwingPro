@@ -13,7 +13,7 @@ public class MyPage_DB {
 	MyPage Mypage;
 	MyPage_Data MypageDT;
 
-	public static ArrayList<Notice_data> takeNoticetitle() {
+	public static void mySelectMemberID () {
 		DB_Connect connect = null;
 		MyPage Mypage;
 		MyPage_Data MypageDT;
@@ -56,15 +56,11 @@ public class MyPage_DB {
 				if (connect != null)
 					connect.endConnection();
 
+				}catch (Exception e) {
+					e.printStackTrace();
 				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
 		}
-		connect.endConnection();
-		return null;
+
 	}
 		
 	public static void main(String[] args) {
