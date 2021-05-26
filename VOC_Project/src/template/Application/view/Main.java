@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import template.Application.controller.Movie_DB;
+import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonR;
 import javax.swing.SwingConstants;
@@ -22,6 +25,7 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class Main extends JFrame {
 
@@ -67,6 +71,11 @@ public class Main extends JFrame {
 	private RoundedButtonD btn_poster_2;
 	private Panel panel_10;
 	Main reserfrm;
+	ArrayList<Movie_Data> MovieList;
+	Movie_Data movie;
+	private JLabel lb_Poster2;
+	private JLabel lb_Poster3;
+	private JLabel lb_Poster4;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -85,6 +94,12 @@ public class Main extends JFrame {
 	 * Create the frame.
 	 */
 	public Main() {
+		MovieList = new ArrayList<>();
+		Movie_DB MDB= new Movie_DB();
+		MovieList = MDB.getMovieData();
+		int i = (int)(Math.random()*MovieList.size());
+		
+		
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -237,17 +252,12 @@ public class Main extends JFrame {
 		movie1_panel.setLayout(null);
 
 		poster_1 = new Panel();
-		poster_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
-				Point fPt = reserfrm.getLocationOnScreen();
-				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-				info.setVisible(true);
-			}
-		});
 		poster_1.setBounds(0, 0, 94, 125);
 		movie1_panel.add(poster_1);
+		poster_1.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lb_Poster1 = new JLabel("");
+		poster_1.add(lb_Poster1, BorderLayout.CENTER);
 
 		btn_poster_1 = new RoundedButtonD("click");
 		btn_poster_1.addActionListener(new ActionListener() {
@@ -269,17 +279,13 @@ public class Main extends JFrame {
 		screen_guid_line.add(movie4_panel);
 
 		poster_4 = new Panel();
-		poster_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
-				Point fPt = reserfrm.getLocationOnScreen();
-				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-				info.setVisible(true);
-			}
-		});
+		
 		poster_4.setBounds(0, 0, 94, 125);
 		movie4_panel.add(poster_4);
+		poster_4.setLayout(new BorderLayout(0, 0));
+		
+		lb_Poster4 = new JLabel("");
+		poster_4.add(lb_Poster4, BorderLayout.CENTER);
 
 		btn_poster_4 = new RoundedButtonD("click");
 		btn_poster_4.addActionListener(new ActionListener() {
@@ -301,17 +307,13 @@ public class Main extends JFrame {
 		screen_guid_line.add(movie3_panel);
 
 		poster_3 = new Panel();
-		poster_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
-				Point fPt = reserfrm.getLocationOnScreen();
-				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-				info.setVisible(true);
-			}
-		});
+			
 		poster_3.setBounds(0, 0, 94, 125);
 		movie3_panel.add(poster_3);
+		poster_3.setLayout(new BorderLayout(0, 0));
+		
+		lb_Poster3 = new JLabel("");
+		poster_3.add(lb_Poster3, BorderLayout.CENTER);
 
 		btn_poster_3 = new RoundedButtonD("click");
 		btn_poster_3.addActionListener(new ActionListener() {
@@ -332,17 +334,13 @@ public class Main extends JFrame {
 		screen_guid_line.add(movie2_panel);
 
 		poster_2 = new Panel();
-		poster_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
-				Point fPt = reserfrm.getLocationOnScreen();
-				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-				info.setVisible(true);
-			}
-		});
+		
 		poster_2.setBounds(0, 0, 94, 125);
 		movie2_panel.add(poster_2);
+		poster_2.setLayout(new BorderLayout(0, 0));
+		
+		lb_Poster2 = new JLabel("");
+		poster_2.add(lb_Poster2, BorderLayout.CENTER);
 
 		btn_poster_2 = new RoundedButtonD("click");
 		btn_poster_2.addActionListener(new ActionListener() {

@@ -175,25 +175,13 @@ public class Notice extends JFrame {
 		panel.setBackground(new Color(169, 169, 169));
 		panel.setBounds(0, 0, 484, 55);
 		contentPane.add(panel);
-
-		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
-		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
+		
+		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
-
-		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
-		roundedButtonD_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_1.setBounds(372, 10, 100, 35);
-		panel.add(roundedButtonD_1);
 		
 	}
-
-
 }
 
 class Locaiton extends JDialog {
