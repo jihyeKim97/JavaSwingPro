@@ -1,32 +1,21 @@
 package template.Application.view;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import template.Application.controller.GUICalendarFrame;
 import template.Application.controller.Login_data;
-
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
-import java.awt.Point;
-
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import java.awt.Color;
-
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -34,13 +23,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import template.Application.controller.DB_Connect;
 import template.Application.controller.DB_Connect2;
-import template.Application.controller.DB_UserInfo;
-import template.Application.controller.DB_UserDbMgr;
+import template.Application.controller.SignUp_data;
+import template.Application.controller.SIgnUp_DBmgr;
 
 public class SignUp extends JFrame {
 
@@ -58,48 +44,23 @@ public class SignUp extends JFrame {
 	
 	SignUp mj;
 	JButton btn_userJoin;
-	GUICalendarFrame frm;
 	Login mln;
 	Connection conn;
-	DB_UserInfo dbui;
+	SignUp_data dbui;
 	DB_Connect2 dbc2;
 	JLabel lb_NoDup;
 	DB_Connect dbc;
 	Login_data lndt;
-	DB_UserDbMgr mgr;
+	SIgnUp_DBmgr mgr;
 	
 	public SignUp() {
 		this.conn = DB_Connect.getConn();
 	}
-	
-	/**
-	 * Launch the application.
-	 */
-// public static void main(String[] args) {
-// EventQueue.invokeLater(new Runnable() {
-// public void run() {
-// try {
-// MemberJoin frame = new MemberJoin();
-// frame.setVisible(true);
-// } catch (Exception e) {
-// e.printStackTrace();
-// }
-// }
-// });
-// }
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @param mln
-	 */
-	
-	
 	public SignUp(Login mln) {
 
 		this.dbc2 = new DB_Connect2();
 
-//
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
 		setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -173,7 +134,6 @@ public class SignUp extends JFrame {
 				String strPw2 = new String(pwf_userPw2.getPassword());
 				if (strPw1.length() > 0 && strPw2.isEmpty()) {
 
-//
 				} else {
 					if (strPw1.length() > 0 && strPw2.length() > 0) {
 						if (strPw2.equals(strPw1)) {
@@ -414,7 +374,7 @@ public class SignUp extends JFrame {
 		btn_userJoin.setForeground(Color.BLACK);
 		btn_userJoin.setBackground(new Color(255, 175, 175));
 		btn_userJoin.setFont(new Font("굴림", Font.BOLD, 14));
-		DB_UserDbMgr mgr = new DB_UserDbMgr();
+		SIgnUp_DBmgr mgr = new SIgnUp_DBmgr();
 		btn_userJoin.addActionListener(new ActionListener() {
 	
 			public void actionPerformed(ActionEvent e) {
@@ -426,10 +386,10 @@ public class SignUp extends JFrame {
 				String UserId = txt_userId.getText();
 				String UserPw = new String (pwf_userPw1.getPassword());
 				String UserName = txt_userId.getText();
-				int Gender = rd_Female.isSelected() ? DB_UserInfo.GENDER_FEMALE: DB_UserInfo.GENDER_MALE;
+				int Gender = rd_Female.isSelected() ? SignUp_data.GENDER_FEMALE: SignUp_data.GENDER_MALE;
 				String UserDoB = txt_DoB.getText();
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
-				DB_UserInfo newUI = new DB_UserInfo(UserId, UserPw, 
+				SignUp_data newUI = new SignUp_data(UserId, UserPw, 
 						UserName, Gender, UserPhoneNum, UserDoB);
 
 				boolean r = mgr.insertNewMember(newUI);

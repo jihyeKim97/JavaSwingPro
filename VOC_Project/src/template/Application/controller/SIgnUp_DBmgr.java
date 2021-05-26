@@ -13,16 +13,16 @@ import java.util.ArrayList;
 
 
 
-public class DB_UserDbMgr {
+public class SIgnUp_DBmgr {
 	
 	DB_Connect conn;
 	
-	public DB_UserDbMgr() {
+	public SIgnUp_DBmgr() {
 
 	}
 	
 
-	public boolean insertNewMember(DB_UserInfo ui) {
+	public boolean insertNewMember(SignUp_data ui) {
 			conn = null;
 			conn.beginConnection();
 			if (conn.conn == null && ui != null) {
@@ -57,7 +57,7 @@ public class DB_UserDbMgr {
 			return false;
 	}
 
-		public boolean insertNewMember2(DB_UserInfo ui) {
+		public boolean insertNewMember2(SignUp_data ui) {
 			if (this.conn != null && ui != null) {
 				String sql // 순서, 개수, 타입.. 띄어쓰기
 						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,birthday) VALUES (" + "VOCPRO_SEQ.nextval, '" +
@@ -139,9 +139,9 @@ public class DB_UserDbMgr {
 //	- 기존 회원이 마일리지 (갱신) 할 수 있다. U
 //	- 기존 회원이 암호 (갱신) 할 수 있다. U
 //	- 모든 기존 회원들을 조회할 수 있다. R (범위, 조건, 검색, 정렬, 페이지네이션화)
-	public ArrayList<DB_UserInfo> selectAllMembers() {
+	public ArrayList<SignUp_data> selectAllMembers() {
 		if( this.conn != null ) {
-			ArrayList<DB_UserInfo> uiList = new ArrayList<>();
+			ArrayList<SignUp_data> uiList = new ArrayList<>();
 			String sql = "select * from member ORDER BY id desc";
 			try {
 				Statement stmt =  conn.conn.createStatement();
@@ -149,8 +149,8 @@ public class DB_UserDbMgr {
 				while( rs.next() ) {	
 					String userDoB= rs.getString("");
 
-					DB_UserInfo ui 
-				= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+					SignUp_data ui 
+				= new SignUp_data(rs.getInt("MEMBER_ID"),
 							rs.getString("ID"), 
 							rs.getString("PASSWORD"),
 							rs.getString("NAME"),
@@ -173,7 +173,7 @@ public class DB_UserDbMgr {
 	}
 	
 //	- 특정 기존 회원 한 명을 조회할 수 있다. R (id, 관리번호)	
-	public DB_UserInfo selectOneMemberById(int dbui) {
+	public SignUp_data selectOneMemberById(int dbui) {
 		if( this.conn != null ) {
 			String sql = "select * from member"
 					+ " where id = " + dbui;
@@ -181,8 +181,8 @@ public class DB_UserDbMgr {
 				Statement stmt = conn.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				if( rs.next() ) { // 한 개의 레코드만...
-					DB_UserInfo ui 
-				= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+					SignUp_data ui 
+				= new SignUp_data(rs.getInt("MEMBER_ID"),
 							rs.getString("ID"), 
 							rs.getString("PASSWORD"),
 							rs.getString("NAME"),
@@ -203,7 +203,7 @@ public class DB_UserDbMgr {
 		}		
 		return null;
 	}
-	public DB_UserInfo selectOneMemberByUserId(String usid) {
+	public SignUp_data selectOneMemberByUserId(String usid) {
 		if( this.conn != null ) {
 			String sql = "select * from member"
 					+ " where Id = ?";
@@ -214,8 +214,8 @@ public class DB_UserDbMgr {
 				pstmt.setString(2, usid);
 				ResultSet rs = pstmt.executeQuery();
 				if( rs.next() ) { 
-					DB_UserInfo ui 
-					= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+					SignUp_data ui 
+					= new SignUp_data(rs.getInt("MEMBER_ID"),
 							rs.getString("ID"), 
 							rs.getString("PASSWORD"),
 							rs.getString("NAME"),
@@ -288,7 +288,7 @@ public class DB_UserDbMgr {
 			return LOGIN_ERROR;
 		}
 		if( this.conn != null ) {
-			DB_UserInfo dbui = selectOneMemberByUserId(login); // UQ
+			SignUp_data dbui = selectOneMemberByUserId(login); // UQ
 			if( dbui != null ) { // ���Ե� ȸ�����ڵ� ã��!
 				String mbPw = dbui.getUserPw();
 				if( mbPw != null && !mbPw.isEmpty() ) {
