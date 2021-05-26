@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
+import java.awt.Point;
 import java.awt.Color;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
@@ -17,10 +18,13 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Reservation_step1 extends JFrame {
 
 	private JPanel contentPane;
+	Reservation_step1 reserStfrm;
 
 	/**
 	 * Launch the application.
@@ -42,6 +46,7 @@ public class Reservation_step1 extends JFrame {
 	 * Create the frame.
 	 */
 	public Reservation_step1() {
+		this.reserStfrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 950);
 		contentPane = new JPanel();
@@ -302,6 +307,15 @@ public class Reservation_step1 extends JFrame {
 		optionimgpanel.add(img5);
 
 		RoundedButtonD btn_payment = new RoundedButtonD("결제 하기");
+		btn_payment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Reservation_step2 reserStep2 = new Reservation_step2(reserStfrm);
+				Point fPt = reserStfrm.getLocationOnScreen();
+				reserStep2.setLocation(fPt.x + reserStep2.getWidth() + 20, fPt.y);
+				reserStep2.setVisible(true);
+				
+			}
+		});
 		btn_payment.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		btn_payment.setBounds(253, 812, 217, 34);
 		content.add(btn_payment);
@@ -376,6 +390,11 @@ public class Reservation_step1 extends JFrame {
 		header.setBackground(new Color(169, 169, 169));
 
 		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		header.add(roundedButtonD);
