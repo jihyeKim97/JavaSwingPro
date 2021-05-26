@@ -289,7 +289,6 @@ public class DB_Connect2 {
 	}
 
 	public boolean insertNewMember(Login_data newlndt) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }
