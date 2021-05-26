@@ -121,24 +121,24 @@ public class Login extends JFrame {
 				case DB_Connect2.LOGIN_SUCCESS:
 					break;
 				case DB_Connect2.LOGIN_FAIL_NOT_FOUND:
-					JOptionPane.showMessageDialog(null, "�α��� ȸ�� ������ ����!!");
+					JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
 					break;
 				case DB_Connect2.LOGIN_FAIL_PW_MISMATCH:
-					JOptionPane.showMessageDialog(null, "�α��� ��ȣ�� ����ġ!!");
+					JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
 
 					break;
 				case DB_Connect2.LOGIN_ERROR:
-					JOptionPane.showMessageDialog(null, "�α��� ���� �Է�/DB����!!");
+					JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
 					break;
 
 				default:
-					System.out.println("������!!");
+					System.out.println("지원하지않습니다.");
 					break;
 				}
 			}
 		});
 
-		btn_Login.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+		btn_Login.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 25));
 		btn_Login.setForeground(new Color(255, 255, 255));
 
 		btn_Login.setBackground(Color.BLUE);
@@ -155,9 +155,8 @@ public class Login extends JFrame {
 		lb_FindID.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("���̵� ã�� ����");
-
-				lb_FindID.setOpaque(true);// ��� ������ ����
+				System.out.println("아이디 찾기 누름");
+				lb_FindID.setOpaque(true);
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
 			}
 
@@ -179,7 +178,7 @@ public class Login extends JFrame {
 		lb_SignUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("ȸ������ ����");
+				System.out.println("회원가입 누름");
 				lb_SignUp.setOpaque(true);// ��� ������ ����
 				lb_SignUp.setBackground(Color.LIGHT_GRAY);
 				SignUp su = new SignUp(ln);
@@ -210,7 +209,7 @@ public class Login extends JFrame {
 		lb_FindPW.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("��й�ȣ ã�� ����");
+				System.out.println("비밀번호 찾기 누름");
 				lb_FindID.setOpaque(true);
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
 			}

@@ -77,55 +77,55 @@ public class Login_FindPW extends JFrame {
 		panel_2.setLayout(null);
 
 		JLabel lblNewLabel_2 = new JLabel("\uC784\uC2DC \uBE44\uBC00\uBC88\uD638 \uBC1C\uAE09");
-		lblNewLabel_2.setFont(new Font("����", Font.BOLD, 27));
+		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 27));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(173, 10, 272, 55);
 		panel_2.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("\uC774\uB984 :");
-		lblNewLabel_3.setFont(new Font("����", Font.BOLD, 18));
+		lblNewLabel_3.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 18));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(133, 103, 72, 37);
 		panel_2.add(lblNewLabel_3);
 
 		JLabel lblId = new JLabel("ID :");
-		lblId.setFont(new Font("����", Font.BOLD, 18));
+		lblId.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 18));
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblId.setBounds(133, 165, 72, 37);
 		panel_2.add(lblId);
 
 		JLabel label_3 = new JLabel("\uC804\uD654\uBC88\uD638 :");
-		label_3.setFont(new Font("����", Font.BOLD, 18));
+		label_3.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 18));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setBounds(108, 233, 97, 37);
 		panel_2.add(label_3);
 
 		txt_IssuedName = new JTextField();
-		txt_IssuedName.setFont(new Font("����", Font.PLAIN, 17));
+		txt_IssuedName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_IssuedName.setBounds(213, 109, 165, 30);
 		panel_2.add(txt_IssuedName);
 		txt_IssuedName.setColumns(10);
 
 		txt_IssuedId = new JTextField();
-		txt_IssuedId.setFont(new Font("����", Font.PLAIN, 17));
+		txt_IssuedId.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_IssuedId.setColumns(10);
 		txt_IssuedId.setBounds(213, 171, 165, 30);
 		panel_2.add(txt_IssuedId);
 
 		txt_number4 = new JTextField();
-		txt_number4.setFont(new Font("����", Font.PLAIN, 17));
+		txt_number4.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_number4.setColumns(3);
 		txt_number4.setBounds(213, 238, 53, 30);
 		panel_2.add(txt_number4);
 
 		txt_number5 = new JTextField();
-		txt_number5.setFont(new Font("����", Font.PLAIN, 17));
+		txt_number5.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_number5.setColumns(4);
 		txt_number5.setBounds(287, 239, 79, 30);
 		panel_2.add(txt_number5);
 
 		txt_number6 = new JTextField();
-		txt_number6.setFont(new Font("����", Font.PLAIN, 17));
+		txt_number6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_number6.setColumns(4);
 		txt_number6.setBounds(393, 239, 72, 30);
 		panel_2.add(txt_number6);
@@ -154,7 +154,7 @@ public class Login_FindPW extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn_Cancel2.setFont(new Font("����", Font.BOLD, 16));
+		btn_Cancel2.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 16));
 		btn_Cancel2.setBounds(169, 298, 97, 47);
 		panel_2.add(btn_Cancel2);
 
@@ -170,7 +170,7 @@ public class Login_FindPW extends JFrame {
 				btn_Issued.setForeground(Color.black);
 			}
 		});
-		btn_Issued.setFont(new Font("����", Font.BOLD, 16));
+		btn_Issued.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 16));
 
 		// PW ã��@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		btn_Issued.addActionListener(new ActionListener() {
@@ -183,15 +183,15 @@ public class Login_FindPW extends JFrame {
 				int find = db.findpw(name, id, Phonenumber);
 				switch (find) {
 				case 1:
-					JOptionPane.showMessageDialog(null, "�Է��Ͻ������� Ȯ�����ּ���");
+					JOptionPane.showMessageDialog(null, "입력하신정보를 확인해주세요");
 					break;
 				case 2:
 					break;
 				case 3:
-					JOptionPane.showMessageDialog(null, "�Է��Ͻ������� Ȯ��");
+					JOptionPane.showMessageDialog(null, "입력하신정보를 확인");
 					break;
 				case 4:
-					JOptionPane.showMessageDialog(null, "�ڵ�����ȣ�� Ȯ�����ּ���");
+					JOptionPane.showMessageDialog(null, "핸드폰번호를 확인해주세요");
 					break;
 				default:
 					break;
