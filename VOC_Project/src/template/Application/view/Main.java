@@ -252,7 +252,10 @@ public class Main extends JFrame {
 		btn_poster_1 = new RoundedButtonD("click");
 		btn_poster_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				Reservation_step1 reser1 = new Reservation_step1(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				reser1.setVisible(true);
 			}
 		});
 		btn_poster_1.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -281,6 +284,10 @@ public class Main extends JFrame {
 		btn_poster_4 = new RoundedButtonD("click");
 		btn_poster_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Reservation_step1 reser1 = new Reservation_step1(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				reser1.setVisible(true);
 
 			}
 		});
@@ -309,7 +316,10 @@ public class Main extends JFrame {
 		btn_poster_3 = new RoundedButtonD("click");
 		btn_poster_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				Reservation_step1 reser1 = new Reservation_step1(reserfrm);
+				Point fPt = reserfrm.getLocationOnScreen();
+				reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				reser1.setVisible(true);
 			}
 		});
 		btn_poster_3.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -337,10 +347,10 @@ public class Main extends JFrame {
 		btn_poster_2 = new RoundedButtonD("click");
 		btn_poster_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Movie_Informaiton info = new Movie_Informaiton(reserfrm);
+				Reservation_step1 reser1 = new Reservation_step1(reserfrm);
 				Point fPt = reserfrm.getLocationOnScreen();
-				info.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-				info.setVisible(true);
+				reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				reser1.setVisible(true);
 			}
 		});
 		btn_poster_2.setFont(new Font("Candara Light", Font.PLAIN, 20));
