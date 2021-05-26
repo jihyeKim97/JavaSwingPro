@@ -424,7 +424,7 @@ public class SignUp extends JFrame {
 				String UserDoB = txt_DoB.getText();
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
 				DB_UserInfo newUI = new DB_UserInfo(UserId, UserPw, UserName, Gender, UserPhoneNum, MEMBER, UserDoB);
-				boolean r = mgr.insertNewMember();
+				boolean r = mgr.insertNewMember(Dbui);
 				if (r) {
 					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
 				} else JOptionPane.showMessageDialog(null, "회원 가입 실패! ");
