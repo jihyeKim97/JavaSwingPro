@@ -8,13 +8,18 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
 import template.Application.controller.RoundedButtonD;
+
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,27 +30,9 @@ public class Reservation_step1 extends JFrame {
 
 	private JPanel contentPane;
 	Reservation_step1 reserStfrm;
+	Main mainfrm;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Reservation_step1 frame = new Reservation_step1();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Reservation_step1() {
+	public Reservation_step1(Main mainfrm) {
 		this.reserStfrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 950);
@@ -150,116 +137,117 @@ public class Reservation_step1 extends JFrame {
 		screen.add(lblNewLabel_2);
 
 		JPanel seat_number = new JPanel();
-		seat_number.setBounds(10, 40, 422, 257);
+		seat_number.setBounds(10, 35, 422, 257);
 		seat_detail.add(seat_number);
 		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
+		JButton A_1, A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1,
+				D_2, D_3, D_4, D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
-		JPanel A_1 = new JPanel();
+		A_1 = new JButton();
 		seat_number.add(A_1);
 
-		JPanel A_2 = new JPanel();
+		A_2 = new JButton();
 		seat_number.add(A_2);
 
-		JPanel A_3 = new JPanel();
+		A_3 = new JButton();
 		seat_number.add(A_3);
 
-		JPanel A_4 = new JPanel();
+		A_4 = new JButton();
 		seat_number.add(A_4);
 
-		JPanel A_5 = new JPanel();
+		A_5 = new JButton();
 		seat_number.add(A_5);
 
-		JPanel A_6 = new JPanel();
+		A_6 = new JButton();
 		seat_number.add(A_6);
 
-		JPanel B_1 = new JPanel();
+		B_1 = new JButton();
 		seat_number.add(B_1);
 
-		JPanel B_2 = new JPanel();
+		B_2 = new JButton();
 		seat_number.add(B_2);
 
-		JPanel B_3 = new JPanel();
+		B_3 = new JButton();
 		seat_number.add(B_3);
 
-		JPanel B_4 = new JPanel();
+		B_4 = new JButton();
 		seat_number.add(B_4);
 
-		JPanel B_5 = new JPanel();
+		B_5 = new JButton();
 		seat_number.add(B_5);
 
-		JPanel B_6 = new JPanel();
+		B_6 = new JButton();
 		seat_number.add(B_6);
 
-		JPanel C_1 = new JPanel();
+		C_1 = new JButton();
 		seat_number.add(C_1);
 
-		JPanel C_2 = new JPanel();
+		C_2 = new JButton();
 		seat_number.add(C_2);
 
-		JPanel C_3 = new JPanel();
+		C_3 = new JButton();
 		seat_number.add(C_3);
 
-		JPanel C_4 = new JPanel();
+		C_4 = new JButton();
 		seat_number.add(C_4);
 
-		JPanel C_5 = new JPanel();
+		C_5 = new JButton();
 		seat_number.add(C_5);
 
-		JPanel C_6 = new JPanel();
+		C_6 = new JButton();
 		seat_number.add(C_6);
 
-		JPanel D_1 = new JPanel();
+		D_1 = new JButton();
 		seat_number.add(D_1);
-
-		JPanel D_2 = new JPanel();
+		D_2 = new JButton();
 		seat_number.add(D_2);
 
-		JPanel D_3 = new JPanel();
+		D_3 = new JButton();
 		seat_number.add(D_3);
 
-		JPanel D_4 = new JPanel();
+		D_4 = new JButton();
 		seat_number.add(D_4);
 
-		JPanel D_5 = new JPanel();
+		D_5 = new JButton();
 		seat_number.add(D_5);
 
-		JPanel D_6 = new JPanel();
+		D_6 = new JButton();
 		seat_number.add(D_6);
 
-		JPanel E_1 = new JPanel();
+		E_1 = new JButton();
 		seat_number.add(E_1);
 
-		JPanel E_2 = new JPanel();
+		E_2 = new JButton();
 		seat_number.add(E_2);
 
-		JPanel E_3 = new JPanel();
+		E_3 = new JButton();
 		seat_number.add(E_3);
 
-		JPanel E_4 = new JPanel();
+		E_4 = new JButton();
 		seat_number.add(E_4);
 
-		JPanel E_5 = new JPanel();
+		E_5 = new JButton();
 		seat_number.add(E_5);
 
-		JPanel E_6 = new JPanel();
+		E_6 = new JButton();
 		seat_number.add(E_6);
 
-		JPanel F_1 = new JPanel();
+		F_1 = new JButton();
 		seat_number.add(F_1);
 
-		JPanel F_2 = new JPanel();
+		F_2 = new JButton();
 		seat_number.add(F_2);
 
-		JPanel F_3 = new JPanel();
+		F_3 = new JButton();
 		seat_number.add(F_3);
 
-		JPanel F_4 = new JPanel();
+		F_4 = new JButton();
 		seat_number.add(F_4);
 
-		JPanel F_5 = new JPanel();
+		F_5 = new JButton();
 		seat_number.add(F_5);
 
-		JPanel F_6 = new JPanel();
+		F_6 = new JButton();
 		seat_number.add(F_6);
 
 		JPanel option = new JPanel();
@@ -313,7 +301,7 @@ public class Reservation_step1 extends JFrame {
 				Point fPt = reserStfrm.getLocationOnScreen();
 				reserStep2.setLocation(fPt.x + reserStep2.getWidth() + 20, fPt.y);
 				reserStep2.setVisible(true);
-				
+
 			}
 		});
 		btn_payment.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
@@ -389,7 +377,7 @@ public class Reservation_step1 extends JFrame {
 		header.setLayout(null);
 		header.setBackground(new Color(169, 169, 169));
 
-		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		RoundedButtonD roundedButtonD = new RoundedButtonD("PREV");
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

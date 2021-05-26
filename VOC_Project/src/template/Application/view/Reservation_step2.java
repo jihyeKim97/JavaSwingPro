@@ -250,10 +250,10 @@ public class Reservation_step2 extends JFrame {
 		header.setLayout(null);
 		header.setBackground(new Color(169, 169, 169));
 
-		roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD = new RoundedButtonD("PREV");
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 20));
