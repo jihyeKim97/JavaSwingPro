@@ -16,6 +16,7 @@ public class Notice_DB {
 //			for (int i = 0; i < NoticeArr.size(); i++) {
 //				System.out.println(NoticeArr.get(i));
 //			}
+			
 		}
 		
 	DB_Connect connect;
@@ -52,7 +53,8 @@ public class Notice_DB {
 		return NoticeArr;
 	}
 	
-	public boolean changeViewCount(String title, int viewCount) {
+	public boolean changeViewCount(String title, int Count) {
+		
 		DB_Connect connect = null;
 		Notice NM;
 		Notice_data Notice;
@@ -62,7 +64,7 @@ public class Notice_DB {
 			String sql = "UPDATE NOTICE SET viewcount = ? WHERE title = ?";
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				pstmt.setInt(1, viewCount);
+				pstmt.setInt(1, Count);
 				pstmt.setString(2, title);
 				int rs = pstmt.executeUpdate();
 				if( rs == 1 ) {
