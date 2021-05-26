@@ -65,9 +65,9 @@ public class SignUp extends JFrame {
 	DB_Connect dbc;
 	
 	
-//	public SignUp() {
-//		this.conn = DB_Connect.getConn();
-//	}
+	public SignUp() {
+		this.conn = DB_Connect.getConn();
+	}
 	
 	/**
 	 * Launch the application.
@@ -94,7 +94,7 @@ public class SignUp extends JFrame {
 	
 	public SignUp(Login mln) {
 
-		this.mln = mln;
+		this.mgr = new DB_UserDbMgr();
 
 //
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
@@ -424,9 +424,10 @@ public class SignUp extends JFrame {
 				String UserDoB = txt_DoB.getText();
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
 				DB_UserInfo newUI = new DB_UserInfo(UserId, UserPw, UserName, Gender, UserPhoneNum, MEMBER, UserDoB);
-				boolean r = mgr.insertNewMember(newUI);
-				JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
-				dispose();
+				boolean r = mgr.insertNewMember();
+				if (r) {
+					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+				} else JOptionPane.showMessageDialog(null, "회원 가입 실패! ");
 			}
 	
 		});

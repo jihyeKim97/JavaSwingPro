@@ -25,7 +25,7 @@ public class DB_UserDbMgr {
 		public boolean insertNewMember(DB_UserInfo ui) {
 			if (this.conn != null && ui != null) {
 				String sql 
-						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, ?,? )";
+						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, '0',? )";
 				System.out.println(sql); 
 				try {
 	//
@@ -36,8 +36,8 @@ public class DB_UserDbMgr {
 					pstmt.setString(3, ui.getUserPw());
 					pstmt.setString(4, ui.getUserName());
 					pstmt.setInt(5, ui.getGender());
-					pstmt.setInt(6, ui.getIsMember());
-					pstmt.setString(7,ui.getUserPhoneNum());
+					pstmt.setString(6, ui.getUserPhoneNum());
+					pstmt.setInt(7,ui.getIsMember());
 					pstmt.setString(8, ui.getUserDoB());
 					int r = pstmt.executeUpdate(); // 전송
 	// 데이터 변화(DML insert, update, delete)
@@ -62,7 +62,7 @@ public class DB_UserDbMgr {
 						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,birthday) VALUES (" + "VOCPRO_SEQ.nextval, '" +
 								ui.getId() + "', "+ ui.getUserId() + "', " + "'"
 								+ ui.getUserPw() + "', '" + ui.getUserName() + "'" + ", " + ui.getGender() + "', '"
-								+ ui.getIsMember() + "', " + ui.getUserPhoneNum() + "', '" + ui.getUserDoB() + "'";
+								+ ui.getUserPhoneNum() + "', " + ui.getIsMember() + "', '" + ui.getUserDoB() + "'";
 				System.out.println(sql);
 				try {
 					Statement stmt = conn.createStatement();
@@ -149,13 +149,13 @@ public class DB_UserDbMgr {
 					String userDoB= rs.getString("");
 
 					DB_UserInfo ui 
-					= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+				= new DB_UserInfo(rs.getInt("MEMBER_ID"),
 							rs.getString("ID"), 
 							rs.getString("PASSWORD"),
 							rs.getString("NAME"),
 							rs.getInt("GENDER"),
-							rs.getInt("IS_MEMBER"),
 							rs.getString("PHONE_NUMBER"),
+							rs.getInt("IS_MEMBER"),
 							rs.getString("BIRTHDAY"));
 					
 				uiList.add(ui);
@@ -181,14 +181,14 @@ public class DB_UserDbMgr {
 				ResultSet rs = stmt.executeQuery(sql);
 				if( rs.next() ) { // 한 개의 레코드만...
 					DB_UserInfo ui 
-					= new DB_UserInfo(rs.getInt("MEMBER_ID"),
+				= new DB_UserInfo(rs.getInt("MEMBER_ID"),
 							rs.getString("ID"), 
 							rs.getString("PASSWORD"),
 							rs.getString("NAME"),
 							rs.getInt("GENDER"),
-							rs.getInt("ISMEMBER"),
-							rs.getString("PHONENUM"),
-							rs.getString("userPhoneNum"));
+							rs.getString("PHONE_NUMBER"),
+							rs.getInt("IS_MEMBER"),
+							rs.getString("BIRTHDAY"));
 					return ui;
 				} else {
 					System.out.println(dbui + 
@@ -210,7 +210,7 @@ public class DB_UserDbMgr {
 //			
 				PreparedStatement pstmt =
 							conn.prepareStatement(sql);
-				pstmt.setString(2, usid);				
+				pstmt.setString(2, usid);
 				ResultSet rs = pstmt.executeQuery();
 				if( rs.next() ) { 
 					DB_UserInfo ui 
@@ -219,9 +219,9 @@ public class DB_UserDbMgr {
 							rs.getString("PASSWORD"),
 							rs.getString("NAME"),
 							rs.getInt("GENDER"),
-							rs.getInt("ISMEMBER"),
-							rs.getString("PHONENUM"),
-							rs.getString("userPhoneNum"));
+							rs.getString("PHONE_NUMBER"),
+							rs.getInt("IS_MEMBER"),
+							rs.getString("BIRTHDAY"));
 					return ui;
 				} else {
 					System.out.println(usid + 
@@ -235,6 +235,39 @@ public class DB_UserDbMgr {
 		}		
 		return null;
 	}
+	
+	public  boolean insertNewMember(
+            String name, String login,
+            String pw, int gender, int age,
+            String email, String address, String phn) {
+        if( this.conn != null ) {
+            String sql 
+            = "INSERT INTO members VALUES ("
+              + "MEMBERS_SEQ.nextval, '"+name+"', "
+              + "'"+login+"', '"+pw+"'" + 
+                ", "+gender+", "+age+", 1000, sysdate, "
+              + "'" + login + "', '" + address + "', '" + phn + "')";
+            System.out.println(sql);
+            try {
+                Statement stmt = conn.createStatement();
+                int r = stmt.executeUpdate(sql); 
+                if( r == 1 ) {
+                    System.out.println("DBMgr: 회원 가입 성공! "
+                            + login);
+                } else {
+                    System.out.println("DBMgr: 회원 가입 실패! " 
+                            + login);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("DB 통신 에러!!");
+        }
+        return false;
+    }
+	
+	
 
 //	- 기존 회원들을 키워드 기반 등으로 조건으로 검색 할 수 있다. R
 	
@@ -326,7 +359,7 @@ public class DB_UserDbMgr {
 //			System.out.println("... 로그인!!");
 	}
 //		
-//		DB_Connect.endConnection();
+	//DB_Connect.endConnection();
 }
 
 

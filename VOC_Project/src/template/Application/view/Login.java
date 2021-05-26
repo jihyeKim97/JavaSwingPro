@@ -33,7 +33,8 @@ public class Login extends JFrame {
 	public JFrame frmVoc;
 	public JTextField txt_id;
 	public JPasswordField txt_pw;
-
+	Login ln;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -116,21 +117,21 @@ public class Login extends JFrame {
 				case DB_Connect2.LOGIN_SUCCESS:
 					break;
 				case DB_Connect2.LOGIN_FAIL_NOT_FOUND:
-					JOptionPane.showMessageDialog(null, "·Î±×ÀÎ È¸¿ø °èÁ¤¸í ¾øÀ½!!");
+					JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 					break;
 				case DB_Connect2.LOGIN_FAIL_PW_MISMATCH:
-					JOptionPane.showMessageDialog(null, "·Î±×ÀÎ ¾ÏÈ£°¡ ºÒÀÏÄ¡!!");
+					JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡!!");
 					break;
 				case DB_Connect2.LOGIN_ERROR:	
-					JOptionPane.showMessageDialog(null, "·Î±×ÀÎ ÀÎÁõ ÀÔ·Â/DB¿¡·¯!!");
+					JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½/DBï¿½ï¿½ï¿½ï¿½!!");
 					break;	
 				default:
-					System.out.println("¹ÌÁö¿ø!!");
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!!");
 					break;
 				}
 			}
 		});
-		btn_Login.setFont(new Font("±¼¸²", Font.BOLD, 16));
+		btn_Login.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 16));
 		btn_Login.setForeground(SystemColor.desktop);
 		btn_Login.setBackground(Color.BLUE);
 		btn_Login.setBounds(401, 209, 112, 74);
@@ -145,9 +146,9 @@ public class Login extends JFrame {
 		lb_FindID.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("¾ÆÀÌµð Ã£±â ´©¸§");
+				System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				
-				lb_FindID.setOpaque(true);// ¹è°æ ºÒÅõ¸íµµ Á¶Á¤
+				lb_FindID.setOpaque(true);// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
 			}
 			@Override
@@ -159,7 +160,7 @@ public class Login extends JFrame {
 				lb_FindID.setForeground(Color.black);
 			}
 		});
-		lb_FindID.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		lb_FindID.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
 		lb_FindID.setBounds(204, 293, 46, 25);
 		panel.add(lb_FindID);
 		
@@ -167,9 +168,12 @@ public class Login extends JFrame {
 		lb_SignUp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("È¸¿ø°¡ÀÔ ´©¸§");
-				lb_SignUp.setOpaque(true);// ¹è°æ ºÒÅõ¸íµµ Á¶Á¤
+				System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+				lb_SignUp.setOpaque(true);// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				lb_SignUp.setBackground(Color.LIGHT_GRAY);
+				SignUp su = new SignUp(ln);
+				su.setVisible(true);
+				
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -180,7 +184,7 @@ public class Login extends JFrame {
 				lb_SignUp.setForeground(Color.black);
 			}
 		});
-		lb_SignUp.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		lb_SignUp.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
 		lb_SignUp.setBounds(401, 293, 56, 25);
 		panel.add(lb_SignUp);
 		
@@ -192,7 +196,7 @@ public class Login extends JFrame {
 		lb_FindPW.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("ºñ¹Ð¹øÈ£ Ã£±â ´©¸§");
+				System.out.println("ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				
 				lb_FindID.setOpaque(true);
 				lb_FindID.setBackground(Color.LIGHT_GRAY);
@@ -206,17 +210,17 @@ public class Login extends JFrame {
 				lb_FindPW.setForeground(Color.black);
 			}
 		});
-		lb_FindPW.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		lb_FindPW.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
 		lb_FindPW.setBounds(256, 293, 56, 25);
 		panel.add(lb_FindPW);
 		
 		JLabel lblNewLabel_5 = new JLabel("/");
-		lblNewLabel_5.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		lblNewLabel_5.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
 		lblNewLabel_5.setBounds(247, 279, 13, 52);
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("\uCC3E\uAE30");
-		lblNewLabel_6.setFont(new Font("±¼¸²", Font.BOLD, 13));
+		lblNewLabel_6.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
 		lblNewLabel_6.setBounds(314, 298, 30, 15);
 		panel.add(lblNewLabel_6);
 	}

@@ -14,21 +14,21 @@ public class DB_UserInfo {
 	private String userPw;
 	private	String userName;
 	private int gender;
-	private int isMember;
 	private String userPhoneNum;
+	private int isMember;
 	private	String userDoB;
 	
-
-	public DB_UserInfo(int id, String userId, String userPw, String userName, int gender, int isMember,
-			String userPhoneNum, String userDoB) {
+	
+	public DB_UserInfo(int id, String userId, String userPw, String userName, int gender, String userPhoneNum,
+			int isMember, String userDoB) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
 		this.gender = gender;
-		this.isMember = isMember;
 		this.userPhoneNum = userPhoneNum;
+		this.isMember = isMember;
 		this.userDoB = userDoB;
 	}
 	
@@ -42,8 +42,8 @@ public class DB_UserInfo {
 		this.userPw = userPw;
 		this.userName = userName;
 		this.gender = gender;
-		this.isMember = isMember;
 		this.userPhoneNum = userPhoneNum;
+		this.isMember = isMember;
 		this.userDoB = userDoB;
 	}
 
@@ -100,16 +100,6 @@ public class DB_UserInfo {
 	}
 
 
-	public int getIsMember() {
-		return isMember;
-	}
-
-
-	public void setIsMember(int isMember) {
-		this.isMember = isMember;
-	}
-
-
 	public String getUserPhoneNum() {
 		return userPhoneNum;
 	}
@@ -117,6 +107,16 @@ public class DB_UserInfo {
 
 	public void setUserPhoneNum(String userPhoneNum) {
 		this.userPhoneNum = userPhoneNum;
+	}
+
+
+	public int getIsMember() {
+		return isMember;
+	}
+
+
+	public void setIsMember(int isMember) {
+		this.isMember = isMember;
 	}
 
 
@@ -128,16 +128,4 @@ public class DB_UserInfo {
 	public void setUserDoB(String userDoB) {
 		this.userDoB = userDoB;
 	}
-
-
-
-
-	@Override
-	public String toString() {
-		return "DB_UserInfo [id=" + id + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
-				+ ", gender=" + gender + ", isMember=" + isMember + ", userPhoneNum=" + userPhoneNum + ", userDoB="
-				+ userDoB + "]";
 	}
-
-
-}
