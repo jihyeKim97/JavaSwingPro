@@ -10,11 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 
 public class DB_Connect2 {
 
+	Login_data ld;
 	static Connection conn;
 	public static final int LOGIN_SUCCESS = 1;
 	public static final int LOGIN_FAIL_PW_MISMATCH = 2;
@@ -27,6 +27,34 @@ public class DB_Connect2 {
 
 	public DB_Connect2() {
 		this.conn = OracleDBUtil.getConn();
+	}
+	
+	public boolean insertNewMember(int member_id,String id,String password,String name,int gender,
+									String phone_number,int is_member, String birthday) {
+		if (this.conn != null) {
+			String sql 
+					= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (" + "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, '0',? )";
+			System.out.println(sql); 
+			try {
+//
+				PreparedStatement pstmt = conn.prepareStatement(sql); // ì‚¬ì „ë¬¸ì¥ì¤€ë¹„
+// ?ì„œì‹ìì˜ ìˆœì„œ, ê°œìˆ˜, íƒ€ì… set...
+				
+				int r = pstmt.executeUpdate(); // ì „ì†¡
+// ë°ì´í„° ë³€í™”(DML insert, update, delete)
+// ë³€í™” ì—†ì´ ë‹¨ìˆœ ë°ì´í„° ì¡°íšŒëŠ” stmt.executeQuery() select
+				if (r == 1) {
+					System.out.println("DBMgr: íšŒì› ê°€ì… ì„±ê³µ! " + id);
+				} else {
+					System.out.println("DBMgr: íšŒì› ê°€ì… ì‹¤íŒ¨! " + id);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB í†µì‹  ì—ëŸ¬!!");
+		}
+		return false;
 	}
 
 	public static void select() throws SQLException {
@@ -47,15 +75,15 @@ public class DB_Connect2 {
 			Date birthday = rs.getDate("birthday");
 
 			if (is_member == 0) {
-				ism = "È¸¿ø";
+				ism = "È¸ï¿½ï¿½";
 			} else {
-				ism = "°ü¸®ÀÚ";
+				ism = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 			}
 
 			if (gender == 1) {
-				gen = "¿©";
+				gen = "ï¿½ï¿½";
 			} else {
-				gen = "³²";
+				gen = "ï¿½ï¿½";
 			}
 			System.out.println(member_id 
 								+ " " + id 
@@ -87,10 +115,10 @@ public class DB_Connect2 {
 				pstmt.setString(4, name);
 				int rs = pstmt.executeUpdate();
 				if( rs == 1) {
-					System.out.println("db ºñ¹Ğ¹øÈ£ º¯°æ ¼º°ø");
+					System.out.println("db ï¿½ï¿½Ğ¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					return true;
 				} else {
-					System.out.println("db ºñ¹Ğ¹øÈ£ º¯°æ ½ÇÆĞ");
+					System.out.println("db ï¿½ï¿½Ğ¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -115,16 +143,16 @@ public class DB_Connect2 {
 													rs.getInt("gender"),
 													rs.getInt("phone_number"),
 													rs.getInt("is_member"),
-													rs.getDate("birthday"));
+													rs.getString("birthday"));
 					return mb;
 				} else {
-					System.out.println(mbLogin + " ·Î±×ÀÎ¸íÀÇ È¸¿ø ·¹ÄÚµå Á¶È¸ DB ¿¡·¯!");
+					System.out.println(mbLogin + " ï¿½Î±ï¿½ï¿½Î¸ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½È¸ DB ï¿½ï¿½ï¿½ï¿½!");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB Åë½Å ¿¡·¯!!");
+			System.out.println("DB ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 		}
 		return null;
 	}
@@ -145,16 +173,16 @@ public class DB_Connect2 {
 													rs.getInt("gender"),
 													rs.getInt("phone_number"),
 													rs.getInt("is_member"),
-													rs.getDate("birthday"));
+													rs.getString("birthday"));
 					return mb;
 				} else {
-					System.out.println(mbname + " ·Î±×ÀÎ¸íÀÇ È¸¿ø ·¹ÄÚµå Á¶È¸ DB ¿¡·¯!");
+					System.out.println(mbname + " ï¿½Î±ï¿½ï¿½Î¸ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½È¸ DB ï¿½ï¿½ï¿½ï¿½!");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB Åë½Å ¿¡·¯!!");
+			System.out.println("DB ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 		}
 		return null;
 	}
@@ -162,7 +190,7 @@ public class DB_Connect2 {
 
 	public int loginProcess(String login, String pw) {
 		if (login == null || pw == null || login.isEmpty() || pw.isEmpty()) {
-			System.out.println("·Î±×ÀÎ ÀÎÁõ¿¡ ´ëÇÑ ÀÔ·Â ¿¡·¯!!");
+			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 			return LOGIN_ERROR;
 		}
 		if (this.conn != null) {
@@ -171,22 +199,22 @@ public class DB_Connect2 {
 				String mbPw = mb.getPassword();
 				if (mbPw != null && !mbPw.isEmpty()) {
 					if (mbPw.equals(pw)) {
-						System.out.println("·Î±×ÀÎ ÀÎÁõ ¼º°ø!!");
+						System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 						return LOGIN_SUCCESS;
 					} else {
-						System.out.println("¾ÏÈ£ ºÒÀÏÄ¡!!");
+						System.out.println("ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½Ä¡!!");
 						return LOGIN_FAIL_PW_MISMATCH;
 					}
 				} else {
-					System.out.println("·Î±×ÀÎ ÀÎÁõ¿¡ ´ëÇÑ PW ¿¡·¯!!");
+					System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PW ï¿½ï¿½ï¿½ï¿½!!");
 					return LOGIN_ERROR;
 				}
 			} else {
-				System.out.println("Àß¸øµÈ ·Î±×ÀÎ ÀÌ¸§ÀÌ°Å³ª ¾ø´Â È¸¿ø!");
+				System.out.println("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½Ì°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½!");
 				return LOGIN_FAIL_NOT_FOUND;
 			}
 		} else {
-			System.out.println("DB Åë½Å ¿¡·¯!!");
+			System.out.println("DB ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 		}
 		return LOGIN_ERROR;
 	}
@@ -205,7 +233,7 @@ public class DB_Connect2 {
 				if (mbPhn != 0) {
 					if (mbPhn == Phn) {
 						String mblogin = mb.getId();
-						JOptionPane.showMessageDialog(null, mblogin + "ÀÔ´Ï´Ù.");
+						JOptionPane.showMessageDialog(null, mblogin + "ï¿½Ô´Ï´ï¿½.");
 						return FIND_SUCCESS;
 					} else {
 						return PHN_MISMATCH;
@@ -217,7 +245,7 @@ public class DB_Connect2 {
 				return FIND_ERROR;
 			}
 		} else {
-			System.out.println("DB Åë½Å ¿¡·¯!!");
+			System.out.println("DB ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 		}
 		return FIND_ERROR;
 	}
@@ -252,7 +280,7 @@ public class DB_Connect2 {
 						if (mbname.equals(name)) {
 							String setpassword = setPassword(8);
 							boolean mb1 = changeBypass(setpassword, login, Phn, name);
-							JOptionPane.showMessageDialog(null, setpassword + "ÀÔ´Ï´Ù.");
+							JOptionPane.showMessageDialog(null, setpassword + "ï¿½Ô´Ï´ï¿½.");
 							return FIND_SUCCESS;
 						}
 					} else {
@@ -265,7 +293,7 @@ public class DB_Connect2 {
 				return FIND_ERROR;
 			}
 		} else {
-			System.out.println("DB Åë½Å ¿¡·¯!!");
+			System.out.println("DB ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 		}
 		return FIND_ERROR;
 	}
@@ -275,5 +303,10 @@ public class DB_Connect2 {
 
 		OracleDBUtil.endConnection();
 
+	}
+
+	public boolean insertNewMember(Login_data newlndt) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

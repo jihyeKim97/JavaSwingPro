@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.GUICalendarFrame;
+import template.Application.controller.Login_data;
 
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -37,6 +38,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import template.Application.controller.DB_Connect;
+import template.Application.controller.DB_Connect2;
 import template.Application.controller.DB_UserInfo;
 import template.Application.controller.DB_UserDbMgr;
 
@@ -59,11 +61,12 @@ public class SignUp extends JFrame {
 	GUICalendarFrame frm;
 	Login mln;
 	Connection conn;
-	DB_UserInfo Dbui;
-	DB_UserDbMgr mgr;
+	DB_UserInfo dbui;
+	DB_Connect2 dbc2;
 	JLabel lb_NoDup;
 	DB_Connect dbc;
-	
+	Login_data lndt;
+	DB_UserDbMgr mgr;
 	
 	public SignUp() {
 		this.conn = DB_Connect.getConn();
@@ -94,12 +97,12 @@ public class SignUp extends JFrame {
 	
 	public SignUp(Login mln) {
 
-		this.mgr = new DB_UserDbMgr();
+		this.dbc2 = new DB_Connect2();
 
 //
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
 		setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 578, 618);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -372,22 +375,22 @@ public class SignUp extends JFrame {
 		txt_phone3.setColumns(10);
 
 		JButton btn_DupCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
-		btn_DupCheck.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String inLogin = txt_userId.getText();
-				DB_UserInfo mb = mgr.selectOneMemberByUserId(inLogin);
-					if( !mb.equals(inLogin) ) { // 사용가능
-						bLoginAvail = true;// 일단 더미 중복x
-						JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
-					
-					} else {
-						bLoginAvail = false;
-						JOptionPane.showMessageDialog(null, "사용불가능한 id 입니다");
-						
-					}			
-			}
-		});
+		//btn_DupCheck.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				String inLogin = txt_userId.getText();
+//				Login_data ld = dbc2.selectOneMemberByLogin(inLogin); 
+//						if( !ld.equals(inLogin) ) { // 사용가능
+//						bLoginAvail = true;// 일단 더미 중복x
+//						JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
+//					
+//					} else {
+//						bLoginAvail = false;
+//						JOptionPane.showMessageDialog(null, "사용불가능한 id 입니다");
+//						
+//					}			
+//			}
+//		});
 		
 		btn_DupCheck.setFont(new Font("굴림", Font.PLAIN, 14));
 		btn_DupCheck.setBounds(454, 73, 96, 36);
@@ -417,14 +420,17 @@ public class SignUp extends JFrame {
 				//회원가입 DB
 				//insertNewMember(String UserId, String UserPw, String UserName, int Gender, Date UserDoB,
 //				String UserEmail, int UserPhoneNum)
+				
 				String UserId = txt_userId.getText();
 				String UserPw = new String (pwf_userPw1.getPassword());
 				String UserName = txt_userId.getText();
 				int Gender = rd_Female.isSelected() ? DB_UserInfo.GENDER_FEMALE: DB_UserInfo.GENDER_MALE;
 				String UserDoB = txt_DoB.getText();
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
-				DB_UserInfo newUI = new DB_UserInfo(UserId, UserPw, UserName, Gender, UserPhoneNum, MEMBER, UserDoB);
-				boolean r = mgr.insertNewMember(Dbui);
+				DB_UserInfo newUI = new DB_UserInfo(UserId, UserPw, 
+						UserName, Gender, UserPhoneNum, UserDoB);
+
+				boolean r = mgr.insertNewMember(newUI);
 				if (r) {
 					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
 				} else JOptionPane.showMessageDialog(null, "회원 가입 실패! ");

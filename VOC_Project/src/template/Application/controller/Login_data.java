@@ -1,6 +1,5 @@
 package template.Application.controller;
 
-import java.util.Date;
 
 public class Login_data {
 
@@ -11,7 +10,9 @@ public class Login_data {
 	private int gender;
 	private int phone_number;
 	private int is_member;
-	private Date birthday;
+	private String birthday;
+	
+	
 	
 	
 	
@@ -46,8 +47,8 @@ public class Login_data {
 
 
 
-	public Login_data(int member_id, String id, String password, String name, int gender, int phone_number, int is_member,
-			Date birthday) {
+	public Login_data(int member_id, String id, String password, String name, int gender, int phone_number,
+			int is_member, String birthday) {
 		super();
 		this.member_id = member_id;
 		this.id = id;
@@ -91,8 +92,8 @@ public class Login_data {
 
 
 
-	public void setPassword(String passward) {
-		this.password = passward;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
@@ -145,13 +146,13 @@ public class Login_data {
 
 
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
 
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -159,15 +160,11 @@ public class Login_data {
 
 	@Override
 	public String toString() {
-		return "data [member_id=" + member_id + ", id=" + id + ", password=" + password + ", name=" + name + ", gender="
-				+ gender + ", phone_number=" + phone_number + ", is_member=" + is_member + ", birthday=" + birthday
-				+ "]";
+		return "Login_data [member_id=" + member_id + ", id=" + id + ", password=" + password + ", name=" + name
+				+ ", gender=" + gender + ", phone_number=" + phone_number + ", is_member=" + is_member + ", birthday="
+				+ birthday + "]";
 	}
-	
-	
-	
-	
-	
-	
-	}
+}
+
+
 
