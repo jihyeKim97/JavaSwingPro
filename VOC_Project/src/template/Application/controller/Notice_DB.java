@@ -8,9 +8,13 @@ import java.util.ArrayList;
 import template.Application.view.Notice;
 
 public class Notice_DB {
+	static ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 		
 		public static void main(String[] args) {
-			
+//			takeNoticetitle();
+//			for (int i = 0; i < NoticeArr.size(); i++) {
+//				System.out.println(NoticeArr.get(i));
+//			}
 		}
 		
 	DB_Connect connect;
@@ -23,7 +27,6 @@ public class Notice_DB {
 		Notice_data Notice;
 		
 		connect.beginConnection();
-		ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 		// DB에서 정보 가져오기
 		if (connect.conn != null) {
 			String sql = "SELECT * FROM notice";
@@ -45,7 +48,6 @@ public class Notice_DB {
 
 		}
 		connect.endConnection();
-		
 		return NoticeArr;
 	}
 	

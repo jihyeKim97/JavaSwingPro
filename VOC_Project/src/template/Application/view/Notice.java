@@ -21,6 +21,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JToolBar;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTable;
 import javax.swing.BoxLayout;
@@ -136,7 +137,7 @@ public class Notice extends JFrame {
 		lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Notice_Location NL = new Notice_Location(NM);
+				Locaiton NL = new Locaiton(NM);
 				NL.setVisible(true);
 			}
 		});
@@ -155,15 +156,14 @@ public class Notice extends JFrame {
 			lbNotice.setFont(new Font("굴림", Font.BOLD, 25));
 			LineBorder Line = new LineBorder(Color.RED,3);
 			lbNotice.setBorder(Line);
+			Notice_data NB = NoticeArray.get(i);
 			lbNotice.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					for (int j = 0; j <NM.NoticeArray.size(); j++) {
-					Notice_data NB = NM.NoticeArray.get(j);
 					ND = new Notice_Detail(NM, NB);
 					ND.setVisible(true);
 					}
-				}
+				
 			});
 			lbNotice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
 			pn_NoticeMain.add(lbNotice);
@@ -196,22 +196,23 @@ public class Notice extends JFrame {
 
 }
 
-//class Notice_Location extends JDialog {
-//
-//	
-//	JPanel pn_Location;
-//	Notice NM;
-//
-//	public Notice_Location(Notice NM) {
-//		this.NM = NM;
-//		setBounds(100, 100, 450, 300);
-//		getContentPane().setLayout(new BorderLayout());
-//		pn_Location.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		getContentPane().add(pn_Location, BorderLayout.CENTER);
-//		pn_Location.setLayout(new BorderLayout(0, 0));
-//		
-//		JLabel lblNewLabel = new JLabel("");
-//		pn_Location.add(lblNewLabel, BorderLayout.CENTER);
-//	}
-//
-//}
+class Locaiton extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	Notice Notice;
+
+	public Locaiton(Notice Notice) {
+		this.Notice = Notice;
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(new BorderLayout(0, 0));
+		{
+			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setIcon(new ImageIcon("./template/Reference/icons/VOC.png"));
+			contentPanel.add(lblNewLabel, BorderLayout.CENTER);
+		}
+	}
+
+}

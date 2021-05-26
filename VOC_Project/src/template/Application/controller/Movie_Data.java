@@ -7,7 +7,7 @@ public class Movie_Data {
 	private int moviesid;
 	private String title;
 	private String genre;
-	private String directer;
+	private String director;
 	private int agegroup;
 	private String story;
 	private int averageScore;
@@ -48,14 +48,14 @@ public class Movie_Data {
 
 
 
-	public Movie_Data(int moviesid, String title, String genre, String directer, int agegroup, String story,
+	public Movie_Data(int moviesid, String title, String genre, String director, int agegroup, String story,
 			int averageScore, String gee, Date opendate, String production, String imagefilename, String scheduledate,
 			String runningtime) {
 		super();
 		this.moviesid = moviesid;
 		this.title = title;
 		this.genre = genre;
-		this.directer = directer;
+		this.director = director;
 		this.agegroup = agegroup;
 		this.story = story;
 		this.averageScore = averageScore;
@@ -72,7 +72,7 @@ public class Movie_Data {
 
 	@Override
 	public String toString() {
-		return "Movie_Data [moviesid=" + moviesid + ", title=" + title + ", genre=" + genre + ", directer=" + directer
+		return "Movie_Data [moviesid=" + moviesid + ", title=" + title + ", genre=" + genre + ", director=" + director
 				+ ", agegroup=" + agegroup + ", story=" + story + ", averageScore=" + averageScore + ", gee=" + gee
 				+ ", opendate=" + opendate + ", production=" + production + ", imagefilename=" + imagefilename
 				+ ", scheduledate=" + scheduledate + ", runningtime=" + runningtime + "]";
@@ -123,15 +123,15 @@ public class Movie_Data {
 
 
 
-	public String getDirecter() {
-		return directer;
+	public String getDirector() {
+		return director;
 	}
 
 
 
 
-	public void setDirecter(String directer) {
-		this.directer = directer;
+	public void setDirector(String director) {
+		this.director = director;
 	}
 
 

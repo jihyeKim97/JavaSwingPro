@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.DB_Connect;
+import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
@@ -41,6 +42,7 @@ import javax.swing.JTextField;
 import java.awt.TextField;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class Movie_Informaiton extends JFrame {
 
@@ -99,8 +101,8 @@ public class Movie_Informaiton extends JFrame {
 	private JLabel lb_Year;
 	private JLabel lb_MVYear;
 	private JLabel lblNewLabel_3;
-	private JLabel label_16;
-	private JLabel label_19;
+	private JLabel lb_MovieDate;
+	private JLabel lb_Movietime;
 	private JLabel lb_MovieTitle;
 	private JLabel lb_MovieInfomaiton;
 	private JPanel panel_9;
@@ -109,43 +111,16 @@ public class Movie_Informaiton extends JFrame {
 
 	DB_Connect connect;
 	Movie_Data Movie;
-	ArrayList<Movie_Data> MovieList;
+	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	Main refrm;
 	Movie_Informaiton frm;
 
-	public Movie_Informaiton(Main refrm) {
+	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		this.frm = this;
-		connect.beginConnection();
-		// DB에서 정보 가져오기
-		if (connect.conn != null) {
-			String sql = "select * from Movies";
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
-					int MoviesId = rs.getInt("Movie_id");
-					String Title = rs.getString("Title");
-					String genre = rs.getString("genre");
-					String directer = rs.getString("directer");
-					int ageGroup = rs.getInt("age_group");
-					String story = rs.getString("story");
-					int averageScore = rs.getInt("average_score");
-					String gee = rs.getString("gee");
-					Date openDate = rs.getDate("open_date");
-					String production = rs.getString("production");
-					String imageFileName = rs.getString("image_file_name");
-					String scheduleDate = rs.getString("schedule_date");
-					String runningTime = rs.getString("running_time");
-
-					MovieList.add(new Movie_Data(MoviesId, Title, genre, directer, ageGroup, story, averageScore, gee,
-							openDate, production, imageFileName, scheduleDate, runningTime));
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
+		Movie_DB MDB= new Movie_DB();
+		MovieList = MDB.getMovieData();
+		int PK = 0;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 850);
 		contentPane = new JPanel();
@@ -194,6 +169,11 @@ public class Movie_Informaiton extends JFrame {
 		pn_Poster = new JPanel();
 		pn_Poster.setBounds(10, 10, 180, 240);
 		div_panel.add(pn_Poster);
+		pn_Poster.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("" + MovieList.get(PK).getImagefilename()));
+		pn_Poster.add(lblNewLabel, BorderLayout.CENTER);
 
 		panel_1 = new JPanel();
 		panel_1.setBounds(204, 10, 250, 35);
@@ -236,13 +216,13 @@ public class Movie_Informaiton extends JFrame {
 		lblNewLabel_3.setBounds(23, 10, 20, 15);
 		pn_MovieFirstTime.add(lblNewLabel_3);
 
-		label_16 = new JLabel("05/21");
-		label_16.setBounds(95, 10, 40, 15);
-		pn_MovieFirstTime.add(label_16);
+		lb_MovieDate = new JLabel("05/21");
+		lb_MovieDate.setBounds(95, 10, 40, 15);
+		pn_MovieFirstTime.add(lb_MovieDate);
 
-		label_19 = new JLabel("20:10");
-		label_19.setBounds(184, 8, 40, 15);
-		pn_MovieFirstTime.add(label_19);
+		lb_Movietime = new JLabel("20:10");
+		lb_Movietime.setBounds(184, 8, 40, 15);
+		pn_MovieFirstTime.add(lb_Movietime);
 
 		panel_4 = new JPanel();
 		panel_4.setBounds(10, 266, 464, 360);
@@ -260,7 +240,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Title.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Title);
 
-		lb_MVTitle = new JLabel("New label");
+		lb_MVTitle = new JLabel(MovieList.get(PK).getTitle());
 		lb_MVTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVTitle.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVTitle);
@@ -270,7 +250,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Genre.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Genre);
 
-		lb_MVGenre = new JLabel("New label");
+		lb_MVGenre = new JLabel(MovieList.get(PK).getGee());
 		lb_MVGenre.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVGenre.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVGenre);
@@ -280,7 +260,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Directer.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Directer);
 
-		lb_MVDirecter = new JLabel("New label");
+		lb_MVDirecter = new JLabel(MovieList.get(PK).getDirector());
 		lb_MVDirecter.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVDirecter.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVDirecter);
@@ -290,7 +270,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Age.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Age);
 
-		lb_MVAge = new JLabel("New label");
+		lb_MVAge = new JLabel("" + MovieList.get(PK).getAgegroup());
 		lb_MVAge.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVAge.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVAge);
@@ -300,7 +280,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Rate.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Rate);
 
-		lb_MVRate = new JLabel("New label");
+		lb_MVRate = new JLabel("" + MovieList.get(PK).getAverageScore());
 		lb_MVRate.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVRate.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVRate);
@@ -310,7 +290,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Character.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Character);
 
-		lb_MVCharacter = new JLabel("New label");
+		lb_MVCharacter = new JLabel(MovieList.get(PK).getGee());
 		lb_MVCharacter.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVCharacter.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVCharacter);
@@ -320,7 +300,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Year.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Year);
 
-		lb_MVYear = new JLabel("New label");
+		lb_MVYear = new JLabel("" + MovieList.get(PK).getOpendate());
 		lb_MVYear.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVYear.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVYear);
@@ -330,7 +310,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_producte.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_producte);
 
-		lb_MVProducte = new JLabel("New label");
+		lb_MVProducte = new JLabel(MovieList.get(PK).getProduction());
 		lb_MVProducte.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_MVProducte.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_MVProducte);
@@ -340,7 +320,7 @@ public class Movie_Informaiton extends JFrame {
 		lb_Runningtime.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_7.add(lb_Runningtime);
 
-		JLabel lb_MVRunningTime = new JLabel("New label");
+		JLabel lb_MVRunningTime = new JLabel(MovieList.get(PK).getRunningtime());
 		lb_MVRunningTime.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lb_MVRunningTime.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_7.add(lb_MVRunningTime);

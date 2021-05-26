@@ -47,8 +47,16 @@ public class Notice_Detail extends JFrame {
 			NoticeArr = new ArrayList<>();
 			NoticeArr = NoticeDB.takeNoticetitle();
 			int PK = 0;
-
-//		this.ND = this;
+			int i = Notice.getNoticeid();
+			if ( i == 4 )
+				i = 2;
+			else if( i == 5 )
+				i = 3;
+			else if ( i == 6)
+				i = 4;
+			PK = i - 1;
+			
+			
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
