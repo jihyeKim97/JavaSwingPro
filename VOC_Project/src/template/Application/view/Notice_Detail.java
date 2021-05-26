@@ -42,19 +42,17 @@ public class Notice_Detail extends JFrame {
 	Notice_Detail ND;
 	Notice_data NA;
 
-<<<<<<< HEAD
 	public Notice_Detail(Notice NM, Notice_data Notice) {
 		NA = Notice;
 		Notice_DB NDB = null;
-=======
+
 	public Notice_Detail(Notice NM) {
->>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 		this.NM = NM;
 		this.Notice = Notice;
 		NoticeArr = new ArrayList<>();
 		NoticeArr = NDB.takeNoticetitle();
 		int PK = NA.getNoticeid() - 1;
-		
+
 //		this.ND = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -80,23 +78,20 @@ public class Notice_Detail extends JFrame {
 		pn_Title.setBackground(SystemColor.controlShadow);
 		panel_2.add(pn_Title);
 		pn_Title.setLayout(new BorderLayout(0, 0));
-<<<<<<< HEAD
-		
+
 		String title = NoticeArr.get(PK).getTitle();
 		JLabel lb_Title = new JLabel(title);
 		lb_Title.setFont(new Font("굴림", Font.BOLD, 30));
 		pn_Title.add(lb_Title, BorderLayout.CENTER);
-		
+
 		int ViewCount = NoticeArr.get(PK).getViewcount();
-=======
 
 		String title = NM.Notice.getTitle();
 		JLabel lb_Title = new JLabel(title);
 		lb_Title.setFont(new Font("굴림", Font.BOLD, 30));
 		pn_Title.add(lb_Title, BorderLayout.CENTER);
 
-		int ViewCount = NM.Notice.getViewCount();
->>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
+		int ViewCount = NM.Notice.getViewcount();
 		JLabel lblNewLabel = new JLabel("조회수:" + ViewCount);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		pn_Title.add(lblNewLabel, BorderLayout.SOUTH);
@@ -105,29 +100,25 @@ public class Notice_Detail extends JFrame {
 		pn_Content.setBounds(10, 75, 444, 547);
 		panel_2.add(pn_Content);
 		pn_Content.setLayout(new BorderLayout(0, 0));
-<<<<<<< HEAD
-		
+
 		JTextArea content = new JTextArea();
 		content.setLineWrap(true);
 		content.setText(NoticeArr.get(PK).getContent());
 		content.setFont(new Font("돋움체", Font.ITALIC, 25));
 		content.setEditable(false);
 		pn_Content.add(content, BorderLayout.CENTER);
-		
+
 //		String content = NoticeArr.get(PK).getContent();
 //		JLabel lb_Content = new JLabel("<html>안녕하십니까? <br>저희극장을 이용해주셔서 감사합니다 <br>몇가지 유의사항을 알립니다 <br>다음페이지를 참고 해주세요</html>");
 //		lb_Content.setFont(new Font("굴림", Font.BOLD, 30));
 //		lb_Content.setVerticalAlignment(SwingConstants.TOP);
 //		pn_Content.add(lb_Content, BorderLayout.CENTER);
-		
-=======
 
 		String content = NM.Notice.getContent();
 		JLabel lb_Content = new JLabel(content);
 		lb_Content.setVerticalAlignment(SwingConstants.TOP);
 		pn_Content.add(lb_Content, BorderLayout.CENTER);
 
->>>>>>> 79c08fe064a70d722c9564af6a5db1dc420d1646
 		RoundedButtonD btn_End = new RoundedButtonD("LOGOUT");
 		btn_End.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -165,6 +156,5 @@ public class Notice_Detail extends JFrame {
 		panel.add(roundedButtonD_1);
 
 	}
-
 
 }
