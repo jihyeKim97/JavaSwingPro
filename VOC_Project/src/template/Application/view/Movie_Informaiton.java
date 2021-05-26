@@ -43,6 +43,8 @@ import java.awt.TextField;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 public class Movie_Informaiton extends JFrame {
 
@@ -80,7 +82,6 @@ public class Movie_Informaiton extends JFrame {
 	private JPanel pn_MovieStoryTitle;
 	private JLabel lblNewLabel_1;
 	private JPanel pn_MovieStory;
-	private JLabel lblNewLabel_2;
 	private JPanel pn_MovieFirstTime;
 	private JPanel panel_4;
 	private JPanel panel_7;
@@ -190,6 +191,7 @@ public class Movie_Informaiton extends JFrame {
 		panel_2.setLayout(new BorderLayout(0, 0));
 
 		scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panel_2.add(scrollPane, BorderLayout.CENTER);
 
 		pn_MovieStoryTitle = new JPanel();
@@ -202,10 +204,12 @@ public class Movie_Informaiton extends JFrame {
 		pn_MovieStory = new JPanel();
 		scrollPane.setViewportView(pn_MovieStory);
 		pn_MovieStory.setLayout(new BorderLayout(0, 0));
-
-		lblNewLabel_2 = new JLabel("영화 줄거리");
-		lblNewLabel_2.setVerticalAlignment(SwingConstants.TOP);
-		pn_MovieStory.add(lblNewLabel_2, BorderLayout.CENTER);
+		
+		JTextArea txt_MovieStory = new JTextArea();
+		txt_MovieStory.setText(MovieList.get(PK).getStory());
+		txt_MovieStory.setEditable(false);
+		txt_MovieStory.setLineWrap(true);
+		pn_MovieStory.add(txt_MovieStory, BorderLayout.SOUTH);
 
 		pn_MovieFirstTime = new JPanel();
 		pn_MovieFirstTime.setBounds(204, 57, 250, 35);
