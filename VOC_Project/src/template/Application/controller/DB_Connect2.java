@@ -10,11 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 
 public class DB_Connect2 {
 
-	Login_data ld;
 	static Connection conn;
 	public static final int LOGIN_SUCCESS = 1;
 	public static final int LOGIN_FAIL_PW_MISMATCH = 2;
@@ -27,34 +27,6 @@ public class DB_Connect2 {
 
 	public DB_Connect2() {
 		this.conn = OracleDBUtil.getConn();
-	}
-
-	public boolean insertNewMember(int member_id, String id, String password, String name, int gender,
-			String phone_number, int is_member, String birthday) {
-		if (this.conn != null) {
-			String sql = "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES ("
-					+ "VOCPRO_SEQ.nextval,getId,?, ?, ?, ?, ?, '0',? )";
-			System.out.println(sql);
-			try {
-//
-				PreparedStatement pstmt = conn.prepareStatement(sql); // 사전문장준비
-// ?서식자의 순서, 개수, 타입 set...
-
-				int r = pstmt.executeUpdate(); // 전송
-// 데이터 변화(DML insert, update, delete)
-// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
-				if (r == 1) {
-					System.out.println("DBMgr: 회원 가입 성공! " + id);
-				} else {
-					System.out.println("DBMgr: 회원 가입 실패! " + id);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB 통신 에러!!");
-		}
-		return false;
 	}
 
 	public static void select() throws SQLException {
@@ -75,7 +47,6 @@ public class DB_Connect2 {
 			Date birthday = rs.getDate("birthday");
 
 			if (is_member == 0) {
-
 				ism = "회원";
 			} else {
 				ism = "관리자";
@@ -108,7 +79,6 @@ public class DB_Connect2 {
 				pstmt.setInt(3, phone_number);
 				pstmt.setString(4, name);
 				int rs = pstmt.executeUpdate();
-
 				if (rs == 1) {
 					System.out.println("db 임시비밀번호 발급 성공");
 					return true;
@@ -136,6 +106,7 @@ public class DB_Connect2 {
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
 				} else {
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -160,6 +131,7 @@ public class DB_Connect2 {
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
 				} else {
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -187,9 +159,7 @@ public class DB_Connect2 {
 						System.out.println("암호 불일치");
 						return LOGIN_FAIL_PW_MISMATCH;
 					}
-				} else
-
-				{
+				} else {
 					System.out.println("로그인 인증에 대한 PW 에러!");
 					return LOGIN_ERROR;
 				}
@@ -286,10 +256,5 @@ public class DB_Connect2 {
 
 		OracleDBUtil.endConnection();
 
-	}
-
-	public boolean insertNewMember(Login_data newlndt) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }
