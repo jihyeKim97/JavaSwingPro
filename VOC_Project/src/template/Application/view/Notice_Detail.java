@@ -39,19 +39,14 @@ public class Notice_Detail extends JFrame {
 	Notice NM;
 	Notice_data Notice;
 	ArrayList<Notice_data> NoticeArr;
-	Notice_Detail ND;
-	Notice_data NA;
+	Notice_DB NoticeDB;
 
 	public Notice_Detail(Notice NM, Notice_data Notice) {
-		NA = Notice;
-		Notice_DB NDB = null;
-
-	public Notice_Detail(Notice NM) {
-		this.NM = NM;
-		this.Notice = Notice;
-		NoticeArr = new ArrayList<>();
-		NoticeArr = NDB.takeNoticetitle();
-		int PK = NA.getNoticeid() - 1;
+			this.NM = NM;
+			this.Notice = Notice;
+			NoticeArr = new ArrayList<>();
+			NoticeArr = NoticeDB.takeNoticetitle();
+			int PK = 0;
 
 //		this.ND = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -86,12 +81,6 @@ public class Notice_Detail extends JFrame {
 
 		int ViewCount = NoticeArr.get(PK).getViewcount();
 
-		String title = NM.Notice.getTitle();
-		JLabel lb_Title = new JLabel(title);
-		lb_Title.setFont(new Font("굴림", Font.BOLD, 30));
-		pn_Title.add(lb_Title, BorderLayout.CENTER);
-
-		int ViewCount = NM.Notice.getViewcount();
 		JLabel lblNewLabel = new JLabel("조회수:" + ViewCount);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		pn_Title.add(lblNewLabel, BorderLayout.SOUTH);
@@ -113,11 +102,6 @@ public class Notice_Detail extends JFrame {
 //		lb_Content.setFont(new Font("굴림", Font.BOLD, 30));
 //		lb_Content.setVerticalAlignment(SwingConstants.TOP);
 //		pn_Content.add(lb_Content, BorderLayout.CENTER);
-
-		String content = NM.Notice.getContent();
-		JLabel lb_Content = new JLabel(content);
-		lb_Content.setVerticalAlignment(SwingConstants.TOP);
-		pn_Content.add(lb_Content, BorderLayout.CENTER);
 
 		RoundedButtonD btn_End = new RoundedButtonD("LOGOUT");
 		btn_End.addActionListener(new ActionListener() {

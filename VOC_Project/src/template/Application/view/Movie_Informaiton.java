@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.DB_Connect;
+import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
@@ -107,8 +108,8 @@ public class Movie_Informaiton extends JFrame {
 	private JPanel pn_Review;
 
 	DB_Connect connect;
-	Movie Movie;
-	ArrayList<Movie> MovieList;
+	Movie_Data Movie;
+	ArrayList<Movie_Data> MovieList;
 	Main refrm;
 	Movie_Informaiton frm;
 
@@ -136,7 +137,7 @@ public class Movie_Informaiton extends JFrame {
 					String scheduleDate = rs.getString("schedule_date");
 					String runningTime = rs.getString("running_time");
 
-					MovieList.add(new Movie(MoviesId, Title, genre, directer, ageGroup, story, averageScore, gee,
+					MovieList.add(new Movie_Data(MoviesId, Title, genre, directer, ageGroup, story, averageScore, gee,
 							openDate, production, imageFileName, scheduleDate, runningTime));
 				}
 
