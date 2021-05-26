@@ -391,7 +391,6 @@ public class SignUp extends JFrame {
 				String UserPhoneNum = txt_phone1.getText()+txt_phone2.getText()+txt_phone3.getText();
 				SignUp_data newUI = new SignUp_data(UserId, UserPw, 
 						UserName, Gender, UserPhoneNum, UserDoB);
-
 				boolean r = mgr.insertNewMember(newUI);
 				if (r) {
 					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");

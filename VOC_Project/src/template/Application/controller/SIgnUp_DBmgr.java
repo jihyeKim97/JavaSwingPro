@@ -25,7 +25,7 @@ public class SIgnUp_DBmgr {
 	public boolean insertNewMember(SignUp_data ui) {
 			conn = null;
 			conn.beginConnection();
-			if (conn.conn == null && ui != null) {
+			if (conn.conn == null && ui == null) {
 			//	INSERT INTO member(Member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES 
 			//	(VOCPRO_SEQ.nextval,'jiwon','1234','지원',1,'123123123','0','912154');
 
@@ -319,6 +319,8 @@ public class SIgnUp_DBmgr {
 //	- 회원 통계
 	
 	public static void main(String[] args) {
+		
+	
 	//	DB_UserDbMgr dbmgr = new DB_UserDbMgr();
 //		System.out.println("기존 -----------");
 //		ArrayList<DB_UserInfo> oldList = dbmgr.selectAllMembers();
@@ -327,8 +329,8 @@ public class SIgnUp_DBmgr {
 //		}
 		
 //		System.out.println("레코드 2개 추가....");
-//		dbmgr.insertNewMember(
-//				new DB_UserInfo(1, "olaf4", "1234","올라프", DB_UserInfo.GENDER_MALE, "950116", "0105641234"));
+		SignUp_DBmgr.insertNewMember(
+				new SignUp_data(1, "olaf4", "1234","올라프", SignUp_data.GENDER_MALE, "01012345678", "950116"));
 //		DB_UserInfo newMB = new DB_UserInfo(2, "sven4", "1234",
 //				"스벤", DB_UserInfo.GENDER_MALE,"921021", "01012315462");
 //		dbmgr.insertNewMember(newMB);
