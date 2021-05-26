@@ -47,7 +47,7 @@ public class Movie {
 
 	public Movie(int moviesid, String title, String genre, String directer, int agegroup, String story,
 			int averageScore, String gee, Date opendate, String production, String imagefilename, String scheduledate,
-			String runningtime) {}
+			String runningtime) {
 
 	public Movie(int moviesId, String title, String imageFileName, String scheduleDate) {
 		super();
