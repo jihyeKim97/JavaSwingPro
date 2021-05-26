@@ -47,15 +47,15 @@ public class DB_Connect2 {
 			Date birthday = rs.getDate("birthday");
 
 			if (is_member == 0) {
-				ism = "ȸ��";
+				ism = "회원";
 			} else {
-				ism = "������";
+				ism = "관리자";
 			}
 
 			if (gender == 1) {
-				gen = "��";
+				gen = "여";
 			} else {
-				gen = "��";
+				gen = "남";
 			}
 			System.out.println(member_id + " " + id + " " + password + " " + name + " " + gen + " " + phone_number + " "
 					+ birthday + " " + ism);
@@ -80,10 +80,10 @@ public class DB_Connect2 {
 				pstmt.setString(4, name);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
-					System.out.println("db ��й�ȣ ���� ����");
+					System.out.println("db 임시비밀번호 발급 성공");
 					return true;
 				} else {
-					System.out.println("db ��й�ȣ ���� ����");
+					System.out.println("db 임시비밀번호 발급 실패");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -106,13 +106,13 @@ public class DB_Connect2 {
 							rs.getInt("is_member"), rs.getDate("birthday"));
 					return mb;
 				} else {
-					System.out.println(mbLogin + " �α��θ��� ȸ�� ���ڵ� ��ȸ DB ����!");
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return null;
 	}
@@ -131,20 +131,20 @@ public class DB_Connect2 {
 							rs.getInt("is_member"), rs.getDate("birthday"));
 					return mb;
 				} else {
-					System.out.println(mbname + " �α��θ��� ȸ�� ���ڵ� ��ȸ DB ����!");
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러");
 		}
 		return null;
 	}
 
 	public int loginProcess(String login, String pw) {
 		if (login == null || pw == null || login.isEmpty() || pw.isEmpty()) {
-			System.out.println("�α��� ������ ���� �Է� ����!!");
+			System.out.println("로그인 인증에 대한 입력에러");
 			return LOGIN_ERROR;
 		}
 		if (this.conn != null) {
@@ -153,22 +153,22 @@ public class DB_Connect2 {
 				String mbPw = mb.getPassword();
 				if (mbPw != null && !mbPw.isEmpty()) {
 					if (mbPw.equals(pw)) {
-						System.out.println("�α��� ���� ����!!");
+						System.out.println("로그인 인증 성공!");
 						return LOGIN_SUCCESS;
 					} else {
-						System.out.println("��ȣ ����ġ!!");
+						System.out.println("암호 불일치");
 						return LOGIN_FAIL_PW_MISMATCH;
 					}
 				} else {
-					System.out.println("�α��� ������ ���� PW ����!!");
+					System.out.println("로그인 인증에 대한 PW 에러!");
 					return LOGIN_ERROR;
 				}
 			} else {
-				System.out.println("�߸��� �α��� �̸��̰ų� ���� ȸ��!");
+				System.out.println("잘못된 로그인 이름이거나 없는 회원");
 				return LOGIN_FAIL_NOT_FOUND;
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return LOGIN_ERROR;
 	}
@@ -185,7 +185,7 @@ public class DB_Connect2 {
 				if (mbPhn != 0) {
 					if (mbPhn == Phn) {
 						String mblogin = mb.getId();
-						JOptionPane.showMessageDialog(null, mblogin + "�Դϴ�.");
+						JOptionPane.showMessageDialog(null, mblogin + "입니다.");
 						return FIND_SUCCESS;
 					} else {
 						return PHN_MISMATCH;
@@ -197,7 +197,7 @@ public class DB_Connect2 {
 				return FIND_ERROR;
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return FIND_ERROR;
 	}
@@ -233,7 +233,7 @@ public class DB_Connect2 {
 						if (mbname.equals(name)) {
 							String setpassword = setPassword(8);
 							boolean mb1 = changeBypass(setpassword, login, Phn, name);
-							JOptionPane.showMessageDialog(null, setpassword + "�Դϴ�.");
+							JOptionPane.showMessageDialog(null, setpassword + "입니다.");
 							return FIND_SUCCESS;
 						}
 					} else {
@@ -246,7 +246,7 @@ public class DB_Connect2 {
 				return FIND_ERROR;
 			}
 		} else {
-			System.out.println("DB ��� ����!!");
+			System.out.println("DB 통신 에러!!");
 		}
 		return FIND_ERROR;
 	}
