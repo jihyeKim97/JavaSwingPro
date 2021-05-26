@@ -1,5 +1,6 @@
 package template.Application.controller;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -51,6 +52,32 @@ public class Notice_DB {
 		return NoticeArr;
 	}
 	
+	public boolean changeViewCount(String title, int viewCount) {
+		DB_Connect connect = null;
+		Notice NM;
+		Notice_data Notice;
+		
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "UPDATE NOTICE SET viewcount = ? WHERE title = ?";
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setInt(1, viewCount);
+				pstmt.setString(2, title);
+				int rs = pstmt.executeUpdate();
+				if( rs == 1 ) {
+					System.out.println("조회수 증가 성공");
+					return true;
+				} else 
+					System.out.println("조회수 증가 실패");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
+	}
+}
 	
 //	public static ArrayList<Notice_data> takeNoticecontent(){
 //		DB_Connect connect = null;
@@ -85,4 +112,4 @@ public class Notice_DB {
 //	}
 		
 	
-}
+

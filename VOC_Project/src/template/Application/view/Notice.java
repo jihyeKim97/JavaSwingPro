@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Panel;
+import java.awt.Point;
 import java.awt.SystemColor;
 
 import template.Application.controller.DB_Connect;
@@ -153,19 +154,26 @@ public class Notice extends JFrame {
 			String text = NoticeArray.get(i).getTitle();
 			JLabel lbNotice = new JLabel( (i + 1) + ". " + text);
 			lbNotice.setHorizontalAlignment(JLabel.LEFT);
-			lbNotice.setFont(new Font("굴림", Font.BOLD, 25));
+			lbNotice.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 			LineBorder Line = new LineBorder(Color.RED,3);
 			lbNotice.setBorder(Line);
 			Notice_data NB = NoticeArray.get(i);
 			lbNotice.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					int count = 0;
+					String title = "";
+					count = NB.getViewcount() + 1;
+					title = NB.getTitle();
+					NDB.changeViewCount(title, count);
 					ND = new Notice_Detail(NM, NB);
+					Point fPt = NM.getLocationOnScreen();
+					ND.setLocation(fPt.x + NM.getWidth() + 20, fPt.y);
 					ND.setVisible(true);
 					}
 				
 			});
-			lbNotice.setBounds(10, 10 * (i + 1) + (i * 80), 416, 80);
+			lbNotice.setBounds(10, 10 * (i + 1) + (i * 40), 416, 40);
 			pn_NoticeMain.add(lbNotice);
 
 		}
@@ -177,6 +185,11 @@ public class Notice extends JFrame {
 		contentPane.add(panel);
 		
 		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);

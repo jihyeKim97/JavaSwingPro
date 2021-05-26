@@ -257,6 +257,13 @@ public class Main extends JFrame {
 		poster_1.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lb_Poster1 = new JLabel("");
+		lb_Poster1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				
+			}
+		});
 		poster_1.add(lb_Poster1, BorderLayout.CENTER);
 
 		btn_poster_1 = new RoundedButtonD("click");

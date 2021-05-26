@@ -134,6 +134,11 @@ public class Movie_Informaiton extends JFrame {
 		header_panel.setLayout(null);
 		
 		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		header_panel.add(roundedButtonD);
