@@ -50,7 +50,6 @@ public class Movie_Informaiton extends JFrame {
 
 	private JPanel contentPane;
 	private final Panel header_panel = new Panel();
-	private RoundedButtonD btn_home;
 	private Panel content_panel;
 	private Panel div_panel;
 	private Panel mem_panel;
@@ -133,27 +132,11 @@ public class Movie_Informaiton extends JFrame {
 		header_panel.setBounds(0, 0, 484, 55);
 		contentPane.add(header_panel);
 		header_panel.setLayout(null);
-
-		RoundedButtonD btn_logout = new RoundedButtonD("LOGOUT");
-		btn_logout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showConfirmDialog(null, "로그아웃 되었습니다.", "로그아웃", JOptionPane.CANCEL_OPTION,
-						JOptionPane.PLAIN_MESSAGE);
-			}
-		});
-		btn_logout.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btn_logout.setBounds(12, 10, 100, 35);
-		header_panel.add(btn_logout);
-
-		btn_home = new RoundedButtonD("HOME");
-		btn_home.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btn_home.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		btn_home.setBounds(372, 10, 100, 35);
-		header_panel.add(btn_home);
+		
+		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		roundedButtonD.setBounds(12, 10, 100, 35);
+		header_panel.add(roundedButtonD);
 
 		content_panel = new Panel();
 		content_panel.setBackground(new Color(255, 255, 255));

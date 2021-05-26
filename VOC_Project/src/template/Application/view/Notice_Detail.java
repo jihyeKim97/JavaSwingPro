@@ -84,7 +84,7 @@ public class Notice_Detail extends JFrame {
 
 		String title = NoticeArr.get(PK).getTitle();
 		JLabel lb_Title = new JLabel(title);
-		lb_Title.setFont(new Font("굴림", Font.BOLD, 30));
+		lb_Title.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		pn_Title.add(lb_Title, BorderLayout.CENTER);
 
 		int ViewCount = NoticeArr.get(PK).getViewcount();
@@ -101,7 +101,7 @@ public class Notice_Detail extends JFrame {
 		JTextArea content = new JTextArea();
 		content.setLineWrap(true);
 		content.setText(NoticeArr.get(PK).getContent());
-		content.setFont(new Font("돋움체", Font.ITALIC, 25));
+		content.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 20));
 		content.setEditable(false);
 		pn_Content.add(content, BorderLayout.CENTER);
 
@@ -127,26 +127,11 @@ public class Notice_Detail extends JFrame {
 		panel.setBackground(new Color(169, 169, 169));
 		panel.setBounds(0, 0, 484, 55);
 		contentPane.add(panel);
-
-		RoundedButtonD roundedButtonD = new RoundedButtonD("LOGOUT");
-		roundedButtonD.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		roundedButtonD.setFont(new Font("SansSerif", Font.BOLD, 15));
+		
+		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 
-		RoundedButtonD roundedButtonD_1 = new RoundedButtonD("HOME");
-		roundedButtonD_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		roundedButtonD_1.setFont(new Font("SansSerif", Font.BOLD, 15));
-		roundedButtonD_1.setBounds(372, 10, 100, 35);
-		panel.add(roundedButtonD_1);
-
 	}
-
 }
