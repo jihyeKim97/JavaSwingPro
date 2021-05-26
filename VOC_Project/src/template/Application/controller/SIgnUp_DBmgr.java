@@ -30,7 +30,7 @@ public class SIgnUp_DBmgr {
 			//	(VOCPRO_SEQ.nextval,'jiwon','1234','지원',1,'123123123','0','912154');
 
 				String sql // 순서, 개수, 타입.. 띄어쓰기
-						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (VOCPRO_SEQ.nextval,"
+						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (MEMBER_SEQ.nextval,"
 								+"'"+ ui.getId() + "', '"
 								+ ui.getPassword() + "', '" + ui.getName() + "', '" + ui.getGender() +	"', '"+
 								ui.getPhone_number() + "', '" + "0"+ "', '" + ui.getBirthday() + "')";
