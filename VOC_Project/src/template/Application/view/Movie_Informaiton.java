@@ -77,7 +77,6 @@ public class Movie_Informaiton extends JFrame {
 	private JScrollPane scrollPane;
 	private JPanel pn_MovieStoryTitle;
 	private JLabel lblNewLabel_1;
-	private JPanel pn_MovieStory;
 	private JPanel pn_MovieFirstTime;
 	private JPanel panel_4;
 	private JPanel panel_7;
@@ -116,7 +115,12 @@ public class Movie_Informaiton extends JFrame {
 		this.frm = this;
 		Movie_DB MDB= new Movie_DB();
 		MovieList = MDB.getMovieData();
+		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		int PK = 0;
+		for (int i = 0; i < MovieList.size(); i++) {
+			if ( MovieList.get(i).getMoviesid() == Num )
+				PK = i;
+		}
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 850);
@@ -185,16 +189,12 @@ public class Movie_Informaiton extends JFrame {
 
 		lblNewLabel_1 = new JLabel("줄거리");
 		pn_MovieStoryTitle.add(lblNewLabel_1);
-
-		pn_MovieStory = new JPanel();
-		scrollPane.setViewportView(pn_MovieStory);
-		pn_MovieStory.setLayout(new BorderLayout(0, 0));
 		
-		JTextArea txt_MovieStory = new JTextArea();
-		txt_MovieStory.setText(MovieList.get(PK).getStory());
-		txt_MovieStory.setEditable(false);
-		txt_MovieStory.setLineWrap(true);
-		pn_MovieStory.add(txt_MovieStory, BorderLayout.SOUTH);
+		JTextArea txtrAsd = new JTextArea();
+		txtrAsd.setText(MovieList.get(PK).getStory());
+		txtrAsd.setEditable(false);
+		txtrAsd.setLineWrap(true);
+		scrollPane.setViewportView(txtrAsd);
 
 		pn_MovieFirstTime = new JPanel();
 		pn_MovieFirstTime.setBounds(204, 57, 250, 35);
