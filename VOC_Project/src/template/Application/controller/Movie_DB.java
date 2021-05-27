@@ -13,14 +13,16 @@ public class Movie_DB {
 	static Movie_Data Movie;
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	
-	public static void main(String[] args) {
-//		getMovieData();
-//		for (int i = 0; i < MovieList.size(); i++) {
-//			System.out.println(MovieList.get(i));
-//		}
-//		
-		getInformationfromMovieId("./template/Reference/images/컨저링.jpg");
-	}
+//	public static void main(String[] args) {
+////		getMovieData();
+////		for (int i = 0; i < MovieList.size(); i++) {
+////			System.out.println(MovieList.get(i));
+////		}
+////		
+//		int i = 0;
+//		 i  = getInformationfromMovieId("./template/Reference/images/컨저링.jpg");
+//		 System.out.println(i);
+//	}
 	
 	public static ArrayList<Movie_Data> getMovieData(){
 		connect.beginConnection();
@@ -67,8 +69,10 @@ public class Movie_DB {
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
 				int movieid = rs.getInt("movies_id");
 				MovieId = movieid;
+				}
 				return MovieId;
 			} catch (SQLException e) {
 				e.printStackTrace();
