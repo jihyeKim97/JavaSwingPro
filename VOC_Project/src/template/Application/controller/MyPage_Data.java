@@ -1,5 +1,7 @@
 package template.Application.controller;
 
+import java.util.ArrayList;
+
 public class MyPage_Data {
 	int memberID;
 	String id;
@@ -9,7 +11,6 @@ public class MyPage_Data {
 	String phoneNumber;
 	int is_Member;
 	String birthday;
-
 	public MyPage_Data() {}
 
 	public MyPage_Data(int memberID, String id, String password) {

@@ -8,6 +8,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
+
+import template.Application.controller.MyPage_DB;
+import template.Application.controller.MyPage_Data;
+import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -16,6 +20,7 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import template.Application.view.Mypage_writePage;
 
@@ -37,8 +42,10 @@ public class MyPage extends JFrame {
 	Mypage_writePage wirteP;
 	Point fPt;
 	Main mafrm;
-	
-	int memberID = 25 ;
+	MyPage_Data MyPage;
+	MyPage_DB MDB;
+	ArrayList<MyPage_Data> MyArr = new ArrayList<>();
+	int memberID = 34;
 
 	public MyPage(Main mafrm) {
 		this.frm = this;
