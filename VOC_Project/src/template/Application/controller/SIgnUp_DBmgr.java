@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 public class SIgnUp_DBmgr {
-	
+	SignUp_data su;
 	DB_Connect conn;
 	
 	public SIgnUp_DBmgr() {
@@ -22,28 +22,28 @@ public class SIgnUp_DBmgr {
 	}
 	
 
-	public boolean insertNewMember(SignUp_data ui) {
+	public  boolean  insertNewMember(SignUp_data ui) {
 			conn = null;
 			conn.beginConnection();
-			if (conn.conn == null && ui != null) {
+			if (conn.conn != null && ui != null) {
 			//	INSERT INTO member(Member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES 
 			//	(VOCPRO_SEQ.nextval,'jiwon','1234','지원',1,'123123123','0','912154');
 
 				String sql // 순서, 개수, 타입.. 띄어쓰기
-						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (" + 
-				"VOCPRO_SEQ.nextval," 
-								+ ui.getUserId() + ", "
-								+ ui.getUserPw() + ", " + ui.getUserName() + ", " + ui.getGender() +
-								", "+ ui.getUserPhoneNum() + ", " + "0"+ ", " + ui.getUserDoB();
+						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (MEMBER_SEQ.nextval,"
+								+"'"+ ui.getId() + "', '"
+								+ ui.getPassword() + "', '" + ui.getName() + "', '" + ui.getGender() +	"', '"+
+								ui.getPhone_number() + "', '" + "0"+ "', '" + ui.getBirthday() + "')";
 				System.out.println(sql);
 				try {
-					Statement stmt = conn.conn.createStatement();
+					PreparedStatement pstmt = conn.conn.prepareStatement(sql);
 					
-					int r = stmt.executeUpdate(sql);
+					int r = pstmt.executeUpdate();
 	// 데이터 변화(DML insert, update, delete)
 	// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
 					if (r == 1) {
 						System.out.println("DBMgr: 회원 가입 성공! " + ui);
+						return true;
 					} else {
 						System.out.println("DBMgr: 회원 가입 실패! " + ui);
 					}
@@ -56,121 +56,121 @@ public class SIgnUp_DBmgr {
 			conn.endConnection();
 			return false;
 	}
-
-		public boolean insertNewMember2(SignUp_data ui) {
-			if (this.conn != null && ui != null) {
-				String sql // 순서, 개수, 타입.. 띄어쓰기
-						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,birthday) VALUES (" + "VOCPRO_SEQ.nextval, '" +
-								ui.getId() + "', "+ ui.getUserId() + "', " + "'"
-								+ ui.getUserPw() + "', '" + ui.getUserName() + "'" + ", " + ui.getGender() + "', '"
-								+ ui.getUserPhoneNum() + "', " + ui.getIsMember() + "', '" + ui.getUserDoB() + "'";
-				System.out.println(sql);
-				try {
-					Statement stmt = conn.conn.createStatement();
-					int r = stmt.executeUpdate(sql);
-	// 데이터 변화(DML insert, update, delete)
-	// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
-					if (r == 1) {
-						System.out.println("DBMgr: 회원 가입 성공! " + ui);
-					} else {
-						System.out.println("DBMgr: 회원 가입 실패! " + ui);
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} else {
-				System.out.println("DB error!!");
-			}
-			return false;
-		}
-
-	// - 신규 회원 가입 할 수 있다. C 회원 스키마의 재료들 입력
-		public boolean insertNewMember(String UserId, String UserPw, String UserName, int Gender, String UserPhoneNum, int isMember,
-				String UserDoB) {
-			if (this.conn != null) {
-				String sql // 순서, 개수, 타입.. 띄어쓰기
-						= "INSERT INTO members VALUES (" + "VOCPRO_SEQ.nextval, '" + UserId + "', " + "'" + UserPw + "', '"
-								+ UserName + "'" + ", " + Gender + "', '" + UserPhoneNum +  "', '" + isMember+"', '"
-								+ UserDoB + "'";
-				System.out.println(sql);
-				try {
-					Statement stmt = conn.conn.createStatement();
-					int r = stmt.executeUpdate(sql);
-
-					if (r == 1) {
-						System.out.println("DBMgr: 회원 가입 성공! " + UserId);
-					} else {
-						System.out.println("DBMgr: 회원 가입 실패! " + UserId);
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} else {
-				System.out.println("DB error !!");
-			}
-			return false;
-		}
-	
-	
-//	- 기존 회원이 자신의 정보를 편집수정 (갱신) 할 수 있다. U
-//		이름, 암호, 나이, 마일리지 만..!! (* 편집가능)
-//	- 기존 회원의 총 명수를 계산하여 조회할 수 있다.
-	public int checkTotalNumberOfMembers() {
-		if( this.conn != null ) {
-			String sql = "select COUNT(*) "
-					+ "as member_cnt from member";
-			try {
-				Statement stmt = conn.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				if( rs.next() ) {
-					int mbCnt = rs.getInt("member_cnt");
-					return mbCnt;
-				} else 
-					return 0;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!");
-		}
-		return -1;
-	}
-	
-//	- 기존 회원이 마일리지 (갱신) 할 수 있다. U
-//	- 기존 회원이 암호 (갱신) 할 수 있다. U
-//	- 모든 기존 회원들을 조회할 수 있다. R (범위, 조건, 검색, 정렬, 페이지네이션화)
-	public ArrayList<SignUp_data> selectAllMembers() {
-		if( this.conn != null ) {
-			ArrayList<SignUp_data> uiList = new ArrayList<>();
-			String sql = "select * from member ORDER BY id desc";
-			try {
-				Statement stmt =  conn.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while( rs.next() ) {	
-					String userDoB= rs.getString("");
-
-					SignUp_data ui 
-				= new SignUp_data(rs.getInt("MEMBER_ID"),
-							rs.getString("ID"), 
-							rs.getString("PASSWORD"),
-							rs.getString("NAME"),
-							rs.getInt("GENDER"),
-							rs.getString("PHONE_NUMBER"),
-							rs.getInt("IS_MEMBER"),
-							rs.getString("BIRTHDAY"));
-					
-				uiList.add(ui);
-				}
-				System.out.println("DBMgr: 회원 조회 명수 => " + uiList.size());
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}			
-		} else {
-			System.out.println("DB error!!");
-		}
-		return null;
-	}
+//
+//		public boolean insertNewMember2(SignUp_data ui) {
+//			if (this.conn != null && ui != null) {
+//				String sql // 순서, 개수, 타입.. 띄어쓰기
+//						= "INSERT INTO member(member_id,id,password,name,gender,phone_number,birthday) VALUES (" + "VOCPRO_SEQ.nextval, '" +
+//								ui.getId() + "', "+ ui.getUserId() + "', " + "'"
+//								+ ui.getUserPw() + "', '" + ui.getUserName() + "'" + ", " + ui.getGender() + "', '"
+//								+ ui.getUserPhoneNum() + "', " + ui.getIsMember() + "', '" + ui.getUserDoB() + "'";
+//				System.out.println(sql);
+//				try {
+//					Statement stmt = conn.conn.createStatement();
+//					int r = stmt.executeUpdate(sql);
+//	// 데이터 변화(DML insert, update, delete)
+//	// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
+//					if (r == 1) {
+//						System.out.println("DBMgr: 회원 가입 성공! " + ui);
+//					} else {
+//						System.out.println("DBMgr: 회원 가입 실패! " + ui);
+//					}
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			} else {
+//				System.out.println("DB error!!");
+//			}
+//			return false;
+//		}
+//
+//	// - 신규 회원 가입 할 수 있다. C 회원 스키마의 재료들 입력
+//		public boolean insertNewMember(String UserId, String UserPw, String UserName, int Gender, String UserPhoneNum, int isMember,
+//				String UserDoB) {
+//			if (this.conn != null) {
+//				String sql // 순서, 개수, 타입.. 띄어쓰기
+//						= "INSERT INTO members VALUES (" + "VOCPRO_SEQ.nextval, '" + UserId + "', " + "'" + UserPw + "', '"
+//								+ UserName + "'" + ", " + Gender + "', '" + UserPhoneNum +  "', '" + isMember+"', '"
+//								+ UserDoB + "'";
+//				System.out.println(sql);
+//				try {
+//					Statement stmt = conn.conn.createStatement();
+//					int r = stmt.executeUpdate(sql);
+//
+//					if (r == 1) {
+//						System.out.println("DBMgr: 회원 가입 성공! " + UserId);
+//					} else {
+//						System.out.println("DBMgr: 회원 가입 실패! " + UserId);
+//					}
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			} else {
+//				System.out.println("DB error !!");
+//			}
+//			return false;
+//		}
+//	
+//	
+////	- 기존 회원이 자신의 정보를 편집수정 (갱신) 할 수 있다. U
+////		이름, 암호, 나이, 마일리지 만..!! (* 편집가능)
+////	- 기존 회원의 총 명수를 계산하여 조회할 수 있다.
+//	public int checkTotalNumberOfMembers() {
+//		if( this.conn != null ) {
+//			String sql = "select COUNT(*) "
+//					+ "as member_cnt from member";
+//			try {
+//				Statement stmt = conn.conn.createStatement();
+//				ResultSet rs = stmt.executeQuery(sql);
+//				if( rs.next() ) {
+//					int mbCnt = rs.getInt("member_cnt");
+//					return mbCnt;
+//				} else 
+//					return 0;
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} else {
+//			System.out.println("DB error!!");
+//		}
+//		return -1;
+//	}
+//	
+////	- 기존 회원이 마일리지 (갱신) 할 수 있다. U
+////	- 기존 회원이 암호 (갱신) 할 수 있다. U
+////	- 모든 기존 회원들을 조회할 수 있다. R (범위, 조건, 검색, 정렬, 페이지네이션화)
+//	public ArrayList<SignUp_data> selectAllMembers() {
+//		if( this.conn != null ) {
+//			ArrayList<SignUp_data> uiList = new ArrayList<>();
+//			String sql = "select * from member ORDER BY id desc";
+//			try {
+//				Statement stmt =  conn.conn.createStatement();
+//				ResultSet rs = stmt.executeQuery(sql);
+//				while( rs.next() ) {	
+//					String userDoB= rs.getString("");
+//
+//					SignUp_data ui 
+//				= new SignUp_data(rs.getInt("MEMBER_ID"),
+//							rs.getString("ID"), 
+//							rs.getString("PASSWORD"),
+//							rs.getString("NAME"),
+//							rs.getInt("GENDER"),
+//							rs.getString("PHONE_NUMBER"),
+//							rs.getInt("IS_MEMBER"),
+//							rs.getString("BIRTHDAY"));
+//					
+//				uiList.add(ui);
+//				}
+//				System.out.println("DBMgr: 회원 조회 명수 => " + uiList.size());
+//				return uiList;
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}			
+//		} else {
+//			System.out.println("DB error!!");
+//		}
+//		return null;
+//	}
 	
 //	- 특정 기존 회원 한 명을 조회할 수 있다. R (id, 관리번호)	
 	public SignUp_data selectOneMemberById(int dbui) {
@@ -237,38 +237,38 @@ public class SIgnUp_DBmgr {
 		return null;
 	}
 	
-	public  boolean insertNewMember(
-            String name, String login,
-            String pw, int gender, int age,
-            String email, String address, String phn) {
-        if( this.conn != null ) {
-            String sql 
-            = "INSERT INTO members VALUES ("
-              + "MEMBERS_SEQ.nextval, '"+name+"', "
-              + "'"+login+"', '"+pw+"'" + 
-                ", "+gender+", "+age+", 1000, sysdate, "
-              + "'" + login + "', '" + address + "', '" + phn + "')";
-            System.out.println(sql);
-            try {
-                Statement stmt = conn.conn.createStatement();
-                int r = stmt.executeUpdate(sql); 
-                if( r == 1 ) {
-                    System.out.println("DBMgr: 회원 가입 성공! "
-                            + login);
-                } else {
-                    System.out.println("DBMgr: 회원 가입 실패! " 
-                            + login);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("DB 통신 에러!!");
-        }
-        return false;
-    }
-	
-	
+//	public  boolean insertNewMember(
+//            String name, String login,
+//            String pw, int gender, int age,
+//            String email, String address, String phn) {
+//        if( this.conn != null ) {
+//            String sql 
+//            = "INSERT INTO members VALUES ("
+//              + "MEMBERS_SEQ.nextval, '"+name+"', "
+//              + "'"+login+"', '"+pw+"'" + 
+//                ", "+gender+", "+age+", 1000, sysdate, "
+//              + "'" + login + "', '" + address + "', '" + phn + "')";
+//            System.out.println(sql);
+//            try {
+//                Statement stmt = conn.conn.createStatement();
+//                int r = stmt.executeUpdate(sql); 
+//                if( r == 1 ) {
+//                    System.out.println("DBMgr: 회원 가입 성공! "
+//                            + login);
+//                } else {
+//                    System.out.println("DBMgr: 회원 가입 실패! " 
+//                            + login);
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            System.out.println("DB 통신 에러!!");
+//        }
+//        return false;
+//    }
+//	
+//	
 
 //	- 기존 회원들을 키워드 기반 등으로 조건으로 검색 할 수 있다. R
 	
@@ -290,7 +290,7 @@ public class SIgnUp_DBmgr {
 		if( this.conn != null ) {
 			SignUp_data dbui = selectOneMemberByUserId(login); // UQ
 			if( dbui != null ) { // ���Ե� ȸ�����ڵ� ã��!
-				String mbPw = dbui.getUserPw();
+				String mbPw = dbui.getPassword();
 				if( mbPw != null && !mbPw.isEmpty() ) {
 					if( mbPw.equals(pw) ) {
 						System.out.println("로그인 성공!!");
@@ -319,6 +319,13 @@ public class SIgnUp_DBmgr {
 //	- 회원 통계
 	
 	public static void main(String[] args) {
+		SIgnUp_DBmgr sudb = new SIgnUp_DBmgr();
+		boolean b = false;
+		b = sudb.insertNewMember(new SignUp_data("olaf4", "1234", "올라프", 1, 
+				"01012345678", "950116"));
+		System.out.println(b);
+		
+		
 	//	DB_UserDbMgr dbmgr = new DB_UserDbMgr();
 //		System.out.println("기존 -----------");
 //		ArrayList<DB_UserInfo> oldList = dbmgr.selectAllMembers();
@@ -361,6 +368,7 @@ public class SIgnUp_DBmgr {
 	}
 //		
 	//DB_Connect.endConnection();
+
 }
 
 
