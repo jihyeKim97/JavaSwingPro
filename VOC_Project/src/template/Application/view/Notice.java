@@ -199,7 +199,7 @@ class Locaiton extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon("./template/Reference/icons/VOC.png"));
+			lblNewLabel.setIcon(new ImageIcon("../template/Reference/icons/VOC.png"));
 			contentPanel.add(lblNewLabel, BorderLayout.CENTER);
 		}
 	}

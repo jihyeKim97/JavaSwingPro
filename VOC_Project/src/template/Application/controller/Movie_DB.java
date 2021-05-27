@@ -1,6 +1,7 @@
 package template.Application.controller;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +19,7 @@ public class Movie_DB {
 //			System.out.println(MovieList.get(i));
 //		}
 //		
+		getInformationfromMovieId("./template/Reference/images/컨저링.jpg");
 	}
 	
 	public static ArrayList<Movie_Data> getMovieData(){
@@ -55,22 +57,28 @@ public class Movie_DB {
 		return MovieList;
 	}
 	
-	public static int getInformationfromMovieId(Movie_Data Data) {
+	public static int getInformationfromMovieId(String ImageFile) {
 		connect.beginConnection();
 		// DB에서 정보 가져오기
+		int MovieId = 0;
 		if (connect.conn != null) {
-			String sql = "SELECT id FROM movies WHERE image_file_name ";
+			String sql = "SELECT movies_id FROM movies WHERE image_file_name = '" + ImageFile + "'";
+			System.out.println(sql);
 			try {
-				
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				int movieid = rs.getInt("movies_id");
+				MovieId = movieid;
+				return MovieId;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				System.out.println("DB접속 오류");
 			}
 
-		
-		
+
 		}
 		connect.endConnection();
-		return Data.getMoviesid();
+		return MovieId;
 		
 	}
 	
