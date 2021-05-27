@@ -55,4 +55,23 @@ public class Movie_DB {
 		return MovieList;
 	}
 	
+	public static int getInformationfromMovieId(Movie_Data Data) {
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		if (connect.conn != null) {
+			String sql = "SELECT id FROM movies WHERE image_file_name ";
+			try {
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		
+		
+		}
+		connect.endConnection();
+		return Data.getMoviesid();
+		
+	}
+	
 }

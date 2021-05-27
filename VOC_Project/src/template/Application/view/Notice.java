@@ -97,23 +97,28 @@ public class Notice extends JFrame {
 		pn_MovieInformaiton.setLayout(null);
 
 		JLabel lb_TheaterNumber = new JLabel("● 전화번호 : 02 - 333 - 4848 ");
+		lb_TheaterNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lb_TheaterNumber.setBounds(10, 10, 210, 30);
 		pn_MovieInformaiton.add(lb_TheaterNumber);
 
 		JLabel lb_TheaterTime = new JLabel("● 영업시간 : 18:00 ~ 03:00");
+		lb_TheaterTime.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lb_TheaterTime.setBounds(10, 40, 198, 30);
 		pn_MovieInformaiton.add(lb_TheaterTime);
 
 		JLabel lb_TheaterCEO = new JLabel("● 대표자 : 고즐링");
+		lb_TheaterCEO.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lb_TheaterCEO.setBounds(10, 70, 198, 30);
 		pn_MovieInformaiton.add(lb_TheaterCEO);
 
 		JLabel lb_Theater = new JLabel("● 사업자 번호: 653-25-0698");
+		lb_Theater.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		lb_Theater.setBounds(10, 100, 198, 30);
 		pn_MovieInformaiton.add(lb_Theater);
 
 //		LineBorder LineB = new LineBorder(Color.black,1);
 		JLabel lb_TheaterLocaiton = new JLabel("● 위치: 서울 성동구 왕십리로 303");
+		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 //		lb_TheaterLocaiton.setBorder(LineB);
 		lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -132,29 +137,30 @@ public class Notice extends JFrame {
 
 		for (int i = 0; i <NoticeArray.size(); i++) {
 			String text = NoticeArray.get(i).getTitle();
-			JLabel lbNotice = new JLabel( (i + 1) + ". " + text);
+			JLabel lbNotice = new JLabel( " " + (i + 1) + ". " + text);
 			lbNotice.setHorizontalAlignment(JLabel.LEFT);
-			lbNotice.setFont(new Font("맑은 고딕", Font.BOLD, 25));
-			LineBorder Line = new LineBorder(Color.RED,3);
+			lbNotice.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
+			LineBorder Line = new LineBorder(Color.GRAY,1);
 			lbNotice.setBorder(Line);
 			Notice_data NB = NoticeArray.get(i);
 			lbNotice.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					boolean b = false;
-					Notice_DB NDB = null;
+					Notice_DB NDB = new Notice_DB();
 					int count = 0;
 					String title = "";
 					count = NB.getViewcount() + 1;
 					title = NB.getTitle();
-					b = changeViewCount(title, count);
+					b = NDB.changeViewCount(title, count);
+//					b = changeViewCount(title, count);
 					ND = new Notice_Detail(NM, NB);
 					Point fPt = NM.getLocationOnScreen();
 					ND.setLocation(fPt.x + NM.getWidth() + 20, fPt.y);
 					ND.setVisible(true);
 					}
 			});
-			lbNotice.setBounds(10, 10 * (i + 1) + (i * 40), 416, 40);
+			lbNotice.setBounds(10, 10 * (i + 1) + (i * 50), 416, 50);
 			pn_NoticeMain.add(lbNotice);
 
 		}
@@ -176,32 +182,7 @@ public class Notice extends JFrame {
 		panel.add(roundedButtonD);
 		
 	}
-	protected boolean changeViewCount(String title, int count) {
-		DB_Connect connect = null;
-		Notice NM;
-		Notice_data Notice;
-		
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "UPDATE NOTICE SET viewcount = ? WHERE title = ?";
-			try {
-				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				pstmt.setInt(1, count);
-				pstmt.setString(2, title);
-				int rs = pstmt.executeUpdate();
-				if( rs == 1 ) {
-					System.out.println("조회수 증가 성공");
-					return true;
-				} else 
-					System.out.println("조회수 증가 실패");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
-		return false;
-	}
-	
+
 }
 
 class Locaiton extends JDialog {

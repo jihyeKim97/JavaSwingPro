@@ -259,7 +259,10 @@ public class Main extends JFrame {
 		lb_Poster1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+				Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie);
+				Point fPt = reserfrm.getLocationOnScreen();
+				MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				MI.setVisible(true);
 				
 			}
 		});
