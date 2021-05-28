@@ -23,105 +23,164 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import template.Application.controller.DB_Connect;
-import template.Application.controller.DB_Connect2;
+import template.Application.controller.Login_DB;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login_FindID extends JFrame {
 
-	public JFrame frame;
-	public JFrame frmVoc;
-	public JTextField txt_id;
-	public JPasswordField txt_pw;
+	JTextField txt_id;
+	JPasswordField txt_pw;
 	JPanel panel_1;
 	JPanel panel_2;
-	public JTextField txt_name;
-	public JTextField txt_number1;
-	public JTextField txt_number2;
-	public JTextField txt_number3;
+	JTextField txt_name;
+	JTextField txt_number1;
+	JTextField txt_number2;
+	JTextField txt_number3;
 
-	public JFrame frame1;
+	Login ln;
+	Login_FindID ID;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login_FindID window = new Login_FindID();
-					window.frmVoc.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public Login_FindID() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmVoc = new JFrame();
-		frmVoc.setTitle("Vehicle Outdoor Cinema");
-		frmVoc.setIconImage(Toolkit.getDefaultToolkit().getImage(
+	
+	public Login_FindID(Login ln) {
+		this.ln = ln;
+		setTitle("Vehicle Outdoor Cinema");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\82102\\Desktop\\movie\\iconfinder-video-film-camera-movie-photography-4593167_122280.png"));
-		frmVoc.setBounds(100, 100, 635, 429);
-		frmVoc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmVoc.getContentPane().setLayout(null);
+		setBounds(100, 100, 523, 429);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(0, 0, 619, 390);
-		frmVoc.getContentPane().add(panel_1);
+		panel_1.setBounds(0, 0, 511, 390);
+		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("\uC544\uC774\uB514 \uCC3E\uAE30");
 		lblNewLabel.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 30));
-		lblNewLabel.setBounds(216, 51, 187, 61);
+		lblNewLabel.setBounds(169, 52, 187, 61);
 		panel_1.add(lblNewLabel);
 
 		JLabel lb_Name = new JLabel("\uC774\uB984");
 		lb_Name.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 17));
-		lb_Name.setBounds(149, 139, 66, 40);
+		lb_Name.setBounds(102, 140, 66, 40);
 		panel_1.add(lb_Name);
 
 		JLabel lb_number = new JLabel("\uC804\uD654\uBC88\uD638");
 		lb_number.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 17));
-		lb_number.setBounds(149, 201, 79, 40);
+		lb_number.setBounds(102, 202, 79, 40);
 		panel_1.add(lb_number);
 
 		txt_name = new JTextField();
+		txt_name.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txt_name.setForeground(Color.black);
+				txt_name.setBackground(Color.yellow);
+				if (txt_name.getText().equals("ex) 홍길동"))
+					txt_name.setText("");
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				txt_name.setForeground(Color.LIGHT_GRAY);
+				txt_name.setBackground(Color.WHITE);
+				if (txt_name.getText().isEmpty())
+					txt_name.setText("ex) 홍길동");
+			}
+		});
 		txt_name.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		txt_name.setBounds(216, 144, 144, 27);
+		txt_name.setBounds(169, 145, 144, 27);
 		panel_1.add(txt_name);
 		txt_name.setColumns(10);
+		
 
-		txt_number1 = new JTextField();
+		txt_number1 = new JTextField(3);
+		txt_number1.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 2||
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}
+		});
+		txt_number1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txt_number1.setForeground(Color.black);
+				txt_number1.setBackground(Color.yellow);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				txt_number1.setForeground(Color.LIGHT_GRAY);
+				txt_number1.setBackground(Color.WHITE);
+			}
+		});
 		txt_number1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		txt_number1.setBounds(240, 206, 50, 27);
+		txt_number1.setBounds(193, 207, 48, 27);
 		panel_1.add(txt_number1);
 		txt_number1.setColumns(3);
 
-		txt_number2 = new JTextField();
+		txt_number2 = new JTextField(4);
+		txt_number2.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 3||
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}
+		});
+		txt_number2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txt_number2.setForeground(Color.black);
+				txt_number2.setBackground(Color.yellow);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				txt_number2.setForeground(Color.LIGHT_GRAY);
+				txt_number2.setBackground(Color.WHITE);
+			}
+		});
 		txt_number2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_number2.setColumns(4);
-		txt_number2.setBounds(302, 206, 66, 27);
+		txt_number2.setBounds(253, 208, 55, 27);
 		panel_1.add(txt_number2);
 
-		txt_number3 = new JTextField();
+		txt_number3 = new JTextField(4);
+		txt_number3.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 3||
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}
+		});
+		add(txt_number3);
+		txt_number3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txt_number3.setForeground(Color.black);
+				txt_number3.setBackground(Color.yellow);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				txt_number3.setForeground(Color.LIGHT_GRAY);
+				txt_number3.setBackground(Color.WHITE);
+			}
+		});
 		txt_number3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_number3.setColumns(4);
-		txt_number3.setBounds(380, 206, 66, 27);
+		txt_number3.setBounds(320, 208, 55, 27);
 		panel_1.add(txt_number3);
 
 		JButton btn_Cancel = new JButton("\uCDE8\uC18C");
@@ -138,10 +197,10 @@ public class Login_FindID extends JFrame {
 		});
 		btn_Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				dispose();
 			}
 		});
-		btn_Cancel.setBounds(173, 270, 79, 40);
+		btn_Cancel.setBounds(126, 271, 79, 40);
 		panel_1.add(btn_Cancel);
 
 		JButton btn_findId = new JButton("\uC544\uC774\uB514 \uCC3E\uAE30");
@@ -161,7 +220,7 @@ public class Login_FindID extends JFrame {
 		btn_findId.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = txt_name.getText();
-				DB_Connect2 db = new DB_Connect2();
+				Login_DB db = new Login_DB();
 				String Phonenumber = new String(txt_number1.getText() + txt_number2.getText() + txt_number3.getText());
 				int find = db.findid(name, Phonenumber);
 				switch (find) {
@@ -182,15 +241,15 @@ public class Login_FindID extends JFrame {
 
 			}
 		});
-		btn_findId.setBounds(302, 270, 117, 40);
+		btn_findId.setBounds(255, 271, 117, 40);
 		panel_1.add(btn_findId);
 
 		JLabel label_1 = new JLabel("-");
-		label_1.setBounds(370, 206, 11, 27);
+		label_1.setBounds(310, 207, 11, 27);
 		panel_1.add(label_1);
 
 		JLabel label_2 = new JLabel("-");
-		label_2.setBounds(290, 206, 11, 27);
+		label_2.setBounds(243, 207, 11, 27);
 		panel_1.add(label_2);
 
 	}
