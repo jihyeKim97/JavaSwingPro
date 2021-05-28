@@ -13,13 +13,14 @@ public class MyPage_Data {
 	String birthday;
 	public MyPage_Data() {}
 
-	public MyPage_Data(int memberID, String id, String password) {
+ // 회원 정보 수정 시
+	public MyPage_Data(String password, String name, String phoneNumber) {
 		super();
-		this.memberID = memberID;
-		this.id = id;
 		this.password = password;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
 	}
-
+// 회원 모든 정보 불러올 시
 	public MyPage_Data(int memberID, String id, String password, String name, int gender, String phoneNumber,
 			int is_Member, String birthday) {
 		super();
