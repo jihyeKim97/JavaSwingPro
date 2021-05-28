@@ -4,29 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import template.Application.view.MyPage;
 
 public class MyPage_DB {
-		
-	static DB_Connect connect;
-	MyPage Mypage;
-	MyPage_Data MypageDT;
 
-	public static void mySelectMemberID () {
-		DB_Connect connect = null;
-		MyPage Mypage;
-		MyPage_Data MypageDT;
-		String ism = "";
-		String gen = "";
-		
+	static DB_Connect connect;
+	static ArrayList<MyPage_Data> MyArr  = new ArrayList<>();
+	static MyPage Mypage;
+	static MyPage_Data MypageDT;
+
+
+	public static ArrayList<MyPage_Data> SelectMemberID(int memberID) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "SELECT * FROM member where member_id = ? ";
+			String sql = "select * from member where member_id =  "+memberID;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
+				if (rs.next()) {
 					int member_id = rs.getInt("member_id");
 					String id = rs.getString("id");
 					String password = rs.getString("password");
@@ -35,36 +30,22 @@ public class MyPage_DB {
 					String phone_number = rs.getString("phone_number");
 					int is_member = rs.getInt("is_member");
 					String birthday = rs.getString("birthday");
-					if (is_member == 0) {
-						ism = "회원";
-					} else {
-						ism = "관리자";
-					}
 
-					if (gender == 1) {
-						gen = "여";
-					} else {
-						gen = "남";
-					}
-					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gen + " " + phone_number + " "
-							+ birthday + " " + ism);
+					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
+							+ phone_number + " " + birthday + " " + is_member);
+					MyArr.add(
+							new MyPage_Data(member_id, id, password, name, gender, phone_number, is_member, birthday));
 				}
-				if (rs != null)
-					rs.close();
-				if (st != null)
-					st.close();
-				if (connect != null)
-					connect.endConnection();
-
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-
+		connect.endConnection();
+		return MyArr;
 	}
-		
 	public static void main(String[] args) {
 		
+		ArrayList<MyPage_Data> i  = SelectMemberID(34);
+		 System.out.println(i);
 	}
-	
 }

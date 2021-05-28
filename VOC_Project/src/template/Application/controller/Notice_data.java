@@ -6,7 +6,6 @@ public class Notice_data {
 	private String title;
 	private String content;
 	private int viewcount;
-	private int numberid;
 
 	public Notice_data() {
 	}
@@ -25,19 +24,11 @@ public class Notice_data {
 		this.viewcount = viewcount;
 	}
 
-	public Notice_data(int noticeid, String title, String content, int viewcount, int numberid) {
-		super();
-		this.noticeid = noticeid;
-		this.title = title;
-		this.content = content;
-		this.viewcount = viewcount;
-		this.numberid = numberid;
-	}
 
 	@Override
 	public String toString() {
 		return "Notice_data [noticeid=" + noticeid + ", title=" + title + ", content=" + content + ", viewcount="
-				+ viewcount + ", numberid=" + numberid + "]";
+				+ viewcount + "]";
 	}
 
 	public int getNoticeid() {
@@ -72,12 +63,5 @@ public class Notice_data {
 		this.viewcount = viewcount;
 	}
 
-	public int getNumberid() {
-		return numberid;
-	}
-
-	public void setNumberid(int numberid) {
-		this.numberid = numberid;
-	}
 
 }
