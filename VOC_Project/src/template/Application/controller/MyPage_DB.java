@@ -45,22 +45,25 @@ public class MyPage_DB {
 		connect.endConnection();
 		return MyArr;
 	}
-	
 
-	public boolean UpdateMemberInfo(int memberID, String name, String phoneNum, String password,String newPassword) {
+	public static boolean UpdateMemberInfo(int memberID, String name, String phoneNum, String newPassword) {
 
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "update member set name = '" + name + "' and phone_number = '" + phoneNum + "' and password = '"
-					+ newPassword + "'  where member_id =  " + memberID;
+			String sql = "update member set name = ? , phone_number = ? , password =  ? where member_id = ? ";
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, name);
+				pstmt.setString(2, phoneNum);
+				pstmt.setString(3, newPassword);
+				pstmt.setInt(4, memberID);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
-					System.out.println("조회수 증가 성공");
+					System.out.println("회원 정보 갱신 성공");
+					System.out.println(memberID + " " + newPassword + " " + name + " " + phoneNum + " ");
 					return true;
 				} else
-					System.out.println("조회수 증가 실패");
+					System.out.println("회원 정보 갱신 실패");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -71,7 +74,9 @@ public class MyPage_DB {
 
 	public static void main(String[] args) {
 
-		ArrayList<MyPage_Data> i = SelectMemberID(34);
-		System.out.println(i);
+//		ArrayList<MyPage_Data> i = SelectMemberID(34);
+//		System.out.println(i);
+
+		UpdateMemberInfo(34, "김홀깅", "01012345678", "1234578");
 	}
 }

@@ -224,12 +224,12 @@ public class MyPage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!nameField.getText().isEmpty() && !phone.getText().isEmpty() && !currField.getText().isEmpty()
 						&& !newpwField.getText().isEmpty() && !newpwckField.getText().isEmpty()) {
-					if (currField.getText() == MyArr.get(0).getPassword()) {
+					if (currField.getText().equals(MyArr.get(0).getPassword())  ) {
 						System.out.println("비밀번호 일치");
 					} else {
 						System.out.println("비밀번호 불일치");
 					}
-					if (newpwField.getText() == newpwckField.getText()) {
+					if (newpwField.getText().equals(newpwckField.getText()) ) {
 						System.out.println(" 비밀번호 필드끼리 일치");
 					} else {
 						System.out.println("비밀번호 필드끼리 불일치");
