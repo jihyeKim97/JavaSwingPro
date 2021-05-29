@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 
 
-public class SIgnUp_DBmgr {
+public class SIgnUp_DB {
 	SignUp_data su;
 	DB_Connect conn;
 	
-	public SIgnUp_DBmgr() {
+	public SIgnUp_DB() {
 
 	}
 	
@@ -319,7 +319,7 @@ public class SIgnUp_DBmgr {
 //	- 회원 통계
 	
 	public static void main(String[] args) {
-		SIgnUp_DBmgr sudb = new SIgnUp_DBmgr();
+		SIgnUp_DB sudb = new SIgnUp_DB();
 		boolean b = false;
 		b = sudb.insertNewMember(new SignUp_data("olaf4", "1234", "올라프", 1, 
 				"01012345678", "950116"));

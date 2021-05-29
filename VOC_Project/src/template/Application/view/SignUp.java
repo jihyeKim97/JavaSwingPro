@@ -30,7 +30,7 @@ import java.sql.Connection;
 import template.Application.controller.DB_Connect;
 import template.Application.controller.Login_DB;
 import template.Application.controller.SignUp_data;
-import template.Application.controller.SIgnUp_DBmgr;
+import template.Application.controller.SIgnUp_DB;
 
 public class SignUp extends JFrame {
 
@@ -57,7 +57,7 @@ public class SignUp extends JFrame {
 	JLabel lb_NoDup;
 	DB_Connect dbc;
 	Login_data lndt;
-	SIgnUp_DBmgr mgr = new SIgnUp_DBmgr();
+	SIgnUp_DB mgr = new SIgnUp_DB();
 
 	public SignUp() {
 //		this.conn = DB_Connect.getConn();
@@ -419,7 +419,7 @@ public class SignUp extends JFrame {
 		btn_userJoin.setForeground(Color.BLACK);
 		btn_userJoin.setBackground(new Color(255, 175, 175));
 		btn_userJoin.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 14));
-		SIgnUp_DBmgr mgr = new SIgnUp_DBmgr();
+		SIgnUp_DB mgr = new SIgnUp_DB();
 		btn_userJoin.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
