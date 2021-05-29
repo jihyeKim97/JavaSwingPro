@@ -3,6 +3,7 @@ package template.Application.view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import template.Application.controller.Login_data;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -20,11 +21,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import template.Application.controller.DB_Connect;
-import template.Application.controller.DB_Connect2;
+import template.Application.controller.Login_DB;
 import template.Application.controller.SignUp_data;
 import template.Application.controller.SIgnUp_DBmgr;
 
@@ -39,6 +42,8 @@ public class SignUp extends JFrame {
 	private JTextField txt_phone3;
 	private JTextField txt_phone1;
 	private JTextField txt_phone2;
+	JTextField txt_DoB;
+
 	private final ButtonGroup genderGrp = new ButtonGroup();
 	private final int MEMBER = 0 , NOT_MEMBER =1;
 	
@@ -47,7 +52,7 @@ public class SignUp extends JFrame {
 	Login mln;
 	Connection conn;
 	SignUp_data dbui;
-	DB_Connect2 dbc2;
+	Login_DB dbc2;
 	JLabel lb_NoDup;
 	DB_Connect dbc;
 	Login_data lndt;
@@ -59,7 +64,7 @@ public class SignUp extends JFrame {
 
 	public SignUp(Login mln) {
 
-		this.dbc2 = new DB_Connect2();
+		this.dbc2 = new Login_DB();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
 		setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
@@ -72,7 +77,7 @@ public class SignUp extends JFrame {
 
 		JLabel lb_userJoin = new JLabel("\uD68C\uC6D0\uAC00\uC785");
 		lb_userJoin.setBounds(116, 17, 508, 36);
-		lb_userJoin.setFont(new Font("굴림", Font.BOLD, 35));
+		lb_userJoin.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 35));
 		lb_userJoin.setVerticalAlignment(SwingConstants.TOP);
 		contentPane.add(lb_userJoin);
 
@@ -82,7 +87,7 @@ public class SignUp extends JFrame {
 		panel.setLayout(new GridLayout(0, 2, 0, 0));
 
 		JLabel lb_userId = new JLabel("ID:");
-		lb_userId.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userId.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lb_userId.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_userId);
 
@@ -91,7 +96,7 @@ public class SignUp extends JFrame {
 		txt_userId.setColumns(10);
 
 		JLabel lb_userPw1 = new JLabel("\uBE44\uBC00\uBC88\uD638:");
-		lb_userPw1.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userPw1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lb_userPw1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_userPw1);
 
@@ -110,7 +115,7 @@ public class SignUp extends JFrame {
 		panel.add(pwf_userPw1);
 
 		JLabel lb_userPw2 = new JLabel("\uBE44\uBC00\uBC88\uD638 \uD655\uC778:");
-		lb_userPw2.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userPw2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lb_userPw2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_userPw2);
 
@@ -151,7 +156,7 @@ public class SignUp extends JFrame {
 		panel.add(pwf_userPw2);
 
 		JLabel lb_userName = new JLabel("\uC774\uB984:");
-		lb_userName.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_userName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lb_userName.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_userName);
 
@@ -176,13 +181,13 @@ public class SignUp extends JFrame {
 			}
 		});
 		txt_userName.setForeground(Color.LIGHT_GRAY);
-		txt_userName.setFont(new Font("굴림", Font.PLAIN, 14));
+		txt_userName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		txt_userName.setText("ex) \uD64D\uAE38\uB3D9");
 		panel.add(txt_userName);
 		txt_userName.setColumns(10);
 
 		JLabel lb_Gender = new JLabel("\uC131\uBCC4:");
-		lb_Gender.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_Gender.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lb_Gender.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_Gender);
 
@@ -193,27 +198,41 @@ public class SignUp extends JFrame {
 		JRadioButton rd_Female = new JRadioButton("\uC5EC\uC131");
 		genderGrp.add(rd_Female);
 		rd_Female.setSelected(true);
-		rd_Female.setFont(new Font("굴림", Font.PLAIN, 14));
+		rd_Female.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		rd_Female.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_Gender.add(rd_Female);
 
 		JRadioButton rd_Male = new JRadioButton("\uB0A8\uC131");
 		genderGrp.add(rd_Male);
-		rd_Male.setFont(new Font("굴림", Font.PLAIN, 14));
+		rd_Male.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		rd_Male.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_Gender.add(rd_Male);
 
 		JLabel lb_DoB = new JLabel("\uC0DD\uB144\uC6D4\uC77C:");
-		lb_DoB.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_DoB.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lb_DoB.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_DoB);
 
 		JPanel panel_bday = new JPanel();
 		panel.add(panel_bday);
 		panel_bday.setLayout(null);
+		
+		
 		txt_DoB = new JTextField();
 		txt_DoB.setBounds(0, 0, 226, 46);
 		panel_bday.add(txt_DoB);
+	
+		// only for three digits
+		txt_DoB.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent ke){
+//				if(ke.getKeyChar())
+				if(((JTextField)ke.getSource()).getText().length() >5 || 
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}	
+		});
+		
 		txt_DoB.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -222,6 +241,7 @@ public class SignUp extends JFrame {
 				txt_DoB.setBackground(Color.yellow);
 				if (txt_DoB.getText().equals("ex) 910101"))
 					txt_DoB.setText("");
+				
 			}
 
 			@Override
@@ -234,13 +254,13 @@ public class SignUp extends JFrame {
 			}
 		});
 		txt_DoB.setForeground(Color.LIGHT_GRAY);
-		txt_DoB.setFont(new Font("굴림", Font.PLAIN, 14));
+		txt_DoB.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		txt_DoB.setText("ex) 910101");
 		txt_DoB.setColumns(10);
 
 
 		JLabel lb_phoneNumber = new JLabel("\uC804\uD654\uBC88\uD638:");
-		lb_phoneNumber.setFont(new Font("굴림", Font.PLAIN, 14));
+		lb_phoneNumber.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lb_phoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_phoneNumber);
 
@@ -249,6 +269,15 @@ public class SignUp extends JFrame {
 		panel_phoneNum.setLayout(new GridLayout(1, 5, 0, 0));
 
 		txt_phone1 = new JTextField();
+		
+		txt_phone1.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent ke){
+				if(((JTextField)ke.getSource()).getText().length() > 2 || 
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')	
+							)
+						ke.consume();
+			}	
+		});
 		txt_phone1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -279,6 +308,15 @@ public class SignUp extends JFrame {
 		panel_phoneNum.add(lb_phoneNum1);
 
 		txt_phone2 = new JTextField();
+		
+		txt_phone2.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent ke){
+				if(((JTextField)ke.getSource()).getText().length() > 3 || 
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')	
+							)
+						ke.consume();
+			}	
+		});
 		txt_phone2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -296,6 +334,7 @@ public class SignUp extends JFrame {
 				txt_phone2.setBackground(Color.WHITE);
 				if (txt_phone2.getText().isEmpty())
 					txt_phone2.setText("1234");
+				
 			}
 		});
 		txt_phone2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -309,6 +348,14 @@ public class SignUp extends JFrame {
 		panel_phoneNum.add(lb_phoneNum2);
 
 		txt_phone3 = new JTextField();
+		txt_phone3.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent ke){
+				if(((JTextField)ke.getSource()).getText().length() > 3 || 
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')	
+							)
+						ke.consume();
+			}	
+		});
 		txt_phone3.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -340,19 +387,20 @@ public class SignUp extends JFrame {
 				
 				String inLogin = txt_userId.getText();
 				Login_data ld = dbc2.selectOneMemberByLogin(inLogin); 
-						if( !ld.equals(inLogin) ) { // 사용가능
+						if( ld == null ) { // 사용가능
 						bLoginAvail = true;// 일단 더미 중복x
 						JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
-					
+						checkJoinAvailable();
+						System.out.println("사용가능");
 					} else {
 						bLoginAvail = false;
 						JOptionPane.showMessageDialog(null, "사용불가능한 id 입니다");
-						
+						System.out.println("사용불가능");
 					}			
 			}
 		});
 		
-		btn_DupCheck.setFont(new Font("굴림", Font.PLAIN, 14));
+		btn_DupCheck.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		btn_DupCheck.setBounds(454, 73, 96, 36);
 		contentPane.add(btn_DupCheck);
 		
@@ -373,7 +421,7 @@ public class SignUp extends JFrame {
 		JButton btn_userJoin = new JButton("가입 완료");
 		btn_userJoin.setForeground(Color.BLACK);
 		btn_userJoin.setBackground(new Color(255, 175, 175));
-		btn_userJoin.setFont(new Font("굴림", Font.BOLD, 14));
+		btn_userJoin.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 14));
 		SIgnUp_DBmgr mgr = new SIgnUp_DBmgr();
 		btn_userJoin.addActionListener(new ActionListener() {
 	
@@ -397,9 +445,10 @@ public class SignUp extends JFrame {
 				if (r) {
 					
 					JOptionPane.showMessageDialog (null, "가입이 완료되었습니다.");
-				} else JOptionPane.showMessageDialog(null, "회원 가입 실패! ");
+					dispose();
+				} else JOptionPane.showMessageDialog(null, "회원 가입 실패! 다시 확인해주세요.");
 			}
-	
+	 
 		});
 		
 		btn_userJoin.setEnabled(true);
@@ -409,7 +458,7 @@ public class SignUp extends JFrame {
 	}
 
 	private boolean bLoginAvail; // false(중복)
-	private JTextField txt_DoB;
+
 
 	protected void checkJoinAvailable() {
 // 가입 가능한 상태의 입력들이 준비되었는지 체크...
