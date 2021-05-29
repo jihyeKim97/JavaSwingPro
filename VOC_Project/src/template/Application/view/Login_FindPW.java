@@ -1,6 +1,7 @@
 package template.Application.view;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -42,7 +43,7 @@ public class Login_FindPW extends JFrame {
 
 	Login ln;
 	Login_FindPW pw;
-
+	
 	public Login_FindPW(Login ln) {
 		this.ln = ln;
 		setTitle("Vehicle Outdoor Cinema");
