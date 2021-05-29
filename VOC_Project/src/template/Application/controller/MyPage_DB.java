@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import template.Application.view.MyPage;
-import template.Application.view.Notice;
 
 public class MyPage_DB {
 
@@ -72,11 +71,4 @@ public class MyPage_DB {
 		return false;
 	}
 
-	public static void main(String[] args) {
-
-//		ArrayList<MyPage_Data> i = SelectMemberID(34);
-//		System.out.println(i);
-
-		UpdateMemberInfo(34, "김홀깅", "01012345678", "1234578");
-	}
 }

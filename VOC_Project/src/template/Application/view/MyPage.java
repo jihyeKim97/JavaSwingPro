@@ -44,6 +44,7 @@ public class MyPage extends JFrame {
 	Point fPt;
 	Main mafrm;
 	MyPage_Data MyPage;
+	JLabel errortxt;
 	MyPage_DB MDB;
 	int memberID = 34;
 
@@ -89,7 +90,7 @@ public class MyPage extends JFrame {
 		JPanel mem_panel = new JPanel();
 		mem_panel.setBackground(new Color(220, 220, 220));
 		mem_panel.setBounds(10, 40, 444, 655);
-		detail.add(mem_panel);
+//		detail.add(mem_panel);
 		mem_panel.setLayout(null);
 
 		JPanel res_panel = new JPanel();
@@ -224,22 +225,25 @@ public class MyPage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!nameField.getText().isEmpty() && !phone.getText().isEmpty() && !currField.getText().isEmpty()
 						&& !newpwField.getText().isEmpty() && !newpwckField.getText().isEmpty()) {
-					if (currField.getText().equals(MyArr.get(0).getPassword())  ) {
-						System.out.println("비밀번호 일치");
+					if (currField.getText().equals(MyArr.get(0).getPassword()) && newpwField.getText().equals(newpwckField.getText())) {
+						errortxt.setForeground(Color.blue);
+						errortxt.setText("성공!");
+						MDB.UpdateMemberInfo(memberID,nameField.getText(), phone.getText(), newpwField.getText());
+						System.out.println("업데이트 성공");
 					} else {
-						System.out.println("비밀번호 불일치");
+						if(!currField.getText().equals(MyArr.get(0).getPassword()) ) {
+							errortxt.setText("현재 비밀번호가 불일치 합니다");
+							System.out.println("비밀번호 불일치");
+						}else if(!newpwField.getText().equals(newpwckField.getText())) {
+							errortxt.setText("새 비밀번호끼리 불일치 합니다");
+							System.out.println("비밀번호 필드끼리 불일치");
+						}
 					}
-					if (newpwField.getText().equals(newpwckField.getText()) ) {
-						System.out.println(" 비밀번호 필드끼리 일치");
-					} else {
-						System.out.println("비밀번호 필드끼리 불일치");
-					}
-					
 					System.out.println("빈칸 없음");
-				}else {
-					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
+				} else {
+					errortxt.setText("빈칸이 존재 합니다");
 					System.out.println("빈칸있음");
-				}			
+				}
 			}
 		});
 		btn_edit.setFont(new Font("Candara Light", Font.PLAIN, 20));
@@ -365,6 +369,12 @@ public class MyPage extends JFrame {
 		memdetail_panel.add(lbTitle);
 		lbTitle.setFont(new Font("Candara Light", Font.BOLD, 36));
 		lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
+
+		errortxt = new JLabel("");
+		errortxt.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 10));
+		errortxt.setForeground(Color.RED);
+		errortxt.setBounds(168, 498, 244, 24);
+		memdetail_panel.add(errortxt);
 
 		btn_logout = new RoundedButtonD("LOGOUT");
 		btn_logout.setBounds(347, 10, 100, 35);
