@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import template.Application.controller.DB_Connect;
 import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
+import template.Application.controller.Review_DB;
+import template.Application.controller.Review_Data;
 import template.Application.controller.RoundedButtonD;
 
 import javax.swing.JButton;
@@ -77,7 +79,6 @@ public class Movie_Informaiton extends JFrame {
 	private JScrollPane scrollPane;
 	private JPanel pn_MovieStoryTitle;
 	private JLabel lblNewLabel_1;
-	private JPanel pn_MovieStory;
 	private JPanel pn_MovieFirstTime;
 	private JPanel panel_4;
 	private JPanel panel_7;
@@ -111,12 +112,21 @@ public class Movie_Informaiton extends JFrame {
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	Main refrm;
 	Movie_Informaiton frm;
+	ArrayList<Review_Data> ReviewList = new ArrayList<>();
+	Review_DB Review;
 
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
+		setResizable(false);
 		this.frm = this;
 		Movie_DB MDB= new Movie_DB();
 		MovieList = MDB.getMovieData();
+		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
+		ReviewList = Review.getReviewData(Num);
 		int PK = 0;
+		for (int i = 0; i < MovieList.size(); i++) {
+			if ( MovieList.get(i).getMoviesid() == Num )
+				PK = i;
+		}
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 850);
@@ -185,16 +195,12 @@ public class Movie_Informaiton extends JFrame {
 
 		lblNewLabel_1 = new JLabel("줄거리");
 		pn_MovieStoryTitle.add(lblNewLabel_1);
-
-		pn_MovieStory = new JPanel();
-		scrollPane.setViewportView(pn_MovieStory);
-		pn_MovieStory.setLayout(new BorderLayout(0, 0));
 		
-		JTextArea txt_MovieStory = new JTextArea();
-		txt_MovieStory.setText(MovieList.get(PK).getStory());
-		txt_MovieStory.setEditable(false);
-		txt_MovieStory.setLineWrap(true);
-		pn_MovieStory.add(txt_MovieStory, BorderLayout.SOUTH);
+		JTextArea txtrAsd = new JTextArea();
+		txtrAsd.setText(MovieList.get(PK).getStory());
+		txtrAsd.setEditable(false);
+		txtrAsd.setLineWrap(true);
+		scrollPane.setViewportView(txtrAsd);
 
 		pn_MovieFirstTime = new JPanel();
 		pn_MovieFirstTime.setBounds(204, 57, 250, 35);
@@ -444,9 +450,10 @@ public class Movie_Informaiton extends JFrame {
 		textField_7.setBounds(0, 412, 246, 40);
 		txtF_panel.add(textField_7);
 
-		for (int i = 0; i < 30; i++) { // 리뷰 개수
-			String text = "리뷰";
+		for (int i = 0; i < ReviewList.size(); i++) { // 리뷰 개수
+			String text = ReviewList.get(i).getContent();
 			JLabel Review = new JLabel(text);
+			Review.setFont(new Font("한컴 고딕", Font.PLAIN, 15));
 			Review.setSize(new Dimension(400, 50));
 			pn_Review.add(Review);
 		}

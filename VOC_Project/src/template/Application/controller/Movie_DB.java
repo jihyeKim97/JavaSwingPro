@@ -40,13 +40,16 @@ public class Movie_DB {
 					Date openDate = rs.getDate("open_date");
 					String production = rs.getString("production");
 					String imageFileName = rs.getString("image_file_name");
-					String scheduleDate = rs.getString("schedule_date");
+					Date scheduleDate = rs.getDate("schedule_date");
+					int Scheduletime = rs.getInt("schedule_time");
 					String runningTime = rs.getString("running_time");
+					
 
 					MovieList.add(new Movie_Data(moviesid, title, genre, director, agegroup, story, averagecsore, gee,
-							openDate, production, imageFileName, scheduleDate, runningTime));
+							openDate, production, imageFileName, scheduleDate, Scheduletime, runningTime));
 				}
 
+				return MovieList;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -55,7 +58,7 @@ public class Movie_DB {
 		return MovieList;
 	}
 	
-	public static int getInformationfromMovieId(String ImageFile) {
+	public static int getMovieIDFromImage(String ImageFile) {
 		connect.beginConnection();
 		// DB에서 정보 가져오기
 		int MovieId = 0;
@@ -67,6 +70,8 @@ public class Movie_DB {
 				ResultSet rs = st.executeQuery(sql);
 				while (rs.next()) {
 				int movieid = rs.getInt("movies_id");
+				
+				
 				MovieId = movieid;
 				}
 				return MovieId;
@@ -82,4 +87,37 @@ public class Movie_DB {
 		
 	}
 	
+	public static int getMovieInformationFromImage(int id) {
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		int MovieId = 0;
+		if (connect.conn != null) {
+			String sql = "SELECT * FROM movies WHERE movies_id = '" + id + "'";
+			System.out.println(sql);
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+				int movieid = rs.getInt("movies_id");
+				
+				
+				MovieId = movieid;
+				}
+				return MovieId;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("DB접속 오류");
+			}
+
+
+		}
+		connect.endConnection();
+		return MovieId;
+		
+	}
+		
+	
+	
 }
+
+

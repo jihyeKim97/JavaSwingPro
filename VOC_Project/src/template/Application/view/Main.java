@@ -25,6 +25,7 @@ import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
 
@@ -96,7 +97,7 @@ public class Main extends JFrame {
 		MovieList = new ArrayList<>();
 		Movie_DB MDB= new Movie_DB();
 		MovieList = MDB.getMovieData();
-		int i = (int)(Math.random()*MovieList.size());
+		int i = 0;
 		
 		
 		this.reserfrm = this;
@@ -256,6 +257,8 @@ public class Main extends JFrame {
 		poster_1.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lb_Poster1 = new JLabel("");
+		lb_Poster1.setIcon(new ImageIcon(MovieList.get(0).getImagefilename()));
+		Movie_Data movie = MovieList.get(0);
 		lb_Poster1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -294,7 +297,18 @@ public class Main extends JFrame {
 		poster_4.setLayout(new BorderLayout(0, 0));
 		
 		lb_Poster4 = new JLabel("");
+		lb_Poster4.setIcon(new ImageIcon(MovieList.get(3).getImagefilename()));
 		poster_4.add(lb_Poster4, BorderLayout.CENTER);
+		Movie_Data movie3 = MovieList.get(3);
+		lb_Poster4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie);
+				Point fPt = reserfrm.getLocationOnScreen();
+				MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				MI.setVisible(true);
+			}
+		});
 
 		btn_poster_4 = new RoundedButtonD("click");
 		btn_poster_4.addActionListener(new ActionListener() {
@@ -322,7 +336,18 @@ public class Main extends JFrame {
 		poster_3.setLayout(new BorderLayout(0, 0));
 		
 		lb_Poster3 = new JLabel("");
+		lb_Poster3.setIcon(new ImageIcon(MovieList.get(2).getImagefilename()));
 		poster_3.add(lb_Poster3, BorderLayout.CENTER);
+		Movie_Data movie2 = MovieList.get(2);
+		lb_Poster3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie2);
+				Point fPt = reserfrm.getLocationOnScreen();
+				MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				MI.setVisible(true);
+			}
+		});
 
 		btn_poster_3 = new RoundedButtonD("click");
 		btn_poster_3.addActionListener(new ActionListener() {
@@ -349,7 +374,18 @@ public class Main extends JFrame {
 		poster_2.setLayout(new BorderLayout(0, 0));
 		
 		lb_Poster2 = new JLabel("");
+		lb_Poster2.setIcon(new ImageIcon(MovieList.get(1).getImagefilename()));
+		Movie_Data movie1 = MovieList.get(1);
 		poster_2.add(lb_Poster2, BorderLayout.CENTER);
+		lb_Poster2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie1);
+				Point fPt = reserfrm.getLocationOnScreen();
+				MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+				MI.setVisible(true);
+			}
+		});
 
 		btn_poster_2 = new RoundedButtonD("click");
 		btn_poster_2.addActionListener(new ActionListener() {
