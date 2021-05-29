@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class DB_Connect2 {
-
+public class Login_DB {
+	static DB_Connect DB;
 	static Connection conn;
 	public static final int LOGIN_SUCCESS = 1;
 	public static final int LOGIN_FAIL_PW_MISMATCH = 2;
@@ -25,50 +25,11 @@ public class DB_Connect2 {
 	public static final int FIND_NULL = 3;
 	public static final int PHN_MISMATCH = 4;
 
-	public DB_Connect2() {
-		this.conn = OracleDBUtil.getConn();
+	public Login_DB() {
+		this.conn = DB.getConn();
 	}
 
-	public static void select() throws SQLException {
-		Statement st = conn.createStatement();
-		String sql = "select * from member";
-		ResultSet rs = st.executeQuery(sql);
-		String ism = "";
-		String gen = "";
-
-		while (rs.next()) {
-			int member_id = rs.getInt("member_id");
-			String id = rs.getString("id");
-			String password = rs.getString("password");
-			String name = rs.getString("name");
-			int gender = rs.getInt("gender");
-			int phone_number = rs.getInt("phone_number");
-			int is_member = rs.getInt("is_member");
-			Date birthday = rs.getDate("birthday");
-
-			if (is_member == 0) {
-				ism = "회원";
-			} else {
-				ism = "관리자";
-			}
-
-			if (gender == 1) {
-				gen = "여";
-			} else {
-				gen = "남";
-			}
-			System.out.println(member_id + " " + id + " " + password + " " + name + " " + gen + " " + phone_number + " "
-					+ birthday + " " + ism);
-		}
-		if (rs != null)
-			rs.close();
-		if (st != null)
-			st.close();
-		if (conn != null)
-			conn.close();
-
-	}
-
+	
 	public boolean changeBypass(String mbpassword, String mbid, int phone_number, String name) {
 		if (this.conn != null) {
 			String sql = "UPDATE MEMBER SET PASSWORD = ? WHERE ID = ? AND PHONE_NUMBER = ? AND NAME = ?";
@@ -252,9 +213,9 @@ public class DB_Connect2 {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		DB_Connect2 mbMgr = new DB_Connect2();
+		Login_DB mbMgr = new Login_DB();
 
-		OracleDBUtil.endConnection();
+		DB.endConnection();
 
 	}
 

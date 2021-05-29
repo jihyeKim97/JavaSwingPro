@@ -13,13 +13,13 @@ public class Movie_DB {
 	static Movie_Data Movie;
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	
-	public static void main(String[] args) {
-	
-		int i = 0;
-		 i  = getInformationfromMovieId("./template/Reference/images/컨저링.jpg");
-		 System.out.println(i);
-	}
-	
+//	public static void main(String[] args) {
+//	
+//		int i = 0;
+//		 i  = getInformationfromMovieId("./template/Reference/images/컨저링.jpg");
+//		 System.out.println(i);
+//	}
+//	
 	public static ArrayList<Movie_Data> getMovieData(){
 		connect.beginConnection();
 		// DB에서 정보 가져오기

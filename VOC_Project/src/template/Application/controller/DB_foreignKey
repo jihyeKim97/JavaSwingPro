@@ -8,3 +8,6 @@ ALTER TABLE VOCPRO.notice ADD CONSTRAINT member_FK FOREIGN KEY (member_id) REFER
 
 ALTER TABLE VOCPRO.review ADD CONSTRAINT reservation_id FOREIGN KEY (reservation_id) REFERENCES VOCPRO.reservation(reservation_id);
 
+-------------------------
+ALTER TABLE VOCPRO.review ADD CONSTRAINT movies_id FOREIGN KEY (movies_id) REFERENCES VOCPRO.movies(movies_id);
+ALTER TABLE VOCPRO.movies ADD CONSTRAINT reservations_id FOREIGN KEY (reservation_id) REFERENCES VOCPRO.reservation(reservation_id);
