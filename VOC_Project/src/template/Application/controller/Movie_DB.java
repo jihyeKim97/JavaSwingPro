@@ -14,12 +14,18 @@ public class Movie_DB {
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	
 //	public static void main(String[] args) {
-//	
+	
 //		int i = 0;
-//		 i  = getInformationfromMovieId("./template/Reference/images/컨저링.jpg");
+//		 i  = getMovieIDFromImage("./template/Reference/images/컨저링.jpg");
 //		 System.out.println(i);
+//		MovieList = getMovieData();
+//		System.out.println(MovieList.get(0));
+//		System.out.println(MovieList.get(1));
+//		System.out.println(MovieList.get(2));
+//		System.out.println(MovieList.get(3));
+//
 //	}
-//	
+	
 	public static ArrayList<Movie_Data> getMovieData(){
 		connect.beginConnection();
 		// DB에서 정보 가져오기
@@ -53,6 +59,7 @@ public class Movie_DB {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			System.out.println("오류");
 		}
 		connect.endConnection();
 		return MovieList;
@@ -79,7 +86,7 @@ public class Movie_DB {
 				e.printStackTrace();
 				System.out.println("DB접속 오류");
 			}
-
+			System.out.println("오류");
 
 		}
 		connect.endConnection();
