@@ -10,22 +10,16 @@ import template.Application.view.Notice;
 
 public class MyPage_DB {
 
-	static ArrayList<MyPage_Data> MyArr;
 	static DB_Connect connect;
-	MyPage Mypage;
-	MyPage_Data MypageDT;
-	static String ism = "";
-	static String gen = "";
+	static ArrayList<MyPage_Data> MyArr = new ArrayList<>();
+	static MyPage Mypage;
+	static MyPage_Data MypageDT;
 
 	public static ArrayList<MyPage_Data> SelectMemberID(int memberID) {
-		ArrayList<MyPage_Data> MyArr = new ArrayList<>();
-		DB_Connect connect = null;
-		MyPage Mypage;
-		MyPage_Data MypageDT;
 
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "select * from member where member_id = ?";
+			String sql = "select * from member where member_id =  " + memberID;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
@@ -39,8 +33,8 @@ public class MyPage_DB {
 					int is_member = rs.getInt("is_member");
 					String birthday = rs.getString("birthday");
 
-					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gen + " "
-							+ phone_number + " " + birthday + " " + ism);
+					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
+							+ phone_number + " " + birthday + " " + is_member);
 					MyArr.add(
 							new MyPage_Data(member_id, id, password, name, gender, phone_number, is_member, birthday));
 				}
@@ -48,16 +42,41 @@ public class MyPage_DB {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(MyArr.size());
 		connect.endConnection();
 		return MyArr;
 	}
-	
-	public static void main(String[] args) {
-		SelectMemberID(34);
-		for (int i = 0; i < MyArr.size(); i++) {
-			System.out.println(MyArr.get(i));
+
+	public static boolean UpdateMemberInfo(int memberID, String name, String phoneNum, String newPassword) {
+
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "update member set name = ? , phone_number = ? , password =  ? where member_id = ? ";
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, name);
+				pstmt.setString(2, phoneNum);
+				pstmt.setString(3, newPassword);
+				pstmt.setInt(4, memberID);
+				int rs = pstmt.executeUpdate();
+				if (rs == 1) {
+					System.out.println("회원 정보 갱신 성공");
+					System.out.println(memberID + " " + newPassword + " " + name + " " + phoneNum + " ");
+					return true;
+				} else
+					System.out.println("회원 정보 갱신 실패");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		
+		connect.endConnection();
+		return false;
+	}
+
+	public static void main(String[] args) {
+
+//		ArrayList<MyPage_Data> i = SelectMemberID(34);
+//		System.out.println(i);
+
+		UpdateMemberInfo(34, "김홀깅", "01012345678", "1234578");
 	}
 }

@@ -1,11 +1,8 @@
 package template.Application.controller;
 
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class DB_Connect {
 
@@ -37,7 +34,6 @@ public class DB_Connect {
 		return false;
 	}
 
-	
 	public static boolean endConnection() {
 		if (conn != null) {
 			try {
@@ -51,7 +47,6 @@ public class DB_Connect {
 	}
 
 	public static void main(String[] args) throws SQLException {
-
 		beginConnection();
 		endConnection();
 	}
