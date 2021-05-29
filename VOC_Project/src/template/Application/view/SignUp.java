@@ -28,7 +28,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import template.Application.controller.DB_Connect;
-import template.Application.controller.DB_Connect2;
+import template.Application.controller.Login_DB;
 import template.Application.controller.SignUp_data;
 import template.Application.controller.SIgnUp_DBmgr;
 
@@ -52,7 +52,8 @@ public class SignUp extends JFrame {
 	Login mln;
 	Connection conn;
 	SignUp_data dbui;
-	DB_Connect2 dbc2 = new DB_Connect2();
+	Login_DB dbc2 = new Login_DB();
+//	Login_DB dbc2;
 	JLabel lb_NoDup;
 	DB_Connect dbc;
 	Login_data lndt;
@@ -68,6 +69,8 @@ public class SignUp extends JFrame {
 		this.conn = DB_Connect.getConn();
 
 		this.mj = this;
+//		this.dbc2 = new Login_DB();
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
 		setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
