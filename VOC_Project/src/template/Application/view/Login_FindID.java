@@ -28,6 +28,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 import template.Application.controller.DB_Connect;
+//import template.Application.controller.Login_DB;
 import template.Application.controller.Login_DB;
 
 import javax.swing.ImageIcon;
@@ -51,7 +52,6 @@ public class Login_FindID extends JFrame {
 	Login ln;
 	Login_FindID ID;
 
-	
 	public Login_FindID(Login ln) {
 		this.ln = ln;
 		setTitle("Vehicle Outdoor Cinema");
@@ -87,9 +87,11 @@ public class Login_FindID extends JFrame {
 			public void focusGained(FocusEvent e) {
 				txt_name.setForeground(Color.black);
 				txt_name.setBackground(Color.yellow);
-				if (txt_name.getText().equals("ex) 홍길동"))
+				if (txt_name.getText().equals("ex) 홍길동")) {
 					txt_name.setText("");
+				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				txt_name.setForeground(Color.LIGHT_GRAY);
@@ -102,15 +104,25 @@ public class Login_FindID extends JFrame {
 		txt_name.setBounds(192, 145, 144, 27);
 		panel_1.add(txt_name);
 		txt_name.setColumns(10);
-		
 
+		txt_number1 = new JTextField();
+		txt_number1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 2
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+					ke.consume();
+				}
+			}
+
+		});
 		txt_number1 = new JTextField(3);
 		txt_number1.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
-				if(((JTextField)ke.getSource()).getText().length() > 2||
-						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
-						)
+				if (((JTextField) ke.getSource()).getText().length() > 2
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
 					ke.consume();
+				}
 			}
 		});
 		txt_number1.addFocusListener(new FocusAdapter() {
@@ -119,6 +131,7 @@ public class Login_FindID extends JFrame {
 				txt_number1.setForeground(Color.black);
 				txt_number1.setBackground(Color.yellow);
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				txt_number1.setForeground(Color.LIGHT_GRAY);
@@ -133,10 +146,10 @@ public class Login_FindID extends JFrame {
 		txt_number2 = new JTextField(4);
 		txt_number2.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
-				if(((JTextField)ke.getSource()).getText().length() > 3||
-						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
-						)
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
 					ke.consume();
+				}
 			}
 		});
 		txt_number2.addFocusListener(new FocusAdapter() {
@@ -145,6 +158,7 @@ public class Login_FindID extends JFrame {
 				txt_number2.setForeground(Color.black);
 				txt_number2.setBackground(Color.yellow);
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				txt_number2.setForeground(Color.LIGHT_GRAY);
@@ -159,10 +173,10 @@ public class Login_FindID extends JFrame {
 		txt_number3 = new JTextField(4);
 		txt_number3.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
-				if(((JTextField)ke.getSource()).getText().length() > 3||
-						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
-						)
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
 					ke.consume();
+				}
 			}
 		});
 		panel_1.add(txt_number3);
@@ -172,6 +186,7 @@ public class Login_FindID extends JFrame {
 				txt_number3.setForeground(Color.black);
 				txt_number3.setBackground(Color.yellow);
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				txt_number3.setForeground(Color.LIGHT_GRAY);
@@ -216,7 +231,6 @@ public class Login_FindID extends JFrame {
 			}
 		});
 
-		// ID ã��@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		btn_findId.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = txt_name.getText();

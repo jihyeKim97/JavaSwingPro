@@ -15,76 +15,17 @@ public class Movie_Data {
 	private Date opendate;
 	private String production;
 	private String imagefilename;
-	private String scheduledate;
+	private Date scheduledate;
+	private int scheduletime;
 	private String runningtime;
 	
 	public Movie_Data() {}
 	
 	
-	
-
-	public Movie_Data(int moviesid, String title, String genre, String imagefilename, String scheduledate,
-			String runningtime) {
-		super();
-		this.moviesid = moviesid;
-		this.title = title;
-		this.genre = genre;
-		this.imagefilename = imagefilename;
-		this.scheduledate = scheduledate;
-		this.runningtime = runningtime;
-	}
-
-
-
-
-	public Movie_Data(int moviesid, String title, String imagefilename, String scheduledate) {
-		super();
-		this.moviesid = moviesid;
-		this.title = title;
-		this.imagefilename = imagefilename;
-		this.scheduledate = scheduledate;
-	}
-
-
-
-
-	public Movie_Data(int moviesid, String title, String genre, String director, int agegroup, String story,
-			int averageScore, String gee, Date opendate, String production, String imagefilename, String scheduledate,
-			String runningtime) {
-		super();
-		this.moviesid = moviesid;
-		this.title = title;
-		this.genre = genre;
-		this.director = director;
-		this.agegroup = agegroup;
-		this.story = story;
-		this.averageScore = averageScore;
-		this.gee = gee;
-		this.opendate = opendate;
-		this.production = production;
-		this.imagefilename = imagefilename;
-		this.scheduledate = scheduledate;
-		this.runningtime = runningtime;
-	}
-
-
-
-
-	@Override
-	public String toString() {
-		return "Movie_Data [moviesid=" + moviesid + ", title=" + title + ", genre=" + genre + ", director=" + director
-				+ ", agegroup=" + agegroup + ", story=" + story + ", averageScore=" + averageScore + ", gee=" + gee
-				+ ", opendate=" + opendate + ", production=" + production + ", imagefilename=" + imagefilename
-				+ ", scheduledate=" + scheduledate + ", runningtime=" + runningtime + "]";
-	}
-
-
-
 
 	public int getMoviesid() {
 		return moviesid;
 	}
-
 
 
 
@@ -94,11 +35,9 @@ public class Movie_Data {
 
 
 
-
 	public String getTitle() {
 		return title;
 	}
-
 
 
 
@@ -108,11 +47,9 @@ public class Movie_Data {
 
 
 
-
 	public String getGenre() {
 		return genre;
 	}
-
 
 
 
@@ -122,11 +59,9 @@ public class Movie_Data {
 
 
 
-
 	public String getDirector() {
 		return director;
 	}
-
 
 
 
@@ -136,11 +71,9 @@ public class Movie_Data {
 
 
 
-
 	public int getAgegroup() {
 		return agegroup;
 	}
-
 
 
 
@@ -150,11 +83,9 @@ public class Movie_Data {
 
 
 
-
 	public String getStory() {
 		return story;
 	}
-
 
 
 
@@ -164,11 +95,9 @@ public class Movie_Data {
 
 
 
-
 	public int getAverageScore() {
 		return averageScore;
 	}
-
 
 
 
@@ -178,11 +107,9 @@ public class Movie_Data {
 
 
 
-
 	public String getGee() {
 		return gee;
 	}
-
 
 
 
@@ -192,11 +119,9 @@ public class Movie_Data {
 
 
 
-
 	public Date getOpendate() {
 		return opendate;
 	}
-
 
 
 
@@ -206,11 +131,9 @@ public class Movie_Data {
 
 
 
-
 	public String getProduction() {
 		return production;
 	}
-
 
 
 
@@ -220,11 +143,9 @@ public class Movie_Data {
 
 
 
-
 	public String getImagefilename() {
 		return imagefilename;
 	}
-
 
 
 
@@ -234,18 +155,27 @@ public class Movie_Data {
 
 
 
-
-	public String getScheduledate() {
+	public Date getScheduledate() {
 		return scheduledate;
 	}
 
 
 
-
-	public void setScheduledate(String scheduledate) {
+	public void setScheduledate(Date scheduledate) {
 		this.scheduledate = scheduledate;
 	}
 
+
+
+	public int getScheduletime() {
+		return scheduletime;
+	}
+
+
+
+	public void setScheduletime(int scheduletime) {
+		this.scheduletime = scheduletime;
+	}
 
 
 
@@ -255,11 +185,55 @@ public class Movie_Data {
 
 
 
-
 	public void setRunningtime(String runningtime) {
 		this.runningtime = runningtime;
 	}
-	
+
+
+
+	@Override
+	public String toString() {
+		return "Movie_Data [moviesid=" + moviesid + ", title=" + title + ", genre=" + genre + ", director=" + director
+				+ ", agegroup=" + agegroup + ", story=" + story + ", averageScore=" + averageScore + ", gee=" + gee
+				+ ", opendate=" + opendate + ", production=" + production + ", imagefilename=" + imagefilename
+				+ ", scheduledate=" + scheduledate + ", scheduletime=" + scheduletime + ", runningtime=" + runningtime
+				+ "]";
+	}
+
+
+
+	public Movie_Data(int moviesid, String title, String imagefilename, Date scheduledate, int scheduletime,
+			String runningtime) {
+		super();
+		this.moviesid = moviesid;
+		this.title = title;
+		this.imagefilename = imagefilename;
+		this.scheduledate = scheduledate;
+		this.scheduletime = scheduletime;
+		this.runningtime = runningtime;
+	}
+
+
+
+	public Movie_Data(int moviesid, String title, String genre, String director, int agegroup, String story,
+			int averageScore, String gee, Date opendate, String production, String imagefilename, Date scheduledate,
+			int scheduletime, String runningtime) {
+		super();
+		this.moviesid = moviesid;
+		this.title = title;
+		this.genre = genre;
+		this.director = director;
+		this.agegroup = agegroup;
+		this.story = story;
+		this.averageScore = averageScore;
+		this.gee = gee;
+		this.opendate = opendate;
+		this.production = production;
+		this.imagefilename = imagefilename;
+		this.scheduledate = scheduledate;
+		this.scheduletime = scheduletime;
+		this.runningtime = runningtime;
+	}
 	
 	
 }
