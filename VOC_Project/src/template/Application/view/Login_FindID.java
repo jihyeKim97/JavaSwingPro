@@ -29,6 +29,8 @@ import template.Application.controller.DB_Connect2;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login_FindID extends JFrame {
 
@@ -107,6 +109,16 @@ public class Login_FindID extends JFrame {
 		txt_name.setColumns(10);
 
 		txt_number1 = new JTextField();
+		txt_number1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 2 || 
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')	
+							)
+						ke.consume();	
+	
+			}
+		});
 		txt_number1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_number1.setBounds(240, 206, 50, 27);
 		panel_1.add(txt_number1);
