@@ -73,7 +73,7 @@ public class Login_FindID extends JFrame {
 
 		JLabel lb_Name = new JLabel("\uC774\uB984");
 		lb_Name.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 17));
-		lb_Name.setBounds(102, 140, 66, 40);
+		lb_Name.setBounds(126, 140, 66, 40);
 		panel_1.add(lb_Name);
 
 		JLabel lb_number = new JLabel("\uC804\uD654\uBC88\uD638");
@@ -101,7 +101,7 @@ public class Login_FindID extends JFrame {
 			}
 		});
 		txt_name.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		txt_name.setBounds(169, 145, 144, 27);
+		txt_name.setBounds(192, 145, 144, 27);
 		panel_1.add(txt_name);
 		txt_name.setColumns(10);
 
@@ -179,7 +179,7 @@ public class Login_FindID extends JFrame {
 				}
 			}
 		});
-		add(txt_number3);
+		panel_1.add(txt_number3);
 		txt_number3.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
