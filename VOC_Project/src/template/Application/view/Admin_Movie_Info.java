@@ -109,8 +109,8 @@ import javax.swing.JComboBox;
 		Admin_Movie_Info frm;
 		ArrayList<Review_Data> ReviewList = new ArrayList<>();
 		Review_DB Review;
-		private JTextField textField_8;
-		private JTextField textField_9;
+		private JTextField ad_txt_Title;
+		private JTextField ad_txt_genre;
 		private JTextField textField_10;
 		private JTextField textField_11;
 		private JTextField textField_12;
@@ -224,13 +224,13 @@ import javax.swing.JComboBox;
 			lb_Movietime.setBounds(184, 10, 40, 15);
 			pn_MovieFirstTime.add(lb_Movietime);
 			
-			JComboBox comboBox = new JComboBox();
-			comboBox.setBounds(69, 6, 78, 23);
-			pn_MovieFirstTime.add(comboBox);
+			JComboBox ad_combo_scheduleDate = new JComboBox();
+			ad_combo_scheduleDate.setBounds(69, 6, 78, 23);
+			pn_MovieFirstTime.add(ad_combo_scheduleDate);
 			
-			JComboBox comboBox_1 = new JComboBox();
-			comboBox_1.setBounds(159, 6, 65, 23);
-			pn_MovieFirstTime.add(comboBox_1);
+			JComboBox ad_combo_scheduleTime = new JComboBox();
+			ad_combo_scheduleTime.setBounds(159, 6, 79, 23);
+			pn_MovieFirstTime.add(ad_combo_scheduleTime);
 
 			panel_4 = new JPanel();
 			panel_4.setBounds(10, 266, 464, 360);
@@ -248,18 +248,18 @@ import javax.swing.JComboBox;
 			lb_Title.setFont(new Font("Dialog", Font.PLAIN, 15));
 			panel_7.add(lb_Title);
 			
-			textField_8 = new JTextField();
-			panel_7.add(textField_8);
-			textField_8.setColumns(10);
+			ad_txt_Title = new JTextField();
+			panel_7.add(ad_txt_Title);
+			ad_txt_Title.setColumns(10);
 
 			lb_Genre = new JLabel("장르");
 			lb_Genre.setHorizontalAlignment(SwingConstants.CENTER);
 			lb_Genre.setFont(new Font("Dialog", Font.PLAIN, 15));
 			panel_7.add(lb_Genre);
 			
-			textField_9 = new JTextField();
-			textField_9.setColumns(10);
-			panel_7.add(textField_9);
+			ad_txt_genre = new JTextField();
+			ad_txt_genre.setColumns(10);
+			panel_7.add(ad_txt_genre);
 
 			lb_Directer = new JLabel("감독");
 			lb_Directer.setHorizontalAlignment(SwingConstants.CENTER);
