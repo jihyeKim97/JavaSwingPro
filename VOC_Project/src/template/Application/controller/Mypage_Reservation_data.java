@@ -1,8 +1,8 @@
 package template.Application.controller;
 
-import java.sql.Date;
+import java.util.Date;
 
-public class Mypage_reservation_data {
+public class Mypage_Reservation_data {
 
 	int reservation_id;
 	int reservation_number;
@@ -25,20 +25,20 @@ public class Mypage_reservation_data {
 				+ ", movie_id=" + movie_id + "]";
 	}
 
-	public Mypage_reservation_data() {
+	public Mypage_Reservation_data() {
 	}
 
-	public Mypage_reservation_data(int reservation_id, int reservation_number, Date reservation_date,
-			String seat_number, int car_type, int payment_price, Date payment_date, String option_name,
+	public Mypage_Reservation_data(int reservation_id, int reservation_number, Date reservation_date2,
+			String seat_number, int car_type, int payment_price, Date payment_date2, String option_name,
 			int option_price, int member_id, int movie_id) {
 		super();
 		this.reservation_id = reservation_id;
 		this.reservation_number = reservation_number;
-		this.reservation_date = reservation_date;
+		this.reservation_date = reservation_date2;
 		this.seat_number = seat_number;
 		this.car_type = car_type;
 		this.payment_price = payment_price;
-		this.payment_date = payment_date;
+		this.payment_date = payment_date2;
 		this.option_name = option_name;
 		this.option_price = option_price;
 		this.member_id = member_id;

@@ -11,6 +11,8 @@ import java.awt.Color;
 
 import template.Application.controller.Mypage_Member_DB;
 import template.Application.controller.Mypage_Member_data;
+import template.Application.controller.Mypage_Reservation_DB;
+import template.Application.controller.Mypage_Reservation_data;
 import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
@@ -41,16 +43,37 @@ public class MyPage extends JFrame {
 	RoundedButtonD btn_logout;
 	RoundedButtonD wirte_review;
 	Mypage_writePage wirteP;
+	JLabel in_reservationNum;
+	JLabel txtmovietitle;
+	JLabel in_movieTitle;
+	JLabel txtreservationdate;
+	JLabel in_resercationDate;
+	JLabel txttotalprice;
+	JLabel in_totalPrice;
+	JLabel lblReservation;
+	JPanel none_resdetail_panel;
+	JLabel nonereservatiompanel;
+	RoundedButtonD btn_meminfo;
+	RoundedButtonD btn_reser;
+	Panel memdetail_panel;
+	Panel lbPanel;
+	RoundedButtonD btn_edit;
+	JPanel panel;
+	JLabel txtreservationum;
+	Panel fieldPanel;
+
 	Point fPt;
 	Main mafrm;
 	Mypage_Member_data MyPage;
 	JLabel errortxt;
 	Mypage_Member_DB MDB;
+	Mypage_Reservation_DB RDB;
 	int memberID = 34;
 
 	public MyPage(Main mafrm) {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
+		ArrayList<Mypage_Reservation_data> ReArr = RDB.SelectReservationID(memberID);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -64,8 +87,15 @@ public class MyPage extends JFrame {
 		header.setBackground(new Color(169, 169, 169));
 		header.setBounds(0, 0, 484, 55);
 		contentPane.add(header);
-
-		RoundedButtonD btn_main = new RoundedButtonD("HOME");
+		RoundedButtonD btn_main;
+		JPanel content;
+		Panel detail;
+		JPanel mem_panel;
+		JPanel res_panel;
+		JPanel resdetail_panel;
+		Panel reser_box;
+		Panel poster;
+		btn_main = new RoundedButtonD("HOME");
 		btn_main.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -75,43 +105,43 @@ public class MyPage extends JFrame {
 		btn_main.setBounds(12, 10, 100, 35);
 		header.add(btn_main);
 
-		JPanel content = new JPanel();
+		content = new JPanel();
 		content.setBackground(Color.WHITE);
 		content.setBounds(0, 55, 484, 705);
 		contentPane.add(content);
 		content.setLayout(null);
 
-		Panel detail = new Panel();
+		detail = new Panel();
 		detail.setBackground(Color.WHITE);
 		detail.setBounds(10, 0, 464, 705);
 		content.add(detail);
 		detail.setLayout(null);
 
-		JPanel mem_panel = new JPanel();
+		mem_panel = new JPanel();
 		mem_panel.setBackground(new Color(220, 220, 220));
 		mem_panel.setBounds(10, 40, 444, 655);
 //		detail.add(mem_panel);
 		mem_panel.setLayout(null);
 
-		JPanel res_panel = new JPanel();
+		res_panel = new JPanel();
 		res_panel.setBackground(new Color(211, 211, 211));
 		res_panel.setBounds(10, 40, 444, 655);
 		detail.add(res_panel);
 		res_panel.setLayout(null);
 
-		JPanel resdetail_panel = new JPanel();
+		resdetail_panel = new JPanel();
 		resdetail_panel.setBackground(Color.WHITE);
 		resdetail_panel.setBounds(10, 10, 424, 635);
 		res_panel.add(resdetail_panel);
 		resdetail_panel.setLayout(null);
 
-		Panel reser_box = new Panel();
+		reser_box = new Panel();
 		reser_box.setBackground(new Color(245, 245, 245));
 		reser_box.setBounds(10, 80, 404, 174);
 		resdetail_panel.add(reser_box);
 		reser_box.setLayout(null);
 
-		Panel poster = new Panel();
+		poster = new Panel();
 		poster.setBackground(new Color(255, 228, 196));
 		poster.setBounds(10, 10, 117, 155);
 		reser_box.add(poster);
@@ -129,72 +159,75 @@ public class MyPage extends JFrame {
 		});
 		wirte_review.setBounds(133, 131, 259, 34);
 		reser_box.add(wirte_review);
-		
-		JPanel panel = new JPanel();
+
+		panel = new JPanel();
 		panel.setBounds(133, 10, 259, 113);
 		reser_box.add(panel);
 		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("예약번호 :  ");
-		lblNewLabel.setBounds(0, 0, 68, 28);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(lblNewLabel);
-		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_4.setBounds(69, 0, 189, 28);
-		panel.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_2 = new JLabel("영화제목 :  ");
-		lblNewLabel_2.setBounds(0, 28, 68, 28);
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_6.setBounds(69, 28, 189, 28);
-		panel.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("예약일시 :  ");
-		lblNewLabel_7.setBounds(0, 56, 68, 28);
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(lblNewLabel_7);
-		
-		JLabel label_9 = new JLabel("");
-		label_9.setHorizontalAlignment(SwingConstants.LEFT);
-		label_9.setBounds(69, 56, 189, 28);
-		panel.add(label_9);
-		
-		JLabel label_8 = new JLabel("결제 금액 :  ");
-		label_8.setBounds(0, 84, 68, 28);
-		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(label_8);
-		
-		JLabel label_10 = new JLabel("");
-		label_10.setHorizontalAlignment(SwingConstants.LEFT);
-		label_10.setBounds(69, 84, 189, 28);
-		panel.add(label_10);
 
-		JLabel lblReservation = new JLabel("Reservation");
+		txtreservationum = new JLabel("예약번호 :  ");
+		txtreservationum.setBounds(0, 0, 68, 28);
+		txtreservationum.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(txtreservationum);
+		in_reservationNum = new JLabel("");
+		in_reservationNum.setHorizontalAlignment(SwingConstants.LEFT);
+		in_reservationNum.setText("" + ReArr.get(0).getReservation_number());
+		in_reservationNum.setBounds(69, 0, 189, 28);
+		panel.add(in_reservationNum);
+
+		txtmovietitle = new JLabel("영화제목 :  ");
+		txtmovietitle.setBounds(0, 28, 68, 28);
+		txtmovietitle.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(txtmovietitle);
+
+		in_movieTitle = new JLabel("");
+		in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
+		in_movieTitle.setText("" + ReArr.get(0).getMovie_id());
+		in_movieTitle.setBounds(69, 28, 189, 28);
+		panel.add(in_movieTitle);
+
+		txtreservationdate = new JLabel("예약일시 :  ");
+		txtreservationdate.setBounds(0, 56, 68, 28);
+		txtreservationdate.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(txtreservationdate);
+
+		in_resercationDate = new JLabel("");
+		in_resercationDate.setHorizontalAlignment(SwingConstants.LEFT);
+		in_resercationDate.setText("" + ReArr.get(0).getReservation_date());
+		in_resercationDate.setBounds(69, 56, 189, 28);
+		panel.add(in_resercationDate);
+
+		txttotalprice = new JLabel("결제 금액 :  ");
+		txttotalprice.setBounds(0, 84, 68, 28);
+		txttotalprice.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(txttotalprice);
+
+		in_totalPrice = new JLabel("");
+		in_totalPrice.setText("" + ReArr.get(0).getPayment_price());
+		in_totalPrice.setHorizontalAlignment(SwingConstants.LEFT);
+		in_totalPrice.setBounds(69, 84, 189, 28);
+		panel.add(in_totalPrice);
+
+		lblReservation = new JLabel("Reservation");
 		lblReservation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblReservation.setFont(new Font("Candara Light", Font.BOLD, 36));
 		lblReservation.setBounds(14, 19, 400, 55);
 		resdetail_panel.add(lblReservation);
 
-		JPanel none_resdetail_panel = new JPanel();
+		none_resdetail_panel = new JPanel();
 		none_resdetail_panel.setBackground(Color.WHITE);
 		none_resdetail_panel.setBounds(10, 10, 424, 635);
 		res_panel.add(none_resdetail_panel);
 		none_resdetail_panel.setLayout(null);
 
-		JLabel nonereservatiompanel = new JLabel("There are currently no reservations");
+		nonereservatiompanel = new JLabel("There are currently no reservations");
 		nonereservatiompanel.setForeground(new Color(165, 42, 42));
 		nonereservatiompanel.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		nonereservatiompanel.setHorizontalAlignment(SwingConstants.CENTER);
 		nonereservatiompanel.setBounds(51, 10, 324, 15);
 		none_resdetail_panel.add(nonereservatiompanel);
 
-		RoundedButtonD btn_meminfo = new RoundedButtonD("member info");
+		btn_meminfo = new RoundedButtonD("member info");
 		btn_meminfo.setBackground(new Color(128, 128, 128));
 		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_meminfo.addActionListener(new ActionListener() {
@@ -207,7 +240,7 @@ public class MyPage extends JFrame {
 		btn_meminfo.setBounds(18, 10, 130, 35);
 		detail.add(btn_meminfo);
 
-		RoundedButtonD btn_reser = new RoundedButtonD("reservtion");
+		btn_reser = new RoundedButtonD("reservtion");
 		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_reser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -219,27 +252,28 @@ public class MyPage extends JFrame {
 		btn_reser.setBounds(151, 10, 105, 35);
 		detail.add(btn_reser);
 
-		Panel memdetail_panel = new Panel();
+		memdetail_panel = new Panel();
 		memdetail_panel.setLayout(null);
 		memdetail_panel.setBackground(Color.WHITE);
 		memdetail_panel.setBounds(10, 10, 424, 635);
 		mem_panel.add(memdetail_panel);
 
-		RoundedButtonD btn_edit = new RoundedButtonD("Edit");
+		btn_edit = new RoundedButtonD("Edit");
 		btn_edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!nameField.getText().isEmpty() && !phone.getText().isEmpty() && !currField.getText().isEmpty()
 						&& !newpwField.getText().isEmpty() && !newpwckField.getText().isEmpty()) {
-					if (currField.getText().equals(MyArr.get(0).getPassword()) && newpwField.getText().equals(newpwckField.getText())) {
+					if (currField.getText().equals(MyArr.get(0).getPassword())
+							&& newpwField.getText().equals(newpwckField.getText())) {
 						errortxt.setForeground(Color.blue);
 						errortxt.setText("성공!");
-						MDB.UpdateMemberInfo(memberID,nameField.getText(), phone.getText(), newpwField.getText());
+						MDB.UpdateMemberInfo(memberID, nameField.getText(), phone.getText(), newpwField.getText());
 						System.out.println("업데이트 성공");
 					} else {
-						if(!currField.getText().equals(MyArr.get(0).getPassword()) ) {
+						if (!currField.getText().equals(MyArr.get(0).getPassword())) {
 							errortxt.setText("현재 비밀번호가 불일치 합니다");
 							System.out.println("비밀번호 불일치");
-						}else if(!newpwField.getText().equals(newpwckField.getText())) {
+						} else if (!newpwField.getText().equals(newpwckField.getText())) {
 							errortxt.setText("새 비밀번호끼리 불일치 합니다");
 							System.out.println("비밀번호 필드끼리 불일치");
 						}
@@ -255,7 +289,7 @@ public class MyPage extends JFrame {
 		btn_edit.setBounds(12, 584, 400, 40);
 		memdetail_panel.add(btn_edit);
 
-		Panel lbPanel = new Panel();
+		lbPanel = new Panel();
 		lbPanel.setBounds(0, 119, 162, 373);
 		memdetail_panel.add(lbPanel);
 		lbPanel.setLayout(new GridLayout(0, 1, 0, 0));
@@ -300,7 +334,7 @@ public class MyPage extends JFrame {
 		label_7.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		lbPanel.add(label_7);
 
-		Panel fieldPanel = new Panel();
+		fieldPanel = new Panel();
 		fieldPanel.setLayout(null);
 		fieldPanel.setBounds(168, 119, 256, 373);
 		memdetail_panel.add(fieldPanel);

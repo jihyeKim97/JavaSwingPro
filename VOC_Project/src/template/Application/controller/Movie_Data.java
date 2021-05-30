@@ -23,6 +23,14 @@ public class Movie_Data {
 	
 	
 
+	public Movie_Data(int moviesid, String title) {
+		super();
+		this.moviesid = moviesid;
+		this.title = title;
+	}
+
+
+
 	public int getMoviesid() {
 		return moviesid;
 	}
