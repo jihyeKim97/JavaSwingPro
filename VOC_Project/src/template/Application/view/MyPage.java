@@ -107,58 +107,58 @@ public class MyPage extends JFrame {
 
 		Panel reser_box = new Panel();
 		reser_box.setBackground(new Color(245, 245, 245));
-		reser_box.setBounds(10, 80, 404, 207);
+		reser_box.setBounds(10, 80, 404, 174);
 		resdetail_panel.add(reser_box);
 		reser_box.setLayout(null);
 
 		Panel poster = new Panel();
 		poster.setBackground(new Color(255, 228, 196));
-		poster.setBounds(10, 42, 117, 155);
+		poster.setBounds(10, 10, 117, 155);
 		reser_box.add(poster);
 
 		JLabel txt_reser_num = new JLabel("예약번호 : ");
-		txt_reser_num.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		txt_reser_num.setBounds(10, 16, 102, 15);
+		txt_reser_num.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		txt_reser_num.setBounds(133, 20, 90, 15);
 		reser_box.add(txt_reser_num);
 
 		JLabel resernum_sett = new JLabel("");
-		resernum_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		resernum_sett.setBounds(83, 16, 309, 15);
+		resernum_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		resernum_sett.setBounds(213, 20, 179, 15);
 		reser_box.add(resernum_sett);
 
 		JLabel lblTitle = new JLabel("영화제목 : ");
-		lblTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		lblTitle.setBounds(140, 45, 100, 15);
+		lblTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		lblTitle.setBounds(133, 45, 90, 15);
 		reser_box.add(lblTitle);
 
 		JLabel title_sett = new JLabel("");
-		title_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		title_sett.setBounds(219, 45, 175, 15);
+		title_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		title_sett.setBounds(212, 45, 175, 15);
 		reser_box.add(title_sett);
 
 		JLabel lblTime = new JLabel("상영시간 : ");
-		lblTime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		lblTime.setBounds(140, 70, 100, 15);
+		lblTime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		lblTime.setBounds(133, 70, 90, 15);
 		reser_box.add(lblTime);
 
 		JLabel time_sett = new JLabel("");
-		time_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		time_sett.setBounds(217, 70, 179, 15);
+		time_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		time_sett.setBounds(210, 70, 179, 15);
 		reser_box.add(time_sett);
 
 		JLabel lblSeat = new JLabel("좌석번호 : ");
-		lblSeat.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		lblSeat.setBounds(140, 95, 100, 15);
+		lblSeat.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		lblSeat.setBounds(133, 95, 90, 15);
 		reser_box.add(lblSeat);
 
 		JLabel seat_sett = new JLabel("");
-		seat_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		seat_sett.setBounds(216, 95, 176, 15);
+		seat_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		seat_sett.setBounds(209, 95, 176, 15);
 		reser_box.add(seat_sett);
 
 		wirte_review = new RoundedButtonD("Go to write a review");
 		wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		wirte_review.setText("리뷰 작성하기");
+		wirte_review.setText("한줄평 작성하기");
 		wirte_review.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				wirteP = new Mypage_writePage(frm);
@@ -167,7 +167,7 @@ public class MyPage extends JFrame {
 				wirteP.setVisible(true);
 			}
 		});
-		wirte_review.setBounds(141, 163, 251, 34);
+		wirte_review.setBounds(133, 131, 259, 34);
 		reser_box.add(wirte_review);
 
 		JLabel lblReservation = new JLabel("Reservation");
