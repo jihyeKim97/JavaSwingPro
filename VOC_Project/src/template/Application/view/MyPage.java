@@ -9,8 +9,8 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
 
-import template.Application.controller.MyPage_DB;
-import template.Application.controller.MyPage_Data;
+import template.Application.controller.Mypage_Member_DB;
+import template.Application.controller.Mypage_Member_data;
 import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
@@ -43,14 +43,14 @@ public class MyPage extends JFrame {
 	Mypage_writePage wirteP;
 	Point fPt;
 	Main mafrm;
-	MyPage_Data MyPage;
+	Mypage_Member_data MyPage;
 	JLabel errortxt;
-	MyPage_DB MDB;
+	Mypage_Member_DB MDB;
 	int memberID = 34;
 
 	public MyPage(Main mafrm) {
 		this.frm = this;
-		ArrayList<MyPage_Data> MyArr = MDB.SelectMemberID(memberID);
+		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -116,46 +116,6 @@ public class MyPage extends JFrame {
 		poster.setBounds(10, 10, 117, 155);
 		reser_box.add(poster);
 
-		JLabel txt_reser_num = new JLabel("예약번호 : ");
-		txt_reser_num.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		txt_reser_num.setBounds(133, 20, 90, 15);
-		reser_box.add(txt_reser_num);
-
-		JLabel resernum_sett = new JLabel("");
-		resernum_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		resernum_sett.setBounds(213, 20, 179, 15);
-		reser_box.add(resernum_sett);
-
-		JLabel lblTitle = new JLabel("영화제목 : ");
-		lblTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		lblTitle.setBounds(133, 45, 90, 15);
-		reser_box.add(lblTitle);
-
-		JLabel title_sett = new JLabel("");
-		title_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		title_sett.setBounds(212, 45, 175, 15);
-		reser_box.add(title_sett);
-
-		JLabel lblTime = new JLabel("상영시간 : ");
-		lblTime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		lblTime.setBounds(133, 70, 90, 15);
-		reser_box.add(lblTime);
-
-		JLabel time_sett = new JLabel("");
-		time_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		time_sett.setBounds(210, 70, 179, 15);
-		reser_box.add(time_sett);
-
-		JLabel lblSeat = new JLabel("좌석번호 : ");
-		lblSeat.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		lblSeat.setBounds(133, 95, 90, 15);
-		reser_box.add(lblSeat);
-
-		JLabel seat_sett = new JLabel("");
-		seat_sett.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		seat_sett.setBounds(209, 95, 176, 15);
-		reser_box.add(seat_sett);
-
 		wirte_review = new RoundedButtonD("Go to write a review");
 		wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		wirte_review.setText("한줄평 작성하기");
@@ -169,6 +129,51 @@ public class MyPage extends JFrame {
 		});
 		wirte_review.setBounds(133, 131, 259, 34);
 		reser_box.add(wirte_review);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(133, 10, 259, 113);
+		reser_box.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("예약번호 :  ");
+		lblNewLabel.setBounds(0, 0, 68, 28);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_4.setBounds(69, 0, 189, 28);
+		panel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_2 = new JLabel("영화제목 :  ");
+		lblNewLabel_2.setBounds(0, 28, 68, 28);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_6.setBounds(69, 28, 189, 28);
+		panel.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("예약일시 :  ");
+		lblNewLabel_7.setBounds(0, 56, 68, 28);
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lblNewLabel_7);
+		
+		JLabel label_9 = new JLabel("");
+		label_9.setHorizontalAlignment(SwingConstants.LEFT);
+		label_9.setBounds(69, 56, 189, 28);
+		panel.add(label_9);
+		
+		JLabel label_8 = new JLabel("결제 금액 :  ");
+		label_8.setBounds(0, 84, 68, 28);
+		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(label_8);
+		
+		JLabel label_10 = new JLabel("");
+		label_10.setHorizontalAlignment(SwingConstants.LEFT);
+		label_10.setBounds(69, 84, 189, 28);
+		panel.add(label_10);
 
 		JLabel lblReservation = new JLabel("Reservation");
 		lblReservation.setHorizontalAlignment(SwingConstants.CENTER);
