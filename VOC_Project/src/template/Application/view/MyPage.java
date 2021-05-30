@@ -182,7 +182,7 @@ public class MyPage extends JFrame {
 
 		in_movieTitle = new JLabel("");
 		in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
-		in_movieTitle.setText("" + ReArr.get(0).getMovie_id());
+		in_movieTitle.setText(Mypage_Reservation_DB.AlterMovieIDName(ReArr.get(0).getMovie_id()));
 		in_movieTitle.setBounds(69, 28, 189, 28);
 		panel.add(in_movieTitle);
 

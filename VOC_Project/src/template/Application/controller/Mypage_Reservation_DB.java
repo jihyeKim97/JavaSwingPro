@@ -1,6 +1,5 @@
 package template.Application.controller;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,9 +12,7 @@ public class Mypage_Reservation_DB {
 
 	static DB_Connect connect;
 	static MyPage Mypage;
-	static Movie_Data Movie;
 	static Mypage_Reservation_data Myoage_reDT;
-	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	static ArrayList<Mypage_Reservation_data> ReArr = new ArrayList<>();
 
 	public static ArrayList<Mypage_Reservation_data> SelectReservationID(int memberID) {
@@ -52,11 +49,11 @@ public class Mypage_Reservation_DB {
 	}
 
 	public static String AlterMovieIDName(int moviesID) {
+		String title = "";
 
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "select * from movies where movies_id = " + moviesID;
-			String title = "";
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
@@ -70,14 +67,14 @@ public class Mypage_Reservation_DB {
 			}
 		}
 		connect.endConnection();
-		return null;
+		return title;
 	}
 
 	public static void main(String[] args) {
 //	 ArrayList<Mypage_Reservation_data> i = SelectReservationID(34);
 //	 System.out.println(i);
-		
-		System.out.println(AlterMovieIDName(27));
+
+//		System.out.println(AlterMovieIDName(27));
 
 	}
 }
