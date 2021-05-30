@@ -73,7 +73,6 @@ public class Mypage_Reservation_DB {
 	public static void main(String[] args) {
 //	 ArrayList<Mypage_Reservation_data> i = SelectReservationID(34);
 //	 System.out.println(i);
-
 //		System.out.println(AlterMovieIDName(27));
 
 	}

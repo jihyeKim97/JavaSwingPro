@@ -166,46 +166,54 @@ public class MyPage extends JFrame {
 		panel.setLayout(null);
 
 		txtreservationum = new JLabel("예약번호 :  ");
+		txtreservationum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		txtreservationum.setBounds(0, 0, 68, 28);
 		txtreservationum.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(txtreservationum);
 		in_reservationNum = new JLabel("");
+		in_reservationNum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		in_reservationNum.setHorizontalAlignment(SwingConstants.LEFT);
 		in_reservationNum.setText("" + ReArr.get(0).getReservation_number());
-		in_reservationNum.setBounds(69, 0, 189, 28);
+		in_reservationNum.setBounds(75, 0, 183, 28);
 		panel.add(in_reservationNum);
 
 		txtmovietitle = new JLabel("영화제목 :  ");
+		txtmovietitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		txtmovietitle.setBounds(0, 28, 68, 28);
 		txtmovietitle.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(txtmovietitle);
 
 		in_movieTitle = new JLabel("");
+		in_movieTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
 		in_movieTitle.setText(Mypage_Reservation_DB.AlterMovieIDName(ReArr.get(0).getMovie_id()));
-		in_movieTitle.setBounds(69, 28, 189, 28);
+		in_movieTitle.setBounds(75, 28, 183, 28);
 		panel.add(in_movieTitle);
 
 		txtreservationdate = new JLabel("예약일시 :  ");
+		txtreservationdate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		txtreservationdate.setBounds(0, 56, 68, 28);
 		txtreservationdate.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(txtreservationdate);
 
 		in_resercationDate = new JLabel("");
+		in_resercationDate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		in_resercationDate.setHorizontalAlignment(SwingConstants.LEFT);
 		in_resercationDate.setText("" + ReArr.get(0).getReservation_date());
-		in_resercationDate.setBounds(69, 56, 189, 28);
+		in_resercationDate.setBounds(75, 56, 183, 28);
 		panel.add(in_resercationDate);
 
 		txttotalprice = new JLabel("결제 금액 :  ");
+		txttotalprice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		txttotalprice.setBounds(0, 84, 68, 28);
 		txttotalprice.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(txttotalprice);
 
 		in_totalPrice = new JLabel("");
+		in_totalPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		in_totalPrice.setText("" + ReArr.get(0).getPayment_price());
 		in_totalPrice.setHorizontalAlignment(SwingConstants.LEFT);
-		in_totalPrice.setBounds(69, 84, 189, 28);
+		in_totalPrice.setBounds(75, 84, 183, 28);
 		panel.add(in_totalPrice);
 
 		lblReservation = new JLabel("Reservation");
