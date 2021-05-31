@@ -12,6 +12,7 @@ public class Movie_DB {
 	static DB_Connect connect;
 	static Movie_Data Movie;
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
+	static ArrayList<Integer> movieidlist = new ArrayList<>();
 	
 //	public static void main(String[] args) {
 	
@@ -122,9 +123,32 @@ public class Movie_DB {
 		return MovieId;
 		
 	}
+	
+	public static ArrayList<Integer> getMovie(int year, int month, int day) {
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		int MovieId = 0;
+		if (connect.conn != null) {
+			String sql = "SELECT * FROM movies WHERE schedule_date = '" + year + month + day + "'";
+			System.out.println(sql);
+		try {
+			Statement st = connect.conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				int movieid = rs.getInt("movies_id");
+				movieidlist.add(movieid);
+		}
+			return movieidlist;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
+		
+	}
+		connect.endConnection();
+		return movieidlist;
 	
-	
+	}
 }
 
 

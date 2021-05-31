@@ -6,16 +6,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import template.Application.view.MyPage;
-import template.Application.view.Notice;
 
-public class MyPage_DB {
+public class Mypage_Member_DB {
 
 	static DB_Connect connect;
-	static ArrayList<MyPage_Data> MyArr = new ArrayList<>();
+	static ArrayList<Mypage_Member_data> MyArr = new ArrayList<>();
 	static MyPage Mypage;
-	static MyPage_Data MypageDT;
+	static Mypage_Member_data MypageDT;
 
-	public static ArrayList<MyPage_Data> SelectMemberID(int memberID) {
+	public static ArrayList<Mypage_Member_data> SelectMemberID(int memberID) {
 
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -36,7 +35,7 @@ public class MyPage_DB {
 					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
 							+ phone_number + " " + birthday + " " + is_member);
 					MyArr.add(
-							new MyPage_Data(member_id, id, password, name, gender, phone_number, is_member, birthday));
+							new Mypage_Member_data(member_id, id, password, name, gender, phone_number, is_member, birthday));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -72,11 +71,4 @@ public class MyPage_DB {
 		return false;
 	}
 
-	public static void main(String[] args) {
-
-//		ArrayList<MyPage_Data> i = SelectMemberID(34);
-//		System.out.println(i);
-
-		UpdateMemberInfo(34, "김홀깅", "01012345678", "1234578");
-	}
 }
