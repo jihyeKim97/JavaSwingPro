@@ -16,13 +16,14 @@ public class Mypage_Reservation_DB {
 	static ArrayList<Mypage_Reservation_data> ReArr = new ArrayList<>();
 
 	public static ArrayList<Mypage_Reservation_data> SelectReservationID(int memberID) {
-
 		connect.beginConnection();
+		ResultSet rs;
+		Statement st;
 		if (connect.conn != null) {
 			String sql = "select * from reservation where member_id =  " + memberID;
 			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
+				st = connect.conn.createStatement();
+				rs = st.executeQuery(sql);
 				if (rs.next()) {
 					int reservation_id = rs.getInt("reservation_id");
 					int reservation_number = rs.getInt("reservation_number");
@@ -39,6 +40,10 @@ public class Mypage_Reservation_DB {
 					ReArr.add(new Mypage_Reservation_data(reservation_id, reservation_number, reservation_date,
 							seat_number, car_type, payment_price, payment_date, option_name, option_price, member_id,
 							movie_id));
+				}
+				if (rs.next() == false) {
+					System.out.println("널");
+					return null;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -71,8 +76,8 @@ public class Mypage_Reservation_DB {
 	}
 
 	public static void main(String[] args) {
-//	 ArrayList<Mypage_Reservation_data> i = SelectReservationID(34);
-//	 System.out.println(i);
+		ArrayList<Mypage_Reservation_data> i = SelectReservationID(34);
+		System.out.println(i);
 //		System.out.println(AlterMovieIDName(27));
 
 	}

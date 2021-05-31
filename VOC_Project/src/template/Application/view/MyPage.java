@@ -74,6 +74,12 @@ public class MyPage extends JFrame {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
 		ArrayList<Mypage_Reservation_data> ReArr = RDB.SelectReservationID(memberID);
+		if (ReArr != null && !ReArr.isEmpty()) {
+			System.out.println(ReArr + "있");
+		}else {
+			System.out.println(ReArr+ "없");
+		}
+		
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -253,7 +259,11 @@ public class MyPage extends JFrame {
 		btn_reser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mem_panel.setVisible(false);
-				res_panel.setVisible(true);
+//				if (ReArr != null || !ReArr.isEmpty()) {
+//					res_panel.setVisible(true);
+//				} else {
+//					nonereservatiompanel.setVisible(true);
+//				}
 				lbTitle.setText("Reservtion");
 			}
 		});
