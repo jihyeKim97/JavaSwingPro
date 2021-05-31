@@ -1,9 +1,25 @@
 package template.Application.controller;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Movie_Data {
-
+	private static final int DEF_MOVIEID = 0;
+	private static final String DEF_TITLE = "제목없음";
+	private static final String DEF_GENRE = "장르없음";
+	private static final String DEF_DIRECTOR = "감독없음";
+	private static final int DEF_AGEGROUP = 0;
+	private static final String DEF_story = "스토리없음";
+	private static final int DEF_averageScore = 0;
+	private static final String DEF_gee = "등장인물 없음";
+	private static final Date DEF_opendate = (Date) new java.util.Date();
+	private static final String DEF_production = "제작사 없음";
+	private static final String DEF_imagefilename = "이미지 없음";
+	private static final Date DEF_scheduledate = (Date) new java.util.Date();
+	private static final int DEF_scheduletime = 1;
+	private static final String DEF_runningtime = "이미지 없음";
+	
+	
+	
 	private int moviesid;
 	private String title;
 	private String genre;
@@ -20,6 +36,7 @@ public class Movie_Data {
 	private String runningtime;
 
 	public Movie_Data() {
+	
 	}
 
 	public int getMoviesid() {
