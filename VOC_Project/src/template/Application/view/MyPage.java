@@ -51,8 +51,6 @@ public class MyPage extends JFrame {
 	JLabel txttotalprice;
 	JLabel in_totalPrice;
 	JLabel lblReservation;
-	JPanel none_resdetail_panel;
-	JLabel nonereservatiompanel;
 	RoundedButtonD btn_meminfo;
 	RoundedButtonD btn_reser;
 	Panel memdetail_panel;
@@ -79,16 +77,12 @@ public class MyPage extends JFrame {
 	ArrayList<Mypage_Reservation_data> ReArr;
 	ArrayList<Mypage_Member_data> MyArr;
 	int memberID = 34;
+	private JLabel none_reservation;
 
 	public MyPage(Main mafrm) {
 		this.frm = this;
 		MyArr = MDB.SelectMemberID(memberID);
 		ReArr = RDB.SelectReservationID(memberID);
-//		if (ReArr != null && !ReArr.isEmpty()) {
-//			System.out.println(ReArr + "있");
-//		} else {
-//			System.out.println(ReArr + "없");
-//		}
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -118,32 +112,6 @@ public class MyPage extends JFrame {
 		content.setBounds(0, 55, 484, 705);
 		contentPane.add(content);
 		content.setLayout(null);
-		btn_reser = new RoundedButtonD("reservtion");
-		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_reser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mem_panel.setVisible(false);
-				ArrayList<Mypage_Reservation_data> ReArr = RDB.SelectReservationID(memberID);
-				if (ReArr != null || !ReArr.isEmpty()) {
-					res_panel.setVisible(true);
-				} else {
-					nonereservatiompanel.setVisible(true);
-				}
-				lbTitle.setText("Reservtion");
-			}
-		});
-		btn_meminfo = new RoundedButtonD("member info");
-		btn_meminfo.setBackground(new Color(128, 128, 128));
-		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_meminfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mem_panel.setVisible(true);
-				res_panel.setVisible(false);
-				lbTitle.setText("Member Info");
-			}
-		});
-		btn_meminfo.setBounds(18, 10, 130, 35);
-		detail.add(btn_meminfo);
 
 		detail = new Panel();
 		detail.setBackground(Color.WHITE);
@@ -154,7 +122,7 @@ public class MyPage extends JFrame {
 		mem_panel = new JPanel();
 		mem_panel.setBackground(new Color(220, 220, 220));
 		mem_panel.setBounds(10, 40, 444, 655);
-//		detail.add(mem_panel);
+		detail.add(mem_panel);
 		mem_panel.setLayout(null);
 
 		res_panel = new JPanel();
@@ -169,111 +137,130 @@ public class MyPage extends JFrame {
 		res_panel.add(resdetail_panel);
 		resdetail_panel.setLayout(null);
 
-		reser_box = new Panel();
-		reser_box.setBackground(new Color(245, 245, 245));
-		reser_box.setBounds(10, 80, 404, 174);
-		resdetail_panel.add(reser_box);
-		reser_box.setLayout(null);
+		none_reservation = new JLabel();
+		none_reservation.setForeground(Color.RED);
+		none_reservation.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		none_reservation.setBounds(10, 80, 402, 15);
+		resdetail_panel.add(none_reservation);
 
-		poster = new Panel();
-		poster.setBackground(new Color(255, 228, 196));
-		poster.setBounds(10, 10, 117, 155);
-		reser_box.add(poster);
-
-		wirte_review = new RoundedButtonD("Go to write a review");
-		wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		wirte_review.setText("한줄평 작성하기");
-		wirte_review.addActionListener(new ActionListener() {
+		btn_meminfo = new RoundedButtonD("member info");
+		btn_meminfo.setBackground(new Color(128, 128, 128));
+		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_meminfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				wirteP = new Mypage_writePage(frm);
-				fPt = frm.getLocationOnScreen();
-				wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
-				wirteP.setVisible(true);
+				mem_panel.setVisible(true);
+				res_panel.setVisible(false);
+				lbTitle.setText("Member Info");
 			}
 		});
-		wirte_review.setBounds(133, 131, 259, 34);
-		reser_box.add(wirte_review);
+		btn_meminfo.setBounds(18, 10, 130, 35);
+		detail.add(btn_meminfo);
 
+		btn_reser = new RoundedButtonD("reservtion");
+		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_reser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mem_panel.setVisible(false);
+				res_panel.setVisible(true);
+				lbTitle.setText("Reservtion");
+				if (!ReArr.isEmpty()) {
+					none_reservation.setVisible(false);
+					reser_box = new Panel();
+					reser_box.setBackground(new Color(245, 245, 245));
+					reser_box.setBounds(10, 80, 404, 174);
+					resdetail_panel.add(reser_box);
+					reser_box.setLayout(null);
 
+					poster = new Panel();
+					poster.setBackground(new Color(255, 228, 196));
+					poster.setBounds(10, 10, 117, 155);
+					reser_box.add(poster);
+
+					wirte_review = new RoundedButtonD("Go to write a review");
+					wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
+					wirte_review.setText("한줄평 작성하기");
+					wirte_review.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							wirteP = new Mypage_writePage(frm);
+							fPt = frm.getLocationOnScreen();
+							wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
+							wirteP.setVisible(true);
+						}
+					});
+					wirte_review.setBounds(133, 131, 259, 34);
+					reser_box.add(wirte_review);
+
+					panel = new JPanel();
+					panel.setBounds(133, 10, 259, 113);
+					reser_box.add(panel);
+					panel.setLayout(null);
+
+					txtreservationum = new JLabel("예약번호 :  ");
+					txtreservationum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					txtreservationum.setBounds(0, 0, 68, 28);
+					txtreservationum.setHorizontalAlignment(SwingConstants.RIGHT);
+					panel.add(txtreservationum);
+					in_reservationNum = new JLabel("");
+					in_reservationNum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					in_reservationNum.setHorizontalAlignment(SwingConstants.LEFT);
+					in_reservationNum.setText("" + ReArr.get(0).getReservation_number());
+					in_reservationNum.setBounds(75, 0, 183, 28);
+					panel.add(in_reservationNum);
+
+					txtmovietitle = new JLabel("영화제목 :  ");
+					txtmovietitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					txtmovietitle.setBounds(0, 28, 68, 28);
+					txtmovietitle.setHorizontalAlignment(SwingConstants.RIGHT);
+					panel.add(txtmovietitle);
+
+					in_movieTitle = new JLabel("");
+					in_movieTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
+					in_movieTitle.setText(Mypage_Reservation_DB.AlterMovieIDName(ReArr.get(0).getMovie_id()));
+					in_movieTitle.setBounds(75, 28, 183, 28);
+					panel.add(in_movieTitle);
+
+					txtreservationdate = new JLabel("예약일시 :  ");
+					txtreservationdate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					txtreservationdate.setBounds(0, 56, 68, 28);
+					txtreservationdate.setHorizontalAlignment(SwingConstants.RIGHT);
+					panel.add(txtreservationdate);
+
+					in_resercationDate = new JLabel("");
+					in_resercationDate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					in_resercationDate.setHorizontalAlignment(SwingConstants.LEFT);
+					in_resercationDate.setText("" + ReArr.get(0).getReservation_date());
+					in_resercationDate.setBounds(75, 56, 183, 28);
+					panel.add(in_resercationDate);
+
+					txttotalprice = new JLabel("결제 금액 :  ");
+					txttotalprice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					txttotalprice.setBounds(0, 84, 68, 28);
+					txttotalprice.setHorizontalAlignment(SwingConstants.RIGHT);
+					panel.add(txttotalprice);
+
+					in_totalPrice = new JLabel("");
+					in_totalPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+					in_totalPrice.setText("" + ReArr.get(0).getPayment_price());
+					in_totalPrice.setHorizontalAlignment(SwingConstants.LEFT);
+					in_totalPrice.setBounds(75, 84, 183, 28);
+					panel.add(in_totalPrice);
+
+					lblReservation = new JLabel("Reservation");
+					lblReservation.setHorizontalAlignment(SwingConstants.CENTER);
+					lblReservation.setFont(new Font("Candara Light", Font.BOLD, 36));
+					lblReservation.setBounds(14, 19, 400, 55);
+					resdetail_panel.add(lblReservation);
+				} else {
+					none_reservation.setText("현재 회원님의 예매 내역이 없습니다.");
+					none_reservation.setHorizontalAlignment(SwingConstants.CENTER);
+					resdetail_panel.setVisible(true);
+				}
+			}
+		});
 		btn_reser.setBounds(151, 10, 105, 35);
 		detail.add(btn_reser);
-		
-		panel = new JPanel();
-		panel.setBounds(133, 10, 259, 113);
-		reser_box.add(panel);
-		panel.setLayout(null);
 
-		txtreservationum = new JLabel("예약번호 :  ");
-		txtreservationum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		txtreservationum.setBounds(0, 0, 68, 28);
-		txtreservationum.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(txtreservationum);
-		in_reservationNum = new JLabel("");
-		in_reservationNum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		in_reservationNum.setHorizontalAlignment(SwingConstants.LEFT);
-		in_reservationNum.setText("" + ReArr.get(0).getReservation_number());
-		in_reservationNum.setBounds(75, 0, 183, 28);
-		panel.add(in_reservationNum);
-
-		txtmovietitle = new JLabel("영화제목 :  ");
-		txtmovietitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		txtmovietitle.setBounds(0, 28, 68, 28);
-		txtmovietitle.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(txtmovietitle);
-
-		in_movieTitle = new JLabel("");
-		in_movieTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
-		in_movieTitle.setText(Mypage_Reservation_DB.AlterMovieIDName(ReArr.get(0).getMovie_id()));
-		in_movieTitle.setBounds(75, 28, 183, 28);
-		panel.add(in_movieTitle);
-
-		txtreservationdate = new JLabel("예약일시 :  ");
-		txtreservationdate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		txtreservationdate.setBounds(0, 56, 68, 28);
-		txtreservationdate.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(txtreservationdate);
-
-		in_resercationDate = new JLabel("");
-		in_resercationDate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		in_resercationDate.setHorizontalAlignment(SwingConstants.LEFT);
-		in_resercationDate.setText("" + ReArr.get(0).getReservation_date());
-		in_resercationDate.setBounds(75, 56, 183, 28);
-		panel.add(in_resercationDate);
-
-		txttotalprice = new JLabel("결제 금액 :  ");
-		txttotalprice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		txttotalprice.setBounds(0, 84, 68, 28);
-		txttotalprice.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel.add(txttotalprice);
-
-		in_totalPrice = new JLabel("");
-		in_totalPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-		in_totalPrice.setText("" + ReArr.get(0).getPayment_price());
-		in_totalPrice.setHorizontalAlignment(SwingConstants.LEFT);
-		in_totalPrice.setBounds(75, 84, 183, 28);
-		panel.add(in_totalPrice);
-
-		lblReservation = new JLabel("Reservation");
-		lblReservation.setHorizontalAlignment(SwingConstants.CENTER);
-		lblReservation.setFont(new Font("Candara Light", Font.BOLD, 36));
-		lblReservation.setBounds(14, 19, 400, 55);
-		resdetail_panel.add(lblReservation);
-
-		none_resdetail_panel = new JPanel();
-		none_resdetail_panel.setBackground(Color.WHITE);
-		none_resdetail_panel.setBounds(10, 10, 424, 635);
-		res_panel.add(none_resdetail_panel);
-		none_resdetail_panel.setLayout(null);
-
-		nonereservatiompanel = new JLabel("There are currently no reservations");
-		nonereservatiompanel.setForeground(new Color(165, 42, 42));
-		nonereservatiompanel.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		nonereservatiompanel.setHorizontalAlignment(SwingConstants.CENTER);
-		nonereservatiompanel.setBounds(51, 10, 324, 15);
-		none_resdetail_panel.add(nonereservatiompanel);
-
-		
 		memdetail_panel = new Panel();
 		memdetail_panel.setLayout(null);
 		memdetail_panel.setBackground(Color.WHITE);
