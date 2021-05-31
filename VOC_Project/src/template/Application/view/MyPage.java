@@ -61,6 +61,14 @@ public class MyPage extends JFrame {
 	JPanel panel;
 	JLabel txtreservationum;
 	Panel fieldPanel;
+	RoundedButtonD btn_main;
+	JPanel content;
+	Panel detail;
+	JPanel mem_panel;
+	JPanel res_panel;
+	JPanel resdetail_panel;
+	Panel reser_box;
+	Panel poster;
 
 	Point fPt;
 	Main mafrm;
@@ -68,18 +76,19 @@ public class MyPage extends JFrame {
 	JLabel errortxt;
 	Mypage_Member_DB MDB;
 	Mypage_Reservation_DB RDB;
+	ArrayList<Mypage_Reservation_data> ReArr;
+	ArrayList<Mypage_Member_data> MyArr;
 	int memberID = 34;
 
 	public MyPage(Main mafrm) {
 		this.frm = this;
-		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
-		ArrayList<Mypage_Reservation_data> ReArr = RDB.SelectReservationID(memberID);
-		if (ReArr != null && !ReArr.isEmpty()) {
-			System.out.println(ReArr + "있");
-		}else {
-			System.out.println(ReArr+ "없");
-		}
-		
+		MyArr = MDB.SelectMemberID(memberID);
+		ReArr = RDB.SelectReservationID(memberID);
+//		if (ReArr != null && !ReArr.isEmpty()) {
+//			System.out.println(ReArr + "있");
+//		} else {
+//			System.out.println(ReArr + "없");
+//		}
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -93,14 +102,7 @@ public class MyPage extends JFrame {
 		header.setBackground(new Color(169, 169, 169));
 		header.setBounds(0, 0, 484, 55);
 		contentPane.add(header);
-		RoundedButtonD btn_main;
-		JPanel content;
-		Panel detail;
-		JPanel mem_panel;
-		JPanel res_panel;
-		JPanel resdetail_panel;
-		Panel reser_box;
-		Panel poster;
+
 		btn_main = new RoundedButtonD("HOME");
 		btn_main.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,6 +118,32 @@ public class MyPage extends JFrame {
 		content.setBounds(0, 55, 484, 705);
 		contentPane.add(content);
 		content.setLayout(null);
+		btn_reser = new RoundedButtonD("reservtion");
+		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_reser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mem_panel.setVisible(false);
+				ArrayList<Mypage_Reservation_data> ReArr = RDB.SelectReservationID(memberID);
+				if (ReArr != null || !ReArr.isEmpty()) {
+					res_panel.setVisible(true);
+				} else {
+					nonereservatiompanel.setVisible(true);
+				}
+				lbTitle.setText("Reservtion");
+			}
+		});
+		btn_meminfo = new RoundedButtonD("member info");
+		btn_meminfo.setBackground(new Color(128, 128, 128));
+		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_meminfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mem_panel.setVisible(true);
+				res_panel.setVisible(false);
+				lbTitle.setText("Member Info");
+			}
+		});
+		btn_meminfo.setBounds(18, 10, 130, 35);
+		detail.add(btn_meminfo);
 
 		detail = new Panel();
 		detail.setBackground(Color.WHITE);
@@ -166,6 +194,10 @@ public class MyPage extends JFrame {
 		wirte_review.setBounds(133, 131, 259, 34);
 		reser_box.add(wirte_review);
 
+
+		btn_reser.setBounds(151, 10, 105, 35);
+		detail.add(btn_reser);
+		
 		panel = new JPanel();
 		panel.setBounds(133, 10, 259, 113);
 		reser_box.add(panel);
@@ -241,35 +273,7 @@ public class MyPage extends JFrame {
 		nonereservatiompanel.setBounds(51, 10, 324, 15);
 		none_resdetail_panel.add(nonereservatiompanel);
 
-		btn_meminfo = new RoundedButtonD("member info");
-		btn_meminfo.setBackground(new Color(128, 128, 128));
-		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_meminfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mem_panel.setVisible(true);
-				res_panel.setVisible(false);
-				lbTitle.setText("Member Info");
-			}
-		});
-		btn_meminfo.setBounds(18, 10, 130, 35);
-		detail.add(btn_meminfo);
-
-		btn_reser = new RoundedButtonD("reservtion");
-		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_reser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mem_panel.setVisible(false);
-//				if (ReArr != null || !ReArr.isEmpty()) {
-//					res_panel.setVisible(true);
-//				} else {
-//					nonereservatiompanel.setVisible(true);
-//				}
-				lbTitle.setText("Reservtion");
-			}
-		});
-		btn_reser.setBounds(151, 10, 105, 35);
-		detail.add(btn_reser);
-
+		
 		memdetail_panel = new Panel();
 		memdetail_panel.setLayout(null);
 		memdetail_panel.setBackground(Color.WHITE);

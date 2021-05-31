@@ -41,10 +41,10 @@ public class Mypage_Reservation_DB {
 							seat_number, car_type, payment_price, payment_date, option_name, option_price, member_id,
 							movie_id));
 				}
-				if (rs.next() == false) {
-					System.out.println("널");
-					return null;
-				}
+//				if (rs.next() == false) {
+//					System.out.println("널");
+//					return null;
+//				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
