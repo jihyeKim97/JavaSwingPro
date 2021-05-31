@@ -38,3 +38,10 @@ VALUES
 VALUES
 (MOVIE_SEQ.nextval,'컨저링','공포','제임스 완',15,'믿을 수 없겠지만… 이번에도 실화다! 1977년 영국 엔필드. 엄마 페기와 네 남매가 살고 있는 가족의 집에 정체를 알 수 없는 존재가 나타난다. 일명 폴터가이스트 유령. 벽을 두드리는 소리, 사악한 목소리, 유령은 밤마다 가구와 물건들, 
 심지어 아이들까지 공중에 띄우는 등 기이한 일들을 일으킨다. 결국 교회의 요청을 받은 워렌 부부가 영국 엔필드의 집을 찾아가 사건을 조사한다. 그러나 워렌 부부는 그 집에서 예상보다 더욱 엄청난 상대를 만나게 되고, 워렌 부부의 목숨까지 위협받는데…',3.4,'출연진',to_date('20200101','YYYY-MM-DD' ), '제작사','./template/Reference/images/컨저링.jpg',to_date(SYSDATE+1), 4,'러닝타임'); 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+예약 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (1,456184524,to_date('21/05/24','RR/MM/DD'),'Q12',1,22900,to_date('21/05/24','RR/MM/DD'),'팝콘',6000,28,null);
+Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (2,421587465,to_date('21/05/24','RR/MM/DD'),'A05',2,12900,to_date('21/05/24','RR/MM/DD'),null,null,29,null);
