@@ -24,7 +24,12 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Formatter;
+
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
@@ -57,20 +62,14 @@ public class Main extends JFrame {
 	private JLabel lb_title1;
 	private JLabel lb_title2;
 	private Panel screen_guid_line;
-	private Panel poster_1;
-	private RoundedButtonD btn_poster_1;
-	private Panel movie4_panel;
-	private Panel poster_4;
-	private RoundedButtonD btn_poster_4;
-	private Panel poster_3;
-	private Panel poster_2;
 	private Panel panel_10;
 	Main reserfrm;
 	ArrayList<Movie_Data> MovieList;
 	Movie_Data movie;
-	private JLabel lb_Poster2;
-	private JLabel lb_Poster3;
-	private JLabel lb_Poster4;
+	private JLabel lb_month;
+	private JLabel lb_date;
+	private JLabel label_2;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -138,22 +137,69 @@ public class Main extends JFrame {
 		main_panel.add(title_panel);
 		title_panel.setLayout(null);
 
+
+		Date date = new Date();
+		SimpleDateFormat movieday = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		
+//		lblNewLabel = new JLabel(movieday.format(date)+"");
+		lblNewLabel = new JLabel(year + " - ");
+		lblNewLabel.setFont(new Font("Candara Light", Font.PLAIN, 40));
+		lblNewLabel.setBounds(105, 0, 119, 50);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		title_panel.add(lblNewLabel);
+		
+		lb_month = new JLabel("" + month);
+		lb_month.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_month.setFont(new Font("Candara Light", Font.PLAIN, 40));
+		lb_month.setBounds(220, 0, 31, 50);
+		title_panel.add(lb_month);
+		
+		lb_date = new JLabel("" + day);
+		lb_date.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_date.setFont(new Font("Candara Light", Font.PLAIN, 40));
+		lb_date.setBounds(276, 0, 56, 50);
+		title_panel.add(lb_date);
+		
 		btnprev = new RoundedButtonD("prev");
+		btnprev.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int today = Integer.parseInt(lb_date.getText());
+				today--;
+				lb_date.setText("" + today);
+				
+			}
+		});
 		btnprev.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnprev.setBounds(0, 5, 80, 40);
 		title_panel.add(btnprev);
 
-		
-		lblNewLabel = new JLabel("2020-05-17");
-		lblNewLabel.setFont(new Font("Candara Light", Font.PLAIN, 40));
-		lblNewLabel.setBounds(79, 0, 280, 50);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		title_panel.add(lblNewLabel);
-
 		btnNext = new RoundedButtonD("next");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int today = Integer.parseInt(lb_date.getText());
+				int nextMonth = Integer.parseInt(lb_month.getText());
+				today++;
+				if ( today == 32) {
+					today = 1;
+					nextMonth ++;
+				}
+				lb_month.setText("" + nextMonth);
+				lb_date.setText("" + today);
+			}
+		});
 		btnNext.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnNext.setBounds(365, 5, 80, 40);
 		title_panel.add(btnNext);
+		
+		label_2 = new JLabel("-");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setFont(new Font("Candara Light", Font.PLAIN, 40));
+		label_2.setBounds(252, 0, 31, 50);
+		title_panel.add(label_2);
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);
@@ -264,89 +310,18 @@ public class Main extends JFrame {
 					
 				}
 			});
+			RoundedButtonD btn_poster_1 = new RoundedButtonD("click");
+			btn_poster_1.setBounds(10 * (i + 1) + 94 * i, 131, 94, 30);
+			screen_guid_line.add(btn_poster_1);
+			btn_poster_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Reservation_step1 reser1 = new Reservation_step1(reserfrm);
+					Point fPt = reserfrm.getLocationOnScreen();
+					reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+					reser1.setVisible(true);
+				}
+			});
 		}
-
-		movie4_panel = new Panel();
-		movie4_panel.setLayout(null);
-		movie4_panel.setBounds(320, 0, 94, 161);
-		screen_guid_line.add(movie4_panel);
-
-//		poster_4 = new Panel();
-//		poster_4.setBounds(0, 0, 94, 125);
-//		movie4_panel.add(poster_4);
-//		poster_4.setLayout(new BorderLayout(0, 0));
-//		
-//		lb_Poster4 = new JLabel("");
-//		lb_Poster4.setIcon(new ImageIcon(MovieList.get(3).getImagefilename()));
-//		poster_4.add(lb_Poster4, BorderLayout.CENTER);
-//		Movie_Data movie3 = MovieList.get(3);
-//		lb_Poster4.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie3);
-//				Point fPt = reserfrm.getLocationOnScreen();
-//				MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-//				MI.setVisible(true);
-//			}
-//		});
-
-		btn_poster_4 = new RoundedButtonD("click");
-		btn_poster_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Reservation_step1 reser1 = new Reservation_step1(reserfrm);
-				Point fPt = reserfrm.getLocationOnScreen();
-				reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-				reser1.setVisible(true);
-
-			}
-		});
-		btn_poster_4.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_poster_4.setBounds(0, 131, 94, 30);
-		movie4_panel.add(btn_poster_4);
-		
-		//		poster_1 = new Panel();
-		//		poster_1.setBounds(0, 0, 94, 125);
-		//		movie1_panel.add(poster_1);
-		//		poster_1.setLayout(new BorderLayout(0, 0));
-		//		
-		//		JLabel lb_Poster1 = new JLabel("");
-		//		lb_Poster1.setIcon(new ImageIcon(MovieList.get(0).getImagefilename()));
-		//		Movie_Data movie = MovieList.get(0);
-		//		lb_Poster1.addMouseListener(new MouseAdapter() {
-		//			@Override
-		//			public void mouseClicked(MouseEvent arg0) {
-		//				Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie);
-		//				Point fPt = reserfrm.getLocationOnScreen();
-		//				MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-		//				MI.setVisible(true);
-		//				
-		//			}
-		//		});
-		//		poster_1.add(lb_Poster1, BorderLayout.CENTER);
-		
-				btn_poster_1 = new RoundedButtonD("click");
-				btn_poster_1.setBounds(10, 131, 94, 30);
-				screen_guid_line.add(btn_poster_1);
-				btn_poster_1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Reservation_step1 reser1 = new Reservation_step1(reserfrm);
-						Point fPt = reserfrm.getLocationOnScreen();
-						reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-						reser1.setVisible(true);
-					}
-				});
-				
-				btn_poster_1.setFont(new Font("Candara Light", Font.PLAIN, 20));
-				
-				RoundedButtonD roundedButtonD = new RoundedButtonD("click");
-				roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
-				roundedButtonD.setBounds(114, 131, 94, 30);
-				screen_guid_line.add(roundedButtonD);
-				
-				RoundedButtonD roundedButtonD_1 = new RoundedButtonD("click");
-				roundedButtonD_1.setFont(new Font("Candara Light", Font.PLAIN, 20));
-				roundedButtonD_1.setBounds(218, 131, 94, 30);
-				screen_guid_line.add(roundedButtonD_1);
 
 		released_panel = new Panel();
 		released_panel.setLayout(null);
@@ -370,7 +345,7 @@ public class Main extends JFrame {
 //		panel_10.add(poster_re_1);
 		if ( MovieList.size() < 8)
 			do {
-				MovieList.add(null);
+				MovieList.add(new Movie_Data());
 			} while(MovieList.size() < 8);
 		for (int i = 0; i < 8; i++) {
 			if ( MovieList.get(i) != null ) {
@@ -410,16 +385,7 @@ public class Main extends JFrame {
 				}
 					Poster.setIcon(new ImageIcon());
 				Poster.setBackground(new Color(0,0,150));
-//				MoviePoster.addMouseListener(new MouseAdapter() {
-//					@Override
-//					public void mouseClicked(MouseEvent arg0) {
-//						Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie);
-//						Point fPt = reserfrm.getLocationOnScreen();
-//						MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-//						MI.setVisible(true);
-//						
-//					}
-//				});
+
 			}
 		}
 		
@@ -435,8 +401,8 @@ public class Main extends JFrame {
 		});
 		btn_notice.setBounds(10, 543, 424, 60);
 		cpn_panel.add(btn_notice);
-		cpn_panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lb_title1, screening_panel, btn_poster_1, screen_guid_line, movie4_panel, btn_poster_4}));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line, btn_poster_1, movie4_panel, btn_poster_4}));
+		cpn_panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lb_title1, screening_panel, screen_guid_line}));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line}));
 
 	}
 }
