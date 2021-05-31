@@ -34,9 +34,10 @@ public class Movie_Data {
 	private Date scheduledate;
 	private int scheduletime;
 	private String runningtime;
+	
 
 	public Movie_Data() {
-	
+		this(DEF_MOVIEID, DEF_TITLE, DEF_GENRE, DEF_DIRECTOR, DEF_AGEGROUP, DEF_story, DEF_averageScore, DEF_gee, DEF_opendate, DEF_production, DEF_imagefilename, DEF_scheduledate, DEF_scheduletime, DEF_runningtime);
 	}
 
 	public int getMoviesid() {
