@@ -103,17 +103,18 @@ public class Admin_FilmManagement extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				final String currentDirPath
-				 = "../Reference/icons";
+				 = "../reference/images";
 				final String currentDirPathDetail
-				 = "../Reference/icons";
+				 = "../Reference/images";
+				System.out.println(currentDirPath);
 				JFileChooser openDlg 
 				 = new JFileChooser(currentDirPath);					
 				if( openDlg.showOpenDialog(dlg) 
 						== JFileChooser.APPROVE_OPTION ) {
 					File imgFile = openDlg.getSelectedFile();
 				//C:\Users\82102\javaPro\VOC_Project\src\template\Reference\images\7번방의 선물.jpg
-					System.out.println("선택된 파일명: " +  imgFile.getName());
-					System.out.println("선택된 파일경로명: " +  imgFile.getPath());
+					System.out.println("선택된 파일명: " + imgFile.getName());
+					System.out.println("선택된 파일경로명: " + imgFile.getPath());
 					
 					String dbImgPath
 						= currentDirPath + "/" + imgFile.getName();

@@ -18,12 +18,8 @@ INSERT INTO VOCPRO.member(member_id,id,password,name,gender,phone_number,is_memb
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 영화 insert
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) 
-VALUES
-(MOVIE_SEQ.nextval,'승리호','SF','조성희',12,'2092년, 지구는 병들고 우주 위성궤도에 인류의 새로운 보금자리인 UTS가 만들어졌다. 돈 되는 일이라면, 뭐든 하는 조종사 태호 과거, 우주 해적단을 이끌었던 장선장 갱단 두목이었지만 이제는 기관사가 된 타이거 박 평생 이루고 싶은 꿈을 가진 작살잡이 로봇 업동이 이들은 우주쓰레기를 주워 돈을 버는 청소선 ‘승리호’의 선원들이다.
-어느날, 사고 우주정을 수거한 ‘승리호’는 그 안에 숨어있던 대량살상무기로 알려진 인간형 로봇 ‘도로시’를 발견한다. 돈이 절실한 선원들은 ‘도로시’를 거액의 돈과 맞바꾸기 위한 위험한 거래를 계획하는데…',4.2,'송중기,김태리,진선규',to_date('20210205','YYYY-MM-DD' ),'비단길','./template/Reference/images/승리호.jpg',to_date(SYSDATE+1),1,'140분');
 
-
+<<<<<<< HEAD
 INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) 
 VALUES
 (MOVIE_SEQ.nextval,'인터스텔라','SF','크리스토퍼 놀란',12,'“우린 답을 찾을 거야, 늘 그랬듯이” 세계 각국의 정부와 경제가 완전히 붕괴된 미래가 다가온다. 지난 20세기에 범한 잘못이 전 세계적인 식량 부족을 불러왔고, NASA도 해체되었다. 이때 시공간에 불가사의한 틈이 열리고, 남은 자들에게는 이 곳을 탐험해 인류를 구해야 하는 임무가 지워진다.
@@ -40,6 +36,8 @@ VALUES
 <<<<<<< HEAD
 심지어 아이들까지 공중에 띄우는 등 기이한 일들을 일으킨다. 결국 교회의 요청을 받은 워렌 부부가 영국 엔필드의 집을 찾아가 사건을 조사한다. 그러나 워렌 부부는 그 집에서 예상보다 더욱 엄청난 상대를 만나게 되고, 워렌 부부의 목숨까지 위협받는데…',3.4,'출연진',to_date('20200101','YYYY-MM-DD' ),'제작사','./template/Reference/images/귀멸의칼날.jpg',to_date(SYSDATE+1),4,'러닝타임'); 
  
+=======
+>>>>>>> 1585685dd74666bf4b53e178779bf9d415d15d5f
  INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) 
 VALUES
 (MOVIE_SEQ.nextval,'미나리','드라마','정이삭',12,'어느 한국 가족의 원더풀한 이야기 미나리는 어디서든 잘 자라 낯선 미국, 아칸소로 떠나온 한국 가족. 가족들에게 뭔가 해내는 걸 보여주고 싶은 아빠 제이콥은 자신만의 농장을 가꾸기 시작하고 엄마 모니카도 다시 일자리를 찾는다.
@@ -146,4 +144,10 @@ VALUES
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (1,456184524,to_date('21/05/24','RR/MM/DD'),'Q12',1,22900,to_date('21/05/24','RR/MM/DD'),'팝콘',6000,28,null);
 Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (2,421587465,to_date('21/05/24','RR/MM/DD'),'A05',2,12900,to_date('21/05/24','RR/MM/DD'),null,null,29,null);
->>>>>>> 8c35b7e8e08c0d05e166613f7a47ffce8519eeb2
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+리뷰 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Insert into VOCPRO.REVIEW (REVIEW_ID,CONTENT,STAR_SCORE,REVIEW_DATE,RESERVATION_ID,MOVIES_ID) values (REVIEW_SEQ.nextval,'영화 참 좋네요 친구들이랑 보러 올께요',4,TO_DATE(SYSDATE+1),null,null);
+
