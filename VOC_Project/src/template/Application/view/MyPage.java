@@ -9,9 +9,8 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
 
-import template.Application.controller.Mypage_Member_DB;
+import template.Application.controller.Mypage_DB;
 import template.Application.controller.Mypage_Member_data;
-import template.Application.controller.Mypage_Reservation_DB;
 import template.Application.controller.Mypage_Reservation_data;
 import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
@@ -72,8 +71,7 @@ public class MyPage extends JFrame {
 	Main mafrm;
 	Mypage_Member_data MyPage;
 	JLabel errortxt;
-	Mypage_Member_DB MDB;
-	Mypage_Reservation_DB RDB;
+	Mypage_DB MDB;
 	ArrayList<Mypage_Reservation_data> ReArr;
 	ArrayList<Mypage_Member_data> MyArr;
 	int memberID = 34;
@@ -82,7 +80,7 @@ public class MyPage extends JFrame {
 	public MyPage(Main mafrm) {
 		this.frm = this;
 		MyArr = MDB.SelectMemberID(memberID);
-		ReArr = RDB.SelectReservationID(memberID);
+		ReArr = MDB.SelectReservationID(memberID);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -178,6 +176,10 @@ public class MyPage extends JFrame {
 
 					wirte_review = new RoundedButtonD("Go to write a review");
 					wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
+					// 작성한 리뷰가 있으면 한줄평 수정하기 로 변경
+					// 버튼을 누르면 작성한 정보가 그대로 불러와짐
+					// 아직 내용이 없다면 insert
+					
 					wirte_review.setText("한줄평 작성하기");
 					wirte_review.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -216,7 +218,7 @@ public class MyPage extends JFrame {
 					in_movieTitle = new JLabel("");
 					in_movieTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 					in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
-					in_movieTitle.setText(Mypage_Reservation_DB.AlterMovieIDName(ReArr.get(0).getMovie_id()));
+					in_movieTitle.setText(Mypage_DB.AlterMovieIDName(ReArr.get(0).getMovie_id()));
 					in_movieTitle.setBounds(75, 28, 183, 28);
 					panel.add(in_movieTitle);
 

@@ -138,39 +138,39 @@ public class SIgnUp_DB {
 //	
 ////	- 기존 회원이 마일리지 (갱신) 할 수 있다. U
 ////	- 기존 회원이 암호 (갱신) 할 수 있다. U
-////	- 모든 기존 회원들을 조회할 수 있다. R (범위, 조건, 검색, 정렬, 페이지네이션화)
-//	public ArrayList<SignUp_data> selectAllMembers() {
-//		if( this.conn != null ) {
-//			ArrayList<SignUp_data> uiList = new ArrayList<>();
-//			String sql = "select * from member ORDER BY id desc";
-//			try {
-//				Statement stmt =  conn.conn.createStatement();
-//				ResultSet rs = stmt.executeQuery(sql);
-//				while( rs.next() ) {	
-//					String userDoB= rs.getString("");
-//
-//					SignUp_data ui 
-//				= new SignUp_data(rs.getInt("MEMBER_ID"),
-//							rs.getString("ID"), 
-//							rs.getString("PASSWORD"),
-//							rs.getString("NAME"),
-//							rs.getInt("GENDER"),
-//							rs.getString("PHONE_NUMBER"),
-//							rs.getInt("IS_MEMBER"),
-//							rs.getString("BIRTHDAY"));
-//					
-//				uiList.add(ui);
-//				}
-//				System.out.println("DBMgr: 회원 조회 명수 => " + uiList.size());
-//				return uiList;
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}			
-//		} else {
-//			System.out.println("DB error!!");
-//		}
-//		return null;
-//	}
+//	- 모든 기존 회원들을 조회할 수 있다. R (범위, 조건, 검색, 정렬, 페이지네이션화)
+	public ArrayList<SignUp_data> selectAllMembers() {
+		if( this.conn != null ) {
+			ArrayList<SignUp_data> uiList = new ArrayList<>();
+			String sql = "select * from member ORDER BY id desc";
+			try {
+				Statement stmt =  conn.conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while( rs.next() ) {	
+					String userDoB= rs.getString("");
+
+					SignUp_data ui 
+				= new SignUp_data(rs.getInt("MEMBER_ID"),
+							rs.getString("ID"), 
+							rs.getString("PASSWORD"),
+							rs.getString("NAME"),
+							rs.getInt("GENDER"),
+							rs.getString("PHONE_NUMBER"),
+							rs.getInt("IS_MEMBER"),
+							rs.getString("BIRTHDAY"));
+					
+				uiList.add(ui);
+				}
+				System.out.println("DBMgr: 회원 조회 명수 => " + uiList.size());
+				return uiList;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+		} else {
+			System.out.println("DB error!!");
+		}
+		return null;
+	}
 	
 //	- 특정 기존 회원 한 명을 조회할 수 있다. R (id, 관리번호)	
 	public SignUp_data selectOneMemberById(int dbui) {
