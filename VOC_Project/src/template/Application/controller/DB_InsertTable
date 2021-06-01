@@ -37,6 +37,7 @@ VALUES
  INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) 
 VALUES
 (MOVIE_SEQ.nextval,'컨저링','공포','제임스 완',15,'믿을 수 없겠지만… 이번에도 실화다! 1977년 영국 엔필드. 엄마 페기와 네 남매가 살고 있는 가족의 집에 정체를 알 수 없는 존재가 나타난다. 일명 폴터가이스트 유령. 벽을 두드리는 소리, 사악한 목소리, 유령은 밤마다 가구와 물건들, 
+<<<<<<< HEAD
 심지어 아이들까지 공중에 띄우는 등 기이한 일들을 일으킨다. 결국 교회의 요청을 받은 워렌 부부가 영국 엔필드의 집을 찾아가 사건을 조사한다. 그러나 워렌 부부는 그 집에서 예상보다 더욱 엄청난 상대를 만나게 되고, 워렌 부부의 목숨까지 위협받는데…',3.4,'출연진',to_date('20200101','YYYY-MM-DD' ),'제작사','./template/Reference/images/귀멸의칼날.jpg',to_date(SYSDATE+1),4,'러닝타임'); 
  
  INSERT INTO vocpro.movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) 
@@ -138,3 +139,11 @@ VALUES
 VALUES
 (MOVIE_SEQ.nextval,'닥터 두리틀','판타지/모험','스티븐 개건',12,'동물들과 소통하는 특별한 능력을 지닌 닥터 두리틀은 사랑하는 사람을 잃고 세상과 단절한 채 동물들과 친구가 되어 살아간다. 어느 날, 여왕에게 알 수 없는 불치병이 생기고 왕국마저 위험에 빠지게 되자, 그의 놀라운 능력만이
  모든 것을 해결할 수 있음을 알게 된다. 세상을 구하기 위해서는 반드시 주어진 시간 안에 누구도 가보지 못했던 신비의 섬을 찾아내야만 하고, 두리틀은 친구들과 함께 위험천만한 모험을 떠나게 되는데…',3.5,'로버트 다우니 주니어, 톰 홀랜드, 라미 말렉',to_date('20200108','YYYY-MM-DD' ),'유니버셜 픽처스','./template/Reference/images/닥터 두리틀.jpg',to_date(SYSDATE+1),2,'101분'); 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+예약 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (1,456184524,to_date('21/05/24','RR/MM/DD'),'Q12',1,22900,to_date('21/05/24','RR/MM/DD'),'팝콘',6000,28,null);
+Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (2,421587465,to_date('21/05/24','RR/MM/DD'),'A05',2,12900,to_date('21/05/24','RR/MM/DD'),null,null,29,null);
+>>>>>>> 8c35b7e8e08c0d05e166613f7a47ffce8519eeb2

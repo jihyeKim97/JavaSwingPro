@@ -17,116 +17,64 @@ import java.awt.GridLayout;
 import javax.swing.ButtonGroup;
 
 import template.Application.view.MyPage;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Mypage_writePage extends JFrame {
 
 	JPanel contentPane;
-	ButtonGroup buttonGroup = new ButtonGroup();
 	MyPage frm;
+	private JTextField textField;
 
 	public Mypage_writePage(MyPage frm) {
 		this.frm = frm;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 500, 391);
+		setBounds(100, 100, 406, 352);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JPanel review_box = new JPanel();
-		review_box.setBounds(10, 10, 465, 332);
-		contentPane.add(review_box);
-		review_box.setLayout(null);
-
-		Panel poster = new Panel();
-		poster.setBackground(new Color(255, 192, 203));
-		poster.setBounds(10, 78, 116, 208);
-		review_box.add(poster);
-
-		JLabel title = new JLabel("Title : ");
-		title.setFont(new Font("Candara Light", Font.PLAIN, 15));
-		title.setHorizontalAlignment(SwingConstants.LEFT);
-		title.setBounds(10, 46, 57, 15);
-		review_box.add(title);
-
-		Button btn_ok = new Button("ok");
-		btn_ok.setFont(new Font("Candara Light", Font.PLAIN, 12));
-		btn_ok.setBounds(297, 292, 76, 30);
-		review_box.add(btn_ok);
-
-		Button btn_cancel = new Button("cancel");
-		btn_cancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		btn_cancel.setFont(new Font("Candara Light", Font.PLAIN, 12));
-		btn_cancel.setBounds(379, 292, 76, 30);
-		review_box.add(btn_cancel);
-
-		Panel content = new Panel();
-		content.setBounds(132, 0, 323, 286);
-		review_box.add(content);
-		content.setLayout(null);
-
-		JTextArea reviewtxtA = new JTextArea();
-		reviewtxtA.setBounds(12, 97, 299, 179);
-		content.add(reviewtxtA);
-
+		
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 10, 299, 77);
-		content.add(panel);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
-
-		JLabel lblNewLabel = new JLabel("Give me a Score");
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(0, 0, 400, 323);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(25, 156, 350, 37);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("당신의 별점은?");
+		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		lblNewLabel_2.setBounds(0, 0, 137, 37);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblNewLabel_2);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		comboBox.setBounds(149, 0, 201, 37);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점"}));
+		panel_1.add(comboBox);
+		
+		JLabel lblNewLabel = new JLabel("한줄 리뷰를 작성해 주세요!");
+		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 23));
+		lblNewLabel.setBounds(0, 38, 402, 37);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel);
-
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2);
-
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
-
-		JRadioButton rd_1 = new JRadioButton("1점");
-		rd_1.setHorizontalAlignment(SwingConstants.CENTER);
-		buttonGroup.add(rd_1);
-		panel_1.add(rd_1);
-
-		JRadioButton rd_2 = new JRadioButton("2점");
-		rd_2.setHorizontalAlignment(SwingConstants.CENTER);
-		buttonGroup.add(rd_2);
-		panel_1.add(rd_2);
-
-		JRadioButton rd_3 = new JRadioButton("3점");
-		rd_3.setHorizontalAlignment(SwingConstants.CENTER);
-		buttonGroup.add(rd_3);
-		panel_1.add(rd_3);
-
-		JRadioButton rd_4 = new JRadioButton("4점");
-		rd_4.setHorizontalAlignment(SwingConstants.CENTER);
-		buttonGroup.add(rd_4);
-		panel_1.add(rd_4);
-
-		JRadioButton rd_5 = new JRadioButton("5점");
-		rd_5.setHorizontalAlignment(SwingConstants.CENTER);
-		buttonGroup.add(rd_5);
-		panel_1.add(rd_5);
-
-		JLabel lblD = new JLabel("Date : ");
-		lblD.setHorizontalAlignment(SwingConstants.LEFT);
-		lblD.setFont(new Font("Candara Light", Font.PLAIN, 15));
-		lblD.setBounds(10, 21, 57, 15);
-		review_box.add(lblD);
-
-		JLabel datetxt = new JLabel("");
-		datetxt.setBounds(54, 20, 72, 15);
-		review_box.add(datetxt);
-
-		JLabel titletxt = new JLabel("");
-		titletxt.setBounds(54, 45, 72, 15);
-		review_box.add(titletxt);
+		
+		textField = new JTextField();
+		textField.setBounds(25, 103, 350, 43);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("완료!");
+		btnNewButton.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		btnNewButton.setBounds(25, 255, 350, 43);
+		panel.add(btnNewButton);
 	}
 }
