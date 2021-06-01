@@ -45,3 +45,9 @@ VALUES
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (1,456184524,to_date('21/05/24','RR/MM/DD'),'Q12',1,22900,to_date('21/05/24','RR/MM/DD'),'팝콘',6000,28,null);
 Insert into VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID) values (2,421587465,to_date('21/05/24','RR/MM/DD'),'A05',2,12900,to_date('21/05/24','RR/MM/DD'),null,null,29,null);
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+리뷰 insert
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Insert into VOCPRO.REVIEW (REVIEW_ID,CONTENT,STAR_SCORE,REVIEW_DATE,RESERVATION_ID,MOVIES_ID) values (REVIEW_SEQ.nextval,'영화 참 좋네요 친구들이랑 보러 올께요',4,TO_DATE(SYSDATE+1),null,null);
