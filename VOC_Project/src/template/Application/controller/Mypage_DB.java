@@ -15,6 +15,7 @@ public class Mypage_DB {
 	static MyPage Mypage;
 	static Mypage_Member_data MypageDT;
 	static Mypage_Reservation_data Myoage_reDT;
+	static Mypage_Review_data Myoage_viDT;
 	static ArrayList<Mypage_Member_data> MyArr = new ArrayList<>();
 	static ArrayList<Mypage_Reservation_data> ReArr = new ArrayList<>();
 	static ArrayList<Mypage_Review_data> ViArr = new ArrayList<>();
@@ -150,7 +151,6 @@ public class Mypage_DB {
 
 					ViArr.add(new Mypage_Review_data(review_id, content, starScore, review_date, reservation_id,
 							movie_id));
-
 				}
 				return ViArr;
 			} catch (SQLException e) {
@@ -161,8 +161,36 @@ public class Mypage_DB {
 		return ViArr;
 	}
 
+	public static boolean InsertReviewID(int ReservationID) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "INSERT INTO REVIEW(REVIEW_ID,CONTENT,STAR_SCORE,REVIEW_DATE,RESERVATION_ID,MOVIES_ID) "
+					+ "VALUES " + "(REVIEW_SEQ.nextval," + "'" + Myoage_viDT.getContent() + "', '" + Myoage_viDT.getStar_score()
+					+ "', '" + Myoage_viDT.getReviewDate() + "', '" + ReservationID + "', '"
+					+ Myoage_viDT.getMoviesID() + "')";
+
+//			String sql = "";
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				int r = pstmt.executeUpdate();
+				if (r == 1) {
+					System.out.println("예약인덱스 : " + Myoage_viDT.getReservationID() + "----리뷰 작성 완료");
+					return true;
+				} else {
+					System.out.println("예약인덱스 : " + Myoage_viDT.getReservationID() + "----리뷰 작성 실패");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
+	}
+
 	public static void main(String[] args) {
 		ArrayList<Mypage_Review_data> i = SelectReviewD(1);
 		System.out.println(i);
+		
+		InsertReviewID(1);
 	}
 }
