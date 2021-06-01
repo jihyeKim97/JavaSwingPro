@@ -138,8 +138,7 @@ public class Main extends JFrame {
 		title_panel.setLayout(null);
 
 
-		Date date = new Date();
-		SimpleDateFormat movieday = new SimpleDateFormat("yyyy-MM-dd");
+
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
@@ -168,7 +167,13 @@ public class Main extends JFrame {
 		btnprev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int today = Integer.parseInt(lb_date.getText());
+				int preMonth = Integer.parseInt(lb_month.getText());
 				today--;
+				if ( today == 0) {
+					today = 31;
+					preMonth--;
+				}
+				lb_month.setText("" + preMonth);
 				lb_date.setText("" + today);
 				
 			}
