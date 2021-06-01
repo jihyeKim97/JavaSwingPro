@@ -24,6 +24,7 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,6 +66,7 @@ public class Main extends JFrame {
 	private Panel panel_10;
 	Main reserfrm;
 	ArrayList<Movie_Data> MovieList;
+	ArrayList<Movie_Data> MotMovieList;
 	Movie_Data movie;
 	private JLabel lb_month;
 	private JLabel lb_date;
@@ -88,6 +90,7 @@ public class Main extends JFrame {
 	 * Create the frame.
 	 */
 	public Main() {
+		MotMovieList = new ArrayList<>();
 		MovieList = new ArrayList<>();
 		Movie_DB MDB= new Movie_DB();
 		MovieList = MDB.getMovieData();
@@ -143,6 +146,12 @@ public class Main extends JFrame {
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
+		
+		try {
+			MotMovieList= MDB.notTodayMovie(year, month, day);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 //		lblNewLabel = new JLabel(movieday.format(date)+"");
 		lblNewLabel = new JLabel(year + " - ");
@@ -301,7 +310,7 @@ public class Main extends JFrame {
 			Movie_Data movie = MovieList.get(i);
 			screen_guid_line.add(MoviePoster);
 			if ( MovieList.get(i) != null)
-				Poster.setIcon(new ImageIcon( MovieList.get(i).getImagefilename()));
+				Poster.setIcon(new ImageIcon("."+ MovieList.get(i).getImagefilename()));
 			else
 				Poster.setIcon(new ImageIcon());
 			Poster.setBackground(new Color(0,0,150));
@@ -348,24 +357,20 @@ public class Main extends JFrame {
 //		Panel poster_re_1 = new Panel();
 //		poster_re_1.setBounds(10, 0, 94, 125);
 //		panel_10.add(poster_re_1);
-		if ( MovieList.size() < 8)
-			do {
-				MovieList.add(new Movie_Data());
-			} while(MovieList.size() < 8);
 		for (int i = 0; i < 8; i++) {
-			if ( MovieList.get(i) != null ) {
+			if ( MotMovieList.get(i) != null ) {
 				JPanel MoviePoster = new JPanel();
 				MoviePoster.setLayout(new BorderLayout());
 				JLabel Poster = new JLabel();
 				MoviePoster.add(Poster, BorderLayout.CENTER);
-				Movie_Data movie = MovieList.get(i);
+				Movie_Data movie = MotMovieList.get(i);
 				panel_10.add(MoviePoster);
 				if ( i <= 3) {
 					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
 				} else{
 					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 135, 94, 125);
 				}
-					Poster.setIcon(new ImageIcon( MovieList.get(i).getImagefilename()));
+					Poster.setIcon(new ImageIcon( "."+ MotMovieList.get(i).getImagefilename()));
 				Poster.setBackground(new Color(0,0,150));
 				MoviePoster.addMouseListener(new MouseAdapter() {
 					@Override
