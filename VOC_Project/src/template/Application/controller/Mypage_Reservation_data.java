@@ -25,9 +25,7 @@ public class Mypage_Reservation_data {
 				+ ", movie_id=" + movie_id + "]";
 	}
 
-	public Mypage_Reservation_data() {
-	}
-
+	// 예약 정보 불러올시
 	public Mypage_Reservation_data(int reservation_id, int reservation_number, Date reservation_date2,
 			String seat_number, int car_type, int payment_price, Date payment_date2, String option_name,
 			int option_price, int member_id, int movie_id) {
