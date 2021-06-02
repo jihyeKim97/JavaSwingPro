@@ -3,18 +3,34 @@ package template.Application.controller;
 import java.util.Date;
 
 public class Mypage_Review_data {
-
+	Mypage_Reservation_data Mypage_reDT;
 	int reviewID;
 	String content;
 	int star_score;
 	Date reviewDate;
 	int reservationID;
 	int moviesID;
+//	int reservationID = Mypage_reDT.getReservation_id();
+//	int moviesID = Mypage_reDT.getMovie_id();
 
 	@Override
 	public String toString() {
 		return "Mypage_Review_data [reviewID=" + reviewID + ", content=" + content + ", star_score=" + star_score
 				+ ", reviewDate=" + reviewDate + ", reservationID=" + reservationID + ", moviesID=" + moviesID + "]";
+	}
+
+	public Mypage_Review_data(String content, int star_score) {
+	super();
+	this.content = content;
+	this.star_score = star_score;
+}
+
+	public Mypage_Review_data(String content, int star_score, int reservationID, int moviesID) {
+		super();
+		this.content = content;
+		this.star_score = star_score;
+		this.reservationID = reservationID;
+		this.moviesID = moviesID;
 	}
 
 	public Mypage_Review_data(int reviewID, String content, int star_score, Date reviewDate, int reservationID,
