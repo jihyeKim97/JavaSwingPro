@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import template.Application.controller.Mypage_DB;
 import template.Application.controller.Mypage_Review_data;
@@ -31,6 +32,9 @@ public class Mypage_writePage extends JFrame {
 
 	public Mypage_writePage(MyPage frm) {
 		this.frm = frm;
+		ArrayList<Mypage_Review_data> ViArr = MDB
+				.SelectReviewID(MDB.SelectReservationID(memberID).get(0).getReservation_id());
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 406, 352);
 		setResizable(false);
@@ -56,12 +60,6 @@ public class Mypage_writePage extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel);
 
-		JLabel lblNewLabel_2 = new JLabel("당신의 별점은?");
-		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(0, 0, 137, 37);
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblNewLabel_2);
-
 		JComboBox star_combo = new JComboBox();
 		star_combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,14 +76,48 @@ public class Mypage_writePage extends JFrame {
 			}
 		});
 
-		star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		star_combo.setBounds(149, 0, 201, 37);
-		String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
-		star_combo.setModel(new DefaultComboBoxModel(comboF));
-		panel_1.add(star_combo);
+		JLabel lblNewLabel_2 = new JLabel("당신의 별점은?");
+		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		lblNewLabel_2.setBounds(0, 0, 137, 37);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblNewLabel_2);
+
+		if (ViArr.isEmpty()) {
+			star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+			star_combo.setBounds(149, 0, 201, 37);
+			String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
+			star_combo.setModel(new DefaultComboBoxModel(comboF));
+			panel_1.add(star_combo);
+		} else {
+			JLabel lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+			String star = "";
+			switch (ViArr.get(0).getStar_score()) {
+			case 1:
+				star = "★☆☆☆☆";
+				break;
+			case 2:
+				star = "★★☆☆☆";
+				break;
+			case 3:
+				star = "★★★☆☆";
+				break;
+			case 4:
+				star = "★★★★☆";
+				break;
+			case 5:
+				star = "★★★★★";
+				break;
+			}
+			lblNewLabel_1.setText(star + " " + ViArr.get(0).getStar_score() + " 점");
+			lblNewLabel_1.setBounds(149, 0, 201, 37);
+			panel_1.add(lblNewLabel_1);
+		}
 
 		review_tf = new JTextField();
 		review_tf.setBounds(25, 103, 350, 43);
+		review_tf.setText(ViArr.get(0).getContent());
 		panel.add(review_tf);
 		review_tf.setColumns(10);
 
@@ -104,5 +136,6 @@ public class Mypage_writePage extends JFrame {
 		btn_success.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		btn_success.setBounds(25, 255, 350, 43);
 		panel.add(btn_success);
+
 	}
 }

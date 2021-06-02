@@ -139,10 +139,13 @@ public class Main extends JFrame {
 		main_panel.add(title_panel);
 		title_panel.setLayout(null);
 
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int day = cal.get(Calendar.DAY_OF_MONTH);
+//		Calendar cal = Calendar.getInstance();
+//		int year = cal.get(Calendar.YEAR);
+//		int month = cal.get(Calendar.MONTH) + 1;
+//		int day = cal.get(Calendar.DAY_OF_MONTH);
+		int year = 2020;
+		int month = 6;
+		int day =2;
 
 		lblNewLabel = new JLabel(year + " - ");
 		lblNewLabel.setFont(new Font("Candara Light", Font.PLAIN, 40));

@@ -12,6 +12,7 @@ import java.awt.Color;
 import template.Application.controller.Mypage_DB;
 import template.Application.controller.Mypage_Member_data;
 import template.Application.controller.Mypage_Reservation_data;
+import template.Application.controller.Mypage_Review_data;
 import template.Application.controller.Notice_data;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
@@ -79,6 +80,7 @@ public class MyPage extends JFrame {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
 		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(memberID);
+	
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
