@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import template.Application.controller.Login_data;
 import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
@@ -69,28 +70,30 @@ public class Main extends JFrame {
 	private JLabel lb_date;
 	private JLabel label_2;
 	Main main;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main frame = new Main();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	static Login Lg;
+	static Login_data Ld;
+	
+//	public static void main(String[] args) {
+//		
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Main frame = new Main(Lg, Ld);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
-		toDayMovieList = new ArrayList<>();
-		notToDayMovieList = new ArrayList<>();
-//		Movie_DB MDB= new Movie_DB();
-//		Movie_DB MD= new Movie_DB();
+	public Main(Login Lg, Login_data Ld) {
+		this.main = this;
+		
+		Movie_DB MDB = new Movie_DB();
 
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -158,6 +161,19 @@ public class Main extends JFrame {
 		lb_date.setFont(new Font("Candara Light", Font.PLAIN, 40));
 		lb_date.setBounds(276, 0, 56, 50);
 		title_panel.add(lb_date);
+		
+		try {
+			toDayMovieList = MDB.TodayMovie(month, day);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			notToDayMovieList = MDB.notTodayMovie(month, day);
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		
 
 		btnprev = new RoundedButtonD("prev");
 		btnprev.addActionListener(new ActionListener() {
@@ -171,12 +187,26 @@ public class Main extends JFrame {
 				}
 				lb_month.setText("" + preMonth);
 				lb_date.setText("" + today);
+				toDayMovieList = new ArrayList<>();
+				notToDayMovieList = new ArrayList<>();
+					try {
+						toDayMovieList = MDB.TodayMovie(preMonth, today);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					try {
+						notToDayMovieList = MDB.notTodayMovie(preMonth, today);
+					} catch (SQLException e1) {
+	
+						e1.printStackTrace();
+					}
 
 			}
 		});
 		btnprev.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnprev.setBounds(0, 5, 80, 40);
 		title_panel.add(btnprev);
+		
 
 		btnNext = new RoundedButtonD("next");
 		btnNext.addActionListener(new ActionListener() {
@@ -190,6 +220,19 @@ public class Main extends JFrame {
 				}
 				lb_month.setText("" + nextMonth);
 				lb_date.setText("" + today);
+				toDayMovieList = new ArrayList<>();
+				notToDayMovieList = new ArrayList<>();
+					try {
+						toDayMovieList = MDB.TodayMovie(nextMonth, today);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					try {
+						notToDayMovieList = MDB.notTodayMovie(nextMonth, today);
+					} catch (SQLException e1) {
+	
+						e1.printStackTrace();
+					}
 			}
 		});
 
@@ -290,13 +333,7 @@ public class Main extends JFrame {
 		screen_guid_line.setLayout(null);
 
 		for (int i = 0; i < 4; i++) {
-			Movie_DB MDB = new Movie_DB();
-			try {
-				toDayMovieList = MDB.TodayMovie(month, day);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-
+			
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			MoviePoster.setBounds(10 * (i + 1) + 94 * i, 10, 94, 121);
@@ -354,13 +391,6 @@ public class Main extends JFrame {
 //		panel_10.add(poster_re_1);
 
 		for (int i = 0; i < 8; i++) {
-			Movie_DB MDB = new Movie_DB();
-			try {
-				notToDayMovieList = MDB.notTodayMovie(month, day);
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-			}
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			JLabel Poster = new JLabel();
