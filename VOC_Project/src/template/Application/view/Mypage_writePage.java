@@ -3,32 +3,18 @@ package template.Application.view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Panel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Button;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
-import javax.swing.ButtonGroup;
-
 import template.Application.controller.Mypage_DB;
-import template.Application.controller.Mypage_Reservation_data;
 import template.Application.controller.Mypage_Review_data;
-import template.Application.controller.SignUp_data;
-import template.Application.view.MyPage;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Mypage_writePage extends JFrame {
 
@@ -41,6 +27,7 @@ public class Mypage_writePage extends JFrame {
 	String value;
 	char df;
 	int memberID = 34;
+	int sco = 0;
 
 	public Mypage_writePage(MyPage frm) {
 		this.frm = frm;
@@ -81,6 +68,12 @@ public class Mypage_writePage extends JFrame {
 				if (e.getSource().equals(star_combo)) {
 					JComboBox cb = (JComboBox) e.getSource();
 					value = (String) cb.getSelectedItem();
+					for (int i = 0; i < value.length(); i++) {
+						df = value.charAt(i);
+						if (df >= 49 && df <= 53) {
+							sco = (int) df - 48;
+						}
+					}
 				}
 			}
 		});
@@ -100,19 +93,7 @@ public class Mypage_writePage extends JFrame {
 		btn_success.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String review = review_tf.getText();
-				for (int i = 0; i < comboF.length; i++) {
-					System.out.println(comboF[i]);
-				}
-			
-				
-//				System.out.println(value);
-//				for (int i = 0; i < value.length(); i++) {
-//					df = value.charAt(i);
-//					if (df > 48 && df < 57) {
-//						System.out.println(df);
-//					}
-//				}
-				boolean isResult = MDB.InsertReviewID(review, df,
+				boolean isResult = MDB.InsertReviewID(review, sco,
 						MDB.SelectReservationID(memberID).get(0).getReservation_id(),
 						MDB.SelectReservationID(memberID).get(0).getMovie_id());
 				if (isResult) {

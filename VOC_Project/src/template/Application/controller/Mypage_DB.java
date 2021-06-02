@@ -184,29 +184,6 @@ public class Mypage_DB {
 		connect.endConnection();
 		return false;
 	}
-	public static boolean InsertReviewID(Mypage_Review_data Myoage_viDT) {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "INSERT INTO REVIEW (REVIEW_ID,CONTENT,STAR_SCORE,REVIEW_DATE,RESERVATION_ID,MOVIES_ID) "
-					+ "VALUES " + "(REVIEW_SEQ.nextval, ?,?,to_date(SYSDATE+1),?,? )";
-			try {
-				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				pstmt.setString(1, Myoage_viDT.content);
-				pstmt.setInt(2, Myoage_viDT.star_score);
-				pstmt.setInt(3, Myoage_viDT.reservationID);
-				pstmt.setInt(4, Myoage_viDT.moviesID);
-				int r = pstmt.executeUpdate();
-				if (r == 1) {
-					System.out.println("리뷰 추가 완료");
-					return true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
-		return false;
-	}
 
 	public static void main(String[] args) {
 //		ArrayList<Mypage_Review_data> i = SelectReviewD(1);
