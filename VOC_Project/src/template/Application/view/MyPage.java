@@ -80,7 +80,6 @@ public class MyPage extends JFrame {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
 		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(memberID);
-	
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -179,7 +178,7 @@ public class MyPage extends JFrame {
 					// 작성한 리뷰가 있으면 한줄평 수정하기 로 변경
 					// 버튼을 누르면 작성한 정보가 그대로 불러와짐
 					// 아직 내용이 없다면 insert
-					
+
 					wirte_review.setText("한줄평 작성하기");
 					wirte_review.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
