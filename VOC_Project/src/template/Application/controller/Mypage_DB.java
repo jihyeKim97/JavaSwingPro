@@ -133,7 +133,7 @@ public class Mypage_DB {
 		return title;
 	}
 
-	public static ArrayList<Mypage_Review_data> SelectReviewD(int reservationID) {
+	public static ArrayList<Mypage_Review_data> SelectReviewID(int reservationID) {
 
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -161,23 +161,44 @@ public class Mypage_DB {
 		return ViArr;
 	}
 
-	public static boolean InsertReviewID(int ReservationID) {
+//	public static boolean InsertReviewID(String content, int star_score, int reservationID, int movies_id) {
+//		connect.beginConnection();
+//		if (connect.conn != null) {
+//			String sql = "INSERT INTO REVIEW (REVIEW_ID,CONTENT,STAR_SCORE,REVIEW_DATE,RESERVATION_ID,MOVIES_ID) "
+//					+ "VALUES " + "(REVIEW_SEQ.nextval, ?,?,to_date(SYSDATE+1),?,? )";
+//			try {
+//				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+//				pstmt.setString(1, content);
+//				pstmt.setInt(2, star_score);
+//				pstmt.setInt(3, reservationID);
+//				pstmt.setInt(4, movies_id);
+//				int r = pstmt.executeUpdate();
+//				if (r == 1) {
+//					System.out.println("리뷰 추가 완료");
+//					return true;
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		connect.endConnection();
+//		return false;
+//	}
+	public static boolean InsertReviewID(Mypage_Review_data Myoage_viDT) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "INSERT INTO REVIEW(REVIEW_ID,CONTENT,STAR_SCORE,REVIEW_DATE,RESERVATION_ID,MOVIES_ID) "
-					+ "VALUES " + "(REVIEW_SEQ.nextval," + "'" + Myoage_viDT.getContent() + "', '" + Myoage_viDT.getStar_score()
-					+ "', '" + Myoage_viDT.getReviewDate() + "', '" + ReservationID + "', '"
-					+ Myoage_viDT.getMoviesID() + "')";
-
-//			String sql = "";
+			String sql = "INSERT INTO REVIEW (REVIEW_ID,CONTENT,STAR_SCORE,REVIEW_DATE,RESERVATION_ID,MOVIES_ID) "
+					+ "VALUES " + "(REVIEW_SEQ.nextval, ?,?,to_date(SYSDATE+1),?,? )";
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, Myoage_viDT.content);
+				pstmt.setInt(2, Myoage_viDT.star_score);
+				pstmt.setInt(3, Myoage_viDT.reservationID);
+				pstmt.setInt(4, Myoage_viDT.moviesID);
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
-					System.out.println("예약인덱스 : " + Myoage_viDT.getReservationID() + "----리뷰 작성 완료");
+					System.out.println("리뷰 추가 완료");
 					return true;
-				} else {
-					System.out.println("예약인덱스 : " + Myoage_viDT.getReservationID() + "----리뷰 작성 실패");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -188,9 +209,12 @@ public class Mypage_DB {
 	}
 
 	public static void main(String[] args) {
-		ArrayList<Mypage_Review_data> i = SelectReviewD(1);
-		System.out.println(i);
-		
-		InsertReviewID(1);
+//		ArrayList<Mypage_Review_data> i = SelectReviewD(1);
+//		System.out.println(SelectReviewD(1).get(0).getMoviesID() );
+//		System.out.println(i);
+//		InsertReviewID();
+//		InsertReviewID("좋아열", 5, SelectReservationID(34).get(0).getReservation_id(),
+//				SelectReviewID(SelectReservationID(34).get(0).getReservation_id()).get(0).getMoviesID());
+//		InsertReviewID(Myoage_viDT);
 	}
 }
