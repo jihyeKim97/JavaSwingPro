@@ -57,6 +57,7 @@ public class Admin_Notice {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("공지사항");
 		frame.setBounds(100, 100, 342, 528);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -67,23 +68,23 @@ public class Admin_Notice {
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.getContentPane().add(panel);
 		
-		JButton btnNewButton = new JButton("적 용");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton ad_btn_ok = new JButton("ok");
+		ad_btn_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 16));
-		btnNewButton.setBounds(34, 433, 99, 42);
-		panel.add(btnNewButton);
+		ad_btn_ok.setFont(new Font("굴림", Font.PLAIN, 16));
+		ad_btn_ok.setBounds(34, 433, 99, 42);
+		panel.add(ad_btn_ok);
 		
-		JButton button = new JButton("취 소");
-		button.addActionListener(new ActionListener() {
+		JButton ad_btn_cancel = new JButton("cancel");
+		ad_btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		button.setFont(new Font("굴림", Font.PLAIN, 16));
-		button.setBounds(185, 433, 99, 42);
-		panel.add(button);
+		ad_btn_cancel.setFont(new Font("굴림", Font.PLAIN, 16));
+		ad_btn_cancel.setBounds(185, 433, 99, 42);
+		panel.add(ad_btn_cancel);
 		
 		JLabel lblMemberInformation = new JLabel("Lotice Modification");
 		lblMemberInformation.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,12 +100,12 @@ public class Admin_Notice {
 		panel.add(ad_txt_Notce_title);
 		ad_txt_Notce_title.setColumns(10);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(34, 112, 250, 301);
-		panel.add(scrollPane);
+		JScrollPane ad_txt_notce = new JScrollPane();
+		ad_txt_notce.setBounds(34, 112, 250, 301);
+		panel.add(ad_txt_notce);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		scrollPane.setViewportView(textArea);
+		ad_txt_notce.setViewportView(textArea);
 	}
 }
