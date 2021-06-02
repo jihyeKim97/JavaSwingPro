@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import template.Application.controller.Ad_Film_DB;
+import template.Application.controller.Ad_Film_Data;
 import template.Application.controller.RoundedButtonD;
 import java.awt.BorderLayout;
 import javax.swing.border.LineBorder;
@@ -47,6 +49,8 @@ public class Admin_FilmManagement extends JDialog{
 	Admin_FilmManagement dlg;
 	private JTextField ad_txt_schedule_date;
 	private JTextField ad_txt_schedule_time;
+	Ad_Film_Data afd = new Ad_Film_Data();
+	Ad_Film_DB AFD = new Ad_Film_DB();
 	/**
 	 * Launch the application.
 	 */
@@ -130,6 +134,8 @@ public class Admin_FilmManagement extends JDialog{
 					ic.setImage(icImg);
 					ad_lb_poster.setIcon(ic);
 					ad_lb_poster.repaint();
+					afd = AFD.selectMovie(ad_lb_poster.getText());
+					System.out.println(ad_txt_schedule_date.getText());
 				
 				}
 			}

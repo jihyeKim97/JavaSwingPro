@@ -33,7 +33,7 @@ public class Ad_Film_DB {
 					Ad_Film_Data mv = new Ad_Film_Data(rs.getString("title"), rs.getString("genre"),rs.getString("director"), rs.getInt("age_group"),
 							rs.getString("story"), rs.getInt("average_score"), rs.getString("gee"),rs.getDate("open_date"),
 							rs.getString("production"),rs.getDate("schedule_date"),rs.getInt("schedule_time"),rs.getString("running_time"));
-					return mv;
+					return mv;	
 				} else {
 					
 				}
@@ -53,8 +53,8 @@ public class Ad_Film_DB {
 		if (this.conn != null) {
 			Ad_Film_Data mb = selectMovie(mvposter);
 			if (mb != null) {
-						
-						JOptionPane.showMessageDialog(null, "데이터를 불러옵니다.");
+					String mbtitle = mb.getTitle();
+				JOptionPane.showMessageDialog(null, "데이터를 불러옵니다.");
 						return FIND_SUCCESS;
 			} else {
 				return FIND_ERROR;
