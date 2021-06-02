@@ -45,6 +45,8 @@ public class Admin_FilmManagement extends JDialog{
 	private JTextField ad_txt_runtime;
 	JLabel ad_lb_load_poster;
 	Admin_FilmManagement dlg;
+	private JTextField ad_txt_schedule_date;
+	private JTextField ad_txt_schedule_time;
 	/**
 	 * Launch the application.
 	 */
@@ -140,7 +142,7 @@ public class Admin_FilmManagement extends JDialog{
 		panel_2.add(panel_4);
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNo = new JLabel("상영날짜                     상영시간");
+		JLabel lblNo = new JLabel("      상영날짜            상영시간");
 		lblNo.setFont(new Font("굴림", Font.BOLD, 15));
 		panel_4.add(lblNo, BorderLayout.CENTER);
 		
@@ -166,6 +168,18 @@ public class Admin_FilmManagement extends JDialog{
 		panel_6.setLayout(null);
 		panel_6.setBounds(204, 57, 250, 35);
 		panel_2.add(panel_6);
+		
+		ad_txt_schedule_date = new JTextField();
+		ad_txt_schedule_date.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_txt_schedule_date.setBounds(25, 0, 82, 35);
+		panel_6.add(ad_txt_schedule_date);
+		ad_txt_schedule_date.setColumns(10);
+		
+		ad_txt_schedule_time = new JTextField();
+		ad_txt_schedule_time.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_txt_schedule_time.setColumns(10);
+		ad_txt_schedule_time.setBounds(156, 0, 82, 35);
+		panel_6.add(ad_txt_schedule_time);
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setLayout(null);
@@ -289,6 +303,7 @@ public class Admin_FilmManagement extends JDialog{
 		panel.add(ad_btn_cancel);
 		
 		JLabel label_3 = new JLabel("Film Management");
+		
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("Candara Light", Font.BOLD, 33));
 		label_3.setBounds(30, 0, 400, 55);
