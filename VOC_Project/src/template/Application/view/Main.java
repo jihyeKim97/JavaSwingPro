@@ -68,7 +68,7 @@ public class Main extends JFrame {
 	private JLabel lb_month;
 	private JLabel lb_date;
 	private JLabel label_2;
-
+	Main main;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -90,7 +90,7 @@ public class Main extends JFrame {
 		toDayMovieList = new ArrayList<>();
 		notToDayMovieList = new ArrayList<>();
 		Movie_DB MDB= new Movie_DB();
-		
+		Movie_DB MD= new Movie_DB();
 		
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -197,19 +197,6 @@ public class Main extends JFrame {
 		});
 		
 		
-			try {
-				notToDayMovieList= MDB.notTodayMovie(month, day);
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-			}
-			try {
-				toDayMovieList= MDB.TodayMovie(month, day);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		
-		
 		btnNext.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnNext.setBounds(365, 5, 80, 40);
 		title_panel.add(btnNext);
@@ -307,6 +294,12 @@ public class Main extends JFrame {
 		screen_guid_line.setLayout(null);
 		
 		for (int i = 0; i < 4; i++) {
+			try {
+				toDayMovieList = MD.TodayMovie(month, day);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			MoviePoster.setBounds(10 * (i + 1) + 94 * i, 10, 94, 121);
@@ -363,14 +356,19 @@ public class Main extends JFrame {
 //		poster_re_1.setBounds(10, 0, 94, 125);
 //		panel_10.add(poster_re_1);
 		for (int i = 0; i < 8; i++) {
-			if ( notToDayMovieList.get(i) != null ) {
+			try {
+				notToDayMovieList = MDB.notTodayMovie(month, day);
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
 				JPanel MoviePoster = new JPanel();
 				MoviePoster.setLayout(new BorderLayout());
 				JLabel Poster = new JLabel();
 				MoviePoster.add(Poster, BorderLayout.CENTER);
 				Movie_Data movie = notToDayMovieList.get(i);
 				panel_10.add(MoviePoster);
-				if ( i <= 3) {
+				if ( i < 4) {
 					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
 				} else{
 					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 135, 94, 125);
@@ -387,21 +385,6 @@ public class Main extends JFrame {
 						
 					}
 				});
-			} else {
-				JPanel MoviePoster = new JPanel();
-				MoviePoster.setLayout(new BorderLayout());
-				JLabel Poster = new JLabel();
-				MoviePoster.add(Poster, BorderLayout.CENTER);
-				panel_10.add(MoviePoster);
-				if ( i <= 3) {
-					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
-				} else{
-					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 135, 94, 125);
-				}
-					Poster.setIcon(new ImageIcon());
-				Poster.setBackground(new Color(0,0,150));
-
-			}
 		}
 		
 		btn_notice = new RoundedButtonD("notice");

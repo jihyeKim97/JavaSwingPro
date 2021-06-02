@@ -218,7 +218,15 @@ public class Movie_Informaiton extends JFrame {
 		lb_MovieDate.setBounds(95, 10, 40, 15);
 		pn_MovieFirstTime.add(lb_MovieDate);
 
-		lb_Movietime = new JLabel("20:10");
+		int itime = 5 + (2 * MovieList.get(PK).getScheduletime());
+		String time = "";
+		if ( itime > 12) {
+			time = "" + (itime - 12);
+		}
+		else
+			time = "" + itime;
+		
+		lb_Movietime = new JLabel( time + ":00");
 		lb_Movietime.setBounds(184, 8, 40, 15);
 		pn_MovieFirstTime.add(lb_Movietime);
 
