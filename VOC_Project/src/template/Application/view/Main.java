@@ -73,19 +73,19 @@ public class Main extends JFrame {
 	static Login Lg;
 	static Login_data Ld;
 	
-//	public static void main(String[] args) {
-//		
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Main frame = new Main(Lg, Ld);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main frame = new Main(Lg, Ld);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the frame.
