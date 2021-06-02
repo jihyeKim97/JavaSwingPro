@@ -41,6 +41,7 @@ public class Mypage_writePage extends JFrame {
 	String value;
 	char df;
 	int memberID = 34;
+	int sco = 0;
 
 	public Mypage_writePage(MyPage frm) {
 		this.frm = frm;
@@ -79,10 +80,10 @@ public class Mypage_writePage extends JFrame {
 			}
 		});
 
+		String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" }; 
 		star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		star_combo.setBounds(149, 0, 201, 37);
-		star_combo.setModel(new DefaultComboBoxModel(
-				new String[] { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" }));
+		star_combo.setModel(new DefaultComboBoxModel(comboF));
 		star_combo.setSelectedIndex(0);
 		panel_1.add(star_combo);
 
@@ -102,16 +103,18 @@ public class Mypage_writePage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String review = review_tf.getText();
 				System.out.println(review);
+				System.out.println(value);
 				for (int i = 0; i < value.length(); i++) {
 					df = value.charAt(i);
 					if (df > 48 && df < 57) {
 						System.out.println(df);
+						sco = Integer.valueOf(df);
 					}
 				}
-				Mypage_Review_data reviewdata = new Mypage_Review_data(review, Integer.valueOf(df),
+				System.out.println( (char)sco);
+				boolean isResult = MDB.InsertReviewID(review, (char)sco,
 						MDB.SelectReservationID(memberID).get(0).getReservation_id(),
 						MDB.SelectReservationID(memberID).get(0).getMovie_id());
-				boolean isResult = MDB.InsertReviewID(reviewdata);
 				if (isResult) {
 					dispose();
 				}
