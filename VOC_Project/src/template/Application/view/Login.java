@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import template.Application.controller.ImagePanel;
 import template.Application.controller.Login_DB;
+import template.Application.controller.Login_data;
 
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -49,6 +50,7 @@ public class Login extends JFrame {
 	Login_FindID FindId;
 	Login_FindPW FindPw;
 	ImagePanel contentPane;
+	Main main ;
 	
 	
 	public static void main(String[] args) {
@@ -118,7 +120,8 @@ public class Login extends JFrame {
 		lb_pw.setBackground(Color.WHITE);
 		lb_pw.setBounds(59, 300, 35, 31);
 		contentPane.add(lb_pw);
-
+		
+		Login_data LD = new Login_data();
 		JButton btn_Login = new JButton("Login");
 		btn_Login.addMouseListener(new MouseAdapter() {
 			@Override
@@ -139,6 +142,9 @@ public class Login extends JFrame {
 				int r = mgr.loginProcess(login, pw);
 				switch (r) {
 				case Login_DB.LOGIN_SUCCESS:
+					main = new Main(ln, LD);
+					main.setVisible(true);
+					dispose();
 					break;
 				case Login_DB.LOGIN_FAIL_NOT_FOUND:
 					JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
