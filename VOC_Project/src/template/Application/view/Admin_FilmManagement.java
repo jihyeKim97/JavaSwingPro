@@ -34,16 +34,16 @@ import java.io.File;
 public class Admin_FilmManagement extends JDialog{
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	JLabel lbMenuImgPath;
+	private JTextField ad_txt_title;
+	private JTextField ad_txt_ganre;
+	private JTextField ad_txt_director;
+	private JTextField ad_txt_age;
+	private JTextField ad_txt_score;
+	private JTextField ad_txt_gee;
+	private JTextField ad_txt_openday;
+	private JTextField ad_txt_production;
+	private JTextField ad_txt_runtime;
+	JLabel ad_lb_load_poster;
 	Admin_FilmManagement dlg;
 	/**
 	 * Launch the application.
@@ -73,6 +73,7 @@ public class Admin_FilmManagement extends JDialog{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("영화정보");
 		frame.setBounds(100, 100, 493, 804);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -94,18 +95,18 @@ public class Admin_FilmManagement extends JDialog{
 		panel_2.add(pnMenuImage);
 		pnMenuImage.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lbMenuImg = new JLabel("");
-		pnMenuImage.add(lbMenuImg, BorderLayout.CENTER);
+		JLabel ad_lb_poster = new JLabel("");
+		pnMenuImage.add(ad_lb_poster, BorderLayout.CENTER);
 		
 //		JLabel lbMenuImgPath = new JLabel("no path");
-		lbMenuImgPath = new JLabel("no path");
-		lbMenuImgPath.addMouseListener(new MouseAdapter() {
+		ad_lb_load_poster = new JLabel("no path");
+		ad_lb_load_poster.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				final String currentDirPath
-				 = "../reference/images";
+				 = "./src/template/reference/images";
 				final String currentDirPathDetail
-				 = "../Reference/images";
+				 = "./src/template/reference/images";
 				System.out.println(currentDirPath);
 				JFileChooser openDlg 
 				 = new JFileChooser(currentDirPath);					
@@ -118,21 +119,21 @@ public class Admin_FilmManagement extends JDialog{
 					
 					String dbImgPath
 						= currentDirPath + "/" + imgFile.getName();
-					lbMenuImgPath.setText(dbImgPath);
-					lbMenuImgPath.setToolTipText("이미지 경로: " + imgFile.getPath());
+					ad_lb_load_poster.setText(dbImgPath);
+					ad_lb_load_poster.setToolTipText("이미지 경로: " + imgFile.getPath());
 					// 42x42 아이콘
 					ImageIcon ic = new ImageIcon(imgFile.getPath());
 					Image icImg = ic.getImage()
 						.getScaledInstance(180, 230, Image.SCALE_SMOOTH);
 					ic.setImage(icImg);
-					lbMenuImg.setIcon(ic);
-					lbMenuImg.repaint();
+					ad_lb_poster.setIcon(ic);
+					ad_lb_poster.repaint();
 				
 				}
 			}
 		});
-		lbMenuImgPath.setForeground(Color.RED);
-		pnMenuImage.add(lbMenuImgPath, BorderLayout.SOUTH);
+		ad_lb_load_poster.setForeground(Color.RED);
+		pnMenuImage.add(ad_lb_load_poster, BorderLayout.SOUTH);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(204, 10, 250, 35);
@@ -148,11 +149,11 @@ public class Admin_FilmManagement extends JDialog{
 		panel_2.add(panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setText((String) null);
-		textArea.setLineWrap(true);
-		textArea.setEditable(false);
-		panel_5.add(textArea, BorderLayout.CENTER);
+		JTextArea ad_txt_story = new JTextArea();
+		ad_txt_story.setText((String) null);
+		ad_txt_story.setLineWrap(true);
+		ad_txt_story.setEditable(false);
+		panel_5.add(ad_txt_story, BorderLayout.CENTER);
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -177,86 +178,95 @@ public class Admin_FilmManagement extends JDialog{
 		panel_8.add(panel_9);
 		panel_9.setLayout(new GridLayout(9, 2, 0, 0));
 		
-		JLabel label = new JLabel("제목");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label);
+		JLabel ad_lb_title = new JLabel("제목");
+		ad_lb_title.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_title.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_title);
 		
-		textField = new JTextField();
-		panel_9.add(textField);
-		textField.setColumns(10);
+		ad_txt_title = new JTextField();
+		ad_txt_title.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_9.add(ad_txt_title);
+		ad_txt_title.setColumns(10);
 		
-		JLabel label_2 = new JLabel("장르");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_2);
+		JLabel ad_lb_genre = new JLabel("장르");
+		ad_lb_genre.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_genre.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_genre);
 		
-		textField_1 = new JTextField();
-		panel_9.add(textField_1);
-		textField_1.setColumns(10);
+		ad_txt_ganre = new JTextField();
+		ad_txt_ganre.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_9.add(ad_txt_ganre);
+		ad_txt_ganre.setColumns(10);
 		
-		JLabel label_6 = new JLabel("감독");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_6);
+		JLabel ad_lb_director = new JLabel("감독");
+		ad_lb_director.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_director.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_director);
 		
-		textField_2 = new JTextField();
-		panel_9.add(textField_2);
-		textField_2.setColumns(10);
+		ad_txt_director = new JTextField();
+		ad_txt_director.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_9.add(ad_txt_director);
+		ad_txt_director.setColumns(10);
 		
-		JLabel label_8 = new JLabel("연령등급");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_8);
+		JLabel ad_lb_age = new JLabel("연령등급");
+		ad_lb_age.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_age.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_age);
 		
-		textField_3 = new JTextField();
-		panel_9.add(textField_3);
-		textField_3.setColumns(10);
+		ad_txt_age = new JTextField();
+		ad_txt_age.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_9.add(ad_txt_age);
+		ad_txt_age.setColumns(10);
 		
-		JLabel label_10 = new JLabel("별점");
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_10);
+		JLabel ad_lb_score = new JLabel("별점");
+		ad_lb_score.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_score.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_score);
 		
-		textField_4 = new JTextField();
-		panel_9.add(textField_4);
-		textField_4.setColumns(10);
+		ad_txt_score = new JTextField();
+		ad_txt_score.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_9.add(ad_txt_score);
+		ad_txt_score.setColumns(10);
 		
-		JLabel label_12 = new JLabel("등장인물");
-		label_12.setHorizontalAlignment(SwingConstants.CENTER);
-		label_12.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_12);
+		JLabel ad_lb_gee = new JLabel("등장인물");
+		ad_lb_gee.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_gee.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_gee);
 		
-		textField_5 = new JTextField();
-		panel_9.add(textField_5);
-		textField_5.setColumns(10);
+		ad_txt_gee = new JTextField();
+		ad_txt_gee.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_9.add(ad_txt_gee);
+		ad_txt_gee.setColumns(10);
 		
-		JLabel label_14 = new JLabel("개봉일");
-		label_14.setHorizontalAlignment(SwingConstants.CENTER);
-		label_14.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_14);
+		JLabel ad_lb_openday = new JLabel("개봉일");
+		ad_lb_openday.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_openday.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_openday);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		panel_9.add(textField_6);
+		ad_txt_openday = new JTextField();
+		ad_txt_openday.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_txt_openday.setColumns(10);
+		panel_9.add(ad_txt_openday);
 		
-		JLabel label_16 = new JLabel("제작사");
-		label_16.setHorizontalAlignment(SwingConstants.CENTER);
-		label_16.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_16);
+		JLabel ad_lb_production = new JLabel("제작사");
+		ad_lb_production.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_production.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_production);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		panel_9.add(textField_7);
+		ad_txt_production = new JTextField();
+		ad_txt_production.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_txt_production.setColumns(10);
+		panel_9.add(ad_txt_production);
 		
-		JLabel label_18 = new JLabel("영화 상영 시간");
-		label_18.setHorizontalAlignment(SwingConstants.CENTER);
-		label_18.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_9.add(label_18);
+		JLabel ad_lb_runtime = new JLabel("영화 상영 시간");
+		ad_lb_runtime.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_runtime.setFont(new Font("Dialog", Font.PLAIN, 15));
+		panel_9.add(ad_lb_runtime);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		panel_9.add(textField_8);
+		ad_txt_runtime = new JTextField();
+		ad_txt_runtime.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_txt_runtime.setColumns(10);
+		panel_9.add(ad_txt_runtime);
 		
 		JLabel label_20 = new JLabel("영화 정보");
 		label_20.setHorizontalAlignment(SwingConstants.CENTER);
@@ -270,13 +280,13 @@ public class Admin_FilmManagement extends JDialog{
 		label_21.setBounds(232, -10, 232, 40);
 		panel_8.add(label_21);
 		
-		JButton btnNewButton = new JButton("UP");
-		btnNewButton.setBounds(30, 707, 107, 48);
-		panel.add(btnNewButton);
+		JButton ad_btn_up = new JButton("UP");
+		ad_btn_up.setBounds(30, 707, 107, 48);
+		panel.add(ad_btn_up);
 		
-		JButton btnCancel = new JButton("cancel");
-		btnCancel.setBounds(364, 707, 107, 48);
-		panel.add(btnCancel);
+		JButton ad_btn_cancel = new JButton("cancel");
+		ad_btn_cancel.setBounds(364, 707, 107, 48);
+		panel.add(ad_btn_cancel);
 		
 		JLabel label_3 = new JLabel("Film Management");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -287,9 +297,5 @@ public class Admin_FilmManagement extends JDialog{
 		JButton btnDown = new JButton("DOWN");
 		btnDown.setBounds(165, 707, 107, 48);
 		panel.add(btnDown);
-		
-		JLabel label_4 = new JLabel("New label");
-		label_4.setBounds(443, 682, 57, 15);
-		panel.add(label_4);
 	}
 }
