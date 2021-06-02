@@ -41,7 +41,6 @@ public class Mypage_writePage extends JFrame {
 	String value;
 	char df;
 	int memberID = 34;
-	int sco = 0;
 
 	public Mypage_writePage(MyPage frm) {
 		this.frm = frm;
@@ -64,6 +63,12 @@ public class Mypage_writePage extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
+		JLabel lblNewLabel = new JLabel("한줄 리뷰를 작성해 주세요!");
+		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 23));
+		lblNewLabel.setBounds(0, 38, 402, 37);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblNewLabel);
+
 		JLabel lblNewLabel_2 = new JLabel("당신의 별점은?");
 		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		lblNewLabel_2.setBounds(0, 0, 137, 37);
@@ -80,18 +85,11 @@ public class Mypage_writePage extends JFrame {
 			}
 		});
 
-		String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" }; 
 		star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		star_combo.setBounds(149, 0, 201, 37);
+		String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
 		star_combo.setModel(new DefaultComboBoxModel(comboF));
-		star_combo.setSelectedIndex(0);
 		panel_1.add(star_combo);
-
-		JLabel lblNewLabel = new JLabel("한줄 리뷰를 작성해 주세요!");
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 23));
-		lblNewLabel.setBounds(0, 38, 402, 37);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblNewLabel);
 
 		review_tf = new JTextField();
 		review_tf.setBounds(25, 103, 350, 43);
@@ -102,17 +100,19 @@ public class Mypage_writePage extends JFrame {
 		btn_success.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String review = review_tf.getText();
-				System.out.println(review);
-				System.out.println(value);
-				for (int i = 0; i < value.length(); i++) {
-					df = value.charAt(i);
-					if (df > 48 && df < 57) {
-						System.out.println(df);
-						sco = Integer.valueOf(df);
-					}
+				for (int i = 0; i < comboF.length; i++) {
+					System.out.println(comboF[i]);
 				}
-				System.out.println( (char)sco);
-				boolean isResult = MDB.InsertReviewID(review, (char)sco,
+			
+				
+//				System.out.println(value);
+//				for (int i = 0; i < value.length(); i++) {
+//					df = value.charAt(i);
+//					if (df > 48 && df < 57) {
+//						System.out.println(df);
+//					}
+//				}
+				boolean isResult = MDB.InsertReviewID(review, df,
 						MDB.SelectReservationID(memberID).get(0).getReservation_id(),
 						MDB.SelectReservationID(memberID).get(0).getMovie_id());
 				if (isResult) {
