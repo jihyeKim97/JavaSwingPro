@@ -211,7 +211,10 @@ public class Movie_Informaiton extends JFrame {
 		lblNewLabel_3.setBounds(23, 10, 20, 15);
 		pn_MovieFirstTime.add(lblNewLabel_3);
 
-		lb_MovieDate = new JLabel("05/21");
+		String dummyDate = ""+MovieList.get(PK).getScheduledate();
+		String[] date = dummyDate.split("-");
+		
+		lb_MovieDate = new JLabel(date[1] + "/" + date[2]);
 		lb_MovieDate.setBounds(95, 10, 40, 15);
 		pn_MovieFirstTime.add(lb_MovieDate);
 

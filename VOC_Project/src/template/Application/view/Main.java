@@ -24,12 +24,10 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Formatter;
-
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
@@ -64,7 +62,8 @@ public class Main extends JFrame {
 	private Panel screen_guid_line;
 	private Panel panel_10;
 	Main reserfrm;
-	ArrayList<Movie_Data> MovieList;
+	ArrayList<Movie_Data> toDayMovieList;
+	ArrayList<Movie_Data> notToDayMovieList;
 	Movie_Data movie;
 	private JLabel lb_month;
 	private JLabel lb_date;
@@ -88,9 +87,9 @@ public class Main extends JFrame {
 	 * Create the frame.
 	 */
 	public Main() {
-		MovieList = new ArrayList<>();
+		toDayMovieList = new ArrayList<>();
+		notToDayMovieList = new ArrayList<>();
 		Movie_DB MDB= new Movie_DB();
-		MovieList = MDB.getMovieData();
 		
 		
 		this.reserfrm = this;
@@ -138,7 +137,7 @@ public class Main extends JFrame {
 		title_panel.setLayout(null);
 
 
-
+		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
@@ -196,6 +195,21 @@ public class Main extends JFrame {
 				lb_date.setText("" + today);
 			}
 		});
+		
+		
+			try {
+				notToDayMovieList= MDB.notTodayMovie(month, day);
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
+			try {
+				toDayMovieList= MDB.TodayMovie(month, day);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		
+		
 		btnNext.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnNext.setBounds(365, 5, 80, 40);
 		title_panel.add(btnNext);
@@ -298,10 +312,10 @@ public class Main extends JFrame {
 			MoviePoster.setBounds(10 * (i + 1) + 94 * i, 10, 94, 121);
 			JLabel Poster = new JLabel();
 			MoviePoster.add(Poster, BorderLayout.CENTER);
-			Movie_Data movie = MovieList.get(i);
+			Movie_Data movie = toDayMovieList.get(i);
 			screen_guid_line.add(MoviePoster);
-			if ( MovieList.get(i) != null)
-				Poster.setIcon(new ImageIcon( MovieList.get(i).getImagefilename()));
+			if ( toDayMovieList.get(i) != null)
+				Poster.setIcon(new ImageIcon("."+ toDayMovieList.get(i).getImagefilename()));
 			else
 				Poster.setIcon(new ImageIcon());
 			Poster.setBackground(new Color(0,0,150));
@@ -348,24 +362,20 @@ public class Main extends JFrame {
 //		Panel poster_re_1 = new Panel();
 //		poster_re_1.setBounds(10, 0, 94, 125);
 //		panel_10.add(poster_re_1);
-		if ( MovieList.size() < 8)
-			do {
-				MovieList.add(new Movie_Data());
-			} while(MovieList.size() < 8);
 		for (int i = 0; i < 8; i++) {
-			if ( MovieList.get(i) != null ) {
+			if ( notToDayMovieList.get(i) != null ) {
 				JPanel MoviePoster = new JPanel();
 				MoviePoster.setLayout(new BorderLayout());
 				JLabel Poster = new JLabel();
 				MoviePoster.add(Poster, BorderLayout.CENTER);
-				Movie_Data movie = MovieList.get(i);
+				Movie_Data movie = notToDayMovieList.get(i);
 				panel_10.add(MoviePoster);
 				if ( i <= 3) {
 					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
 				} else{
 					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 135, 94, 125);
 				}
-					Poster.setIcon(new ImageIcon( MovieList.get(i).getImagefilename()));
+					Poster.setIcon(new ImageIcon( "."+ notToDayMovieList.get(i).getImagefilename()));
 				Poster.setBackground(new Color(0,0,150));
 				MoviePoster.addMouseListener(new MouseAdapter() {
 					@Override

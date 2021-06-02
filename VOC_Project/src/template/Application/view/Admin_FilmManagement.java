@@ -103,7 +103,9 @@ public class Admin_FilmManagement extends JDialog{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				final String currentDirPath
-				 = "../Reference/icons";
+				=".";
+//				 = "./VOC_Project/src/template/Reference/images";
+//				"./VOC_Project/src/template/Reference/icons";
 				final String currentDirPathDetail
 				 = "../Reference/icons";
 				JFileChooser openDlg 
