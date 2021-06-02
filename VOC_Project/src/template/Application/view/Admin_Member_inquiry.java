@@ -21,17 +21,21 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import java.awt.SystemColor;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Admin_Member_inquiry {
 
 	private JFrame frame;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField ad_txt_pw;
+	private JTextField ad_txt_name;
+	private JTextField ad_txt_pn1;
+	private JTextField ad_txt_pn2;
+	private JTextField ad_txt_pn3;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField textField_6;
+	private JTextField ad_txt_bd;
 
 	/**
 	 * Launch the application.
@@ -66,65 +70,159 @@ public class Admin_Member_inquiry {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("아이디:");
-		lblNewLabel.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 85, 73, 31);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel ad_lb_id = new JLabel("아이디:");
+		ad_lb_id.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_lb_id.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_id.setBounds(12, 85, 73, 31);
+		frame.getContentPane().add(ad_lb_id);
 		
-		JLabel label = new JLabel("비밀번호:");
-		label.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(12, 126, 73, 31);
-		frame.getContentPane().add(label);
+		JLabel ad_lb_pw = new JLabel("비밀번호:");
+		ad_lb_pw.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_lb_pw.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_pw.setBounds(12, 126, 73, 31);
+		frame.getContentPane().add(ad_lb_pw);
 		
-		JLabel label_1 = new JLabel("이름:");
-		label_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(12, 167, 73, 31);
-		frame.getContentPane().add(label_1);
+		JLabel ad_lb_name = new JLabel("이름:");
+		ad_lb_name.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_lb_name.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_name.setBounds(12, 167, 73, 31);
+		frame.getContentPane().add(ad_lb_name);
 		
-		JLabel label_2 = new JLabel("전화번호:");
-		label_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(12, 208, 73, 31);
-		frame.getContentPane().add(label_2);
+		JLabel ad_lb_pn = new JLabel("전화번호:");
+		ad_lb_pn.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_lb_pn.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_pn.setBounds(12, 208, 73, 31);
+		frame.getContentPane().add(ad_lb_pn);
 		
-		JLabel label_3 = new JLabel("성별:");
-		label_3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBounds(12, 249, 73, 31);
-		frame.getContentPane().add(label_3);
+		JLabel ad_lb_gender = new JLabel("성별:");
+		ad_lb_gender.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_lb_gender.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_gender.setBounds(12, 249, 73, 31);
+		frame.getContentPane().add(ad_lb_gender);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		textField_1.setColumns(10);
-		textField_1.setBounds(84, 126, 129, 31);
-		frame.getContentPane().add(textField_1);
+		ad_txt_pw = new JTextField();
+		ad_txt_pw.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				ad_txt_pw.setForeground(Color.black);
+				ad_txt_pw.setBackground(Color.yellow);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				ad_txt_pw.setForeground(Color.LIGHT_GRAY);
+				ad_txt_pw.setBackground(Color.WHITE);
+
+			}
+		});
+		ad_txt_pw.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_txt_pw.setColumns(10);
+		ad_txt_pw.setBounds(84, 126, 129, 31);
+		frame.getContentPane().add(ad_txt_pw);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		textField_2.setColumns(10);
-		textField_2.setBounds(84, 167, 129, 31);
-		frame.getContentPane().add(textField_2);
+		ad_txt_name = new JTextField();
+		ad_txt_name.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				ad_txt_name.setForeground(Color.black);
+				ad_txt_name.setBackground(Color.yellow);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				ad_txt_name.setForeground(Color.LIGHT_GRAY);
+				ad_txt_name.setBackground(Color.WHITE);
+
+			}
+		});
+		ad_txt_name.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_txt_name.setColumns(10);
+		ad_txt_name.setBounds(84, 167, 129, 31);
+		frame.getContentPane().add(ad_txt_name);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		textField_3.setColumns(10);
-		textField_3.setBounds(84, 208, 40, 31);
-		frame.getContentPane().add(textField_3);
+		ad_txt_pn1 = new JTextField();
+		ad_txt_pn1.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 2||
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}
+		});
+		ad_txt_pn1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				ad_txt_pn1.setForeground(Color.black);
+				ad_txt_pn1.setBackground(Color.yellow);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				ad_txt_pn1.setForeground(Color.LIGHT_GRAY);
+				ad_txt_pn1.setBackground(Color.WHITE);
+
+			}
+		});
+		ad_txt_pn1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_txt_pn1.setColumns(10);
+		ad_txt_pn1.setBounds(84, 208, 40, 31);
+		frame.getContentPane().add(ad_txt_pn1);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		textField_4.setColumns(10);
-		textField_4.setBounds(136, 208, 55, 31);
-		frame.getContentPane().add(textField_4);
+		ad_txt_pn2 = new JTextField();
+		ad_txt_pn2.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 3||
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}
+		});
+		ad_txt_pn2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				ad_txt_pn2.setForeground(Color.black);
+				ad_txt_pn2.setBackground(Color.yellow);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				ad_txt_pn2.setForeground(Color.LIGHT_GRAY);
+				ad_txt_pn2.setBackground(Color.WHITE);
+
+			}
+		});
+		ad_txt_pn2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_txt_pn2.setColumns(10);
+		ad_txt_pn2.setBounds(136, 208, 55, 31);
+		frame.getContentPane().add(ad_txt_pn2);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		textField_5.setColumns(10);
-		textField_5.setBounds(203, 208, 55, 31);
-		frame.getContentPane().add(textField_5);
+		ad_txt_pn3 = new JTextField();
+		ad_txt_pn3.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 3||
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}
+		});
+		ad_txt_pn3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				ad_txt_pn3.setForeground(Color.black);
+				ad_txt_pn3.setBackground(Color.yellow);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				ad_txt_pn3.setForeground(Color.LIGHT_GRAY);
+				ad_txt_pn3.setBackground(Color.WHITE);
+
+			}
+		});
+		ad_txt_pn3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_txt_pn3.setColumns(10);
+		ad_txt_pn3.setBounds(203, 208, 55, 31);
+		frame.getContentPane().add(ad_txt_pn3);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("남");
 		rdbtnNewRadioButton.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
@@ -145,32 +243,54 @@ public class Admin_Member_inquiry {
 		lblProfile.setBounds(0, 20, 323, 55);
 		frame.getContentPane().add(lblProfile);
 		
-		JButton btnNewButton = new JButton("적 용");
-		btnNewButton.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		btnNewButton.setBounds(39, 337, 97, 39);
-		frame.getContentPane().add(btnNewButton);
+		JButton ad_btn_ok = new JButton("ok");
+		ad_btn_ok.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_btn_ok.setBounds(39, 337, 97, 39);
+		frame.getContentPane().add(ad_btn_ok);
 		
-		JButton button = new JButton("취 소");
-		button.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		button.setBounds(192, 337, 97, 39);
-		frame.getContentPane().add(button);
+		JButton ad_btn_cancel = new JButton("cancel");
+		ad_btn_cancel.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_btn_cancel.setBounds(192, 337, 97, 39);
+		frame.getContentPane().add(ad_btn_cancel);
 		
-		JLabel label_4 = new JLabel("생년월일:");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		label_4.setBounds(12, 282, 73, 31);
-		frame.getContentPane().add(label_4);
+		JLabel ad_lb_birthday = new JLabel("생년월일:");
+		ad_lb_birthday.setHorizontalAlignment(SwingConstants.CENTER);
+		ad_lb_birthday.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_lb_birthday.setBounds(12, 282, 73, 31);
+		frame.getContentPane().add(ad_lb_birthday);
 		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		textField_6.setColumns(10);
-		textField_6.setBounds(84, 282, 129, 31);
-		frame.getContentPane().add(textField_6);
+		ad_txt_bd = new JTextField();
+		ad_txt_bd.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if(((JTextField)ke.getSource()).getText().length() > 5||
+						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
+						)
+					ke.consume();
+			}
+		});
+		ad_txt_bd.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				ad_txt_bd.setForeground(Color.black);
+				ad_txt_bd.setBackground(Color.yellow);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				ad_txt_bd.setForeground(Color.LIGHT_GRAY);
+				ad_txt_bd.setBackground(Color.WHITE);
+
+			}
+		});
+		ad_txt_bd.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		ad_txt_bd.setColumns(10);
+		ad_txt_bd.setBounds(84, 282, 129, 31);
+		frame.getContentPane().add(ad_txt_bd);
 		
-		JLabel lblNewLabel_1 = new JLabel("계정");
-		lblNewLabel_1.setBackground(Color.LIGHT_GRAY);
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBounds(84, 85, 129, 31);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel ad_lb_load_id = new JLabel("계정");
+		ad_lb_load_id.setBackground(Color.LIGHT_GRAY);
+		ad_lb_load_id.setOpaque(true);
+		ad_lb_load_id.setBounds(84, 85, 129, 31);
+		frame.getContentPane().add(ad_lb_load_id);
 	}
 }
