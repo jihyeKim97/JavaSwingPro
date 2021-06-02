@@ -110,7 +110,7 @@ public class Mypage_writePage extends JFrame {
 				star = "★★★★★";
 				break;
 			}
-			lblNewLabel_1.setText(star + " " + ViArr.get(0).getStar_score() + " 점");
+			lblNewLabel_1.setText(star + "  " + ViArr.get(0).getStar_score() + " 점");
 			lblNewLabel_1.setBounds(149, 0, 201, 37);
 			panel_1.add(lblNewLabel_1);
 		}
