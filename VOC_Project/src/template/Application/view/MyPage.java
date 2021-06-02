@@ -72,15 +72,13 @@ public class MyPage extends JFrame {
 	Mypage_Member_data MyPage;
 	JLabel errortxt;
 	Mypage_DB MDB;
-	ArrayList<Mypage_Reservation_data> ReArr;
-	ArrayList<Mypage_Member_data> MyArr;
+	JLabel none_reservation;
 	int memberID = 34;
-	private JLabel none_reservation;
 
 	public MyPage(Main mafrm) {
 		this.frm = this;
-		MyArr = MDB.SelectMemberID(memberID);
-		ReArr = MDB.SelectReservationID(memberID);
+		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
+		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(memberID);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
