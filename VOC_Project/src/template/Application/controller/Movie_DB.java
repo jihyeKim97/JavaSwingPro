@@ -167,22 +167,11 @@ public class Movie_DB {
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				int moviesid = rs.getInt("movies_id");
-				String title = rs.getString("title");
-				String genre = rs.getString("genre");
-				String director = rs.getString("director");
-				int agegroup = rs.getInt("age_group");
-				String story = rs.getString("story");
-				int averagecsore = rs.getInt("average_score");
-				String gee = rs.getString("gee");
-				Date openDate = rs.getDate("open_date");
-				String production = rs.getString("production");
 				String imageFileName = rs.getString("image_file_name");
 				Date scheduleDate = rs.getDate("schedule_date");
-				int Scheduletime = rs.getInt("schedule_time");
-				String runningTime = rs.getString("running_time");
+			
 
-				Movie_Data MD = new Movie_Data(moviesid, title, genre, director, agegroup, story, averagecsore, gee,
-						openDate, production, imageFileName, scheduleDate, Scheduletime, runningTime);
+				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
 				if (!MD.getScheduledate().equals(date)) {
 					MovieList.add(MD);
 				}
@@ -217,22 +206,11 @@ public class Movie_DB {
 			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				int moviesid = rs.getInt("movies_id");
-				String title = rs.getString("title");
-				String genre = rs.getString("genre");
-				String director = rs.getString("director");
-				int agegroup = rs.getInt("age_group");
-				String story = rs.getString("story");
-				int averagecsore = rs.getInt("average_score");
-				String gee = rs.getString("gee");
-				Date openDate = rs.getDate("open_date");
-				String production = rs.getString("production");
 				String imageFileName = rs.getString("image_file_name");
 				Date scheduleDate = rs.getDate("schedule_date");
-				int Scheduletime = rs.getInt("schedule_time");
-				String runningTime = rs.getString("running_time");
+			
 
-				Movie_Data MD = new Movie_Data(moviesid, title, genre, director, agegroup, story, averagecsore, gee,
-						openDate, production, imageFileName, scheduleDate, Scheduletime, runningTime);
+				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
 				if (MD.getScheduledate().equals(date))
 					MovieList.add(MD);
 
@@ -245,6 +223,49 @@ public class Movie_DB {
 
 	}
 
+//	public static ArrayList<Movie_Data[]> Movie(int month, int day) throws SQLException {
+//		ArrayList<Movie_Data[]> MovieList = new ArrayList<>();
+//		String years = "2021";
+//		String months = "";
+//		if (month == 5)
+//			months = "05";
+//		else if (month == 6)
+//			months = "06";
+//		String days = String.valueOf(day);
+//		String Dday = years + months + days;
+//
+//		Date date = null;
+//		date = transformDate(Dday);
+//
+//		connect.beginConnection();
+//		// DB에서 정보 가져오기
+//		if (connect.conn != null) {
+//			String sql = "select * from Movies";
+//			Statement st = connect.conn.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+//			while (rs.next()) {
+//				int moviesid = rs.getInt("movies_id");
+//				String imageFileName = rs.getString("image_file_name");
+//				Date scheduleDate = rs.getDate("schedule_date");
+//			
+//
+//				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
+//				if (MD.getScheduledate().equals(date))
+//					MovieList[].add(MD);
+//				else
+//					MovieList[].add(MD);
+	
+//
+//			}
+//
+//			return MovieList;
+//			
+//		}
+//		connect.endConnection();
+//		return MovieList;
+//
+//	}
+	
 	public static Date transformDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 
