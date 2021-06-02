@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import template.Application.controller.Login_data;
 import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
@@ -24,12 +25,10 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Formatter;
-
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
@@ -64,18 +63,22 @@ public class Main extends JFrame {
 	private Panel screen_guid_line;
 	private Panel panel_10;
 	Main reserfrm;
-	ArrayList<Movie_Data> MovieList;
+	ArrayList<Movie_Data> toDayMovieList;
+	ArrayList<Movie_Data> notToDayMovieList;
 	Movie_Data movie;
 	private JLabel lb_month;
 	private JLabel lb_date;
 	private JLabel label_2;
-
-
+	Main main;
+	static Login Lg;
+	static Login_data Ld;
+	
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main frame = new Main();
+					Main frame = new Main(Lg, Ld);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -87,12 +90,11 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
-		MovieList = new ArrayList<>();
-		Movie_DB MDB= new Movie_DB();
-		MovieList = MDB.getMovieData();
+	public Main(Login Lg, Login_data Ld) {
+		this.main = this;
 		
-		
+		Movie_DB MDB = new Movie_DB();
+
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -137,50 +139,77 @@ public class Main extends JFrame {
 		main_panel.add(title_panel);
 		title_panel.setLayout(null);
 
+//		Calendar cal = Calendar.getInstance();
+//		int year = cal.get(Calendar.YEAR);
+//		int month = cal.get(Calendar.MONTH) + 1;
+//		int day = cal.get(Calendar.DAY_OF_MONTH);
+		int year = 2020;
+		int month = 6;
+		int day =2;
 
-
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		
-//		lblNewLabel = new JLabel(movieday.format(date)+"");
 		lblNewLabel = new JLabel(year + " - ");
 		lblNewLabel.setFont(new Font("Candara Light", Font.PLAIN, 40));
 		lblNewLabel.setBounds(105, 0, 119, 50);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		title_panel.add(lblNewLabel);
-		
+
 		lb_month = new JLabel("" + month);
 		lb_month.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_month.setFont(new Font("Candara Light", Font.PLAIN, 40));
 		lb_month.setBounds(220, 0, 31, 50);
 		title_panel.add(lb_month);
-		
+
 		lb_date = new JLabel("" + day);
 		lb_date.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_date.setFont(new Font("Candara Light", Font.PLAIN, 40));
 		lb_date.setBounds(276, 0, 56, 50);
 		title_panel.add(lb_date);
 		
+		try {
+			toDayMovieList = MDB.TodayMovie(month, day);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			notToDayMovieList = MDB.notTodayMovie(month, day);
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		
+
 		btnprev = new RoundedButtonD("prev");
 		btnprev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int today = Integer.parseInt(lb_date.getText());
 				int preMonth = Integer.parseInt(lb_month.getText());
 				today--;
-				if ( today == 0) {
+				if (today == 0) {
 					today = 31;
 					preMonth--;
 				}
 				lb_month.setText("" + preMonth);
 				lb_date.setText("" + today);
-				
+				toDayMovieList = new ArrayList<>();
+				notToDayMovieList = new ArrayList<>();
+					try {
+						toDayMovieList = MDB.TodayMovie(preMonth, today);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					try {
+						notToDayMovieList = MDB.notTodayMovie(preMonth, today);
+					} catch (SQLException e1) {
+	
+						e1.printStackTrace();
+					}
+
 			}
 		});
 		btnprev.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnprev.setBounds(0, 5, 80, 40);
 		title_panel.add(btnprev);
+		
 
 		btnNext = new RoundedButtonD("next");
 		btnNext.addActionListener(new ActionListener() {
@@ -188,18 +217,32 @@ public class Main extends JFrame {
 				int today = Integer.parseInt(lb_date.getText());
 				int nextMonth = Integer.parseInt(lb_month.getText());
 				today++;
-				if ( today == 32) {
+				if (today == 32) {
 					today = 1;
-					nextMonth ++;
+					nextMonth++;
 				}
 				lb_month.setText("" + nextMonth);
 				lb_date.setText("" + today);
+				toDayMovieList = new ArrayList<>();
+				notToDayMovieList = new ArrayList<>();
+					try {
+						toDayMovieList = MDB.TodayMovie(nextMonth, today);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					try {
+						notToDayMovieList = MDB.notTodayMovie(nextMonth, today);
+					} catch (SQLException e1) {
+	
+						e1.printStackTrace();
+					}
 			}
 		});
+
 		btnNext.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnNext.setBounds(365, 5, 80, 40);
 		title_panel.add(btnNext);
-		
+
 		label_2 = new JLabel("-");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setFont(new Font("Candara Light", Font.PLAIN, 40));
@@ -291,20 +334,21 @@ public class Main extends JFrame {
 		screen_guid_line.setBounds(0, 39, 424, 171);
 		screening_panel.add(screen_guid_line);
 		screen_guid_line.setLayout(null);
-		
+
 		for (int i = 0; i < 4; i++) {
+			
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			MoviePoster.setBounds(10 * (i + 1) + 94 * i, 10, 94, 121);
 			JLabel Poster = new JLabel();
 			MoviePoster.add(Poster, BorderLayout.CENTER);
-			Movie_Data movie = MovieList.get(i);
+			Movie_Data movie = toDayMovieList.get(i);
 			screen_guid_line.add(MoviePoster);
-			if ( MovieList.get(i) != null)
-				Poster.setIcon(new ImageIcon( MovieList.get(i).getImagefilename()));
+			if (toDayMovieList.get(i) != null)
+				Poster.setIcon(new ImageIcon("." + toDayMovieList.get(i).getImagefilename()));
 			else
 				Poster.setIcon(new ImageIcon());
-			Poster.setBackground(new Color(0,0,150));
+			Poster.setBackground(new Color(0, 0, 150));
 			MoviePoster.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
@@ -312,7 +356,7 @@ public class Main extends JFrame {
 					Point fPt = reserfrm.getLocationOnScreen();
 					MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 					MI.setVisible(true);
-					
+
 				}
 			});
 			RoundedButtonD btn_poster_1 = new RoundedButtonD("click");
@@ -348,52 +392,33 @@ public class Main extends JFrame {
 //		Panel poster_re_1 = new Panel();
 //		poster_re_1.setBounds(10, 0, 94, 125);
 //		panel_10.add(poster_re_1);
-		if ( MovieList.size() < 8)
-			do {
-				MovieList.add(new Movie_Data());
-			} while(MovieList.size() < 8);
-		for (int i = 0; i < 8; i++) {
-			if ( MovieList.get(i) != null ) {
-				JPanel MoviePoster = new JPanel();
-				MoviePoster.setLayout(new BorderLayout());
-				JLabel Poster = new JLabel();
-				MoviePoster.add(Poster, BorderLayout.CENTER);
-				Movie_Data movie = MovieList.get(i);
-				panel_10.add(MoviePoster);
-				if ( i <= 3) {
-					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
-				} else{
-					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 135, 94, 125);
-				}
-					Poster.setIcon(new ImageIcon( MovieList.get(i).getImagefilename()));
-				Poster.setBackground(new Color(0,0,150));
-				MoviePoster.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent arg0) {
-						Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie);
-						Point fPt = reserfrm.getLocationOnScreen();
-						MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
-						MI.setVisible(true);
-						
-					}
-				});
-			} else {
-				JPanel MoviePoster = new JPanel();
-				MoviePoster.setLayout(new BorderLayout());
-				JLabel Poster = new JLabel();
-				MoviePoster.add(Poster, BorderLayout.CENTER);
-				panel_10.add(MoviePoster);
-				if ( i <= 3) {
-					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
-				} else{
-					MoviePoster.setBounds(10 * (i + 1) + 94 * i, 135, 94, 125);
-				}
-					Poster.setIcon(new ImageIcon());
-				Poster.setBackground(new Color(0,0,150));
 
+		for (int i = 0; i < 8; i++) {
+			JPanel MoviePoster = new JPanel();
+			MoviePoster.setLayout(new BorderLayout());
+			JLabel Poster = new JLabel();
+			MoviePoster.add(Poster, BorderLayout.CENTER);
+			Movie_Data movie = notToDayMovieList.get(i);
+			panel_10.add(MoviePoster);
+			if (i < 4) {
+				MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
+			} else {
+				MoviePoster.setBounds(10 * (i - 3) + 94 * (i - 4), 135, 94, 125);
 			}
+			Poster.setIcon(new ImageIcon("." + notToDayMovieList.get(i).getImagefilename()));
+			Poster.setBackground(new Color(0, 0, 150));
+			MoviePoster.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					Movie_Informaiton MI = new Movie_Informaiton(reserfrm, movie);
+					Point fPt = reserfrm.getLocationOnScreen();
+					MI.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
+					MI.setVisible(true);
+
+				}
+			});
 		}
-		
+
 		btn_notice = new RoundedButtonD("notice");
 		btn_notice.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btn_notice.addActionListener(new ActionListener() {
@@ -406,8 +431,11 @@ public class Main extends JFrame {
 		});
 		btn_notice.setBounds(10, 543, 424, 60);
 		cpn_panel.add(btn_notice);
-		cpn_panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lb_title1, screening_panel, screen_guid_line}));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, btnprev, lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line}));
+		cpn_panel.setFocusTraversalPolicy(
+				new FocusTraversalOnArray(new Component[] { lb_title1, screening_panel, screen_guid_line }));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(
+				new Component[] { btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, btnprev,
+						lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line }));
 
 	}
 }
