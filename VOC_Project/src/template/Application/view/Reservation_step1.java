@@ -10,6 +10,7 @@ import template.Application.controller.DB_Connect;
 import template.Application.controller.Login_data;
 import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
+import template.Application.controller.Reservation_DB;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -23,6 +24,10 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Reservation_step1 extends JFrame {
 
@@ -33,7 +38,7 @@ public class Reservation_step1 extends JFrame {
 	JPanel infoDontent, seat_number, screen, seat_detail, option, optionimgpanel, seat, contentPane, seatContent,
 			content, info;
 	JComboBox car_type, option_type;
-	JButton A_1, A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3,
+	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3,
 			D_4, D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
 	Main mainfrm;
@@ -43,10 +48,12 @@ public class Reservation_step1 extends JFrame {
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	private JLabel label;
 	Login_data Ld;
+	private JLabel lblNewLabel;
 	
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
 		
 		this.reserStfrm = this;
+		Reservation_DB RDB = new Reservation_DB();
 		Movie_DB MDB = new Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
@@ -169,26 +176,28 @@ public class Reservation_step1 extends JFrame {
 		seat_detail.add(seat_number);
 		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
 		
-		for (int i = 0; i < 36; i++) {
-		JButton i1 = new JButton();
-		i1.setIcon(new ImageIcon("C:\\\\Users\\\\rlawlgns\\\\JAVAPRO\\\\VOCPRO\\\\bin\\\\template\\\\Reference\\\\icons\\\\default_car.png"));
-		i1.repaint();
-		i1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JButton btn = (JButton)e.getSource();
-				if ( btn.isSelected() == true)
-					i1.setIcon(new ImageIcon("C:\\\\Users\\\\rlawlgns\\\\JAVAPRO\\\\VOCPRO\\\\bin\\\\template\\\\Reference\\\\icons\\\\default_car.png"));
-				else
-					i1.setIcon(new ImageIcon("C:\\\\Users\\\\rlawlgns\\\\JAVAPRO\\\\VOCPRO\\\\bin\\\\template\\\\Reference\\\\icons\\\\select_car.png"));
-			
-					
-			}
-		});
-		seat_number.add(i1);
-		}
 
-//		A_1 = new JButton();
-//		seat_number.add(A_1);
+		
+		for (int i = 0; i < 36; i++) {
+			JPanel i1 = new JPanel();
+			i1.setLayout(new BorderLayout(0, 0));
+			lblNewLabel = new JLabel("");
+			i1.add(lblNewLabel, BorderLayout.CENTER);
+			lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+			seat_number.add(i1);
+			lblNewLabel.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					JLabel JL = (JLabel) e.getSource();
+					if ( JL.getIcon().equals(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"))))
+						lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+					else
+						lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png")));
+					
+				}
+			});
+
+		}
 
 //		A_2 = new JButton();
 //		seat_number.add(A_2);
@@ -305,8 +314,7 @@ public class Reservation_step1 extends JFrame {
 		option_type.setBounds(199, 57, 275, 37);
 		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		option_type.setModel(new DefaultComboBoxModel(
-				new String[] { "팝콘  : +6000원", "오징어 : +3000원", "나쵸 : +5000원", "사이다 : +2000원", "콜라 : +2000원" }));
+		option_type.setModel(new DefaultComboBoxModel(new String[] {"팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원"}));
 
 		optionimgpanel = new JPanel();
 		optionimgpanel.setBounds(15, 57, 174, 37);
