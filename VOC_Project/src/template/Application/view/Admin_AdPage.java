@@ -66,6 +66,12 @@ public class Admin_AdPage extends JFrame {
 			}
 		});
 	}
+	
+	
+
+	UPDATE "VOCPRO"."MEMBER" SET IS_MEMBER = '2' WHERE member_id= ?;
+
+	
 
 	/**
 	 * Create the frame.
