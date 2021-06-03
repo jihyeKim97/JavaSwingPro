@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -9,9 +9,7 @@ import template.Application.controller.Login_data;
 import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.member.Movie_Informaiton;
-import template.Application.view.member.MyPage;
-import template.Application.view.member.Notice;
+import template.Application.view.Login;
 
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;

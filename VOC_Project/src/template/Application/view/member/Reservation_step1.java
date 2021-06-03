@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +12,7 @@ import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;

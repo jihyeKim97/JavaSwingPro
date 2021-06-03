@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
