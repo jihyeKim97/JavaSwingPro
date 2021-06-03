@@ -58,9 +58,15 @@ public class SignUp extends JFrame {
 	JLabel lb_Gender;
 	JLabel lb_userJoin;
 	JLabel lblNewLabel;
-	JButton btn_userJoin;
 	JRadioButton rd_Female;
 	JRadioButton rd_Male;
+	RoundedButtonD btn_DupCheck;
+	JLabel lb_phoneNumber;
+	JPanel panel_phoneNum;
+	JLabel lb_phoneNum2;
+	JLabel lb_phoneNum1;
+	RoundedButtonR btn_cancel;
+	RoundedButtonG btn_userJoin;
 
 	final ButtonGroup genderGrp = new ButtonGroup();
 	final int MEMBER = 0, NOT_MEMBER = 1;
@@ -114,7 +120,7 @@ public class SignUp extends JFrame {
 		panel.add(txt_userId);
 		txt_userId.setColumns(10);
 
-		RoundedButtonD btn_DupCheck = new RoundedButtonD("중복 확인");
+		btn_DupCheck = new RoundedButtonD("중복 확인");
 		btn_DupCheck.setBounds(376, 2, 99, 39);
 		panel.add(btn_DupCheck);
 		btn_DupCheck.addActionListener(new ActionListener() {
@@ -299,13 +305,13 @@ public class SignUp extends JFrame {
 		txt_DoB.setText("ex) 19910101");
 		txt_DoB.setColumns(10);
 
-		JLabel lb_phoneNumber = new JLabel("전화번호");
+		lb_phoneNumber = new JLabel("전화번호");
 		lb_phoneNumber.setBounds(0, 296, 145, 39);
 		lb_phoneNumber.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		lb_phoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_phoneNumber);
 
-		JPanel panel_phoneNum = new JPanel();
+		panel_phoneNum = new JPanel();
 		panel_phoneNum.setBounds(165, 296, 310, 39);
 		panel.add(panel_phoneNum);
 
@@ -344,7 +350,7 @@ public class SignUp extends JFrame {
 		panel_phoneNum.add(txt_phone1);
 		txt_phone1.setColumns(10);
 
-		JLabel lb_phoneNum2 = new JLabel(" -");
+		lb_phoneNum2 = new JLabel(" -");
 		lb_phoneNum2.setBounds(80, 0, 30, 39);
 		lb_phoneNum2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_phoneNum.add(lb_phoneNum2);
@@ -412,7 +418,7 @@ public class SignUp extends JFrame {
 		panel_phoneNum.add(txt_phone2);
 		txt_phone2.setColumns(10);
 
-		JLabel lb_phoneNum1 = new JLabel("-");
+		lb_phoneNum1 = new JLabel("-");
 		lb_phoneNum1.setBounds(190, 0, 30, 39);
 		lb_phoneNum1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_phoneNum.add(lb_phoneNum1);
@@ -422,7 +428,7 @@ public class SignUp extends JFrame {
 		panel_phoneNum.add(txt_phone3);
 		txt_phone3.setColumns(10);
 
-		RoundedButtonR btn_cancel = new RoundedButtonR("\uCDE8\uC18C");
+		btn_cancel = new RoundedButtonR("\uCDE8\uC18C");
 		btn_cancel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		btn_cancel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -434,11 +440,10 @@ public class SignUp extends JFrame {
 		btn_cancel.setBounds(51, 505, 136, 50);
 		contentPane.add(btn_cancel);
 
-		RoundedButtonG btn_userJoin = new RoundedButtonG("가입 완료");
+		btn_userJoin = new RoundedButtonG("가입 완료");
 		btn_userJoin.setText("완료");
 		btn_userJoin.setBackground(new Color(255, 175, 175));
 		btn_userJoin.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		SIgnUp_DB mgr = new SIgnUp_DB();
 		btn_userJoin.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -455,7 +460,7 @@ public class SignUp extends JFrame {
 					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
 					dispose();
 				} else
-					JOptionPane.showMessageDialog(null, "회원 가입 실패! 다시 확인해주세요.");
+					JOptionPane.showMessageDialog(null, "회원 가입 실패 하였습니다");
 			}
 		});
 
