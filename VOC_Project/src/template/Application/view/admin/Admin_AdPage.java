@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,6 +23,7 @@ import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Notice_data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.Data.SignUp_data;
+import template.Application.view.member.Login;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
