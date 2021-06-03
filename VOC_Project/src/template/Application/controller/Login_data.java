@@ -48,6 +48,16 @@ public class Login_data {
 		this.birthday = birthday;
 	}
 
+	public Login_data(String id, String password, String name, int gender, int phone_number, String birthday) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.gender = gender;
+		this.phone_number = phone_number;
+		this.birthday = birthday;
+	}
+
 	public int getMember_id() {
 		return member_id;
 	}
@@ -119,3 +129,4 @@ public class Login_data {
 				+ birthday + "]";
 	}
 }
+
