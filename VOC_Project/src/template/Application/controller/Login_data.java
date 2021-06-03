@@ -2,32 +2,37 @@ package template.Application.controller;
 
 public class Login_data {
 
-	private int member_id;
-	private String id;
-	private String password;
-	private String name;
-	private int gender;
-	private int phone_number;
-	private int is_member;
-	private String birthday;
+	int member_id;
+	String id;
+	String password;
+	String name;
+	int gender;
+	String phone_number;
+	int is_member;
+	String birthday;
 
 	public Login_data() {
 	}
 
-	public Login_data(String name, int phone_number) {
+	public Login_data(int is_member) {
+		super();
+		this.is_member = is_member;
+	}
+
+	public Login_data(String name, String phone_number) {
 		super();
 		this.name = name;
 		this.phone_number = phone_number;
 	}
 
-	public Login_data(String id, String name, int phone_number) {
+	public Login_data(String id, String name, String phone_number) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.phone_number = phone_number;
 	}
 
-	public Login_data(String id, String password, String name, int phone_number) {
+	public Login_data(String id, String password, String name, String phone_number) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -35,7 +40,7 @@ public class Login_data {
 		this.phone_number = phone_number;
 	}
 
-	public Login_data(int member_id, String id, String password, String name, int gender, int phone_number,
+	public Login_data(int member_id, String id, String password, String name, int gender, String phone_number,
 			int is_member, String birthday) {
 		super();
 		this.member_id = member_id;
@@ -48,7 +53,7 @@ public class Login_data {
 		this.birthday = birthday;
 	}
 
-	public Login_data(String id, String password, String name, int gender, int phone_number, String birthday) {
+	public Login_data(String id, String password, String name, int gender, String phone_number, String birthday) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -98,11 +103,11 @@ public class Login_data {
 		this.gender = gender;
 	}
 
-	public int getPhone_number() {
+	public String getPhone_number() {
 		return phone_number;
 	}
 
-	public void setPhone_number(int phone_number) {
+	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
 
@@ -129,4 +134,3 @@ public class Login_data {
 				+ birthday + "]";
 	}
 }
-
