@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import template.Application.controller.Login_DB;
 import template.Application.controller.Login_data;
+import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.DB.SIgnUp_DB;
@@ -48,7 +49,7 @@ public class Admin_AdPage extends JFrame {
 	 ArrayList<Review_Data> rList;
 	 ArrayList<Notice_data> nList;
 	 ArrayList<Mypage_Reservation_data> resList;
-	 
+	 Ad_AdPage_DB addb;
 	 Admin_AdPage frm;
 	 static Login Lg;
 	 static Login_data Ld;
@@ -112,8 +113,11 @@ public class Admin_AdPage extends JFrame {
 				DefaultTableModel tm = (DefaultTableModel)ad_tb_MemberTable.getModel();
 				if (n>=0 && n <ad_tb_MemberTable.getRowCount()) {
 					tm.removeRow(n);
-					//frm.deleteMemberTableUIFromDB();
-					System.out.println("회원 삭제");
+					Login_data ln = new Login_data();
+					int memberId= ln.getMember_id();
+					int ismember= ln.getIs_member();
+					addb.updateMembertoNone(memberId, ismember);
+					System.out.println("회원 탈퇴처리");
 
 				}
 			}

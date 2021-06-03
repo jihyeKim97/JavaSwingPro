@@ -37,8 +37,8 @@ public class Reservation_step1 extends JFrame {
 	JPanel infoDontent, seat_number, screen, seat_detail, option, optionimgpanel, seat, contentPane, seatContent,
 			content, info;
 	JComboBox car_type, option_type;
-	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3,
-			D_4, D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
+	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
+			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
 	Main mainfrm;
 	Reservation_step1 reserStfrm;
@@ -49,9 +49,9 @@ public class Reservation_step1 extends JFrame {
 	Login_data Ld;
 	private JLabel lblNewLabel;
 	ArrayList<String> ButtonName = new ArrayList<>();
-	
+
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
-		
+
 		this.reserStfrm = this;
 		Reservation_DB RDB = new Reservation_DB();
 		ButtonName = RDB.ButtonName();
@@ -176,135 +176,31 @@ public class Reservation_step1 extends JFrame {
 		seat_number.setBounds(10, 35, 422, 257);
 		seat_detail.add(seat_number);
 		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
-		
 
-		
 		for (int i = 0; i < 36; i++) {
 			JPanel i1 = new JPanel();
 			i1.setLayout(new BorderLayout(0, 0));
 			lblNewLabel = new JLabel(ButtonName.get(i));
 			i1.add(lblNewLabel, BorderLayout.CENTER);
-			lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+			lblNewLabel.setIcon(
+					new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
 			seat_number.add(i1);
 			lblNewLabel.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					JLabel JL = (JLabel) e.getSource();
-					if ( JL.getIcon().equals(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")))) {
-						JL.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png")));
-					e.setSource(JL);	
-					}
-					else
-					lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+					if (JL.getIcon().equals(new ImageIcon(
+							Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")))) {
+						JL.setIcon(new ImageIcon(
+								Reservation_step1.class.getResource("/template/Reference/icons/select_car.png")));
+						e.setSource(JL);
+					} else
+						lblNewLabel.setIcon(new ImageIcon(
+								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
 				}
 			});
 
 		}
-
-//		A_2 = new JButton();
-//		seat_number.add(A_2);
-//
-//		A_3 = new JButton();
-//		seat_number.add(A_3);
-//
-//		A_4 = new JButton();
-//		seat_number.add(A_4);
-//
-//		A_5 = new JButton();
-//		seat_number.add(A_5);
-//
-//		A_6 = new JButton();
-//		seat_number.add(A_6);
-//
-//		B_1 = new JButton();
-//		seat_number.add(B_1);
-//
-//		B_2 = new JButton();
-//		seat_number.add(B_2);
-//
-//		B_3 = new JButton();
-//		seat_number.add(B_3);
-//
-//		B_4 = new JButton();
-//		seat_number.add(B_4);
-//
-//		B_5 = new JButton();
-//		seat_number.add(B_5);
-//
-//		B_6 = new JButton();
-//		seat_number.add(B_6);
-//
-//		C_1 = new JButton();
-//		seat_number.add(C_1);
-//
-//		C_2 = new JButton();
-//		seat_number.add(C_2);
-//
-//		C_3 = new JButton();
-//		seat_number.add(C_3);
-//
-//		C_4 = new JButton();
-//		seat_number.add(C_4);
-//
-//		C_5 = new JButton();
-//		seat_number.add(C_5);
-//
-//		C_6 = new JButton();
-//		seat_number.add(C_6);
-//
-//		D_1 = new JButton();
-//		seat_number.add(D_1);
-//		
-//		D_2 = new JButton();
-//		seat_number.add(D_2);
-//
-//		D_3 = new JButton();
-//		seat_number.add(D_3);
-//
-//		D_4 = new JButton();
-//		seat_number.add(D_4);
-//
-//		D_5 = new JButton();
-//		seat_number.add(D_5);
-//
-//		D_6 = new JButton();
-//		seat_number.add(D_6);
-//
-//		E_1 = new JButton();
-//		seat_number.add(E_1);
-//
-//		E_2 = new JButton();
-//		seat_number.add(E_2);
-//
-//		E_3 = new JButton();
-//		seat_number.add(E_3);
-//
-//		E_4 = new JButton();
-//		seat_number.add(E_4);
-//
-//		E_5 = new JButton();
-//		seat_number.add(E_5);
-//
-//		E_6 = new JButton();
-//		seat_number.add(E_6);
-//
-//		F_1 = new JButton();
-//		seat_number.add(F_1);
-//
-//		F_2 = new JButton();
-//		seat_number.add(F_2);
-//
-//		F_3 = new JButton();
-//		seat_number.add(F_3);
-//
-//		F_4 = new JButton();
-//		seat_number.add(F_4);
-//
-//		F_5 = new JButton();
-//		seat_number.add(F_5);
-//
-//		F_6 = new JButton();
-//		seat_number.add(F_6);
 
 		option = new JPanel();
 		option.setBackground(new Color(220, 220, 220));
@@ -316,7 +212,8 @@ public class Reservation_step1 extends JFrame {
 		option_type.setBounds(199, 57, 275, 37);
 		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		option_type.setModel(new DefaultComboBoxModel(new String[] {"팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원"}));
+		option_type.setModel(new DefaultComboBoxModel(
+				new String[] { "팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원" }));
 
 		optionimgpanel = new JPanel();
 		optionimgpanel.setBounds(15, 57, 174, 37);
