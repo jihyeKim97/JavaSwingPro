@@ -23,11 +23,13 @@ import java.awt.event.ActionEvent;
 
 public class Reservation_step1 extends JFrame {
 
-	JLabel in_movietitle,label_1,in_movietime,lblNewLabel_1,step1,lblNewLabel_2,step2,optionName,optionCount, won, sum_price_pay, txtprice,optionPrice,step3;
-	RoundedButtonD btn_payment,btn_miu,btn_add,btn_delete,roundedButtonD;
-	Panel header,img1, img2, img3, img4, img5,infoContent;
-	JPanel infoDontent,seat_number,screen,option_add_line,seat_detail,option,optionContent,optionimgpanel,seat,contentPane,seatContent,option_add_panel,content,info;
-	JComboBox car_type,option_type;
+	JLabel in_movietitle, label_1, in_movietime, lblNewLabel_1, step1, lblNewLabel_2, step2, won, sum_price_pay,
+			txtprice;
+	RoundedButtonD btn_payment, roundedButtonD;
+	Panel header, img1, img2, img3, img4, img5, infoContent;
+	JPanel infoDontent, seat_number, screen, seat_detail, option, optionimgpanel, seat, contentPane, seatContent,
+			content, info;
+	JComboBox car_type, option_type;
 	JButton A_1, A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3,
 			D_4, D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
@@ -36,6 +38,7 @@ public class Reservation_step1 extends JFrame {
 	DB_Connect connect;
 	Movie_Data Movie;
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
+	private JLabel label;
 
 	public Reservation_step1(Main mainfrm, Movie_Data movie) {
 
@@ -48,84 +51,91 @@ public class Reservation_step1 extends JFrame {
 			if (MovieList.get(i).getMoviesid() == Num)
 				PK = i;
 		}
+		String dummyDate = "" + MovieList.get(PK).getScheduledate();
+		String[] date = dummyDate.split("-");
+
+		int itime = 5 + (2 * MovieList.get(PK).getScheduletime());
+		String time = "";
+		if (itime > 12) {
+			time = "" + (itime - 12);
+		} else {
+			time = "" + itime;
+		}
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 500, 950);
+		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		content = new JPanel();
-		content.setBackground(new Color(211, 211, 211));
-		content.setBounds(0, 55, 484, 856);
+		content.setBackground(new Color(240, 240, 240));
+		content.setBounds(0, 55, 484, 700);
 		contentPane.add(content);
 		content.setLayout(null);
 
 		info = new JPanel();
-		info.setBackground(Color.LIGHT_GRAY);
-		info.setBounds(0, 10, 484, 150);
+		info.setBackground(new Color(220, 220, 220));
+		info.setBounds(0, 10, 484, 104);
 		content.add(info);
 		info.setLayout(null);
 
 		infoDontent = new JPanel();
-		infoDontent.setBackground(Color.LIGHT_GRAY);
-		infoDontent.setBounds(10, 10, 464, 130);
+		infoDontent.setBackground(new Color(220, 220, 220));
+		infoDontent.setBounds(10, 10, 464, 86);
 		info.add(infoDontent);
 		infoDontent.setLayout(null);
 
 		step1 = new JLabel("Step1. 영화 정보");
+		step1.setBackground(new Color(220, 220, 220));
 		step1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		step1.setBounds(0, 1, 464, 37);
 		infoDontent.add(step1);
 		car_type = new JComboBox();
 		car_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		car_type.setModel(new DefaultComboBoxModel(new String[] { "세단, 경차", "SUV" }));
-		car_type.setBounds(10, 90, 444, 37);
+		car_type.setBounds(335, 40, 117, 42);
 		infoDontent.add(car_type);
 
 		infoContent = new Panel();
-		infoContent.setBackground(new Color(211, 211, 211));
-		infoContent.setBounds(10, 40, 444, 42);
+		infoContent.setBackground(new Color(220, 220, 220));
+		infoContent.setBounds(10, 40, 319, 42);
 		infoDontent.add(infoContent);
-		infoContent.setLayout(null);
+		infoContent.setLayout(new GridLayout(0, 4, 0, 0));
 
 		lblNewLabel_1 = new JLabel("영화제목 : ");
 		lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lblNewLabel_1.setBackground(new Color(192, 192, 192));
-		lblNewLabel_1.setBounds(0, 0, 80, 42);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		infoContent.add(lblNewLabel_1); 
+		infoContent.add(lblNewLabel_1);
 
 		in_movietitle = new JLabel(MovieList.get(PK).getTitle());
 		in_movietitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		in_movietitle.setBackground(new Color(192, 192, 192));
-		in_movietitle.setBounds(73, 0, 140, 42);
 		in_movietitle.setHorizontalAlignment(SwingConstants.CENTER);
 		infoContent.add(in_movietitle);
 
 		label_1 = new JLabel("상영시간 : ");
 		label_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		label_1.setBackground(new Color(192, 192, 192));
-		label_1.setBounds(228, 0, 80, 42);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		infoContent.add(label_1);
 
-		in_movietime = new JLabel("New label");
+		in_movietime = new JLabel(time + ":00");
 		in_movietime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		in_movietime.setBackground(new Color(192, 192, 192));
-		in_movietime.setBounds(304, 0, 140, 42);
 		in_movietime.setHorizontalAlignment(SwingConstants.CENTER);
 		infoContent.add(in_movietime);
 
 		seat = new JPanel();
-		seat.setBackground(Color.LIGHT_GRAY);
-		seat.setBounds(0, 170, 484, 363);
+		seat.setBackground(new Color(220, 220, 220));
+		seat.setBounds(0, 124, 484, 363);
 		content.add(seat);
 		seat.setLayout(null);
 
 		seatContent = new JPanel();
-		seatContent.setBackground(Color.LIGHT_GRAY);
+		seatContent.setBackground(new Color(220, 220, 220));
 		seatContent.setBounds(10, 10, 464, 343);
 		seat.add(seatContent);
 		seatContent.setLayout(null);
@@ -263,32 +273,21 @@ public class Reservation_step1 extends JFrame {
 		seat_number.add(F_6);
 
 		option = new JPanel();
-		option.setBackground(Color.LIGHT_GRAY);
-		option.setBounds(0, 543, 484, 57);
+		option.setBackground(new Color(220, 220, 220));
+		option.setBounds(0, 497, 484, 110);
 		content.add(option);
 		option.setLayout(null);
 
-		optionContent = new JPanel();
-		optionContent.setLayout(null);
-		optionContent.setBackground(Color.LIGHT_GRAY);
-		optionContent.setBounds(10, 10, 464, 37);
-		option.add(optionContent);
-
-		step3 = new JLabel("Step3. 추가 상품");
-		step3.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		step3.setBounds(0, 0, 166, 37);
-		optionContent.add(step3);
-
 		option_type = new JComboBox();
+		option_type.setBounds(199, 57, 275, 37);
+		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		option_type.setModel(new DefaultComboBoxModel(
 				new String[] { "팝콘  : +6000원", "오징어 : +3000원", "나쵸 : +5000원", "사이다 : +2000원", "콜라 : +2000원" }));
-		option_type.setBounds(324, 0, 140, 37);
-		optionContent.add(option_type);
 
 		optionimgpanel = new JPanel();
-		optionimgpanel.setBounds(163, 0, 159, 37);
-		optionContent.add(optionimgpanel);
+		optionimgpanel.setBounds(15, 57, 174, 37);
+		option.add(optionimgpanel);
 		optionimgpanel.setLayout(new GridLayout(1, 0, 0, 0));
 
 		img1 = new Panel();
@@ -306,6 +305,11 @@ public class Reservation_step1 extends JFrame {
 		img5 = new Panel();
 		optionimgpanel.add(img5);
 
+		label = new JLabel("Step3. 추가 상품");
+		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		label.setBounds(12, 10, 166, 37);
+		option.add(label);
+
 		btn_payment = new RoundedButtonD("결제 하기");
 		btn_payment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -317,71 +321,26 @@ public class Reservation_step1 extends JFrame {
 			}
 		});
 		btn_payment.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		btn_payment.setBounds(253, 812, 217, 34);
+		btn_payment.setBounds(253, 656, 217, 34);
 		content.add(btn_payment);
 
 		won = new JLabel("원");
 		won.setHorizontalAlignment(SwingConstants.CENTER);
 		won.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		won.setBounds(222, 823, 19, 23);
+		won.setBounds(222, 667, 19, 23);
 		content.add(won);
 
 		sum_price_pay = new JLabel("");
 		sum_price_pay.setHorizontalAlignment(SwingConstants.CENTER);
 		sum_price_pay.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		sum_price_pay.setBounds(113, 823, 109, 23);
+		sum_price_pay.setBounds(113, 667, 109, 23);
 		content.add(sum_price_pay);
 
 		txtprice = new JLabel("예상 결제 금액 : ");
 		txtprice.setHorizontalAlignment(SwingConstants.CENTER);
 		txtprice.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		txtprice.setBounds(0, 819, 127, 23);
+		txtprice.setBounds(0, 663, 127, 23);
 		content.add(txtprice);
-
-		option_add_panel = new JPanel();
-		option_add_panel.setBackground(new Color(220, 220, 220));
-		option_add_panel.setBounds(0, 600, 484, 202);
-		content.add(option_add_panel);
-		option_add_panel.setLayout(null);
-
-		option_add_line = new JPanel();
-		option_add_line.setLayout(null);
-		option_add_line.setBackground(new Color(220, 220, 220));
-		option_add_line.setBounds(0, 0, 484, 44);
-		option_add_panel.add(option_add_line);
-
-		optionName = new JLabel("팝콘");
-		optionName.setHorizontalAlignment(SwingConstants.CENTER);
-		optionName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		optionName.setBounds(17, 0, 102, 44);
-		option_add_line.add(optionName);
-
-		btn_add = new RoundedButtonD("+");
-		btn_add.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 19));
-		btn_add.setBounds(131, 8, 43, 26);
-		option_add_line.add(btn_add);
-
-		optionCount = new JLabel("2");
-		optionCount.setHorizontalAlignment(SwingConstants.CENTER);
-		optionCount.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		optionCount.setBounds(172, 0, 70, 44);
-		option_add_line.add(optionCount);
-
-		btn_miu = new RoundedButtonD("-");
-		btn_miu.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 19));
-		btn_miu.setBounds(242, 8, 43, 26);
-		option_add_line.add(btn_miu);
-
-		optionPrice = new JLabel("+10000원");
-		optionPrice.setHorizontalAlignment(SwingConstants.CENTER);
-		optionPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		optionPrice.setBounds(294, 0, 130, 44);
-		option_add_line.add(optionPrice);
-
-		btn_delete = new RoundedButtonD("X");
-		btn_delete.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		btn_delete.setBounds(430, 8, 43, 26);
-		option_add_line.add(btn_delete);
 
 		header = new Panel();
 		header.setBounds(0, 0, 484, 55);
