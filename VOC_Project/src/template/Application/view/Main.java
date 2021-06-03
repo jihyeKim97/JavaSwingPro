@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import template.Application.controller.Login_data;
-import template.Application.controller.Movie_DB;
+import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.view.member.Movie_Informaiton;
@@ -87,7 +87,7 @@ public class Main extends JFrame {
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
 
-		Movie_DB MDB = new Movie_DB();
+		Main_Movie_DB MDB = new Main_Movie_DB();
 
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
