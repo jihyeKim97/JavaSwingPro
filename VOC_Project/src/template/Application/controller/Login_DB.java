@@ -29,46 +29,104 @@ public class Login_DB {
 		this.conn = DB.getConn();
 	}
 
-	public  ArrayList<Login_data> selectAllMembers() {
-		if( this.conn != null ) {
+	public ArrayList<Login_data> selectAllMembers() {
+		if (this.conn != null) {
 			ArrayList<Login_data> uiList = new ArrayList<>();
 			String sql = "select * from member ORDER BY MEMBER_ID desc";
 			try {
-				Statement stmt =  conn.createStatement();
+				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
-				while( rs.next() ) {	
-					String userDoB= rs.getString("BIRTHDAY");
+				while (rs.next()) {
+					String userDoB = rs.getString("BIRTHDAY");
 
-					Login_data ui 
-				= new Login_data(
-							rs.getString("ID"), 
-							rs.getString("PASSWORD"),
-							rs.getString("NAME"),
-							rs.getInt("GENDER"),
-							rs.getInt("PHONE_NUMBER"),
-							rs.getString("BIRTHDAY"));
-					
-				uiList.add(ui);
+					Login_data ui = new Login_data(rs.getString("ID"), rs.getString("PASSWORD"), rs.getString("NAME"),
+							rs.getInt("GENDER"), rs.getString("PHONE_NUMBER"), rs.getString("BIRTHDAY"));
+
+					uiList.add(ui);
 				}
 				System.out.println("DBMgr: ���� 議고�� 紐��� => " + uiList.size());
 				return uiList;
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}			
+			}
 		} else {
 			System.out.println("DB error!!!@");
 		}
-		
+
 		return null;
 	}
-	public boolean changeBypass(String mbpassword, String mbid, int phone_number, String name) {
+
+	/*-------------------------------------------------------------------------------------*/
+	static DB_Connect connect;
+	static Login_data loginDT;
+	static ArrayList<Login_data> LogArr = new ArrayList<>();
+
+	public static ArrayList<Login_data> SelectMemberID(int memberID) {
+
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "select * from member where member_id =  " + memberID;
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				if (rs.next()) {
+					int member_id = rs.getInt("member_id");
+					String id = rs.getString("id");
+					String password = rs.getString("password");
+					String name = rs.getString("name");
+					int gender = rs.getInt("gender");
+					String phone_number = rs.getString("phone_number");
+					int is_member = rs.getInt("is_member");
+					String birthday = rs.getString("birthday");
+
+					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
+							+ phone_number + " " + birthday + " " + is_member);
+					LogArr.add(
+							new Login_data(member_id, id, password, name, gender, phone_number, is_member, birthday));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return LogArr;
+	}
+
+	/*-------------------------------------------------------------------------------------*/
+
+	public Login_data movepage(int a) {
+		if (this.conn != null) {
+
+			String sql = "select is_member from member where member_id = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setLong(1, a);
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+					Login_data mb = new Login_data(rs.getInt("member_id"), rs.getString("id"), rs.getString("password"),
+							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
+							rs.getInt("is_member"), rs.getString("birthday"));
+					return mb;
+				} else {
+
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB 통신 에러");
+		}
+		return null;
+	}
+
+	public boolean changeBypass(String mbpassword, String mbid, String phn, String name) {
 		if (this.conn != null) {
 			String sql = "UPDATE MEMBER SET PASSWORD = ? WHERE ID = ? AND PHONE_NUMBER = ? AND NAME = ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, mbpassword);
 				pstmt.setString(2, mbid);
-				pstmt.setInt(3, phone_number);
+				pstmt.setString(3, phn);
 				pstmt.setString(4, name);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
@@ -94,11 +152,11 @@ public class Login_DB {
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
 					Login_data mb = new Login_data(rs.getInt("member_id"), rs.getString("id"), rs.getString("password"),
-							rs.getString("name"), rs.getInt("gender"), rs.getInt("phone_number"),
+							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
 				} else {
-					
+
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -109,6 +167,7 @@ public class Login_DB {
 		return null;
 	}
 
+	// 아이디찾는함수
 	public Login_data selectOneMemberByName(String mbname) {
 		if (this.conn != null) {
 
@@ -119,11 +178,11 @@ public class Login_DB {
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
 					Login_data mb = new Login_data(rs.getInt("member_id"), rs.getString("id"), rs.getString("password"),
-							rs.getString("name"), rs.getInt("gender"), rs.getInt("phone_number"),
+							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
 				} else {
-					
+
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -172,9 +231,9 @@ public class Login_DB {
 		if (this.conn != null) {
 			Login_data mb = selectOneMemberByName(name);
 			if (mb != null) {
-				int mbPhn = mb.getPhone_number();
-				int Phn = Integer.parseInt(phone_number);
-				if (mbPhn != 0) {
+				String mbPhn = mb.getPhone_number();
+				String Phn = phone_number;
+				if (mbPhn != null) {
 					if (mbPhn == Phn) {
 						String mblogin = mb.getId();
 						JOptionPane.showMessageDialog(null, mblogin + "입니다.");
@@ -217,9 +276,9 @@ public class Login_DB {
 		if (this.conn != null) {
 			Login_data mb = selectOneMemberByLogin(login);
 			if (mb != null) {
-				int mbPhn = mb.getPhone_number();
-				int Phn = Integer.parseInt(phone_number);
-				if (mbPhn == Phn && mbPhn != 0) {
+				String mbPhn = mb.getPhone_number();
+				String Phn = phone_number;
+				if (mbPhn == Phn && mbPhn != null) {
 					String mbname = mb.getName();
 					if (mbname != null && !mbname.isEmpty()) {
 						if (mbname.equals(name)) {
@@ -245,7 +304,9 @@ public class Login_DB {
 
 	public static void main(String[] args) throws SQLException {
 		Login_DB mbMgr = new Login_DB();
-
+//		ArrayList<Login_data> i = SelectMemberID(34);
+//		System.out.println(i);
+//		
 		DB.endConnection();
 
 	}
