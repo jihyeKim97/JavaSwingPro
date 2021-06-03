@@ -6,6 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Color;
+
+import template.Application.controller.Login_data;
+import template.Application.controller.Movie_DB;
+import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -15,6 +19,7 @@ import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Reservation_step2 extends JFrame {
@@ -34,8 +39,28 @@ public class Reservation_step2 extends JFrame {
 	JPanel panel_8;
 	RoundedButtonD btn_pay;
 	Reservation_step1 reserStfrm;
+	Movie_Data movie;
+	Login_data Ld;
+	ArrayList<Movie_Data> MovieList = new ArrayList<>();
+	
+	public Reservation_step2(Reservation_step1 reserStfrm, Movie_Data movie, Login_data Ld) {
+		Movie_DB MDB = new Movie_DB();
+		MovieList = MDB.getMovieData();
+		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
+		int PK = 0;
+		for (int i = 0; i < MovieList.size(); i++) {
+			if (MovieList.get(i).getMoviesid() == Num)
+				PK = i;
+		}
 
-	public Reservation_step2(Reservation_step1 reserStfrm) {
+		int itime = 17 + (2 * MovieList.get(PK).getScheduletime());
+		String time = "";
+		if (itime > 24) {
+			time = "" + (itime - 24);
+		} else {
+			time = "" + itime;
+		}
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 658);
 		contentPane = new JPanel();
@@ -75,7 +100,7 @@ public class Reservation_step2 extends JFrame {
 		label.setBounds(0, 2, 100, 31);
 		movietxt_div.add(label);
 
-		JLabel movietitle = new JLabel("");
+		JLabel movietitle = new JLabel(MovieList.get(PK).getTitle());
 		movietitle.setHorizontalAlignment(SwingConstants.CENTER);
 		movietitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		movietitle.setBounds(100, 2, 211, 31);
@@ -87,7 +112,7 @@ public class Reservation_step2 extends JFrame {
 		label_2.setBounds(0, 33, 100, 31);
 		movietxt_div.add(label_2);
 
-		JLabel moviedate = new JLabel("");
+		JLabel moviedate = new JLabel("" + MovieList.get(PK).getScheduledate());
 		moviedate.setHorizontalAlignment(SwingConstants.CENTER);
 		moviedate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		moviedate.setBounds(100, 33, 211, 31);
@@ -99,7 +124,7 @@ public class Reservation_step2 extends JFrame {
 		label_4.setBounds(0, 64, 100, 31);
 		movietxt_div.add(label_4);
 
-		JLabel movietime = new JLabel("");
+		JLabel movietime = new JLabel(time + ":00");
 		movietime.setHorizontalAlignment(SwingConstants.CENTER);
 		movietime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		movietime.setBounds(100, 64, 211, 31);
