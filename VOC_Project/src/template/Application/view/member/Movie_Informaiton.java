@@ -14,7 +14,6 @@ import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.Main;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
