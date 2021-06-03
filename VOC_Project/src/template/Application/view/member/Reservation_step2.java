@@ -1,14 +1,12 @@
 package template.Application.view.member;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Color;
-
-import template.Application.controller.Login_data;
 import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
 

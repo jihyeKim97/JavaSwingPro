@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import template.Application.controller.Login_data;
-
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,9 +27,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 
-import template.Application.controller.Login_DB;
 import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.SIgnUp_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.SignUp_data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonG;

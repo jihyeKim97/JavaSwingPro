@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.Data.Login_data;
 
 public class Login_DB {
 	static DB_Connect DB;
@@ -59,18 +59,15 @@ public class Login_DB {
 	}
 
 	/*-------------------------------------------------------------------------------------*/
-	static DB_Connect connect;
 	static Login_data loginDT;
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
 
 	public static ArrayList<Login_data> SelectMemberID(int memberID) {
-
-		connect.beginConnection();
-		if (connect.conn != null) {
+		if ( conn != null) {
 			String sql = "select * from member where member_id =  " + memberID;
 			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					int member_id = rs.getInt("member_id");
 					String id = rs.getString("id");
@@ -90,7 +87,6 @@ public class Login_DB {
 				e.printStackTrace();
 			}
 		}
-		connect.endConnection();
 		return LogArr;
 	}
 
