@@ -29,7 +29,38 @@ public class Login_DB {
 		this.conn = DB.getConn();
 	}
 
-	
+	public  ArrayList<Login_data> selectAllMembers() {
+		if( this.conn != null ) {
+			ArrayList<Login_data> uiList = new ArrayList<>();
+			String sql = "select * from member ORDER BY MEMBER_ID desc";
+			try {
+				Statement stmt =  conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while( rs.next() ) {	
+					String userDoB= rs.getString("BIRTHDAY");
+
+					Login_data ui 
+				= new Login_data(
+							rs.getString("ID"), 
+							rs.getString("PASSWORD"),
+							rs.getString("NAME"),
+							rs.getInt("GENDER"),
+							rs.getInt("PHONE_NUMBER"),
+							rs.getString("BIRTHDAY"));
+					
+				uiList.add(ui);
+				}
+				System.out.println("DBMgr: ���� 議고�� 紐��� => " + uiList.size());
+				return uiList;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+		} else {
+			System.out.println("DB error!!!@");
+		}
+		
+		return null;
+	}
 	public boolean changeBypass(String mbpassword, String mbid, int phone_number, String name) {
 		if (this.conn != null) {
 			String sql = "UPDATE MEMBER SET PASSWORD = ? WHERE ID = ? AND PHONE_NUMBER = ? AND NAME = ?";

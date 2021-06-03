@@ -68,22 +68,22 @@ public class Admin_Notice {
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.getContentPane().add(panel);
 		
-		JButton ad_btn_ok = new JButton("ok");
+		JButton ad_btn_ok = new JButton("등록");
 		ad_btn_ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		ad_btn_ok.setFont(new Font("굴림", Font.PLAIN, 16));
-		ad_btn_ok.setBounds(34, 433, 99, 42);
+		ad_btn_ok.setBounds(34, 433, 76, 42);
 		panel.add(ad_btn_ok);
 		
-		JButton ad_btn_cancel = new JButton("cancel");
+		JButton ad_btn_cancel = new JButton("취소");
 		ad_btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		ad_btn_cancel.setFont(new Font("굴림", Font.PLAIN, 16));
-		ad_btn_cancel.setBounds(185, 433, 99, 42);
+		ad_btn_cancel.setFont(new Font("굴림", Font.PLAIN, 14));
+		ad_btn_cancel.setBounds(208, 433, 76, 42);
 		panel.add(ad_btn_cancel);
 		
 		JLabel lblMemberInformation = new JLabel("Lotice Modification");
@@ -95,7 +95,6 @@ public class Admin_Notice {
 		ad_txt_Notce_title = new JTextField();
 		ad_txt_Notce_title.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 20));
 		ad_txt_Notce_title.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_Notce_title.setText("Title");
 		ad_txt_Notce_title.setBounds(34, 60, 250, 42);
 		panel.add(ad_txt_Notce_title);
 		ad_txt_Notce_title.setColumns(10);
@@ -107,5 +106,10 @@ public class Admin_Notice {
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		ad_txt_notce.setViewportView(textArea);
+		
+		JButton button = new JButton("수정");
+		button.setFont(new Font("굴림", Font.PLAIN, 16));
+		button.setBounds(122, 433, 76, 42);
+		panel.add(button);
 	}
 }
