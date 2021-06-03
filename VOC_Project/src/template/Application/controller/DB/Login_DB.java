@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.Data.Login_data;
 
 public class Login_DB {
 	static DB_Connect DB;

@@ -18,8 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
-import template.Application.controller.Login_DB;
+import template.Application.controller.DB.Login_DB;
 import template.Application.view.Login;
 
 import java.awt.event.FocusAdapter;

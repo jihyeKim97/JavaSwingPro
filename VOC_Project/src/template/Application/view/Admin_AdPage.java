@@ -12,11 +12,11 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import template.Application.controller.Login_DB;
-import template.Application.controller.Login_data;
+import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.DB.SIgnUp_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Notice_data;

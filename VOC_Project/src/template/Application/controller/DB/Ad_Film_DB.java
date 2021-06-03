@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.Data.Ad_Film_Data;
 
 public class Ad_Film_DB {
 	static DB_Connect DB;

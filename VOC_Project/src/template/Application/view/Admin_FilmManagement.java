@@ -18,9 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import template.Application.controller.Ad_Film_DB;
-import template.Application.controller.Ad_Film_Data;
-import template.Application.controller.Login_DB;
+import template.Application.controller.DB.Ad_Film_DB;
+import template.Application.controller.DB.Login_DB;
+import template.Application.controller.Data.Ad_Film_Data;
 import template.Application.controller.btn.RoundedButtonD;
 
 import java.awt.BorderLayout;

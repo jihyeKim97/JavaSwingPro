@@ -10,8 +10,8 @@ package template.Application.view.admin;
 	import java.awt.Color;
 	import java.awt.Dimension;
 
-import template.Application.controller.Movie_DB;
 import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Review_Data;

@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -8,7 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.Data.Movie_Data;
 
 public class Movie_DB {

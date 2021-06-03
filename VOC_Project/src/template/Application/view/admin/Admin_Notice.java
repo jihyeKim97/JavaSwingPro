@@ -9,8 +9,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Color;
 
-import template.Application.controller.Ad_Notice_DB;
-import template.Application.controller.Ad_Notice_data;
+import template.Application.controller.DB.Ad_Notice_DB;
+import template.Application.controller.Data.Ad_Notice_data;
 import template.Application.controller.Data.Notice_data;
 import template.Application.controller.btn.RoundedButtonD;
 

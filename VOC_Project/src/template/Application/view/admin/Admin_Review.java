@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
-import template.Application.controller.Ad_Notice_data;
-import template.Application.controller.Ad_Review_DB;
-import template.Application.controller.Ad_Review_Data;
+import template.Application.controller.DB.Ad_Review_DB;
+import template.Application.controller.Data.Ad_Notice_data;
+import template.Application.controller.Data.Ad_Review_Data;
 
 import java.awt.Font;
 import javax.swing.JScrollPane;

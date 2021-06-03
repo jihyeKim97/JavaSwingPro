@@ -7,9 +7,9 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
 
-import template.Application.controller.Login_data;
-import template.Application.controller.Movie_DB;
 import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Movie_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
 
