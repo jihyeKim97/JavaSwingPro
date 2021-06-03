@@ -53,9 +53,7 @@ public class Main extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private RoundedButtonD btnprev;
 	private JLabel lblNewLabel;
-	private RoundedButtonD btnNext;
 	private Panel released_panel;
 	private RoundedButtonD btn_notice;
 	private JLabel lb_title1;
@@ -177,70 +175,6 @@ public class Main extends JFrame {
 			e1.printStackTrace();
 		}
 
-		btnprev = new RoundedButtonD("prev");
-		btnprev.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int today = Integer.parseInt(lb_date.getText());
-				int preMonth = Integer.parseInt(lb_month.getText());
-				today--;
-				if (today == 0) {
-					today = 31;
-					preMonth--;
-				}
-				lb_month.setText("" + preMonth);
-				lb_date.setText("" + today);
-				toDayMovieList = new ArrayList<>();
-				notToDayMovieList = new ArrayList<>();
-				try {
-					toDayMovieList = MDB.TodayMovie(preMonth, today);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				try {
-					notToDayMovieList = MDB.notTodayMovie(preMonth, today);
-				} catch (SQLException e1) {
-
-					e1.printStackTrace();
-				}
-
-			}
-		});
-		btnprev.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btnprev.setBounds(0, 5, 80, 40);
-		title_panel.add(btnprev);
-
-		btnNext = new RoundedButtonD("next");
-		btnNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int today = Integer.parseInt(lb_date.getText());
-				int nextMonth = Integer.parseInt(lb_month.getText());
-				today++;
-				if (today == 32) {
-					today = 1;
-					nextMonth++;
-				}
-				lb_month.setText("" + nextMonth);
-				lb_date.setText("" + today);
-				toDayMovieList = new ArrayList<>();
-				notToDayMovieList = new ArrayList<>();
-				try {
-					toDayMovieList = MDB.TodayMovie(nextMonth, today);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				try {
-					notToDayMovieList = MDB.notTodayMovie(nextMonth, today);
-				} catch (SQLException e1) {
-
-					e1.printStackTrace();
-				}
-			}
-		});
-
-		btnNext.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btnNext.setBounds(365, 5, 80, 40);
-		title_panel.add(btnNext);
-
 		label_2 = new JLabel("-");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setFont(new Font("Candara Light", Font.PLAIN, 40));
@@ -342,10 +276,8 @@ public class Main extends JFrame {
 			MoviePoster.add(Poster, BorderLayout.CENTER);
 			Movie_Data movie = toDayMovieList.get(i);
 			screen_guid_line.add(MoviePoster);
-			if (toDayMovieList.get(i) != null)
-				Poster.setIcon(new ImageIcon("." + toDayMovieList.get(i).getImagefilename()));
-			else
-				Poster.setIcon(new ImageIcon());
+			Poster.setIcon(new ImageIcon("." + toDayMovieList.get(i).getImagefilename()));
+			Poster.repaint();
 			Poster.setBackground(new Color(0, 0, 150));
 			MoviePoster.addMouseListener(new MouseAdapter() {
 				@Override
@@ -405,6 +337,7 @@ public class Main extends JFrame {
 			}
 			Poster.setIcon(new ImageIcon("." + notToDayMovieList.get(i).getImagefilename()));
 			Poster.setBackground(new Color(0, 0, 150));
+			Poster.repaint();
 			MoviePoster.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
@@ -431,9 +364,7 @@ public class Main extends JFrame {
 		cpn_panel.add(btn_notice);
 		cpn_panel.setFocusTraversalPolicy(
 				new FocusTraversalOnArray(new Component[] { lb_title1, screening_panel, screen_guid_line }));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(
-				new Component[] { btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, btnprev,
-						lblNewLabel, btnNext, cpn_panel, screening_panel, lb_title1, screen_guid_line }));
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, lblNewLabel, cpn_panel, screening_panel, lb_title1, screen_guid_line}));
 
 	}
 }
