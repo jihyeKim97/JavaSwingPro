@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

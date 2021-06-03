@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.admin;
 
 import java.awt.EventQueue;
 
@@ -11,8 +11,9 @@ import java.awt.Color;
 
 import template.Application.controller.Ad_Notice_DB;
 import template.Application.controller.Ad_Notice_data;
-import template.Application.controller.Notice_data;
-import template.Application.controller.RoundedButtonD;
+import template.Application.controller.Data.Notice_data;
+import template.Application.controller.btn.RoundedButtonD;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JLabel;

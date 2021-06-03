@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -26,10 +26,11 @@ import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
-import template.Application.controller.DB_Connect;
-import template.Application.controller.Notice_DB;
-import template.Application.controller.Notice_data;
-import template.Application.controller.RoundedButtonD;
+import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Notice_DB;
+import template.Application.controller.Data.Notice_data;
+import template.Application.controller.btn.RoundedButtonD;
+
 import javax.swing.JTextArea;
 import java.awt.Window.Type;
 

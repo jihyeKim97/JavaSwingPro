@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.EventQueue;
 
@@ -27,9 +27,10 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
-import template.Application.controller.DB_Connect;
 //import template.Application.controller.Login_DB;
 import template.Application.controller.Login_DB;
+import template.Application.controller.DB.DB_Connect;
+import template.Application.view.Login;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

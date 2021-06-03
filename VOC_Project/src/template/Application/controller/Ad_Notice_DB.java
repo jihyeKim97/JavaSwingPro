@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.Data.Notice_data;
+
 public class Ad_Notice_DB {
 	static ArrayList<Ad_Notice_data> NoticeArr = new ArrayList<>();
 	

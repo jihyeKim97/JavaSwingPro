@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import template.Application.controller.DB.DB_Connect;
+
 public class Login_DB {
 	static DB_Connect DB;
 	static Connection conn;
