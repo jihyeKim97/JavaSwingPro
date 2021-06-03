@@ -294,7 +294,7 @@ public class Main extends JFrame {
 			screen_guid_line.add(btn_poster_1);
 			btn_poster_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Reservation_step1 reser1 = new Reservation_step1(reserfrm,movie);
+					Reservation_step1 reser1 = new Reservation_step1(reserfrm,movie, Ld);
 					Point fPt = reserfrm.getLocationOnScreen();
 					reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 					reser1.setVisible(true);
