@@ -3,6 +3,7 @@ package template.Application.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,15 +11,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import template.Application.controller.DB.Login_DB;
+
 import template.Application.controller.DB.Ad_AdPage_DB;
+import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.Notice_DB;
+import template.Application.controller.DB.Review_DB;
+import template.Application.controller.DB.SIgnUp_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Notice_data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.Data.SignUp_data;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
@@ -28,6 +33,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 public class Admin_AdPage extends JFrame {
 

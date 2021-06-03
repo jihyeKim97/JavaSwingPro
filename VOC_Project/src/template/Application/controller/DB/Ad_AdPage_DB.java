@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
 import javax.swing.JOptionPane;
+
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Notice_data;
@@ -25,14 +27,13 @@ public class Ad_AdPage_DB {
 		this.conn = connect.getConn();
 	}
 
-	public static boolean updateMembertoNone(int member_id, int is_member) {
+	public boolean updateMembertoNone(int is_member, int member_id) {
 		connect.beginConnection();
-		if (connect.conn != null) {
+		if (this.conn != null) {
 			String sql = "update member set is_member = '2'  where member_id = ? ";
 			try {
-				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, is_member);
-				pstmt.setInt(2, member_id);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
 					System.out.println("멤버 탈퇴 성공" + member_id + "");
@@ -208,10 +209,7 @@ public class Ad_AdPage_DB {
 	public static void main(String[] args) throws SQLException {
 		// sAdminPage_DB mbMgr = new AdminPage_DB();
 
-//		DB.endConnection();
-
+		connect.endConnection();
 	}
 
 }
-
-//}

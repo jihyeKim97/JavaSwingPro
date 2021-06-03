@@ -6,19 +6,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
-<<<<<<< HEAD:VOC_Project/src/template/Application/view/Reservation_step1.java
-
-=======
-import template.Application.controller.Login_data;
 import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.Reservation_DB;
->>>>>>> 0459a4c0e7b30a9299bf5f21ab277640211bf39e:VOC_Project/src/template/Application/view/member/Reservation_step1.java
 import template.Application.controller.DB.DB_Connect;
-import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
-
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
