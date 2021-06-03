@@ -59,11 +59,12 @@ public class Login extends JFrame {
 	public Login() {
 		this.ln = this;
 		setTitle("Vehicle Outdoor Cinema");
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(".src/template/Reference/icons/camera.png"));
-		setBounds(100, 100, 472, 521);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(".src/template/Reference/icons/camera.png"));
+		setBounds(100, 100, 460, 508);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		ImageIcon icBack = new ImageIcon(".src/template/Reference/icons/movie2.jpg");
 		Image bgImg = icBack.getImage();
@@ -112,15 +113,29 @@ public class Login extends JFrame {
 		btn_Login.setForeground(new Color(255, 255, 255));
 
 		btn_Login.setBackground(Color.BLUE);
-		btn_Login.setBounds(60, 375, 354, 39);
+		btn_Login.setBounds(181, 363, 114, 39);
 		contentPane.add(btn_Login);
-
+		
+		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 23));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(126, 240, 29, 24);
+		contentPane.add(lblNewLabel);
+		
+		JLabel label = new JLabel("PW");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("맑은 고딕", Font.BOLD, 23));
+		label.setBounds(118, 283, 37, 24);
+		contentPane.add(label);
+		
 		JPanel panel = new JPanel();
-		panel.setBounds(112, 335, 302, 30);
+		panel.setBackground(new Color(70, 114, 42));
+		panel.setBounds(106, 323, 257, 30);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 
 		JLabel lb_FindID = new JLabel("아이디 찾기");
+		lb_FindID.setForeground(Color.WHITE);
 		lb_FindID.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_FindID);
 		lb_FindID.addMouseListener(new MouseAdapter() {
@@ -141,12 +156,13 @@ public class Login extends JFrame {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				lb_FindID.setForeground(Color.black);
+				lb_FindID.setForeground(Color.WHITE);
 			}
 		});
-		lb_FindID.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+		lb_FindID.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 		JLabel lb_FindPW = new JLabel("비밀번호 찾기");
+		lb_FindPW.setForeground(Color.WHITE);
 		lb_FindPW.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_FindPW);
 		lb_FindPW.addMouseListener(new MouseAdapter() {
@@ -165,12 +181,13 @@ public class Login extends JFrame {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				lb_FindPW.setForeground(Color.black);
+				lb_FindPW.setForeground(Color.WHITE);
 			}
 		});
-		lb_FindPW.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+		lb_FindPW.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 		JLabel lb_SignUp = new JLabel();
+		lb_SignUp.setForeground(Color.WHITE);
 		lb_SignUp.setText("회원가입");
 		lb_SignUp.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_SignUp);
@@ -192,17 +209,19 @@ public class Login extends JFrame {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				lb_SignUp.setForeground(Color.black);
+				lb_SignUp.setForeground(Color.WHITE);
 			}
 		});
-		lb_SignUp.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+		lb_SignUp.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(112, 220, 302, 110);
+		panel_1.setBackground(new Color(70, 114, 42));
+		panel_1.setBounds(165, 233, 198, 79);
 		contentPane.add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 10));
 
 		txt_id = new JTextField();
+		txt_id.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(txt_id);
 		txt_id.addFocusListener(new FocusAdapter() {
 			@Override
@@ -222,6 +241,7 @@ public class Login extends JFrame {
 		txt_id.setColumns(10);
 
 		txt_pw = new JPasswordField();
+		txt_pw.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(txt_pw);
 		txt_pw.addFocusListener(new FocusAdapter() {
 			@Override
@@ -238,22 +258,12 @@ public class Login extends JFrame {
 		});
 		txt_pw.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(60, 220, 50, 110);
-		contentPane.add(panel_2);
-		panel_2.setLayout(new GridLayout(0, 1, 0, 10));
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel .setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/per.png")));
-		panel_2.add(lblNewLabel);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/key.png")));
-		panel_2.add(label);
-		
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/bg (4).png")));
 		lblNewLabel_1.setBounds(0, 0, 458, 483);
 		contentPane.add(lblNewLabel_1);
+		
+	
+
 	}
 }
