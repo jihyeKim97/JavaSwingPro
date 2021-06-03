@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.Data;
 
 public class SignUp_data {
 

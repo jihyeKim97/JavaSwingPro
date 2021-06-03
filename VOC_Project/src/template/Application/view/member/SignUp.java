@@ -1,13 +1,10 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.Login_data;
-import template.Application.controller.RoundedButtonD;
-import template.Application.controller.RoundedButtonG;
-import template.Application.controller.RoundedButtonR;
 
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -31,10 +28,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import template.Application.controller.DB_Connect;
+
 import template.Application.controller.Login_DB;
-import template.Application.controller.SignUp_data;
-import template.Application.controller.SIgnUp_DB;
+import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.SIgnUp_DB;
+import template.Application.controller.Data.SignUp_data;
+import template.Application.controller.btn.RoundedButtonD;
+import template.Application.controller.btn.RoundedButtonG;
+import template.Application.controller.btn.RoundedButtonR;
+import template.Application.view.Login;
 
 public class SignUp extends JFrame {
 

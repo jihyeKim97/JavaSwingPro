@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 
 
 import template.Application.controller.Login_DB;
+import template.Application.view.Login;
 
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;

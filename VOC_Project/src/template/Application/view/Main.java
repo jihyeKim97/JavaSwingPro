@@ -7,8 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import template.Application.controller.Login_data;
 import template.Application.controller.Movie_DB;
-import template.Application.controller.Movie_Data;
-import template.Application.controller.RoundedButtonD;
+import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.btn.RoundedButtonD;
+import template.Application.view.member.Movie_Informaiton;
+import template.Application.view.member.MyPage;
+import template.Application.view.member.Notice;
+
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Panel;

@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.Data;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -22,10 +22,12 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.SystemColor;
 
-import template.Application.controller.DB_Connect;
-import template.Application.controller.Notice_DB;
-import template.Application.controller.Notice_data;
-import template.Application.controller.RoundedButtonD;
+import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Notice_DB;
+import template.Application.controller.Data.Notice_data;
+import template.Application.controller.btn.RoundedButtonD;
+import template.Application.view.Main;
+
 import java.awt.event.ActionEvent;
 
 public class Notice extends JFrame {

@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.btn;
 
 import java.awt.Color;
 import java.awt.FontMetrics;

@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,12 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import template.Application.controller.DB_Connect;
 import template.Application.controller.Movie_DB;
-import template.Application.controller.Movie_Data;
-import template.Application.controller.Review_DB;
-import template.Application.controller.Review_Data;
-import template.Application.controller.RoundedButtonD;
+import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Review_DB;
+import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Review_Data;
+import template.Application.controller.btn.RoundedButtonD;
+import template.Application.view.Main;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;

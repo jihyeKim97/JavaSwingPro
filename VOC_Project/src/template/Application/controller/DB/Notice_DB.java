@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import template.Application.view.Notice;
+import template.Application.controller.Data.Notice_data;
+import template.Application.view.member.Notice;
 
 public class Notice_DB {
 	static ArrayList<Notice_data> NoticeArr = new ArrayList<>();

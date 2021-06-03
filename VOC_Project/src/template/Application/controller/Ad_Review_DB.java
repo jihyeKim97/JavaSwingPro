@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import template.Application.controller.DB.DB_Connect;
+
 public class Ad_Review_DB {
 
 	static ArrayList<Ad_Review_Data> ReviewArr = new ArrayList<>();

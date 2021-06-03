@@ -14,14 +14,14 @@ import javax.swing.table.DefaultTableModel;
 
 import template.Application.controller.Login_DB;
 import template.Application.controller.Login_data;
-import template.Application.controller.Movie_Data;
-import template.Application.controller.Mypage_Reservation_data;
-import template.Application.controller.Notice_DB;
-import template.Application.controller.Notice_data;
-import template.Application.controller.Review_DB;
-import template.Application.controller.Review_Data;
-import template.Application.controller.SIgnUp_DB;
-import template.Application.controller.SignUp_data;
+import template.Application.controller.DB.Notice_DB;
+import template.Application.controller.DB.Review_DB;
+import template.Application.controller.DB.SIgnUp_DB;
+import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Mypage_Reservation_data;
+import template.Application.controller.Data.Notice_data;
+import template.Application.controller.Data.Review_Data;
+import template.Application.controller.Data.SignUp_data;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
