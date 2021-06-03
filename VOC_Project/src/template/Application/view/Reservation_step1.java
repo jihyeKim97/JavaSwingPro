@@ -6,19 +6,16 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
-
 import template.Application.controller.Login_data;
-import template.Application.controller.Movie_DB;
-import template.Application.controller.Reservation_DB;
+import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
-
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -26,7 +23,6 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
-import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -58,7 +54,7 @@ public class Reservation_step1 extends JFrame {
 		this.reserStfrm = this;
 		Reservation_DB RDB = new Reservation_DB();
 		ButtonName = RDB.ButtonName();
-		Movie_DB MDB = new Movie_DB();
+		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		int PK = 0;

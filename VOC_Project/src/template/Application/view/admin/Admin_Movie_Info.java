@@ -10,7 +10,7 @@ package template.Application.view.admin;
 	import java.awt.Color;
 	import java.awt.Dimension;
 
-import template.Application.controller.Movie_DB;
+import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
@@ -128,7 +128,7 @@ import javax.swing.JComboBox;
 		public Admin_Movie_Info(Main refrm, Movie_Data movie) {
 			setResizable(false);
 			this.frm = this;
-			Movie_DB MDB= new Movie_DB();
+			Main_Movie_DB MDB= new Main_Movie_DB();
 			MovieList = MDB.getMovieData();
 			int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 			ReviewList = Review.getReviewData(Num);
