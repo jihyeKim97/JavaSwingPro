@@ -1,11 +1,12 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import template.Application.view.Notice;
+import template.Application.controller.Data.Review_Data;
+import template.Application.view.member.Notice;
 
 public class Review_DB {
 

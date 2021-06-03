@@ -1,10 +1,12 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import template.Application.controller.Data.SignUp_data;
 
 public class SIgnUp_DB {
 	public static final int LOGIN_SUCCESS = 1;
