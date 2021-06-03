@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import template.Application.controller.Mypage_DB;
 import template.Application.controller.Mypage_Review_data;
+import template.Application.controller.RoundedButtonD;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,13 +22,20 @@ import javax.swing.DefaultComboBoxModel;
 public class Mypage_writePage extends JFrame {
 
 	JPanel contentPane;
-	MyPage frm;
 	JTextField review_tf;
+	JLabel lblNewLabel_2;
+	JLabel lblNewLabel_1;
+	JLabel lblNewLabel;
+	JPanel panel_1;
+	JComboBox star_combo;
+	String value;
+	RoundedButtonD btn_success;
+
+	MyPage frm;
 	Mypage_DB MDB;
 	Mypage_Review_data Myoage_viDT;
 	MyPage Mypage;
-	String value;
-	char df;
+
 	int memberID = 34;
 	int sco = 0;
 
@@ -49,25 +58,25 @@ public class Mypage_writePage extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setBounds(25, 156, 350, 37);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("한줄 리뷰를 작성해 주세요!");
+		lblNewLabel = new JLabel("한줄 리뷰를 작성해 주세요!");
 		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 23));
 		lblNewLabel.setBounds(0, 38, 402, 37);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel);
 
-		JComboBox star_combo = new JComboBox();
+		star_combo = new JComboBox();
 		star_combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(star_combo)) {
 					JComboBox cb = (JComboBox) e.getSource();
 					value = (String) cb.getSelectedItem();
 					for (int i = 0; i < value.length(); i++) {
-						df = value.charAt(i);
+						char df = value.charAt(i);
 						if (df >= 49 && df <= 53) {
 							sco = (int) df - 48;
 						}
@@ -76,7 +85,15 @@ public class Mypage_writePage extends JFrame {
 			}
 		});
 
-		JLabel lblNewLabel_2 = new JLabel("당신의 별점은?");
+		btn_success = new RoundedButtonD("완료!");
+
+		review_tf = new JTextField();
+		review_tf.setBounds(25, 103, 350, 43);
+
+		panel.add(review_tf);
+		review_tf.setColumns(10);
+
+		lblNewLabel_2 = new JLabel("당신의 별점은?");
 		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		lblNewLabel_2.setBounds(0, 0, 137, 37);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -88,8 +105,20 @@ public class Mypage_writePage extends JFrame {
 			String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
 			star_combo.setModel(new DefaultComboBoxModel(comboF));
 			panel_1.add(star_combo);
+			btn_success.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					String review = review_tf.getText();
+					boolean isResult = MDB.InsertReviewID(review, sco,
+							MDB.SelectReservationID(memberID).get(0).getReservation_id(),
+							MDB.SelectReservationID(memberID).get(0).getMovie_id());
+					if (isResult) {
+						dispose();
+					}
+				}
+			});
 		} else {
-			JLabel lblNewLabel_1 = new JLabel("");
+			review_tf.setText(ViArr.get(0).getContent());
+			lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 			String star = "";
@@ -113,26 +142,18 @@ public class Mypage_writePage extends JFrame {
 			lblNewLabel_1.setText(star + "  " + ViArr.get(0).getStar_score() + " 점");
 			lblNewLabel_1.setBounds(149, 0, 201, 37);
 			panel_1.add(lblNewLabel_1);
+			btn_success.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					String review = review_tf.getText();
+					boolean isResult = MDB.UpdateReviewContent(ViArr.get(0).getReviewID(), review);
+					if (isResult) {
+						System.out.println("수정완료");
+						dispose();
+					}
+				}
+			});
 		}
 
-		review_tf = new JTextField();
-		review_tf.setBounds(25, 103, 350, 43);
-		review_tf.setText(ViArr.get(0).getContent());
-		panel.add(review_tf);
-		review_tf.setColumns(10);
-
-		JButton btn_success = new JButton("완료!");
-		btn_success.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String review = review_tf.getText();
-				boolean isResult = MDB.InsertReviewID(review, sco,
-						MDB.SelectReservationID(memberID).get(0).getReservation_id(),
-						MDB.SelectReservationID(memberID).get(0).getMovie_id());
-				if (isResult) {
-					dispose();
-				}
-			}
-		});
 		btn_success.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		btn_success.setBounds(25, 255, 350, 43);
 		panel.add(btn_success);

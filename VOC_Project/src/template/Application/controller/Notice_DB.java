@@ -79,5 +79,39 @@ public class Notice_DB {
 		connect.endConnection();
 		return false;
 	}
+	
+	public  ArrayList<Notice_data> selectAllMembers() {
+		if( connect.conn != null ) {
+			ArrayList<Notice_data> uiList = new ArrayList<>();
+			String sql = "select * from NOTICE ORDER BY REVIEW_ID desc";
+			try {
+				Statement stmt =  connect.conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while( rs.next() ) {	
+					String userDoB= rs.getString("BIRTHDAY");
+
+					Notice_data ui 
+				= new Notice_data(
+							rs.getInt("NOTICE_ID"), 
+							rs.getString("TITLE"),
+							rs.getString("CONTENT"),
+							rs.getInt("VEIWCOUNT"),
+							rs.getInt("MEMBER_ID"));
+					
+				uiList.add(ui);
+				}
+				System.out.println("DBMgr: ���� 議고�� 紐��� => " + uiList.size());
+				return uiList;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+		} else {
+			System.out.println("DB error!!!@");
+		}
+		
+		return null;
+	}
 }
+	
+
 	
