@@ -29,6 +29,38 @@ public class Login_DB {
 		this.conn = DB.getConn();
 	}
 
+	
+	public  boolean  insertNewMember(SignUp_data ui) {
+		if (this.conn != null && ui != null) {
+		//	INSERT INTO member(Member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES 
+		//	(VOCPRO_SEQ.nextval,'jiwon','1234','지원',1,'123123123','0','912154');
+
+			String sql // 순서, 개수, 타입.. 띄어쓰기
+					= "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (MEMBER_SEQ.nextval,"
+							+"'"+ ui.getId() + "', '"
+							+ ui.getPassword() + "', '" + ui.getName() + "', '" + ui.getGender() +	"', '"+
+							ui.getPhone_number() + "', '" + "0"+ "', '" + ui.getBirthday() + "')";
+			System.out.println(sql);
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				int r = pstmt.executeUpdate();
+// 데이터 변화(DML insert, update, delete)
+// 변화 없이 단순 데이터 조회는 stmt.executeQuery() select
+				if (r == 1) {
+					System.out.println("DBMgr: 회원 가입 성공! " + ui);
+					return true;
+				} else {
+					System.out.println("DBMgr: 회원 가입 실패! " + ui);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB error!!");
+		}
+		return false;
+}
 	public  ArrayList<Login_data> selectAllMembers() {
 		if( this.conn != null ) {
 			ArrayList<Login_data> uiList = new ArrayList<>();
@@ -50,7 +82,7 @@ public class Login_DB {
 					
 				uiList.add(ui);
 				}
-				System.out.println("DBMgr: ���� 議고�� 紐��� => " + uiList.size());
+				System.out.println("DBMgr: 회원 수 => " + uiList.size() + "명");
 				return uiList;
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -61,6 +93,8 @@ public class Login_DB {
 		
 		return null;
 	}
+	
+	
 	public boolean changeBypass(String mbpassword, String mbid, int phone_number, String name) {
 		if (this.conn != null) {
 			String sql = "UPDATE MEMBER SET PASSWORD = ? WHERE ID = ? AND PHONE_NUMBER = ? AND NAME = ?";
