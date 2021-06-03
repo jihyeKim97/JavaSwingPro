@@ -39,54 +39,49 @@ import template.Application.controller.SIgnUp_DB;
 public class SignUp extends JFrame {
 
 	JPanel contentPane;
-	JTextField txt_userId;
-	JTextField txt_userName;
+	JPanel panel;
+	JPanel panel_Gender;
+	JPanel panel_bday;
 	JPasswordField pwf_userPw2;
 	JPasswordField pwf_userPw1;
+	JTextField txt_userId;
+	JTextField txt_userName;
 	JTextField txt_phone3;
 	JTextField txt_phone1;
 	JTextField txt_phone2;
 	JTextField txt_DoB;
-	JPanel panel;
+	JLabel lb_DoB;
 	JLabel lb_userId;
 	JLabel lb_userPw1;
 	JLabel lb_userPw2;
 	JLabel lb_userName;
 	JLabel lb_Gender;
-	JPanel panel_Gender;
+	JLabel lb_userJoin;
+	JLabel lblNewLabel;
+	JButton btn_userJoin;
 	JRadioButton rd_Female;
 	JRadioButton rd_Male;
-	JLabel lb_DoB;
-	JPanel panel_bday;
 
 	final ButtonGroup genderGrp = new ButtonGroup();
 	final int MEMBER = 0, NOT_MEMBER = 1;
+	boolean bLoginAvail;
 
 	SignUp mj;
-	JButton btn_userJoin;
 	Login mln;
 	Connection conn;
 	SignUp_data dbui;
-	Login_DB dbc2 = new Login_DB();
 	JLabel lb_NoDup;
 	DB_Connect dbc;
 	Login_data lndt;
-
+	Login_DB dbc2 = new Login_DB();
 	SIgnUp_DB mgr = new SIgnUp_DB();
-	JLabel lb_userJoin;
-
-	public SignUp() {
-		this(null);
-
-	}
 
 	public SignUp(Login mln) {
 
 		this.conn = DB_Connect.getConn();
 		this.mj = this;
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\car.png"));
-		setTitle("VOC \uD68C\uC6D0\uAC00\uC785::");
+		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 513, 604);
 		contentPane = new JPanel();
@@ -94,7 +89,8 @@ public class SignUp extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lb_userJoin = new JLabel("\uD68C\uC6D0\uAC00\uC785");
+		lb_userJoin = new JLabel();
+		lb_userJoin.setText("회원가입");
 		lb_userJoin.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_userJoin.setBounds(0, 10, 497, 43);
 		lb_userJoin.setFont(new Font("맑은 고딕", Font.BOLD, 30));
@@ -126,8 +122,8 @@ public class SignUp extends JFrame {
 
 				String inLogin = txt_userId.getText();
 				Login_data ld = dbc2.selectOneMemberByLogin(inLogin);
-				if (ld == null) { // 사용가능
-					bLoginAvail = true;// 일단 더미 중복x
+				if (ld == null) {
+					bLoginAvail = true;
 					JOptionPane.showMessageDialog(null, "사용가능한 id 입니다");
 					checkJoinAvailable();
 					System.out.println("사용가능");
@@ -139,7 +135,7 @@ public class SignUp extends JFrame {
 			}
 		});
 
-		btn_DupCheck.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+		btn_DupCheck.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 		lb_userPw1 = new JLabel("비밀번호");
 		lb_userPw1.setBounds(0, 51, 145, 39);
@@ -216,7 +212,6 @@ public class SignUp extends JFrame {
 		txt_userName.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				System.out.println("focus get");
 				txt_userName.setForeground(Color.black);
 				txt_userName.setBackground(Color.yellow);
 				if (txt_userName.getText().equals("ex) 홍길동"))
@@ -225,7 +220,6 @@ public class SignUp extends JFrame {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				System.out.println("focus lost");
 				txt_userName.setForeground(Color.LIGHT_GRAY);
 				txt_userName.setBackground(Color.WHITE);
 				if (txt_userName.getText().isEmpty())
@@ -234,7 +228,6 @@ public class SignUp extends JFrame {
 		});
 		txt_userName.setForeground(Color.LIGHT_GRAY);
 		txt_userName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		txt_userName.setText("ex) \uD64D\uAE38\uB3D9");
 		panel.add(txt_userName);
 		txt_userName.setColumns(10);
 
@@ -287,26 +280,23 @@ public class SignUp extends JFrame {
 		txt_DoB.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				System.out.println("focus get");
 				txt_DoB.setForeground(Color.black);
 				txt_DoB.setBackground(Color.yellow);
-				if (txt_DoB.getText().equals("ex) 910101"))
+				if (txt_DoB.getText().equals("ex) 19910101"))
 					txt_DoB.setText("");
-
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				System.out.println("focus lost");
 				txt_DoB.setForeground(Color.LIGHT_GRAY);
 				txt_DoB.setBackground(Color.WHITE);
 				if (txt_DoB.getText().isEmpty())
-					txt_DoB.setText("ex) 910101");
+					txt_DoB.setText("ex) 19910101");
 			}
 		});
 		txt_DoB.setForeground(Color.LIGHT_GRAY);
 		txt_DoB.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		txt_DoB.setText("ex) 910101");
+		txt_DoB.setText("ex) 19910101");
 		txt_DoB.setColumns(10);
 
 		JLabel lb_phoneNumber = new JLabel("전화번호");
@@ -333,16 +323,14 @@ public class SignUp extends JFrame {
 		txt_phone1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				System.out.println("focus get");
 				txt_phone1.setForeground(Color.black);
 				txt_phone1.setBackground(Color.yellow);
 				if (txt_phone1.getText().equals("010"))
-					txt_phone1.setText(""); // 안내 문구일 때만 지움.
+					txt_phone1.setText("");
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				System.out.println("focus lost");
 				txt_phone1.setForeground(Color.LIGHT_GRAY);
 				txt_phone1.setBackground(Color.WHITE);
 				if (txt_phone1.getText().isEmpty())
@@ -374,16 +362,14 @@ public class SignUp extends JFrame {
 		txt_phone3.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				System.out.println("focus get");
 				txt_phone3.setForeground(Color.black);
 				txt_phone3.setBackground(Color.yellow);
 				if (txt_phone3.getText().equals("5678"))
-					txt_phone3.setText(""); // 안내 문구일 때만 지움.
+					txt_phone3.setText("");
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				System.out.println("focus lost");
 				txt_phone3.setForeground(Color.LIGHT_GRAY);
 				txt_phone3.setBackground(Color.WHITE);
 				if (txt_phone3.getText().isEmpty())
@@ -405,16 +391,14 @@ public class SignUp extends JFrame {
 		txt_phone2.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				System.out.println("focus get");
 				txt_phone2.setForeground(Color.black);
 				txt_phone2.setBackground(Color.yellow);
 				if (txt_phone2.getText().equals("1234"))
-					txt_phone2.setText(""); // 안내 문구일 때만 지움.
+					txt_phone2.setText("");
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				System.out.println("focus lost");
 				txt_phone2.setForeground(Color.LIGHT_GRAY);
 				txt_phone2.setBackground(Color.WHITE);
 				if (txt_phone2.getText().isEmpty())
@@ -439,7 +423,7 @@ public class SignUp extends JFrame {
 		txt_phone3.setColumns(10);
 
 		RoundedButtonR btn_cancel = new RoundedButtonR("\uCDE8\uC18C");
-		btn_cancel.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		btn_cancel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		btn_cancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -451,14 +435,13 @@ public class SignUp extends JFrame {
 		contentPane.add(btn_cancel);
 
 		RoundedButtonG btn_userJoin = new RoundedButtonG("가입 완료");
+		btn_userJoin.setText("완료");
 		btn_userJoin.setBackground(new Color(255, 175, 175));
-		btn_userJoin.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		btn_userJoin.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		SIgnUp_DB mgr = new SIgnUp_DB();
 		btn_userJoin.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("가입완료 클릭");
-
 				String UserId = txt_userId.getText();
 				String UserPw = new String(pwf_userPw1.getPassword());
 				String UserName = txt_userId.getText();
@@ -469,13 +452,11 @@ public class SignUp extends JFrame {
 
 				boolean r = mgr.insertNewMember(newUI);
 				if (r) {
-
 					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
 					dispose();
 				} else
 					JOptionPane.showMessageDialog(null, "회원 가입 실패! 다시 확인해주세요.");
 			}
-
 		});
 
 		btn_userJoin.setEnabled(true);
@@ -485,14 +466,9 @@ public class SignUp extends JFrame {
 		lblNewLabel = new JLabel("자동차 예매 극장 프로그램");
 		lblNewLabel.setBounds(173, 55, 154, 15);
 		contentPane.add(lblNewLabel);
-
 	}
 
-	private boolean bLoginAvail;
-	private JLabel lblNewLabel;
-
-	protected void checkJoinAvailable() {
-
+	public void checkJoinAvailable() {
 		String strPw1 = new String(pwf_userPw1.getPassword());
 		String strPw2 = new String(pwf_userPw2.getPassword());
 		if ((strPw1.length() > 0 && strPw2.length() > 0) && bLoginAvail == true
@@ -504,7 +480,5 @@ public class SignUp extends JFrame {
 				btn_userJoin.setEnabled(false);
 			}
 		}
-
 	}
-
 }
