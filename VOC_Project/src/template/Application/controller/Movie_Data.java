@@ -35,9 +35,9 @@ public class Movie_Data {
 	private int scheduletime;
 	private String runningtime;
 	
+	
 
 	public Movie_Data() {
-		this(DEF_MOVIEID, DEF_TITLE, DEF_GENRE, DEF_DIRECTOR, DEF_AGEGROUP, DEF_story, DEF_averageScore, DEF_gee, DEF_opendate, DEF_production, DEF_imagefilename, DEF_scheduledate, DEF_scheduletime, DEF_runningtime);
 	}
 
 	public int getMoviesid() {
@@ -159,6 +159,21 @@ public class Movie_Data {
 				+ ", opendate=" + opendate + ", production=" + production + ", imagefilename=" + imagefilename
 				+ ", scheduledate=" + scheduledate + ", scheduletime=" + scheduletime + ", runningtime=" + runningtime
 				+ "]";
+	}
+	
+	
+
+	public Movie_Data(int moviesid, String imagefilename, Date scheduledate) {
+		super();
+		this.moviesid = moviesid;
+		this.imagefilename = imagefilename;
+		this.scheduledate = scheduledate;
+	}
+
+	public Movie_Data(int moviesid, Date scheduledate) {
+		super();
+		this.moviesid = moviesid;
+		this.scheduledate = scheduledate;
 	}
 
 	public Movie_Data(int moviesid, String title, String imagefilename, Date scheduledate, int scheduletime,

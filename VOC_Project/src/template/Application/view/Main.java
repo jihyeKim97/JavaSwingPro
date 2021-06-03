@@ -72,9 +72,9 @@ public class Main extends JFrame {
 	Main main;
 	static Login Lg;
 	static Login_data Ld;
-	
+
 	public static void main(String[] args) {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -92,7 +92,7 @@ public class Main extends JFrame {
 	 */
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
-		
+
 		Movie_DB MDB = new Movie_DB();
 
 		this.reserfrm = this;
@@ -145,7 +145,7 @@ public class Main extends JFrame {
 //		int day = cal.get(Calendar.DAY_OF_MONTH);
 		int year = 2020;
 		int month = 6;
-		int day =2;
+		int day = 2;
 
 		lblNewLabel = new JLabel(year + " - ");
 		lblNewLabel.setFont(new Font("Candara Light", Font.PLAIN, 40));
@@ -164,7 +164,7 @@ public class Main extends JFrame {
 		lb_date.setFont(new Font("Candara Light", Font.PLAIN, 40));
 		lb_date.setBounds(276, 0, 56, 50);
 		title_panel.add(lb_date);
-		
+
 		try {
 			toDayMovieList = MDB.TodayMovie(month, day);
 		} catch (SQLException e1) {
@@ -176,7 +176,6 @@ public class Main extends JFrame {
 
 			e1.printStackTrace();
 		}
-		
 
 		btnprev = new RoundedButtonD("prev");
 		btnprev.addActionListener(new ActionListener() {
@@ -192,24 +191,23 @@ public class Main extends JFrame {
 				lb_date.setText("" + today);
 				toDayMovieList = new ArrayList<>();
 				notToDayMovieList = new ArrayList<>();
-					try {
-						toDayMovieList = MDB.TodayMovie(preMonth, today);
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					try {
-						notToDayMovieList = MDB.notTodayMovie(preMonth, today);
-					} catch (SQLException e1) {
-	
-						e1.printStackTrace();
-					}
+				try {
+					toDayMovieList = MDB.TodayMovie(preMonth, today);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					notToDayMovieList = MDB.notTodayMovie(preMonth, today);
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
 
 			}
 		});
 		btnprev.setFont(new Font("Candara Light", Font.PLAIN, 20));
 		btnprev.setBounds(0, 5, 80, 40);
 		title_panel.add(btnprev);
-		
 
 		btnNext = new RoundedButtonD("next");
 		btnNext.addActionListener(new ActionListener() {
@@ -225,17 +223,17 @@ public class Main extends JFrame {
 				lb_date.setText("" + today);
 				toDayMovieList = new ArrayList<>();
 				notToDayMovieList = new ArrayList<>();
-					try {
-						toDayMovieList = MDB.TodayMovie(nextMonth, today);
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					try {
-						notToDayMovieList = MDB.notTodayMovie(nextMonth, today);
-					} catch (SQLException e1) {
-	
-						e1.printStackTrace();
-					}
+				try {
+					toDayMovieList = MDB.TodayMovie(nextMonth, today);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					notToDayMovieList = MDB.notTodayMovie(nextMonth, today);
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -336,7 +334,7 @@ public class Main extends JFrame {
 		screen_guid_line.setLayout(null);
 
 		for (int i = 0; i < 4; i++) {
-			
+
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			MoviePoster.setBounds(10 * (i + 1) + 94 * i, 10, 94, 121);
@@ -364,7 +362,7 @@ public class Main extends JFrame {
 			screen_guid_line.add(btn_poster_1);
 			btn_poster_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Reservation_step1 reser1 = new Reservation_step1(reserfrm);
+					Reservation_step1 reser1 = new Reservation_step1(reserfrm,movie);
 					Point fPt = reserfrm.getLocationOnScreen();
 					reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 					reser1.setVisible(true);

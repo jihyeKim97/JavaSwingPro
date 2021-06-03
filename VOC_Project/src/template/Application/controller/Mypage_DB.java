@@ -185,7 +185,31 @@ public class Mypage_DB {
 		return false;
 	}
 
+	public static boolean UpdateReviewContent(int reviewID, String content) {
+
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "update review set content = ?  where review_id = ? ";
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, content);
+				pstmt.setInt(2, reviewID);
+				int rs = pstmt.executeUpdate();
+				if (rs == 1) {
+					System.out.println("리뷰 갱신 성공");
+					return true;
+				} else
+					System.out.println("리뷰 갱신 실패");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
+	}
 	public static void main(String[] args) {
+		
+//		UpdateReviewContent(84, "안냥?");
 //		ArrayList<Mypage_Review_data> i = SelectReviewD(1);
 //		System.out.println(SelectReviewD(1).get(0).getMoviesID() );
 //		System.out.println(i);
