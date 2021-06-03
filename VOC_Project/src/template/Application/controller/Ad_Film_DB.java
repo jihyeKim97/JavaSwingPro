@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import template.Application.controller.DB.DB_Connect;
+
 public class Ad_Film_DB {
 	static DB_Connect DB;
 	static Connection conn;

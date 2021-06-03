@@ -9,8 +9,9 @@ import java.awt.Color;
 
 import template.Application.controller.Login_data;
 import template.Application.controller.Movie_DB;
-import template.Application.controller.Movie_Data;
-import template.Application.controller.RoundedButtonD;
+import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.btn.RoundedButtonD;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

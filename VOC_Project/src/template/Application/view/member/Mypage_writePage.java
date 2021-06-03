@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,9 +10,10 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import template.Application.controller.Mypage_DB;
-import template.Application.controller.Mypage_Review_data;
-import template.Application.controller.RoundedButtonD;
+
+import template.Application.controller.DB.Mypage_DB;
+import template.Application.controller.Data.Mypage_Review_data;
+import template.Application.controller.btn.RoundedButtonD;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;

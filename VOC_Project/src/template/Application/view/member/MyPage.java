@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,12 +9,16 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
 
-import template.Application.controller.Mypage_DB;
-import template.Application.controller.Mypage_Member_data;
-import template.Application.controller.Mypage_Reservation_data;
-import template.Application.controller.Mypage_Review_data;
-import template.Application.controller.Notice_data;
-import template.Application.controller.RoundedButtonD;
+import template.Application.controller.DB.Mypage_DB;
+import template.Application.controller.Data.Mypage_Member_data;
+import template.Application.controller.Data.Mypage_Reservation_data;
+import template.Application.controller.Data.Mypage_Review_data;
+import template.Application.controller.Data.Notice_data;
+import template.Application.controller.btn.RoundedButtonD;
+import template.Application.view.Login;
+import template.Application.view.Main;
+import template.Application.view.member.Mypage_writePage;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +28,6 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import template.Application.view.Mypage_writePage;
 
 public class MyPage extends JFrame {
 
