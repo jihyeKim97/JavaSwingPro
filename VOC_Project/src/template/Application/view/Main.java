@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import template.Application.controller.Login_data;
 import template.Application.controller.Movie_DB;
 import template.Application.controller.Movie_Data;
@@ -22,51 +21,48 @@ import javax.swing.JTextField;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
 
-	private JPanel contentPane;
-	private final Panel header_panel = new Panel();
-	private Panel mainPanel;
-	private Panel main_panel;
-	private Panel title_panel;
-	private final Panel cpn_panel = new Panel();
-	private Panel mem_panel;
-	private Panel mem_detail;
-	private Panel screening_panel;
-	private RoundedButtonD btn_edit;
-	private Panel txt_panel;
-	private Panel txtF_panel;
-	private JTextField textField_1;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JLabel lblNewLabel;
-	private Panel released_panel;
-	private RoundedButtonD btn_notice;
-	private JLabel lb_title1;
-	private JLabel lb_title2;
-	private Panel screen_guid_line;
-	private Panel panel_10;
+	JPanel contentPane;
+	final Panel header_panel = new Panel();
+	Panel mainPanel;
+	Panel main_panel;
+	Panel title_panel;
+	final Panel cpn_panel = new Panel();
+	Panel mem_panel;
+	Panel mem_detail;
+	Panel screening_panel;
+	RoundedButtonD btn_edit;
+	Panel txt_panel;
+	Panel txtF_panel;
+	JTextField textField_1;
+	JTextField textField;
+	JTextField textField_2;
+	JTextField textField_3;
+	JTextField textField_4;
+	JTextField textField_5;
+	JTextField textField_6;
+	JTextField textField_7;
+	JLabel lblNewLabel;
+	Panel released_panel;
+	RoundedButtonD btn_notice;
+	JLabel lb_title1;
+	JLabel lb_title2;
+	Panel screen_guid_line;
+	Panel panel_10;
 	Main reserfrm;
 	ArrayList<Movie_Data> toDayMovieList;
 	ArrayList<Movie_Data> notToDayMovieList;
 	Movie_Data movie;
-	private JLabel lb_month;
-	private JLabel lb_date;
-	private JLabel label_2;
+	JLabel lb_month;
+	JLabel lb_date;
+	JLabel label_2;
 	Main main;
 	static Login Lg;
 	static Login_data Ld;
@@ -84,10 +80,6 @@ public class Main extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
 
@@ -294,7 +286,7 @@ public class Main extends JFrame {
 			screen_guid_line.add(btn_poster_1);
 			btn_poster_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Reservation_step1 reser1 = new Reservation_step1(reserfrm,movie, Ld);
+					Reservation_step1 reser1 = new Reservation_step1(reserfrm, movie, Ld);
 					Point fPt = reserfrm.getLocationOnScreen();
 					reser1.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 					reser1.setVisible(true);
@@ -364,7 +356,9 @@ public class Main extends JFrame {
 		cpn_panel.add(btn_notice);
 		cpn_panel.setFocusTraversalPolicy(
 				new FocusTraversalOnArray(new Component[] { lb_title1, screening_panel, screen_guid_line }));
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn_my, contentPane, header_panel, mainPanel, main_panel, title_panel, lblNewLabel, cpn_panel, screening_panel, lb_title1, screen_guid_line}));
+		setFocusTraversalPolicy(
+				new FocusTraversalOnArray(new Component[] { btn_my, contentPane, header_panel, mainPanel, main_panel,
+						title_panel, lblNewLabel, cpn_panel, screening_panel, lb_title1, screen_guid_line }));
 
 	}
 }

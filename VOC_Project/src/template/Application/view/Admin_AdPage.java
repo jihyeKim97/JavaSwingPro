@@ -51,6 +51,8 @@ public class Admin_AdPage extends JFrame {
 	 ArrayList<Mypage_Reservation_data> resList;
 	 Ad_AdPage_DB addb;
 	 Admin_AdPage frm;
+	 static Login Lg;
+	 static Login_data Ld;
 
 	/**
 	 * Launch the application.
@@ -59,7 +61,7 @@ public class Admin_AdPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Admin_AdPage frame = new Admin_AdPage();
+					Admin_AdPage frame = new Admin_AdPage(Lg, Ld);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,7 +73,7 @@ public class Admin_AdPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Admin_AdPage() {
+	public Admin_AdPage(Login Lg, Login_data Ld) {
 		this.frm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1059, 423);
