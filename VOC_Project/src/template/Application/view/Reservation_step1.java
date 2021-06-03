@@ -1,39 +1,60 @@
 package template.Application.view;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
+import template.Application.controller.DB_Connect;
+import template.Application.controller.Movie_DB;
+import template.Application.controller.Movie_Data;
 import template.Application.controller.RoundedButtonD;
-
 import java.awt.Font;
-import java.awt.Graphics;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.BorderLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Reservation_step1 extends JFrame {
 
-	private JPanel contentPane;
+	JPanel contentPane;
 	Reservation_step1 reserStfrm;
+	JLabel in_movietitle;
+	JLabel label_1;
+	JLabel in_movietime;
+	JPanel seat;
+	JLabel lblNewLabel_1;
+	Panel infoContent;
+	JComboBox car_type;
+	JLabel step1;
+	JPanel content;
+	JPanel info;
+	JPanel infoDontent;
 	Main mainfrm;
 
-	public Reservation_step1(Main mainfrm) {
+	DB_Connect connect;
+	Movie_Data Movie;
+	ArrayList<Movie_Data> MovieList = new ArrayList<>();
+	Main refrm;
+
+	public Reservation_step1(Main mainfrm, Movie_Data movie) {
+
 		this.reserStfrm = this;
+		Movie_DB MDB = new Movie_DB();
+		MovieList = MDB.getMovieData();
+		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
+		int PK = 0;
+		for (int i = 0; i < MovieList.size(); i++) {
+			if (MovieList.get(i).getMoviesid() == Num)
+				PK = i;
+		}
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 950);
 		contentPane = new JPanel();
@@ -41,70 +62,69 @@ public class Reservation_step1 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel content = new JPanel();
+		content = new JPanel();
 		content.setBackground(new Color(211, 211, 211));
 		content.setBounds(0, 55, 484, 856);
 		contentPane.add(content);
 		content.setLayout(null);
 
-		JPanel info = new JPanel();
+		info = new JPanel();
 		info.setBackground(Color.LIGHT_GRAY);
 		info.setBounds(0, 10, 484, 150);
 		content.add(info);
 		info.setLayout(null);
 
-		JPanel infoDontent = new JPanel();
+		infoDontent = new JPanel();
 		infoDontent.setBackground(Color.LIGHT_GRAY);
 		infoDontent.setBounds(10, 10, 464, 130);
 		info.add(infoDontent);
 		infoDontent.setLayout(null);
 
-		JLabel step1 = new JLabel("Step1. 영화 정보");
+		step1 = new JLabel("Step1. 영화 정보");
 		step1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		step1.setBounds(0, 1, 464, 37);
 		infoDontent.add(step1);
-
-		JComboBox car_type = new JComboBox();
+		car_type = new JComboBox();
 		car_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		car_type.setModel(new DefaultComboBoxModel(new String[] { "세단, 경차", "SUV" }));
 		car_type.setBounds(10, 90, 444, 37);
 		infoDontent.add(car_type);
 
-		Panel infoContent = new Panel();
+		infoContent = new Panel();
 		infoContent.setBackground(new Color(211, 211, 211));
 		infoContent.setBounds(10, 40, 444, 42);
 		infoDontent.add(infoContent);
 		infoContent.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("영화제목 : ");
+		lblNewLabel_1 = new JLabel("영화제목 : ");
 		lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lblNewLabel_1.setBackground(new Color(192, 192, 192));
 		lblNewLabel_1.setBounds(0, 0, 80, 42);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		infoContent.add(lblNewLabel_1);
 
-		JLabel label = new JLabel("New label");
-		label.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		label.setBackground(new Color(192, 192, 192));
-		label.setBounds(73, 0, 140, 42);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		infoContent.add(label);
+		in_movietitle = new JLabel(MovieList.get(PK).getTitle());
+		in_movietitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		in_movietitle.setBackground(new Color(192, 192, 192));
+		in_movietitle.setBounds(73, 0, 140, 42);
+		in_movietitle.setHorizontalAlignment(SwingConstants.CENTER);
+		infoContent.add(in_movietitle);
 
-		JLabel label_1 = new JLabel("상영시간 : ");
+		label_1 = new JLabel("상영시간 : ");
 		label_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		label_1.setBackground(new Color(192, 192, 192));
 		label_1.setBounds(228, 0, 80, 42);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		infoContent.add(label_1);
 
-		JLabel label_2 = new JLabel("New label");
-		label_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		label_2.setBackground(new Color(192, 192, 192));
-		label_2.setBounds(304, 0, 140, 42);
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		infoContent.add(label_2);
+		in_movietime = new JLabel("New label");
+		in_movietime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		in_movietime.setBackground(new Color(192, 192, 192));
+		in_movietime.setBounds(304, 0, 140, 42);
+		in_movietime.setHorizontalAlignment(SwingConstants.CENTER);
+		infoContent.add(in_movietime);
 
-		JPanel seat = new JPanel();
+		seat = new JPanel();
 		seat.setBackground(Color.LIGHT_GRAY);
 		seat.setBounds(0, 170, 484, 363);
 		content.add(seat);
@@ -140,8 +160,8 @@ public class Reservation_step1 extends JFrame {
 		seat_number.setBounds(10, 35, 422, 257);
 		seat_detail.add(seat_number);
 		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
-		JButton A_1, A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1,
-				D_2, D_3, D_4, D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
+		JButton A_1, A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3,
+				D_4, D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
 		A_1 = new JButton();
 		seat_number.add(A_1);
