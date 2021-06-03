@@ -11,6 +11,12 @@ public class Notice_data {
 	public Notice_data() {
 	}
 
+	public Notice_data(String title, String content) {
+		super();
+		this.title = title;
+		this.content = content;
+	}
+
 	public Notice_data(int noticeid, String title) {
 		super();
 		this.noticeid = noticeid;

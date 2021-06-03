@@ -19,30 +19,28 @@ public class Ad_Notice_DB {
 		this.conn = DB.getConn();
 	}
 	
-	public static ArrayList<Ad_Notice_data> GetNotice() {
+	public static ArrayList<Ad_Notice_data> GetNotice(int NoticeiD) {
 		if (conn != null) {
-			String sql = "SELECT * FROM notice";
+			String sql = "SELECT * FROM notice where notice_id = " + NoticeiD;
 			try {
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
-					int id = rs.getInt("notice_id");
 					String title = rs.getString("title");
 					String content = rs.getString("content");
 	
-					NoticeArr.add(new Ad_Notice_data(id,title,content));
+					NoticeArr.add(new Ad_Notice_data(title,content));
 				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
 		return NoticeArr;
 	}
-	public boolean changeNotice(String title, String content) {
+	public boolean changeNotice(int noticeid,String title, String content) {
 		if (this.conn != null) {
-			String sql = "UPDATE NOTICE SET TITLE = ? SET CONTENT = ?";
+			String sql = "UPDATE NOTICE SET TITLE = ? ,CONTENT = ? WHERE NOTICE_ID = "+noticeid;
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, title);
@@ -61,6 +59,33 @@ public class Ad_Notice_DB {
 		}
 		return false;
 	}
+	
+	public  boolean  insertNewNotice(Notice_data ui) {
+	
+		if (this.conn != null && ui != null) {
+			String sql 
+					= "INSERT INTO notice(notice_id,title,content,viewcount,member_id) VALUES (MEMBER_SEQ.nextval,"
+							+"'"+ ui.getTitle() + "', '"
+							+ ui.getContent() + "', '" + "0" + "', '" + 24 + "')";
+			System.out.println(sql);
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				int r = pstmt.executeUpdate();
+				if (r == 1) {
+					System.out.println("DBMgr: 공지사항 등록 성공! " + ui);
+					return true;
+				} else {
+					System.out.println("DBMgr: 공지사항 등록 실패! " + ui);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB error!!");
+		}
+		return false;
+}
 	
 	
 }
