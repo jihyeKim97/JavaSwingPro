@@ -116,7 +116,7 @@ public class Admin_AdPage extends JFrame {
 					Login_data ln = new Login_data();
 					int memberId= ln.getMember_id();
 					int ismember= ln.getIs_member();
-					addb.updateMembertoNone(memberId, ismember);
+					addb.updateMembertoNone(ismember,memberId);
 					System.out.println("회원 탈퇴처리");
 
 				}
