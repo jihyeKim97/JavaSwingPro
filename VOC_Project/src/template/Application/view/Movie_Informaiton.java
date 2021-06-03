@@ -127,10 +127,10 @@ public class Movie_Informaiton extends JFrame {
 		String dummyDate = "" + MovieList.get(PK).getScheduledate();
 		String[] date = dummyDate.split("-");
 
-		int itime = 5 + (2 * MovieList.get(PK).getScheduletime());
+		int itime = 17 + (2 * MovieList.get(PK).getScheduletime());
 		String time = "";
-		if (itime > 12) {
-			time = "" + (itime - 12);
+		if (itime > 24) {
+			time = "" + (itime - 24);
 		} else {
 			time = "" + itime;
 		}
