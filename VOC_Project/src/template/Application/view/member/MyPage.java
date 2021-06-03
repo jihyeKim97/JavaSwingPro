@@ -16,7 +16,6 @@ import template.Application.controller.Data.Mypage_Review_data;
 import template.Application.controller.Data.Notice_data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.view.Login;
-import template.Application.view.Main;
 import template.Application.view.member.Mypage_writePage;
 
 import java.awt.Font;

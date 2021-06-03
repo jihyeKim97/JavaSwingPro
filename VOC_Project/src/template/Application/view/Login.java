@@ -16,6 +16,7 @@ import template.Application.controller.Data.Login_data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.view.member.Login_FindID;
 import template.Application.view.member.Login_FindPW;
+import template.Application.view.member.Main;
 import template.Application.view.member.SignUp;
 
 import java.awt.Font;

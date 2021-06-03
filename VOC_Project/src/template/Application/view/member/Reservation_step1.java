@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -6,7 +6,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
+<<<<<<< HEAD:VOC_Project/src/template/Application/view/Reservation_step1.java
 
+=======
+import template.Application.controller.Login_data;
+import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.DB.Reservation_DB;
+>>>>>>> 0459a4c0e7b30a9299bf5f21ab277640211bf39e:VOC_Project/src/template/Application/view/member/Reservation_step1.java
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.Data.Login_data;
@@ -17,7 +23,6 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -25,6 +30,9 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Reservation_step1 extends JFrame {
 
@@ -35,8 +43,8 @@ public class Reservation_step1 extends JFrame {
 	JPanel infoDontent, seat_number, screen, seat_detail, option, optionimgpanel, seat, contentPane, seatContent,
 			content, info;
 	JComboBox car_type, option_type;
-	JButton A_1, A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3,
-			D_4, D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
+	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
+			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
 	Main mainfrm;
 	Reservation_step1 reserStfrm;
@@ -45,11 +53,15 @@ public class Reservation_step1 extends JFrame {
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	private JLabel label;
 	Login_data Ld;
-	
+	private JLabel lblNewLabel;
+	ArrayList<String> ButtonName = new ArrayList<>();
+
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
-		
+
 		this.reserStfrm = this;
-		Movie_DB MDB = new Movie_DB();
+		Reservation_DB RDB = new Reservation_DB();
+		ButtonName = RDB.ButtonName();
+		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		int PK = 0;
@@ -170,132 +182,31 @@ public class Reservation_step1 extends JFrame {
 		seat_number.setBounds(10, 35, 422, 257);
 		seat_detail.add(seat_number);
 		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
-		
+
 		for (int i = 0; i < 36; i++) {
-		JButton i1 = new JButton();
-		i1.setIcon(new ImageIcon("C:\\\\Users\\\\rlawlgns\\\\JAVAPRO\\\\VOCPRO\\\\bin\\\\template\\\\Reference\\\\icons\\\\default_car.png"));
-		i1.repaint();
-		i1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JButton btn = (JButton)e.getSource();
-				if ( btn.isSelected() == true)
-					i1.setIcon(new ImageIcon("C:\\\\Users\\\\rlawlgns\\\\JAVAPRO\\\\VOCPRO\\\\bin\\\\template\\\\Reference\\\\icons\\\\default_car.png"));
-				else
-					i1.setIcon(new ImageIcon("C:\\\\Users\\\\rlawlgns\\\\JAVAPRO\\\\VOCPRO\\\\bin\\\\template\\\\Reference\\\\icons\\\\select_car.png"));
-			
-					
-			}
-		});
-		seat_number.add(i1);
+			JPanel i1 = new JPanel();
+			i1.setLayout(new BorderLayout(0, 0));
+			lblNewLabel = new JLabel(ButtonName.get(i));
+			i1.add(lblNewLabel, BorderLayout.CENTER);
+			lblNewLabel.setIcon(
+					new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+			seat_number.add(i1);
+			lblNewLabel.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					JLabel JL = (JLabel) e.getSource();
+					if (JL.getIcon().equals(new ImageIcon(
+							Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")))) {
+						JL.setIcon(new ImageIcon(
+								Reservation_step1.class.getResource("/template/Reference/icons/select_car.png")));
+						e.setSource(JL);
+					} else
+						lblNewLabel.setIcon(new ImageIcon(
+								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+				}
+			});
+
 		}
-
-//		A_1 = new JButton();
-//		seat_number.add(A_1);
-
-//		A_2 = new JButton();
-//		seat_number.add(A_2);
-//
-//		A_3 = new JButton();
-//		seat_number.add(A_3);
-//
-//		A_4 = new JButton();
-//		seat_number.add(A_4);
-//
-//		A_5 = new JButton();
-//		seat_number.add(A_5);
-//
-//		A_6 = new JButton();
-//		seat_number.add(A_6);
-//
-//		B_1 = new JButton();
-//		seat_number.add(B_1);
-//
-//		B_2 = new JButton();
-//		seat_number.add(B_2);
-//
-//		B_3 = new JButton();
-//		seat_number.add(B_3);
-//
-//		B_4 = new JButton();
-//		seat_number.add(B_4);
-//
-//		B_5 = new JButton();
-//		seat_number.add(B_5);
-//
-//		B_6 = new JButton();
-//		seat_number.add(B_6);
-//
-//		C_1 = new JButton();
-//		seat_number.add(C_1);
-//
-//		C_2 = new JButton();
-//		seat_number.add(C_2);
-//
-//		C_3 = new JButton();
-//		seat_number.add(C_3);
-//
-//		C_4 = new JButton();
-//		seat_number.add(C_4);
-//
-//		C_5 = new JButton();
-//		seat_number.add(C_5);
-//
-//		C_6 = new JButton();
-//		seat_number.add(C_6);
-//
-//		D_1 = new JButton();
-//		seat_number.add(D_1);
-//		
-//		D_2 = new JButton();
-//		seat_number.add(D_2);
-//
-//		D_3 = new JButton();
-//		seat_number.add(D_3);
-//
-//		D_4 = new JButton();
-//		seat_number.add(D_4);
-//
-//		D_5 = new JButton();
-//		seat_number.add(D_5);
-//
-//		D_6 = new JButton();
-//		seat_number.add(D_6);
-//
-//		E_1 = new JButton();
-//		seat_number.add(E_1);
-//
-//		E_2 = new JButton();
-//		seat_number.add(E_2);
-//
-//		E_3 = new JButton();
-//		seat_number.add(E_3);
-//
-//		E_4 = new JButton();
-//		seat_number.add(E_4);
-//
-//		E_5 = new JButton();
-//		seat_number.add(E_5);
-//
-//		E_6 = new JButton();
-//		seat_number.add(E_6);
-//
-//		F_1 = new JButton();
-//		seat_number.add(F_1);
-//
-//		F_2 = new JButton();
-//		seat_number.add(F_2);
-//
-//		F_3 = new JButton();
-//		seat_number.add(F_3);
-//
-//		F_4 = new JButton();
-//		seat_number.add(F_4);
-//
-//		F_5 = new JButton();
-//		seat_number.add(F_5);
-//
-//		F_6 = new JButton();
-//		seat_number.add(F_6);
 
 		option = new JPanel();
 		option.setBackground(new Color(220, 220, 220));
@@ -308,7 +219,7 @@ public class Reservation_step1 extends JFrame {
 		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		option_type.setModel(new DefaultComboBoxModel(
-				new String[] { "팝콘  : +6000원", "오징어 : +3000원", "나쵸 : +5000원", "사이다 : +2000원", "콜라 : +2000원" }));
+				new String[] { "팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원" }));
 
 		optionimgpanel = new JPanel();
 		optionimgpanel.setBounds(15, 57, 174, 37);

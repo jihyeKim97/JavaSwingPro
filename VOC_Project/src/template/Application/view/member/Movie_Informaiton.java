@@ -3,45 +3,24 @@ package template.Application.view.member;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.DB_Connect;
-import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.Main;
-
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JScrollPane;
-import java.awt.Button;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
-import java.awt.TextField;
-import javax.swing.JTextPane;
-import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -116,7 +95,7 @@ public class Movie_Informaiton extends JFrame {
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
 		this.frm = this;
-		Movie_DB MDB = new Movie_DB();
+		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		ReviewList = Review.getReviewData(Num);
@@ -321,12 +300,12 @@ public class Movie_Informaiton extends JFrame {
 		lb_MVRunningTime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		lb_MVRunningTime.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_7.add(lb_MVRunningTime);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 472, 41);
 		panel_4.add(panel);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
-		
+
 		JLabel lblNewLabel_4 = new JLabel("Infomation");
 		lblNewLabel_4.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);

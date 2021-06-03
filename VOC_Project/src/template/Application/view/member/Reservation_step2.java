@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -7,8 +7,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Color;
 
+<<<<<<< HEAD:VOC_Project/src/template/Application/view/Reservation_step2.java
 import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.Data.Login_data;
+=======
+import template.Application.controller.Login_data;
+import template.Application.controller.DB.Main_Movie_DB;
+>>>>>>> 0459a4c0e7b30a9299bf5f21ab277640211bf39e:VOC_Project/src/template/Application/view/member/Reservation_step2.java
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
 
@@ -40,12 +45,12 @@ public class Reservation_step2 extends JFrame {
 	JPanel panel_8;
 	RoundedButtonD btn_pay;
 	Reservation_step1 reserStfrm;
-	Movie_Data movie;
+	Main_Movie_DB movie;
 	Login_data Ld;
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	
 	public Reservation_step2(Reservation_step1 reserStfrm, Movie_Data movie, Login_data Ld) {
-		Movie_DB MDB = new Movie_DB();
+		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		int PK = 0;
