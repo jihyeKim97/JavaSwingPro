@@ -12,9 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import template.Application.controller.Ad_AdPage_DB;
 import template.Application.controller.Login_DB;
 import template.Application.controller.Login_data;
+import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.DB.SIgnUp_DB;
