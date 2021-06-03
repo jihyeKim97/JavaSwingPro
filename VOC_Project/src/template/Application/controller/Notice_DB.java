@@ -80,10 +80,10 @@ public class Notice_DB {
 		return false;
 	}
 	
-	public  ArrayList<Notice_data> selectAllMembers() {
+	public  ArrayList<Notice_data> selectAllNotice() {
 		if( connect.conn != null ) {
 			ArrayList<Notice_data> uiList = new ArrayList<>();
-			String sql = "select * from NOTICE ORDER BY REVIEW_ID desc";
+			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
 			try {
 				Statement stmt =  connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
@@ -100,7 +100,7 @@ public class Notice_DB {
 					
 				uiList.add(ui);
 				}
-				System.out.println("DBMgr: ���� 議고�� 紐��� => " + uiList.size());
+				System.out.println("DBMgr: 연동 성공! 공지사항갯수 => " + uiList.size());
 				return uiList;
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -16,6 +16,7 @@ import template.Application.controller.Login_DB;
 import template.Application.controller.Login_data;
 import template.Application.controller.Movie_Data;
 import template.Application.controller.Mypage_Reservation_data;
+import template.Application.controller.Notice_DB;
 import template.Application.controller.Notice_data;
 import template.Application.controller.Review_DB;
 import template.Application.controller.Review_Data;
@@ -94,6 +95,7 @@ public class Admin_AdPage extends JFrame {
 		ad_btn_AdLookUpUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frm.showMemberTableUIFromDB();
+				System.out.println("회원 목록 노출");
 			}
 		});
 
@@ -102,6 +104,20 @@ public class Admin_AdPage extends JFrame {
 		
 		JButton ad_btn_AdDeleteUser = new JButton("\uD68C\uC6D0 \uC0AD\uC81C");
 		ad_btn_AdDeleteUser.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\wrench_orange.png"));
+		ad_btn_AdDeleteUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {					
+				int n=ad_tb_MemberTable.getSelectedRow();
+				DefaultTableModel tm = (DefaultTableModel)ad_tb_MemberTable.getModel();
+				if (n>=0 && n <ad_tb_MemberTable.getRowCount()) {
+					tm.removeRow(n);
+					//frm.deleteMemberTableUIFromDB();
+					System.out.println("회원 삭제");
+
+				}
+			}
+
+		});	
+		
 		toolBar.add(ad_btn_AdDeleteUser);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -290,14 +306,20 @@ public class Admin_AdPage extends JFrame {
 		toolBar_3.setBounds(0, 5, 1038, 23);
 		ad_pn_notice.add(toolBar_3);
 		
-		JButton btnNewButton_4 = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uC870\uD68C");
-		toolBar_3.add(btnNewButton_4);
+		JButton ad_btn_AdLookUpNotice = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uC870\uD68C");
+		ad_btn_AdLookUpNotice.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						frm.showNoticeTableUIFromDB();
+					}
+				});
+			
+		toolBar_3.add(ad_btn_AdLookUpNotice);
 		
-		JButton btnNewButton_2 = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uCD94\uAC00");
-		toolBar_3.add(btnNewButton_2);
+		JButton ad_btn_AdAddNotice = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uCD94\uAC00");
+		toolBar_3.add(ad_btn_AdAddNotice);
 		
-		JButton btnNewButton_3 = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uC0AD\uC81C");
-		toolBar_3.add(btnNewButton_3);
+		JButton ad_btn_AdDeleteNotice = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uC0AD\uC81C");
+		toolBar_3.add(ad_btn_AdDeleteNotice);
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
 		scrollPane_4.setBounds(0, 25, 1038, 293);
@@ -357,6 +379,11 @@ public class Admin_AdPage extends JFrame {
 	
 	}
 	
+//	public void deleteMemberTableUIFromDB() {
+//		AdminPage_DB ad = new AdminPage_DB();
+//		ad.deleteOneMember();
+//	}
+	
 	public void showMemberTableUIFromDB() {
 		final String columnNames[] = {
 				"고유 번호","아이디","비밀번호","이름",
@@ -364,7 +391,7 @@ public class Admin_AdPage extends JFrame {
 		}; // 8개
 	
 		Login_DB mgr = new Login_DB();
-	mList = mgr.selectAllMembers();
+		mList = mgr.selectAllMembers();
 		if(mList == null || mList.isEmpty()) return;
 		final int nDBSize = mList.size(); // 레코드 개수 ==> 테이블의 행수
 		Object data[][] = new Object[nDBSize][columnNames.length];
@@ -372,6 +399,7 @@ public class Admin_AdPage extends JFrame {
 		for (int i = 0; i < nDBSize; i++) {
 			Login_data mbl= mList.get(i);
 			// 행열 번호로 테이블 데이터셀 채우기
+			data[i][0] = mbl.getMember_id();  
 			data[i][1] = mbl.getId();  
 			data[i][2] = mbl.getPassword();
 			data[i][3] = mbl.getName();
@@ -451,21 +479,25 @@ public class Admin_AdPage extends JFrame {
 				"공지인덱스", "제목", "내용", "조회수", "회원인덱스"
 		}; // 8개
 	
-		Notice_data mgr = new Notice_DB();
-	mList = mgr.selectAllMembers();
-		if(mList == null || mList.isEmpty()) return;
-		final int nDBSize = mList.size(); // 레코드 개수 ==> 테이블의 행수
+		Notice_DB mgr = new Notice_DB();
+		nList = mgr.selectAllNotice();
+		if(nList == null || nList.isEmpty()) return;
+		final int nDBSize = nList.size(); // 레코드 개수 ==> 테이블의 행수
 		Object data[][] = new Object[nDBSize][columnNames.length];
 		
 		for (int i = 0; i < nDBSize; i++) {
-			Notice_data mbl= mList.get(i);
+			Notice_data mbl= (Notice_data) nList.get(i);
 			// 행열 번호로 테이블 데이터셀 채우기
-			data[i][1] = mbl.getNoticeid();  
-			data[i][2] = mbl.getTitle();
-			data[i][3] = mbl.getContent();
-			data[i][4] = mbl.getViewcount();
-			data[i][5] = mbl.get
-			data[i][6] = mbl.getBirthday();
+			data[i][0] = mbl.getNoticeid();  
+			data[i][1] = mbl.getTitle();
+			data[i][2] = mbl.getContent();
+			data[i][3] = mbl.getViewcount();
+			data[i][4] = mbl.getMemberid();
+			
+			DefaultTableModel dtm = 
+					new DefaultTableModel(data, columnNames);
+			// 기본테이블 모델 = 데이터(행/열) 2차원배열, 열이름헤더 1차원배열
+			this.ad_tb_NoticeTable.setModel(dtm);		
 
 		
 
