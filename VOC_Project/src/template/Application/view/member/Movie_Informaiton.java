@@ -8,13 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import template.Application.controller.Movie_DB;
+import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.Main;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -116,7 +116,7 @@ public class Movie_Informaiton extends JFrame {
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
 		this.frm = this;
-		Movie_DB MDB = new Movie_DB();
+		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		ReviewList = Review.getReviewData(Num);

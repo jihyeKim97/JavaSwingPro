@@ -11,11 +11,12 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import template.Application.controller.ImagePanel;
-import template.Application.controller.Login_DB;
-import template.Application.controller.Login_data;
+import template.Application.controller.DB.Login_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.view.member.Login_FindID;
 import template.Application.view.member.Login_FindPW;
+import template.Application.view.member.Main;
 import template.Application.view.member.SignUp;
 
 import java.awt.Font;
@@ -51,7 +52,7 @@ public class Login extends JFrame {
 	Login ln;
 	Main main;
 	Login_DB LDB;
-	int memberID = 29;
+	int memberID = 24;
 	Admin_AdPage ad_page;
 	Login_data LD = new Login_data();
 
@@ -97,45 +98,44 @@ public class Login extends JFrame {
 				Login_DB mgr = new Login_DB();
 				int r = mgr.loginProcess(login, pw);
 
-				if (loArr.get(0).getIs_member() == 0) {
-					// 회원 메인 페이지로 이동
-					main = new Main(ln, LD);
-					main.setVisible(true);
-					dispose();
-				} else if (loArr.get(0).getIs_member() == 1) {
-					// 관리자 페이지로 이동
-					System.out.println(loArr.get(0).getIs_member());
-					ad_page = new Admin_AdPage(ln, LD);
-					ad_page.setVisible(true);
-					dispose();
+				switch (r) {
+				case Login_DB.LOGIN_SUCCESS:
+					
+					if (loArr.get(0).getIs_member() == 0) {
+						// 회원 메인 페이지로 이동
+						main = new Main(ln, LD);
+						main.setVisible(true);
+						dispose();
+					} else if (loArr.get(0).getIs_member() == 1) {
+						// 관리자 페이지로 이동
+						System.out.println(loArr.get(0).getIs_member());
+						ad_page = new Admin_AdPage(ln, LD);
+						ad_page.setVisible(true);
+						dispose();
 
-				} else if (loArr.get(0).getIs_member() == 2) {
-					JOptionPane.showMessageDialog(null, "탈퇴 회원입니다");
-				} else {
+					} else if (loArr.get(0).getIs_member() == 2) {
+						JOptionPane.showMessageDialog(null, "탈퇴 회원입니다");
+					} else {
+						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
+					}
+					
+					
+					break;
+				case Login_DB.LOGIN_FAIL_NOT_FOUND:
 					JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
-				}
+					break;
+				case Login_DB.LOGIN_FAIL_PW_MISMATCH:
+					JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
 
-//				switch (r) {
-//				case Login_DB.LOGIN_SUCCESS:
-//					main = new Main(ln, LD);
-//					main.setVisible(true);
-//					dispose();
-//					break;
-//				case Login_DB.LOGIN_FAIL_NOT_FOUND:
-//					JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
-//					break;
-//				case Login_DB.LOGIN_FAIL_PW_MISMATCH:
-//					JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-//
-//					break;
-//				case Login_DB.LOGIN_ERROR:
-//					JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
-//					break;
-//
-//				default:
-//					System.out.println("지원하지않습니다.");
-//					break;
-//				}
+					break;
+				case Login_DB.LOGIN_ERROR:
+					JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
+					break;
+
+				default:
+					System.out.println("지원하지않습니다.");
+					break;
+				}
 			}
 		});
 

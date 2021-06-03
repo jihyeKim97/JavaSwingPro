@@ -1,17 +1,17 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import template.Application.controller.Login_data;
-import template.Application.controller.Movie_DB;
+import template.Application.controller.DB.Main_Movie_DB;
+
+import template.Application.controller.DB.Movie_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.member.Movie_Informaiton;
-import template.Application.view.member.MyPage;
-import template.Application.view.member.Notice;
+import template.Application.view.Login;
 
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
@@ -87,7 +87,7 @@ public class Main extends JFrame {
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
 
-		Movie_DB MDB = new Movie_DB();
+		Main_Movie_DB MDB = new Main_Movie_DB();
 
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
