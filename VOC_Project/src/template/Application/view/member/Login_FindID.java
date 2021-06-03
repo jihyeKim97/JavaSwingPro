@@ -29,7 +29,6 @@ import javax.swing.text.PlainDocument;
 
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Login_DB;
-import template.Application.view.Login;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

@@ -11,7 +11,6 @@ import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.Login;
 
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;

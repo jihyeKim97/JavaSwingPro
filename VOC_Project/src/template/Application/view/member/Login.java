@@ -1,4 +1,4 @@
-package template.Application.view;
+package template.Application.view.member;
 
 import java.awt.EventQueue;
 
@@ -14,10 +14,7 @@ import template.Application.controller.ImagePanel;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.member.Login_FindID;
-import template.Application.view.member.Login_FindPW;
-import template.Application.view.member.Main;
-import template.Application.view.member.SignUp;
+import template.Application.view.admin.Admin_AdPage;
 
 import java.awt.Font;
 import java.awt.Image;
