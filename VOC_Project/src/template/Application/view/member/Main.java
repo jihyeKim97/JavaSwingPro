@@ -5,8 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import template.Application.controller.Login_data;
 import template.Application.controller.DB.Main_Movie_DB;
+
+import template.Application.controller.DB.Movie_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.view.Login;
