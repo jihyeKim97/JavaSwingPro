@@ -13,6 +13,12 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import template.Application.controller.Login_data;
+import template.Application.controller.Reservation_data;
+import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Notice_data;
+import template.Application.controller.Data.Review_Data;
+
 public class Ad_AdPage_DB {
 	static DB_Connect connect;
 	static Connection conn;
@@ -22,14 +28,13 @@ public class Ad_AdPage_DB {
 	}
 
 	
-	public  static boolean updateMembertoNone(int member_id, int is_member) {
+	public boolean updateMembertoNone(int is_member,int member_id) {
 			connect.beginConnection();
-			if (connect.conn != null) {
+			if (this.conn != null) {
 				String sql = "update member set is_member = '2'  where member_id = ? ";
 				try {
-					PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+					PreparedStatement pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, is_member);
-					pstmt.setInt(2, member_id);
 					int rs = pstmt.executeUpdate();
 					if (rs == 1) {
 						System.out.println("멤버 탈퇴 성공" + member_id + "");
@@ -63,7 +68,7 @@ public class Ad_AdPage_DB {
 							rs.getString("PASSWORD"),
 							rs.getString("NAME"),
 							rs.getInt("GENDER"),
-							rs.getInt("PHONE_NUMBER"),
+							rs.getString("PHONE_NUMBER"),
 							rs.getInt("IS_MEMBER"),
 							rs.getString("BIRTHDAY"));
 					
@@ -235,12 +240,11 @@ public class Ad_AdPage_DB {
 	public static void main(String[] args) throws SQLException {
 		//sAdminPage_DB mbMgr = new AdminPage_DB();
 
-		DB.endConnection();
-
+		connect.endConnection();
 	}
 
 
 
 	}
 
-}
+
