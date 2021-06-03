@@ -1,27 +1,21 @@
 package template.Application.controller;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class SignUp_data {
-
-
-	public SignUp_data() {}
 
 	public static final int GENDER_FEMALE = 1;
 	public static final int GENDER_MALE = 0;
 	public static final int MEMBER = 0;
 	public static final int NOT_MEMBER = 1;
 
-	private int member_id;
-	private String id;
-	private String password;
-	private String name;
-	private int gender;
-	private String phone_number;
-	private int is_member;
-	private String birthday;
-	
+	int member_id;
+	String id;
+	String password;
+	String name;
+	int gender;
+	String phone_number;
+	int is_member;
+	String birthday;
+
 	public SignUp_data(int member_id, String id, String password, String name, int gender, String phone_number,
 			int is_member, String birthday) {
 		super();
@@ -115,8 +109,5 @@ public class SignUp_data {
 				+ ", gender=" + gender + ", phone_number=" + phone_number + ", is_member=" + is_member + ", birthday="
 				+ birthday + "]";
 	}
-	
-	
+
 }
-	
-	
