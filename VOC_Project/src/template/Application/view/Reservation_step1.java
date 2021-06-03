@@ -49,11 +49,13 @@ public class Reservation_step1 extends JFrame {
 	private JLabel label;
 	Login_data Ld;
 	private JLabel lblNewLabel;
+	ArrayList<String> ButtonName = new ArrayList<>();
 	
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
 		
 		this.reserStfrm = this;
 		Reservation_DB RDB = new Reservation_DB();
+		ButtonName = RDB.ButtonName();
 		Movie_DB MDB = new Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
@@ -181,7 +183,7 @@ public class Reservation_step1 extends JFrame {
 		for (int i = 0; i < 36; i++) {
 			JPanel i1 = new JPanel();
 			i1.setLayout(new BorderLayout(0, 0));
-			lblNewLabel = new JLabel("");
+			lblNewLabel = new JLabel(ButtonName.get(i));
 			i1.add(lblNewLabel, BorderLayout.CENTER);
 			lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
 			seat_number.add(i1);
@@ -189,11 +191,12 @@ public class Reservation_step1 extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					JLabel JL = (JLabel) e.getSource();
-					if ( JL.getIcon().equals(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"))))
-						lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+					if ( JL.getIcon().equals(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")))) {
+						JL.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png")));
+					e.setSource(JL);	
+					}
 					else
-						lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png")));
-					
+					lblNewLabel.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
 				}
 			});
 

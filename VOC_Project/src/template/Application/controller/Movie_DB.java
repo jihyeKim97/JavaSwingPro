@@ -15,18 +15,7 @@ public class Movie_DB {
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	static ArrayList<Integer> movieidlist = new ArrayList<>();
 
-	public static void main(String[] args) {
-		try {
-			// MovieList= TodayMovie(6, 1);
-			MovieList = TodayMovie(6, 2);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		for (int i = 0; i < MovieList.size(); i++) {
-			System.out.println(MovieList.get(i));
-		}
-	}
-
+	// 모든 영화의 정보 가져오기
 	public static ArrayList<Movie_Data> getMovieData() {
 		connect.beginConnection();
 		// DB에서 정보 가져오기
@@ -65,6 +54,7 @@ public class Movie_DB {
 		return MovieList;
 	}
 
+	// 이미지 파일로 영화 id 가져오기
 	public static int getMovieIDFromImage(String ImageFile) {
 		connect.beginConnection();
 		// DB에서 정보 가져오기
@@ -93,6 +83,7 @@ public class Movie_DB {
 
 	}
 
+	// 영화 id로 영화 정보 가져오기
 	public static int getMovieInformationFromImage(int id) {
 		connect.beginConnection();
 		// DB에서 정보 가져오기
@@ -120,31 +111,7 @@ public class Movie_DB {
 
 	}
 
-	public static ArrayList<Integer> getMovie(int year, int month, int day) {
-		connect.beginConnection();
-		// DB에서 정보 가져오기
-		int MovieId = 0;
-		if (connect.conn != null) {
-			String sql = "SELECT * FROM movies WHERE schedule_date = '" + year + month + day + "'";
-			System.out.println(sql);
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
-					int movieid = rs.getInt("movies_id");
-					movieidlist.add(movieid);
-				}
-				return movieidlist;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		connect.endConnection();
-		return movieidlist;
-
-	}
-
+	// 월 일 을 집어넣어서 상영예정중인 영화 가져오기
 	public static ArrayList<Movie_Data> notTodayMovie(int month, int day) throws SQLException {
 		ArrayList<Movie_Data> MovieList = new ArrayList<>();
 		String years = "2021";
@@ -169,7 +136,6 @@ public class Movie_DB {
 				int moviesid = rs.getInt("movies_id");
 				String imageFileName = rs.getString("image_file_name");
 				Date scheduleDate = rs.getDate("schedule_date");
-			
 
 				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
 				if (!MD.getScheduledate().equals(date)) {
@@ -184,6 +150,7 @@ public class Movie_DB {
 
 	}
 
+	// 월 일 을 집어넣어서 상영중인 영화 가져오기
 	public static ArrayList<Movie_Data> TodayMovie(int month, int day) throws SQLException {
 		ArrayList<Movie_Data> MovieList = new ArrayList<>();
 		String years = "2021";
@@ -208,7 +175,6 @@ public class Movie_DB {
 				int moviesid = rs.getInt("movies_id");
 				String imageFileName = rs.getString("image_file_name");
 				Date scheduleDate = rs.getDate("schedule_date");
-			
 
 				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
 				if (MD.getScheduledate().equals(date))
@@ -223,49 +189,8 @@ public class Movie_DB {
 
 	}
 
-//	public static ArrayList<Movie_Data[]> Movie(int month, int day) throws SQLException {
-//		ArrayList<Movie_Data[]> MovieList = new ArrayList<>();
-//		String years = "2021";
-//		String months = "";
-//		if (month == 5)
-//			months = "05";
-//		else if (month == 6)
-//			months = "06";
-//		String days = String.valueOf(day);
-//		String Dday = years + months + days;
-//
-//		Date date = null;
-//		date = transformDate(Dday);
-//
-//		connect.beginConnection();
-//		// DB에서 정보 가져오기
-//		if (connect.conn != null) {
-//			String sql = "select * from Movies";
-//			Statement st = connect.conn.createStatement();
-//			ResultSet rs = st.executeQuery(sql);
-//			while (rs.next()) {
-//				int moviesid = rs.getInt("movies_id");
-//				String imageFileName = rs.getString("image_file_name");
-//				Date scheduleDate = rs.getDate("schedule_date");
-//			
-//
-//				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
-//				if (MD.getScheduledate().equals(date))
-//					MovieList[].add(MD);
-//				else
-//					MovieList[].add(MD);
-	
-//
-//			}
-//
-//			return MovieList;
-//			
-//		}
-//		connect.endConnection();
-//		return MovieList;
-//
-//	}
-	
+
+	// 날자 변환
 	public static Date transformDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 
