@@ -18,7 +18,7 @@ public class Movie_DB {
 	public static void main(String[] args) {
 		try {
 			// MovieList= TodayMovie(6, 1);
-			MovieList = notTodayMovie(6, 3);
+			MovieList = TodayMovie(6, 2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
