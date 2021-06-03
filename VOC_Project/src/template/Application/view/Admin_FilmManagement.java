@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.Ad_Film_DB;
 import template.Application.controller.Ad_Film_Data;
+import template.Application.controller.Login_DB;
 import template.Application.controller.RoundedButtonD;
 import java.awt.BorderLayout;
 import javax.swing.border.LineBorder;
@@ -134,9 +135,8 @@ public class Admin_FilmManagement extends JDialog{
 					ic.setImage(icImg);
 					ad_lb_poster.setIcon(ic);
 					ad_lb_poster.repaint();
-					afd = AFD.selectMovie(ad_lb_poster.getText());
-					System.out.println(ad_txt_schedule_date.getText());
-				
+					int find = AFD.setmovie(ad_lb_poster.getText());
+					
 				}
 			}
 		});

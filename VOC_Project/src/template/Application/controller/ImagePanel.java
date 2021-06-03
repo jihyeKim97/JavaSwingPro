@@ -51,8 +51,6 @@ public class ImagePanel extends JPanel {
 		this.height = height;
 		System.out.println(">> ImagePanel 생성됨 " + imgFilename 
 				+ " w = " + width + ", h = " + height);
-		System.out.println("왜 안보내질까?");
-		System.out.println("아니 이거 왜 커밋안돼 ..?");
 	}
 
 
