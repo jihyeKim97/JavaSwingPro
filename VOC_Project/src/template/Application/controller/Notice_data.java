@@ -6,6 +6,7 @@ public class Notice_data {
 	private String title;
 	private String content;
 	private int viewcount;
+	private int memberid;
 
 	public Notice_data() {
 	}
@@ -23,7 +24,16 @@ public class Notice_data {
 		this.content = content;
 		this.viewcount = viewcount;
 	}
+	
 
+	public Notice_data(int noticeid, String title, String content, int viewcount, int memberid) {
+		super();
+		this.noticeid = noticeid;
+		this.title = title;
+		this.content = content;
+		this.viewcount = viewcount;
+		this.memberid = memberid;
+	}
 
 	@Override
 	public String toString() {
@@ -63,5 +73,14 @@ public class Notice_data {
 		this.viewcount = viewcount;
 	}
 
+	public int getMemberid() {
+		return memberid;
+	}
+
+	public void setMemberid(int memberid) {
+		this.memberid = memberid;
+	}
+
+	
 
 }
