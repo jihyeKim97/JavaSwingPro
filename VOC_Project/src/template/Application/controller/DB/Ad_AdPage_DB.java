@@ -1,4 +1,4 @@
-package template.Application.controller;
+package template.Application.controller.DB;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -25,11 +25,11 @@ public class Ad_AdPage_DB {
 	public  static boolean updateMembertoNone(int member_id, int is_member) {
 			connect.beginConnection();
 			if (connect.conn != null) {
-				String sql = "update member set member_id = ?  where is_member = ? ";
+				String sql = "update member set is_member = '2'  where member_id = ? ";
 				try {
 					PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-					pstmt.setInt(1, member_id);
-					pstmt.setInt(2, is_member);
+					pstmt.setInt(1, is_member);
+					pstmt.setInt(2, member_id);
 					int rs = pstmt.executeUpdate();
 					if (rs == 1) {
 						System.out.println("멤버 탈퇴 성공" + member_id + "");
