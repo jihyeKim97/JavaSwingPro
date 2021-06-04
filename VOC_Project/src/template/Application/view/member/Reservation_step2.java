@@ -273,9 +273,16 @@ public class Reservation_step2 extends JFrame {
 				String cardFC = new String(card_cvc.getText());
 				String cardFD = new String(card_date.getText());
 				String cardFP = new String(card_pw.getPassword());
+				String a = "";
+				int A = 0;
+				for (int i = 0; i < 9; i++) {
+					a += "" + (int) (Math.random() * 10);
+				}
+				System.out.println(a);
+				A = Integer.parseInt(a);
 				if (!cardF1.isEmpty() && !cardF2.isEmpty() && !cardF3.isEmpty() && !cardF4.isEmpty()
 						&& !cardFC.isEmpty() && !cardFD.isEmpty() && !cardFP.isEmpty()) {
-					boolean A = RDB.saveResevationData("" + movie.getScheduledate(), RD.getSeatNumber(),
+					RDB.saveResevationData(A, "" + movie.getScheduledate(), RD.getSeatNumber(),
 							RD.getCarType(), RD.getPaymentPrice(), RD.getOptionName(), RD.getOptionPrice(),
 							Ld.getMember_id(), movie.getMoviesid());
 					System.out.println();
