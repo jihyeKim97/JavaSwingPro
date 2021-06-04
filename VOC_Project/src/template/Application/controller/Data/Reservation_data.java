@@ -39,6 +39,19 @@ public class Reservation_data {
 		this.memberID = memberID;
 		this.movieID = movieID;
 	}
+	
+
+
+	public Reservation_data(String seatNumber, int carType, int paymentPrice, Date paymentDate, String optionName,
+			int optionPrice) {
+		super();
+		this.seatNumber = seatNumber;
+		this.carType = carType;
+		this.paymentPrice = paymentPrice;
+		this.paymentDate = paymentDate;
+		this.optionName = optionName;
+		this.optionPrice = optionPrice;
+	}
 
 	public int getReservationID() {
 		return reservationID;
