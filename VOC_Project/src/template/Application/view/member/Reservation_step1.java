@@ -289,7 +289,7 @@ public class Reservation_step1 extends JFrame {
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		label.setBounds(12, 10, 166, 37);
 		option.add(label);
-
+		
 		btn_payment = new RoundedButtonD("결제 하기");
 		btn_payment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
