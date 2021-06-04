@@ -103,31 +103,31 @@ public class Notice extends JFrame {
 		JLabel lb_TheaterNumber = new JLabel("전화번호 : 02 - 333 - 4848 ");
 		lb_TheaterNumber.setForeground(new Color(255, 255, 255));
 		lb_TheaterNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_TheaterNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		lb_TheaterNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterNumber);
 
 		JLabel lb_TheaterTime = new JLabel("영업시간 : 18:00 ~ 03:00");
 		lb_TheaterTime.setForeground(new Color(255, 255, 255));
 		lb_TheaterTime.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_TheaterTime.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		lb_TheaterTime.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterTime);
 
 		JLabel lb_TheaterCEO = new JLabel("대표자 : 고즐링");
 		lb_TheaterCEO.setForeground(new Color(255, 255, 255));
 		lb_TheaterCEO.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_TheaterCEO.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		lb_TheaterCEO.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterCEO);
 
 		JLabel lb_Theater = new JLabel("사업자 번호: 653-25-0698");
 		lb_Theater.setForeground(new Color(255, 255, 255));
 		lb_Theater.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_Theater.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		lb_Theater.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_Theater);
 
 		JLabel lb_TheaterLocaiton = new JLabel("위치: 서울 성동구 왕십리로 303");
 		lb_TheaterLocaiton.setForeground(new Color(255, 255, 255));
 		lb_TheaterLocaiton.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -184,7 +184,7 @@ public class Notice extends JFrame {
 				dispose();
 			}
 		});
-		roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 
