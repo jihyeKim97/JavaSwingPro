@@ -1,11 +1,9 @@
 package template.Application.view.member;
 
-import javax.naming.ldap.Rdn;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Panel;
 import java.awt.Color;
 import template.Application.controller.DB.Main_Movie_DB;
@@ -13,17 +11,14 @@ import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Reservation_data;
-import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonG;
 import template.Application.controller.btn.RoundedButtonR;
-
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Image;
-
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
@@ -74,6 +69,7 @@ public class Reservation_step2 extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 658);
 		contentPane = new JPanel();
+		setTitle("Vehicle Outdoor Cinema");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

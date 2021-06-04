@@ -11,23 +11,17 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
-
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.SystemColor;
-
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.Data.Notice_data;
-import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonR;
-
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
@@ -55,6 +49,7 @@ public class Notice extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
+		setTitle("Vehicle Outdoor Cinema");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
