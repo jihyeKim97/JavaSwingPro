@@ -46,7 +46,7 @@ public class MyPage extends JFrame {
 	Panel header;
 	MyPage frm;
 	RoundedButtonR btn_logout;
-	RoundedButtonY wirte_review;
+	RoundedButtonG wirte_review;
 	Mypage_writePage wirteP;
 	JLabel in_reservationNum;
 	JLabel txtmovietitle;
@@ -80,7 +80,7 @@ public class MyPage extends JFrame {
 	Mypage_DB MDB;
 	JLabel none_reservation;
 
-	public MyPage(Main mafrm,Login_data Ld) {
+	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(Ld.getMember_id());
 		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
@@ -143,7 +143,7 @@ public class MyPage extends JFrame {
 		none_reservation.setForeground(Color.RED);
 		none_reservation.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 		none_reservation.setBounds(10, 80, 402, 15);
-//		resdetail_panel.add(none_reservation);
+		resdetail_panel.add(none_reservation);
 
 		btn_meminfo = new RoundedButtonG("member info");
 		btn_meminfo.setText("Member Info");
@@ -170,26 +170,23 @@ public class MyPage extends JFrame {
 				if (!ReArr.isEmpty()) {
 					none_reservation.setVisible(false);
 					reser_box = new Panel();
-					reser_box.setBackground(new Color(245, 245, 245));
+					reser_box.setBackground(Color.white);
 					reser_box.setBounds(10, 80, 404, 174);
 					resdetail_panel.add(reser_box);
 					reser_box.setLayout(null);
 
 					poster = new Panel();
-					poster.setBackground(new Color(255, 228, 196));
+					poster.setBackground(Color.white);
 					poster.setBounds(10, 10, 117, 155);
 					reser_box.add(poster);
 
-					wirte_review = new RoundedButtonY("Go to write a review");
-					wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-					// 작성한 리뷰가 있으면 한줄평 수정하기 로 변경
-					// 버튼을 누르면 작성한 정보가 그대로 불러와짐
-					// 아직 내용이 없다면 insert
+					wirte_review = new RoundedButtonG("Go to write a review");
+					wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 
 					wirte_review.setText("한줄평 작성하기");
 					wirte_review.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							wirteP = new Mypage_writePage(frm,Ld);
+							wirteP = new Mypage_writePage(frm, Ld);
 							fPt = frm.getLocationOnScreen();
 							wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 							wirteP.setVisible(true);
@@ -284,7 +281,8 @@ public class MyPage extends JFrame {
 							&& newpwField.getText().equals(newpwckField.getText())) {
 						errortxt.setForeground(Color.blue);
 						errortxt.setText("성공!");
-						MDB.UpdateMemberInfo(Ld.getMember_id(), nameField.getText(), phone.getText(), newpwField.getText());
+						MDB.UpdateMemberInfo(Ld.getMember_id(), nameField.getText(), phone.getText(),
+								newpwField.getText());
 						System.out.println("업데이트 성공");
 					} else {
 						if (!currField.getText().equals(MyArr.get(0).getPassword())) {
