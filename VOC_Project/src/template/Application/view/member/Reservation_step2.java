@@ -1,6 +1,7 @@
 package template.Application.view.member;
 
 import javax.naming.ldap.Rdn;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,11 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
 
 public class Reservation_step2 extends JFrame {
 
@@ -45,7 +49,7 @@ public class Reservation_step2 extends JFrame {
 	Main_Movie_DB movie;
 	Login_data Ld;
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
-	
+
 	public Reservation_step2(Reservation_step1 reserStfrm, Movie_Data movie, Login_data Ld, Reservation_data RD) {
 		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
@@ -63,7 +67,7 @@ public class Reservation_step2 extends JFrame {
 		} else {
 			time = "" + itime;
 		}
-		
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 658);
 		contentPane = new JPanel();
@@ -91,6 +95,14 @@ public class Reservation_step2 extends JFrame {
 		poset_div.setBackground(new Color(255, 235, 205));
 		poset_div.setBounds(0, 10, 141, 221);
 		panel_1.add(poset_div);
+		poset_div.setLayout(new BorderLayout(0, 0));
+
+		JLabel lblNewLabel = new JLabel("");
+		poset_div.add(lblNewLabel, BorderLayout.CENTER);
+		ImageIcon ic = new ImageIcon(Reservation_step2.class.getResource(movie.getImagefilename()));
+		Image icImg = ic.getImage().getScaledInstance(141, 221, Image.SCALE_SMOOTH);
+		ic.setImage(icImg);
+		lblNewLabel.setIcon(ic);
 
 		JPanel movietxt_div = new JPanel();
 		movietxt_div.setLayout(null);
@@ -175,7 +187,7 @@ public class Reservation_step2 extends JFrame {
 		label_12.setBounds(0, 188, 100, 31);
 		movietxt_div.add(label_12);
 
-		JLabel totalprice = new JLabel((RD.getPaymentPrice()+RD.getOptionPrice()) + "원");
+		JLabel totalprice = new JLabel((RD.getPaymentPrice() + RD.getOptionPrice()) + "원");
 		totalprice.setHorizontalAlignment(SwingConstants.CENTER);
 		totalprice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		totalprice.setBounds(100, 188, 211, 31);
@@ -260,8 +272,9 @@ public class Reservation_step2 extends JFrame {
 				String cardFP = new String(card_pw.getPassword());
 				if (!cardF1.isEmpty() && !cardF2.isEmpty() && !cardF3.isEmpty() && !cardF4.isEmpty()
 						&& !cardFC.isEmpty() && !cardFD.isEmpty() && !cardFP.isEmpty()) {
-					boolean A = RDB.saveResevationData("" +movie.getScheduledate(), RD.getSeatNumber(), RD.getCarType(), 
-								RD.getPaymentPrice(), RD.getOptionName(), RD.getOptionPrice(), Ld.getMember_id(), movie.getMoviesid());
+					boolean A = RDB.saveResevationData("" + movie.getScheduledate(), RD.getSeatNumber(),
+							RD.getCarType(), RD.getPaymentPrice(), RD.getOptionName(), RD.getOptionPrice(),
+							Ld.getMember_id(), movie.getMoviesid());
 					System.out.println();
 					pay_success.setVisible(true);
 					pay_ing.setVisible(false);
@@ -323,7 +336,7 @@ public class Reservation_step2 extends JFrame {
 		panel_11.setBounds(153, 10, 311, 221);
 		panel_9.add(panel_11);
 
-		JLabel label_18 = new JLabel("영화제목 : " );
+		JLabel label_18 = new JLabel("영화제목 : ");
 		label_18.setHorizontalAlignment(SwingConstants.CENTER);
 		label_18.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_18.setBounds(0, 2, 100, 31);
@@ -335,7 +348,7 @@ public class Reservation_step2 extends JFrame {
 		label_19.setBounds(100, 2, 211, 31);
 		panel_11.add(label_19);
 
-		JLabel label_20 = new JLabel("영화 상영 날짜 : " );
+		JLabel label_20 = new JLabel("영화 상영 날짜 : ");
 		label_20.setHorizontalAlignment(SwingConstants.CENTER);
 		label_20.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_20.setBounds(0, 33, 100, 31);
@@ -347,7 +360,7 @@ public class Reservation_step2 extends JFrame {
 		label_21.setBounds(100, 33, 211, 31);
 		panel_11.add(label_21);
 
-		JLabel label_22 = new JLabel("영화 상영 시간 : " );
+		JLabel label_22 = new JLabel("영화 상영 시간 : ");
 		label_22.setHorizontalAlignment(SwingConstants.CENTER);
 		label_22.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_22.setBounds(0, 64, 100, 31);
@@ -365,7 +378,7 @@ public class Reservation_step2 extends JFrame {
 		label_24.setBounds(0, 95, 100, 31);
 		panel_11.add(label_24);
 
-		JLabel label_25 = new JLabel( RD.getSeatNumber());
+		JLabel label_25 = new JLabel(RD.getSeatNumber());
 		label_25.setHorizontalAlignment(SwingConstants.CENTER);
 		label_25.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_25.setBounds(100, 95, 211, 31);
