@@ -44,7 +44,7 @@ public class Reservation_step1 extends JFrame {
 	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
 			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
-	public static final int MOVIE_PRICE = 3000000; 
+	public static final int MOVIE_PRICE = 30000; 
 	Main mainfrm;
 	Reservation_step1 reserStfrm;
 	DB_Connect connect;
@@ -241,23 +241,29 @@ public class Reservation_step1 extends JFrame {
 		content.add(sum_price_pay);
 
 		option_type = new JComboBox();
-		option_type.setBounds(199, 57, 275, 37);
+		option_type.setBounds(201, 57, 275, 37);
 		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		option_type.setModel(new DefaultComboBoxModel(new String[] {"선택안함", "팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원"}));
+		option_type.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 		selectOption = option_type.getSelectedItem().toString();
 		if (selectOption.contains(":")) {
 			selectP = selectOption.split(":");
-			selectPrice = selectP[1].split("원");
-			optionPrice = Integer.parseInt(selectPrice[0]);
+			String ABC = selectP[1];
+			selectPrice = ABC.split("원");
+			String BCA = selectPrice[0];
+			String APL = BCA.replace(" ", "");
+			optionPrice = Integer.parseInt(APL);
 			optionName = selectP[0];
-			sum_price_pay.setText("" + MOVIE_PRICE + optionPrice);
+			sum_price_pay.setText("" + (MOVIE_PRICE + optionPrice));
 			
 		}else {
 			optionName = "선택안함";
 			optionPrice = 0;
 		}
-		
+			}
+		});
 
 		optionimgpanel = new JPanel();
 		optionimgpanel.setBounds(15, 57, 174, 37);

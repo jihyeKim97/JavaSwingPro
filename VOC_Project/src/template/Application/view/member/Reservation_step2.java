@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Color;
 import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Reservation_data;
@@ -40,6 +41,7 @@ public class Reservation_step2 extends JFrame {
 	JPanel panel_8;
 	RoundedButtonD btn_pay;
 	Reservation_step1 reserStfrm;
+	Reservation_DB RDB;
 	Main_Movie_DB movie;
 	Login_data Ld;
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
@@ -258,6 +260,8 @@ public class Reservation_step2 extends JFrame {
 				String cardFP = new String(card_pw.getPassword());
 				if (!cardF1.isEmpty() && !cardF2.isEmpty() && !cardF3.isEmpty() && !cardF4.isEmpty()
 						&& !cardFC.isEmpty() && !cardFD.isEmpty() && !cardFP.isEmpty()) {
+					RDB.saveResevationData(movie.getScheduledate(), RD.getSeatNumber(), RD.getCarType(), 
+								RD.getPaymentPrice(), RD.getPaymentDate(), RD.getOptionName(), RD.getOptionPrice(), Ld.getMember_id(), movie.getMoviesid());
 					pay_success.setVisible(true);
 					pay_ing.setVisible(false);
 				} else {
