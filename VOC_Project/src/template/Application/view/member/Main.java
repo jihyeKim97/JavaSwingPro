@@ -121,7 +121,7 @@ public class Main extends JFrame {
 		btn_my.setBounds(382, 10, 100, 35);
 		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyPage mypage = new MyPage(reserfrm);
+				MyPage mypage = new MyPage(reserfrm,Ld);
 				Point fPt = reserfrm.getLocationOnScreen();
 				mypage.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 				mypage.setVisible(true);
