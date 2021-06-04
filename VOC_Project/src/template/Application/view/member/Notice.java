@@ -161,7 +161,6 @@ public class Notice extends JFrame {
 					count = NB.getViewcount() + 1;
 					title = NB.getTitle();
 					b = NDB.changeViewCount(title, count);
-//					b = changeViewCount(title, count);
 					ND = new Notice_Detail(NM, NB);
 					Point fPt = NM.getLocationOnScreen();
 					ND.setLocation(fPt.x + NM.getWidth() + 20, fPt.y);
@@ -190,7 +189,6 @@ public class Notice extends JFrame {
 		panel.add(roundedButtonD);
 
 	}
-
 }
 
 class Locaiton extends JDialog {
