@@ -30,7 +30,6 @@ public class Notice_data {
 		this.content = content;
 		this.viewcount = viewcount;
 	}
-	
 
 	public Notice_data(int noticeid, String title, String content, int viewcount, int memberid) {
 		super();
@@ -86,7 +85,5 @@ public class Notice_data {
 	public void setMemberid(int memberid) {
 		this.memberid = memberid;
 	}
-
-	
 
 }

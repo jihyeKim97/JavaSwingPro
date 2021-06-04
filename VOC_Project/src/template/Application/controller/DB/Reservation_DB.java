@@ -7,62 +7,59 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-
 public class Reservation_DB {
-	
-
 
 	static ArrayList<String> Name;
 	static DB_Connect connect;
 	Reservation_DB RD;
-	
-	public static ArrayList<String> ButtonName(){
+
+	public static ArrayList<String> ButtonName() {
 		Name = new ArrayList<>();
-			for (int i = 0; i < 36; i++) {
-				if ( i< 6)
-					Name.add("A"+(i+1));
-				else if ( i < 12)
-					Name.add("B"+(i-5));
-				else if ( i < 18)
-					Name.add("C"+(i-11));
-				else if ( i < 24)
-					Name.add("D"+(i-17));
-				else if ( i < 30)
-					Name.add("E"+(i-23));
-				else
-					Name.add("D"+(i-29));
-			}
+		for (int i = 0; i < 36; i++) {
+			if (i < 6)
+				Name.add("A" + (i + 1));
+			else if (i < 12)
+				Name.add("B" + (i - 5));
+			else if (i < 18)
+				Name.add("C" + (i - 11));
+			else if (i < 24)
+				Name.add("D" + (i - 17));
+			else if (i < 30)
+				Name.add("E" + (i - 23));
+			else
+				Name.add("D" + (i - 29));
+		}
 		return Name;
 	}
-	
-	
-	public static boolean saveResevationData(String shecduledate, String seatNumber,
-									int carType, int paymentPrice, String optionName, int optionPrice, int memberID,int movieID) {
+
+	public static boolean saveResevationData(String shecduledate, String seatNumber, int carType, int paymentPrice,
+			String optionName, int optionPrice, int memberID, int movieID) {
 		String a = "";
 		int A = 0;
 		connect.beginConnection();
 		for (int i = 0; i < 9; i++) {
-			a += "" + (int)(Math.random()*10);
+			a += "" + (int) (Math.random() * 10);
 		}
 		System.out.println(a);
 		A = Integer.parseInt(a);
 		// DB에서 정보 가져오기
-			String sql = "INSERT INTO VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID)"+ 
-					"VALUES (RESERVATION_SEQ.nextval, " + A + ", '" + shecduledate + "', '" + seatNumber + "', " + carType + ", " + paymentPrice + ", SYSDATE, '"
-					 + optionName + "', " + optionPrice + ", " + memberID + " , " + movieID + ")";
+		String sql = "INSERT INTO VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID)"
+				+ "VALUES (RESERVATION_SEQ.nextval, " + A + ", '" + shecduledate + "', '" + seatNumber + "', " + carType
+				+ ", " + paymentPrice + ", SYSDATE, '" + optionName + "', " + optionPrice + ", " + memberID + " , "
+				+ movieID + ")";
 //					""
 //					+ "INSERT INTO reservaiton  value(RESERVATION_SEQ.nextval, "+ A +", '" + date + "', '" 
 //							+ seatNumber + "'," + carType + ", " + paymentPrice + ",'" + date2 + "', '" + optionName + "', " 
 //							+ optionPrice + "," + memberID +"," + movieID + ")";
-			System.out.println(sql);
-			if (connect.conn != null) {
+		System.out.println(sql);
+		if (connect.conn != null) {
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
 					System.out.println("예약 성공");
 					return true;
-				}else {
+				} else {
 					System.out.println("예약 실패");
 				}
 				return false;
@@ -74,7 +71,7 @@ public class Reservation_DB {
 		connect.endConnection();
 		return false;
 	}
-	
+
 	public static Date StringtoDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 
@@ -99,5 +96,3 @@ public class Reservation_DB {
 		return d;
 	}
 }
-	
-

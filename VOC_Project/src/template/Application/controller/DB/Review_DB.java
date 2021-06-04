@@ -13,8 +13,8 @@ public class Review_DB {
 	static DB_Connect connect;
 	static Review_Data review;
 	static ArrayList<Review_Data> contents;
-	
-	public static ArrayList<Review_Data> getReviewData(int movieId){
+
+	public static ArrayList<Review_Data> getReviewData(int movieId) {
 		contents = new ArrayList<>();
 		connect.beginConnection();
 		// DB에서 정보 가져오기
@@ -24,19 +24,18 @@ public class Review_DB {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
 				while (rs.next()) {
-				String content = rs.getString("content");
-				contents.add(new Review_Data(content));
-				
+					String content = rs.getString("content");
+					contents.add(new Review_Data(content));
+
 				}
 				return contents;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		connect.endConnection();
 		return contents;
 	}
-	
-	
+
 }

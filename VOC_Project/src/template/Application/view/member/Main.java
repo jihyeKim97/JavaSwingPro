@@ -17,6 +17,7 @@ import template.Application.controller.btn.RoundedButtonY;
 
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
@@ -74,26 +76,15 @@ public class Main extends JFrame {
 	Main main;
 	static Login Lg;
 	static Login_data Ld;
-	private JPanel panel;
-	private JLabel label;
-
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main frame = new Main(Lg, Ld);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	JPanel panel;
+	JLabel label;
+	JLabel Poster;
 
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
 
+		toDayMovieList = new ArrayList<>();
+		notToDayMovieList = new ArrayList<>();
 		Main_Movie_DB MDB = new Main_Movie_DB();
 
 		this.reserfrm = this;
@@ -116,7 +107,7 @@ public class Main extends JFrame {
 		btn_my.setBounds(382, 10, 100, 35);
 		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyPage mypage = new MyPage(reserfrm);
+				MyPage mypage = new MyPage(reserfrm, Ld);
 				Point fPt = reserfrm.getLocationOnScreen();
 				mypage.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 				mypage.setVisible(true);
@@ -288,17 +279,27 @@ public class Main extends JFrame {
 		screening_panel.add(screen_guid_line);
 		screen_guid_line.setLayout(null);
 
-		for (int i = 0; i < 4; i++) {
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(79, 73, 10, 10);
+		screen_guid_line.add(panel_1);
 
+		for (int i = 0; i < 4; i++) {
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			MoviePoster.setBounds(10 * (i + 1) + 98 * i, 10, 98, 121);
-			JLabel Poster = new JLabel();
+			Poster = new JLabel();
 			MoviePoster.add(Poster, BorderLayout.CENTER);
 			Movie_Data movie = toDayMovieList.get(i);
 			screen_guid_line.add(MoviePoster);
-			Poster.setIcon(new ImageIcon("." + toDayMovieList.get(i).getImagefilename()));
+//			
+			System.out.println(toDayMovieList.get(i).getImagefilename());
+//			ImageIcon ic = new ImageIcon(Main.class.getResource("/template/Reference/images/미나리.jpg"));
+			ImageIcon ic = new ImageIcon(Main.class.getResource(toDayMovieList.get(i).getImagefilename()));
+			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
+			ic.setImage(icImg);
+			Poster.setIcon(ic);
 			Poster.repaint();
+//			
 			Poster.setBackground(new Color(0, 0, 150));
 			MoviePoster.addMouseListener(new MouseAdapter() {
 				@Override
@@ -349,15 +350,20 @@ public class Main extends JFrame {
 			Movie_Data movie = notToDayMovieList.get(i);
 			panel_10.add(MoviePoster);
 			if (i < 4) {
-				if(i==1) {
+				if (i == 1) {
 					MoviePoster.setBounds(10 * (i + 1) + 98 * i, 0, 98, 125);
-				}else {
+				} else {
 					MoviePoster.setBounds(10 * (i + 1) + 98 * i, 0, 98, 125);
 				}
 			} else {
 				MoviePoster.setBounds(10 * (i - 3) + 98 * (i - 4), 135, 98, 125);
 			}
-			Poster.setIcon(new ImageIcon("." + notToDayMovieList.get(i).getImagefilename()));
+//			Poster.setIcon(new ImageIcon(Main.class.getResource(notToDayMovieList.get(i).getImagefilename())));
+			ImageIcon ic = new ImageIcon(Main.class.getResource(notToDayMovieList.get(i).getImagefilename()));
+			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
+			ic.setImage(icImg);
+			Poster.setIcon(ic);
+			Poster.repaint();
 			Poster.setBackground(new Color(0, 0, 150));
 			Poster.repaint();
 			MoviePoster.addMouseListener(new MouseAdapter() {

@@ -95,17 +95,17 @@ public class Login extends JFrame {
 				Login_DB mgr = new Login_DB();
 				Login_data memberdata = mgr.selectOneMemberByLogin(login);
 				Login_data ismb = mgr.movepage(login);
-				if(ismb.getIs_member() == 0) {
-					int r = mgr.loginProcess(login, pw);	
+				if (ismb.getIs_member() == 0) {
+					int r = mgr.loginProcess(login, pw);
 					switch (r) {
 					case Login_DB.LOGIN_SUCCESS:
 						System.out.println(ismb.getIs_member());
-							main = new Main(ln, memberdata);
-							main.setVisible(true);
-							dispose();
+						main = new Main(ln, memberdata);
+						main.setVisible(true);
+						dispose();
 						break;
 					case Login_DB.LOGIN_FAIL_NOT_FOUND:
-						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
+						JOptionPane.showMessageDialog(null, "로그인	 회원 계정명 없음!!");
 						break;
 					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
 						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
@@ -119,14 +119,14 @@ public class Login extends JFrame {
 						System.out.println("지원하지않습니다.");
 						break;
 					}
-				}else if(ismb.getIs_member() == 1) {
+				} else if (ismb.getIs_member() == 1) {
 					int r = mgr.loginProcess(login, pw);
-					
+
 					switch (r) {
 					case Login_DB.LOGIN_SUCCESS:
-							ad_page = new Admin_AdPage(ln, LD);
-							ad_page.setVisible(true);
-							dispose();
+						ad_page = new Admin_AdPage(ln, LD);
+						ad_page.setVisible(true);
+						dispose();
 						break;
 					case Login_DB.LOGIN_FAIL_NOT_FOUND:
 						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
@@ -143,8 +143,8 @@ public class Login extends JFrame {
 						System.out.println("지원하지않습니다.");
 						break;
 					}
-					
-				}else
+
+				} else
 					JOptionPane.showMessageDialog(null, "휴먼 계정입니다.");
 			}
 		});

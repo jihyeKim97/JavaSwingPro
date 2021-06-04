@@ -22,6 +22,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -200,23 +201,34 @@ public class Reservation_step1 extends JFrame {
 		seat_number.setBounds(10, 35, 422, 257);
 		seat_detail.add(seat_number);
 		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
-		
 			
 		int select = 0;
 		for (int i = 0; i < 36; i++) {
 			JToggleButton tglbtnNewToggleButton = new JToggleButton(ButtonName.get(i));
-			ButtonGroup TBG = new ButtonGroup();
-			tglbtnNewToggleButton.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+			ImageIcon ic = new ImageIcon(
+					Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
+			Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
+			ic.setImage(icImg);
+			tglbtnNewToggleButton.setIcon(ic);
+			tglbtnNewToggleButton.repaint();
 			seat_number.add(tglbtnNewToggleButton);	
 			
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if ( tglbtnNewToggleButton.isSelected()) {
-						tglbtnNewToggleButton.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png")));
+						ImageIcon ic = new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
+						Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
+						ic.setImage(icImg);
+						tglbtnNewToggleButton.setIcon(ic);
+						tglbtnNewToggleButton.repaint();
 						SName.add(tglbtnNewToggleButton.getText());
 					}
 					else {
-						tglbtnNewToggleButton.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png")));
+						ImageIcon ic = new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
+						Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
+						ic.setImage(icImg);
+						tglbtnNewToggleButton.setIcon(ic);
+						tglbtnNewToggleButton.repaint();
 						SName.remove(tglbtnNewToggleButton.getText());
 					}
 				}
