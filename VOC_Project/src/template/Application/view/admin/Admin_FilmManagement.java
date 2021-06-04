@@ -124,7 +124,7 @@ public class Admin_FilmManagement extends JDialog {
 		panel_2.add(pnMenuImage);
 		pnMenuImage.setLayout(new BorderLayout(0, 0));
 
-//		ad_lb_poster = new JLabel("");
+		ad_lb_poster = new JLabel("");
 		image1 = new ImageIcon(MyArr.get(0).getImage_file_name());
 		Image image2 = image1.getImage().getScaledInstance(180, 230, Image.SCALE_SMOOTH);
 		ad_lb_poster = new JLabel(image1, JLabel.CENTER);
