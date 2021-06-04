@@ -92,18 +92,16 @@ public class Login_DB {
 
 	/*-------------------------------------------------------------------------------------*/
 
-	public Login_data movepage(int a) {
+	public Login_data movepage(String a) {
 		if (this.conn != null) {
 
-			String sql = "select is_member from member where member_id = ?";
+			String sql = "select is_member from member where id = ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setLong(1, a);
+				pstmt.setString(1, a);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
-					Login_data mb = new Login_data(rs.getInt("member_id"), rs.getString("id"), rs.getString("password"),
-							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
-							rs.getInt("is_member"), rs.getString("birthday"));
+					Login_data mb = new Login_data(rs.getInt("is_member"));
 					return mb;
 				} else {
 
