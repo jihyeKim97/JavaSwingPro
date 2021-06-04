@@ -8,15 +8,15 @@ public class Ad_Film_Data {
 	private String title;
 	private String genre;
 	private String director;
-	private int age_group;
+	private String age_group;
 	private String story;
-	private int average_score;
+	private String average_score;
 	private String gee;
-	private Date open_date;
+	private String open_date;
 	private String production;
 	private String image_file_name;
-	private Date schedule_date;
-	private int schedule_time;
+	private String schedule_date;
+	private String schedule_time;
 	private String running_time;
 	
 	
@@ -28,9 +28,9 @@ public class Ad_Film_Data {
 
 
 
-	public Ad_Film_Data(String title, String genre, String director, int age_group, String story, int average_score,
-			String gee, Date open_date, String production, Date schedule_date,
-			int schedule_time, String running_time) {
+	public Ad_Film_Data(String title, String genre, String director, String age_group, String story, String average_score,
+			String gee, String open_date, String production, String schedule_date,
+			String image_file_name, String running_time) {
 		super();
 		this.title = title;
 		this.genre = genre;
@@ -42,7 +42,7 @@ public class Ad_Film_Data {
 		this.open_date = open_date;
 		this.production = production;
 		this.schedule_date = schedule_date;
-		this.schedule_time = schedule_time;
+		this.image_file_name = image_file_name;
 		this.running_time = running_time;
 	}
 
@@ -50,9 +50,9 @@ public class Ad_Film_Data {
 
 
 
-	public Ad_Film_Data(int movies_id, String title, String genre, String director, int age_group, String story,
-			int average_score, String gee, Date open_date, String production, String image_file_name,
-			Date schedule_date, int schedule_time, String running_time) {
+	public Ad_Film_Data(int movies_id, String title, String genre, String director, String age_group, String story,
+			String average_score, String gee, String open_date, String production, String image_file_name,
+			String schedule_date, String schedule_time, String running_time) {
 		super();
 		this.movies_id = movies_id;
 		this.title = title;
@@ -138,7 +138,7 @@ public class Ad_Film_Data {
 
 
 
-	public int getAge_group() {
+	public String getAge_group() {
 		return age_group;
 	}
 
@@ -146,7 +146,7 @@ public class Ad_Film_Data {
 
 
 
-	public void setAge_group(int age_group) {
+	public void setAge_group(String age_group) {
 		this.age_group = age_group;
 	}
 
@@ -170,7 +170,7 @@ public class Ad_Film_Data {
 
 
 
-	public int getAverage_score() {
+	public String getAverage_score() {
 		return average_score;
 	}
 
@@ -178,7 +178,7 @@ public class Ad_Film_Data {
 
 
 
-	public void setAverage_score(int average_score) {
+	public void setAverage_score(String average_score) {
 		this.average_score = average_score;
 	}
 
@@ -202,7 +202,7 @@ public class Ad_Film_Data {
 
 
 
-	public Date getOpen_date() {
+	public String getOpen_date() {
 		return open_date;
 	}
 
@@ -210,7 +210,7 @@ public class Ad_Film_Data {
 
 
 
-	public void setOpen_date(Date open_date) {
+	public void setOpen_date(String open_date) {
 		this.open_date = open_date;
 	}
 
@@ -250,7 +250,7 @@ public class Ad_Film_Data {
 
 
 
-	public Date getSchedule_date() {
+	public String getSchedule_date() {
 		return schedule_date;
 	}
 
@@ -258,7 +258,7 @@ public class Ad_Film_Data {
 
 
 
-	public void setSchedule_date(Date schedule_date) {
+	public void setSchedule_date(String schedule_date) {
 		this.schedule_date = schedule_date;
 	}
 
@@ -266,7 +266,7 @@ public class Ad_Film_Data {
 
 
 
-	public int getSchedule_time() {
+	public String getSchedule_time() {
 		return schedule_time;
 	}
 
@@ -274,7 +274,7 @@ public class Ad_Film_Data {
 
 
 
-	public void setSchedule_time(int schedule_time) {
+	public void setSchedule_time(String schedule_time) {
 		this.schedule_time = schedule_time;
 	}
 
