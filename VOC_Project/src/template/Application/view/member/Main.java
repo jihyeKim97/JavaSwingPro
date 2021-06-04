@@ -103,7 +103,7 @@ public class Main extends JFrame {
 		header_panel.setLayout(null);
 
 		RoundedButtonG btn_my = new RoundedButtonG("MYPAGE");
-		btn_my.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		btn_my.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		btn_my.setBounds(382, 10, 100, 35);
 		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -151,7 +151,7 @@ public class Main extends JFrame {
 		lblNewLabel = new JLabel("2020");
 		lblNewLabel.setBounds(0, 0, 128, 50);
 		panel.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Ebrima", Font.PLAIN, 38));
+		lblNewLabel.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 38));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		setFocusTraversalPolicy(
 				new FocusTraversalOnArray(new Component[] { btn_my, contentPane, header_panel, mainPanel, main_panel,
@@ -160,26 +160,26 @@ public class Main extends JFrame {
 		label = new JLabel("/");
 		label.setBounds(100, 0, 47, 50);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Ebrima", Font.PLAIN, 38));
+		label.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 38));
 		panel.add(label);
 
 		lb_month = new JLabel("" + month);
 		lb_month.setBounds(135, 0, 47, 50);
 		panel.add(lb_month);
 		lb_month.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_month.setFont(new Font("Ebrima", Font.PLAIN, 38));
+		lb_month.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 38));
 
 		label_2 = new JLabel("/");
 		label_2.setBounds(171, 0, 47, 50);
 		panel.add(label_2);
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Ebrima", Font.PLAIN, 38));
+		label_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 38));
 
 		lb_date = new JLabel("" + day);
 		lb_date.setBounds(212, 0, 55, 50);
 		panel.add(lb_date);
 		lb_date.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_date.setFont(new Font("Ebrima", Font.PLAIN, 38));
+		lb_date.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 38));
 
 		try {
 			toDayMovieList = MDB.TodayMovie(month, day);
@@ -269,7 +269,7 @@ public class Main extends JFrame {
 		screening_panel.setLayout(null);
 
 		lb_title1 = new JLabel("상영중인 영화");
-		lb_title1.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		lb_title1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lb_title1.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_title1.setBounds(0, 0, 424, 39);
 		screening_panel.add(lb_title1);
@@ -332,7 +332,7 @@ public class Main extends JFrame {
 		cpn_panel.add(released_panel);
 
 		lb_title2 = new JLabel("개봉예정 영화");
-		lb_title2.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		lb_title2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lb_title2.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_title2.setBounds(0, 0, 424, 44);
 		released_panel.add(lb_title2);
@@ -379,7 +379,8 @@ public class Main extends JFrame {
 		}
 
 		btn_notice = new RoundedButtonR("notice");
-		btn_notice.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		btn_notice.setText("NOTICE");
+		btn_notice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Notice noti = new Notice(reserfrm);

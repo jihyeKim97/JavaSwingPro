@@ -122,6 +122,36 @@ public class Movie_DB {
 
 	}
 
+	public static Movie_Data getMovieInformationFromMovieId(int id) {
+		connect.beginConnection();
+		// DB에서 정보 가져오기
+		Movie_Data MD = new Movie_Data();
+		if (connect.conn != null) {
+			String sql = "SELECT * FROM movies WHERE movies_id = '" + id + "'";
+			System.out.println(sql);
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					int movieid = rs.getInt("movies_id");
+					String movietitle = rs.getString("title");
+					String imgfilename = rs.getString("image_file_name");
+
+					MD = new Movie_Data(movieid, movietitle, imgfilename);
+				}
+				return MD;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("DB접속 오류");
+			}
+
+		}
+		connect.endConnection();
+		return MD;
+
+	}
+	
+	
 	public static ArrayList<Integer> getMovie(int year, int month, int day) {
 		connect.beginConnection();
 		// DB에서 정보 가져오기

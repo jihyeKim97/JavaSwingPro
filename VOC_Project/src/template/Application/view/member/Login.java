@@ -14,6 +14,7 @@ import template.Application.controller.ImagePanel;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.btn.RoundedButtonD;
+import template.Application.controller.btn.RoundedButtonR;
 import template.Application.view.admin.Admin_AdPage;
 
 import java.awt.Font;
@@ -41,7 +42,7 @@ public class Login extends JFrame {
 	JPanel panel;
 	JLabel lblNewLabel;
 	JLabel label;
-	RoundedButtonD btn_Login;
+	RoundedButtonR btn_Login;
 	Login_FindID FindId;
 	Login_FindPW FindPw;
 	ImagePanel contentPane;
@@ -86,7 +87,7 @@ public class Login extends JFrame {
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		btn_Login = new RoundedButtonD("Login");
+		btn_Login = new RoundedButtonR("Login");
 		btn_Login.setText("LOGIN");
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -153,7 +154,7 @@ public class Login extends JFrame {
 		btn_Login.setForeground(new Color(255, 255, 255));
 
 		btn_Login.setBackground(Color.BLUE);
-		btn_Login.setBounds(181, 363, 114, 39);
+		btn_Login.setBounds(106, 363, 257, 43);
 		contentPane.add(btn_Login);
 
 		lblNewLabel = new JLabel("ID");
@@ -199,7 +200,7 @@ public class Login extends JFrame {
 				lb_FindID.setForeground(Color.WHITE);
 			}
 		});
-		lb_FindID.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_FindID.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_FindPW = new JLabel("비밀번호 찾기");
 		lb_FindPW.setForeground(Color.WHITE);
@@ -224,7 +225,7 @@ public class Login extends JFrame {
 			}
 		});
 		panel.add(lb_FindPW);
-		lb_FindPW.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_FindPW.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_SignUp = new JLabel();
 		lb_SignUp.addMouseListener(new MouseAdapter() {
@@ -241,7 +242,7 @@ public class Login extends JFrame {
 		lb_SignUp.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_SignUp);
 
-		lb_SignUp.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_SignUp.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(70, 114, 42));
@@ -289,7 +290,7 @@ public class Login extends JFrame {
 
 		lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/bg (4).png")));
-		lblNewLabel_1.setBounds(0, 0, 458, 483);
+		lblNewLabel_1.setBounds(0, 0, 456, 482);
 		contentPane.add(lblNewLabel_1);
 
 	}

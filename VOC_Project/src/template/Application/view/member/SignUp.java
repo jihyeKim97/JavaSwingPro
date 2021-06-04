@@ -141,7 +141,7 @@ public class SignUp extends JFrame {
 			}
 		});
 
-		btn_DupCheck.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		btn_DupCheck.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_userPw1 = new JLabel("비밀번호");
 		lb_userPw1.setBounds(0, 51, 145, 39);
@@ -288,7 +288,7 @@ public class SignUp extends JFrame {
 			public void focusGained(FocusEvent e) {
 				txt_DoB.setForeground(Color.black);
 				txt_DoB.setBackground(Color.yellow);
-				if (txt_DoB.getText().equals("ex) 19910101"))
+				if (txt_DoB.getText().equals("ex) 910101"))
 					txt_DoB.setText("");
 			}
 
@@ -297,12 +297,12 @@ public class SignUp extends JFrame {
 				txt_DoB.setForeground(Color.LIGHT_GRAY);
 				txt_DoB.setBackground(Color.WHITE);
 				if (txt_DoB.getText().isEmpty())
-					txt_DoB.setText("ex) 19910101");
+					txt_DoB.setText("ex) 910101");
 			}
 		});
 		txt_DoB.setForeground(Color.LIGHT_GRAY);
 		txt_DoB.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		txt_DoB.setText("ex) 19910101");
+		txt_DoB.setText("ex) 910101");
 		txt_DoB.setColumns(10);
 
 		lb_phoneNumber = new JLabel("전화번호");
