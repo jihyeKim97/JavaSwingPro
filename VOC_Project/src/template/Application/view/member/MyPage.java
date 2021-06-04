@@ -181,7 +181,7 @@ public class MyPage extends JFrame {
 					MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());
 					none_reservation.setVisible(false);
 					reser_box = new Panel();
-					reser_box.setBackground(Color.white);
+					reser_box.setBackground(new Color(242,242,242));
 					reser_box.setBounds(10, 80 + (174 * i) + (30 * i), 404, 174);
 					resdetail_panel.add(reser_box);
 					reser_box.setLayout(null);
@@ -216,6 +216,7 @@ public class MyPage extends JFrame {
 
 					panel = new JPanel();
 					panel.setBounds(133, 10, 259, 113);
+					panel.setBackground(new Color(242,242,242));
 					reser_box.add(panel);
 					panel.setLayout(null);
 
