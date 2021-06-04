@@ -3,9 +3,6 @@ package template.Application.view.member;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.LocatorEx.Snapshot;
-
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
@@ -14,8 +11,8 @@ import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Reservation_data;
 import template.Application.controller.btn.RoundedButtonD;
-
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,12 +24,11 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
-import java.awt.BorderLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 
@@ -48,6 +44,7 @@ public class Reservation_step1 extends JFrame {
 	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
 			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
+	public static final int MOVIE_PRICE = 3000000; 
 	Main mainfrm;
 	Reservation_step1 reserStfrm;
 	DB_Connect connect;
@@ -63,13 +60,17 @@ public class Reservation_step1 extends JFrame {
 	private JToggleButton tglbtnNewToggleButton_1;
 	private JToggleButton tglbtnNewToggleButton_2;
 	ArrayList<Object> SName = new ArrayList<>();
+	String selectOption;
+	String optionName = "";
+	String[] selectP;
+	String[] selectPrice;
+	int optionPrice = 0;
+	Reservation_data RD;
 
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
 		this.reserStfrm = this;
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int day = cal.get(Calendar.DAY_OF_MONTH);
+		SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
+		sDate.format(new Date());
 		
 		Reservation_DB RDB = new Reservation_DB();
 		ButtonName = RDB.ButtonName();
@@ -232,12 +233,31 @@ public class Reservation_step1 extends JFrame {
 		option.setBounds(0, 497, 484, 110);
 		content.add(option);
 		option.setLayout(null);
+		
+		sum_price_pay = new JLabel("" + MOVIE_PRICE);
+		sum_price_pay.setHorizontalAlignment(SwingConstants.RIGHT);
+		sum_price_pay.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		sum_price_pay.setBounds(113, 662, 109, 23);
+		content.add(sum_price_pay);
 
 		option_type = new JComboBox();
 		option_type.setBounds(199, 57, 275, 37);
 		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		option_type.setModel(new DefaultComboBoxModel(new String[] {"선택안함", "팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원"}));
+		selectOption = option_type.getSelectedItem().toString();
+		if (selectOption.contains(":")) {
+			selectP = selectOption.split(":");
+			selectPrice = selectP[1].split("원");
+			optionPrice = Integer.parseInt(selectPrice[0]);
+			optionName = selectP[0];
+			sum_price_pay.setText("" + MOVIE_PRICE + optionPrice);
+			
+		}else {
+			optionName = "선택안함";
+			optionPrice = 0;
+		}
+		
 
 		optionimgpanel = new JPanel();
 		optionimgpanel.setBounds(15, 57, 174, 37);
@@ -267,11 +287,13 @@ public class Reservation_step1 extends JFrame {
 		btn_payment = new RoundedButtonD("결제 하기");
 		btn_payment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RD = new Reservation_data((String) SName.get(0), CarType, MOVIE_PRICE, new Date(), optionName, optionPrice);
 				if ( SName.size() == 1) {
-				Reservation_step2 reserStep2 = new Reservation_step2(reserStfrm, movie, Ld);
+				Reservation_step2 reserStep2 = new Reservation_step2(reserStfrm, movie, Ld, RD);
 				Point fPt = reserStfrm.getLocationOnScreen();
-				reserStep2.setLocation(fPt.x + reserStep2.getWidth() + 20, fPt.y);
+				reserStep2.setLocation(fPt.x , fPt.y);
 				reserStep2.setVisible(true);
+				dispose();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "좌석을 하나만 선택해 주세요");
@@ -288,11 +310,6 @@ public class Reservation_step1 extends JFrame {
 		won.setBounds(222, 667, 19, 23);
 		content.add(won);
 
-	
-		sum_price_pay = new JLabel("");
-		sum_price_pay.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		sum_price_pay.setBounds(113, 667, 109, 23);
-		content.add(sum_price_pay);
 
 		txtprice = new JLabel("예상 결제 금액 : ");
 		txtprice.setHorizontalAlignment(SwingConstants.CENTER);
