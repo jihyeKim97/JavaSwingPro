@@ -81,7 +81,7 @@ public class Mypage_DB {
 	}
 
 	public static ArrayList<Mypage_Reservation_data> SelectReservationID(int memberID) {
-
+		ReArr = new ArrayList<>();
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "select * from reservation where member_id =  " + memberID;
