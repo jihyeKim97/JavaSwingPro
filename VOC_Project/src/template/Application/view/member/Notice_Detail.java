@@ -121,7 +121,7 @@ public class Notice_Detail extends JFrame {
 				dispose();
 			}
 		});
-		roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 

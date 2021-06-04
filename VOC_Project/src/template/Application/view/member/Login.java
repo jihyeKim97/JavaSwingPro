@@ -200,7 +200,7 @@ public class Login extends JFrame {
 				lb_FindID.setForeground(Color.WHITE);
 			}
 		});
-		lb_FindID.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_FindID.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_FindPW = new JLabel("비밀번호 찾기");
 		lb_FindPW.setForeground(Color.WHITE);
@@ -225,7 +225,7 @@ public class Login extends JFrame {
 			}
 		});
 		panel.add(lb_FindPW);
-		lb_FindPW.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_FindPW.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_SignUp = new JLabel();
 		lb_SignUp.addMouseListener(new MouseAdapter() {
@@ -242,7 +242,7 @@ public class Login extends JFrame {
 		lb_SignUp.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_SignUp);
 
-		lb_SignUp.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_SignUp.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(70, 114, 42));

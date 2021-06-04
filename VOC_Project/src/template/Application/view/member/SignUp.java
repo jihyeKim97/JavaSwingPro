@@ -141,7 +141,7 @@ public class SignUp extends JFrame {
 			}
 		});
 
-		btn_DupCheck.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		btn_DupCheck.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_userPw1 = new JLabel("비밀번호");
 		lb_userPw1.setBounds(0, 51, 145, 39);

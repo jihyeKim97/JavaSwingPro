@@ -422,7 +422,7 @@ public class Movie_Informaiton extends JFrame {
 						dispose();
 					}
 				});
-				roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+				roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);

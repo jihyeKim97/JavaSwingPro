@@ -81,7 +81,7 @@ public class Reservation_step2 extends JFrame {
 		JPanel pay_ing = new JPanel();
 		pay_ing.setBackground(new Color(255, 255, 255));
 		pay_ing.setBounds(0, 55, 484, 564);
-//		contentPane.add(pay_ing);
+		contentPane.add(pay_ing);
 		pay_ing.setLayout(null);
 
 		JPanel movieInfo = new JPanel();
@@ -116,7 +116,7 @@ public class Reservation_step2 extends JFrame {
 		panel_1.add(movietxt_div);
 
 		JLabel label = new JLabel("영화제목 : ");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label.setBounds(0, 2, 100, 31);
 		movietxt_div.add(label);
@@ -128,7 +128,7 @@ public class Reservation_step2 extends JFrame {
 		movietxt_div.add(movietitle);
 
 		JLabel label_2 = new JLabel("영화 상영 날짜 : ");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_2.setBounds(0, 33, 100, 31);
 		movietxt_div.add(label_2);
@@ -140,7 +140,7 @@ public class Reservation_step2 extends JFrame {
 		movietxt_div.add(moviedate);
 
 		JLabel label_4 = new JLabel("영화 상영 시간 : ");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_4.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_4.setBounds(0, 64, 100, 31);
 		movietxt_div.add(label_4);
@@ -152,7 +152,7 @@ public class Reservation_step2 extends JFrame {
 		movietxt_div.add(movietime);
 
 		JLabel label_6 = new JLabel("좌석 번호 : ");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_6.setBounds(0, 95, 100, 31);
 		movietxt_div.add(label_6);
@@ -164,7 +164,7 @@ public class Reservation_step2 extends JFrame {
 		movietxt_div.add(seatnum);
 
 		JLabel label_8 = new JLabel("옵션 선택 : ");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_8.setBounds(0, 126, 100, 31);
 		movietxt_div.add(label_8);
@@ -176,7 +176,7 @@ public class Reservation_step2 extends JFrame {
 		movietxt_div.add(optionname);
 
 		JLabel label_10 = new JLabel("옵션 금액 : ");
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
+		label_10.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_10.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_10.setBounds(0, 157, 100, 31);
 		movietxt_div.add(label_10);
@@ -188,7 +188,7 @@ public class Reservation_step2 extends JFrame {
 		movietxt_div.add(optionprice);
 
 		JLabel label_12 = new JLabel("총 결제 금액 : ");
-		label_12.setHorizontalAlignment(SwingConstants.CENTER);
+		label_12.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_12.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_12.setBounds(0, 188, 100, 31);
 		movietxt_div.add(label_12);
@@ -206,7 +206,7 @@ public class Reservation_step2 extends JFrame {
 		cardInfo.setLayout(null);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(10, 10, 464, 167);
+		panel_5.setBounds(0, 10, 484, 167);
 		cardInfo.add(panel_5);
 		panel_5.setLayout(null);
 
@@ -216,7 +216,7 @@ public class Reservation_step2 extends JFrame {
 		panel_5.add(label_14);
 
 		JPanel card_numbering = new JPanel();
-		card_numbering.setBounds(40, 37, 390, 30);
+		card_numbering.setBounds(53, 37, 390, 30);
 		panel_5.add(card_numbering);
 		card_numbering.setLayout(new GridLayout(0, 4, 15, 0));
 
@@ -238,33 +238,33 @@ public class Reservation_step2 extends JFrame {
 
 		JLabel label_15 = new JLabel("유효 기간");
 		label_15.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
-		label_15.setBounds(30, 77, 100, 32);
+		label_15.setBounds(41, 77, 100, 32);
 		panel_5.add(label_15);
 
 		card_date = new JTextField();
 		card_date.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		card_date.setColumns(10);
-		card_date.setBounds(40, 109, 86, 30);
+		card_date.setBounds(51, 109, 86, 30);
 		panel_5.add(card_date);
 
 		JLabel label_16 = new JLabel("비밀번호");
 		label_16.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
-		label_16.setBounds(330, 77, 100, 32);
+		label_16.setBounds(343, 77, 100, 32);
 		panel_5.add(label_16);
 
 		JLabel lblCvc = new JLabel("CVC");
 		lblCvc.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
-		lblCvc.setBounds(189, 77, 46, 32);
+		lblCvc.setBounds(195, 77, 46, 32);
 		panel_5.add(lblCvc);
 
 		card_cvc = new JTextField();
 		card_cvc.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		card_cvc.setColumns(10);
-		card_cvc.setBounds(199, 109, 89, 30);
+		card_cvc.setBounds(205, 109, 89, 30);
 		panel_5.add(card_cvc);
 
 		card_pw = new JPasswordField();
-		card_pw.setBounds(340, 109, 89, 30);
+		card_pw.setBounds(353, 109, 89, 30);
 		panel_5.add(card_pw);
 
 		btn_pay = new RoundedButtonG("결제");
@@ -307,7 +307,7 @@ public class Reservation_step2 extends JFrame {
 				dispose();
 			}
 		});
-		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 20));
+		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		header.add(roundedButtonD);
 
@@ -355,7 +355,7 @@ public class Reservation_step2 extends JFrame {
 		panel_9.add(panel_11);
 
 		JLabel label_18 = new JLabel("영화제목 : ");
-		label_18.setHorizontalAlignment(SwingConstants.CENTER);
+		label_18.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_18.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_18.setBounds(0, 2, 100, 31);
 		panel_11.add(label_18);
@@ -367,7 +367,7 @@ public class Reservation_step2 extends JFrame {
 		panel_11.add(label_19);
 
 		JLabel label_20 = new JLabel("영화 상영 날짜 : ");
-		label_20.setHorizontalAlignment(SwingConstants.CENTER);
+		label_20.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_20.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_20.setBounds(0, 33, 100, 31);
 		panel_11.add(label_20);
@@ -379,7 +379,7 @@ public class Reservation_step2 extends JFrame {
 		panel_11.add(label_21);
 
 		JLabel label_22 = new JLabel("영화 상영 시간 : ");
-		label_22.setHorizontalAlignment(SwingConstants.CENTER);
+		label_22.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_22.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_22.setBounds(0, 64, 100, 31);
 		panel_11.add(label_22);
@@ -391,7 +391,7 @@ public class Reservation_step2 extends JFrame {
 		panel_11.add(label_23);
 
 		JLabel label_24 = new JLabel("좌석 번호 : ");
-		label_24.setHorizontalAlignment(SwingConstants.CENTER);
+		label_24.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_24.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_24.setBounds(0, 95, 100, 31);
 		panel_11.add(label_24);
@@ -403,7 +403,7 @@ public class Reservation_step2 extends JFrame {
 		panel_11.add(label_25);
 
 		JLabel label_26 = new JLabel("옵션 선택 : ");
-		label_26.setHorizontalAlignment(SwingConstants.CENTER);
+		label_26.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_26.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_26.setBounds(0, 126, 100, 31);
 		panel_11.add(label_26);
@@ -415,7 +415,7 @@ public class Reservation_step2 extends JFrame {
 		panel_11.add(label_27);
 
 		JLabel label_28 = new JLabel("옵션 금액 : ");
-		label_28.setHorizontalAlignment(SwingConstants.CENTER);
+		label_28.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_28.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_28.setBounds(0, 157, 100, 31);
 		panel_11.add(label_28);
@@ -427,7 +427,7 @@ public class Reservation_step2 extends JFrame {
 		panel_11.add(label_29);
 
 		JLabel label_30 = new JLabel("총 결제 금액 : ");
-		label_30.setHorizontalAlignment(SwingConstants.CENTER);
+		label_30.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_30.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_30.setBounds(0, 188, 100, 31);
 		panel_11.add(label_30);
