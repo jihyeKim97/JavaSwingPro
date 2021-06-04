@@ -3,47 +3,26 @@ package template.Application.view.member;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.DB_Connect;
-import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonR;
-
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JScrollPane;
-import java.awt.Button;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
-import java.awt.TextField;
-import javax.swing.JTextPane;
-import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -101,26 +80,26 @@ public class Movie_Informaiton extends JFrame {
 	JPanel panel_9;
 	JScrollPane scrollPane_1;
 	JPanel pn_Review;
+	JLabel lblNewLabel_3;
+	JLabel label_2;
+	JPanel panel;
+	JPanel panel_3;
+	JPanel panel_4;
+	JLabel lblNewLabel_2;
+	JLabel label;
+	JLabel label_1;
+	JLabel label_3;
+	JLabel label_4;
+	JPanel panel_5;
+	JPanel panel_6;
 
 	DB_Connect connect;
 	Movie_Data Movie;
-	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	Main refrm;
 	Movie_Informaiton frm;
 	ArrayList<Review_Data> ReviewList = new ArrayList<>();
+	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	Review_DB Review;
-	private JLabel lblNewLabel_3;
-	private JLabel label_2;
-	private JPanel panel;
-	private JPanel panel_3;
-	private JPanel panel_4;
-	private JLabel lblNewLabel_2;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_3;
-	private JLabel label_4;
-	private JPanel panel_5;
-	private JPanel panel_6;
 
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
@@ -144,7 +123,7 @@ public class Movie_Informaiton extends JFrame {
 		} else {
 			time = "" + itime;
 		}
-
+		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 752);
 		contentPane = new JPanel();

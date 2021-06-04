@@ -10,15 +10,11 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-
 import template.Application.controller.DB.Mypage_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Mypage_Review_data;
-import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonG;
-
 import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -41,7 +37,7 @@ public class Mypage_writePage extends JFrame {
 
 	int sco = 0;
 
-	public Mypage_writePage(MyPage frm,Login_data Ld) {
+	public Mypage_writePage(MyPage frm, Login_data Ld) {
 		this.frm = frm;
 		ArrayList<Mypage_Review_data> ViArr = MDB
 				.SelectReviewID(MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id());
@@ -49,6 +45,7 @@ public class Mypage_writePage extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 406, 352);
 		setResizable(false);
+		setTitle("Vehicle Outdoor Cinema");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

@@ -13,14 +13,11 @@ import javax.swing.SwingConstants;
 import template.Application.controller.ImagePanel;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Login_data;
-import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonR;
 import template.Application.view.admin.Admin_AdPage;
-
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -50,7 +47,6 @@ public class Login extends JFrame {
 	Login ln;
 	Main main;
 	Login_DB LDB;
-	int memberID = 24;
 	Admin_AdPage ad_page;
 	Login_data LD = new Login_data();
 
@@ -69,7 +65,6 @@ public class Login extends JFrame {
 
 	public Login() {
 		this.ln = this;
-		ArrayList<Login_data> loArr = LDB.SelectMemberID(memberID);
 		setTitle("Vehicle Outdoor Cinema");
 		setBounds(100, 100, 460, 508);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,7 +82,7 @@ public class Login extends JFrame {
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		btn_Login = new RoundedButtonR("Login");
+		btn_Login = new RoundedButtonR();
 		btn_Login.setText("LOGIN");
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,12 +105,10 @@ public class Login extends JFrame {
 						break;
 					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
 						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-
 						break;
 					case Login_DB.LOGIN_ERROR:
 						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
 						break;
-
 					default:
 						System.out.println("지원하지않습니다.");
 						break;
