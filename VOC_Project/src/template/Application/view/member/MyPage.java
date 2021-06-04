@@ -194,7 +194,7 @@ public class MyPage extends JFrame {
 					poster.add(JL, BorderLayout.CENTER);
 					reser_box.add(poster);
 					ImageIcon ic = new ImageIcon(Reservation_step2.class.getResource(MDT.getImagefilename()));
-					Image icImg = ic.getImage().getScaledInstance(141, 221, Image.SCALE_SMOOTH);
+					Image icImg = ic.getImage().getScaledInstance(117, 155, Image.SCALE_SMOOTH);
 					ic.setImage(icImg);
 					JL.setIcon(ic);
 					JL.repaint();
