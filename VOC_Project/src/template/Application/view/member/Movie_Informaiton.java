@@ -20,6 +20,7 @@ import template.Application.controller.btn.RoundedButtonR;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -168,8 +169,12 @@ public class Movie_Informaiton extends JFrame {
 		div_panel.add(pn_Poster);
 		pn_Poster.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("" + MovieList.get(PK).getImagefilename()));
+		JLabel lblNewLabel = new JLabel();
+		ImageIcon ic = new ImageIcon(Main.class.getResource(MovieList.get(PK).getImagefilename()));
+		Image icImg = ic.getImage().getScaledInstance(187, 232, Image.SCALE_SMOOTH);
+		ic.setImage(icImg);
+		lblNewLabel.setIcon(ic);
+		lblNewLabel.repaint();
 		pn_Poster.add(lblNewLabel, BorderLayout.CENTER);
 
 		panel_1 = new JPanel();

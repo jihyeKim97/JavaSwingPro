@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Panel;
 import java.awt.Color;
 import template.Application.controller.DB.Main_Movie_DB;
@@ -329,7 +330,17 @@ public class Reservation_step2 extends JFrame {
 		JPanel panel_10 = new JPanel();
 		panel_10.setBackground(new Color(255, 235, 205));
 		panel_10.setBounds(0, 10, 141, 221);
+		panel_10.setLayout(new BorderLayout());
+		JLabel JL = new JLabel();
 		panel_9.add(panel_10);
+		ImageIcon ic1 = new ImageIcon(Main.class.getResource(movie.getImagefilename()));
+		Image icImg1 = ic1.getImage().getScaledInstance(141, 221, Image.SCALE_SMOOTH);
+		ic1.setImage(icImg1);
+		JL.setIcon(ic1);
+		JL.repaint();
+		panel_10.add(JL, BorderLayout.CENTER);
+		
+		
 
 		JPanel panel_11 = new JPanel();
 		panel_11.setLayout(null);
