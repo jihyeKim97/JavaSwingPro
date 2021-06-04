@@ -58,6 +58,7 @@ public class Admin_FilmManagement extends JDialog{
 	private JTextField ad_txt_runtime;
 	JLabel ad_lb_load_poster;
 	Admin_FilmManagement dlg;
+	String dbImgPath;
 	JLabel ad_lb_poster;
 	Ad_Film_Data afd = new Ad_Film_Data();
 	Ad_Film_DB db = new Ad_Film_DB();
@@ -93,7 +94,7 @@ public class Admin_FilmManagement extends JDialog{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		MyArr = db.GetFilm(film_id);
+		MyArr = db.GetFilm(film_id);
 		frame = new JFrame();
 		frame.setTitle("영화정보");
 		frame.setBounds(100, 100, 493, 804);
@@ -139,7 +140,7 @@ public class Admin_FilmManagement extends JDialog{
 					System.out.println("선택된 파일명: " + imgFile.getName());
 					System.out.println("선택된 파일경로명: " + imgFile.getPath());
 					
-					String dbImgPath
+					dbImgPath
 						= currentDirPath + "/" + imgFile.getName();
 					ad_lb_load_poster.setText(dbImgPath);
 					ad_lb_load_poster.setToolTipText("이미지 경로: " + imgFile.getPath());
@@ -154,6 +155,7 @@ public class Admin_FilmManagement extends JDialog{
 				}
 			}
 		});
+		System.out.println(dbImgPath);
 		ad_lb_load_poster.setForeground(Color.RED);
 		pnMenuImage.add(ad_lb_load_poster, BorderLayout.SOUTH);
 		
@@ -201,19 +203,12 @@ public class Admin_FilmManagement extends JDialog{
 		panel_1.setBounds(204, 50, 250, 35);
 		panel_2.add(panel_1);
 		
-		JLabel label = new JLabel("       이미지");
-		label.setFont(new Font("굴림", Font.BOLD, 15));
-		label.setBounds(0, 0, 250, 35);
-		panel_1.add(label);
-		
 		ad_txt_img = new JTextField();
 		ad_txt_img.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_img.setHorizontalAlignment(SwingConstants.CENTER);
 		ad_txt_img.setColumns(10);
 		ad_txt_img.setBounds(108, 0, 130, 35);
 		panel_1.add(ad_txt_img);
-		System.out.println(MyArr.get(0).getImage_file_name());
-		ad_txt_img.setText(MyArr.get(0).getImage_file_name());
 	
 		
 		JPanel panel_8 = new JPanel();
@@ -386,7 +381,6 @@ public class Admin_FilmManagement extends JDialog{
 		label_3.setFont(new Font("Candara Light", Font.BOLD, 33));
 		label_3.setBounds(30, 0, 400, 55);
 		panel.add(label_3);
-		
 		JButton btnDown = new JButton("수정");
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -400,10 +394,9 @@ public class Admin_FilmManagement extends JDialog{
 				String open_date = ad_txt_openday.getText();
 				String production = ad_txt_production.getText();
 				String schedule_date = ad_txt_schedule_date.getText();
-				String image_file_name = ad_txt_img.getText();
 				String running_time = ad_txt_runtime.getText();
 				
-				boolean r = db.changeFilm(film_id, title, genre, director, age_group, story, average_score, gee, open_date, production, schedule_date, image_file_name, running_time);
+				boolean r = db.changeFilm(film_id, title, genre, director, age_group, story, average_score, gee, open_date, production, schedule_date, dbImgPath, running_time);
 				if(r) {
 					JOptionPane.showMessageDialog(null, "영화정보 수정성공");
 				}else
