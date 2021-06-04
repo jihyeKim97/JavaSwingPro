@@ -76,23 +76,9 @@ public class Main extends JFrame {
 	Main main;
 	static Login Lg;
 	static Login_data Ld;
-	private JPanel panel;
-	private JLabel label;
+	JPanel panel;
+	JLabel label;
 	JLabel Poster;
-
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main frame = new Main(Lg, Ld);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
@@ -121,7 +107,7 @@ public class Main extends JFrame {
 		btn_my.setBounds(382, 10, 100, 35);
 		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MyPage mypage = new MyPage(reserfrm);
+				MyPage mypage = new MyPage(reserfrm, Ld);
 				Point fPt = reserfrm.getLocationOnScreen();
 				mypage.setLocation(fPt.x + reserfrm.getWidth() + 20, fPt.y);
 				mypage.setVisible(true);
@@ -194,12 +180,12 @@ public class Main extends JFrame {
 		panel.add(lb_date);
 		lb_date.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_date.setFont(new Font("Ebrima", Font.PLAIN, 38));
-		
+
 		try {
 			toDayMovieList = MDB.TodayMovie(month, day);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}		
+		}
 		try {
 			notToDayMovieList = MDB.notTodayMovie(month, day);
 		} catch (SQLException e1) {
@@ -292,11 +278,10 @@ public class Main extends JFrame {
 		screen_guid_line.setBounds(0, 39, 434, 171);
 		screening_panel.add(screen_guid_line);
 		screen_guid_line.setLayout(null);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(79, 73, 10, 10);
 		screen_guid_line.add(panel_1);
-		
 
 		for (int i = 0; i < 4; i++) {
 			JPanel MoviePoster = new JPanel();
@@ -313,7 +298,7 @@ public class Main extends JFrame {
 			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
 			ic.setImage(icImg);
 			Poster.setIcon(ic);
-			Poster.repaint();	
+			Poster.repaint();
 //			
 			Poster.setBackground(new Color(0, 0, 150));
 			MoviePoster.addMouseListener(new MouseAdapter() {
@@ -340,7 +325,6 @@ public class Main extends JFrame {
 			});
 		}
 
-		
 		released_panel = new Panel();
 		released_panel.setLayout(null);
 		released_panel.setBackground(Color.WHITE);
@@ -366,9 +350,9 @@ public class Main extends JFrame {
 			Movie_Data movie = notToDayMovieList.get(i);
 			panel_10.add(MoviePoster);
 			if (i < 4) {
-				if(i==1) {
+				if (i == 1) {
 					MoviePoster.setBounds(10 * (i + 1) + 98 * i, 0, 98, 125);
-				}else {
+				} else {
 					MoviePoster.setBounds(10 * (i + 1) + 98 * i, 0, 98, 125);
 				}
 			} else {
