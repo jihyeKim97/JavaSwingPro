@@ -66,7 +66,7 @@ public class Admin_FilmManagement extends JDialog {
 	JLabel ad_lb_poster;
 	Ad_Film_Data afd = new Ad_Film_Data();
 	Ad_Film_DB db = new Ad_Film_DB();
-	int film_id = 258;
+	int film_id = 85;
 	File imgFile;
 	ArrayList<Ad_Film_Data> MyArr = new ArrayList<>();
 	JTextField ad_txt_schedule_date;
@@ -153,20 +153,20 @@ public class Admin_FilmManagement extends JDialog {
 					ad_lb_poster.setIcon(ic);
 					ad_lb_poster.repaint();
 					ppp = currentDirPath + "/" + imgFile.getName();
-					ad_txt_img.setText(ppp);
+//					ad_txt_img.setText(ppp);
 				}
 			}
 		});
 		ad_lb_load_poster.setForeground(Color.RED);
 		pnMenuImage.add(ad_lb_load_poster, BorderLayout.SOUTH);
 
-		ad_txt_img = new JTextField();
-		pnMenuImage.add(ad_txt_img, BorderLayout.NORTH);
-		ad_txt_img.setBackground(SystemColor.control);
-		ad_txt_img.setForeground(SystemColor.control);
-		ad_txt_img.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		ad_txt_img.setHorizontalAlignment(SwingConstants.RIGHT);
-		ad_txt_img.setColumns(10);
+//		ad_txt_img = new JTextField();
+//		pnMenuImage.add(ad_txt_img, BorderLayout.NORTH);
+//		ad_txt_img.setBackground(SystemColor.control);
+//		ad_txt_img.setForeground(SystemColor.control);
+//		ad_txt_img.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+//		ad_txt_img.setHorizontalAlignment(SwingConstants.RIGHT);
+//		ad_txt_img.setColumns(10);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(204, 10, 250, 35);
@@ -363,10 +363,10 @@ public class Admin_FilmManagement extends JDialog {
 				String ad_open_date = ad_txt_openday.getText();
 				String ad_production = ad_txt_production.getText();
 				String ad_schedule_date = ad_txt_schedule_date.getText();
-				String ad_image_file_name = ad_txt_img.getText();
+//				String ad_image_file_name = ad_txt_img.getText();
 				String ad_running_time = ad_txt_runtime.getText();
 				Ad_Film_Data upmovie = new Ad_Film_Data(ad_title, ad_genre, ad_director, age_group, ad_story,
-						ad_average_score, ad_gee, ad_open_date, ad_production, ad_schedule_date, ad_image_file_name,
+						ad_average_score, ad_gee, ad_open_date, ad_production, ad_schedule_date, ppp,
 						ad_running_time);
 				boolean r = db.insertNewMovie(upmovie);
 				if (r) {
@@ -402,11 +402,11 @@ public class Admin_FilmManagement extends JDialog {
 				String open_date = ad_txt_openday.getText();
 				String production = ad_txt_production.getText();
 				String schedule_date = ad_txt_schedule_date.getText();
-				String image_file_name = ad_txt_img.getText();
+//				String image_file_name = ad_txt_img.getText();
 				String running_time = ad_txt_runtime.getText();
 
 				boolean r = db.changeFilm(film_id, title, genre, director, age_group, story, average_score, gee,
-						open_date, production, schedule_date, image_file_name, running_time);
+						open_date, production, schedule_date, ppp, running_time);
 				if (r) {
 					JOptionPane.showMessageDialog(null, "영화정보 수정성공");
 				} else
