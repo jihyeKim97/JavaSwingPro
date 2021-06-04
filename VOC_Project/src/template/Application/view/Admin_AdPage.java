@@ -485,8 +485,8 @@ public class Admin_AdPage extends JFrame {
 				"공지인덱스", "제목", "내용", "조회수", "회원인덱스"
 		}; // 8개
 	
-		Notice_DB mgr = new Notice_DB();
-		nList = mgr.selectAllNotice();
+		Ad_AdPage_DB mgr = new Ad_AdPage_DB();
+		nList = mgr.showAllNotice();
 		if(nList == null || nList.isEmpty()) return;
 		final int nDBSize = nList.size(); // 레코드 개수 ==> 테이블의 행수
 		Object data[][] = new Object[nDBSize][columnNames.length];

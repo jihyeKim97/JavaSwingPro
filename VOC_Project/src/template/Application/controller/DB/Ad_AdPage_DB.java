@@ -27,6 +27,40 @@ public class Ad_AdPage_DB {
 		this.conn = connect.getConn();
 	}
 
+	
+	   public  ArrayList<Notice_data> showAllNotice() {
+		      if( connect.conn != null ) {
+		         ArrayList<Notice_data> uiList = new ArrayList<>();
+		         String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
+		         try {
+		            Statement stmt =  connect.conn.createStatement();
+		            ResultSet rs = stmt.executeQuery(sql);
+		            while( rs.next() ) {   
+		               int mbid= rs.getInt("MEMBER_ID");
+
+		               Notice_data ui 
+		            = new Notice_data(
+		                     rs.getInt("NOTICE_ID"), 
+		                     rs.getString("TITLE"),
+		                     rs.getString("CONTENT"),
+		                     rs.getInt("VIEWCOUNT"),
+		                     rs.getInt("MEMBER_ID"));
+		               
+		            uiList.add(ui);
+		            }
+		            System.out.println("DBMgr: 연동 성공! 공지사항갯수 => " + uiList.size());
+		            return uiList;
+		         } catch (SQLException e) {
+		            e.printStackTrace();
+		         }         
+		      } else {
+		         System.out.println("DB error!!!@");
+		      }
+		      
+		      return null;
+		   }
+		
+
 	public boolean updateMembertoNone(int is_member, int member_id) {
 		connect.beginConnection();
 		if (this.conn != null) {
@@ -86,7 +120,7 @@ public class Ad_AdPage_DB {
 				Statement stmt = this.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
-					int noticeMemberId = rs.getInt("RESERVATION_ID");
+					int noticeMemberId = rs.getInt("RUNNING_TIME");
 
 //					Movie_Data ui 
 //				= new Movie_Data(
@@ -103,8 +137,7 @@ public class Ad_AdPage_DB {
 //							rs.getString("IMAGE_FILE_NAME"),
 //							rs.getDate("SCHEDULE_DATE"),
 //							rs.getInt("SCHEDULE_TIME"),
-//							rs.getInt("RUNNING_TIME"),
-//							rs.getInt("RESERVATION_ID"));
+//							rs.getInt("RUNNING_TIME"));
 					// movie date에 reservatioinid 상수 받고 getter setter받을것.
 
 //				uiList.add(ui);
