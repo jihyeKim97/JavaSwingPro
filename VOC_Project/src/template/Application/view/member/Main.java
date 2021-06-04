@@ -194,7 +194,12 @@ public class Main extends JFrame {
 		panel.add(lb_date);
 		lb_date.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_date.setFont(new Font("Ebrima", Font.PLAIN, 38));
-
+		
+		try {
+			toDayMovieList = MDB.TodayMovie(month, day);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		try {
 			notToDayMovieList = MDB.notTodayMovie(month, day);
 		} catch (SQLException e1) {
@@ -294,11 +299,6 @@ public class Main extends JFrame {
 		
 
 		for (int i = 0; i < 4; i++) {
-			try {
-				toDayMovieList = MDB.TodayMovie(month, day);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			MoviePoster.setBounds(10 * (i + 1) + 98 * i, 10, 98, 121);
@@ -309,11 +309,11 @@ public class Main extends JFrame {
 //			
 			System.out.println(toDayMovieList.get(i).getImagefilename());
 //			ImageIcon ic = new ImageIcon(Main.class.getResource("/template/Reference/images/미나리.jpg"));
-//			ImageIcon ic = new ImageIcon(Main.class.getResource(toDayMovieList.get(i).getImagefilename()));
-//			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
-//			ic.setImage(icImg);
-//			Poster.setIcon(ic);
-//			Poster.repaint();	
+			ImageIcon ic = new ImageIcon(Main.class.getResource(toDayMovieList.get(i).getImagefilename()));
+			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
+			ic.setImage(icImg);
+			Poster.setIcon(ic);
+			Poster.repaint();	
 //			
 			Poster.setBackground(new Color(0, 0, 150));
 			MoviePoster.addMouseListener(new MouseAdapter() {
@@ -375,6 +375,11 @@ public class Main extends JFrame {
 				MoviePoster.setBounds(10 * (i - 3) + 98 * (i - 4), 135, 98, 125);
 			}
 //			Poster.setIcon(new ImageIcon(Main.class.getResource(notToDayMovieList.get(i).getImagefilename())));
+			ImageIcon ic = new ImageIcon(Main.class.getResource(notToDayMovieList.get(i).getImagefilename()));
+			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
+			ic.setImage(icImg);
+			Poster.setIcon(ic);
+			Poster.repaint();
 			Poster.setBackground(new Color(0, 0, 150));
 			Poster.repaint();
 			MoviePoster.addMouseListener(new MouseAdapter() {
