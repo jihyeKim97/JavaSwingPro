@@ -96,19 +96,22 @@ public class Ad_Film_DB {
 		
 		if (this.conn != null && ui != null) {
 			String sql 
-					= "INSERT INTO movies(mo_id,title,content,viewcount,member_id) VALUES (MEMBER_SEQ.nextval,"
+					= "INSERT INTO movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) VALUES "
+							+ "(MEMBER_SEQ.nextval,"
 							+"'"+ ui.getTitle() + "', '"
-							+ ui.getGenre() + "', '" + "0" + "', '" + 24 + "')";
+							+ ui.getGenre() + "', '" + ui.getDirector() + "', '" + ui.getAge_group()  + "', '" + ui.getStory()+ "', '" + ui.getAverage_score()
+							+ "', '" + ui.getGee() + "', '" + ui.getOpen_date() + "', '" + ui.getProduction() + "', '" + ui.getImage_file_name() 
+							+ "', '" + ui.getSchedule_date() + "', '" + "1" + "', '" + ui.getRunning_time() + "')";
 			System.out.println(sql);
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
-					System.out.println("DBMgr: 공지사항 등록 성공! " + ui);
+					System.out.println("DBMgr: 영화 등록 성공! " + ui);
 					return true;
 				} else {
-					System.out.println("DBMgr: 공지사항 등록 실패! " + ui);
+					System.out.println("DBMgr: 영화 등록 실패! " + ui);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

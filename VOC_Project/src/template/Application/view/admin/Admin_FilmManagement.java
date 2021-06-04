@@ -93,7 +93,7 @@ public class Admin_FilmManagement extends JDialog{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		MyArr = db.GetFilm(film_id);
+//		MyArr = db.GetFilm(film_id);
 		frame = new JFrame();
 		frame.setTitle("영화정보");
 		frame.setBounds(100, 100, 493, 804);
@@ -167,7 +167,6 @@ public class Admin_FilmManagement extends JDialog{
 		lblNo.setFont(new Font("굴림", Font.BOLD, 15));
 		panel_4.add(lblNo);
 		
-//		SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-");
 		String a[] = MyArr.get(0).getSchedule_date().split(" ");
 		ad_txt_schedule_date = new JTextField();
 		ad_txt_schedule_date.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
@@ -352,6 +351,26 @@ public class Admin_FilmManagement extends JDialog{
 		JButton ad_btn_up = new JButton("등록");
 		ad_btn_up.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String ad_title = ad_txt_title.getText();
+				String ad_genre = ad_txt_ganre.getText();
+				String ad_director = ad_txt_director.getText();
+				String age_group = ad_txt_age.getText();
+				String ad_story = textArea.getText();
+				String ad_average_score = ad_txt_score.getText();
+				String ad_gee = ad_txt_gee.getText();
+				String ad_open_date = ad_txt_openday.getText();
+				String ad_production = ad_txt_production.getText();
+				String ad_schedule_date = ad_txt_schedule_date.getText();
+				String ad_image_file_name = ad_txt_img.getText();
+				String ad_running_time = ad_txt_runtime.getText();
+				Ad_Film_Data upmovie = new Ad_Film_Data(ad_title, ad_genre, ad_director, age_group, ad_story, ad_average_score, ad_gee,
+						ad_open_date, ad_production, ad_schedule_date, ad_image_file_name, ad_running_time);
+				boolean r = db.insertNewMovie(upmovie);
+				if(r) {
+					JOptionPane.showMessageDialog(null, "등록성공");
+				}else
+					JOptionPane.showMessageDialog(null, "등록실패");
+			
 			}
 		});
 		ad_btn_up.setBounds(30, 707, 107, 48);
