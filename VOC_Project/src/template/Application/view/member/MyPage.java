@@ -2,6 +2,8 @@ package template.Application.view.member;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,8 +11,10 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
 
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Mypage_DB;
 import template.Application.controller.Data.Login_data;
+import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Member_data;
 import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
@@ -26,6 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -79,12 +85,15 @@ public class MyPage extends JFrame {
 	JLabel errortxt;
 	Mypage_DB MDB;
 	JLabel none_reservation;
+	Movie_Data MDT;
+	Movie_DB MD;
 
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(Ld.getMember_id());
 		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
-
+		
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -168,17 +177,27 @@ public class MyPage extends JFrame {
 				res_panel.setVisible(true);
 				lbTitle.setText("Reservtion");
 				if (!ReArr.isEmpty()) {
+					for (int i = 0; i < ReArr.size(); i++) {
+					MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());
 					none_reservation.setVisible(false);
 					reser_box = new Panel();
 					reser_box.setBackground(Color.white);
-					reser_box.setBounds(10, 80, 404, 174);
+					reser_box.setBounds(10, 80 + (174 * i) + (30 * i), 404, 174);
 					resdetail_panel.add(reser_box);
 					reser_box.setLayout(null);
 
 					poster = new Panel();
 					poster.setBackground(Color.white);
 					poster.setBounds(10, 10, 117, 155);
+					poster.setLayout(new BorderLayout());
+					JLabel JL = new JLabel();
+					poster.add(JL, BorderLayout.CENTER);
 					reser_box.add(poster);
+					ImageIcon ic = new ImageIcon(Reservation_step2.class.getResource(MDT.getImagefilename()));
+					Image icImg = ic.getImage().getScaledInstance(141, 221, Image.SCALE_SMOOTH);
+					ic.setImage(icImg);
+					JL.setIcon(ic);
+					JL.repaint();
 
 					wirte_review = new RoundedButtonG("Go to write a review");
 					wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
@@ -256,11 +275,13 @@ public class MyPage extends JFrame {
 					lblReservation.setFont(new Font("Candara Light", Font.BOLD, 36));
 					lblReservation.setBounds(14, 19, 400, 55);
 					resdetail_panel.add(lblReservation);
+					}
 				} else {
 					none_reservation.setText("현재 회원님의 예매 내역이 없습니다.");
 					none_reservation.setHorizontalAlignment(SwingConstants.CENTER);
 					resdetail_panel.setVisible(true);
 				}
+				
 			}
 		});
 		btn_reser.setBounds(151, 10, 105, 35);
