@@ -93,13 +93,14 @@ public class Login extends JFrame {
 				String login = txt_id.getText();
 				String pw = new String(txt_pw.getPassword());
 				Login_DB mgr = new Login_DB();
+				Login_data memberdata = mgr.selectOneMemberByLogin(login);
 				Login_data ismb = mgr.movepage(login);
 				if(ismb.getIs_member() == 0) {
 					int r = mgr.loginProcess(login, pw);	
 					switch (r) {
 					case Login_DB.LOGIN_SUCCESS:
 						System.out.println(ismb.getIs_member());
-							main = new Main(ln, LD);
+							main = new Main(ln, memberdata);
 							main.setVisible(true);
 							dispose();
 						break;
