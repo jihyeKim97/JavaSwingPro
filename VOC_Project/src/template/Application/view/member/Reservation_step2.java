@@ -1,5 +1,6 @@
 package template.Application.view.member;
 
+import javax.naming.ldap.Rdn;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -8,6 +9,7 @@ import java.awt.Color;
 import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Reservation_data;
 import template.Application.controller.btn.RoundedButtonD;
 
 import java.awt.Font;
@@ -42,7 +44,7 @@ public class Reservation_step2 extends JFrame {
 	Login_data Ld;
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	
-	public Reservation_step2(Reservation_step1 reserStfrm, Movie_Data movie, Login_data Ld) {
+	public Reservation_step2(Reservation_step1 reserStfrm, Movie_Data movie, Login_data Ld, Reservation_data RD) {
 		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
@@ -135,7 +137,7 @@ public class Reservation_step2 extends JFrame {
 		label_6.setBounds(0, 95, 100, 31);
 		movietxt_div.add(label_6);
 
-		JLabel seatnum = new JLabel("");
+		JLabel seatnum = new JLabel(RD.getSeatNumber());
 		seatnum.setHorizontalAlignment(SwingConstants.CENTER);
 		seatnum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		seatnum.setBounds(100, 95, 211, 31);
@@ -147,7 +149,7 @@ public class Reservation_step2 extends JFrame {
 		label_8.setBounds(0, 126, 100, 31);
 		movietxt_div.add(label_8);
 
-		JLabel optionname = new JLabel("");
+		JLabel optionname = new JLabel(RD.getOptionName());
 		optionname.setHorizontalAlignment(SwingConstants.CENTER);
 		optionname.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		optionname.setBounds(100, 126, 211, 31);
@@ -159,7 +161,7 @@ public class Reservation_step2 extends JFrame {
 		label_10.setBounds(0, 157, 100, 31);
 		movietxt_div.add(label_10);
 
-		JLabel optionprice = new JLabel("");
+		JLabel optionprice = new JLabel(RD.getOptionPrice() + "원");
 		optionprice.setHorizontalAlignment(SwingConstants.CENTER);
 		optionprice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		optionprice.setBounds(100, 157, 211, 31);
@@ -171,7 +173,7 @@ public class Reservation_step2 extends JFrame {
 		label_12.setBounds(0, 188, 100, 31);
 		movietxt_div.add(label_12);
 
-		JLabel totalprice = new JLabel("");
+		JLabel totalprice = new JLabel((RD.getPaymentPrice()+RD.getOptionPrice()) + "원");
 		totalprice.setHorizontalAlignment(SwingConstants.CENTER);
 		totalprice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		totalprice.setBounds(100, 188, 211, 31);

@@ -11,7 +11,9 @@ import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
-import template.Application.view.Login;
+import template.Application.controller.btn.RoundedButtonG;
+import template.Application.controller.btn.RoundedButtonR;
+import template.Application.controller.btn.RoundedButtonY;
 
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
@@ -29,6 +31,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
@@ -55,7 +59,7 @@ public class Main extends JFrame {
 	JTextField textField_7;
 	JLabel lblNewLabel;
 	Panel released_panel;
-	RoundedButtonD btn_notice;
+	RoundedButtonR btn_notice;
 	JLabel lb_title1;
 	JLabel lb_title2;
 	Panel screen_guid_line;
@@ -70,6 +74,8 @@ public class Main extends JFrame {
 	Main main;
 	static Login Lg;
 	static Login_data Ld;
+	private JPanel panel;
+	private JLabel label;
 
 	public static void main(String[] args) {
 
@@ -84,6 +90,7 @@ public class Main extends JFrame {
 			}
 		});
 	}
+
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
 
@@ -97,13 +104,13 @@ public class Main extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		header_panel.setBackground(new Color(169, 169, 169));
+		header_panel.setBackground(new Color(211, 211, 211));
 		header_panel.setBounds(0, 0, 484, 55);
 		contentPane.add(header_panel);
 		header_panel.setLayout(null);
 
-		RoundedButtonD btn_my = new RoundedButtonD("MYPAGE");
-		btn_my.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		RoundedButtonG btn_my = new RoundedButtonG("MYPAGE");
+		btn_my.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		btn_my.setBounds(372, 10, 100, 35);
 		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -128,36 +135,58 @@ public class Main extends JFrame {
 		mainPanel.add(main_panel);
 		main_panel.setLayout(null);
 		title_panel = new Panel();
+		title_panel.setFont(new Font("Calibri Light", Font.PLAIN, 18));
 		title_panel.setBackground(new Color(255, 255, 255));
 		title_panel.setBounds(10, 16, 444, 50);
 		main_panel.add(title_panel);
+
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+//		int year = 2020;
+//		int month = 6;
+//		int day = 2;
 		title_panel.setLayout(null);
 
-//		Calendar cal = Calendar.getInstance();
-//		int year = cal.get(Calendar.YEAR);
-//		int month = cal.get(Calendar.MONTH) + 1;
-//		int day = cal.get(Calendar.DAY_OF_MONTH);
-		int year = 2020;
-		int month = 6;
-		int day = 2;
+		panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(83, 0, 267, 50);
+		title_panel.add(panel);
+		panel.setLayout(null);
 
-		lblNewLabel = new JLabel(year + " - ");
-		lblNewLabel.setFont(new Font("Candara Light", Font.PLAIN, 40));
-		lblNewLabel.setBounds(105, 0, 119, 50);
+		lblNewLabel = new JLabel("2020");
+		lblNewLabel.setBounds(0, 0, 128, 50);
+		panel.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Ebrima", Font.PLAIN, 38));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		title_panel.add(lblNewLabel);
+		setFocusTraversalPolicy(
+				new FocusTraversalOnArray(new Component[] { btn_my, contentPane, header_panel, mainPanel, main_panel,
+						title_panel, lblNewLabel, cpn_panel, screening_panel, lb_title1, screen_guid_line }));
+
+		label = new JLabel("/");
+		label.setBounds(100, 0, 47, 50);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Ebrima", Font.PLAIN, 38));
+		panel.add(label);
 
 		lb_month = new JLabel("" + month);
+		lb_month.setBounds(135, 0, 47, 50);
+		panel.add(lb_month);
 		lb_month.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_month.setFont(new Font("Candara Light", Font.PLAIN, 40));
-		lb_month.setBounds(220, 0, 31, 50);
-		title_panel.add(lb_month);
+		lb_month.setFont(new Font("Ebrima", Font.PLAIN, 38));
+
+		label_2 = new JLabel("/");
+		label_2.setBounds(171, 0, 47, 50);
+		panel.add(label_2);
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setFont(new Font("Ebrima", Font.PLAIN, 38));
 
 		lb_date = new JLabel("" + day);
+		lb_date.setBounds(212, 0, 55, 50);
+		panel.add(lb_date);
 		lb_date.setHorizontalAlignment(SwingConstants.CENTER);
-		lb_date.setFont(new Font("Candara Light", Font.PLAIN, 40));
-		lb_date.setBounds(276, 0, 56, 50);
-		title_panel.add(lb_date);
+		lb_date.setFont(new Font("Ebrima", Font.PLAIN, 38));
 
 		try {
 			toDayMovieList = MDB.TodayMovie(month, day);
@@ -170,12 +199,6 @@ public class Main extends JFrame {
 
 			e1.printStackTrace();
 		}
-
-		label_2 = new JLabel("-");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Candara Light", Font.PLAIN, 40));
-		label_2.setBounds(252, 0, 31, 50);
-		title_panel.add(label_2);
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);
@@ -253,7 +276,7 @@ public class Main extends JFrame {
 		screening_panel.setLayout(null);
 
 		lb_title1 = new JLabel("상영중인 영화");
-		lb_title1.setFont(new Font("한컴 고딕", Font.BOLD, 19));
+		lb_title1.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		lb_title1.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_title1.setBounds(0, 0, 424, 39);
 		screening_panel.add(lb_title1);
@@ -285,8 +308,9 @@ public class Main extends JFrame {
 
 				}
 			});
-			RoundedButtonD btn_poster_1 = new RoundedButtonD("click");
-			btn_poster_1.setBounds(10 * (i + 1) + 94 * i, 131, 94, 30);
+			RoundedButtonY btn_poster_1 = new RoundedButtonY("click");
+			btn_poster_1.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+			btn_poster_1.setBounds(10 * (i + 1) + 94 * i, 141, 94, 30);
 			screen_guid_line.add(btn_poster_1);
 			btn_poster_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -305,7 +329,7 @@ public class Main extends JFrame {
 		cpn_panel.add(released_panel);
 
 		lb_title2 = new JLabel("개봉예정 영화");
-		lb_title2.setFont(new Font("한컴 고딕", Font.BOLD, 19));
+		lb_title2.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		lb_title2.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_title2.setBounds(0, 0, 424, 44);
 		released_panel.add(lb_title2);
@@ -314,10 +338,6 @@ public class Main extends JFrame {
 		panel_10.setBounds(0, 43, 423, 265);
 		released_panel.add(panel_10);
 		panel_10.setLayout(null);
-
-//		Panel poster_re_1 = new Panel();
-//		poster_re_1.setBounds(10, 0, 94, 125);
-//		panel_10.add(poster_re_1);
 
 		for (int i = 0; i < 8; i++) {
 			JPanel MoviePoster = new JPanel();
@@ -346,8 +366,8 @@ public class Main extends JFrame {
 			});
 		}
 
-		btn_notice = new RoundedButtonD("notice");
-		btn_notice.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_notice = new RoundedButtonR("notice");
+		btn_notice.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		btn_notice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Notice noti = new Notice(reserfrm);
@@ -360,9 +380,6 @@ public class Main extends JFrame {
 		cpn_panel.add(btn_notice);
 		cpn_panel.setFocusTraversalPolicy(
 				new FocusTraversalOnArray(new Component[] { lb_title1, screening_panel, screen_guid_line }));
-		setFocusTraversalPolicy(
-				new FocusTraversalOnArray(new Component[] { btn_my, contentPane, header_panel, mainPanel, main_panel,
-						title_panel, lblNewLabel, cpn_panel, screening_panel, lb_title1, screen_guid_line }));
 
 	}
 }

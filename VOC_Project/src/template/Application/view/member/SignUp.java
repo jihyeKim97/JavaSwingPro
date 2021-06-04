@@ -35,7 +35,6 @@ import template.Application.controller.Data.SignUp_data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonG;
 import template.Application.controller.btn.RoundedButtonR;
-import template.Application.view.Login;
 
 public class SignUp extends JFrame {
 

@@ -19,6 +19,13 @@ public class Login_data {
 		this.is_member = is_member;
 	}
 
+	public Login_data(String id, String password, int is_member) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.is_member = is_member;
+	}
+
 	public Login_data(String name, String phone_number) {
 		super();
 		this.name = name;

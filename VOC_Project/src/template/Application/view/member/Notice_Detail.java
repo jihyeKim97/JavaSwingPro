@@ -30,6 +30,7 @@ import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.Data.Notice_data;
 import template.Application.controller.btn.RoundedButtonD;
+import template.Application.controller.btn.RoundedButtonR;
 
 import javax.swing.JTextArea;
 import java.awt.Window.Type;
@@ -72,30 +73,32 @@ public class Notice_Detail extends JFrame {
 		contentPane.add(panel_1);
 
 		Panel panel_2 = new Panel();
-		panel_2.setBackground(SystemColor.activeCaption);
-		panel_2.setBounds(10, 10, 464, 682);
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(0, 0, 484, 705);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 
 		Panel pn_Title = new Panel();
-		pn_Title.setBounds(10, 10, 444, 55);
-		pn_Title.setBackground(SystemColor.controlShadow);
+		pn_Title.setBounds(10, 24, 464, 55);
+		pn_Title.setBackground(new Color(255, 255, 255));
 		panel_2.add(pn_Title);
 		pn_Title.setLayout(new BorderLayout(0, 0));
 
 		String title = NoticeArr.get(PK).getTitle();
 		JLabel lb_Title = new JLabel(title);
-		lb_Title.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		lb_Title.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Title.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		pn_Title.add(lb_Title, BorderLayout.CENTER);
 
 		int ViewCount = NoticeArr.get(PK).getViewcount();
 
 		JLabel lblNewLabel = new JLabel("조회수:" + ViewCount);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		pn_Title.add(lblNewLabel, BorderLayout.SOUTH);
 
 		JPanel pn_Content = new JPanel();
-		pn_Content.setBounds(10, 75, 444, 547);
+		pn_Content.setBounds(20, 95, 441, 600);
 		panel_2.add(pn_Content);
 		pn_Content.setLayout(new BorderLayout(0, 0));
 
@@ -106,36 +109,19 @@ public class Notice_Detail extends JFrame {
 		content.setEditable(false);
 		pn_Content.add(content, BorderLayout.CENTER);
 
-//		String content = NoticeArr.get(PK).getContent();
-//		JLabel lb_Content = new JLabel("<html>안녕하십니까? <br>저희극장을 이용해주셔서 감사합니다 <br>몇가지 유의사항을 알립니다 <br>다음페이지를 참고 해주세요</html>");
-//		lb_Content.setFont(new Font("굴림", Font.BOLD, 30));
-//		lb_Content.setVerticalAlignment(SwingConstants.TOP);
-//		pn_Content.add(lb_Content, BorderLayout.CENTER);
-
-		RoundedButtonD btn_End = new RoundedButtonD("LOGOUT");
-		btn_End.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		btn_End.setText("돌아가기");
-		btn_End.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btn_End.setBounds(172, 634, 120, 40);
-		panel_2.add(btn_End);
-
 		Panel panel = new Panel();
 		panel.setLayout(null);
-		panel.setBackground(new Color(169, 169, 169));
+		panel.setBackground(new Color(211, 211, 211));
 		panel.setBounds(0, 0, 484, 55);
 		contentPane.add(panel);
 		
-		RoundedButtonD roundedButtonD = new RoundedButtonD("HOME");
+		RoundedButtonR roundedButtonD = new RoundedButtonR("HOME");
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		roundedButtonD.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 
