@@ -82,7 +82,11 @@ public class MyPage extends JFrame {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(Ld.getMember_id());
 		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
-
+		ArrayList<Mypage_Reservation_data> MoveArr = MDB.Selectid(Ld.getMember_id());
+		for (int i = 0; i < MoveArr.size(); i++) {
+			System.out.println(MoveArr.get(i).getMovie_id());
+		}
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		setTitle("Vehicle Outdoor Cinema");
@@ -166,12 +170,12 @@ public class MyPage extends JFrame {
 				res_panel.setVisible(true);
 				lbTitle.setText("Reservtion");
 				if (!ReArr.isEmpty()) {
-					for (int i = 0; i < ReArr.size(); i++) {
-						MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());
+					for (int i = 0; i < MoveArr.size(); i++) {
+						MDT = MD.getMovieInformationFromMovieId(MoveArr.get(i).getMovie_id());
 						none_reservation.setVisible(false);
 						reser_box = new Panel();
 						reser_box.setBackground(new Color(242, 242, 242));
-						reser_box.setBounds(10, 80 + (174 * i) + (30 * i), 404, 174);
+						reser_box.setBounds(10, 80 + (174 * i) + (10 * i), 404, 174);
 						resdetail_panel.add(reser_box);
 						reser_box.setLayout(null);
 
