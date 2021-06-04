@@ -119,6 +119,7 @@ public class Movie_Informaiton extends JFrame {
 	private JLabel label_3;
 	private JLabel label_4;
 	private JPanel panel_5;
+	private JPanel panel_6;
 
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
@@ -401,16 +402,22 @@ public class Movie_Informaiton extends JFrame {
 		contentPane.add(lb_MovieInfomaiton);
 		lb_MovieInfomaiton.setFont(new Font("굴림", Font.BOLD, 20));
 		lb_MovieInfomaiton.setHorizontalAlignment(SwingConstants.CENTER);
-
-		RoundedButtonR roundedButtonD = new RoundedButtonR("HOME");
-		roundedButtonD.setBounds(12, 10, 100, 35);
-		contentPane.add(roundedButtonD);
-		roundedButtonD.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		
+		panel_6 = new JPanel();
+		panel_6.setBackground(new Color(211, 211, 211));
+		panel_6.setBounds(0, 0, 494, 55);
+		contentPane.add(panel_6);
+				panel_6.setLayout(null);
+		
+				RoundedButtonR roundedButtonD = new RoundedButtonR("HOME");
+				roundedButtonD.setBounds(10, 10, 93, 35);
+				panel_6.add(roundedButtonD);
+				roundedButtonD.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		mem_panel = new Panel();
 		mem_panel.setBackground(new Color(255, 228, 196));
 		mem_panel.setBounds(10, 120, 444, 570);

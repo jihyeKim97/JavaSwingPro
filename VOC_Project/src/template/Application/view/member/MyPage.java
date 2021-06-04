@@ -15,6 +15,9 @@ import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
 import template.Application.controller.Data.Notice_data;
 import template.Application.controller.btn.RoundedButtonD;
+import template.Application.controller.btn.RoundedButtonG;
+import template.Application.controller.btn.RoundedButtonR;
+import template.Application.controller.btn.RoundedButtonY;
 import template.Application.view.member.Mypage_writePage;
 
 import java.awt.Font;
@@ -41,8 +44,8 @@ public class MyPage extends JFrame {
 	JTextField newpwckField;
 	Panel header;
 	MyPage frm;
-	RoundedButtonD btn_logout;
-	RoundedButtonD wirte_review;
+	RoundedButtonR btn_logout;
+	RoundedButtonY wirte_review;
 	Mypage_writePage wirteP;
 	JLabel in_reservationNum;
 	JLabel txtmovietitle;
@@ -52,15 +55,15 @@ public class MyPage extends JFrame {
 	JLabel txttotalprice;
 	JLabel in_totalPrice;
 	JLabel lblReservation;
-	RoundedButtonD btn_meminfo;
-	RoundedButtonD btn_reser;
+	RoundedButtonG btn_meminfo;
+	RoundedButtonG btn_reser;
 	Panel memdetail_panel;
 	Panel lbPanel;
-	RoundedButtonD btn_edit;
+	RoundedButtonG btn_edit;
 	JPanel panel;
 	JLabel txtreservationum;
 	Panel fieldPanel;
-	RoundedButtonD btn_main;
+	RoundedButtonR btn_main;
 	JPanel content;
 	Panel detail;
 	JPanel mem_panel;
@@ -91,17 +94,18 @@ public class MyPage extends JFrame {
 
 		header = new Panel();
 		header.setLayout(null);
-		header.setBackground(new Color(169, 169, 169));
+		header.setBackground(new Color(211, 211, 211));
 		header.setBounds(0, 0, 484, 55);
 		contentPane.add(header);
 
-		btn_main = new RoundedButtonD("HOME");
+		btn_main = new RoundedButtonR("HOME");
+
 		btn_main.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btn_main.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_main.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		btn_main.setBounds(12, 10, 100, 35);
 		header.add(btn_main);
 
@@ -118,13 +122,13 @@ public class MyPage extends JFrame {
 		detail.setLayout(null);
 
 		mem_panel = new JPanel();
-		mem_panel.setBackground(new Color(220, 220, 220));
+		mem_panel.setBackground(new Color(70, 114, 42));
 		mem_panel.setBounds(10, 40, 444, 655);
-		detail.add(mem_panel);
 		mem_panel.setLayout(null);
+		detail.add(mem_panel);
 
 		res_panel = new JPanel();
-		res_panel.setBackground(new Color(211, 211, 211));
+		res_panel.setBackground(new Color(70, 114, 42));
 		res_panel.setBounds(10, 40, 444, 655);
 		detail.add(res_panel);
 		res_panel.setLayout(null);
@@ -139,11 +143,12 @@ public class MyPage extends JFrame {
 		none_reservation.setForeground(Color.RED);
 		none_reservation.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 		none_reservation.setBounds(10, 80, 402, 15);
-		resdetail_panel.add(none_reservation);
+//		resdetail_panel.add(none_reservation);
 
-		btn_meminfo = new RoundedButtonD("member info");
+		btn_meminfo = new RoundedButtonG("member info");
+		btn_meminfo.setText("Member Info");
 		btn_meminfo.setBackground(new Color(128, 128, 128));
-		btn_meminfo.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_meminfo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		btn_meminfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mem_panel.setVisible(true);
@@ -154,8 +159,9 @@ public class MyPage extends JFrame {
 		btn_meminfo.setBounds(18, 10, 130, 35);
 		detail.add(btn_meminfo);
 
-		btn_reser = new RoundedButtonD("reservtion");
-		btn_reser.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_reser = new RoundedButtonG("reservtion");
+		btn_reser.setText("Reservation");
+		btn_reser.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		btn_reser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mem_panel.setVisible(false);
@@ -174,7 +180,7 @@ public class MyPage extends JFrame {
 					poster.setBounds(10, 10, 117, 155);
 					reser_box.add(poster);
 
-					wirte_review = new RoundedButtonD("Go to write a review");
+					wirte_review = new RoundedButtonY("Go to write a review");
 					wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 					// 작성한 리뷰가 있으면 한줄평 수정하기 로 변경
 					// 버튼을 누르면 작성한 정보가 그대로 불러와짐
@@ -269,7 +275,7 @@ public class MyPage extends JFrame {
 		memdetail_panel.setBounds(10, 10, 424, 635);
 		mem_panel.add(memdetail_panel);
 
-		btn_edit = new RoundedButtonD("Edit");
+		btn_edit = new RoundedButtonG("Edit");
 		btn_edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!nameField.getText().isEmpty() && !phone.getText().isEmpty() && !currField.getText().isEmpty()
@@ -296,8 +302,8 @@ public class MyPage extends JFrame {
 				}
 			}
 		});
-		btn_edit.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_edit.setBounds(12, 584, 400, 40);
+		btn_edit.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		btn_edit.setBounds(12, 565, 400, 60);
 		memdetail_panel.add(btn_edit);
 
 		lbPanel = new Panel();
@@ -417,7 +423,7 @@ public class MyPage extends JFrame {
 		lbTitle = new JLabel("Member Info");
 		lbTitle.setBounds(12, 25, 400, 55);
 		memdetail_panel.add(lbTitle);
-		lbTitle.setFont(new Font("Candara Light", Font.BOLD, 36));
+		lbTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 30));
 		lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
 		errortxt = new JLabel("");
@@ -426,7 +432,7 @@ public class MyPage extends JFrame {
 		errortxt.setBounds(168, 498, 244, 24);
 		memdetail_panel.add(errortxt);
 
-		btn_logout = new RoundedButtonD("LOGOUT");
+		btn_logout = new RoundedButtonR("LOGOUT");
 		btn_logout.setBounds(347, 10, 100, 35);
 		detail.add(btn_logout);
 		btn_logout.addActionListener(new ActionListener() {
@@ -439,7 +445,7 @@ public class MyPage extends JFrame {
 				loginpage.setVisible(true);
 			}
 		});
-		btn_logout.setFont(new Font("Candara Light", Font.PLAIN, 20));
+		btn_logout.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 
 	}
 }

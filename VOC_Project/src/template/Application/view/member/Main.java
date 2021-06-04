@@ -99,19 +99,21 @@ public class Main extends JFrame {
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
+		setResizable(false);
+		setTitle("Vehicle Outdoor Cinema");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		header_panel.setBackground(new Color(211, 211, 211));
-		header_panel.setBounds(0, 0, 484, 55);
+		header_panel.setBounds(0, 0, 494, 55);
 		contentPane.add(header_panel);
 		header_panel.setLayout(null);
 
 		RoundedButtonG btn_my = new RoundedButtonG("MYPAGE");
 		btn_my.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		btn_my.setBounds(372, 10, 100, 35);
+		btn_my.setBounds(382, 10, 100, 35);
 		btn_my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyPage mypage = new MyPage(reserfrm);
@@ -125,19 +127,19 @@ public class Main extends JFrame {
 
 		mainPanel = new Panel();
 		mainPanel.setBackground(new Color(255, 255, 255));
-		mainPanel.setBounds(0, 55, 484, 705);
+		mainPanel.setBounds(0, 55, 494, 716);
 		contentPane.add(mainPanel);
 		mainPanel.setLayout(null);
 
 		main_panel = new Panel();
 		main_panel.setBackground(new Color(255, 255, 255));
-		main_panel.setBounds(10, 0, 464, 705);
+		main_panel.setBounds(10, 0, 474, 705);
 		mainPanel.add(main_panel);
 		main_panel.setLayout(null);
 		title_panel = new Panel();
 		title_panel.setFont(new Font("Calibri Light", Font.PLAIN, 18));
 		title_panel.setBackground(new Color(255, 255, 255));
-		title_panel.setBounds(10, 16, 444, 50);
+		title_panel.setBounds(10, 16, 454, 50);
 		main_panel.add(title_panel);
 
 		Calendar cal = Calendar.getInstance();
@@ -151,7 +153,7 @@ public class Main extends JFrame {
 
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(83, 0, 267, 50);
+		panel.setBounds(95, 0, 267, 50);
 		title_panel.add(panel);
 		panel.setLayout(null);
 
@@ -265,13 +267,13 @@ public class Main extends JFrame {
 		textField_7.setBounds(0, 412, 246, 40);
 		txtF_panel.add(textField_7);
 		cpn_panel.setBackground(Color.WHITE);
-		cpn_panel.setBounds(10, 77, 444, 613);
+		cpn_panel.setBounds(10, 77, 454, 613);
 		main_panel.add(cpn_panel);
 		cpn_panel.setLayout(null);
 
 		screening_panel = new Panel();
 		screening_panel.setBackground(new Color(255, 255, 255));
-		screening_panel.setBounds(10, 10, 424, 210);
+		screening_panel.setBounds(10, 10, 434, 210);
 		cpn_panel.add(screening_panel);
 		screening_panel.setLayout(null);
 
@@ -282,7 +284,7 @@ public class Main extends JFrame {
 		screening_panel.add(lb_title1);
 
 		screen_guid_line = new Panel();
-		screen_guid_line.setBounds(0, 39, 424, 171);
+		screen_guid_line.setBounds(0, 39, 434, 171);
 		screening_panel.add(screen_guid_line);
 		screen_guid_line.setLayout(null);
 
@@ -290,7 +292,7 @@ public class Main extends JFrame {
 
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
-			MoviePoster.setBounds(10 * (i + 1) + 94 * i, 10, 94, 121);
+			MoviePoster.setBounds(10 * (i + 1) + 98 * i, 10, 98, 121);
 			JLabel Poster = new JLabel();
 			MoviePoster.add(Poster, BorderLayout.CENTER);
 			Movie_Data movie = toDayMovieList.get(i);
@@ -310,7 +312,7 @@ public class Main extends JFrame {
 			});
 			RoundedButtonY btn_poster_1 = new RoundedButtonY("click");
 			btn_poster_1.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-			btn_poster_1.setBounds(10 * (i + 1) + 94 * i, 141, 94, 30);
+			btn_poster_1.setBounds(10 * (i + 1) + 98 * i, 141, 98, 30);
 			screen_guid_line.add(btn_poster_1);
 			btn_poster_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -325,7 +327,7 @@ public class Main extends JFrame {
 		released_panel = new Panel();
 		released_panel.setLayout(null);
 		released_panel.setBackground(Color.WHITE);
-		released_panel.setBounds(10, 226, 424, 309);
+		released_panel.setBounds(10, 226, 434, 309);
 		cpn_panel.add(released_panel);
 
 		lb_title2 = new JLabel("개봉예정 영화");
@@ -335,7 +337,7 @@ public class Main extends JFrame {
 		released_panel.add(lb_title2);
 
 		panel_10 = new Panel();
-		panel_10.setBounds(0, 43, 423, 265);
+		panel_10.setBounds(0, 43, 434, 265);
 		released_panel.add(panel_10);
 		panel_10.setLayout(null);
 
@@ -347,9 +349,13 @@ public class Main extends JFrame {
 			Movie_Data movie = notToDayMovieList.get(i);
 			panel_10.add(MoviePoster);
 			if (i < 4) {
-				MoviePoster.setBounds(10 * (i + 1) + 94 * i, 0, 94, 125);
+				if(i==1) {
+					
+				}else {
+					MoviePoster.setBounds(10 * (i + 1) + 98 * i, 0, 98, 125);
+				}
 			} else {
-				MoviePoster.setBounds(10 * (i - 3) + 94 * (i - 4), 135, 94, 125);
+				MoviePoster.setBounds(10 * (i - 3) + 98 * (i - 4), 135, 98, 125);
 			}
 			Poster.setIcon(new ImageIcon("." + notToDayMovieList.get(i).getImagefilename()));
 			Poster.setBackground(new Color(0, 0, 150));
@@ -376,7 +382,7 @@ public class Main extends JFrame {
 				noti.setVisible(true);
 			}
 		});
-		btn_notice.setBounds(10, 543, 424, 60);
+		btn_notice.setBounds(10, 543, 434, 60);
 		cpn_panel.add(btn_notice);
 		cpn_panel.setFocusTraversalPolicy(
 				new FocusTraversalOnArray(new Component[] { lb_title1, screening_panel, screen_guid_line }));
