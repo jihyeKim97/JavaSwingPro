@@ -1,39 +1,21 @@
 package template.Application.view.member;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import java.awt.SystemColor;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
-
-import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.btn.RoundedButtonG;
 import template.Application.controller.btn.RoundedButtonR;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -48,7 +30,7 @@ public class Login_FindID extends JFrame {
 	JPanel panel_2;
 	JTextField txt_name;
 	JTextField txt_number1;
-	private JTextField txt_number1_1;
+	JTextField txt_number1_1;
 	JTextField txt_number2;
 	JTextField txt_number3;
 

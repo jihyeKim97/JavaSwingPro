@@ -1,22 +1,17 @@
 package template.Application.view.member;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import template.Application.controller.DB.Main_Movie_DB;
-
-import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonG;
 import template.Application.controller.btn.RoundedButtonR;
 import template.Application.controller.btn.RoundedButtonY;
-
 import javax.swing.SwingConstants;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Point;
@@ -33,8 +28,6 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
@@ -137,9 +130,6 @@ public class Main extends JFrame {
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
-//		int year = 2020;
-//		int month = 6;
-//		int day = 2;
 		title_panel.setLayout(null);
 
 		panel = new JPanel();
@@ -192,71 +182,7 @@ public class Main extends JFrame {
 
 			e1.printStackTrace();
 		}
-		mem_panel = new Panel();
-		mem_panel.setBackground(new Color(255, 228, 196));
-		mem_panel.setBounds(10, 120, 444, 570);
-		mem_panel.setLayout(null);
 
-		mem_detail = new Panel();
-		mem_detail.setBackground(new Color(255, 255, 255));
-		mem_detail.setBounds(10, 10, 424, 550);
-		mem_panel.add(mem_detail);
-		mem_detail.setLayout(null);
-		mem_panel.setVisible(false);
-		btn_edit = new RoundedButtonD("Edit");
-		btn_edit.setFont(new Font("Candara Light", Font.PLAIN, 20));
-		btn_edit.setBounds(162, 505, 100, 35);
-		mem_detail.add(btn_edit);
-
-		txt_panel = new Panel();
-		txt_panel.setBounds(0, 0, 162, 462);
-		mem_detail.add(txt_panel);
-		txt_panel.setLayout(new GridLayout(0, 1, 0, 0));
-
-		txtF_panel = new Panel();
-		txtF_panel.setBounds(168, 0, 256, 462);
-		mem_detail.add(txtF_panel);
-		txtF_panel.setLayout(null);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(0, 10, 246, 40);
-		txtF_panel.add(textField_1);
-
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(0, 65, 246, 40);
-		txtF_panel.add(textField);
-
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(0, 123, 246, 40);
-		txtF_panel.add(textField_2);
-
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(0, 183, 246, 40);
-		txtF_panel.add(textField_3);
-
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(0, 242, 246, 40);
-		txtF_panel.add(textField_4);
-
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(0, 302, 246, 40);
-		txtF_panel.add(textField_5);
-
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(0, 358, 246, 40);
-		txtF_panel.add(textField_6);
-
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(0, 412, 246, 40);
-		txtF_panel.add(textField_7);
 		cpn_panel.setBackground(Color.WHITE);
 		cpn_panel.setBounds(10, 77, 454, 613);
 		main_panel.add(cpn_panel);
@@ -279,10 +205,6 @@ public class Main extends JFrame {
 		screening_panel.add(screen_guid_line);
 		screen_guid_line.setLayout(null);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(79, 73, 10, 10);
-		screen_guid_line.add(panel_1);
-
 		for (int i = 0; i < 4; i++) {
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
@@ -291,15 +213,12 @@ public class Main extends JFrame {
 			MoviePoster.add(Poster, BorderLayout.CENTER);
 			Movie_Data movie = toDayMovieList.get(i);
 			screen_guid_line.add(MoviePoster);
-//			
 			System.out.println(toDayMovieList.get(i).getImagefilename());
-//			ImageIcon ic = new ImageIcon(Main.class.getResource("/template/Reference/images/미나리.jpg"));
 			ImageIcon ic = new ImageIcon(Main.class.getResource(toDayMovieList.get(i).getImagefilename()));
 			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
 			ic.setImage(icImg);
 			Poster.setIcon(ic);
 			Poster.repaint();
-//			
 			Poster.setBackground(new Color(0, 0, 150));
 			MoviePoster.addMouseListener(new MouseAdapter() {
 				@Override
@@ -358,7 +277,6 @@ public class Main extends JFrame {
 			} else {
 				MoviePoster.setBounds(10 * (i - 3) + 98 * (i - 4), 135, 98, 125);
 			}
-//			Poster.setIcon(new ImageIcon(Main.class.getResource(notToDayMovieList.get(i).getImagefilename())));
 			ImageIcon ic = new ImageIcon(Main.class.getResource(notToDayMovieList.get(i).getImagefilename()));
 			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
 			ic.setImage(icImg);
