@@ -73,7 +73,7 @@ public class Notice extends JFrame {
 
 		Panel panel_3 = new Panel();
 		panel_3.setBackground(new Color(70, 114, 42));
-		panel_3.setBounds(0, 10, 484, 55);
+		panel_3.setBounds(0, 0, 484, 55);
 		panel_2.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
@@ -84,61 +84,62 @@ public class Notice extends JFrame {
 		panel_3.add(lb_Title, BorderLayout.CENTER);
 
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(70, 114, 42));
 		panel_4.setBounds(0, 633, 484, 72);
 		panel_2.add(panel_4);
-				panel_4.setLayout(new GridLayout(0, 1, 0, 0));
-		
-				JPanel pn_MovieInformaiton = new JPanel();
-				panel_4.add(pn_MovieInformaiton);
-				pn_MovieInformaiton.setBackground(new Color(70, 114, 42));
-				pn_MovieInformaiton.setLayout(new GridLayout(0, 2, 0, 0));
-				
-				JLabel lblNewLabel_1 = new JLabel("Movie Theater Introducer");
-				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 17));
-				lblNewLabel_1.setForeground(new Color(255, 255, 255));
-				pn_MovieInformaiton.add(lblNewLabel_1);
-				
-						JLabel lb_TheaterNumber = new JLabel("전화번호 : 02 - 333 - 4848 ");
-						lb_TheaterNumber.setForeground(new Color(255, 255, 255));
-						lb_TheaterNumber.setHorizontalAlignment(SwingConstants.CENTER);
-						lb_TheaterNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
-						pn_MovieInformaiton.add(lb_TheaterNumber);
-						
-								JLabel lb_TheaterTime = new JLabel("영업시간 : 18:00 ~ 03:00");
-								lb_TheaterTime.setForeground(new Color(255, 255, 255));
-								lb_TheaterTime.setHorizontalAlignment(SwingConstants.CENTER);
-								lb_TheaterTime.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
-								pn_MovieInformaiton.add(lb_TheaterTime);
-								
-										JLabel lb_TheaterCEO = new JLabel("대표자 : 고즐링");
-										lb_TheaterCEO.setForeground(new Color(255, 255, 255));
-										lb_TheaterCEO.setHorizontalAlignment(SwingConstants.CENTER);
-										lb_TheaterCEO.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
-										pn_MovieInformaiton.add(lb_TheaterCEO);
-										
-												JLabel lb_Theater = new JLabel("사업자 번호: 653-25-0698");
-												lb_Theater.setForeground(new Color(255, 255, 255));
-												lb_Theater.setHorizontalAlignment(SwingConstants.CENTER);
-												lb_Theater.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
-												pn_MovieInformaiton.add(lb_Theater);
-												
-														JLabel lb_TheaterLocaiton = new JLabel("위치: 서울 성동구 왕십리로 303");
-														lb_TheaterLocaiton.setForeground(new Color(255, 255, 255));
-														lb_TheaterLocaiton.setHorizontalAlignment(SwingConstants.CENTER);
-														lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
-														lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
-															@Override
-															public void mouseClicked(MouseEvent e) {
-																Locaiton NL = new Locaiton(NM);
-																NL.setVisible(true);
-															}
-														});
-														pn_MovieInformaiton.add(lb_TheaterLocaiton);
+		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
+
+		JPanel pn_MovieInformaiton = new JPanel();
+		panel_4.add(pn_MovieInformaiton);
+		pn_MovieInformaiton.setBackground(new Color(70, 114, 42));
+		pn_MovieInformaiton.setLayout(new GridLayout(0, 2, 0, 0));
+
+		JLabel lblNewLabel_1 = new JLabel("Movie Theater Introducer");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 17));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		pn_MovieInformaiton.add(lblNewLabel_1);
+
+		JLabel lb_TheaterNumber = new JLabel("전화번호 : 02 - 333 - 4848 ");
+		lb_TheaterNumber.setForeground(new Color(255, 255, 255));
+		lb_TheaterNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_TheaterNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		pn_MovieInformaiton.add(lb_TheaterNumber);
+
+		JLabel lb_TheaterTime = new JLabel("영업시간 : 18:00 ~ 03:00");
+		lb_TheaterTime.setForeground(new Color(255, 255, 255));
+		lb_TheaterTime.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_TheaterTime.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		pn_MovieInformaiton.add(lb_TheaterTime);
+
+		JLabel lb_TheaterCEO = new JLabel("대표자 : 고즐링");
+		lb_TheaterCEO.setForeground(new Color(255, 255, 255));
+		lb_TheaterCEO.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_TheaterCEO.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		pn_MovieInformaiton.add(lb_TheaterCEO);
+
+		JLabel lb_Theater = new JLabel("사업자 번호: 653-25-0698");
+		lb_Theater.setForeground(new Color(255, 255, 255));
+		lb_Theater.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Theater.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		pn_MovieInformaiton.add(lb_Theater);
+
+		JLabel lb_TheaterLocaiton = new JLabel("위치: 서울 성동구 왕십리로 303");
+		lb_TheaterLocaiton.setForeground(new Color(255, 255, 255));
+		lb_TheaterLocaiton.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+		lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Locaiton NL = new Locaiton(NM);
+				NL.setVisible(true);
+			}
+		});
+		pn_MovieInformaiton.add(lb_TheaterLocaiton);
 
 		JPanel pn_NoticeMain = new JPanel();
 		pn_NoticeMain.setBackground(new Color(255, 255, 255));
-		pn_NoticeMain.setBounds(10, 75, 464, 548);
+		pn_NoticeMain.setBounds(10, 61, 464, 562);
 		panel_2.add(pn_NoticeMain);
 		pn_NoticeMain.setLayout(null);
 
@@ -167,7 +168,7 @@ public class Notice extends JFrame {
 					ND.setVisible(true);
 				}
 			});
-			lbNotice.setBounds(10, 10 * (i + 1) + (i * 50), 416, 50);
+			lbNotice.setBounds(10, 10 * (i + 1) + (i * 50), 446, 50);
 			pn_NoticeMain.add(lbNotice);
 
 		}
