@@ -19,12 +19,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import template.Application.controller.DB.Login_DB;
+import template.Application.controller.btn.RoundedButtonG;
+import template.Application.controller.btn.RoundedButtonR;
 
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
+import java.awt.GridLayout;
 
 public class Login_FindPW extends JFrame {
 
@@ -37,56 +39,76 @@ public class Login_FindPW extends JFrame {
 	JTextField txt_number4;
 	JTextField txt_number5;
 	JTextField txt_number6;
-	JTextField jtf = new JTextField();
-	
+	JLabel lblNewLabel_2;
+	JPanel panel;
+	RoundedButtonR btn_Cancel2;
+	RoundedButtonG btn_Issued;
+	JPanel panel_1;
+	JLabel lblNewLabel_3;
+	JLabel lblId;
+	JLabel lblNewLabel_4;
+	JPanel panel_3;
+	JLabel label;
+	JLabel label_3;
 
 	Login ln;
 	Login_FindPW pw;
-	
+
 	public Login_FindPW(Login ln) {
 		this.ln = ln;
 		setTitle("Vehicle Outdoor Cinema");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"C:\\Users\\82102\\Desktop\\movie\\iconfinder-video-film-camera-movie-photography-4593167_122280.png"));
-		setBounds(100, 100, 523, 429);
+		setBounds(100, 100, 418, 423);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		panel_2 = new JPanel();
-		panel_2.setBounds(0, 0, 619, 390);
+		panel_2.setBounds(0, 0, 409, 390);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
-		JLabel lblNewLabel_2 = new JLabel("\uC784\uC2DC \uBE44\uBC00\uBC88\uD638 \uBC1C\uAE09");
-		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 27));
+		lblNewLabel_2 = new JLabel("임시 비밀번호 발급");
+		lblNewLabel_2.setBounds(0, 21, 401, 55);
+		lblNewLabel_2.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(118, 21, 272, 55);
 		panel_2.add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("\uC774\uB984 :");
-		lblNewLabel_3.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 18));
+		panel = new JPanel();
+		panel.setBounds(79, 326, 256, 43);
+		panel_2.add(panel);
+		panel.setLayout(new GridLayout(1, 0, 30, 0));
+
+		btn_Cancel2 = new RoundedButtonR("취소");
+		btn_Cancel2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btn_Cancel2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		panel.add(btn_Cancel2);
+
+		btn_Issued = new RoundedButtonG("완료");
+		panel.add(btn_Issued);
+		btn_Issued.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+
+		panel_1 = new JPanel();
+		panel_1.setBounds(23, 109, 354, 189);
+		panel_2.add(panel_1);
+		panel_1.setLayout(null);
+
+		lblNewLabel_3 = new JLabel("이름");
+		lblNewLabel_3.setBounds(0, 0, 100, 53);
+		panel_1.add(lblNewLabel_3);
+		lblNewLabel_3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(78, 103, 72, 37);
-		panel_2.add(lblNewLabel_3);
-
-		JLabel lblId = new JLabel("ID :");
-		lblId.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 18));
-		lblId.setHorizontalAlignment(SwingConstants.CENTER);
-		lblId.setBounds(78, 165, 72, 37);
-		panel_2.add(lblId);
-
-		JLabel label_3 = new JLabel("\uC804\uD654\uBC88\uD638 :");
-		label_3.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 18));
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBounds(53, 233, 97, 37);
-		panel_2.add(label_3);
 
 		txt_IssuedName = new JTextField();
+		txt_IssuedName.setBounds(112, 0, 242, 53);
+		panel_1.add(txt_IssuedName);
 		txt_IssuedName.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txt_IssuedName.setForeground(Color.black);
-				txt_IssuedName.setBackground(Color.yellow);
+				txt_IssuedName.setBackground(new Color(240, 240, 240));
 				if (txt_IssuedName.getText().equals("ex) 홍길동"))
 					txt_IssuedName.setText("");
 			}
@@ -100,16 +122,22 @@ public class Login_FindPW extends JFrame {
 			}
 		});
 		txt_IssuedName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
-		txt_IssuedName.setBounds(158, 109, 165, 30);
-		panel_2.add(txt_IssuedName);
 		txt_IssuedName.setColumns(10);
 
+		lblId = new JLabel("ID");
+		lblId.setBounds(0, 68, 100, 53);
+		panel_1.add(lblId);
+		lblId.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		lblId.setHorizontalAlignment(SwingConstants.CENTER);
+
 		txt_IssuedId = new JTextField();
+		txt_IssuedId.setBounds(112, 68, 242, 53);
+		panel_1.add(txt_IssuedId);
 		txt_IssuedId.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txt_IssuedId.setForeground(Color.black);
-				txt_IssuedId.setBackground(Color.yellow);
+				txt_IssuedId.setBackground(new Color(240, 240, 240));
 
 			}
 
@@ -122,15 +150,24 @@ public class Login_FindPW extends JFrame {
 		});
 		txt_IssuedId.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_IssuedId.setColumns(10);
-		txt_IssuedId.setBounds(158, 171, 165, 30);
-		panel_2.add(txt_IssuedId);
+		label_3 = new JLabel("전화번호");
+		label_3.setBounds(0, 136, 100, 53);
+		panel_1.add(label_3);
+		label_3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+
+		panel_3 = new JPanel();
+		panel_3.setBounds(112, 136, 242, 53);
+		panel_1.add(panel_3);
+		panel_3.setLayout(null);
 
 		txt_number4 = new JTextField(3);
+		txt_number4.setBounds(1, 0, 70, 53);
+		panel_3.add(txt_number4);
 		txt_number4.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
-				if(((JTextField)ke.getSource()).getText().length() > 2||
-						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
-						)
+				if (((JTextField) ke.getSource()).getText().length() > 2
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
 					ke.consume();
 			}
 		});
@@ -138,7 +175,7 @@ public class Login_FindPW extends JFrame {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txt_number4.setForeground(Color.black);
-				txt_number4.setBackground(Color.yellow);
+				txt_number4.setBackground(new Color(240, 240, 240));
 			}
 
 			@Override
@@ -149,16 +186,18 @@ public class Login_FindPW extends JFrame {
 		});
 		txt_number4.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_number4.setColumns(3);
-		txt_number4.setBounds(158, 238, 48, 30);
-		panel_2.add(txt_number4);
+		lblNewLabel_4 = new JLabel("-");
+		lblNewLabel_4.setBounds(54, 0, 48, 53);
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(lblNewLabel_4);
 
-	
 		txt_number5 = new JTextField();
+		txt_number5.setBounds(85, 0, 70, 53);
+		panel_3.add(txt_number5);
 		txt_number5.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
-				if(((JTextField)ke.getSource()).getText().length() > 3||
-						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
-						)
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
 					ke.consume();
 			}
 		});
@@ -166,7 +205,7 @@ public class Login_FindPW extends JFrame {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txt_number5.setForeground(Color.black);
-				txt_number5.setBackground(Color.yellow);
+				txt_number5.setBackground(new Color(240, 240, 240));
 			}
 
 			@Override
@@ -177,15 +216,19 @@ public class Login_FindPW extends JFrame {
 		});
 		txt_number5.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_number5.setColumns(4);
-		txt_number5.setBounds(218, 237, 55, 30);
-		panel_2.add(txt_number5);
+
+		label = new JLabel("-");
+		label.setBounds(139, 0, 48, 53);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(label);
 
 		txt_number6 = new JTextField();
+		txt_number6.setBounds(172, 0, 70, 53);
+		panel_3.add(txt_number6);
 		txt_number6.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
-				if(((JTextField)ke.getSource()).getText().length() > 3||
-						(ke.getKeyChar() < '0' || ke.getKeyChar() > '9')
-						)
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
 					ke.consume();
 			}
 		});
@@ -193,7 +236,7 @@ public class Login_FindPW extends JFrame {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txt_number6.setForeground(Color.black);
-				txt_number6.setBackground(Color.yellow);
+				txt_number6.setBackground(new Color(240, 240, 240));
 			}
 
 			@Override
@@ -204,53 +247,7 @@ public class Login_FindPW extends JFrame {
 		});
 		txt_number6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		txt_number6.setColumns(4);
-		txt_number6.setBounds(285, 237, 55, 30);
-		panel_2.add(txt_number6);
 
-		JLabel lblNewLabel_4 = new JLabel("-");
-		lblNewLabel_4.setBounds(207, 239, 12, 30);
-		panel_2.add(lblNewLabel_4);
-
-		JLabel label = new JLabel("-");
-		label.setBounds(274, 239, 12, 30);
-		panel_2.add(label);
-
-		JButton btn_Cancel2 = new JButton("\uCDE8\uC18C");
-		btn_Cancel2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btn_Cancel2.setForeground(Color.red);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btn_Cancel2.setForeground(Color.black);
-			}
-		});
-		btn_Cancel2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btn_Cancel2.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 16));
-		btn_Cancel2.setBounds(114, 298, 97, 47);
-		panel_2.add(btn_Cancel2);
-
-		JButton btn_Issued = new JButton("\uBC1C\uAE09");
-		btn_Issued.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btn_Issued.setForeground(Color.red);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btn_Issued.setForeground(Color.black);
-			}
-		});
-		btn_Issued.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 16));
-
-		// PW ã��@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		btn_Issued.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = txt_IssuedName.getText();
@@ -277,8 +274,6 @@ public class Login_FindPW extends JFrame {
 
 			}
 		});
-		btn_Issued.setBounds(285, 298, 97, 47);
-		panel_2.add(btn_Issued);
 
 	}
 }
