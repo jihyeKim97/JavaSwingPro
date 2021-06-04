@@ -279,10 +279,6 @@ public class Main extends JFrame {
 		screening_panel.add(screen_guid_line);
 		screen_guid_line.setLayout(null);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(79, 73, 10, 10);
-		screen_guid_line.add(panel_1);
-
 		for (int i = 0; i < 4; i++) {
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
