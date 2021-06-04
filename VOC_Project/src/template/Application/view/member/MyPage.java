@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.Color;
 
 import template.Application.controller.DB.Mypage_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Mypage_Member_data;
 import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
@@ -78,12 +79,11 @@ public class MyPage extends JFrame {
 	JLabel errortxt;
 	Mypage_DB MDB;
 	JLabel none_reservation;
-	int memberID = 34;
 
-	public MyPage(Main mafrm) {
+	public MyPage(Main mafrm,Login_data Ld) {
 		this.frm = this;
-		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(memberID);
-		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(memberID);
+		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(Ld.getMember_id());
+		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -189,7 +189,7 @@ public class MyPage extends JFrame {
 					wirte_review.setText("한줄평 작성하기");
 					wirte_review.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							wirteP = new Mypage_writePage(frm);
+							wirteP = new Mypage_writePage(frm,Ld);
 							fPt = frm.getLocationOnScreen();
 							wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 							wirteP.setVisible(true);
@@ -284,7 +284,7 @@ public class MyPage extends JFrame {
 							&& newpwField.getText().equals(newpwckField.getText())) {
 						errortxt.setForeground(Color.blue);
 						errortxt.setText("성공!");
-						MDB.UpdateMemberInfo(memberID, nameField.getText(), phone.getText(), newpwField.getText());
+						MDB.UpdateMemberInfo(Ld.getMember_id(), nameField.getText(), phone.getText(), newpwField.getText());
 						System.out.println("업데이트 성공");
 					} else {
 						if (!currField.getText().equals(MyArr.get(0).getPassword())) {
