@@ -12,7 +12,7 @@ import template.Application.view.member.Notice;
 public class Notice_DB {
 	static ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 		
-//		public static void main(String[] args) {
+ //		public static void main(String[] args) {
 //			takeNoticetitle();
 //			for (int i = 0; i < NoticeArr.size(); i++) {
 //				System.out.println(NoticeArr.get(i));
@@ -20,14 +20,12 @@ public class Notice_DB {
 //			
 //		}
 		
-	DB_Connect connect;
+	static DB_Connect connect;
 	Notice NM;
 	Notice_data Notice;
 
 	public static ArrayList<Notice_data> takeNoticetitle() {
-		DB_Connect connect = null;
-		Notice NM;
-		Notice_data Notice;
+		ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 		
 		connect.beginConnection();
 		// DB에서 정보 가져오기
