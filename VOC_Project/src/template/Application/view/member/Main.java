@@ -17,6 +17,7 @@ import template.Application.controller.btn.RoundedButtonY;
 
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
@@ -76,6 +78,7 @@ public class Main extends JFrame {
 	static Login_data Ld;
 	private JPanel panel;
 	private JLabel label;
+	JLabel Poster;
 
 	public static void main(String[] args) {
 
@@ -94,6 +97,8 @@ public class Main extends JFrame {
 	public Main(Login Lg, Login_data Ld) {
 		this.main = this;
 
+		toDayMovieList = new ArrayList<>();
+		notToDayMovieList = new ArrayList<>();
 		Main_Movie_DB MDB = new Main_Movie_DB();
 
 		this.reserfrm = this;
@@ -191,11 +196,6 @@ public class Main extends JFrame {
 		lb_date.setFont(new Font("Ebrima", Font.PLAIN, 38));
 
 		try {
-			toDayMovieList = MDB.TodayMovie(month, day);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		try {
 			notToDayMovieList = MDB.notTodayMovie(month, day);
 		} catch (SQLException e1) {
 
@@ -287,18 +287,34 @@ public class Main extends JFrame {
 		screen_guid_line.setBounds(0, 39, 434, 171);
 		screening_panel.add(screen_guid_line);
 		screen_guid_line.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(79, 73, 10, 10);
+		screen_guid_line.add(panel_1);
+		
 
 		for (int i = 0; i < 4; i++) {
-
+			try {
+				toDayMovieList = MDB.TodayMovie(month, day);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			JPanel MoviePoster = new JPanel();
 			MoviePoster.setLayout(new BorderLayout());
 			MoviePoster.setBounds(10 * (i + 1) + 98 * i, 10, 98, 121);
-			JLabel Poster = new JLabel();
+			Poster = new JLabel();
 			MoviePoster.add(Poster, BorderLayout.CENTER);
 			Movie_Data movie = toDayMovieList.get(i);
 			screen_guid_line.add(MoviePoster);
-			Poster.setIcon(new ImageIcon("." + toDayMovieList.get(i).getImagefilename()));
-			Poster.repaint();
+//			
+			System.out.println(toDayMovieList.get(i).getImagefilename());
+//			ImageIcon ic = new ImageIcon(Main.class.getResource("/template/Reference/images/미나리.jpg"));
+//			ImageIcon ic = new ImageIcon(Main.class.getResource(toDayMovieList.get(i).getImagefilename()));
+//			Image icImg = ic.getImage().getScaledInstance(98, 121, Image.SCALE_SMOOTH);
+//			ic.setImage(icImg);
+//			Poster.setIcon(ic);
+//			Poster.repaint();	
+//			
 			Poster.setBackground(new Color(0, 0, 150));
 			MoviePoster.addMouseListener(new MouseAdapter() {
 				@Override
@@ -324,6 +340,7 @@ public class Main extends JFrame {
 			});
 		}
 
+		
 		released_panel = new Panel();
 		released_panel.setLayout(null);
 		released_panel.setBackground(Color.WHITE);
@@ -357,7 +374,7 @@ public class Main extends JFrame {
 			} else {
 				MoviePoster.setBounds(10 * (i - 3) + 98 * (i - 4), 135, 98, 125);
 			}
-			Poster.setIcon(new ImageIcon("." + notToDayMovieList.get(i).getImagefilename()));
+//			Poster.setIcon(new ImageIcon(Main.class.getResource(notToDayMovieList.get(i).getImagefilename())));
 			Poster.setBackground(new Color(0, 0, 150));
 			Poster.repaint();
 			MoviePoster.addMouseListener(new MouseAdapter() {

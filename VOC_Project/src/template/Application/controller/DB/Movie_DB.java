@@ -171,7 +171,6 @@ public class Movie_DB {
 				int moviesid = rs.getInt("movies_id");
 				String imageFileName = rs.getString("image_file_name");
 				Date scheduleDate = rs.getDate("schedule_date");
-			
 
 				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
 				if (!MD.getScheduledate().equals(date)) {
@@ -210,7 +209,6 @@ public class Movie_DB {
 				int moviesid = rs.getInt("movies_id");
 				String imageFileName = rs.getString("image_file_name");
 				Date scheduleDate = rs.getDate("schedule_date");
-			
 
 				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
 				if (MD.getScheduledate().equals(date))
@@ -256,7 +254,7 @@ public class Movie_DB {
 //					MovieList[].add(MD);
 //				else
 //					MovieList[].add(MD);
-	
+
 //
 //			}
 //
@@ -267,7 +265,7 @@ public class Movie_DB {
 //		return MovieList;
 //
 //	}
-	
+
 	public static Date transformDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 
