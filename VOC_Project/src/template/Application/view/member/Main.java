@@ -350,7 +350,7 @@ public class Main extends JFrame {
 			panel_10.add(MoviePoster);
 			if (i < 4) {
 				if(i==1) {
-					
+					MoviePoster.setBounds(10 * (i + 1) + 98 * i, 0, 98, 125);
 				}else {
 					MoviePoster.setBounds(10 * (i + 1) + 98 * i, 0, 98, 125);
 				}

@@ -260,8 +260,9 @@ public class Reservation_step2 extends JFrame {
 				String cardFP = new String(card_pw.getPassword());
 				if (!cardF1.isEmpty() && !cardF2.isEmpty() && !cardF3.isEmpty() && !cardF4.isEmpty()
 						&& !cardFC.isEmpty() && !cardFD.isEmpty() && !cardFP.isEmpty()) {
-					RDB.saveResevationData(movie.getScheduledate(), RD.getSeatNumber(), RD.getCarType(), 
-								RD.getPaymentPrice(), RD.getPaymentDate(), RD.getOptionName(), RD.getOptionPrice(), Ld.getMember_id(), movie.getMoviesid());
+					boolean A = RDB.saveResevationData("" +movie.getScheduledate(), RD.getSeatNumber(), RD.getCarType(), 
+								RD.getPaymentPrice(), RD.getOptionName(), RD.getOptionPrice(), Ld.getMember_id(), movie.getMoviesid());
+					System.out.println();
 					pay_success.setVisible(true);
 					pay_ing.setVisible(false);
 				} else {
@@ -322,37 +323,37 @@ public class Reservation_step2 extends JFrame {
 		panel_11.setBounds(153, 10, 311, 221);
 		panel_9.add(panel_11);
 
-		JLabel label_18 = new JLabel("영화제목 : ");
+		JLabel label_18 = new JLabel("영화제목 : " );
 		label_18.setHorizontalAlignment(SwingConstants.CENTER);
 		label_18.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_18.setBounds(0, 2, 100, 31);
 		panel_11.add(label_18);
 
-		JLabel label_19 = new JLabel("");
+		JLabel label_19 = new JLabel(MovieList.get(PK).getTitle());
 		label_19.setHorizontalAlignment(SwingConstants.CENTER);
 		label_19.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_19.setBounds(100, 2, 211, 31);
 		panel_11.add(label_19);
 
-		JLabel label_20 = new JLabel("영화 상영 날짜 : ");
+		JLabel label_20 = new JLabel("영화 상영 날짜 : " );
 		label_20.setHorizontalAlignment(SwingConstants.CENTER);
 		label_20.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_20.setBounds(0, 33, 100, 31);
 		panel_11.add(label_20);
 
-		JLabel label_21 = new JLabel("");
+		JLabel label_21 = new JLabel("" + movie.getScheduledate());
 		label_21.setHorizontalAlignment(SwingConstants.CENTER);
 		label_21.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_21.setBounds(100, 33, 211, 31);
 		panel_11.add(label_21);
 
-		JLabel label_22 = new JLabel("영화 상영 시간 : ");
+		JLabel label_22 = new JLabel("영화 상영 시간 : " );
 		label_22.setHorizontalAlignment(SwingConstants.CENTER);
 		label_22.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_22.setBounds(0, 64, 100, 31);
 		panel_11.add(label_22);
 
-		JLabel label_23 = new JLabel("");
+		JLabel label_23 = new JLabel(time + ":00");
 		label_23.setHorizontalAlignment(SwingConstants.CENTER);
 		label_23.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_23.setBounds(100, 64, 211, 31);
@@ -364,7 +365,7 @@ public class Reservation_step2 extends JFrame {
 		label_24.setBounds(0, 95, 100, 31);
 		panel_11.add(label_24);
 
-		JLabel label_25 = new JLabel("");
+		JLabel label_25 = new JLabel( RD.getSeatNumber());
 		label_25.setHorizontalAlignment(SwingConstants.CENTER);
 		label_25.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_25.setBounds(100, 95, 211, 31);
@@ -376,7 +377,7 @@ public class Reservation_step2 extends JFrame {
 		label_26.setBounds(0, 126, 100, 31);
 		panel_11.add(label_26);
 
-		JLabel label_27 = new JLabel("");
+		JLabel label_27 = new JLabel(RD.getOptionName());
 		label_27.setHorizontalAlignment(SwingConstants.CENTER);
 		label_27.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_27.setBounds(100, 126, 211, 31);
@@ -388,7 +389,7 @@ public class Reservation_step2 extends JFrame {
 		label_28.setBounds(0, 157, 100, 31);
 		panel_11.add(label_28);
 
-		JLabel label_29 = new JLabel("");
+		JLabel label_29 = new JLabel("" + RD.getOptionPrice());
 		label_29.setHorizontalAlignment(SwingConstants.CENTER);
 		label_29.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_29.setBounds(100, 157, 211, 31);
@@ -400,7 +401,7 @@ public class Reservation_step2 extends JFrame {
 		label_30.setBounds(0, 188, 100, 31);
 		panel_11.add(label_30);
 
-		JLabel label_31 = new JLabel("");
+		JLabel label_31 = new JLabel("" + (RD.getOptionPrice() + RD.getPaymentPrice()));
 		label_31.setHorizontalAlignment(SwingConstants.CENTER);
 		label_31.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		label_31.setBounds(100, 188, 211, 31);

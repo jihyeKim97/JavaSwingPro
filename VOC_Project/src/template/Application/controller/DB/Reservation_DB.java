@@ -2,12 +2,11 @@ package template.Application.controller.DB;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import template.Application.controller.Data.Movie_Data;
 
 public class Reservation_DB {
 	
@@ -37,8 +36,8 @@ public class Reservation_DB {
 	}
 	
 	
-	public static boolean saveResevationData(java.util.Date date, String seatNumber,
-									int carType, int paymentPrice, java.util.Date date2, String optionName, int optionPrice, int memberID,int movieID) {
+	public static boolean saveResevationData(String shecduledate, String seatNumber,
+									int carType, int paymentPrice, String optionName, int optionPrice, int memberID,int movieID) {
 		String a = "";
 		int A = 0;
 		connect.beginConnection();
@@ -48,14 +47,15 @@ public class Reservation_DB {
 		System.out.println(a);
 		A = Integer.parseInt(a);
 		// DB에서 정보 가져오기
-		if (connect.conn != null) {
 			String sql = "INSERT INTO VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID)"+ 
-					"values (RESERVATION_SEQ.nextval, " + A + ", " + date + ", '" + seatNumber + "', " + carType + ", " + date2 + ", '"
-					 + optionName + "', " + optionPrice + ", " + memberID + " , 61)";
+					"VALUES (RESERVATION_SEQ.nextval, " + A + ", '" + shecduledate + "', '" + seatNumber + "', " + carType + ", " + paymentPrice + ", SYSDATE, '"
+					 + optionName + "', " + optionPrice + ", " + memberID + " , " + movieID + ")";
 //					""
 //					+ "INSERT INTO reservaiton  value(RESERVATION_SEQ.nextval, "+ A +", '" + date + "', '" 
 //							+ seatNumber + "'," + carType + ", " + paymentPrice + ",'" + date2 + "', '" + optionName + "', " 
 //							+ optionPrice + "," + memberID +"," + movieID + ")";
+			System.out.println(sql);
+			if (connect.conn != null) {
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				int r = pstmt.executeUpdate();
@@ -75,4 +75,29 @@ public class Reservation_DB {
 		return false;
 	}
 	
+	public static Date StringtoDate(String date) {
+		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
+
+		// Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
+		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
+
+		java.util.Date tempDate = null;
+
+		try {
+			// 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
+			tempDate = beforeFormat.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		// java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환한다.
+		String transDate = afterFormat.format(tempDate);
+
+		// 반환된 String 값을 Date로 변경한다.
+		Date d = Date.valueOf(transDate);
+
+		return d;
+	}
 }
+	
+
