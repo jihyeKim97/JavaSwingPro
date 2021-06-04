@@ -15,6 +15,7 @@ import template.Application.controller.DB.Mypage_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Mypage_Review_data;
 import template.Application.controller.btn.RoundedButtonD;
+import template.Application.controller.btn.RoundedButtonG;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -31,7 +32,7 @@ public class Mypage_writePage extends JFrame {
 	JPanel panel_1;
 	JComboBox star_combo;
 	String value;
-	RoundedButtonD btn_success;
+	RoundedButtonG btn_success;
 
 	MyPage frm;
 	Mypage_DB MDB;
@@ -60,6 +61,7 @@ public class Mypage_writePage extends JFrame {
 		panel.setLayout(null);
 
 		panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(25, 156, 350, 37);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -86,7 +88,7 @@ public class Mypage_writePage extends JFrame {
 			}
 		});
 
-		btn_success = new RoundedButtonD("완료!");
+		btn_success = new RoundedButtonG("완료!");
 
 		review_tf = new JTextField();
 		review_tf.setBounds(25, 103, 350, 43);

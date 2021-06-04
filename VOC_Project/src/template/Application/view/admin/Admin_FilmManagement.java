@@ -66,7 +66,7 @@ public class Admin_FilmManagement extends JDialog {
 	JLabel ad_lb_poster;
 	Ad_Film_Data afd = new Ad_Film_Data();
 	Ad_Film_DB db = new Ad_Film_DB();
-	int film_id = 85;
+	int film_id = 253;
 	File imgFile;
 	ArrayList<Ad_Film_Data> MyArr = new ArrayList<>();
 	JTextField ad_txt_schedule_date;
@@ -136,7 +136,7 @@ public class Admin_FilmManagement extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				final String currentDirPath = "./src/template/reference/images";
-				final String currentDirPathDetail = "./src/template/reference/images";
+				final String currentDirPathDetail = "/template/reference/images";
 				System.out.println(currentDirPath);
 				JFileChooser openDlg = new JFileChooser(currentDirPath);
 				if (openDlg.showOpenDialog(dlg) == JFileChooser.APPROVE_OPTION) {
@@ -152,7 +152,7 @@ public class Admin_FilmManagement extends JDialog {
 					ic.setImage(icImg);
 					ad_lb_poster.setIcon(ic);
 					ad_lb_poster.repaint();
-					ppp = currentDirPath + "/" + imgFile.getName();
+					ppp = currentDirPathDetail + " / " + imgFile.getName();
 //					ad_txt_img.setText(ppp);
 				}
 			}
