@@ -11,28 +11,28 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-public class RoundedButtonR extends JButton {
-	public RoundedButtonR() {
+public class RoundedButtonY extends JButton {
+	public RoundedButtonY() {
 		super();
 		decorate();
 	}
 
-	public RoundedButtonR(String text) {
+	public RoundedButtonY(String text) {
 		super(text);
 		decorate();
 	}
 
-	public RoundedButtonR(Action action) {
+	public RoundedButtonY(Action action) {
 		super(action);
 		decorate();
 	}
 
-	public RoundedButtonR(Icon icon) {
+	public RoundedButtonY(Icon icon) {
 		super(icon);
 		decorate();
 	}
 
-	public RoundedButtonR(String text, Icon icon) {
+	public RoundedButtonY(String text, Icon icon) {
 		super(text, icon);
 		decorate();
 	}
@@ -44,7 +44,7 @@ public class RoundedButtonR extends JButton {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		Color c = new Color(139,0,0); // 배경색 결정
+		Color c = new Color(235, 207, 0); // 배경색 결정
 		Color o = Color.white; // 글자색 결정
 		int width = getWidth();
 		int height = getHeight();
