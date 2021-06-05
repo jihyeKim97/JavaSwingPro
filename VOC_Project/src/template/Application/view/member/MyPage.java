@@ -107,7 +107,7 @@ public class MyPage extends JFrame {
 				dispose();
 			}
 		});
-		btn_main.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		btn_main.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		btn_main.setBounds(12, 10, 100, 35);
 		header.add(btn_main);
 
@@ -315,7 +315,7 @@ public class MyPage extends JFrame {
 				}
 			}
 		});
-		btn_edit.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		btn_edit.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 20));
 		btn_edit.setBounds(12, 565, 400, 60);
 		memdetail_panel.add(btn_edit);
 

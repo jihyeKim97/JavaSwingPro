@@ -29,13 +29,6 @@ public class Login_DB {
 	static Login_data loginDT;
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
 	static ArrayList<Login_data> uiList = new ArrayList<>();
-
-//	public static void main(String[] args) {
-//		uiList = selectAllMembers();
-//		for (int i = 0; i < uiList.size(); i++) {
-//			System.out.println(uiList.get(i));
-//		}
-//	}
 	
 	public static ArrayList<Login_data> selectAllMembers() {
 		connect.beginConnection();;
@@ -57,14 +50,11 @@ public class Login_DB {
 					uiList.add(
 							new Login_data(member_id, id, password, name, gender, phone_number, is_member, birthday));
 				}
-				System.out.println("DBMgr: ���� 議고�� 紐��� => " + uiList.size());
 				return uiList;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else {
-			System.out.println("DB error!!!@");
-		}
+		} 
 		connect.endConnection();
 		return uiList;
 	}
@@ -110,15 +100,11 @@ public class Login_DB {
 				if (rs.next()) {
 					Login_data mb = new Login_data(rs.getInt("is_member"));
 					return mb;
-				} else {
-
-				}
+				} 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else {
-			System.out.println("DB 통신 에러");
-		}
+		} 
 		connect.endConnection();
 		return null;
 	}
@@ -135,11 +121,8 @@ public class Login_DB {
 				pstmt.setString(4, name);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
-					System.out.println("db 임시비밀번호 발급 성공");
 					return true;
-				} else {
-					System.out.println("db 임시비밀번호 발급 실패");
-				}
+				} 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -162,15 +145,11 @@ public class Login_DB {
 							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
-				} else {
-
-				}
+				} 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else {
-			System.out.println("DB 통신 에러!!");
-		}
+		} 
 		connect.endConnection();
 		return null;
 	}
@@ -190,15 +169,11 @@ public class Login_DB {
 							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
-				} else {
-
-				}
+				} 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else {
-			System.out.println("DB 통신 에러");
-		}
+		} 
 		connect.endConnection();
 		return null;
 	}
@@ -260,9 +235,7 @@ public class Login_DB {
 			} else {
 				return FIND_ERROR;
 			}
-		} else {
-			System.out.println("DB 통신 에러!!");
-		}
+		} 
 		connect.endConnection();
 		return FIND_ERROR;
 	}
@@ -311,9 +284,7 @@ public class Login_DB {
 			} else {
 				return FIND_ERROR;
 			}
-		} else {
-			System.out.println("DB 통신 에러!!");
-		}
+		} 
 		connect.endConnection();
 		return FIND_ERROR;
 	}
