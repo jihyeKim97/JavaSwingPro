@@ -264,6 +264,7 @@ public class Login_FindPW extends JFrame {
 				default:
 					break;
 				}
+				dispose();
 			}
 		});
 	}
