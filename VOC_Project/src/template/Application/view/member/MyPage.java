@@ -221,7 +221,7 @@ public class MyPage extends JFrame {
 						in_reservationNum = new JLabel("");
 						in_reservationNum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						in_reservationNum.setHorizontalAlignment(SwingConstants.LEFT);
-						in_reservationNum.setText("" + ReArr.get(0).getReservation_number());
+						in_reservationNum.setText("" + ReArr.get(i).getReservation_number());
 						in_reservationNum.setBounds(75, 0, 183, 28);
 						panel.add(in_reservationNum);
 
@@ -234,7 +234,7 @@ public class MyPage extends JFrame {
 						in_movieTitle = new JLabel("");
 						in_movieTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
-						in_movieTitle.setText(Mypage_DB.AlterMovieIDName(ReArr.get(0).getMovie_id()));
+						in_movieTitle.setText(Mypage_DB.AlterMovieIDName(ReArr.get(i).getMovie_id()));
 						in_movieTitle.setBounds(75, 28, 183, 28);
 						panel.add(in_movieTitle);
 
@@ -247,7 +247,7 @@ public class MyPage extends JFrame {
 						in_resercationDate = new JLabel("");
 						in_resercationDate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						in_resercationDate.setHorizontalAlignment(SwingConstants.LEFT);
-						in_resercationDate.setText("" + ReArr.get(0).getReservation_date());
+						in_resercationDate.setText("" + ReArr.get(i).getReservation_date());
 						in_resercationDate.setBounds(75, 56, 183, 28);
 						panel.add(in_resercationDate);
 
@@ -259,7 +259,7 @@ public class MyPage extends JFrame {
 
 						in_totalPrice = new JLabel("");
 						in_totalPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-						in_totalPrice.setText("" + ReArr.get(0).getPayment_price());
+						in_totalPrice.setText("" + ReArr.get(i).getPayment_price());
 						in_totalPrice.setHorizontalAlignment(SwingConstants.LEFT);
 						in_totalPrice.setBounds(75, 84, 183, 28);
 						panel.add(in_totalPrice);
