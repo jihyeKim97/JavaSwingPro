@@ -214,17 +214,6 @@ public class Login_FindID extends JFrame {
 		RoundedButtonG btn_findId = new RoundedButtonG("완료");
 		btn_findId.setFont(new Font("맑은 고딕", Font.BOLD, 16));
 		panel_4.add(btn_findId);
-		btn_findId.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btn_findId.setForeground(Color.red);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btn_findId.setForeground(Color.black);
-			}
-		});
 
 		btn_findId.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,6 +240,7 @@ public class Login_FindID extends JFrame {
 				default:
 					break;
 				}
+				dispose();
 			}
 		});
 		btn_Cancel.addMouseListener(new MouseAdapter() {

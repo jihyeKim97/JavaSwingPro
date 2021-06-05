@@ -19,8 +19,10 @@ public class SIgnUp_DB {
 	public boolean insertNewMember(SignUp_data ui) {
 		connect.beginConnection();
 		if (connect.conn != null && ui != null) {
-			String sql = "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) VALUES (MEMBER_SEQ.nextval,"
-					+ "'" + ui.getId() + "', '" + ui.getPassword() + "', '" + ui.getName() + "', '" + ui.getGender()
+			String sql = "INSERT INTO member(member_id,id,password,name,gender,phone_number,is_member, birthday) "
+					+ "VALUES "
+					+ "(MEMBER_SEQ.nextval"
+					+ "','" + ui.getId() + "', '" + ui.getPassword() + "', '" + ui.getName() + "', '" + ui.getGender()
 					+ "', '" + ui.getPhone_number() + "', '" + "0" + "', '" + ui.getBirthday() + "')";
 			System.out.println(sql);
 			try {

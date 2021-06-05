@@ -79,8 +79,8 @@ public class Login extends JFrame {
 		contentPane = new ImagePanel(bgImg, "bg1.jpg", 456, 534);
 		contentPane.setImgFilename("");
 
-		contentPane.setBounds(0, 0, 456, 534);
-		contentPane.setBackground(new Color(240, 240, 240));
+		contentPane.setBounds(0, 0, 456, 479);
+		contentPane.setBackground(new Color(70, 114, 42));
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 		

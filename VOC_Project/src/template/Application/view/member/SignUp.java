@@ -406,20 +406,22 @@ public class SignUp extends JFrame {
 		panel.add(btn_DupCheck);
 		btn_DupCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				String inLogin = txt_userId.getText();
 				Login_data ld = dbc2.selectOneMemberByLogin(inLogin);
-				if (ld == null) {
-					bLoginAvail = true;
-					checkJoinAvailable();
-					duptxt.setText("사용가능한 id 입니다");
-					duptxt.setForeground(new Color(0, 0, 255));
-					System.out.println("사용가능");
+				if (!inLogin.isEmpty()) {
+					if (ld == null) {
+						bLoginAvail = true;
+						checkJoinAvailable();
+						duptxt.setText("사용가능한 id 입니다");
+						duptxt.setForeground(Color.blue);
+					} else {
+						bLoginAvail = false;
+						duptxt.setForeground(Color.red);
+						duptxt.setText("사용불가능한 id 입니다");
+					}
 				} else {
-					bLoginAvail = false;
-					duptxt.setForeground(new Color(128, 0, 0));
-					duptxt.setText("사용불가능한 id 입니다");
-					System.out.println("사용불가능");
+					duptxt.setForeground(Color.black);
+					duptxt.setText("id 를 입력 하지 않았습니다");
 				}
 			}
 		});
@@ -447,19 +449,21 @@ public class SignUp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String UserId = txt_userId.getText();
 				String UserPw = new String(pwf_userPw1.getPassword());
-				String UserName = txt_userId.getText();
+				String UserName = txt_userName.getText();
 				int Gender = rd_Female.isSelected() ? SignUp_data.GENDER_FEMALE : SignUp_data.GENDER_MALE;
 				String UserDoB = txt_DoB.getText();
 				String UserPhoneNum = txt_phone1.getText() + txt_phone2.getText() + txt_phone3.getText();
 				SignUp_data newUI = new SignUp_data(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
 
-				boolean r = mgr.insertNewMember(newUI);
-				if (r && newUI != null) {
-					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
-					dispose();
+				if (!UserId.isEmpty() && !UserPw.isEmpty() && !UserName.isEmpty() && !UserDoB.isEmpty()
+						&& !UserPhoneNum.isEmpty()) {
+					boolean r = mgr.insertNewMember(newUI);
+					if (r && newUI != null) {
+						JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+						dispose();
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "회원 가입 실패 하였습니다");
-
+					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
 				}
 			}
 		});
@@ -477,8 +481,7 @@ public class SignUp extends JFrame {
 		String strPw2 = new String(pwf_userPw2.getPassword());
 		if ((strPw1.length() > 0 && strPw2.length() > 0) && bLoginAvail == true
 				&& (!txt_DoB.getText().isEmpty() == false)
-				&& (txt_userName.getText().isEmpty() == false && 
-				txt_userName.getText().equals("ex) 홍길동") == false)) {
+				&& (txt_userName.getText().isEmpty() == false && txt_userName.getText().equals("ex) 홍길동") == false)) {
 			if (strPw2.equals(strPw1)) {
 				btn_userJoin.setEnabled(true);
 			} else {
@@ -487,5 +490,3 @@ public class SignUp extends JFrame {
 		}
 	}
 }
-
-
