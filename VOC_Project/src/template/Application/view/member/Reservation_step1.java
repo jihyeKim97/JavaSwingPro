@@ -214,7 +214,8 @@ public class Reservation_step1 extends JFrame {
 
 		int select = 0;
 		for (int i = 0; i < 36; i++) {
-			tglbtnNewToggleButton = new JToggleButton(ButtonName.get(i));
+			tglbtnNewToggleButton = new JToggleButton();
+			tglbtnNewToggleButton.setToolTipText(ButtonName.get(i));
 			ImageIcon ic = new ImageIcon(
 					Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
 			Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -226,13 +227,13 @@ public class Reservation_step1 extends JFrame {
 //			tglbtnNewToggleButton.setFocusPainted(false);
 //			tglbtnNewToggleButton.setOpaque(false);
 			seat_number.add(tglbtnNewToggleButton);
-
+			
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tglbtnNewToggleButton.isSelected()) {
 						ImageIcon ic = new ImageIcon(
 								Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
-						Image icImg = ic.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+						Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
@@ -244,7 +245,7 @@ public class Reservation_step1 extends JFrame {
 					} else {
 						ImageIcon ic = new ImageIcon(
 								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
-						Image icImg = ic.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+						Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
@@ -254,7 +255,9 @@ public class Reservation_step1 extends JFrame {
 //						tglbtnNewToggleButton.setOpaque(false);
 						SName.remove(tglbtnNewToggleButton.getText());
 					}
+
 				}
+				
 			});
 			if (tglbtnNewToggleButton.isSelected()) {
 				select = 1;
