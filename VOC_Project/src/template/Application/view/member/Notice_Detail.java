@@ -1,66 +1,49 @@
 package template.Application.view.member;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Panel;
 import java.awt.SystemColor;
-import java.awt.GridLayout;
-import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
-
-import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.Data.Notice_data;
-import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonR;
-
 import javax.swing.JTextArea;
-import java.awt.Window.Type;
 
 public class Notice_Detail extends JFrame {
 
 	private JPanel contentPane;
 	Notice NM;
 	Notice_data Notice;
-	ArrayList<Notice_data> NoticeArr;
+	ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 	Notice_DB NoticeDB;
 
 	public Notice_Detail(Notice NM, Notice_data Notice) {
-			this.NM = NM;
-			this.Notice = Notice;
-			NoticeArr = new ArrayList<>();
-			NoticeArr = NoticeDB.takeNoticetitle();
-			int PK = 0;
-			int i = Notice.getNoticeid();
-			if ( i == 4 )
-				i = 2;
-			else if( i == 5 )
-				i = 3;
-			else if ( i == 6)
-				i = 4;
-			PK = i - 1;
-			
-			
+		this.NM = NM;
+		this.Notice = Notice;
+		NoticeArr = NoticeDB.takeNoticetitle();
+		int PK = 0;
+		int i = Notice.getNoticeid();
+		if (i == 4) {
+			i = 2;
+		} else if (i == 5) {
+			i = 3;
+		} else if (i == 6) {
+			i = 4;
+		}
+		PK = i - 1;
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
+		setTitle("Vehicle Outdoor Cinema");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -114,14 +97,14 @@ public class Notice_Detail extends JFrame {
 		panel.setBackground(new Color(211, 211, 211));
 		panel.setBounds(0, 0, 484, 55);
 		contentPane.add(panel);
-		
+
 		RoundedButtonR roundedButtonD = new RoundedButtonR("HOME");
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 		roundedButtonD.setBounds(12, 10, 100, 35);
 		panel.add(roundedButtonD);
 

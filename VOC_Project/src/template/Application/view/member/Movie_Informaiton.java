@@ -3,46 +3,26 @@ package template.Application.view.member;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.DB_Connect;
-import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.btn.RoundedButtonD;
 import template.Application.controller.btn.RoundedButtonR;
-
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JScrollPane;
-import java.awt.Button;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
-import java.awt.TextField;
-import javax.swing.JTextPane;
-import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -100,25 +80,26 @@ public class Movie_Informaiton extends JFrame {
 	JPanel panel_9;
 	JScrollPane scrollPane_1;
 	JPanel pn_Review;
+	JLabel lblNewLabel_3;
+	JLabel label_2;
+	JPanel panel;
+	JPanel panel_3;
+	JPanel panel_4;
+	JLabel lblNewLabel_2;
+	JLabel label;
+	JLabel label_1;
+	JLabel label_3;
+	JLabel label_4;
+	JPanel panel_5;
+	JPanel panel_6;
 
 	DB_Connect connect;
 	Movie_Data Movie;
-	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	Main refrm;
 	Movie_Informaiton frm;
 	ArrayList<Review_Data> ReviewList = new ArrayList<>();
+	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	Review_DB Review;
-	private JLabel lblNewLabel_3;
-	private JLabel label_2;
-	private JPanel panel;
-	private JPanel panel_3;
-	private JPanel panel_4;
-	private JLabel lblNewLabel_2;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_3;
-	private JLabel label_4;
-	private JPanel panel_5;
 
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
@@ -142,7 +123,7 @@ public class Movie_Informaiton extends JFrame {
 		} else {
 			time = "" + itime;
 		}
-
+		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 752);
 		contentPane = new JPanel();
@@ -167,8 +148,12 @@ public class Movie_Informaiton extends JFrame {
 		div_panel.add(pn_Poster);
 		pn_Poster.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("" + MovieList.get(PK).getImagefilename()));
+		JLabel lblNewLabel = new JLabel();
+		ImageIcon ic = new ImageIcon(Main.class.getResource(MovieList.get(PK).getImagefilename()));
+		Image icImg = ic.getImage().getScaledInstance(187, 232, Image.SCALE_SMOOTH);
+		ic.setImage(icImg);
+		lblNewLabel.setIcon(ic);
+		lblNewLabel.repaint();
 		pn_Poster.add(lblNewLabel, BorderLayout.CENTER);
 
 		panel_1 = new JPanel();
@@ -343,58 +328,59 @@ public class Movie_Informaiton extends JFrame {
 		pn_Review.setBackground(Color.WHITE);
 		scrollPane_1.setViewportView(pn_Review);
 		pn_Review.setLayout(new GridLayout(0, 1, 0, 0));
-						
-						panel_5 = new JPanel();
-						panel_5.setBackground(new Color(255, 255, 255));
-						panel_5.setBounds(12, 426, 164, 30);
-						content_panel.add(panel_5);
-								panel_5.setLayout(null);
-						
-								lb_Rate = new JLabel("별점 : ");
-								lb_Rate.setBackground(new Color(255, 255, 255));
-								lb_Rate.setBounds(0, 0, 48, 30);
-								panel_5.add(lb_Rate);
-								lb_Rate.setForeground(new Color(0, 0, 0));
-								lb_Rate.setHorizontalAlignment(SwingConstants.CENTER);
-								lb_Rate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
-								
-								panel_4 = new JPanel();
-								panel_4.setBounds(43, 0, 121, 30);
-								panel_5.add(panel_4);
-								panel_4.setBackground(new Color(255, 255, 255));
-								panel_4.setLayout(new GridLayout(1, 0, 0, 0));
-								
-								lblNewLabel_2 = new JLabel("");
-								lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-								lblNewLabel_2.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
-								panel_4.add(lblNewLabel_2);
-								
-								label_1 = new JLabel("");
-								label_1.setHorizontalAlignment(SwingConstants.CENTER);
-								label_1.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
-								panel_4.add(label_1);
-								
-								label = new JLabel("");
-								label.setHorizontalAlignment(SwingConstants.CENTER);
-								label.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
-								panel_4.add(label);
-								
-								label_3 = new JLabel("");
-								label_3.setHorizontalAlignment(SwingConstants.CENTER);
-								label_3.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
-								panel_4.add(label_3);
-								
-								label_4 = new JLabel("");
-								label_4.setHorizontalAlignment(SwingConstants.CENTER);
-								label_4.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
-								panel_4.add(label_4);
-								
-										lb_MVRate = new JLabel("" + MovieList.get(PK).getAverageScore());
-										lb_MVRate.setBounds(188, 426, 75, 30);
-										content_panel.add(lb_MVRate);
-										lb_MVRate.setForeground(new Color(0, 0, 0));
-										lb_MVRate.setHorizontalAlignment(SwingConstants.LEFT);
-										lb_MVRate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+
+		panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
+		panel_5.setBounds(12, 426, 164, 30);
+		content_panel.add(panel_5);
+		panel_5.setLayout(null);
+
+		lb_Rate = new JLabel("별점 : ");
+		lb_Rate.setBackground(new Color(255, 255, 255));
+		lb_Rate.setBounds(0, 0, 48, 30);
+		panel_5.add(lb_Rate);
+		lb_Rate.setForeground(new Color(0, 0, 0));
+		lb_Rate.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_Rate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+
+		panel_4 = new JPanel();
+		panel_4.setBounds(43, 0, 121, 30);
+		panel_5.add(panel_4);
+		panel_4.setBackground(new Color(255, 255, 255));
+		panel_4.setLayout(new GridLayout(1, 0, 0, 0));
+
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2
+				.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		panel_4.add(lblNewLabel_2);
+
+		label_1 = new JLabel("");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		panel_4.add(label_1);
+
+		label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		panel_4.add(label);
+
+		label_3 = new JLabel("");
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+		label_3.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		panel_4.add(label_3);
+
+		label_4 = new JLabel("");
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		panel_4.add(label_4);
+
+		lb_MVRate = new JLabel("" + MovieList.get(PK).getAverageScore());
+		lb_MVRate.setBounds(188, 426, 75, 30);
+		content_panel.add(lb_MVRate);
+		lb_MVRate.setForeground(new Color(0, 0, 0));
+		lb_MVRate.setHorizontalAlignment(SwingConstants.LEFT);
+		lb_MVRate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_MovieInfomaiton = new JLabel("내용");
 		lb_MovieInfomaiton.setBounds(262, 321, 232, 40);
@@ -402,121 +388,21 @@ public class Movie_Informaiton extends JFrame {
 		lb_MovieInfomaiton.setFont(new Font("굴림", Font.BOLD, 20));
 		lb_MovieInfomaiton.setHorizontalAlignment(SwingConstants.CENTER);
 
+		panel_6 = new JPanel();
+		panel_6.setBackground(new Color(211, 211, 211));
+		panel_6.setBounds(0, 0, 494, 55);
+		contentPane.add(panel_6);
+		panel_6.setLayout(null);
+
 		RoundedButtonR roundedButtonD = new RoundedButtonR("HOME");
-		roundedButtonD.setBounds(12, 10, 100, 35);
-		contentPane.add(roundedButtonD);
+		roundedButtonD.setBounds(10, 10, 93, 35);
+		panel_6.add(roundedButtonD);
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		roundedButtonD.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		mem_panel = new Panel();
-		mem_panel.setBackground(new Color(255, 228, 196));
-		mem_panel.setBounds(10, 120, 444, 570);
-//		div_panel.add(mem_panel);
-		mem_panel.setLayout(null);
-
-		mem_detail = new Panel();
-		mem_detail.setBackground(new Color(255, 255, 255));
-		mem_detail.setBounds(10, 10, 424, 550);
-		mem_panel.add(mem_detail);
-		mem_detail.setLayout(null);
-		mem_panel.setVisible(false);
-		btn_edit = new RoundedButtonD("Edit");
-		btn_edit.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btn_edit.setBounds(162, 505, 100, 35);
-		mem_detail.add(btn_edit);
-
-		txt_panel = new Panel();
-		txt_panel.setBounds(0, 0, 162, 462);
-		mem_detail.add(txt_panel);
-		txt_panel.setLayout(new GridLayout(0, 1, 0, 0));
-
-		lb_name = new JLabel("Name");
-		lb_name.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_name.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_name);
-
-		lb_ld = new JLabel("ID");
-		lb_ld.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_ld.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_ld);
-
-		lb_phone = new JLabel("Phone");
-		lb_phone.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_phone.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_phone);
-
-		lb_gen = new JLabel("Gender");
-		lb_gen.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_gen.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_gen);
-
-		lb_bir = new JLabel("BirthDay");
-		lb_bir.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_bir.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_bir);
-
-		lb_cp = new JLabel("Current PW");
-		lb_cp.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_cp.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_cp);
-
-		lb_np = new JLabel("New PW");
-		lb_np.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_np.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_np);
-
-		lb_cnp = new JLabel("Confirm New PW");
-		lb_cnp.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		lb_cnp.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_panel.add(lb_cnp);
-
-		txtF_panel = new Panel();
-		txtF_panel.setBounds(168, 0, 256, 462);
-		mem_detail.add(txtF_panel);
-		txtF_panel.setLayout(null);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(0, 10, 246, 40);
-		txtF_panel.add(textField_1);
-
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(0, 65, 246, 40);
-		txtF_panel.add(textField);
-
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(0, 123, 246, 40);
-		txtF_panel.add(textField_2);
-
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(0, 183, 246, 40);
-		txtF_panel.add(textField_3);
-
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(0, 242, 246, 40);
-		txtF_panel.add(textField_4);
-
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(0, 302, 246, 40);
-		txtF_panel.add(textField_5);
-
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(0, 358, 246, 40);
-		txtF_panel.add(textField_6);
-
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(0, 412, 246, 40);
-		txtF_panel.add(textField_7);
+		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 
 		for (int i = 0; i < ReviewList.size(); i++) { // 리뷰 개수
 			String text = ReviewList.get(i).getContent();

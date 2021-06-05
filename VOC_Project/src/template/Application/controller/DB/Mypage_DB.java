@@ -81,14 +81,14 @@ public class Mypage_DB {
 	}
 
 	public static ArrayList<Mypage_Reservation_data> SelectReservationID(int memberID) {
-
+		ReArr = new ArrayList<>();
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "select * from reservation where member_id =  " + memberID;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
-				if (rs.next()) {
+				while (rs.next()) {
 					int reservation_id = rs.getInt("reservation_id");
 					int reservation_number = rs.getInt("reservation_number");
 					Date reservation_date = rs.getDate("reservation_date");
@@ -114,6 +114,28 @@ public class Mypage_DB {
 		return ReArr;
 	}
 
+	public static ArrayList<Mypage_Reservation_data> Selectid(int memberID) {
+		ReArr = new ArrayList<>();
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "select movie_id from reservation where member_id =  " + memberID;
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					int movie_id = rs.getInt("movie_id");
+
+					ReArr.add(new Mypage_Reservation_data( movie_id));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return ReArr;
+	}
+	
+	
 	public static String AlterMovieIDName(int moviesID) {
 		String title = "";
 

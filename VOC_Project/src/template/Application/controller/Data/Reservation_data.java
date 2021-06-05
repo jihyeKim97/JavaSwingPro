@@ -39,8 +39,6 @@ public class Reservation_data {
 		this.memberID = memberID;
 		this.movieID = movieID;
 	}
-	
-
 
 	public Reservation_data(String seatNumber, int carType, int paymentPrice, Date paymentDate, String optionName,
 			int optionPrice) {

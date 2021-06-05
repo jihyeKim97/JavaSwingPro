@@ -18,8 +18,6 @@ public class Movie_Data {
 	private Date scheduledate;
 	private int scheduletime;
 	private String runningtime;
-	
-	
 
 	public Movie_Data() {
 	}
@@ -146,6 +144,13 @@ public class Movie_Data {
 	}
 	
 	
+
+	public Movie_Data(int moviesid, String title, String imagefilename) {
+		super();
+		this.moviesid = moviesid;
+		this.title = title;
+		this.imagefilename = imagefilename;
+	}
 
 	public Movie_Data(int moviesid, String imagefilename, Date scheduledate) {
 		super();

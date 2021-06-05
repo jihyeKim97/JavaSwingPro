@@ -10,13 +10,11 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-
 import template.Application.controller.DB.Mypage_DB;
+import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Mypage_Review_data;
-import template.Application.controller.btn.RoundedButtonD;
-
+import template.Application.controller.btn.RoundedButtonG;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -30,24 +28,24 @@ public class Mypage_writePage extends JFrame {
 	JPanel panel_1;
 	JComboBox star_combo;
 	String value;
-	RoundedButtonD btn_success;
+	RoundedButtonG btn_success;
 
 	MyPage frm;
 	Mypage_DB MDB;
 	Mypage_Review_data Myoage_viDT;
 	MyPage Mypage;
 
-	int memberID = 34;
 	int sco = 0;
 
-	public Mypage_writePage(MyPage frm) {
+	public Mypage_writePage(MyPage frm, Login_data Ld) {
 		this.frm = frm;
 		ArrayList<Mypage_Review_data> ViArr = MDB
-				.SelectReviewID(MDB.SelectReservationID(memberID).get(0).getReservation_id());
+				.SelectReviewID(MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id());
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 406, 352);
 		setResizable(false);
+		setTitle("Vehicle Outdoor Cinema");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,6 +58,7 @@ public class Mypage_writePage extends JFrame {
 		panel.setLayout(null);
 
 		panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(25, 156, 350, 37);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -86,7 +85,7 @@ public class Mypage_writePage extends JFrame {
 			}
 		});
 
-		btn_success = new RoundedButtonD("완료!");
+		btn_success = new RoundedButtonG("완료!");
 
 		review_tf = new JTextField();
 		review_tf.setBounds(25, 103, 350, 43);
@@ -110,8 +109,8 @@ public class Mypage_writePage extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					String review = review_tf.getText();
 					boolean isResult = MDB.InsertReviewID(review, sco,
-							MDB.SelectReservationID(memberID).get(0).getReservation_id(),
-							MDB.SelectReservationID(memberID).get(0).getMovie_id());
+							MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(),
+							MDB.SelectReservationID(Ld.getMember_id()).get(0).getMovie_id());
 					if (isResult) {
 						dispose();
 					}

@@ -13,13 +13,11 @@ import javax.swing.SwingConstants;
 import template.Application.controller.ImagePanel;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Login_data;
-import template.Application.controller.btn.RoundedButtonD;
+import template.Application.controller.btn.RoundedButtonR;
 import template.Application.view.admin.Admin_AdPage;
-
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -41,7 +39,7 @@ public class Login extends JFrame {
 	JPanel panel;
 	JLabel lblNewLabel;
 	JLabel label;
-	RoundedButtonD btn_Login;
+	RoundedButtonR btn_Login;
 	Login_FindID FindId;
 	Login_FindPW FindPw;
 	ImagePanel contentPane;
@@ -49,7 +47,6 @@ public class Login extends JFrame {
 	Login ln;
 	Main main;
 	Login_DB LDB;
-	int memberID = 24;
 	Admin_AdPage ad_page;
 	Login_data LD = new Login_data();
 
@@ -68,7 +65,6 @@ public class Login extends JFrame {
 
 	public Login() {
 		this.ln = this;
-		ArrayList<Login_data> loArr = LDB.SelectMemberID(memberID);
 		setTitle("Vehicle Outdoor Cinema");
 		setBounds(100, 100, 460, 508);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,46 +82,45 @@ public class Login extends JFrame {
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		btn_Login = new RoundedButtonD("Login");
+		btn_Login = new RoundedButtonR();
 		btn_Login.setText("LOGIN");
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String login = txt_id.getText();
 				String pw = new String(txt_pw.getPassword());
 				Login_DB mgr = new Login_DB();
+				Login_data memberdata = mgr.selectOneMemberByLogin(login);
 				Login_data ismb = mgr.movepage(login);
-				if(ismb.getIs_member() == 0) {
-					int r = mgr.loginProcess(login, pw);	
+				if (ismb.getIs_member() == 0) {
+					int r = mgr.loginProcess(login, pw);
 					switch (r) {
 					case Login_DB.LOGIN_SUCCESS:
 						System.out.println(ismb.getIs_member());
-							main = new Main(ln, LD);
-							main.setVisible(true);
-							dispose();
+						main = new Main(ln, memberdata);
+						main.setVisible(true);
+						dispose();
 						break;
 					case Login_DB.LOGIN_FAIL_NOT_FOUND:
-						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
+						JOptionPane.showMessageDialog(null, "로그인	 회원 계정명 없음!!");
 						break;
 					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
 						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-
 						break;
 					case Login_DB.LOGIN_ERROR:
 						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
 						break;
-
 					default:
 						System.out.println("지원하지않습니다.");
 						break;
 					}
-				}else if(ismb.getIs_member() == 1) {
+				} else if (ismb.getIs_member() == 1) {
 					int r = mgr.loginProcess(login, pw);
-					
+
 					switch (r) {
 					case Login_DB.LOGIN_SUCCESS:
-							ad_page = new Admin_AdPage(ln, LD);
-							ad_page.setVisible(true);
-							dispose();
+						ad_page = new Admin_AdPage(ln, LD);
+						ad_page.setVisible(true);
+						dispose();
 						break;
 					case Login_DB.LOGIN_FAIL_NOT_FOUND:
 						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
@@ -142,8 +137,8 @@ public class Login extends JFrame {
 						System.out.println("지원하지않습니다.");
 						break;
 					}
-					
-				}else
+
+				} else
 					JOptionPane.showMessageDialog(null, "휴먼 계정입니다.");
 			}
 		});
@@ -152,7 +147,7 @@ public class Login extends JFrame {
 		btn_Login.setForeground(new Color(255, 255, 255));
 
 		btn_Login.setBackground(Color.BLUE);
-		btn_Login.setBounds(181, 363, 114, 39);
+		btn_Login.setBounds(106, 363, 257, 43);
 		contentPane.add(btn_Login);
 
 		lblNewLabel = new JLabel("ID");
@@ -198,7 +193,7 @@ public class Login extends JFrame {
 				lb_FindID.setForeground(Color.WHITE);
 			}
 		});
-		lb_FindID.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_FindID.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_FindPW = new JLabel("비밀번호 찾기");
 		lb_FindPW.setForeground(Color.WHITE);
@@ -223,7 +218,7 @@ public class Login extends JFrame {
 			}
 		});
 		panel.add(lb_FindPW);
-		lb_FindPW.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_FindPW.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_SignUp = new JLabel();
 		lb_SignUp.addMouseListener(new MouseAdapter() {
@@ -240,7 +235,7 @@ public class Login extends JFrame {
 		lb_SignUp.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lb_SignUp);
 
-		lb_SignUp.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		lb_SignUp.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(70, 114, 42));
@@ -288,7 +283,7 @@ public class Login extends JFrame {
 
 		lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/bg (4).png")));
-		lblNewLabel_1.setBounds(0, 0, 458, 483);
+		lblNewLabel_1.setBounds(0, 0, 456, 482);
 		contentPane.add(lblNewLabel_1);
 
 	}
