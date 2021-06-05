@@ -120,17 +120,18 @@ public class Admin_AdPage extends JFrame {
 		ad_btn_AdDeleteUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 				Ad_AdPage_DB addb = new Ad_AdPage_DB();
-				int n = ad_tb_MemberTable.getSelectedRow();
-				DefaultTableModel tm = (DefaultTableModel)ad_tb_MemberTable.getModel();
-				if (n>=0 && n <ad_tb_MemberTable.getRowCount()) {
-					tm.removeRow(n);
-					//int memberId= ln.getMember_id();
-					System.out.println();
-				//	addb.updateMembertoNone(memberId);
-					System.out.println("회원 탈퇴처리");	
-				}
+	            int n = ad_tb_MemberTable.getSelectedRow();
+	            Login_data A = mList.get(n);
+	            DefaultTableModel tm = (DefaultTableModel)ad_tb_MemberTable.getModel();
+	            if (n>=0 && n <ad_tb_MemberTable.getRowCount()) {
+	               tm.removeRow(n);
+	               Login_data ln = new Login_data();
+	               int memberId= ln.getMember_id();
+	               int ismember= ln.getIs_member();
+	               addb.updateMembertoNone(ismember,A.getMember_id());
+	               System.out.println("회원 탈퇴처리");
+	            }
 			}
-
 		});	
 		
 		toolBar.add(ad_btn_AdDeleteUser);
