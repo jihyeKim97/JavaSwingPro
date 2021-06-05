@@ -31,16 +31,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+import java.awt.FlowLayout;
 
 public class Reservation_step1 extends JFrame {
 
-	JLabel in_movietitle, label_1, in_movietime, lblNewLabel_1, step1, lblNewLabel_2, step2, won, sum_price_pay,
-			txtprice;
+	JLabel in_movietitle, label_1, in_movietime, lblNewLabel_1, step1, step2, won, sum_price_pay, txtprice;
 	RoundedButtonR roundedButtonD;
 	RoundedButtonG btn_payment;
 	Panel header, img1, img2, img3, img4, img5, infoContent;
-	JPanel infoDontent, seat_number, screen, seat_detail, option, optionimgpanel, seat, contentPane, seatContent,
-			content, info;
+	JPanel infoDontent, seat_number, seat_detail, option, optionimgpanel, seat, contentPane, seatContent, content, info;
 	JComboBox car_type, option_type;
 	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
 			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
@@ -66,6 +65,10 @@ public class Reservation_step1 extends JFrame {
 	String[] selectPrice;
 	int optionPrice = 0;
 	Reservation_data RD;
+	private JButton btnNewButton;
+	private JLabel label_2;
+	private JPanel panel;
+	private JLabel label_3;
 
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
 		this.reserStfrm = this;
@@ -186,38 +189,41 @@ public class Reservation_step1 extends JFrame {
 
 		seat_detail = new JPanel();
 		seat_detail.setBackground(new Color(240, 240, 240));
-		seat_detail.setBounds(10, 36, 442, 307);
+		seat_detail.setBounds(10, 71, 442, 272);
 		seatContent.add(seat_detail);
-		seat_detail.setLayout(null);
+		seat_detail.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		screen = new JPanel();
-		screen.setBackground(new Color(112, 128, 144));
-		screen.setBounds(10, 0, 422, 38);
-		seat_detail.add(screen);
-
-		lblNewLabel_2 = new JLabel("SCREEN");
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		screen.add(lblNewLabel_2);
+		label_2 = new JLabel("");
+		seat_detail.add(label_2);
 
 		seat_number = new JPanel();
-	
+		seat_number.setBackground(new Color(240, 240, 240));
+		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
+		seat_detail.add(seat_number);
+
+		panel = new JPanel();
+		panel.setBackground(new Color(112, 128, 144));
+		panel.setBounds(10, 43, 442, 30);
+		seatContent.add(panel);
+
+		label_3 = new JLabel("SCREEN");
+		label_3.setForeground(Color.WHITE);
+		label_3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		panel.add(label_3);
 
 		int select = 0;
 		for (int i = 0; i < 36; i++) {
 			tglbtnNewToggleButton = new JToggleButton(ButtonName.get(i));
 			ImageIcon ic = new ImageIcon(
 					Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
-
-			Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
+			Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 			ic.setImage(icImg);
 			tglbtnNewToggleButton.setIcon(ic);
 			tglbtnNewToggleButton.repaint();
-			tglbtnNewToggleButton.setBorderPainted(false);
-			tglbtnNewToggleButton.setContentAreaFilled(false);
-			tglbtnNewToggleButton.setFocusPainted(false);
-			tglbtnNewToggleButton.setOpaque(false);
-//			tglbtnNewToggleButton.setVisible(true);
+//			tglbtnNewToggleButton.setBorderPainted(false);
+//			tglbtnNewToggleButton.setContentAreaFilled(false);
+//			tglbtnNewToggleButton.setFocusPainted(false);
+//			tglbtnNewToggleButton.setOpaque(false);
 			seat_number.add(tglbtnNewToggleButton);
 
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
@@ -225,33 +231,36 @@ public class Reservation_step1 extends JFrame {
 					if (tglbtnNewToggleButton.isSelected()) {
 						ImageIcon ic = new ImageIcon(
 								Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
-						Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
+						Image icImg = ic.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
+//						tglbtnNewToggleButton.setBorderPainted(false);
+//						tglbtnNewToggleButton.setContentAreaFilled(false);
+//						tglbtnNewToggleButton.setFocusPainted(false);
+//						tglbtnNewToggleButton.setOpaque(false);
 						SName.add(tglbtnNewToggleButton.getText());
 					} else {
 						ImageIcon ic = new ImageIcon(
 								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
-						Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
+						Image icImg = ic.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
+//						tglbtnNewToggleButton.setBorderPainted(false);
+//						tglbtnNewToggleButton.setContentAreaFilled(false);
+//						tglbtnNewToggleButton.setFocusPainted(false);
+//						tglbtnNewToggleButton.setOpaque(false);
 						SName.remove(tglbtnNewToggleButton.getText());
 					}
 				}
-
 			});
-			if (tglbtnNewToggleButton.isSelected())
+			if (tglbtnNewToggleButton.isSelected()) {
 				select = 1;
-			else
+			} else {
 				select = 0;
+			}
 		}
-		seat_number.setBounds(19, 80, 422, 263);
-		seatContent.add(seat_number);
-		seat_number.setBackground(new Color(240, 240, 240));
-		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
-		
 		option = new JPanel();
 		option.setBackground(new Color(255, 255, 255));
 		option.setBounds(0, 497, 484, 110);
