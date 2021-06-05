@@ -11,24 +11,13 @@ import template.Application.view.member.Notice;
 
 public class Notice_DB {
 	static ArrayList<Notice_data> NoticeArr = new ArrayList<>();
-		
- //		public static void main(String[] args) {
-//			takeNoticetitle();
-//			for (int i = 0; i < NoticeArr.size(); i++) {
-//				System.out.println(NoticeArr.get(i));
-//			}
-//			
-//		}
-		
 	static DB_Connect connect;
-	Notice NM;
-	Notice_data Notice;
+	static Notice NM;
+	static Notice_data Notice;
 
 	public static ArrayList<Notice_data> takeNoticetitle() {
 		ArrayList<Notice_data> NoticeArr = new ArrayList<>();
-		
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		if (connect.conn != null) {
 			String sql = "SELECT * FROM notice";
 			try {
@@ -39,7 +28,7 @@ public class Notice_DB {
 					String title = rs.getString("title");
 					String content = rs.getString("content");
 					int viewcount = rs.getInt("viewcount");
-					
+
 					NoticeArr.add(new Notice_data(id, title, content, viewcount));
 				}
 
@@ -51,13 +40,8 @@ public class Notice_DB {
 		connect.endConnection();
 		return NoticeArr;
 	}
-	
+
 	public boolean changeViewCount(String title, int Count) {
-		
-		DB_Connect connect = null;
-		Notice NM;
-		Notice_data Notice;
-		
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "UPDATE NOTICE SET viewcount = ? WHERE title = ?";
@@ -66,10 +50,10 @@ public class Notice_DB {
 				pstmt.setInt(1, Count);
 				pstmt.setString(2, title);
 				int rs = pstmt.executeUpdate();
-				if( rs == 1 ) {
+				if (rs == 1) {
 					System.out.println("조회수 증가 성공");
 					return true;
-				} else 
+				} else
 					System.out.println("조회수 증가 실패");
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -78,39 +62,30 @@ public class Notice_DB {
 		connect.endConnection();
 		return false;
 	}
-	
-	public  ArrayList<Notice_data> selectAllNotice() {
-		if( connect.conn != null ) {
+
+	public ArrayList<Notice_data> selectAllNotice() {
+		connect.beginConnection();
+		if (connect.conn != null) {
 			ArrayList<Notice_data> uiList = new ArrayList<>();
 			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
 			try {
-				Statement stmt =  connect.conn.createStatement();
+				Statement stmt = connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
-				while( rs.next() ) {	
-					String userDoB= rs.getString("BIRTHDAY");
-
-					Notice_data ui 
-				= new Notice_data(
-							rs.getInt("NOTICE_ID"), 
-							rs.getString("TITLE"),
-							rs.getString("CONTENT"),
-							rs.getInt("VEIWCOUNT"),
-							rs.getInt("MEMBER_ID"));
-					
-				uiList.add(ui);
+				while (rs.next()) {
+					String userDoB = rs.getString("BIRTHDAY");
+					Notice_data ui = new Notice_data(rs.getInt("NOTICE_ID"), rs.getString("TITLE"),
+							rs.getString("CONTENT"), rs.getInt("VEIWCOUNT"), rs.getInt("MEMBER_ID"));
+					uiList.add(ui);
 				}
 				System.out.println("DBMgr: 연동 성공! 공지사항갯수 => " + uiList.size());
 				return uiList;
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}			
+			}
 		} else {
 			System.out.println("DB error!!!@");
 		}
-		
+		connect.endConnection();
 		return null;
 	}
 }
-	
-
-	

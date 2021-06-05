@@ -17,21 +17,8 @@ public class Movie_DB {
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	static ArrayList<Integer> movieidlist = new ArrayList<>();
 
-	public static void main(String[] args) {
-		try {
-			// MovieList= TodayMovie(6, 1);
-			MovieList = TodayMovie(6, 2);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		for (int i = 0; i < MovieList.size(); i++) {
-			System.out.println(MovieList.get(i));
-		}
-	}
-
 	public static ArrayList<Movie_Data> getMovieData() {
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		if (connect.conn != null) {
 			String sql = "select * from Movies";
 			try {
@@ -69,7 +56,6 @@ public class Movie_DB {
 
 	public static int getMovieIDFromImage(String ImageFile) {
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		int MovieId = 0;
 		if (connect.conn != null) {
 			String sql = "SELECT movies_id FROM movies WHERE image_file_name = '" + ImageFile + "'";
@@ -97,7 +83,6 @@ public class Movie_DB {
 
 	public static int getMovieInformationFromImage(int id) {
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		int MovieId = 0;
 		if (connect.conn != null) {
 			String sql = "SELECT * FROM movies WHERE movies_id = '" + id + "'";
@@ -124,7 +109,6 @@ public class Movie_DB {
 
 	public static Movie_Data getMovieInformationFromMovieId(int id) {
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		Movie_Data MD = new Movie_Data();
 		if (connect.conn != null) {
 			String sql = "SELECT * FROM movies WHERE movies_id = '" + id + "'";
@@ -150,11 +134,9 @@ public class Movie_DB {
 		return MD;
 
 	}
-	
-	
+
 	public static ArrayList<Integer> getMovie(int year, int month, int day) {
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		int MovieId = 0;
 		if (connect.conn != null) {
 			String sql = "SELECT * FROM movies WHERE schedule_date = '" + year + month + day + "'";
@@ -192,7 +174,6 @@ public class Movie_DB {
 		date = transformDate(Dday);
 
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		if (connect.conn != null) {
 			String sql = "select * from Movies";
 			Statement st = connect.conn.createStatement();
@@ -230,7 +211,6 @@ public class Movie_DB {
 		date = transformDate(Dday);
 
 		connect.beginConnection();
-		// DB에서 정보 가져오기
 		if (connect.conn != null) {
 			String sql = "select * from Movies";
 			Statement st = connect.conn.createStatement();
@@ -253,70 +233,17 @@ public class Movie_DB {
 
 	}
 
-//	public static ArrayList<Movie_Data[]> Movie(int month, int day) throws SQLException {
-//		ArrayList<Movie_Data[]> MovieList = new ArrayList<>();
-//		String years = "2021";
-//		String months = "";
-//		if (month == 5)
-//			months = "05";
-//		else if (month == 6)
-//			months = "06";
-//		String days = String.valueOf(day);
-//		String Dday = years + months + days;
-//
-//		Date date = null;
-//		date = transformDate(Dday);
-//
-//		connect.beginConnection();
-//		// DB에서 정보 가져오기
-//		if (connect.conn != null) {
-//			String sql = "select * from Movies";
-//			Statement st = connect.conn.createStatement();
-//			ResultSet rs = st.executeQuery(sql);
-//			while (rs.next()) {
-//				int moviesid = rs.getInt("movies_id");
-//				String imageFileName = rs.getString("image_file_name");
-//				Date scheduleDate = rs.getDate("schedule_date");
-//			
-//
-//				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
-//				if (MD.getScheduledate().equals(date))
-//					MovieList[].add(MD);
-//				else
-//					MovieList[].add(MD);
-
-//
-//			}
-//
-//			return MovieList;
-//			
-//		}
-//		connect.endConnection();
-//		return MovieList;
-//
-//	}
-
 	public static Date transformDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
-
-		// Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
 		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
-
 		java.util.Date tempDate = null;
-
 		try {
-			// 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
 			tempDate = beforeFormat.parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
-		// java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환한다.
 		String transDate = afterFormat.format(tempDate);
-
-		// 반환된 String 값을 Date로 변경한다.
 		Date d = Date.valueOf(transDate);
-
 		return d;
 	}
 }

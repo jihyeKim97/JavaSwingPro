@@ -11,7 +11,7 @@ public class Reservation_DB {
 
 	static ArrayList<String> Name;
 	static DB_Connect connect;
-	Reservation_DB RD;
+	static Reservation_DB RD;
 
 	public static ArrayList<String> ButtonName() {
 		Name = new ArrayList<>();
@@ -32,19 +32,14 @@ public class Reservation_DB {
 		return Name;
 	}
 
-	public static boolean saveResevationData(int A, String shecduledate, String seatNumber, int carType, int paymentPrice,
-			String optionName, int optionPrice, int memberID, int movieID) {
+	public static boolean saveResevationData(int A, String shecduledate, String seatNumber, int carType,
+			int paymentPrice, String optionName, int optionPrice, int memberID, int movieID) {
 		connect.beginConnection();
 		// DB에서 정보 가져오기
 		String sql = "INSERT INTO VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID)"
 				+ "VALUES (RESERVATION_SEQ.nextval, " + A + ", '" + shecduledate + "', '" + seatNumber + "', " + carType
 				+ ", " + paymentPrice + ", SYSDATE, '" + optionName + "', " + optionPrice + ", " + memberID + " , "
 				+ movieID + ")";
-//					""
-//					+ "INSERT INTO reservaiton  value(RESERVATION_SEQ.nextval, "+ A +", '" + date + "', '" 
-//							+ seatNumber + "'," + carType + ", " + paymentPrice + ",'" + date2 + "', '" + optionName + "', " 
-//							+ optionPrice + "," + memberID +"," + movieID + ")";
-		System.out.println(sql);
 		if (connect.conn != null) {
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
@@ -67,25 +62,15 @@ public class Reservation_DB {
 
 	public static Date StringtoDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
-
-		// Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
 		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
-
 		java.util.Date tempDate = null;
-
 		try {
-			// 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
 			tempDate = beforeFormat.parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
-		// java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환한다.
 		String transDate = afterFormat.format(tempDate);
-
-		// 반환된 String 값을 Date로 변경한다.
 		Date d = Date.valueOf(transDate);
-
 		return d;
 	}
 }

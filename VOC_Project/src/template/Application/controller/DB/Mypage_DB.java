@@ -232,15 +232,4 @@ public class Mypage_DB {
 		connect.endConnection();
 		return false;
 	}
-	public static void main(String[] args) {
-		
-//		UpdateReviewContent(84, "안냥?");
-//		ArrayList<Mypage_Review_data> i = SelectReviewD(1);
-//		System.out.println(SelectReviewD(1).get(0).getMoviesID() );
-//		System.out.println(i);
-//		InsertReviewID();
-//		InsertReviewID("좋아열", 5, SelectReservationID(34).get(0).getReservation_id(),
-//				SelectReviewID(SelectReservationID(34).get(0).getReservation_id()).get(0).getMoviesID());
-//		InsertReviewID(Myoage_viDT);
-	}
 }

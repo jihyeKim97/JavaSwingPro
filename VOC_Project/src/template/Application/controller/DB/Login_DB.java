@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
 import template.Application.controller.Data.Login_data;
 
 public class Login_DB {
-	static DB_Connect DB;
-	static Connection conn;
+	static DB_Connect connect;
 	public static final int LOGIN_SUCCESS = 1;
 	public static final int LOGIN_FAIL_PW_MISMATCH = 2;
 	public static final int LOGIN_FAIL_NOT_FOUND = 3;
@@ -27,22 +26,22 @@ public class Login_DB {
 	public static final int FIND_NULL = 3;
 	public static final int PHN_MISMATCH = 4;
 
-	public Login_DB() {
-		this.conn = DB.getConn();
-	}
+	static Login_data loginDT;
+	static ArrayList<Login_data> LogArr = new ArrayList<>();
 
 	public ArrayList<Login_data> selectAllMembers() {
-		if (this.conn != null) {
+		if (connect.conn != null) {
 			ArrayList<Login_data> uiList = new ArrayList<>();
 			String sql = "select * from member ORDER BY MEMBER_ID desc";
 			try {
-				Statement stmt = conn.createStatement();
+				Statement stmt = connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String userDoB = rs.getString("BIRTHDAY");
 
-					Login_data ui = new Login_data(rs.getInt("MEMBER_ID"),rs.getString("ID"), rs.getString("PASSWORD"), rs.getString("NAME"),
-							rs.getInt("GENDER"), rs.getString("PHONE_NUMBER"),rs.getInt("IS_MEMBER"), rs.getString("BIRTHDAY"));
+					Login_data ui = new Login_data(rs.getInt("MEMBER_ID"), rs.getString("ID"), rs.getString("PASSWORD"),
+							rs.getString("NAME"), rs.getInt("GENDER"), rs.getString("PHONE_NUMBER"),
+							rs.getInt("IS_MEMBER"), rs.getString("BIRTHDAY"));
 
 					uiList.add(ui);
 				}
@@ -58,15 +57,11 @@ public class Login_DB {
 		return null;
 	}
 
-	/*-------------------------------------------------------------------------------------*/
-	static Login_data loginDT;
-	static ArrayList<Login_data> LogArr = new ArrayList<>();
-
 	public static ArrayList<Login_data> SelectMemberID(int memberID) {
-		if ( conn != null) {
+		if (connect.conn != null) {
 			String sql = "select * from member where member_id =  " + memberID;
 			try {
-				Statement stmt = conn.createStatement();
+				Statement stmt = connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					int member_id = rs.getInt("member_id");
@@ -90,14 +85,12 @@ public class Login_DB {
 		return LogArr;
 	}
 
-	/*-------------------------------------------------------------------------------------*/
-
 	public Login_data movepage(String a) {
-		if (this.conn != null) {
+		if (connect.conn != null) {
 
 			String sql = "select is_member from member where id = ?";
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				pstmt.setString(1, a);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
@@ -116,10 +109,10 @@ public class Login_DB {
 	}
 
 	public boolean changeBypass(String mbpassword, String mbid, String phn, String name) {
-		if (this.conn != null) {
+		if (connect.conn != null) {
 			String sql = "UPDATE MEMBER SET PASSWORD = ? WHERE ID = ? AND PHONE_NUMBER = ? AND NAME = ?";
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				pstmt.setString(1, mbpassword);
 				pstmt.setString(2, mbid);
 				pstmt.setString(3, phn);
@@ -139,11 +132,11 @@ public class Login_DB {
 	}
 
 	public Login_data selectOneMemberByLogin(String mbLogin) {
-		if (this.conn != null) {
+		if (connect.conn != null) {
 
 			String sql = "select * from member where id = ?";
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				pstmt.setString(1, mbLogin);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
@@ -165,11 +158,11 @@ public class Login_DB {
 
 	// 아이디찾는함수
 	public Login_data selectOneMemberByName(String mbname) {
-		if (this.conn != null) {
+		if (connect.conn != null) {
 
 			String sql = "select * from member where name = ?";
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				pstmt.setString(1, mbname);
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
@@ -194,7 +187,7 @@ public class Login_DB {
 			System.out.println("로그인 인증에 대한 입력에러");
 			return LOGIN_ERROR;
 		}
-		if (this.conn != null) {
+		if (connect.conn != null) {
 			Login_data mb = selectOneMemberByLogin(login);
 			if (mb != null) {
 				String mbPw = mb.getPassword();
@@ -224,7 +217,7 @@ public class Login_DB {
 		if (name == null || phone_number == null || name.isEmpty() || phone_number.isEmpty()) {
 			return FIND_NULL;
 		}
-		if (this.conn != null) {
+		if (connect.conn != null) {
 			Login_data mb = selectOneMemberByName(name);
 			if (mb != null) {
 				String mbPhn = mb.getPhone_number();
@@ -269,7 +262,7 @@ public class Login_DB {
 				|| phone_number.isEmpty()) {
 			return FIND_NULL;
 		}
-		if (this.conn != null) {
+		if (connect.conn != null) {
 			Login_data mb = selectOneMemberByLogin(login);
 			if (mb != null) {
 				String mbPhn = mb.getPhone_number();
@@ -297,14 +290,4 @@ public class Login_DB {
 		}
 		return FIND_ERROR;
 	}
-
-	public static void main(String[] args) throws SQLException {
-		Login_DB mbMgr = new Login_DB();
-//		ArrayList<Login_data> i = SelectMemberID(34);
-//		System.out.println(i);
-//		
-		DB.endConnection();
-
-	}
-
 }
