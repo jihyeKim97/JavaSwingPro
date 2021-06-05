@@ -454,11 +454,13 @@ public class SignUp extends JFrame {
 				SignUp_data newUI = new SignUp_data(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
 
 				boolean r = mgr.insertNewMember(newUI);
-				if (r) {
+				if (r && newUI != null) {
 					JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
 					dispose();
-				} else
+				} else {
 					JOptionPane.showMessageDialog(null, "회원 가입 실패 하였습니다");
+
+				}
 			}
 		});
 
@@ -486,14 +488,4 @@ public class SignUp extends JFrame {
 	}
 }
 
-//	public void checkNull() {
-//		String memberName = new String(txt_userName.getName());
-//		if (memberName == null && bLoginAvail == true) {
-//			System.out.println("이름 기입 필요!!");
-//			btn_userJoin.setEnabled(false);
-//		String birthday = new String(txt_DoB)
-//		}
-			
-//		}
-//			
-//}
+

@@ -82,22 +82,22 @@ public class Ad_AdPage_DB {
 //		}
 
 	
-	public static boolean deleteNotice(int NOTICE_ID, String TITLE, String CONTENT, int VEIWCOUNT, int MEMBER_ID) {
+	public static boolean deleteNotice(int NOTICE_ID, String TITLE, String CONTENT, int VIEWCOUNT, int MEMBER_ID) {
 
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "update notice set NOTICE_ID = 'null' , TITLE = 'null' , CONTENT =  'null', VEIWCOUNT = 'null', MEMBER_ID = 'null' where member_id = ? ";
+			String sql = "update notice set NOTICE_ID = 'null' , TITLE = 'null' , CONTENT =  'null', VIEWCOUNT = 'null', MEMBER_ID = 'null' where member_id = ? ";
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				pstmt.setInt(1, NOTICE_ID);
 				pstmt.setString(2, TITLE);
 				pstmt.setString(3, CONTENT);
-				pstmt.setInt(4, VEIWCOUNT);
+				pstmt.setInt(4, VIEWCOUNT);
 				pstmt.setInt(5, MEMBER_ID);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
 					System.out.println("공지사항 null로 갱신 성공");
-					System.out.println(NOTICE_ID + " " + TITLE + " " + CONTENT + " " + VEIWCOUNT +
+					System.out.println(NOTICE_ID + " " + TITLE + " " + CONTENT + " " + VIEWCOUNT +
 							" " + MEMBER_ID + " ");
 					return true;
 				} else
@@ -111,22 +111,21 @@ public class Ad_AdPage_DB {
 	}
 	
 	
-	public boolean updateMembertoNone(int IS_MEMBER, int MEMBER_ID) {
+	public boolean updateMembertoNone(int MEMBER_ID) {
 		connect.beginConnection();
 		if (this.conn != null) {
 			String sql = "update member set IS_MEMBER = '2'  where MEMBER_ID = ? ";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, IS_MEMBER);
-				pstmt.setInt(2,MEMBER_ID);
-
+				pstmt.setInt(1, MEMBER_ID);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
 					System.out.println("멤버 탈퇴 성공" + MEMBER_ID + "");
 					return true;
-				} else
+				} else {
 					System.out.println("멤버 탈퇴 실패!");
-			} catch (SQLException e) {
+			}
+			}catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -243,7 +242,7 @@ public class Ad_AdPage_DB {
 					int rsMovieId = rs.getInt("MOVIE_ID");
 
 					Reservation_data ui = new Reservation_data(rs.getInt("RESERVATION_ID"),
-							rs.getInt("RESERVATIOM_NUMBER"), rs.getDate("RESERVATION_DATE"),
+							rs.getInt("RESERVATION_NUMBER"), rs.getDate("RESERVATION_DATE"),
 							rs.getString("SEAT_NUMBER"), rs.getInt("CAR_TYPE"), rs.getInt("PAYMENT_PRICE"),
 							rs.getDate("PAYMENT_DATE"), rs.getString("OPTION_NAME"), rs.getInt("OPTION_PRICE"),
 							rs.getInt("MEMBER_ID"), rs.getInt("MOVIE_ID"));
