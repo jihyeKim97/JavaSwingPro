@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import template.Application.controller.DB.Mypage_DB;
 import template.Application.controller.Data.Login_data;
+import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Review_data;
 import template.Application.controller.btn.RoundedButtonG;
 import javax.swing.JTextField;
@@ -37,10 +38,10 @@ public class Mypage_writePage extends JFrame {
 
 	int sco = 0;
 
-	public Mypage_writePage(MyPage frm, Login_data Ld) {
+	public Mypage_writePage(MyPage frm, Login_data Ld, Movie_Data MD) {
 		this.frm = frm;
 		ArrayList<Mypage_Review_data> ViArr = MDB
-				.SelectReviewID(MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id());
+				.SelectReviewID(MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(), MD.getMoviesid());
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 406, 352);
