@@ -28,23 +28,34 @@ public class Login_DB {
 
 	static Login_data loginDT;
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
+	static ArrayList<Login_data> uiList = new ArrayList<>();
 
-	public ArrayList<Login_data> selectAllMembers() {
-		connect.beginConnection();
+//	public static void main(String[] args) {
+//		uiList = selectAllMembers();
+//		for (int i = 0; i < uiList.size(); i++) {
+//			System.out.println(uiList.get(i));
+//		}
+//	}
+	
+	public static ArrayList<Login_data> selectAllMembers() {
+		connect.beginConnection();;
 		if (connect.conn != null) {
-			ArrayList<Login_data> uiList = new ArrayList<>();
-			String sql = "select * from member ORDER BY MEMBER_ID desc";
+			String sql = "select * from member";
 			try {
 				Statement stmt = connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
-					String userDoB = rs.getString("BIRTHDAY");
+					int member_id = rs.getInt("member_id");
+					String id = rs.getString("id");
+					String password = rs.getString("password");
+					String name = rs.getString("name");
+					int gender = rs.getInt("gender");
+					String phone_number = rs.getString("phone_number");
+					int is_member = rs.getInt("is_member");
+					String birthday = rs.getString("birthday");
 
-					Login_data ui = new Login_data(rs.getInt("MEMBER_ID"), rs.getString("ID"), rs.getString("PASSWORD"),
-							rs.getString("NAME"), rs.getInt("GENDER"), rs.getString("PHONE_NUMBER"),
-							rs.getInt("IS_MEMBER"), rs.getString("BIRTHDAY"));
-
-					uiList.add(ui);
+					uiList.add(
+							new Login_data(member_id, id, password, name, gender, phone_number, is_member, birthday));
 				}
 				System.out.println("DBMgr: ���� 議고�� 紐��� => " + uiList.size());
 				return uiList;
@@ -55,7 +66,7 @@ public class Login_DB {
 			System.out.println("DB error!!!@");
 		}
 		connect.endConnection();
-		return null;
+		return uiList;
 	}
 
 	public static ArrayList<Login_data> SelectMemberID(int memberID) {

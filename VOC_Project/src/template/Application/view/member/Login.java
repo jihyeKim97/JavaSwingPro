@@ -49,7 +49,9 @@ public class Login extends JFrame {
 	Login_DB LDB;
 	Admin_AdPage ad_page;
 	Login_data LD = new Login_data();
-
+	ArrayList<Login_data> LoginArr = new ArrayList<>();
+	ArrayList<Login_data> memberdata = new ArrayList<>();
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -81,13 +83,33 @@ public class Login extends JFrame {
 		contentPane.setBackground(new Color(240, 240, 240));
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
-
+		
+		LoginArr = LDB.selectAllMembers();
 		btn_Login = new RoundedButtonR();
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int A = 0;
 				String id = txt_id.getText();
 				String pw = new String(txt_pw.getPassword());
-				LDB.SelectMemberID(memberID);
+				Login_DB mgr = new Login_DB();
+				Login_data ismb = mgr.movepage(id);
+				for (int i = 0; i < LoginArr.size(); i++) {
+					if (LoginArr.get(i).getId().equals(id)) {
+						memberdata = LDB.SelectMemberID(LoginArr.get(i).getMember_id());
+						if (memberdata.get(0).getPassword().equals(pw)) {
+							System.out.println(ismb.getIs_member());
+							main = new Main(ln, memberdata.get(0));
+							main.setVisible(true);
+							dispose();
+							A = 2;
+					}else {
+						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
+						A = 1;
+					}
+				}
+			}
+				if (A == 0)
+				JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
 			}
 		});
 		btn_Login.setText("LOGIN");
