@@ -247,9 +247,7 @@ public class Reservation_step1 extends JFrame {
 						tglbtnNewToggleButton.repaint();
 						SName.remove(tglbtnNewToggleButton.getText());
 					}
-
 				}
-
 			});
 			if (tglbtnNewToggleButton.isSelected()) {
 				select = 1;

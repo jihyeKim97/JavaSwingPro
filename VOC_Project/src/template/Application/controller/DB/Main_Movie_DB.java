@@ -40,11 +40,9 @@ public class Main_Movie_DB {
 					Date scheduleDate = rs.getDate("schedule_date");
 					int Scheduletime = rs.getInt("schedule_time");
 					String runningTime = rs.getString("running_time");
-
 					MovieList.add(new Movie_Data(moviesid, title, genre, director, agegroup, story, averagecsore, gee,
 							openDate, production, imageFileName, scheduleDate, Scheduletime, runningTime));
 				}
-
 				return MovieList;
 			} catch (SQLException e) {
 				e.printStackTrace();

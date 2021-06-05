@@ -282,9 +282,9 @@ public class Reservation_step2 extends JFrame {
 				A = Integer.parseInt(a);
 				if (!cardF1.isEmpty() && !cardF2.isEmpty() && !cardF3.isEmpty() && !cardF4.isEmpty()
 						&& !cardFC.isEmpty() && !cardFD.isEmpty() && !cardFP.isEmpty()) {
-					RDB.saveResevationData(A, "" + movie.getScheduledate(), RD.getSeatNumber(),
-							RD.getCarType(), RD.getPaymentPrice(), RD.getOptionName(), RD.getOptionPrice(),
-							Ld.getMember_id(), movie.getMoviesid());
+					RDB.saveResevationData(A, "" + movie.getScheduledate(), RD.getSeatNumber(), RD.getCarType(),
+							RD.getPaymentPrice(), RD.getOptionName(), RD.getOptionPrice(), Ld.getMember_id(),
+							movie.getMoviesid());
 					System.out.println();
 					pay_success.setVisible(true);
 					pay_ing.setVisible(false);
