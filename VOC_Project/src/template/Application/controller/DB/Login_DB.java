@@ -30,6 +30,7 @@ public class Login_DB {
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
 
 	public ArrayList<Login_data> selectAllMembers() {
+		connect.beginConnection();
 		if (connect.conn != null) {
 			ArrayList<Login_data> uiList = new ArrayList<>();
 			String sql = "select * from member ORDER BY MEMBER_ID desc";
@@ -53,11 +54,12 @@ public class Login_DB {
 		} else {
 			System.out.println("DB error!!!@");
 		}
-
+		connect.endConnection();
 		return null;
 	}
 
 	public static ArrayList<Login_data> SelectMemberID(int memberID) {
+		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "select * from member where member_id =  " + memberID;
 			try {
@@ -72,7 +74,6 @@ public class Login_DB {
 					String phone_number = rs.getString("phone_number");
 					int is_member = rs.getInt("is_member");
 					String birthday = rs.getString("birthday");
-
 					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
 							+ phone_number + " " + birthday + " " + is_member);
 					LogArr.add(
@@ -82,10 +83,12 @@ public class Login_DB {
 				e.printStackTrace();
 			}
 		}
+		connect.endConnection();
 		return LogArr;
 	}
 
 	public Login_data movepage(String a) {
+		connect.beginConnection();
 		if (connect.conn != null) {
 
 			String sql = "select is_member from member where id = ?";
@@ -105,10 +108,12 @@ public class Login_DB {
 		} else {
 			System.out.println("DB 통신 에러");
 		}
+		connect.endConnection();
 		return null;
 	}
 
 	public boolean changeBypass(String mbpassword, String mbid, String phn, String name) {
+		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "UPDATE MEMBER SET PASSWORD = ? WHERE ID = ? AND PHONE_NUMBER = ? AND NAME = ?";
 			try {
@@ -128,10 +133,12 @@ public class Login_DB {
 				e.printStackTrace();
 			}
 		}
+		connect.endConnection();
 		return false;
 	}
 
 	public Login_data selectOneMemberByLogin(String mbLogin) {
+		connect.beginConnection();
 		if (connect.conn != null) {
 
 			String sql = "select * from member where id = ?";
@@ -153,11 +160,13 @@ public class Login_DB {
 		} else {
 			System.out.println("DB 통신 에러!!");
 		}
+		connect.endConnection();
 		return null;
 	}
 
 	// 아이디찾는함수
 	public Login_data selectOneMemberByName(String mbname) {
+		connect.beginConnection();
 		if (connect.conn != null) {
 
 			String sql = "select * from member where name = ?";
@@ -179,10 +188,12 @@ public class Login_DB {
 		} else {
 			System.out.println("DB 통신 에러");
 		}
+		connect.endConnection();
 		return null;
 	}
 
 	public int loginProcess(String login, String pw) {
+		connect.beginConnection();
 		if (login == null || pw == null || login.isEmpty() || pw.isEmpty()) {
 			System.out.println("로그인 인증에 대한 입력에러");
 			return LOGIN_ERROR;
@@ -210,10 +221,12 @@ public class Login_DB {
 		} else {
 			System.out.println("DB 통신 에러!!");
 		}
+		connect.endConnection();
 		return LOGIN_ERROR;
 	}
 
 	public int findid(String name, String phone_number) {
+		connect.beginConnection();
 		if (name == null || phone_number == null || name.isEmpty() || phone_number.isEmpty()) {
 			return FIND_NULL;
 		}
@@ -239,6 +252,7 @@ public class Login_DB {
 		} else {
 			System.out.println("DB 통신 에러!!");
 		}
+		connect.endConnection();
 		return FIND_ERROR;
 	}
 
@@ -258,6 +272,7 @@ public class Login_DB {
 	}
 
 	public int findpw(String name, String login, String phone_number) {
+		connect.beginConnection();
 		if (name == null || login == null || phone_number == null || name.isEmpty() || login.isEmpty()
 				|| phone_number.isEmpty()) {
 			return FIND_NULL;
@@ -288,6 +303,7 @@ public class Login_DB {
 		} else {
 			System.out.println("DB 통신 에러!!");
 		}
+		connect.endConnection();
 		return FIND_ERROR;
 	}
 }
