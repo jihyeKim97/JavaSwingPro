@@ -66,6 +66,7 @@ public class SignUp extends JFrame {
 	final ButtonGroup genderGrp = new ButtonGroup();
 	final int MEMBER = 0, NOT_MEMBER = 1;
 	boolean bLoginAvail;
+	static int click = 0;
 
 	SignUp mj;
 	Login mln;
@@ -406,6 +407,7 @@ public class SignUp extends JFrame {
 		panel.add(btn_DupCheck);
 		btn_DupCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				click = 1;
 				String inLogin = txt_userId.getText();
 				Login_data ld = dbc2.selectOneMemberByLogin(inLogin);
 				if (!inLogin.isEmpty()) {
@@ -457,10 +459,14 @@ public class SignUp extends JFrame {
 
 				if (!UserId.isEmpty() && !UserPw.isEmpty() && !UserName.isEmpty() && !UserDoB.isEmpty()
 						&& !UserPhoneNum.isEmpty()) {
-					boolean r = mgr.insertNewMember(newUI);
-					if (r && newUI != null) {
-						JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
-						dispose();
+					if (click == 1) {
+						boolean r = mgr.insertMember(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
+						if (r && newUI != null) {
+							JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+							dispose();
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "중복확인은 필수 입니다");
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");

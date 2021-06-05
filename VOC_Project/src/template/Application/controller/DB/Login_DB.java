@@ -23,9 +23,10 @@ public class Login_DB {
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
 	static ArrayList<Login_data> uiList = new ArrayList<>();
 
+	
+
 	public static ArrayList<Login_data> selectAllMembers() {
 		connect.beginConnection();
-		;
 		if (connect.conn != null) {
 			String sql = "select * from member";
 			try {
@@ -69,8 +70,6 @@ public class Login_DB {
 					String phone_number = rs.getString("phone_number");
 					int is_member = rs.getInt("is_member");
 					String birthday = rs.getString("birthday");
-					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
-							+ phone_number + " " + birthday + " " + is_member);
 					LogArr.add(
 							new Login_data(member_id, id, password, name, gender, phone_number, is_member, birthday));
 				}
@@ -80,27 +79,6 @@ public class Login_DB {
 		}
 		connect.endConnection();
 		return LogArr;
-	}
-
-	public Login_data movepage(String a) {
-		connect.beginConnection();
-		if (connect.conn != null) {
-
-			String sql = "select is_member from member where id = ?";
-			try {
-				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				pstmt.setString(1, a);
-				ResultSet rs = pstmt.executeQuery();
-				if (rs.next()) {
-					Login_data mb = new Login_data(rs.getInt("is_member"));
-					return mb;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
-		return null;
 	}
 
 	public boolean changeBypass(String mbpassword, String mbid, String phn, String name) {
