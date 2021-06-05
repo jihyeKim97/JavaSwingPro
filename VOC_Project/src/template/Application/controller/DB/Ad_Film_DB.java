@@ -19,7 +19,6 @@ public class Ad_Film_DB {
 	static DB_Connect DB;
 	Ad_Film_Data ad_film;
 
-
 	public static ArrayList<Ad_Film_Data> GetFilm(int movieid) {
 		DB.beginConnection();
 		if (DB.conn != null) {
@@ -40,8 +39,9 @@ public class Ad_Film_DB {
 					String schedule_date = rs.getString("schedule_date");
 					String image_file_name = rs.getString("IMAGE_FILE_NAME");
 					String running_time = rs.getString("running_time");
-					
-					FilmArr.add(new Ad_Film_Data(title, genre, director, age_group, story, average_score, gee, open_date, production, schedule_date,image_file_name,running_time));
+
+					FilmArr.add(new Ad_Film_Data(title, genre, director, age_group, story, average_score, gee,
+							open_date, production, schedule_date, image_file_name, running_time));
 
 				}
 
@@ -52,16 +52,15 @@ public class Ad_Film_DB {
 		DB.endConnection();
 		return FilmArr;
 	}
-	
-	
-	public boolean changeFilm(int movieid,String title, String genre, String director, String age_group,
-			String story, String average_score, String gee, String open_date, String production, String schedule_date,
+
+	public boolean changeFilm(int movieid, String title, String genre, String director, String age_group, String story,
+			String average_score, String gee, String open_date, String production, String schedule_date,
 			String image_file_name, String running_time) {
 		DB.beginConnection();
 		if (DB.conn != null) {
 			String sql = "UPDATE MOVIES SET TITLE = ? ,GENRE = ?, DIRECTOR = ?, AGE_GROUP = ?, STORY = ?,"
 					+ "AVERAGE_SCORE = ?, GEE = ?, OPEN_DATE = ?, PRODUCTION = ?, SCHEDULE_DATE = ?, "
-					+ "IMAGE_FILE_NAME = ?, RUNNING_TIME = ? WHERE MOVIES_ID = "+movieid;
+					+ "IMAGE_FILE_NAME = ?, RUNNING_TIME = ? WHERE MOVIES_ID = " + movieid;
 			try {
 				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
 				pstmt.setString(1, title);
@@ -76,7 +75,7 @@ public class Ad_Film_DB {
 				pstmt.setString(10, schedule_date);
 				pstmt.setString(11, image_file_name);
 				pstmt.setString(12, running_time);
-			
+
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
 					System.out.println("db 영화 수정");
@@ -91,21 +90,20 @@ public class Ad_Film_DB {
 		DB.endConnection();
 		return false;
 	}
-	
-	public  boolean  insertNewMovie(Ad_Film_Data ui) {
+
+	public boolean insertNewMovie(Ad_Film_Data ui) {
 		DB.beginConnection();
 		if (DB.conn != null && ui != null) {
-			String sql 
-					= "INSERT INTO movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) VALUES "
-							+ "(MEMBER_SEQ.nextval,"
-							+"'"+ ui.getTitle() + "', '"
-							+ ui.getGenre() + "', '" + ui.getDirector() + "', '" + ui.getAge_group()  + "', '" + ui.getStory()+ "', '" + ui.getAverage_score()
-							+ "', '" + ui.getGee() + "', '" + ui.getOpen_date() + "', '" + ui.getProduction() + "', '" + ui.getImage_file_name() 
-							+ "', '" + ui.getSchedule_date() + "', '" + "1" + "', '" + ui.getRunning_time() + "')";
+			String sql = "INSERT INTO movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) VALUES "
+					+ "(MEMBER_SEQ.nextval," + "'" + ui.getTitle() + "', '" + ui.getGenre() + "', '" + ui.getDirector()
+					+ "', '" + ui.getAge_group() + "', '" + ui.getStory() + "', '" + ui.getAverage_score() + "', '"
+					+ ui.getGee() + "', '" + ui.getOpen_date() + "', '" + ui.getProduction() + "', '"
+					+ ui.getImage_file_name() + "', '" + ui.getSchedule_date() + "', '" + "1" + "', '"
+					+ ui.getRunning_time() + "')";
 			System.out.println(sql);
 			try {
 				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
-				
+
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
 					System.out.println("DBMgr: 영화 등록 성공! " + ui);
@@ -121,6 +119,6 @@ public class Ad_Film_DB {
 		}
 		DB.endConnection();
 		return false;
-}
+	}
 
 }
