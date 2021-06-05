@@ -475,7 +475,8 @@ public class SignUp extends JFrame {
 		String strPw2 = new String(pwf_userPw2.getPassword());
 		if ((strPw1.length() > 0 && strPw2.length() > 0) && bLoginAvail == true
 				&& (!txt_DoB.getText().isEmpty() == false)
-				&& (txt_userName.getText().isEmpty() == false && txt_userName.getText().equals("ex) 홍길동") == false)) {
+				&& (txt_userName.getText().isEmpty() == false && 
+				txt_userName.getText().equals("ex) 홍길동") == false)) {
 			if (strPw2.equals(strPw1)) {
 				btn_userJoin.setEnabled(true);
 			} else {
@@ -484,3 +485,15 @@ public class SignUp extends JFrame {
 		}
 	}
 }
+
+//	public void checkNull() {
+//		String memberName = new String(txt_userName.getName());
+//		if (memberName == null && bLoginAvail == true) {
+//			System.out.println("이름 기입 필요!!");
+//			btn_userJoin.setEnabled(false);
+//		String birthday = new String(txt_DoB)
+//		}
+			
+//		}
+//			
+//}
