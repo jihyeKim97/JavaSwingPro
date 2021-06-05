@@ -295,7 +295,7 @@ public class Admin_AdPage extends JFrame {
 			@Override			
 			public void mouseClicked(MouseEvent e) {
 				int selRow = ad_tb_MovieTable.getSelectedRow();
-				int selmovId = (int) ad_tb_MovieTable.getValueAt(selRow, 0);
+				//int selmovId = (int) ad_tb_MovieTable.getValueAt(selRow, 0);
 				String selmovtitle = (String) ad_tb_MovieTable.getValueAt(selRow, 1);
 				Movie_Data selm = movieList.get(selRow);
 				System.out.println(">> 선택된 영화: " + selmovtitle);
@@ -496,7 +496,6 @@ public Admin_AdPage() {
 		}
 	}
 	
-
 	
 	public void showReservationTableUIFromDB() {
 		final String columnNames[] = {
