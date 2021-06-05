@@ -237,7 +237,7 @@ public class Reservation_step1 extends JFrame {
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
-						SName.add(tglbtnNewToggleButton.getText());
+						SName.add(tglbtnNewToggleButton.getToolTipText());
 					} else {
 						ImageIcon ic = new ImageIcon(
 								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
@@ -245,7 +245,7 @@ public class Reservation_step1 extends JFrame {
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
-						SName.remove(tglbtnNewToggleButton.getText());
+						SName.remove(tglbtnNewToggleButton.getToolTipText());
 					}
 				}
 			});
