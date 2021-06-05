@@ -158,11 +158,11 @@ public class Mypage_DB {
 		return title;
 	}
 
-	public static ArrayList<Mypage_Review_data> SelectReviewID(int reservationID) {
+    public static ArrayList<Mypage_Review_data> SelectReviewID(int reservationID, int MovieID) {
 
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "select * from review where reservation_id =  " + reservationID;
+            String sql = "select * from review where reservation_id = " + reservationID + " and movies_id = " + MovieID;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);

@@ -198,7 +198,7 @@ public class MyPage extends JFrame {
 						wirte_review.setText("한줄평 작성하기");
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								wirteP = new Mypage_writePage(frm, Ld);
+                                wirteP = new Mypage_writePage(frm, Ld, MDT);
 								fPt = frm.getLocationOnScreen();
 								wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 								wirteP.setVisible(true);
