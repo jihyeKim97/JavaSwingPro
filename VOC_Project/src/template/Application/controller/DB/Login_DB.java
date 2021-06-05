@@ -230,7 +230,7 @@ public class Login_DB {
 				String mbPhn = mb.getPhone_number();
 				String Phn = phone_number;
 				if (mbPhn != null) {
-					if (mbPhn == Phn) {
+					if (mbPhn.equals(Phn)) {
 						String mblogin = mb.getId();
 						JOptionPane.showMessageDialog(null, mblogin + "입니다.");
 						return FIND_SUCCESS;
@@ -274,7 +274,7 @@ public class Login_DB {
 			if (mb != null) {
 				String mbPhn = mb.getPhone_number();
 				String Phn = phone_number;
-				if (mbPhn == Phn && mbPhn != null) {
+				if (mbPhn.equals(Phn) && mbPhn != null) {
 					String mbname = mb.getName();
 					if (mbname != null && !mbname.isEmpty()) {
 						if (mbname.equals(name)) {

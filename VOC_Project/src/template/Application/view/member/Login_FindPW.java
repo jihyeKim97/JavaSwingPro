@@ -247,6 +247,7 @@ public class Login_FindPW extends JFrame {
 				Login_DB db = new Login_DB();
 				String Phonenumber = new String(
 						txt_number4.getText() + "" + txt_number5.getText() + "" + txt_number6.getText());
+				System.out.println(txt_number4.getText() + "" + txt_number5.getText() + "" + txt_number6.getText());
 				int find = db.findpw(name, id, Phonenumber);
 				switch (find) {
 				case 1:
