@@ -30,7 +30,6 @@ public class Login_FindID extends JFrame {
 	JPanel panel_2;
 	JTextField txt_name;
 	JTextField txt_number1;
-	JTextField txt_number1_1;
 	JTextField txt_number2;
 	JTextField txt_number3;
 
@@ -112,10 +111,10 @@ public class Login_FindID extends JFrame {
 		panel_3.setBounds(95, 52, 236, 37);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
-		txt_number1_1 = new JTextField(3);
-		txt_number1_1.setBounds(0, 0, 70, 37);
-		panel_3.add(txt_number1_1);
-		txt_number1_1.addKeyListener(new KeyAdapter() {
+		txt_number1 = new JTextField(3);
+		txt_number1.setBounds(0, 0, 70, 37);
+		panel_3.add(txt_number1);
+		txt_number1.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				if (((JTextField) ke.getSource()).getText().length() > 2
 						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
@@ -123,7 +122,7 @@ public class Login_FindID extends JFrame {
 				}
 			}
 		});
-		txt_number1_1.addFocusListener(new FocusAdapter() {
+		txt_number1.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txt_number1.setForeground(Color.black);
@@ -136,8 +135,8 @@ public class Login_FindID extends JFrame {
 				txt_number1.setBackground(Color.WHITE);
 			}
 		});
-		txt_number1_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
-		txt_number1_1.setColumns(3);
+		txt_number1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
+		txt_number1.setColumns(3);
 
 		JLabel label_2 = new JLabel("-");
 		label_2.setBounds(65, 0, 20, 37);
@@ -232,7 +231,11 @@ public class Login_FindID extends JFrame {
 				String name = txt_name.getText();
 				Login_DB db = new Login_DB();
 				String Phonenumber = new String(txt_number1.getText() + txt_number2.getText() + txt_number3.getText());
+			
 				int find = db.findid(name, Phonenumber);
+				System.out.println(name);
+				System.out.println(Phonenumber);
+				System.out.println(find);
 				switch (find) {
 				case 1:
 					JOptionPane.showMessageDialog(null, "입력하신정보를 확인해주세요");
