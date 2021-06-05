@@ -124,10 +124,9 @@ public class Admin_AdPage extends JFrame {
 				DefaultTableModel tm = (DefaultTableModel)ad_tb_MemberTable.getModel();
 				if (n>=0 && n <ad_tb_MemberTable.getRowCount()) {
 					tm.removeRow(n);
-					Login_data ln = new Login_data();
-					int memberId= ln.getMember_id();
-					int ismember= ln.getIs_member();
-					addb.updateMembertoNone(ismember,memberId);
+					//int memberId= ln.getMember_id();
+					System.out.println();
+				//	addb.updateMembertoNone(memberId);
 					System.out.println("회원 탈퇴처리");	
 				}
 			}
@@ -251,7 +250,7 @@ public class Admin_AdPage extends JFrame {
 			@Override			
 			public void mouseClicked(MouseEvent e) {
 				int selRow = ad_tb_RaservationTable.getSelectedRow();
-				int selResId = (int) ad_tb_ReviewTable.getValueAt(selRow, 0);
+				int selResId = (int) ad_tb_RaservationTable.getValueAt(selRow, 0);
 				int selResNum = (int) ad_tb_RaservationTable.getValueAt(selRow, 1);
 				Reservation_data selRes = resList.get(selRow);
 				System.out.println(">> 선택된 예약: " + selRes);
@@ -386,10 +385,13 @@ public class Admin_AdPage extends JFrame {
 				DefaultTableModel tm = (DefaultTableModel)ad_tb_NoticeTable.getModel();
 				if (n>=0 && n <ad_tb_NoticeTable.getRowCount()) {
 					tm.removeRow(n);
-//					Notice_data nd = new Notice_data();
-//					int memberId= nd.getMember_id();
-//					int ismember= nd.getIs_member();
-//					addb.updateMembertoNone(ismember,memberId);
+					Notice_data nd = new Notice_data();
+					int noticeId= nd.getNoticeid();
+					String title= nd.getTitle();
+					String content = nd.getContent();
+					int veiwcount = nd.getViewcount();
+					int memberid = nd.getMemberid();
+					Ad_AdPage_DB.deleteNotice(noticeId,title,content,veiwcount,memberid);
 				System.out.println("공지사항 null로 업데이트");	
 			}
 		}

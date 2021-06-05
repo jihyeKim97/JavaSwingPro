@@ -41,8 +41,8 @@ public class Login_DB {
 				while (rs.next()) {
 					String userDoB = rs.getString("BIRTHDAY");
 
-					Login_data ui = new Login_data(rs.getString("ID"), rs.getString("PASSWORD"), rs.getString("NAME"),
-							rs.getInt("GENDER"), rs.getString("PHONE_NUMBER"), rs.getString("BIRTHDAY"));
+					Login_data ui = new Login_data(rs.getInt("MEMBER_ID"),rs.getString("ID"), rs.getString("PASSWORD"), rs.getString("NAME"),
+							rs.getInt("GENDER"), rs.getString("PHONE_NUMBER"),rs.getInt("IS_MEMBER"), rs.getString("BIRTHDAY"));
 
 					uiList.add(ui);
 				}
