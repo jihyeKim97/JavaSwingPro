@@ -1,18 +1,11 @@
 package template.Application.controller.DB;
 
 import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.PseudoColumnUsage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
-
 import template.Application.controller.Data.Login_data;
 
 public class Login_DB {
@@ -29,9 +22,10 @@ public class Login_DB {
 	static Login_data loginDT;
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
 	static ArrayList<Login_data> uiList = new ArrayList<>();
-	
+
 	public static ArrayList<Login_data> selectAllMembers() {
-		connect.beginConnection();;
+		connect.beginConnection();
+		;
 		if (connect.conn != null) {
 			String sql = "select * from member";
 			try {
@@ -54,7 +48,7 @@ public class Login_DB {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		}
 		connect.endConnection();
 		return uiList;
 	}
@@ -100,11 +94,11 @@ public class Login_DB {
 				if (rs.next()) {
 					Login_data mb = new Login_data(rs.getInt("is_member"));
 					return mb;
-				} 
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		}
 		connect.endConnection();
 		return null;
 	}
@@ -122,7 +116,7 @@ public class Login_DB {
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
 					return true;
-				} 
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -145,11 +139,11 @@ public class Login_DB {
 							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
-				} 
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		}
 		connect.endConnection();
 		return null;
 	}
@@ -169,11 +163,11 @@ public class Login_DB {
 							rs.getString("name"), rs.getInt("gender"), rs.getString("phone_number"),
 							rs.getInt("is_member"), rs.getString("birthday"));
 					return mb;
-				} 
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		}
 		connect.endConnection();
 		return null;
 	}
@@ -235,7 +229,7 @@ public class Login_DB {
 			} else {
 				return FIND_ERROR;
 			}
-		} 
+		}
 		connect.endConnection();
 		return FIND_ERROR;
 	}
@@ -284,7 +278,7 @@ public class Login_DB {
 			} else {
 				return FIND_ERROR;
 			}
-		} 
+		}
 		connect.endConnection();
 		return FIND_ERROR;
 	}
