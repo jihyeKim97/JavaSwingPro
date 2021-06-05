@@ -154,6 +154,7 @@ public class Notice extends JFrame {
 					int count = 0;
 					String title = "";
 					count = NB.getViewcount() + 1;
+					NB.setViewcount(count);
 					title = NB.getTitle();
 					b = NDB.changeViewCount(title, count);
 					ND = new Notice_Detail(NM, NB);
