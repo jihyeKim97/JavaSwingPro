@@ -214,7 +214,7 @@ public class Reservation_step1 extends JFrame {
 
 		int select = 0;
 		for (int i = 0; i < 36; i++) {
-			tglbtnNewToggleButton = new JToggleButton();
+			JToggleButton tglbtnNewToggleButton = new JToggleButton();
 			tglbtnNewToggleButton.setToolTipText(ButtonName.get(i));
 			ImageIcon ic = new ImageIcon(
 					Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
@@ -222,12 +222,12 @@ public class Reservation_step1 extends JFrame {
 			ic.setImage(icImg);
 			tglbtnNewToggleButton.setIcon(ic);
 			tglbtnNewToggleButton.repaint();
-//			tglbtnNewToggleButton.setBorderPainted(false);
-//			tglbtnNewToggleButton.setContentAreaFilled(false);
-//			tglbtnNewToggleButton.setFocusPainted(false);
-//			tglbtnNewToggleButton.setOpaque(false);
+			tglbtnNewToggleButton.setBorderPainted(false);
+			tglbtnNewToggleButton.setContentAreaFilled(false);
+			tglbtnNewToggleButton.setFocusPainted(false);
+			tglbtnNewToggleButton.setOpaque(false);
 			seat_number.add(tglbtnNewToggleButton);
-			
+
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tglbtnNewToggleButton.isSelected()) {
@@ -237,10 +237,6 @@ public class Reservation_step1 extends JFrame {
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
-//						tglbtnNewToggleButton.setBorderPainted(false);
-//						tglbtnNewToggleButton.setContentAreaFilled(false);
-//						tglbtnNewToggleButton.setFocusPainted(false);
-//						tglbtnNewToggleButton.setOpaque(false);
 						SName.add(tglbtnNewToggleButton.getText());
 					} else {
 						ImageIcon ic = new ImageIcon(
@@ -249,15 +245,11 @@ public class Reservation_step1 extends JFrame {
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
-//						tglbtnNewToggleButton.setBorderPainted(false);
-//						tglbtnNewToggleButton.setContentAreaFilled(false);
-//						tglbtnNewToggleButton.setFocusPainted(false);
-//						tglbtnNewToggleButton.setOpaque(false);
 						SName.remove(tglbtnNewToggleButton.getText());
 					}
 
 				}
-				
+
 			});
 			if (tglbtnNewToggleButton.isSelected()) {
 				select = 1;
@@ -307,9 +299,10 @@ public class Reservation_step1 extends JFrame {
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		label.setBounds(12, 10, 166, 37);
 		option.add(label);
-		
+
 		lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/option1.png")));
+		lblNewLabel_2
+				.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/option1.png")));
 		lblNewLabel_2.setBounds(12, 55, 177, 43);
 		option.add(lblNewLabel_2);
 
