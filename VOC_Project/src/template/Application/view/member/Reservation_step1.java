@@ -38,8 +38,8 @@ public class Reservation_step1 extends JFrame {
 	JLabel in_movietitle, label_1, in_movietime, lblNewLabel_1, step1, step2, won, sum_price_pay, txtprice;
 	RoundedButtonR roundedButtonD;
 	RoundedButtonG btn_payment;
-	Panel header, img1, img2, img3, img4, img5, infoContent;
-	JPanel infoDontent, seat_number, seat_detail, option, optionimgpanel, seat, contentPane, seatContent, content, info;
+	Panel header, infoContent;
+	JPanel infoDontent, seat_number, seat_detail, option, seat, contentPane, seatContent, content, info;
 	JComboBox car_type, option_type;
 	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
 			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
@@ -69,6 +69,7 @@ public class Reservation_step1 extends JFrame {
 	private JLabel label_2;
 	private JPanel panel;
 	private JLabel label_3;
+	private JLabel lblNewLabel_2;
 
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
 		this.reserStfrm = this;
@@ -299,30 +300,15 @@ public class Reservation_step1 extends JFrame {
 			}
 		});
 
-		optionimgpanel = new JPanel();
-		optionimgpanel.setBounds(15, 57, 174, 37);
-		option.add(optionimgpanel);
-		optionimgpanel.setLayout(new GridLayout(1, 0, 0, 0));
-
-		img1 = new Panel();
-		optionimgpanel.add(img1);
-
-		img2 = new Panel();
-		optionimgpanel.add(img2);
-
-		img3 = new Panel();
-		optionimgpanel.add(img3);
-
-		img4 = new Panel();
-		optionimgpanel.add(img4);
-
-		img5 = new Panel();
-		optionimgpanel.add(img5);
-
 		label = new JLabel("Step3. 추가 상품");
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		label.setBounds(12, 10, 166, 37);
 		option.add(label);
+		
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/option1.png")));
+		lblNewLabel_2.setBounds(12, 55, 177, 43);
+		option.add(lblNewLabel_2);
 
 		btn_payment = new RoundedButtonG("결제 하기");
 		btn_payment.addActionListener(new ActionListener() {
