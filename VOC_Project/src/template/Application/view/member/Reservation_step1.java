@@ -36,7 +36,7 @@ public class Reservation_step1 extends JFrame {
 
 	JLabel in_movietitle, label_1, in_movietime, lblNewLabel_1, step1, lblNewLabel_2, step2, won, sum_price_pay,
 			txtprice;
-	RoundedButtonR  roundedButtonD;
+	RoundedButtonR roundedButtonD;
 	RoundedButtonG btn_payment;
 	Panel header, img1, img2, img3, img4, img5, infoContent;
 	JPanel infoDontent, seat_number, screen, seat_detail, option, optionimgpanel, seat, contentPane, seatContent,
@@ -45,21 +45,20 @@ public class Reservation_step1 extends JFrame {
 	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
 			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
-	public static final int MOVIE_PRICE = 30000; 
+	public static final int MOVIE_PRICE = 30000;
 	Main mainfrm;
 	Reservation_step1 reserStfrm;
 	DB_Connect connect;
 	Movie_Data Movie;
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
-	private JLabel label;
+	JLabel label;
 	Login_data Ld;
-	private JLabel lblNewLabel;
+	JLabel lblNewLabel;
 	ArrayList<String> ButtonName = new ArrayList<>();
-	private JRadioButton rdbtnNewRadioButton;
+	JRadioButton rdbtnNewRadioButton;
 	String Car = "";
 	int CarType = 0;
-	private JToggleButton tglbtnNewToggleButton_1;
-	private JToggleButton tglbtnNewToggleButton_2;
+	JToggleButton tglbtnNewToggleButton;
 	ArrayList<Object> SName = new ArrayList<>();
 	String selectOption;
 	String optionName = "";
@@ -72,7 +71,7 @@ public class Reservation_step1 extends JFrame {
 		this.reserStfrm = this;
 		SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
 		sDate.format(new Date());
-		
+
 		Reservation_DB RDB = new Reservation_DB();
 		ButtonName = RDB.ButtonName();
 		Main_Movie_DB MDB = new Main_Movie_DB();
@@ -132,7 +131,7 @@ public class Reservation_step1 extends JFrame {
 		car_type.setBounds(251, 40, 201, 42);
 		infoDontent.add(car_type);
 		Car = car_type.getSelectedItem().toString();
-		if ( Car.equals("SUV"))
+		if (Car.equals("SUV"))
 			CarType = 2;
 		else
 			CarType = 1;
@@ -141,12 +140,12 @@ public class Reservation_step1 extends JFrame {
 		infoContent.setBackground(new Color(255, 255, 255));
 		infoContent.setBounds(10, 40, 235, 42);
 		infoDontent.add(infoContent);
-		infoContent.setLayout(new GridLayout(0, 2, 15, 0));
+		infoContent.setLayout(new GridLayout(0, 2, 0, 0));
 
 		lblNewLabel_1 = new JLabel("영화제목 : ");
 		lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		lblNewLabel_1.setBackground(new Color(192, 192, 192));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		infoContent.add(lblNewLabel_1);
 
 		in_movietitle = new JLabel(MovieList.get(PK).getTitle());
@@ -158,7 +157,7 @@ public class Reservation_step1 extends JFrame {
 		label_1 = new JLabel("상영시간 : ");
 		label_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		label_1.setBackground(new Color(192, 192, 192));
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		infoContent.add(label_1);
 
 		in_movietime = new JLabel(time + ":00");
@@ -186,7 +185,7 @@ public class Reservation_step1 extends JFrame {
 		seatContent.add(step2);
 
 		seat_detail = new JPanel();
-		seat_detail.setBackground(new Color(255, 255, 255));
+		seat_detail.setBackground(new Color(240, 240, 240));
 		seat_detail.setBounds(10, 36, 442, 307);
 		seatContent.add(seat_detail);
 		seat_detail.setLayout(null);
@@ -200,36 +199,40 @@ public class Reservation_step1 extends JFrame {
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		screen.add(lblNewLabel_2);
-		
-				seat_number = new JPanel();
-				seat_number.setBounds(19, 80, 422, 263);
-				seatContent.add(seat_number);
-				seat_number.setBackground(new Color(255, 255, 255));
-				seat_number.setLayout(new GridLayout(6, 6, 6, 6));
-			
+
+		seat_number = new JPanel();
+	
+
 		int select = 0;
 		for (int i = 0; i < 36; i++) {
-			JToggleButton tglbtnNewToggleButton = new JToggleButton(ButtonName.get(i));
+			tglbtnNewToggleButton = new JToggleButton(ButtonName.get(i));
 			ImageIcon ic = new ImageIcon(
 					Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
+
 			Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
 			ic.setImage(icImg);
 			tglbtnNewToggleButton.setIcon(ic);
 			tglbtnNewToggleButton.repaint();
-			seat_number.add(tglbtnNewToggleButton);	
-			
+			tglbtnNewToggleButton.setBorderPainted(false);
+			tglbtnNewToggleButton.setContentAreaFilled(false);
+			tglbtnNewToggleButton.setFocusPainted(false);
+			tglbtnNewToggleButton.setOpaque(false);
+//			tglbtnNewToggleButton.setVisible(true);
+			seat_number.add(tglbtnNewToggleButton);
+
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if ( tglbtnNewToggleButton.isSelected()) {
-						ImageIcon ic = new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
+					if (tglbtnNewToggleButton.isSelected()) {
+						ImageIcon ic = new ImageIcon(
+								Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
 						Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
 						SName.add(tglbtnNewToggleButton.getText());
-					}
-					else {
-						ImageIcon ic = new ImageIcon(Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
+					} else {
+						ImageIcon ic = new ImageIcon(
+								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
 						Image icImg = ic.getImage().getScaledInstance(55, 30, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
@@ -237,20 +240,24 @@ public class Reservation_step1 extends JFrame {
 						SName.remove(tglbtnNewToggleButton.getText());
 					}
 				}
-				
+
 			});
 			if (tglbtnNewToggleButton.isSelected())
 				select = 1;
 			else
 				select = 0;
 		}
-
+		seat_number.setBounds(19, 80, 422, 263);
+		seatContent.add(seat_number);
+		seat_number.setBackground(new Color(240, 240, 240));
+		seat_number.setLayout(new GridLayout(6, 6, 6, 6));
+		
 		option = new JPanel();
 		option.setBackground(new Color(255, 255, 255));
 		option.setBounds(0, 497, 484, 110);
 		content.add(option);
 		option.setLayout(null);
-		
+
 		sum_price_pay = new JLabel("" + MOVIE_PRICE);
 		sum_price_pay.setHorizontalAlignment(SwingConstants.RIGHT);
 		sum_price_pay.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 18));
@@ -261,24 +268,25 @@ public class Reservation_step1 extends JFrame {
 		option_type.setBounds(201, 57, 275, 37);
 		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		option_type.setModel(new DefaultComboBoxModel(new String[] {"선택안함", "팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원"}));
+		option_type.setModel(new DefaultComboBoxModel(
+				new String[] { "선택안함", "팝콘  : 6000원", "오징어 : 3000원", "나쵸 : 5000원", "사이다 : 2000원", "콜라 : 2000원" }));
 		option_type.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		selectOption = option_type.getSelectedItem().toString();
-		if (selectOption.contains(":")) {
-			selectP = selectOption.split(":");
-			String ABC = selectP[1];
-			selectPrice = ABC.split("원");
-			String BCA = selectPrice[0];
-			String APL = BCA.replace(" ", "");
-			optionPrice = Integer.parseInt(APL);
-			optionName = selectP[0];
-			sum_price_pay.setText("" + (MOVIE_PRICE + optionPrice));
-			
-		}else {
-			optionName = "선택안함";
-			optionPrice = 0;
-		}
+				selectOption = option_type.getSelectedItem().toString();
+				if (selectOption.contains(":")) {
+					selectP = selectOption.split(":");
+					String ABC = selectP[1];
+					selectPrice = ABC.split("원");
+					String BCA = selectPrice[0];
+					String APL = BCA.replace(" ", "");
+					optionPrice = Integer.parseInt(APL);
+					optionName = selectP[0];
+					sum_price_pay.setText("" + (MOVIE_PRICE + optionPrice));
+
+				} else {
+					optionName = "선택안함";
+					optionPrice = 0;
+				}
 			}
 		});
 
@@ -306,19 +314,19 @@ public class Reservation_step1 extends JFrame {
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		label.setBounds(12, 10, 166, 37);
 		option.add(label);
-		
+
 		btn_payment = new RoundedButtonG("결제 하기");
 		btn_payment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RD = new Reservation_data((String) SName.get(0), CarType, MOVIE_PRICE, new Date(), optionName, optionPrice);
-				if ( SName.size() == 1) {
-				Reservation_step2 reserStep2 = new Reservation_step2(reserStfrm, movie, Ld, RD);
-				Point fPt = reserStfrm.getLocationOnScreen();
-				reserStep2.setLocation(fPt.x , fPt.y);
-				reserStep2.setVisible(true);
-				dispose();
-				}
-				else {
+				RD = new Reservation_data((String) SName.get(0), CarType, MOVIE_PRICE, new Date(), optionName,
+						optionPrice);
+				if (SName.size() == 1) {
+					Reservation_step2 reserStep2 = new Reservation_step2(reserStfrm, movie, Ld, RD);
+					Point fPt = reserStfrm.getLocationOnScreen();
+					reserStep2.setLocation(fPt.x, fPt.y);
+					reserStep2.setVisible(true);
+					dispose();
+				} else {
 					JOptionPane.showMessageDialog(null, "좌석을 하나만 선택해 주세요");
 				}
 			}
@@ -332,7 +340,6 @@ public class Reservation_step1 extends JFrame {
 		won.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		won.setBounds(222, 667, 19, 23);
 		content.add(won);
-
 
 		txtprice = new JLabel("예상 결제 금액 : ");
 		txtprice.setHorizontalAlignment(SwingConstants.CENTER);

@@ -32,16 +32,9 @@ public class Reservation_DB {
 		return Name;
 	}
 
-	public static boolean saveResevationData(String shecduledate, String seatNumber, int carType, int paymentPrice,
+	public static boolean saveResevationData(int A, String shecduledate, String seatNumber, int carType, int paymentPrice,
 			String optionName, int optionPrice, int memberID, int movieID) {
-		String a = "";
-		int A = 0;
 		connect.beginConnection();
-		for (int i = 0; i < 9; i++) {
-			a += "" + (int) (Math.random() * 10);
-		}
-		System.out.println(a);
-		A = Integer.parseInt(a);
 		// DB에서 정보 가져오기
 		String sql = "INSERT INTO VOCPRO.RESERVATION (RESERVATION_ID,RESERVATION_NUMBER,RESERVATION_DATE,SEAT_NUMBER,CAR_TYPE,PAYMENT_PRICE,PAYMENT_DATE,OPTION_NAME,OPTION_PRICE,MEMBER_ID,MOVIE_ID)"
 				+ "VALUES (RESERVATION_SEQ.nextval, " + A + ", '" + shecduledate + "', '" + seatNumber + "', " + carType

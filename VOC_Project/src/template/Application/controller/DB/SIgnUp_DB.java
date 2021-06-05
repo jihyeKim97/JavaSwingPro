@@ -16,6 +16,14 @@ public class SIgnUp_DB {
 	SignUp_data su;
 	DB_Connect conn;
 
+	public  SIgnUp_DB(String userName, String userPhoneNum, String userDoB) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public SIgnUp_DB() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean insertNewMember(SignUp_data ui) {
 		conn = null;
 		conn.beginConnection();
@@ -27,7 +35,11 @@ public class SIgnUp_DB {
 			try {
 				PreparedStatement pstmt = conn.conn.prepareStatement(sql);
 				int r = pstmt.executeUpdate();
-				if (r == 1) {
+				String memName = ui.getName();
+				String phn = ui.getPhone_number();
+				String bod = ui.getBirthday();
+				String pw = ui.getPassword();
+				if (r == 1 && memName != null && phn != null && bod != null && pw !=null) {
 					System.out.println("DBMgr: 회원 가입 성공! " + ui);
 					return true;
 				} else {
@@ -37,7 +49,7 @@ public class SIgnUp_DB {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("DB error!!");
+			System.out.println("DB error!!~~~~@");
 		}
 		conn.endConnection();
 		return false;
@@ -116,41 +128,23 @@ public class SIgnUp_DB {
 		return null;
 	}
 
-	public int loginProcess(String login, String pw) {
-		if (login == null || pw == null || login.isEmpty() || pw.isEmpty()) {
+//	public int loginProcess(String login, String pw) {
+	public int nullCheck (String userName, String userPw, String userPhoneNum, String userDoB) {
+		if (userName == null || userPhoneNum == null || userPw ==null ||
+				userName.isEmpty() || userPw.isEmpty() || userPhoneNum.isEmpty() ) {
 			System.out.println("빈칸이 존재 합니다");
 			return LOGIN_ERROR;
-		}
-		if (this.conn != null) {
-			SignUp_data dbui = selectOneMemberByUserId(login);
-			if (dbui != null) {
-				String mbPw = dbui.getPassword();
-				if (mbPw != null && !mbPw.isEmpty()) {
-					if (mbPw.equals(pw)) {
-						System.out.println("로그인 성공!!");
-						return LOGIN_SUCCESS;
-					} else {
-						System.out.println("패스워드 불일치!!");
-						return LOGIN_FAIL_PW_MISMATCH;
-					}
-				} else {
-					System.out.println("로그인 실패!!");
-					return LOGIN_ERROR;
-				}
-			} else {
-				System.out.println("로그인실패/ 찾을 수 없음!");
-				return LOGIN_FAIL_NOT_FOUND;
-			}
 		} else {
-			System.out.println("DB 에러!!");
+			System.out.println("빈칸이 다 채워졌습니다.");
+			insertNewMember(su);
 		}
 		return LOGIN_ERROR;
 	}
 
 	public static void main(String[] args) {
-		SIgnUp_DB sudb = new SIgnUp_DB();
-		boolean b = false;
-		b = sudb.insertNewMember(new SignUp_data("olaf4", "1234", "올라프", 1, "01012345678", "950116"));
-		System.out.println(b);
+		//SIgnUp_DB sudb = new SIgnUp_DB();
+	//	boolean b = false;
+	//	b = sudb.insertNewMember(new SignUp_data("olaf4", "1234", "올라프", 1, "01012345678", "950116"));
+	//	System.out.println(b);
 	}
 }
