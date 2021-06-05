@@ -17,18 +17,15 @@ import template.Application.controller.Data.Notice_data;
 public class Ad_Film_DB {
 	static ArrayList<Ad_Film_Data> FilmArr = new ArrayList<>();
 	static DB_Connect DB;
-	static Connection conn;
 	Ad_Film_Data ad_film;
 
-	public Ad_Film_DB() {
-		this.conn = DB.getConn();
-	}
 
 	public static ArrayList<Ad_Film_Data> GetFilm(int movieid) {
-		if (conn != null) {
+		DB.beginConnection();
+		if (DB.conn != null) {
 			String sql = "SELECT * FROM movies where MOVIES_id = " + movieid;
 			try {
-				Statement stmt = conn.createStatement();
+				Statement stmt = DB.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String title = rs.getString("title");
@@ -52,6 +49,7 @@ public class Ad_Film_DB {
 				e.printStackTrace();
 			}
 		}
+		DB.endConnection();
 		return FilmArr;
 	}
 	
@@ -59,12 +57,13 @@ public class Ad_Film_DB {
 	public boolean changeFilm(int movieid,String title, String genre, String director, String age_group,
 			String story, String average_score, String gee, String open_date, String production, String schedule_date,
 			String image_file_name, String running_time) {
-		if (this.conn != null) {
+		DB.beginConnection();
+		if (DB.conn != null) {
 			String sql = "UPDATE MOVIES SET TITLE = ? ,GENRE = ?, DIRECTOR = ?, AGE_GROUP = ?, STORY = ?,"
 					+ "AVERAGE_SCORE = ?, GEE = ?, OPEN_DATE = ?, PRODUCTION = ?, SCHEDULE_DATE = ?, "
 					+ "IMAGE_FILE_NAME = ?, RUNNING_TIME = ? WHERE MOVIES_ID = "+movieid;
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
 				pstmt.setString(1, title);
 				pstmt.setString(2, genre);
 				pstmt.setString(3, director);
@@ -89,12 +88,13 @@ public class Ad_Film_DB {
 				e.printStackTrace();
 			}
 		}
+		DB.endConnection();
 		return false;
 	}
 	
 	public  boolean  insertNewMovie(Ad_Film_Data ui) {
-		
-		if (this.conn != null && ui != null) {
+		DB.beginConnection();
+		if (DB.conn != null && ui != null) {
 			String sql 
 					= "INSERT INTO movies(movies_id,title,genre,director,age_group,story,average_score,gee,open_date,production,image_file_name,schedule_date,schedule_time,running_time) VALUES "
 							+ "(MEMBER_SEQ.nextval,"
@@ -104,7 +104,7 @@ public class Ad_Film_DB {
 							+ "', '" + ui.getSchedule_date() + "', '" + "1" + "', '" + ui.getRunning_time() + "')";
 			System.out.println(sql);
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
 				
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
@@ -119,6 +119,7 @@ public class Ad_Film_DB {
 		} else {
 			System.out.println("DB error!!");
 		}
+		DB.endConnection();
 		return false;
 }
 

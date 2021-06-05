@@ -14,19 +14,16 @@ public class Ad_Notice_DB {
 	static ArrayList<Ad_Notice_data> NoticeArr = new ArrayList<>();
 	
 	static DB_Connect DB;
-	static Connection conn;
 	Ad_Notice_data ad_Notice;
 	
 	
-	public Ad_Notice_DB() {
-		this.conn = DB.getConn();
-	}
 	
 	public static ArrayList<Ad_Notice_data> GetNotice(int NoticeiD) {
-		if (conn != null) {
+		DB.beginConnection();
+		if (  DB.conn != null) {
 			String sql = "SELECT * FROM notice where notice_id = " + NoticeiD;
 			try {
-				Statement stmt = conn.createStatement();
+				Statement stmt = DB.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String title = rs.getString("title");
@@ -39,13 +36,14 @@ public class Ad_Notice_DB {
 				e.printStackTrace();
 			}
 		}
+		DB.endConnection();
 		return NoticeArr;
 	}
 	public boolean changeNotice(int noticeid,String title, String content) {
-		if (this.conn != null) {
+		if (DB.conn != null) {
 			String sql = "UPDATE NOTICE SET TITLE = ? ,CONTENT = ? WHERE NOTICE_ID = "+noticeid;
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
 				pstmt.setString(1, title);
 				pstmt.setString(2, content);
 			
@@ -60,19 +58,20 @@ public class Ad_Notice_DB {
 				e.printStackTrace();
 			}
 		}
+		DB.endConnection();
 		return false;
 	}
 	
 	public  boolean  insertNewNotice(Notice_data ui) {
-	
-		if (this.conn != null && ui != null) {
+		DB.beginConnection();
+		if (DB.conn != null && ui != null) {
 			String sql 
 					= "INSERT INTO notice(notice_id,title,content,viewcount,member_id) VALUES (MEMBER_SEQ.nextval,"
 							+"'"+ ui.getTitle() + "', '"
 							+ ui.getContent() + "', '" + "0" + "', '" + 24 + "')";
 			System.out.println(sql);
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
 				
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
@@ -87,6 +86,7 @@ public class Ad_Notice_DB {
 		} else {
 			System.out.println("DB error!!");
 		}
+		DB.endConnection();
 		return false;
 }
 	

@@ -23,65 +23,6 @@ public class Ad_AdPage_DB {
 	static DB_Connect connect;
 	static Connection conn;
 
-	public Ad_AdPage_DB() {
-		this.conn = connect.getConn();
-	}
-
-//	
-//	   public  ArrayList<Notice_data> showAllNotice() {
-//		      if( connect.conn != null ) {
-//		         ArrayList<Notice_data> uiList = new ArrayList<>();
-//		         String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
-//		         try {
-//		            Statement stmt =  connect.conn.createStatement();
-//		            ResultSet rs = stmt.executeQuery(sql);
-//		            while( rs.next() ) {   
-//		               int mbid= rs.getInt("MEMBER_ID");
-//
-//		               Notice_data ui 
-//		            = new Notice_data(
-//		                     rs.getInt("NOTICE_ID"), 
-//		                     rs.getString("TITLE"),
-//		                     rs.getString("CONTENT"),
-//		                     rs.getInt("VIEWCOUNT"),
-//		                     rs.getInt("MEMBER_ID"));
-//		               
-//		            uiList.add(ui);
-//		            }
-//		            System.out.println("DBMgr: 연동 성공! 공지사항갯수 => " + uiList.size());
-//		            return uiList;
-//		         } catch (SQLException e) {
-//		            e.printStackTrace();
-//		         }         
-//		      } else {
-//		         System.out.println("DB error!!!@");
-//		      }
-//		      
-//		      return null;
-//		   }
-		
-//	   public boolean deleteNotice(int is_member, int member_id) {
-//			connect.beginConnection();
-//			if (this.conn != null) {
-//				String sql = "update member set is_member = '2'  where member_id = ? ";
-//				try {
-//					PreparedStatement pstmt = conn.prepareStatement(sql);
-//					pstmt.setInt(1, is_member);
-//					int rs = pstmt.executeUpdate();
-//					if (rs == 1) {
-//						System.out.println("공지사항 삭제 성공" );
-//						return true;
-//					} else
-//						System.out.println("공지사항 삭제 실패!");
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			connect.endConnection();
-//			return false;
-//		}
-
-	
 	public static boolean deleteNotice(int NOTICE_ID, String TITLE, String CONTENT, int VIEWCOUNT, int MEMBER_ID) {
 
 		connect.beginConnection();
@@ -97,8 +38,8 @@ public class Ad_AdPage_DB {
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
 					System.out.println("공지사항 null로 갱신 성공");
-					System.out.println(NOTICE_ID + " " + TITLE + " " + CONTENT + " " + VIEWCOUNT +
-							" " + MEMBER_ID + " ");
+					System.out
+							.println(NOTICE_ID + " " + TITLE + " " + CONTENT + " " + VIEWCOUNT + " " + MEMBER_ID + " ");
 					return true;
 				} else
 					System.out.println("공지사항 null로 갱신 실패");
@@ -109,11 +50,10 @@ public class Ad_AdPage_DB {
 		connect.endConnection();
 		return false;
 	}
-	
-	
+
 	public boolean updateMembertoNone(int IS_MEMBER, int MEMBER_ID) {
 		connect.beginConnection();
-		if (this.conn != null) {
+		if (connect.conn != null) {
 			String sql = "update member set IS_MEMBER = '2'  where MEMBER_ID = " + MEMBER_ID;
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -123,8 +63,8 @@ public class Ad_AdPage_DB {
 					return true;
 				} else {
 					System.out.println("멤버 탈퇴 실패!");
-			}
-			}catch (SQLException e) {
+				}
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -135,7 +75,8 @@ public class Ad_AdPage_DB {
 //
 
 	public ArrayList<Login_data> selectAllMembers() {
-		if (this.conn != null) {
+		connect.beginConnection();
+		if (connect.conn != null) {
 			ArrayList<Login_data> uiList = new ArrayList<>();
 			String sql = "select * from member ORDER BY MEMBER_ID desc";
 			try {
@@ -158,12 +99,13 @@ public class Ad_AdPage_DB {
 		} else {
 			System.out.println("DB error!!!@");
 		}
-
+		connect.endConnection();
 		return null;
 	}
 
 	public ArrayList<Movie_Data> showAllMovie() {
-		if (this.conn != null) {
+		connect.beginConnection();
+		if (connect.conn != null) {
 			ArrayList<Movie_Data> uiList = new ArrayList<>();
 			String sql = "select * from MOVIES ORDER BY MOVIES_ID desc";
 			try {
@@ -172,24 +114,13 @@ public class Ad_AdPage_DB {
 				while (rs.next()) {
 					String mvRuntime = rs.getString("RUNNING_TIME");
 
-					Movie_Data ui 
-				= new Movie_Data(
-							rs.getInt("MOVIES_ID"), 
-							rs.getString("TITLE"),
-							rs.getString("GENRE"),
-							rs.getString("DIRECTOR"),
-							rs.getInt("AGE_GROUP"),
-							rs.getString("STORY"),
-							rs.getInt("AVERAGE_SCORE"),
-							rs.getString("GEE"),
-							rs.getDate("OPEN_DATE"),
-							rs.getString("PRODUCTION"),
-							rs.getString("IMAGE_FILE_NAME"),
-							rs.getDate("SCHEDULE_DATE"),
-							rs.getInt("SCHEDULE_TIME"),
-							rs.getString("RUNNING_TIME"));
+					Movie_Data ui = new Movie_Data(rs.getInt("MOVIES_ID"), rs.getString("TITLE"), rs.getString("GENRE"),
+							rs.getString("DIRECTOR"), rs.getInt("AGE_GROUP"), rs.getString("STORY"),
+							rs.getInt("AVERAGE_SCORE"), rs.getString("GEE"), rs.getDate("OPEN_DATE"),
+							rs.getString("PRODUCTION"), rs.getString("IMAGE_FILE_NAME"), rs.getDate("SCHEDULE_DATE"),
+							rs.getInt("SCHEDULE_TIME"), rs.getString("RUNNING_TIME"));
 
-				uiList.add(ui);
+					uiList.add(ui);
 				}
 				System.out.println("DBMgr: 연동 성공=> 영화 개수:" + uiList.size() + "개");
 				return uiList;
@@ -199,12 +130,13 @@ public class Ad_AdPage_DB {
 		} else {
 			System.out.println("DB error!!~~~");
 		}
-
+		connect.endConnection();
 		return null;
 	}
 
 	public ArrayList<Review_Data> showAllReview() {
-		if (this.conn != null) {
+		connect.beginConnection();
+		if (connect.conn != null) {
 			ArrayList<Review_Data> uiList = new ArrayList<>();
 			String sql = "select * from REVIEW ORDER BY REVIEW_ID desc";
 			try {
@@ -226,12 +158,13 @@ public class Ad_AdPage_DB {
 		} else {
 			System.out.println("DB error!!~~~");
 		}
-
+		connect.endConnection();
 		return null;
 	}
 
 	public ArrayList<Reservation_data> showAllReservation() {
-		if (this.conn != null) {
+		connect.beginConnection();
+		if (connect.conn != null) {
 			ArrayList<Reservation_data> uiList = new ArrayList<>();
 			String sql = "select * from RESERVATION ORDER BY RESERVATION_ID desc";
 			try {
@@ -256,12 +189,13 @@ public class Ad_AdPage_DB {
 		} else {
 			System.out.println("DB error!!~~~");
 		}
-
+		connect.endConnection();
 		return null;
 	}
 
 	public ArrayList<Notice_data> showAllNotice() {
-		if (this.conn != null) {
+		connect.beginConnection();
+		if (connect.conn != null) {
 			ArrayList<Notice_data> uiList = new ArrayList<>();
 			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
 			try {
@@ -283,14 +217,8 @@ public class Ad_AdPage_DB {
 		} else {
 			System.out.println("DB error!!~~~");
 		}
-
-		return null;
-	}
-
-	public static void main(String[] args) throws SQLException {
-		// sAdminPage_DB mbMgr = new AdminPage_DB();
-
 		connect.endConnection();
+		return null;
 	}
 
 }
