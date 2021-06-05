@@ -14,18 +14,15 @@ public class Ad_Review_DB {
 	static ArrayList<Ad_Review_Data> ReviewArr = new ArrayList<>();
 	
 	static DB_Connect DB;
-	static Connection conn;
 	Ad_Review_Data ad_Review;
 	
-	public Ad_Review_DB() {
-		this.conn = DB.getConn();
-	}
 	
 	public static ArrayList<Ad_Review_Data> GetReview(int ReviewiD) {
-		if (conn != null) {
+		DB.beginConnection();
+		if (DB.conn != null) {
 			String sql = "SELECT * FROM review where REVIEW_id = " + ReviewiD;
 			try {
-				Statement stmt = conn.createStatement();
+				Statement stmt = DB.conn .createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 			
@@ -38,14 +35,16 @@ public class Ad_Review_DB {
 				e.printStackTrace();
 			}
 		}
+		DB.endConnection();
 		return ReviewArr;
 	}
 	
 	public boolean changeReview(int noticeid, String content) {
-		if (this.conn != null) {
+		DB.beginConnection();
+		if (DB.conn != null) {
 			String sql = "UPDATE REVIEW SET CONTENT = ? WHERE REVIEW_ID = "+noticeid;
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = DB.conn .prepareStatement(sql);
 				pstmt.setString(1, content);
 			
 				int rs = pstmt.executeUpdate();
@@ -59,6 +58,7 @@ public class Ad_Review_DB {
 				e.printStackTrace();
 			}
 		}
+		DB.endConnection();
 		return false;
 	}
 	
