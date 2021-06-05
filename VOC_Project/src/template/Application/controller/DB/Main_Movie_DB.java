@@ -32,7 +32,7 @@ public class Main_Movie_DB {
 					String director = rs.getString("director");
 					int agegroup = rs.getInt("age_group");
 					String story = rs.getString("story");
-					int averagecsore = rs.getInt("average_score");
+					double averagecsore = rs.getDouble("average_score");
 					String gee = rs.getString("gee");
 					Date openDate = rs.getDate("open_date");
 					String production = rs.getString("production");

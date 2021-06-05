@@ -349,30 +349,46 @@ public class Movie_Informaiton extends JFrame {
 		panel_4.setBackground(new Color(255, 255, 255));
 		panel_4.setLayout(new GridLayout(1, 0, 0, 0));
 
+		int star = (int) Math.round(MovieList.get(PK).getAverageScore());
+		String S = "star0.PNG";
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2
-				.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		if (star >= 1)
+			S = "star (1).png";
+		lblNewLabel_2.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/" + S)));
+		S = "star0.PNG";
 		panel_4.add(lblNewLabel_2);
 
 		label_1 = new JLabel("");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		if (star >= 2)
+			S = "star (1).png";
+		label_1.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/" + S)));
+		S = "star0.PNG";
 		panel_4.add(label_1);
 
 		label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		if (star >= 3)
+			S = "star (1).png";
+		label.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/" + S)));
+		S = "star0.PNG";
 		panel_4.add(label);
 
 		label_3 = new JLabel("");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		if (star >= 4)
+			S = "star (1).png";
+		label_3.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/" + S)));
+		S = "star0.PNG";
 		panel_4.add(label_3);
 
 		label_4 = new JLabel("");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/star (1).png")));
+		if (star >= 5)
+			S = "star (1).png";
+		label_4.setIcon(new ImageIcon(Movie_Informaiton.class.getResource("/template/Reference/icons/" + S)));
+		S = "star0.PNG";
 		panel_4.add(label_4);
 
 		lb_MVRate = new JLabel("" + MovieList.get(PK).getAverageScore());

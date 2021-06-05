@@ -10,7 +10,7 @@ public class Movie_Data {
 	private String director;
 	private int agegroup;
 	private String story;
-	private int averageScore;
+	private double averageScore;
 	private String gee;
 	private Date opendate;
 	private String production;
@@ -70,11 +70,11 @@ public class Movie_Data {
 		this.story = story;
 	}
 
-	public int getAverageScore() {
+	public double getAverageScore() {
 		return averageScore;
 	}
 
-	public void setAverageScore(int averageScore) {
+	public void setAverageScore(double averageScore) {
 		this.averageScore = averageScore;
 	}
 
@@ -177,7 +177,7 @@ public class Movie_Data {
 	}
 
 	public Movie_Data(int moviesid, String title, String genre, String director, int agegroup, String story,
-			int averageScore, String gee, Date opendate, String production, String imagefilename, Date scheduledate,
+			double averageScore, String gee, Date opendate, String production, String imagefilename, Date scheduledate,
 			int scheduletime, String runningtime) {
 		super();
 		this.moviesid = moviesid;
