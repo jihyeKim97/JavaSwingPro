@@ -23,8 +23,6 @@ public class Login_DB {
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
 	static ArrayList<Login_data> uiList = new ArrayList<>();
 
-	
-
 	public static ArrayList<Login_data> selectAllMembers() {
 		ArrayList<Login_data> uiList = new ArrayList<>();
 		connect.beginConnection();
@@ -80,6 +78,32 @@ public class Login_DB {
 		}
 		connect.endConnection();
 		return LogArr;
+	}
+
+	public static Login_data SelectMemberFeID(String id, String pw) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "select * from member where id = ''" + id + "and password = '" + pw + "'";
+			try {
+				Statement stmt = connect.conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					int member_id = rs.getInt("member_id");
+					id = rs.getString("id");
+					pw = rs.getString("password");
+					String name = rs.getString("name");
+					int gender = rs.getInt("gender");
+					String phone_number = rs.getString("phone_number");
+					int is_member = rs.getInt("is_member");
+					String birthday = rs.getString("birthday");
+					loginDT = new Login_data(member_id, id, pw, name, gender, phone_number, is_member, birthday);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return loginDT;
 	}
 
 	public boolean changeBypass(String mbpassword, String mbid, String phn, String name) {

@@ -47,8 +47,8 @@ public class Login extends JFrame {
 	Login ln;
 	Main main;
 	Login_DB LDB;
-	Admin_AdPage ad_page;
 	Login_data LD;
+	Admin_AdPage ad_page;
 	ArrayList<Login_data> LoginArr;
 
 	public static void main(String[] args) {
@@ -179,40 +179,15 @@ public class Login extends JFrame {
 		txt_id = new JTextField();
 		txt_id.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(txt_id);
-		txt_id.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txt_id.setForeground(Color.black);
-				txt_id.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				txt_id.setForeground(Color.LIGHT_GRAY);
-				txt_id.setBackground(Color.WHITE);
-			}
-		});
 		txt_id.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_id.setColumns(10);
 
 		txt_pw = new JPasswordField();
 		txt_pw.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(txt_pw);
-		txt_pw.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txt_pw.setForeground(Color.black);
-				txt_pw.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				txt_pw.setForeground(Color.LIGHT_GRAY);
-				txt_pw.setBackground(Color.WHITE);
-			}
-		});
 		txt_pw.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 
+		 LD = LDB.SelectMemberFeID(txt_id.getText(), new String(txt_pw.getPassword()));
 		btn_Login = new RoundedButtonR();
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -252,7 +227,7 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		
+
 		btn_Login.setText("LOGIN");
 		btn_Login.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		btn_Login.setForeground(new Color(255, 255, 255));
