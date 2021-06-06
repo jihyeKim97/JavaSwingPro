@@ -222,10 +222,10 @@ public class Login extends JFrame {
 				String pw = new String(txt_pw.getPassword());
 				ArrayList<Login_data> LoginArr = LDB.selectAllMembers();
 				for (int i = 0; i < LoginArr.size(); i++) {
-					if(!id.isEmpty() && !pw.isEmpty()) {
+					if (!id.isEmpty() && !pw.isEmpty()) {
 						ArrayList<Login_data> memberdata = LDB.SelectMemberID(LoginArr.get(i).getMember_id());
 						if (id.equals(LoginArr.get(i).getId()) && pw.equals(LoginArr.get(i).getPassword())) {
-							check= true;
+							check = true;
 							if (memberdata.get(i).getIs_member() == 0) {
 								System.out.println("회원 로그인 성공\n" + memberdata.get(i));
 								main = new Main(ln, memberdata.get(0));
@@ -239,80 +239,21 @@ public class Login extends JFrame {
 								JOptionPane.showMessageDialog(null, "탈퇴한 회원입니다");
 							}
 						}
-					}else {
+					} else {
 						JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
 						ty = 1;
 						break;
 					}
 				}
-				if(check == false && ty == 0) {
+				if (check == false && ty == 0) {
 					JOptionPane.showMessageDialog(null, "계정이 존재 하지 않습니다");
-					 txt_id.setText("");
-					 txt_pw.setText("");;
+					txt_id.setText("");
+					txt_pw.setText("");
+					;
 				}
 			}
 		});
 		btn_Login.setText("LOGIN");
-
-//		btn_Login.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				String login = txt_id.getText();
-//				String pw = new String(txt_pw.getPassword());
-//				Login_DB mgr = new Login_DB();
-//				Login_data memberdata = mgr.selectOneMemberByLogin(login);
-//				Login_data ismb = mgr.movepage(login);
-//				if (ismb.getIs_member() == 0) {
-//					int r = mgr.loginProcess(login, pw);
-//					switch (r) {
-//					case Login_DB.LOGIN_SUCCESS:
-//						System.out.println(ismb.getIs_member());
-//						main = new Main(ln, memberdata);
-//						main.setVisible(true);
-//						dispose();
-//						break;
-//					case Login_DB.LOGIN_FAIL_NOT_FOUND:
-//						JOptionPane.showMessageDialog(null, "로그인	 회원 계정명 없음!!");
-//						break;
-//					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
-//						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-//						break;
-//					case Login_DB.LOGIN_ERROR:
-//						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
-//						break;
-//					default:
-//						System.out.println("지원하지않습니다.");
-//						break;
-//					}
-//				} else if (ismb.getIs_member() == 1) {
-//					int r = mgr.loginProcess(login, pw);
-//
-//					switch (r) {
-//					case Login_DB.LOGIN_SUCCESS:
-//						ad_page = new Admin_AdPage(ln, LD);
-//						ad_page.setVisible(true);
-//						dispose();
-//						break;
-//					case Login_DB.LOGIN_FAIL_NOT_FOUND:
-//						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
-//						break;
-//					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
-//						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-//
-//						break;
-//					case Login_DB.LOGIN_ERROR:
-//						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
-//						break;
-//
-//					default:
-//						System.out.println("지원하지않습니다.");
-//						break;
-//					}
-//
-//				} else
-//					JOptionPane.showMessageDialog(null, "휴먼 계정입니다.");
-//			}
-//		});
-
 		btn_Login.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		btn_Login.setForeground(new Color(255, 255, 255));
 
