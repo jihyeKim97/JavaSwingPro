@@ -66,6 +66,7 @@ public class SignUp extends JFrame {
 	final ButtonGroup genderGrp = new ButtonGroup();
 	final int MEMBER = 0, NOT_MEMBER = 1;
 	boolean bLoginAvail;
+	static int click = 0;
 
 	SignUp mj;
 	Login mln;
@@ -86,7 +87,7 @@ public class SignUp extends JFrame {
 
 		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 513, 604);
+		setBounds(100, 100, 513, 632);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -186,23 +187,6 @@ public class SignUp extends JFrame {
 
 		txt_userName = new JTextField();
 		txt_userName.setBounds(130, 186, 237, 41);
-		txt_userName.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txt_userName.setForeground(Color.black);
-				if (txt_userName.getText().equals("ex) 홍길동"))
-					txt_userName.setText("");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				txt_userName.setForeground(Color.LIGHT_GRAY);
-				txt_userName.setBackground(Color.WHITE);
-				if (txt_userName.getText().isEmpty())
-					txt_userName.setText("ex) 홍길동");
-			}
-		});
-		txt_userName.setForeground(Color.LIGHT_GRAY);
 		txt_userName.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		panel.add(txt_userName);
 		txt_userName.setColumns(10);
@@ -247,31 +231,12 @@ public class SignUp extends JFrame {
 
 		txt_DoB.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
-				if (((JTextField) ke.getSource()).getText().length() > 5
+				if (((JTextField) ke.getSource()).getText().length() > 7
 						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
 					ke.consume();
 			}
 		});
-
-		txt_DoB.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txt_DoB.setForeground(Color.black);
-				if (txt_DoB.getText().equals("ex) 910101"))
-					txt_DoB.setText("");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				txt_DoB.setForeground(Color.LIGHT_GRAY);
-				txt_DoB.setBackground(Color.WHITE);
-				if (txt_DoB.getText().isEmpty())
-					txt_DoB.setText("ex) 910101");
-			}
-		});
-		txt_DoB.setForeground(Color.LIGHT_GRAY);
 		txt_DoB.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		txt_DoB.setText("ex) 910101");
 		txt_DoB.setColumns(10);
 
 		lb_phoneNumber = new JLabel("전화번호");
@@ -295,26 +260,8 @@ public class SignUp extends JFrame {
 					ke.consume();
 			}
 		});
-		txt_phone1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txt_phone1.setForeground(Color.black);
-				if (txt_phone1.getText().equals("010"))
-					txt_phone1.setText("");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				txt_phone1.setForeground(Color.LIGHT_GRAY);
-				txt_phone1.setBackground(Color.WHITE);
-				if (txt_phone1.getText().isEmpty())
-					txt_phone1.setText("010");
-			}
-		});
 		panel_phoneNum.setLayout(null);
 		txt_phone1.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_phone1.setForeground(Color.LIGHT_GRAY);
-		txt_phone1.setText("010");
 		panel_phoneNum.add(txt_phone1);
 		txt_phone1.setColumns(10);
 
@@ -333,22 +280,6 @@ public class SignUp extends JFrame {
 					ke.consume();
 			}
 		});
-		txt_phone3.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txt_phone3.setForeground(Color.black);
-				if (txt_phone3.getText().equals("5678"))
-					txt_phone3.setText("");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				txt_phone3.setForeground(Color.LIGHT_GRAY);
-				txt_phone3.setBackground(Color.WHITE);
-				if (txt_phone3.getText().isEmpty())
-					txt_phone3.setText("5678");
-			}
-		});
 
 		txt_phone2 = new JTextField();
 		txt_phone2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
@@ -361,26 +292,7 @@ public class SignUp extends JFrame {
 					ke.consume();
 			}
 		});
-		txt_phone2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				txt_phone2.setForeground(Color.black);
-				if (txt_phone2.getText().equals("1234"))
-					txt_phone2.setText("");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				txt_phone2.setForeground(Color.LIGHT_GRAY);
-				txt_phone2.setBackground(Color.WHITE);
-				if (txt_phone2.getText().isEmpty())
-					txt_phone2.setText("1234");
-
-			}
-		});
 		txt_phone2.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_phone2.setForeground(Color.LIGHT_GRAY);
-		txt_phone2.setText("1234");
 		panel_phoneNum.add(txt_phone2);
 		txt_phone2.setColumns(10);
 
@@ -389,14 +301,11 @@ public class SignUp extends JFrame {
 		lb_phoneNum1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_phoneNum.add(lb_phoneNum1);
 		txt_phone3.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_phone3.setForeground(Color.LIGHT_GRAY);
-		txt_phone3.setText("5678");
 		panel_phoneNum.add(txt_phone3);
 		txt_phone3.setColumns(10);
 
 		duptxt = new JLabel("");
 		duptxt.setHorizontalAlignment(SwingConstants.CENTER);
-
 		duptxt.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 11));
 		duptxt.setBounds(130, 45, 211, 13);
 		panel.add(duptxt);
@@ -406,6 +315,7 @@ public class SignUp extends JFrame {
 		panel.add(btn_DupCheck);
 		btn_DupCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				click = 1;
 				String inLogin = txt_userId.getText();
 				Login_data ld = dbc2.selectOneMemberByLogin(inLogin);
 				if (!inLogin.isEmpty()) {
@@ -427,6 +337,12 @@ public class SignUp extends JFrame {
 		});
 
 		btn_DupCheck.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
+		
+		JLabel lblNewLabel_1 = new JLabel("생년월일 예시 ) 19990101");
+		lblNewLabel_1.setForeground(Color.DARK_GRAY);
+		lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 11));
+		lblNewLabel_1.setBounds(131, 351, 236, 14);
+		panel.add(lblNewLabel_1);
 
 		btn_cancel = new RoundedButtonR("취소");
 		btn_cancel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -437,7 +353,7 @@ public class SignUp extends JFrame {
 			}
 		});
 		btn_cancel.setBackground(Color.LIGHT_GRAY);
-		btn_cancel.setBounds(51, 505, 136, 50);
+		btn_cancel.setBounds(52, 533, 136, 50);
 		contentPane.add(btn_cancel);
 
 		btn_userJoin = new RoundedButtonG();
@@ -457,10 +373,14 @@ public class SignUp extends JFrame {
 
 				if (!UserId.isEmpty() && !UserPw.isEmpty() && !UserName.isEmpty() && !UserDoB.isEmpty()
 						&& !UserPhoneNum.isEmpty()) {
-					boolean r = mgr.insertNewMember(newUI);
-					if (r && newUI != null) {
-						JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
-						dispose();
+					if (click == 1) {
+						boolean r = mgr.insertMember(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
+						if (r && newUI != null) {
+							JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
+							dispose();
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "중복확인은 필수 입니다");
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
@@ -469,7 +389,7 @@ public class SignUp extends JFrame {
 		});
 
 		btn_userJoin.setEnabled(true);
-		btn_userJoin.setBounds(303, 505, 136, 50);
+		btn_userJoin.setBounds(304, 533, 136, 50);
 		contentPane.add(btn_userJoin);
 		lblNewLabel = new JLabel("자동차 예매 극장 프로그램");
 		lblNewLabel.setBounds(173, 55, 154, 15);

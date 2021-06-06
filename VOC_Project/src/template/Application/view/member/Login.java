@@ -48,10 +48,9 @@ public class Login extends JFrame {
 	Main main;
 	Login_DB LDB;
 	Admin_AdPage ad_page;
-	Login_data LD = new Login_data();
-	ArrayList<Login_data> LoginArr = new ArrayList<>();
-	ArrayList<Login_data> memberdata = new ArrayList<>();
-	
+	Login_data LD;
+	ArrayList<Login_data> LoginArr;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -83,101 +82,6 @@ public class Login extends JFrame {
 		contentPane.setBackground(new Color(70, 114, 42));
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
-		
-		LoginArr = LDB.selectAllMembers();
-		btn_Login = new RoundedButtonR();
-		btn_Login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int A = 0;
-				String id = txt_id.getText();
-				String pw = new String(txt_pw.getPassword());
-				Login_DB mgr = new Login_DB();
-				Login_data ismb = mgr.movepage(id);
-				for (int i = 0; i < LoginArr.size(); i++) {
-					if (LoginArr.get(i).getId().equals(id)) {
-						memberdata = LDB.SelectMemberID(LoginArr.get(i).getMember_id());
-						if (memberdata.get(0).getPassword().equals(pw)) {
-							System.out.println(ismb.getIs_member());
-							main = new Main(ln, memberdata.get(0));
-							main.setVisible(true);
-							dispose();
-							A = 2;
-					}else {
-						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-						A = 1;
-					}
-				}
-			}
-				if (A == 0)
-				JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
-			}
-		});
-		btn_Login.setText("LOGIN");
-//		btn_Login.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				String login = txt_id.getText();
-//				String pw = new String(txt_pw.getPassword());
-//				Login_DB mgr = new Login_DB();
-//				Login_data memberdata = mgr.selectOneMemberByLogin(login);
-//				Login_data ismb = mgr.movepage(login);
-//				if (ismb.getIs_member() == 0) {
-//					int r = mgr.loginProcess(login, pw);
-//					switch (r) {
-//					case Login_DB.LOGIN_SUCCESS:
-//						System.out.println(ismb.getIs_member());
-//						main = new Main(ln, memberdata);
-//						main.setVisible(true);
-//						dispose();
-//						break;
-//					case Login_DB.LOGIN_FAIL_NOT_FOUND:
-//						JOptionPane.showMessageDialog(null, "로그인	 회원 계정명 없음!!");
-//						break;
-//					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
-//						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-//						break;
-//					case Login_DB.LOGIN_ERROR:
-//						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
-//						break;
-//					default:
-//						System.out.println("지원하지않습니다.");
-//						break;
-//					}
-//				} else if (ismb.getIs_member() == 1) {
-//					int r = mgr.loginProcess(login, pw);
-//
-//					switch (r) {
-//					case Login_DB.LOGIN_SUCCESS:
-//						ad_page = new Admin_AdPage(ln, LD);
-//						ad_page.setVisible(true);
-//						dispose();
-//						break;
-//					case Login_DB.LOGIN_FAIL_NOT_FOUND:
-//						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
-//						break;
-//					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
-//						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
-//
-//						break;
-//					case Login_DB.LOGIN_ERROR:
-//						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
-//						break;
-//
-//					default:
-//						System.out.println("지원하지않습니다.");
-//						break;
-//					}
-//
-//				} else
-//					JOptionPane.showMessageDialog(null, "휴먼 계정입니다.");
-//			}
-//		});
-
-		btn_Login.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		btn_Login.setForeground(new Color(255, 255, 255));
-
-		btn_Login.setBackground(Color.BLUE);
-		btn_Login.setBounds(106, 363, 257, 43);
-		contentPane.add(btn_Login);
 
 		lblNewLabel = new JLabel("ID");
 		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 23));
@@ -286,7 +190,6 @@ public class Login extends JFrame {
 			public void focusLost(FocusEvent e) {
 				txt_id.setForeground(Color.LIGHT_GRAY);
 				txt_id.setBackground(Color.WHITE);
-
 			}
 		});
 		txt_id.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
@@ -309,6 +212,113 @@ public class Login extends JFrame {
 			}
 		});
 		txt_pw.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
+
+		btn_Login = new RoundedButtonR();
+		btn_Login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean check = false;
+				int ty = 0;
+				String id = txt_id.getText();
+				String pw = new String(txt_pw.getPassword());
+				ArrayList<Login_data> LoginArr = LDB.selectAllMembers();
+				for (int i = 0; i < LoginArr.size(); i++) {
+					if(!id.isEmpty() && !pw.isEmpty()) {
+						ArrayList<Login_data> memberdata = LDB.SelectMemberID(LoginArr.get(i).getMember_id());
+						if (id.equals(LoginArr.get(i).getId()) && pw.equals(LoginArr.get(i).getPassword())) {
+							check= true;
+							if (memberdata.get(i).getIs_member() == 0) {
+								System.out.println("회원 로그인 성공\n" + memberdata.get(i));
+								main = new Main(ln, memberdata.get(0));
+								main.setVisible(true);
+								dispose();
+							} else if (memberdata.get(i).getIs_member() == 1) {
+								ad_page = new Admin_AdPage(ln, LD);
+								ad_page.setVisible(true);
+								dispose();
+							} else if (memberdata.get(i).getIs_member() != 1 && memberdata.get(i).getIs_member() != 0) {
+								JOptionPane.showMessageDialog(null, "탈퇴한 회원입니다");
+							}
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
+						ty = 1;
+						break;
+					}
+				}
+				if(check == false && ty == 0) {
+					JOptionPane.showMessageDialog(null, "계정이 존재 하지 않습니다");
+					 txt_id.setText("");
+					 txt_pw.setText("");;
+				}
+			}
+		});
+		btn_Login.setText("LOGIN");
+
+//		btn_Login.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				String login = txt_id.getText();
+//				String pw = new String(txt_pw.getPassword());
+//				Login_DB mgr = new Login_DB();
+//				Login_data memberdata = mgr.selectOneMemberByLogin(login);
+//				Login_data ismb = mgr.movepage(login);
+//				if (ismb.getIs_member() == 0) {
+//					int r = mgr.loginProcess(login, pw);
+//					switch (r) {
+//					case Login_DB.LOGIN_SUCCESS:
+//						System.out.println(ismb.getIs_member());
+//						main = new Main(ln, memberdata);
+//						main.setVisible(true);
+//						dispose();
+//						break;
+//					case Login_DB.LOGIN_FAIL_NOT_FOUND:
+//						JOptionPane.showMessageDialog(null, "로그인	 회원 계정명 없음!!");
+//						break;
+//					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
+//						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
+//						break;
+//					case Login_DB.LOGIN_ERROR:
+//						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
+//						break;
+//					default:
+//						System.out.println("지원하지않습니다.");
+//						break;
+//					}
+//				} else if (ismb.getIs_member() == 1) {
+//					int r = mgr.loginProcess(login, pw);
+//
+//					switch (r) {
+//					case Login_DB.LOGIN_SUCCESS:
+//						ad_page = new Admin_AdPage(ln, LD);
+//						ad_page.setVisible(true);
+//						dispose();
+//						break;
+//					case Login_DB.LOGIN_FAIL_NOT_FOUND:
+//						JOptionPane.showMessageDialog(null, "로그인 회원 계정명 없음!!");
+//						break;
+//					case Login_DB.LOGIN_FAIL_PW_MISMATCH:
+//						JOptionPane.showMessageDialog(null, "로그인 암호가 불일치!!");
+//
+//						break;
+//					case Login_DB.LOGIN_ERROR:
+//						JOptionPane.showMessageDialog(null, "로그인 인증 입력/DB에러!!");
+//						break;
+//
+//					default:
+//						System.out.println("지원하지않습니다.");
+//						break;
+//					}
+//
+//				} else
+//					JOptionPane.showMessageDialog(null, "휴먼 계정입니다.");
+//			}
+//		});
+
+		btn_Login.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		btn_Login.setForeground(new Color(255, 255, 255));
+
+		btn_Login.setBackground(Color.BLUE);
+		btn_Login.setBounds(106, 363, 257, 43);
+		contentPane.add(btn_Login);
 
 		lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/bg (4).png")));
