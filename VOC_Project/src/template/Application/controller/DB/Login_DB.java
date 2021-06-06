@@ -26,6 +26,7 @@ public class Login_DB {
 	
 
 	public static ArrayList<Login_data> selectAllMembers() {
+		ArrayList<Login_data> uiList = new ArrayList<>();
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "select * from member";

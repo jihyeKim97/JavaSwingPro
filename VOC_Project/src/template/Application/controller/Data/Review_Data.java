@@ -21,7 +21,9 @@ public class Review_Data {
 	}
 
 	
-	
+	public Review_Data() {
+		
+	}
 
 
 	public Review_Data(String content) {
