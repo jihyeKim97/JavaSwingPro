@@ -249,7 +249,6 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(null, "계정이 존재 하지 않습니다");
 					txt_id.setText("");
 					txt_pw.setText("");
-					;
 				}
 			}
 		});
