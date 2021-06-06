@@ -84,11 +84,11 @@ public class MyPage extends JFrame {
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
 		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(Ld.getMember_id());
-		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
-		ArrayList<Mypage_Reservation_data> MoveArr = MDB.Selectid(Ld.getMember_id());
-		for (int i = 0; i < MoveArr.size(); i++) {
-			System.out.println(MoveArr.get(i).getMovie_id());
-		}
+		
+//		ArrayList<Mypage_Reservation_data> MoveArr = MDB.Selectid(Ld.getMember_id());
+//		for (int i = 0; i < MoveArr.size(); i++) {
+//			System.out.println(MoveArr.get(i).getMovie_id());
+//		}
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -172,9 +172,11 @@ public class MyPage extends JFrame {
 				mem_panel.setVisible(false);
 				res_panel.setVisible(true);
 				lbTitle.setText("Reservtion");
-				if (!MoveArr.isEmpty()) {
-					for (i =  0; i < MoveArr.size(); i++) {
-						MDT = MD.getMovieInformationFromMovieId(MoveArr.get(i).getMovie_id());
+				ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
+				if (!ReArr.isEmpty()) {
+					for (i =  0; i < ReArr.size(); i++) {
+						MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());
+						System.out.println(MDT);
 						none_reservation.setVisible(false);
 						reser_box = new Panel();
 						reser_box.setBackground(new Color(242, 242, 242));
@@ -194,13 +196,13 @@ public class MyPage extends JFrame {
 						ic.setImage(icImg);
 						JL.setIcon(ic);
 						JL.repaint();
+						PK = ReArr.get(i).getMovie_id();
 						wirte_review = new RoundedButtonG("Go to write a review");
 						wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
-
 						wirte_review.setText("한줄평 작성하기");
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								PK = MoveArr.get(i).getMovie_id();
+								System.out.println("선택한 영화 인덱스  : "+PK);
 								wirteP = new Mypage_writePage(frm, Ld, PK);
 								fPt = frm.getLocationOnScreen();
 								wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
