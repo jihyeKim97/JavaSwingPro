@@ -187,7 +187,6 @@ public class Login extends JFrame {
 		panel_1.add(txt_pw);
 		txt_pw.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 
-		 LD = LDB.SelectMemberFeID(txt_id.getText(), new String(txt_pw.getPassword()));
 		btn_Login = new RoundedButtonR();
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -203,10 +202,12 @@ public class Login extends JFrame {
 							check = true;
 							if (memberdata.get(i).getIs_member() == 0) {
 								System.out.println("회원 로그인 성공\n" + memberdata.get(i));
-								main = new Main(ln, memberdata.get(0));
+								Login_data LD = LDB.SelectMemberFeID(memberdata.get(i).getId());
+								main = new Main(ln, LD);
 								main.setVisible(true);
 								dispose();
 							} else if (memberdata.get(i).getIs_member() == 1) {
+								System.out.println(LD);
 								ad_page = new Admin_AdPage(ln, LD);
 								ad_page.setVisible(true);
 								dispose();

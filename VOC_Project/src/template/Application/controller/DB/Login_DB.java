@@ -80,17 +80,17 @@ public class Login_DB {
 		return LogArr;
 	}
 
-	public static Login_data SelectMemberFeID(String id, String pw) {
+	public static Login_data SelectMemberFeID(String id) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "select * from member where id = ''" + id + "and password = '" + pw + "'";
+			String sql = "select * from member where id = '" + id + "'";
 			try {
-				Statement stmt = connect.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				if (rs.next()) {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
 					int member_id = rs.getInt("member_id");
 					id = rs.getString("id");
-					pw = rs.getString("password");
+					String pw = rs.getString("password");
 					String name = rs.getString("name");
 					int gender = rs.getInt("gender");
 					String phone_number = rs.getString("phone_number");
