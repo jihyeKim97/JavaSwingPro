@@ -222,8 +222,8 @@ public class Login extends JFrame {
 				String pw = new String(txt_pw.getPassword());
 				ArrayList<Login_data> LoginArr = LDB.selectAllMembers();
 				for (int i = 0; i < LoginArr.size(); i++) {
+					ArrayList<Login_data> memberdata = LDB.SelectMemberID(LoginArr.get(i).getMember_id());
 					if (!id.isEmpty() && !pw.isEmpty()) {
-						ArrayList<Login_data> memberdata = LDB.SelectMemberID(LoginArr.get(i).getMember_id());
 						if (id.equals(LoginArr.get(i).getId()) && pw.equals(LoginArr.get(i).getPassword())) {
 							check = true;
 							if (memberdata.get(i).getIs_member() == 0) {
@@ -249,10 +249,10 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(null, "계정이 존재 하지 않습니다");
 					txt_id.setText("");
 					txt_pw.setText("");
-					;
 				}
 			}
 		});
+		
 		btn_Login.setText("LOGIN");
 		btn_Login.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		btn_Login.setForeground(new Color(255, 255, 255));

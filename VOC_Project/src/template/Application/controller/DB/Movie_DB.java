@@ -112,7 +112,7 @@ public class Movie_DB {
 		connect.beginConnection();
 		Movie_Data MD = new Movie_Data();
 		if (connect.conn != null) {
-			String sql = "SELECT * FROM movies WHERE movies_id = '" + id + "'";
+			String sql = "SELECT * FROM movies WHERE movies_id = "+id;
 			System.out.println(sql);
 			try {
 				Statement st = connect.conn.createStatement();
