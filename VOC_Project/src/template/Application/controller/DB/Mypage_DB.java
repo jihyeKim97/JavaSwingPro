@@ -54,6 +54,37 @@ public class Mypage_DB {
 		connect.endConnection();
 		return MyArr;
 	}
+	
+	public static Mypage_Member_data SelectMember(int memberID) {
+		Mypage_Member_data MMD = new Mypage_Member_data();
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "select * from member where member_id =  " + memberID;
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				if (rs.next()) {
+					int member_id = rs.getInt("member_id");
+					String id = rs.getString("id");
+					String password = rs.getString("password");
+					String name = rs.getString("name");
+					int gender = rs.getInt("gender");
+					String phone_number = rs.getString("phone_number");
+					int is_member = rs.getInt("is_member");
+					String birthday = rs.getString("birthday");
+
+					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
+							+ phone_number + " " + birthday + " " + is_member);
+					MMD = new Mypage_Member_data(member_id, id, password, name, gender, phone_number, is_member,
+							birthday);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return MMD;
+	}
 
 	public static boolean UpdateMemberInfo(int memberID, String name, String phoneNum, String newPassword) {
 
@@ -188,8 +219,8 @@ public class Mypage_DB {
 	}
 	
 
-    public static ArrayList<Mypage_Review_data> SelectReviewID(int reservationID, int MovieID) {
-
+    public static Mypage_Review_data SelectReviewID(int reservationID, int MovieID) {
+    	Mypage_Review_data MRD = new Mypage_Review_data();
 		connect.beginConnection();
 		if (connect.conn != null) {
             String sql = "select * from review where reservation_id = " + reservationID + " and movies_id = " + MovieID;
@@ -204,16 +235,16 @@ public class Mypage_DB {
 					int reservation_id = rs.getInt("reservation_id");
 					int movie_id = rs.getInt("movies_id");
 
-					ViArr.add(new Mypage_Review_data(review_id, content, starScore, review_date, reservation_id,movie_id));
+					MRD = new Mypage_Review_data(review_id, content, starScore, review_date, reservation_id,movie_id);
 				}
 				System.out.println("리턴함 ");
-				return ViArr;
+				return MRD;
 			} catch (SQLException e) {
 				e.printStackTrace(); 	
 			}
 		}
 		connect.endConnection();
-		return ViArr;
+		return MRD;
 	}
 
 	public static boolean InsertReviewID(String content, int star_score, int reservationID, int movies_id) {

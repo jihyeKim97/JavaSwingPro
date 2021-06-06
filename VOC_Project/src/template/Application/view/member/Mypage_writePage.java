@@ -37,7 +37,7 @@ public class Mypage_writePage extends JFrame {
 	MyPage Mypage;
 	int PK = 0;
 	
-	ArrayList<Mypage_Review_data> ViArr = new ArrayList<>();
+	Mypage_Review_data ViArr = new Mypage_Review_data ();
 	int sco = 0;
 	
 	public Mypage_writePage(MyPage frm, Login_data Ld, int Moviesid) {
@@ -104,7 +104,7 @@ public class Mypage_writePage extends JFrame {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblNewLabel_2);
 
-		if (ViArr.get(PK) == null) {
+		if (ViArr == null) {
 			star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 			star_combo.setBounds(149, 0, 201, 37);
 			String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
@@ -122,12 +122,12 @@ public class Mypage_writePage extends JFrame {
 				}
 			});
 		} else {
-			review_tf.setText(ViArr.get(PK).getContent());
+			review_tf.setText(ViArr.getContent());
 			lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 			String star = "";
-			switch (ViArr.get(PK).getStar_score()) {
+			switch (ViArr.getStar_score()) {
 			case 1:
 				star = "★☆☆☆☆";
 				break;
@@ -144,13 +144,13 @@ public class Mypage_writePage extends JFrame {
 				star = "★★★★★";
 				break;
 			}
-			lblNewLabel_1.setText(star + "  " + ViArr.get(PK).getStar_score() + " 점");
+			lblNewLabel_1.setText(star + "  " + ViArr.getStar_score() + " 점");
 			lblNewLabel_1.setBounds(149, 0, 201, 37);
 			panel_1.add(lblNewLabel_1);
 			btn_success.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String review = review_tf.getText();
-					boolean isResult = MDB.UpdateReviewContent(ViArr.get(0).getReviewID(), review);
+					boolean isResult = MDB.UpdateReviewContent(ViArr.getReviewID(), review);
 					if (isResult) {
 						System.out.println("수정완료");
 						dispose();
