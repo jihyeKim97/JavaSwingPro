@@ -68,7 +68,7 @@ public class MyPage extends JFrame {
 	JPanel res_panel;
 	JPanel resdetail_panel;
 	Panel reser_box;
-	Panel poster;
+
 
 	Point fPt;
 	Main mafrm;
@@ -78,12 +78,11 @@ public class MyPage extends JFrame {
 	JLabel none_reservation;
 	Movie_Data MDT;
 	Movie_DB MD;
-	int i = 0;
-	int PK = 0;
+
 
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
-		ArrayList<Mypage_Member_data> MyArr = MDB.SelectMemberID(Ld.getMember_id());
+		Mypage_Member_data MyArr = MDB.SelectMember(Ld.getMember_id());
 		
 //		ArrayList<Mypage_Reservation_data> MoveArr = MDB.Selectid(Ld.getMember_id());
 //		for (int i = 0; i < MoveArr.size(); i++) {
@@ -174,17 +173,16 @@ public class MyPage extends JFrame {
 				lbTitle.setText("Reservtion");
 				ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
 				if (!ReArr.isEmpty()) {
-					for (i =  0; i < ReArr.size(); i++) {
+					for (int i =  0; i < ReArr.size(); i++) {
 						MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());
 						System.out.println(MDT);
 						none_reservation.setVisible(false);
-						reser_box = new Panel();
+						JPanel reser_box = new JPanel();
 						reser_box.setBackground(new Color(242, 242, 242));
 						reser_box.setBounds(10, 80 + (174 * i) + (10 * i), 404, 174);
 						resdetail_panel.add(reser_box);
 						reser_box.setLayout(null);
-
-						poster = new Panel();
+						Panel poster = new Panel();
 						poster.setBackground(Color.white);
 						poster.setBounds(10, 10, 117, 155);
 						poster.setLayout(new BorderLayout());
@@ -196,10 +194,10 @@ public class MyPage extends JFrame {
 						ic.setImage(icImg);
 						JL.setIcon(ic);
 						JL.repaint();
-						PK = ReArr.get(i).getMovie_id();
-						wirte_review = new RoundedButtonG("Go to write a review");
+						RoundedButtonG wirte_review = new RoundedButtonG("Go to write a review");
 						wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
-						wirte_review.setText("한줄평 작성하기");
+						wirte_review.setText("한줄평 작성하기");		
+						int PK = ReArr.get(i).getMovie_id();
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								System.out.println("선택한 영화 인덱스  : "+PK);
@@ -209,67 +207,68 @@ public class MyPage extends JFrame {
 								wirteP.setVisible(true);
 							}
 						});
+						
 						wirte_review.setBounds(133, 131, 259, 34);
 						reser_box.add(wirte_review);
 
-						panel = new JPanel();
+						JPanel panel = new JPanel();
 						panel.setBounds(133, 10, 259, 113);
 						panel.setBackground(new Color(242, 242, 242));
 						reser_box.add(panel);
 						panel.setLayout(null);
 
-						txtreservationum = new JLabel("예약번호 :  ");
+						JLabel txtreservationum = new JLabel("예약번호 :  ");
 						txtreservationum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						txtreservationum.setBounds(0, 0, 68, 28);
 						txtreservationum.setHorizontalAlignment(SwingConstants.RIGHT);
 						panel.add(txtreservationum);
-						in_reservationNum = new JLabel("");
+						JLabel in_reservationNum = new JLabel("");
 						in_reservationNum.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						in_reservationNum.setHorizontalAlignment(SwingConstants.LEFT);
 						in_reservationNum.setText("" + ReArr.get(i).getReservation_number());
 						in_reservationNum.setBounds(75, 0, 183, 28);
 						panel.add(in_reservationNum);
 
-						txtmovietitle = new JLabel("영화제목 :  ");
+						JLabel txtmovietitle = new JLabel("영화제목 :  ");
 						txtmovietitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						txtmovietitle.setBounds(0, 28, 68, 28);
 						txtmovietitle.setHorizontalAlignment(SwingConstants.RIGHT);
 						panel.add(txtmovietitle);
 
-						in_movieTitle = new JLabel("");
+						JLabel in_movieTitle = new JLabel("");
 						in_movieTitle.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						in_movieTitle.setHorizontalAlignment(SwingConstants.LEFT);
 						in_movieTitle.setText(Mypage_DB.AlterMovieIDName(ReArr.get(i).getMovie_id()));
 						in_movieTitle.setBounds(75, 28, 183, 28);
 						panel.add(in_movieTitle);
 
-						txtreservationdate = new JLabel("예약일시 :  ");
+						JLabel txtreservationdate = new JLabel("예약일시 :  ");
 						txtreservationdate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						txtreservationdate.setBounds(0, 56, 68, 28);
 						txtreservationdate.setHorizontalAlignment(SwingConstants.RIGHT);
 						panel.add(txtreservationdate);
 
-						in_resercationDate = new JLabel("");
+						JLabel in_resercationDate = new JLabel("");
 						in_resercationDate.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						in_resercationDate.setHorizontalAlignment(SwingConstants.LEFT);
 						in_resercationDate.setText("" + ReArr.get(i).getReservation_date());
 						in_resercationDate.setBounds(75, 56, 183, 28);
 						panel.add(in_resercationDate);
 
-						txttotalprice = new JLabel("결제 금액 :  ");
+						JLabel txttotalprice = new JLabel("결제 금액 :  ");
 						txttotalprice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						txttotalprice.setBounds(0, 84, 68, 28);
 						txttotalprice.setHorizontalAlignment(SwingConstants.RIGHT);
 						panel.add(txttotalprice);
 
-						in_totalPrice = new JLabel("");
+						JLabel in_totalPrice = new JLabel("");
 						in_totalPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 						in_totalPrice.setText("" + (ReArr.get(i).getPayment_price() + ReArr.get(i).getOption_price()));
 						in_totalPrice.setHorizontalAlignment(SwingConstants.LEFT);
 						in_totalPrice.setBounds(75, 84, 183, 28);
 						panel.add(in_totalPrice);
 
-						lblReservation = new JLabel("Reservation");
+						JLabel lblReservation = new JLabel("Reservation");
 						lblReservation.setHorizontalAlignment(SwingConstants.CENTER);
 						lblReservation.setFont(new Font("Candara Light", Font.BOLD, 36));
 						lblReservation.setBounds(14, 19, 400, 55);
@@ -297,7 +296,7 @@ public class MyPage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!nameField.getText().isEmpty() && !phone.getText().isEmpty() && !currField.getText().isEmpty()
 						&& !newpwField.getText().isEmpty() && !newpwckField.getText().isEmpty()) {
-					if (currField.getText().equals(MyArr.get(0).getPassword())
+					if (currField.getText().equals(MyArr.getPassword())
 							&& newpwField.getText().equals(newpwckField.getText())) {
 						errortxt.setForeground(Color.blue);
 						errortxt.setText("성공!");
@@ -305,7 +304,7 @@ public class MyPage extends JFrame {
 								newpwField.getText());
 						System.out.println("업데이트 성공");
 					} else {
-						if (!currField.getText().equals(MyArr.get(0).getPassword())) {
+						if (!currField.getText().equals(MyArr.getPassword())) {
 							errortxt.setText("현재 비밀번호가 불일치 합니다");
 							System.out.println("비밀번호 불일치");
 						} else if (!newpwField.getText().equals(newpwckField.getText())) {
@@ -379,21 +378,21 @@ public class MyPage extends JFrame {
 		nameField.setColumns(10);
 		nameField.setBounds(0, 5, 246, 40);
 		nameField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		nameField.setText(MyArr.get(0).getName());
+		nameField.setText(MyArr.getName());
 		fieldPanel.add(nameField);
 
 		idField = new JLabel();
 		idField.setHorizontalAlignment(SwingConstants.CENTER);
 		idField.setBounds(0, 52, 246, 40);
 		idField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		idField.setText(MyArr.get(0).getId());
+		idField.setText(MyArr.getId());
 		fieldPanel.add(idField);
 
 		phone = new JTextField();
 		phone.setHorizontalAlignment(SwingConstants.CENTER);
 		phone.setColumns(10);
 		phone.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		phone.setText(MyArr.get(0).getPhoneNumber());
+		phone.setText(MyArr.getPhoneNumber());
 		phone.setBounds(0, 98, 246, 40);
 		fieldPanel.add(phone);
 
@@ -401,7 +400,7 @@ public class MyPage extends JFrame {
 		genField.setHorizontalAlignment(SwingConstants.CENTER);
 		genField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		String gen = "";
-		if (MyArr.get(0).getGender() == 0) {
+		if (MyArr.getGender() == 0) {
 			gen = "남자";
 		} else {
 			gen = "여자";
@@ -412,7 +411,7 @@ public class MyPage extends JFrame {
 
 		birField = new JLabel();
 		birField.setHorizontalAlignment(SwingConstants.CENTER);
-		birField.setText(MyArr.get(0).getBirthday());
+		birField.setText(MyArr.getBirthday());
 		birField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		birField.setBounds(0, 186, 246, 40);
 		fieldPanel.add(birField);
