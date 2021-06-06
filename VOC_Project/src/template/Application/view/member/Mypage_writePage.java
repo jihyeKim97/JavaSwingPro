@@ -104,7 +104,7 @@ public class Mypage_writePage extends JFrame {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblNewLabel_2);
 
-		if (ViArr == null) {
+		if (ViArr.getReviewID() == 0) {
 			star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 			star_combo.setBounds(149, 0, 201, 37);
 			String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
