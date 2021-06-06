@@ -38,6 +38,7 @@ public class Reservation_DB {
 	}
 
 	public static ArrayList<Reservation_data> AllReservation() {
+		ArrayList<Reservation_data> uiList = new ArrayList<>();
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "select * from RESERVATION ";

@@ -18,6 +18,7 @@ public class Movie_DB {
 	static ArrayList<Integer> movieidlist = new ArrayList<>();
 
 	public static ArrayList<Movie_Data> getMovieData() {
+		ArrayList<Movie_Data> MovieList = new ArrayList<>();
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "select * from Movies";

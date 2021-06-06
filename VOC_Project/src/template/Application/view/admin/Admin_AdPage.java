@@ -63,7 +63,7 @@ public class Admin_AdPage extends JFrame {
 	 Admin_AdPage frm;
 	 static Login Lg;
 	 static Login_data Ld;
-	 
+	 Review_Data review = new Review_Data() ;
 	 
 	/**
 	 * Launch the application.
@@ -72,7 +72,8 @@ public class Admin_AdPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Admin_AdPage frame = new Admin_AdPage(Lg, Ld);
+//					Admin_AdPage frame = new Admin_AdPage(Lg, Ld);
+					Admin_AdPage frame = new Admin_AdPage();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,7 +85,8 @@ public class Admin_AdPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Admin_AdPage(Login Lg, Login_data Ld) {
+//	public Admin_AdPage(Login Lg, Login_data Ld) {
+	public Admin_AdPage() {
 		this.frm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1059, 423);
@@ -110,17 +112,6 @@ public class Admin_AdPage extends JFrame {
 		
 		JToolBar toolBar = new JToolBar();
 		ad_pn_Member.add(toolBar, BorderLayout.NORTH);
-		
-		JButton ad_btn_AdLookUpUser = new JButton("\uD68C\uC6D0 \uC870\uD68C");
-		ad_btn_AdLookUpUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frm.showMemberTableUIFromDB();
-				System.out.println("회원 목록 노출");
-			}
-		});
-
-		ad_btn_AdLookUpUser.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\find.png"));
-		toolBar.add(ad_btn_AdLookUpUser);
 		
 		JButton ad_btn_AdDeleteUser = new JButton("\uD68C\uC6D0 \uC0AD\uC81C");
 		ad_btn_AdDeleteUser.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\wrench_orange.png"));
@@ -190,16 +181,20 @@ public class Admin_AdPage extends JFrame {
 		toolBar_1.setBounds(0, 0, 1050, 23);
 		ad_pn_review.add(toolBar_1);
 		
-		JButton ad_btn_AdLookUpReview = new JButton("리뷰 조회");
-		toolBar_1.add(ad_btn_AdLookUpReview);
-		ad_btn_AdLookUpReview.addActionListener(new ActionListener() {
+		JButton ad_btn_AdDeleteReview = new JButton("리뷰 삭제");
+		ad_btn_AdDeleteReview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frm.showReviewTableUIFromDB();
-				System.out.println("리뷰 목록 노출");
+				int n = ad_tb_ReviewTable.getSelectedRow();
+	            Login_data A = mList.get(n);
+	            DefaultTableModel tm = (DefaultTableModel)ad_tb_ReviewTable.getModel();
+	            if (n>=0 && n <ad_tb_ReviewTable.getRowCount()) {
+	               tm.removeRow(n);
+	               int reviewId= review.getReviewid();
+	               RDB.deleteReview(reviewId);
+	               System.out.println("리뷰가 삭제되었습니다.");
+	            }
 			}
 		});
-		
-		JButton ad_btn_AdDeleteReview = new JButton("리뷰 삭제");
 		toolBar_1.add(ad_btn_AdDeleteReview);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -261,7 +256,7 @@ public class Admin_AdPage extends JFrame {
 				int selResId = (int) ad_tb_RaservationTable.getValueAt(selRow, 0);
 				int selResNum = (int) ad_tb_RaservationTable.getValueAt(selRow, 1);
 				Reservation_data selRes = resList.get(selRow);
-				System.out.println(">> 선택된 예약: " + selRes);
+				System.out.println(">> 선택된 예약: " + selResNum);
 			}
 		});
 		
@@ -371,16 +366,6 @@ public class Admin_AdPage extends JFrame {
 		toolBar_3.setBounds(0, 5, 1038, 23);
 		ad_pn_notice.add(toolBar_3);
 		
-		JButton ad_btn_AdLookUpNotice = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uC870\uD68C");
-		ad_btn_AdLookUpNotice.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frm.showNoticeTableUIFromDB();
-				System.out.println("공지사항 목록 노출");
-			}
-		});
-			
-		toolBar_3.add(ad_btn_AdLookUpNotice);
-		
 		JButton ad_btn_AdAddNotice = new JButton("\uACF5\uC9C0\uC0AC\uD56D \uCD94\uAC00");
 		toolBar_3.add(ad_btn_AdAddNotice);
 		
@@ -388,7 +373,15 @@ public class Admin_AdPage extends JFrame {
 		toolBar_3.add(ad_btn_AdDeleteNotice);
 		ad_btn_AdDeleteNotice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
-				Ad_AdPage_DB addb = new Ad_AdPage_DB();
+//				int selRow = ad_tb_ReviewTable.getSelectedRow();
+//				int n = ad_tb_ReviewTable.getSelectedRow();
+//	            Login_data A = mList.get(n);
+//	            DefaultTableModel tm = (DefaultTableModel)ad_tb_ReviewTable.getModel();
+//	            if (n>=0 && n <ad_tb_ReviewTable.getRowCount()) {
+//	               tm.removeRow(n);
+//	               int reviewId= review.getReviewid();
+//	               RDB.deleteReview(reviewId);
+//	               System.out.println("리뷰가 삭제되었습니다.");
 				int n = ad_tb_NoticeTable.getSelectedRow();
 				DefaultTableModel tm = (DefaultTableModel)ad_tb_NoticeTable.getModel();
 				if (n>=0 && n <ad_tb_NoticeTable.getRowCount()) {
@@ -400,7 +393,7 @@ public class Admin_AdPage extends JFrame {
 					int veiwcount = nd.getViewcount();
 					int memberid = nd.getMemberid();
 					Ad_AdPage_DB.deleteNotice(noticeId,title,content,veiwcount,memberid);
-				System.out.println("공지사항 null로 업데이트");	
+				System.out.println("공지사항이 삭제 되었습니다.");	
 			}
 		}
 
@@ -464,9 +457,6 @@ public class Admin_AdPage extends JFrame {
 	
 	}
 	
-public Admin_AdPage() {
-		// TODO Auto-generated constructor stub
-	}
 
 //	public void deleteMemberTableUIFromDB() {
 //		AdminPage_DB ad = new AdminPage_DB();

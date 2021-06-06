@@ -14,6 +14,26 @@ public class Review_DB {
 	static DB_Connect connect;
 	static Review_Data review;
 	
+	public static void deleteReview(int reviewid) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "delete review where review_id = " + reviewid;
+			try {
+				Statement stmt = connect.conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				System.out.println("리뷰가 삭제되었습니다.");
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("리뷰 삭제에 실패했습니다.");
+			}
+			
+		}
+			connect.endConnection();
+	}
+	
+	
+	
 	public static ArrayList<Review_Data> AllReviewData() {
 		ArrayList<Review_Data> contents = new ArrayList<>();
 		connect.beginConnection();
