@@ -14,7 +14,9 @@ import javax.swing.table.DefaultTableModel;
 
 import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Login_DB;
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Notice_DB;
+import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.DB.SIgnUp_DB;
 import template.Application.controller.Data.Login_data;
@@ -53,11 +55,16 @@ public class Admin_AdPage extends JFrame {
 	 ArrayList<Review_Data> rList;
 	 ArrayList<Notice_data> nList;
 	 ArrayList<Reservation_data> resList;
+	 Notice_DB NDB;
+	 Movie_DB MDB;
+	 Review_DB RDB;
+	 Reservation_DB reservaiton;
 	 Ad_AdPage_DB addb;
 	 Admin_AdPage frm;
 	 static Login Lg;
 	 static Login_data Ld;
-
+	 
+	 
 	/**
 	 * Launch the application.
 	 */
@@ -505,8 +512,7 @@ public Admin_AdPage() {
 				
 		}; // 8개
 	
-		Ad_AdPage_DB mgr = new Ad_AdPage_DB();
-		resList = mgr.showAllReservation();
+		resList = reservaiton.AllReservation();
 		if(resList == null || resList.isEmpty()) return;
 		final int nDBSize = resList.size(); // 레코드 개수 ==> 테이블의 행수
 		Object data[][] = new Object[nDBSize][columnNames.length];
@@ -541,8 +547,7 @@ public Admin_AdPage() {
 				
 		}; // 8개
 	
-		Ad_AdPage_DB mgr = new Ad_AdPage_DB();
-		rList = mgr.showAllReview();
+		rList = RDB.AllReviewData();
 		if(rList == null || rList.isEmpty()) return;
 		final int nDBSize = rList.size(); // 레코드 개수 ==> 테이블의 행수
 		Object data[][] = new Object[nDBSize][columnNames.length];
@@ -570,8 +575,7 @@ public Admin_AdPage() {
 				"상영 날짜","상영 시간","러닝타임"
 		}; // 14개
 	
-		Ad_AdPage_DB mgr = new Ad_AdPage_DB();
-		movieList = mgr.showAllMovie();
+		movieList = MDB.getMovieData();
 		if(movieList == null || movieList.isEmpty()) return;
 		final int nDBSize = movieList.size(); // 레코드 개수 ==> 테이블의 행수
 		Object data[][] = new Object[nDBSize][columnNames.length+1];
@@ -608,8 +612,8 @@ public Admin_AdPage() {
 				"공지인덱스", "제목", "내용", "조회수", "회원인덱스"
 		}; // 8개
 	
-		Ad_AdPage_DB mgr = new Ad_AdPage_DB();
-		nList = mgr.showAllNotice();
+
+		nList = NDB.takeNoticetitle();
 		if(nList == null || nList.isEmpty()) return;
 		final int nDBSize = nList.size(); // 레코드 개수 ==> 테이블의 행수
 		Object data[][] = new Object[nDBSize][columnNames.length];
