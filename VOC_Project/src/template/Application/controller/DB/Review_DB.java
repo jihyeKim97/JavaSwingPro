@@ -1,5 +1,6 @@
 package template.Application.controller.DB;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,35 @@ public class Review_DB {
 
 	static DB_Connect connect;
 	static Review_Data review;
+	
+	public static ArrayList<Review_Data> AllReviewData() {
+		ArrayList<Review_Data> contents = new ArrayList<>();
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "SELECT * FROM review";
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					int reviewid = rs.getInt("review_id");
+					String content = rs.getString("content");
+					int starscore = rs.getInt("star_score");
+					Date reviewdate = rs.getDate("review_date");
+					int reservationid = rs.getInt("reservation_id");
+					int movieid = rs.getInt("movies_id");
+					contents.add(new Review_Data(reviewid,content,starscore,reviewdate,reservationid,movieid));
+				}
+				return contents;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return contents;
+		
+		
+	}
+	
 
 	public static ArrayList<Review_Data> getReviewData(int movieId) {
 		ArrayList<Review_Data> contents = new ArrayList<>();

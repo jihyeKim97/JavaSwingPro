@@ -103,64 +103,64 @@ public class Ad_AdPage_DB {
 		return null;
 	}
 
-	public ArrayList<Movie_Data> showAllMovie() {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			ArrayList<Movie_Data> uiList = new ArrayList<>();
-			String sql = "select * from MOVIES ORDER BY MOVIES_ID desc";
-			try {
-				Statement stmt = this.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					String mvRuntime = rs.getString("RUNNING_TIME");
+//	public ArrayList<Movie_Data> showAllMovie() {
+//		connect.beginConnection();
+//		if (connect.conn != null) {
+//			ArrayList<Movie_Data> uiList = new ArrayList<>();
+//			String sql = "select * from MOVIES ORDER BY MOVIES_ID desc";
+//			try {
+//				Statement stmt = this.conn.createStatement();
+//				ResultSet rs = stmt.executeQuery(sql);
+//				while (rs.next()) {
+//					String mvRuntime = rs.getString("RUNNING_TIME");
+//
+//					Movie_Data ui = new Movie_Data(rs.getInt("MOVIES_ID"), rs.getString("TITLE"), rs.getString("GENRE"),
+//							rs.getString("DIRECTOR"), rs.getInt("AGE_GROUP"), rs.getString("STORY"),
+//							rs.getInt("AVERAGE_SCORE"), rs.getString("GEE"), rs.getDate("OPEN_DATE"),
+//							rs.getString("PRODUCTION"), rs.getString("IMAGE_FILE_NAME"), rs.getDate("SCHEDULE_DATE"),
+//							rs.getInt("SCHEDULE_TIME"), rs.getString("RUNNING_TIME"));
+//
+//					uiList.add(ui);
+//				}
+//				System.out.println("DBMgr: 연동 성공=> 영화 개수:" + uiList.size() + "개");
+//				return uiList;
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} else {
+//			System.out.println("DB error!!~~~");
+//		}
+//		connect.endConnection();
+//		return null;
+//	}
 
-					Movie_Data ui = new Movie_Data(rs.getInt("MOVIES_ID"), rs.getString("TITLE"), rs.getString("GENRE"),
-							rs.getString("DIRECTOR"), rs.getInt("AGE_GROUP"), rs.getString("STORY"),
-							rs.getInt("AVERAGE_SCORE"), rs.getString("GEE"), rs.getDate("OPEN_DATE"),
-							rs.getString("PRODUCTION"), rs.getString("IMAGE_FILE_NAME"), rs.getDate("SCHEDULE_DATE"),
-							rs.getInt("SCHEDULE_TIME"), rs.getString("RUNNING_TIME"));
-
-					uiList.add(ui);
-				}
-				System.out.println("DBMgr: 연동 성공=> 영화 개수:" + uiList.size() + "개");
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!~~~");
-		}
-		connect.endConnection();
-		return null;
-	}
-
-	public ArrayList<Review_Data> showAllReview() {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			ArrayList<Review_Data> uiList = new ArrayList<>();
-			String sql = "select * from REVIEW ORDER BY REVIEW_ID desc";
-			try {
-				Statement stmt = this.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					int rvMovieid = rs.getInt("RESERVATION_ID");
-
-					Review_Data ui = new Review_Data(rs.getInt("REVIEW_ID"), rs.getString("CONTENT"),
-							rs.getInt("STAR_SCORE"), rs.getDate("REVIEW_DATE"), rs.getInt("RESERVATION_ID"));
-
-					uiList.add(ui);
-				}
-				System.out.println("DBMgr: 연동 성공=> 리뷰 개수:" + uiList.size() + "개");
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!~~~");
-		}
-		connect.endConnection();
-		return null;
-	}
+//	public ArrayList<Review_Data> showAllReview() {
+//		connect.beginConnection();
+//		if (connect.conn != null) {
+//			ArrayList<Review_Data> uiList = new ArrayList<>();
+//			String sql = "select * from REVIEW ORDER BY REVIEW_ID desc";
+//			try {
+//				Statement stmt = this.conn.createStatement();
+//				ResultSet rs = stmt.executeQuery(sql);
+//				while (rs.next()) {
+//					int rvMovieid = rs.getInt("RESERVATION_ID");
+//
+//					Review_Data ui = new Review_Data(rs.getInt("REVIEW_ID"), rs.getString("CONTENT"),
+//							rs.getInt("STAR_SCORE"), rs.getDate("REVIEW_DATE"), rs.getInt("RESERVATION_ID"));
+//
+//					uiList.add(ui);
+//				}
+//				System.out.println("DBMgr: 연동 성공=> 리뷰 개수:" + uiList.size() + "개");
+//				return uiList;
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} else {
+//			System.out.println("DB error!!~~~");
+//		}
+//		connect.endConnection();
+//		return null;
+//	}
 
 	public ArrayList<Reservation_data> showAllReservation() {
 		connect.beginConnection();
@@ -193,32 +193,32 @@ public class Ad_AdPage_DB {
 		return null;
 	}
 
-	public ArrayList<Notice_data> showAllNotice() {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			ArrayList<Notice_data> uiList = new ArrayList<>();
-			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
-			try {
-				Statement stmt = this.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					int noticeMemberId = rs.getInt("MEMBER_ID");
-
-					Notice_data ui = new Notice_data(rs.getInt("NOTICE_ID"), rs.getString("TITLE"),
-							rs.getString("CONTENT"), rs.getInt("VIEWCOUNT"), rs.getInt("MEMBER_ID"));
-
-					uiList.add(ui);
-				}
-				System.out.println("DBMgr: 연동 성공=> 공지사항 개수:" + uiList.size() + "개");
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!~~~");
-		}
-		connect.endConnection();
-		return null;
-	}
+//	public ArrayList<Notice_data> showAllNotice() {
+//		connect.beginConnection();
+//		if (connect.conn != null) {
+//			ArrayList<Notice_data> uiList = new ArrayList<>();
+//			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
+//			try {
+//				Statement stmt = this.conn.createStatement();
+//				ResultSet rs = stmt.executeQuery(sql);
+//				while (rs.next()) {
+//					int noticeMemberId = rs.getInt("MEMBER_ID");
+//
+//					Notice_data ui = new Notice_data(rs.getInt("NOTICE_ID"), rs.getString("TITLE"),
+//							rs.getString("CONTENT"), rs.getInt("VIEWCOUNT"), rs.getInt("MEMBER_ID"));
+//
+//					uiList.add(ui);
+//				}
+//				System.out.println("DBMgr: 연동 성공=> 공지사항 개수:" + uiList.size() + "개");
+//				return uiList;
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		} else {
+//			System.out.println("DB error!!~~~");
+//		}
+//		connect.endConnection();
+//		return null;
+//	}
 
 }

@@ -35,14 +35,18 @@ public class Mypage_writePage extends JFrame {
 	Mypage_DB MDB;
 	Mypage_Review_data Myoage_viDT;
 	MyPage Mypage;
-
+	int PK = 0;
+	
+	ArrayList<Mypage_Review_data> ViArr = new ArrayList<>();
 	int sco = 0;
-
-    public Mypage_writePage(MyPage frm, Login_data Ld, Movie_Data MD) {
+	
+	public Mypage_writePage(MyPage frm, Login_data Ld, int Moviesid) {
 		this.frm = frm;
-		ArrayList<Mypage_Review_data> ViArr = MDB
-                .SelectReviewID(MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(), MD.getMoviesid());
-
+		ViArr = MDB.SelectReviewID(
+				MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(),
+				Moviesid);
+		
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 406, 352);
 		setResizable(false);
@@ -100,7 +104,7 @@ public class Mypage_writePage extends JFrame {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblNewLabel_2);
 
-		if (ViArr.isEmpty()) {
+		if (ViArr.get(PK) == null) {
 			star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 			star_combo.setBounds(149, 0, 201, 37);
 			String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
@@ -118,12 +122,12 @@ public class Mypage_writePage extends JFrame {
 				}
 			});
 		} else {
-			review_tf.setText(ViArr.get(0).getContent());
+			review_tf.setText(ViArr.get(PK).getContent());
 			lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 			String star = "";
-			switch (ViArr.get(0).getStar_score()) {
+			switch (ViArr.get(PK).getStar_score()) {
 			case 1:
 				star = "★☆☆☆☆";
 				break;
@@ -140,7 +144,7 @@ public class Mypage_writePage extends JFrame {
 				star = "★★★★★";
 				break;
 			}
-			lblNewLabel_1.setText(star + "  " + ViArr.get(0).getStar_score() + " 점");
+			lblNewLabel_1.setText(star + "  " + ViArr.get(PK).getStar_score() + " 점");
 			lblNewLabel_1.setBounds(149, 0, 201, 37);
 			panel_1.add(lblNewLabel_1);
 			btn_success.addActionListener(new ActionListener() {

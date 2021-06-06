@@ -14,6 +14,7 @@ import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Member_data;
 import template.Application.controller.Data.Mypage_Reservation_data;
+import template.Application.controller.Data.Mypage_Review_data;
 import template.Application.controller.btn.RoundedButtonG;
 import template.Application.controller.btn.RoundedButtonR;
 import java.awt.Font;
@@ -77,6 +78,8 @@ public class MyPage extends JFrame {
 	JLabel none_reservation;
 	Movie_Data MDT;
 	Movie_DB MD;
+	int i = 0;
+	int PK = 0;
 
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
@@ -86,7 +89,7 @@ public class MyPage extends JFrame {
 		for (int i = 0; i < MoveArr.size(); i++) {
 			System.out.println(MoveArr.get(i).getMovie_id());
 		}
-		
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		setTitle("Vehicle Outdoor Cinema");
@@ -169,8 +172,8 @@ public class MyPage extends JFrame {
 				mem_panel.setVisible(false);
 				res_panel.setVisible(true);
 				lbTitle.setText("Reservtion");
-				if (!ReArr.isEmpty()) {
-					for (int i = 0; i < MoveArr.size(); i++) {
+				if (!MoveArr.isEmpty()) {
+					for (i =  0; i < MoveArr.size(); i++) {
 						MDT = MD.getMovieInformationFromMovieId(MoveArr.get(i).getMovie_id());
 						none_reservation.setVisible(false);
 						reser_box = new Panel();
@@ -191,14 +194,14 @@ public class MyPage extends JFrame {
 						ic.setImage(icImg);
 						JL.setIcon(ic);
 						JL.repaint();
-
 						wirte_review = new RoundedButtonG("Go to write a review");
 						wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 
 						wirte_review.setText("한줄평 작성하기");
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-                                wirteP = new Mypage_writePage(frm, Ld, MDT);
+								PK = MoveArr.get(i).getMovie_id();
+								wirteP = new Mypage_writePage(frm, Ld, PK);
 								fPt = frm.getLocationOnScreen();
 								wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 								wirteP.setVisible(true);
@@ -259,7 +262,7 @@ public class MyPage extends JFrame {
 
 						in_totalPrice = new JLabel("");
 						in_totalPrice.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
-						in_totalPrice.setText("" + ReArr.get(i).getPayment_price());
+						in_totalPrice.setText("" + (ReArr.get(i).getPayment_price() + ReArr.get(i).getOption_price()));
 						in_totalPrice.setHorizontalAlignment(SwingConstants.LEFT);
 						in_totalPrice.setBounds(75, 84, 183, 28);
 						panel.add(in_totalPrice);
