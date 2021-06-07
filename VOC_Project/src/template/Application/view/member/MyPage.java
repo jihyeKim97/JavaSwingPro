@@ -77,6 +77,7 @@ public class MyPage extends JFrame {
 	JLabel none_reservation;
 	Movie_Data MDT;
 	Movie_DB MD;
+	int A = 0;
 
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
@@ -197,12 +198,11 @@ public class MyPage extends JFrame {
 						wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 						wirte_review.setText("한줄평 작성하기");
 						int PK = ReArr.get(i).getMovie_id();
-						Mypage_Review_data ViArr = MDB.SelectReviewID(
-								MDB.SelectReservationID(Ld.getMember_id()).get(i).getReservation_id(), PK);
+						A = i;
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								System.out.println("선택한 영화 인덱스  : " + PK);
-								wirteP = new Mypage_writePage(frm, Ld, ViArr, reser_box);
+								wirteP = new Mypage_writePage(frm, Ld, PK, reser_box, A);
 								fPt = frm.getLocationOnScreen();
 								wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 								wirteP.setVisible(true);
@@ -447,7 +447,7 @@ public class MyPage extends JFrame {
 		errortxt = new JLabel("");
 		errortxt.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 10));
 		errortxt.setForeground(Color.RED);
-		errortxt.setBounds(168, 498, 244, 24);
+		errortxt.setBounds(168, 498, 244, 24);	
 		memdetail_panel.add(errortxt);
 
 		btn_logout = new RoundedButtonR("LOGOUT");
