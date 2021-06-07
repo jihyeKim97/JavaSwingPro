@@ -11,18 +11,16 @@ import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
 import template.Application.view.member.MyPage;
 
-
 public class Mypage_DB {
 
 	static DB_Connect connect;
 	static MyPage Mypage;
 	static Mypage_Member_data MypageDT;
 	static Mypage_Reservation_data Myoage_reDT;
-	static Mypage_Review_data Myoage_viDT;
+	static Mypage_Review_data Myoage_viDT = new Mypage_Review_data();;
 	static ArrayList<Mypage_Member_data> MyArr = new ArrayList<>();
 	static ArrayList<Mypage_Reservation_data> ReArr = new ArrayList<>();
 	static ArrayList<Mypage_Review_data> ViArr = new ArrayList<>();
-	static  Mypage_Review_data ABCDE = new Mypage_Review_data();
 
 	public static ArrayList<Mypage_Member_data> SelectMemberID(int memberID) {
 
@@ -54,7 +52,7 @@ public class Mypage_DB {
 		connect.endConnection();
 		return MyArr;
 	}
-	
+
 	public static Mypage_Member_data SelectMember(int memberID) {
 		Mypage_Member_data MMD = new Mypage_Member_data();
 		connect.beginConnection();
@@ -157,7 +155,7 @@ public class Mypage_DB {
 				while (rs.next()) {
 					int movie_id = rs.getInt("movie_id");
 
-					ReArr.add(new Mypage_Reservation_data( movie_id));
+					ReArr.add(new Mypage_Reservation_data(movie_id));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -166,8 +164,7 @@ public class Mypage_DB {
 		connect.endConnection();
 		return ReArr;
 	}
-	
-	
+
 	public static String AlterMovieIDName(int moviesID) {
 		String title = "";
 
@@ -189,12 +186,12 @@ public class Mypage_DB {
 		connect.endConnection();
 		return title;
 	}
-	
+
 	public static Mypage_Review_data SelectReview(int reservationID, int MovieID) {
 
 		connect.beginConnection();
 		if (connect.conn != null) {
-            String sql = "select * from review where reservation_id = " + reservationID + " and movies_id = " + MovieID;
+			String sql = "select * from review where reservation_id = " + reservationID + " and movies_id = " + MovieID;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
@@ -206,24 +203,24 @@ public class Mypage_DB {
 					int reservation_id = rs.getInt("reservation_id");
 					int movie_id = rs.getInt("movies_id");
 
-					ABCDE = new Mypage_Review_data(review_id, content, starScore, review_date, reservation_id,movie_id);
+					Myoage_viDT = new Mypage_Review_data(review_id, content, starScore, review_date, reservation_id,
+							movie_id);
 				}
 				System.out.println("리턴함 ");
-				return ABCDE;
+				return Myoage_viDT;
 			} catch (SQLException e) {
-				e.printStackTrace(); 	
+				e.printStackTrace();
 			}
 		}
 		connect.endConnection();
-		return ABCDE;
+		return Myoage_viDT;
 	}
-	
 
-    public static Mypage_Review_data SelectReviewID(int reservationID, int MovieID) {
-    	Mypage_Review_data MRD = new Mypage_Review_data();
+	public static Mypage_Review_data SelectReviewID(int reservationID, int MovieID) {
+		Mypage_Review_data MRD = new Mypage_Review_data();
 		connect.beginConnection();
 		if (connect.conn != null) {
-            String sql = "select * from review where reservation_id = " + reservationID + " and movies_id = " + MovieID;
+			String sql = "select * from review where reservation_id = " + reservationID + " and movies_id = " + MovieID;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
@@ -235,12 +232,12 @@ public class Mypage_DB {
 					int reservation_id = rs.getInt("reservation_id");
 					int movie_id = rs.getInt("movies_id");
 
-					MRD = new Mypage_Review_data(review_id, content, starScore, review_date, reservation_id,movie_id);
+					MRD = new Mypage_Review_data(review_id, content, starScore, review_date, reservation_id, movie_id);
 				}
 				System.out.println("리턴함 ");
 				return MRD;
 			} catch (SQLException e) {
-				e.printStackTrace(); 	
+				e.printStackTrace();
 			}
 		}
 		connect.endConnection();
@@ -261,6 +258,7 @@ public class Mypage_DB {
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
 					System.out.println("리뷰 추가 완료");
+					
 					return true;
 				}
 			} catch (SQLException e) {
@@ -272,7 +270,6 @@ public class Mypage_DB {
 	}
 
 	public static boolean UpdateReviewContent(int reviewID, String content) {
-
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "update review set content = ?  where review_id = ? ";
