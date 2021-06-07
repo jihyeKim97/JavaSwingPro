@@ -78,6 +78,7 @@ public class MyPage extends JFrame {
 	Movie_Data MDT;
 	Movie_DB MD;
 	int A = 0;
+	int i = 0;
 
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
@@ -172,7 +173,7 @@ public class MyPage extends JFrame {
 				lbTitle.setText("Reservtion");
 				ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
 				if (!ReArr.isEmpty()) {
-					for (int i = 0; i < ReArr.size(); i++) {
+					for (i = 0; i < ReArr.size(); i++) {
 						MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());
 						System.out.println(MDT);
 						none_reservation.setVisible(false);
@@ -197,8 +198,8 @@ public class MyPage extends JFrame {
 						RoundedButtonG wirte_review = new RoundedButtonG("Go to write a review");
 						wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
 						wirte_review.setText("한줄평 작성하기");
-						int PK = ReArr.get(i).getMovie_id();
-						A = i;
+						int A = i;
+						int PK = ReArr.get(A).getMovie_id();
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								System.out.println("선택한 영화 인덱스  : " + PK);
