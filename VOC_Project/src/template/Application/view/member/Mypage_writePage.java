@@ -98,65 +98,70 @@ public class Mypage_writePage extends JFrame {
 		lblNewLabel_2.setBounds(0, 0, 137, 37);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblNewLabel_2);
+
 		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
-		for ( i = 0; i < ReArr.size(); i++) {
-			if (ViArr.getMoviesID() == ReArr.get(i).getMovie_id()) {
-				System.out.println("ReArr.get(i).getMovie_id() ====>" + ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getMovie_id());
-				review_tf.setText(ViArr.getContent());
-				lblNewLabel_1 = new JLabel("");
-				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-				String star = "";
-				switch (ViArr.getStar_score()) {
-				case 1:
-					star = "★☆☆☆☆";
-					break;
-				case 2:
-					star = "★★☆☆☆";
-					break;
-				case 3:
-					star = "★★★☆☆";
-					break;
-				case 4:
-					star = "★★★★☆";
-					break;
-				case 5:
-					star = "★★★★★";
-					break;
-				}
-				lblNewLabel_1.setText(star + "  " + ViArr.getStar_score() + " 점");
-				lblNewLabel_1.setBounds(149, 0, 201, 37);
-				panel_1.add(lblNewLabel_1);
-				btn_success.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						String review = review_tf.getText();
-						boolean isResult = MDB.UpdateReviewContent(ViArr.getReviewID(), review);
-						if (isResult) {
-							System.out.println("수정완료");
-							dispose();
-						}
+		if (ViArr.getReviewID() != 0) {
+			for (i = 0; i < ReArr.size(); i++) {
+				if (ViArr.getMoviesID() == ReArr.get(i).getMovie_id()) {
+					System.out.println("ReArr.get(i).getMovie_id() ====>"
+							+ ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getMovie_id());
+					review_tf.setText(ViArr.getContent());
+					lblNewLabel_1 = new JLabel("");
+					lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+					lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+					String star = "";
+					switch (ViArr.getStar_score()) {
+					case 1:
+						star = "★☆☆☆☆";
+						break;
+					case 2:
+						star = "★★☆☆☆";
+						break;
+					case 3:
+						star = "★★★☆☆";
+						break;
+					case 4:
+						star = "★★★★☆";
+						break;
+					case 5:
+						star = "★★★★★";
+						break;
 					}
-				});
-			} else {
-				star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-				star_combo.setBounds(149, 0, 201, 37);
-				String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
-				star_combo.setModel(new DefaultComboBoxModel(comboF));
-				panel_1.add(star_combo);
+					lblNewLabel_1.setText(star + "  " + ViArr.getStar_score() + " 점");
+					lblNewLabel_1.setBounds(149, 0, 201, 37);
+					panel_1.add(lblNewLabel_1);
+					btn_success.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							String review = review_tf.getText();
+							boolean isResult = MDB.UpdateReviewContent(ViArr.getReviewID(), review);
+							if (isResult) {
+								System.out.println("수정완료");
+								dispose();
+							}
+						}
+					});
+				}
 			}
+		} else {
+			star_combo.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+			star_combo.setBounds(149, 0, 201, 37);
+			String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
+			star_combo.setModel(new DefaultComboBoxModel(comboF));
+			panel_1.add(star_combo);
+
+			btn_success.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					String review = review_tf.getText();
+					boolean isResult = MDB.InsertReviewID(review, sco,
+							ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getReservation_id(),
+							ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getMovie_id());
+					if (isResult) {
+						dispose();
+					}
+				}
+			});
 		}
 
-		btn_success.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String review = review_tf.getText();
-				boolean isResult = MDB.InsertReviewID(review, sco, ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getReservation_id(),
-						ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getMovie_id());
-				if (isResult) {
-					dispose();
-				}
-			}
-		});
-		
 		btn_success.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		btn_success.setBounds(25, 255, 350, 43);
 		panel.add(btn_success);
