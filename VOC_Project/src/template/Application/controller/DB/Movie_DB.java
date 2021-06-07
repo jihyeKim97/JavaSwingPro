@@ -60,7 +60,6 @@ public class Movie_DB {
 		int MovieId = 0;
 		if (connect.conn != null) {
 			String sql = "SELECT movies_id FROM movies WHERE image_file_name = '" + ImageFile + "'";
-			System.out.println(sql);
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
@@ -87,7 +86,6 @@ public class Movie_DB {
 		int MovieId = 0;
 		if (connect.conn != null) {
 			String sql = "SELECT * FROM movies WHERE movies_id = '" + id + "'";
-			System.out.println(sql);
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
@@ -112,8 +110,7 @@ public class Movie_DB {
 		connect.beginConnection();
 		Movie_Data MD = new Movie_Data();
 		if (connect.conn != null) {
-			String sql = "SELECT * FROM movies WHERE movies_id = "+id;
-			System.out.println(sql);
+			String sql = "SELECT * FROM movies WHERE movies_id = " + id;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
