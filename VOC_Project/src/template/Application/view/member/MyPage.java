@@ -457,10 +457,12 @@ public class MyPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int result = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					System.exit(0);
+					Login loginpage = new Login();
+					loginpage.setVisible(true);
+					dispose();
+					mafrm.dispose();
 				}
-				Login loginpage = new Login();
-				loginpage.setVisible(true);
+				
 			}
 		});
 		btn_logout.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
