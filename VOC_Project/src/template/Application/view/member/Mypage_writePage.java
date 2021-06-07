@@ -39,7 +39,9 @@ public class Mypage_writePage extends JFrame {
 	int sco = 0;
 	int i = 0;
 
-	public Mypage_writePage(MyPage frm, Login_data Ld, Mypage_Review_data ViArr, JPanel reser_box) {
+	public Mypage_writePage(MyPage frm, Login_data Ld, int PK, JPanel reser_box, int c) {
+		Mypage_Review_data ViArr = MDB.SelectReviewID(
+				MDB.SelectReservationID(Ld.getMember_id()).get(c).getReservation_id(), PK);
 		this.frm = frm;
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
