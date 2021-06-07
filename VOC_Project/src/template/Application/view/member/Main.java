@@ -108,11 +108,6 @@ public class Main extends JFrame {
 		});
 
 		header_panel.add(btn_my);
-		
-		JLabel test = new JLabel("New label");
-		test.setBounds(12, 10, 85, 35);
-		test.setText(Ld.getId());
-		header_panel.add(test);
 
 		mainPanel = new Panel();
 		mainPanel.setBackground(new Color(255, 255, 255));
