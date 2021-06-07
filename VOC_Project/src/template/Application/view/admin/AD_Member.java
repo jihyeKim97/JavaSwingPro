@@ -25,22 +25,10 @@ public class AD_Member extends JFrame {
 	JPanel contentPane;
 	JTextField textField;
 	JTextField textField_1;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AD_Member frame = new AD_Member();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	AD_Member frm;
 
 	public AD_Member() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 662);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));

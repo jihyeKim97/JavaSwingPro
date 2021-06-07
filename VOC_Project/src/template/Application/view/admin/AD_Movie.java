@@ -34,21 +34,8 @@ public class AD_Movie extends JFrame {
 	JTextField textField_5;
 	JTextField textField_6;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AD_Movie frame = new AD_Movie();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public AD_Movie() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
