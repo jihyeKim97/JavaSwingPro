@@ -37,8 +37,9 @@ public class Mypage_writePage extends JFrame {
 	MyPage Mypage;
 
 	int sco = 0;
+	int i = 0;
 
-	public Mypage_writePage(MyPage frm, Login_data Ld, Mypage_Review_data ViArr) {
+	public Mypage_writePage(MyPage frm, Login_data Ld, Mypage_Review_data ViArr, JPanel reser_box) {
 		this.frm = frm;
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -98,9 +99,9 @@ public class Mypage_writePage extends JFrame {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblNewLabel_2);
 		ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
-		for (int i = 0; i < ReArr.size(); i++) {
+		for ( i = 0; i < ReArr.size(); i++) {
 			if (ViArr.getMoviesID() == ReArr.get(i).getMovie_id()) {
-				System.out.println("ReArr.get(i).getMovie_id() ====>" + ReArr.get(i).getMovie_id());
+				System.out.println("ReArr.get(i).getMovie_id() ====>" + ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getMovie_id());
 				review_tf.setText(ViArr.getContent());
 				lblNewLabel_1 = new JLabel("");
 				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -142,19 +143,20 @@ public class Mypage_writePage extends JFrame {
 				String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
 				star_combo.setModel(new DefaultComboBoxModel(comboF));
 				panel_1.add(star_combo);
-				btn_success.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						String review = review_tf.getText();
-						boolean isResult = MDB.InsertReviewID(review, sco, ReArr.get(i).getReservation_id(),
-								ReArr.get(i).getMovie_id());
-						if (isResult) {
-							dispose();
-						}
-					}
-				});
 			}
 		}
 
+		btn_success.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String review = review_tf.getText();
+				boolean isResult = MDB.InsertReviewID(review, sco, ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getReservation_id(),
+						ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getMovie_id());
+				if (isResult) {
+					dispose();
+				}
+			}
+		});
+		
 		btn_success.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		btn_success.setBounds(25, 255, 350, 43);
 		panel.add(btn_success);

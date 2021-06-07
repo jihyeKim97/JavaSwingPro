@@ -176,6 +176,7 @@ public class MyPage extends JFrame {
 						System.out.println(MDT);
 						none_reservation.setVisible(false);
 						JPanel reser_box = new JPanel();
+						reser_box.setToolTipText("" + i);
 						reser_box.setBackground(new Color(242, 242, 242));
 						reser_box.setBounds(10, 80 + (174 * i) + (10 * i), 404, 174);
 						resdetail_panel.add(reser_box);
@@ -201,7 +202,7 @@ public class MyPage extends JFrame {
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								System.out.println("선택한 영화 인덱스  : " + PK);
-								wirteP = new Mypage_writePage(frm, Ld, ViArr);
+								wirteP = new Mypage_writePage(frm, Ld, ViArr, reser_box);
 								fPt = frm.getLocationOnScreen();
 								wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 								wirteP.setVisible(true);
