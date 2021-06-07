@@ -15,6 +15,7 @@ public class Ad_Notice_DB {
 
 	static DB_Connect DB;
 	Ad_Notice_data ad_Notice;
+	
 
 	public static ArrayList<Ad_Notice_data> GetNotice(int NoticeiD) {
 		DB.beginConnection();

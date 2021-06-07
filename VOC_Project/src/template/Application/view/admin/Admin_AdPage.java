@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import template.Application.controller.DB.Ad_AdPage_DB;
+import template.Application.controller.DB.Ad_Review_DB;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Notice_DB;
@@ -63,7 +64,8 @@ public class Admin_AdPage extends JFrame {
 	 Admin_AdPage frm;
 	 static Login Lg;
 	 static Login_data Ld;
-	 Review_Data review = new Review_Data() ;
+	 Review_Data review = new Review_Data();
+	 Ad_Review_DB ARDB;
 	 
 	/**
 	 * Launch the application.
@@ -190,7 +192,8 @@ public class Admin_AdPage extends JFrame {
 	            if (n>=0 && n <ad_tb_ReviewTable.getRowCount()) {
 	               tm.removeRow(n);
 	               int reviewId= review.getReviewid();
-	               RDB.deleteReview(reviewId);
+	               ARDB.changePK(reviewId);
+	               ARDB.deleteReview(reviewId);
 	               System.out.println("리뷰가 삭제되었습니다.");
 	            }
 			}

@@ -1,36 +1,19 @@
 package template.Application.controller.DB;
 
 import java.sql.Date;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import template.Application.controller.Data.Review_Data;
-import template.Application.view.member.Notice;
+
 
 public class Review_DB {
 
 	static DB_Connect connect;
 	static Review_Data review;
-	
-	public static void deleteReview(int reviewid) {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "delete review where review_id = " + reviewid;
-			try {
-				Statement stmt = connect.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				System.out.println("리뷰가 삭제되었습니다.");
-				stmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("리뷰 삭제에 실패했습니다.");
-			}
-			
-		}
-			connect.endConnection();
-	}
 	
 	
 	
