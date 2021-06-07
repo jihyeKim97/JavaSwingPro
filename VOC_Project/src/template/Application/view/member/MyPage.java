@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class MyPage extends JFrame {
-
+	public static ArrayList<Mypage_Reservation_data> ReArr;
 	JPanel contentPane;
 	JLabel lbTitle;
 	JTextField nameField;
@@ -171,7 +171,7 @@ public class MyPage extends JFrame {
 				mem_panel.setVisible(false);
 				res_panel.setVisible(true);
 				lbTitle.setText("Reservtion");
-				ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
+				 ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
 				if (!ReArr.isEmpty()) {
 					for (int i =  0; i < ReArr.size(); i++) {
 						MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());

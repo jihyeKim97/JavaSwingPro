@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import template.Application.controller.DB.Mypage_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
 import template.Application.controller.btn.RoundedButtonG;
 import javax.swing.JTextField;
@@ -33,20 +34,15 @@ public class Mypage_writePage extends JFrame {
 
 	MyPage frm;
 	Mypage_DB MDB;
-	Mypage_Review_data Myoage_viDT;
 	MyPage Mypage;
-	int PK = 0;
-	
-	Mypage_Review_data ViArr = new Mypage_Review_data ();
+
 	int sco = 0;
-	
+
 	public Mypage_writePage(MyPage frm, Login_data Ld, int Moviesid) {
 		this.frm = frm;
-		ViArr = MDB.SelectReviewID(
-				MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(),
-				Moviesid);
-		
-		
+		Mypage_Review_data ViArr = MDB
+				.SelectReviewID(MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(), Moviesid);
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 406, 352);
 		setResizable(false);
@@ -110,14 +106,16 @@ public class Mypage_writePage extends JFrame {
 			String[] comboF = { "★☆☆☆☆ : 1점", "★★☆☆☆ : 2점", "★★★☆☆ : 3점", "★★★★☆ : 4점", "★★★★★ : 5점" };
 			star_combo.setModel(new DefaultComboBoxModel(comboF));
 			panel_1.add(star_combo);
+			ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
 			btn_success.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					String review = review_tf.getText();
-					boolean isResult = MDB.InsertReviewID(review, sco,
-							MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(),
-							MDB.SelectReservationID(Ld.getMember_id()).get(0).getMovie_id());
-					if (isResult) {
-						dispose();
+					for (int i = 0; i < ReArr.size(); i++) {
+						String review = review_tf.getText();
+						boolean isResult = MDB.InsertReviewID(review, sco, ReArr.get(i).getReservation_id(),
+								ReArr.get(i).getMovie_id());
+						if (isResult) {
+							dispose();
+						}
 					}
 				}
 			});
