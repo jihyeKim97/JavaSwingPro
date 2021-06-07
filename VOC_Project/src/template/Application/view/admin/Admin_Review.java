@@ -62,12 +62,12 @@ public class Admin_Review {
 		MyArr = db.GetReview(Review_id);
 		frmReview = new JFrame();
 		frmReview.setTitle("Review");
-		frmReview.setBounds(100, 100, 342, 499);
+		frmReview.setBounds(100, 100, 464, 576);
 		frmReview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmReview.getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 326, 460);
+		panel.setBounds(0, 0, 448, 537);
 		frmReview.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -106,5 +106,15 @@ public class Admin_Review {
 		ad_btn_cancel.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 20));
 		ad_btn_cancel.setBounds(188, 387, 115, 47);
 		panel.add(ad_btn_cancel);
+		
+		JButton button = new JButton("비활성화");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ad_review_txt.setText("관리자에 의해 리뷰 내용이 제한 되었습니다 ");;
+			}
+		});
+		button.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 20));
+		button.setBounds(112, 454, 115, 47);
+		panel.add(button);
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -27,6 +28,7 @@ import template.Application.controller.Data.Notice_data;
 import template.Application.controller.Data.Reservation_data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.Data.SignUp_data;
+import template.Application.controller.btn.RoundedButtonR;
 import template.Application.view.member.Login;
 
 import javax.swing.JTabbedPane;
@@ -42,6 +44,7 @@ import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.Font;
 public class Admin_AdPage extends JFrame {
 
 	 JPanel contentPane;
@@ -66,10 +69,7 @@ public class Admin_AdPage extends JFrame {
 	 static Login_data Ld;
 	 Review_Data review = new Review_Data();
 	 Ad_Review_DB ARDB;
-	 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -84,21 +84,21 @@ public class Admin_AdPage extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Admin_AdPage(Login Lg, Login_data Ld) {
 //	public Admin_AdPage() {
 		this.frm = this;
+		setTitle("Vehicle Outdoor Cinema [ admin page ] ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1059, 423);
+		setBounds(100, 100, 1184, 766);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 37, 1055, 347);
+		tabbedPane.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
+		tabbedPane.setBounds(12, 43, 1144, 674);
 		contentPane.add(tabbedPane);
 		
 		JPanel ad_pn_Member = new JPanel(); // pnLeft는 음식메뉴관리탭?
@@ -113,9 +113,11 @@ public class Admin_AdPage extends JFrame {
 		ad_pn_Member.setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_pn_Member.add(toolBar, BorderLayout.NORTH);
 		
 		JButton ad_btn_AdDeleteUser = new JButton("\uD68C\uC6D0 \uC0AD\uC81C");
+		ad_btn_AdDeleteUser.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_btn_AdDeleteUser.setIcon(new ImageIcon("C:\\dev2021\\java_ws\\GUICafeProject\\icons\\wrench_orange.png"));
 		ad_btn_AdDeleteUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
@@ -433,7 +435,20 @@ public class Admin_AdPage extends JFrame {
 //	));
 		scrollPane_4.setViewportView(ad_tb_NoticeTable);
 		
-		JButton ad_btn_AdLogOut = new JButton("로그아웃");
+		RoundedButtonR ad_btn_AdLogOut = new RoundedButtonR("로그아웃");
+		ad_btn_AdLogOut.setText("LOGOUT");
+		ad_btn_AdLogOut.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		ad_btn_AdLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int result = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					Login loginpage = new Login();
+					loginpage.setVisible(true);
+					dispose();
+					frm.dispose();
+				}
+			}
+		});
 		ad_btn_AdLogOut.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -449,12 +464,8 @@ public class Admin_AdPage extends JFrame {
 		
 		
 		ad_btn_AdLogOut.setVerticalAlignment(SwingConstants.TOP);
-		ad_btn_AdLogOut.setBounds(940, 10, 91, 23);
+		ad_btn_AdLogOut.setBounds(1045, 10, 111, 35);
 		contentPane.add(ad_btn_AdLogOut);
-		
-		JButton ad_btn_AdHome = new JButton("메인화면");
-		ad_btn_AdHome.setBounds(12, 4, 97, 23);
-		contentPane.add(ad_btn_AdHome);
 		
 
 	
