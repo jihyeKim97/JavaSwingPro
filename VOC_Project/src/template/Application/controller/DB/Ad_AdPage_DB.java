@@ -72,8 +72,6 @@ public class Ad_AdPage_DB {
 		return false;
 	}
 
-//
-
 	public ArrayList<Login_data> selectAllMembers() {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -91,13 +89,44 @@ public class Ad_AdPage_DB {
 
 					uiList.add(ui);
 				}
-				System.out.println("DBMgr: 연동성공 총 회원수: => " + uiList.size() + "명");
+				System.out.println("회원 내용 조회 갯수 : => " + uiList.size() + "명");
 				return uiList;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} else {
 			System.out.println("DB error!!!@");
+		}
+		connect.endConnection();
+		return null;
+	}
+
+	public ArrayList<Reservation_data> showAllReservation() {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			ArrayList<Reservation_data> uiList = new ArrayList<>();
+			String sql = "select * from RESERVATION ORDER BY RESERVATION_ID desc";
+			try {
+				Statement stmt = this.conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					int rsMovieId = rs.getInt("MOVIE_ID");
+
+					Reservation_data ui = new Reservation_data(rs.getInt("RESERVATION_ID"),
+							rs.getInt("RESERVATION_NUMBER"), rs.getDate("RESERVATION_DATE"),
+							rs.getString("SEAT_NUMBER"), rs.getInt("CAR_TYPE"), rs.getInt("PAYMENT_PRICE"),
+							rs.getDate("PAYMENT_DATE"), rs.getString("OPTION_NAME"), rs.getInt("OPTION_PRICE"),
+							rs.getInt("MEMBER_ID"), rs.getInt("MOVIE_ID"));
+
+					uiList.add(ui);
+				}
+				System.out.println("예약내용 조회 갯수 : " + uiList.size() + "개");
+				return uiList;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB error!!~~~");
 		}
 		connect.endConnection();
 		return null;
@@ -161,37 +190,6 @@ public class Ad_AdPage_DB {
 //		connect.endConnection();
 //		return null;
 //	}
-
-	public ArrayList<Reservation_data> showAllReservation() {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			ArrayList<Reservation_data> uiList = new ArrayList<>();
-			String sql = "select * from RESERVATION ORDER BY RESERVATION_ID desc";
-			try {
-				Statement stmt = this.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					int rsMovieId = rs.getInt("MOVIE_ID");
-
-					Reservation_data ui = new Reservation_data(rs.getInt("RESERVATION_ID"),
-							rs.getInt("RESERVATION_NUMBER"), rs.getDate("RESERVATION_DATE"),
-							rs.getString("SEAT_NUMBER"), rs.getInt("CAR_TYPE"), rs.getInt("PAYMENT_PRICE"),
-							rs.getDate("PAYMENT_DATE"), rs.getString("OPTION_NAME"), rs.getInt("OPTION_PRICE"),
-							rs.getInt("MEMBER_ID"), rs.getInt("MOVIE_ID"));
-
-					uiList.add(ui);
-				}
-				System.out.println("DBMgr: 연동 성공=> 예약 개수:" + uiList.size() + "개");
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!~~~");
-		}
-		connect.endConnection();
-		return null;
-	}
 
 //	public ArrayList<Notice_data> showAllNotice() {
 //		connect.beginConnection();

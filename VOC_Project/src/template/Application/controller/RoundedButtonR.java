@@ -1,4 +1,4 @@
-package template.Application.controller.btn;
+package template.Application.controller;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -11,28 +11,28 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-public class RoundedButtonY extends JButton {
-	public RoundedButtonY() {
+public class RoundedButtonR extends JButton {
+	public RoundedButtonR() {
 		super();
 		decorate();
 	}
 
-	public RoundedButtonY(String text) {
+	public RoundedButtonR(String text) {
 		super(text);
 		decorate();
 	}
 
-	public RoundedButtonY(Action action) {
+	public RoundedButtonR(Action action) {
 		super(action);
 		decorate();
 	}
 
-	public RoundedButtonY(Icon icon) {
+	public RoundedButtonR(Icon icon) {
 		super(icon);
 		decorate();
 	}
 
-	public RoundedButtonY(String text, Icon icon) {
+	public RoundedButtonR(String text, Icon icon) {
 		super(text, icon);
 		decorate();
 	}
@@ -44,7 +44,7 @@ public class RoundedButtonY extends JButton {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		Color c = new Color(235, 207, 0); // 배경색 결정
+		Color c = new Color(139,0,0); // 배경색 결정
 		Color o = Color.white; // 글자색 결정
 		int width = getWidth();
 		int height = getHeight();

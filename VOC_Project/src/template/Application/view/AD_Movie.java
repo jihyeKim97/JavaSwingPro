@@ -1,4 +1,4 @@
-package template.Application.view.admin;
+package template.Application.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import template.Application.controller.btn.RoundedButtonG;
-import template.Application.controller.btn.RoundedButtonR;
+import template.Application.controller.RoundedButtonG;
+import template.Application.controller.RoundedButtonR;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -34,7 +34,10 @@ public class AD_Movie extends JFrame {
 	JTextField textField_5;
 	JTextField textField_6;
 
+	AD_Movie Mofrm;
+	
 	public AD_Movie() {
+		this.Mofrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
 		contentPane = new JPanel();

@@ -1,16 +1,18 @@
-package template.Application.view.member;
+package template.Application.view;
 
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import template.Application.controller.RoundedButtonD;
+import template.Application.controller.RoundedButtonG;
+import template.Application.controller.RoundedButtonR;
+import template.Application.controller.RoundedButtonY;
 import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
-import template.Application.controller.btn.RoundedButtonD;
-import template.Application.controller.btn.RoundedButtonG;
-import template.Application.controller.btn.RoundedButtonR;
-import template.Application.controller.btn.RoundedButtonY;
+
 import javax.swing.SwingConstants;
 import java.awt.Image;
 import java.awt.Panel;

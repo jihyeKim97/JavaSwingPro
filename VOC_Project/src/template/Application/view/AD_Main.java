@@ -1,4 +1,4 @@
-package template.Application.view.admin;
+package template.Application.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import template.Application.controller.RoundedButtonD;
+import template.Application.controller.RoundedButtonG;
+import template.Application.controller.RoundedButtonR;
+import template.Application.controller.RoundedButtonY;
 import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Ad_Review_DB;
 import template.Application.controller.DB.Login_DB;
@@ -24,12 +29,7 @@ import template.Application.controller.Data.Notice_data;
 import template.Application.controller.Data.Reservation_data;
 import template.Application.controller.Data.Review_Data;
 import template.Application.controller.Data.SignUp_data;
-import template.Application.controller.btn.RoundedButtonD;
-import template.Application.controller.btn.RoundedButtonG;
-import template.Application.controller.btn.RoundedButtonR;
-import template.Application.controller.btn.RoundedButtonY;
-import template.Application.view.member.Login;
-import template.Application.view.member.MyPage;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
@@ -59,9 +59,10 @@ public class AD_Main extends JFrame {
 	Notice_DB NDB;
 	Movie_DB MDB;
 	Review_DB RDB;
+	Login_DB LDB;
 	Reservation_DB reservaiton;
 	Ad_AdPage_DB addb;
-	static AD_Main frm;
+	AD_Main frm;
 	static Login Lg;
 	static Login_data Ld;
 	Review_Data review = new Review_Data();
@@ -70,6 +71,10 @@ public class AD_Main extends JFrame {
 	boolean click_moi = false;
 	boolean click_rev = false;
 	boolean click_not = false;
+
+	int selRow, selMemberId;
+	String selMemberName;
+	Login_data selMember;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -122,17 +127,17 @@ public class AD_Main extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 40, 1139, 599);
 		ad_pn_Member.add(scrollPane);
-		Login_data selMember;
 		ad_tb_MemberTable = new JTable();
 		scrollPane.setViewportView(ad_tb_MemberTable);
+
 		ad_tb_MemberTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click_mem = true;
-				int selRow = ad_tb_MemberTable.getSelectedRow();
-				int selMemberId = (int) ad_tb_MemberTable.getValueAt(selRow, 0);
-				String selMemberName = (String) ad_tb_MemberTable.getValueAt(selRow, 3);
-				Login_data selMember = mList.get(selRow);
+				selRow = ad_tb_MemberTable.getSelectedRow();
+				selMemberId = (int) ad_tb_MemberTable.getValueAt(selRow, 0);
+				selMemberName = (String) ad_tb_MemberTable.getValueAt(selRow, 3);
+				selMember = mList.get(selRow);
 				System.out.println(">> 선택된 회원: " + selMember);
 			}
 		});
@@ -149,7 +154,7 @@ public class AD_Main extends JFrame {
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (click_mem) {
-					AD_Member member = new AD_Member();
+					AD_Member member = new AD_Member(frm, selMember);
 					member.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 회원이 없습니다");

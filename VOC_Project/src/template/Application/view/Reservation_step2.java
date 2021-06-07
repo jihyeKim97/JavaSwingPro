@@ -1,4 +1,4 @@
-package template.Application.view.member;
+package template.Application.view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -6,13 +6,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Color;
+
+import template.Application.controller.RoundedButtonG;
+import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Reservation_data;
-import template.Application.controller.btn.RoundedButtonG;
-import template.Application.controller.btn.RoundedButtonR;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

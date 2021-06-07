@@ -1,4 +1,4 @@
-package template.Application.view.admin;
+package template.Application.view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -32,14 +32,13 @@ import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
-public class Admin_FilmManagement_Enrollment extends JDialog {
+public class Admin_FilmManagement_Modify extends JDialog {
 
 	JFrame frame;
 	JTextField ad_txt_title;
@@ -52,13 +51,15 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 	JTextField ad_txt_production;
 	JTextField ad_txt_runtime;
 	JLabel ad_lb_load_poster;
-	Admin_FilmManagement_Enrollment dlg;
+	Admin_FilmManagement_Modify dlg;
 	String dbImgPath;
 	String ppp;
 	JLabel ad_lb_poster;
 	Ad_Film_Data afd = new Ad_Film_Data();
 	Ad_Film_DB db = new Ad_Film_DB();
+	int film_id = 259;
 	File imgFile;
+	ArrayList<Ad_Film_Data> MyArr = new ArrayList<>();
 	JTextField ad_txt_schedule_date;
 	JTextField ad_txt_img;
 	ImageIcon image1;
@@ -70,7 +71,7 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Admin_FilmManagement_Enrollment window = new Admin_FilmManagement_Enrollment();
+					Admin_FilmManagement_Modify window = new Admin_FilmManagement_Modify();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,7 +83,7 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 	/**
 	 * Create the application.
 	 */
-	public Admin_FilmManagement_Enrollment() {
+	public Admin_FilmManagement_Modify() {
 		initialize();
 	}
 
@@ -90,6 +91,7 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		MyArr = db.GetFilm(film_id);
 		frame = new JFrame();
 		frame.setTitle("영화정보");
 		frame.setBounds(100, 100, 493, 804);
@@ -113,7 +115,12 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		panel_2.add(pnMenuImage);
 		pnMenuImage.setLayout(new BorderLayout(0, 0));
 
-		
+		image1 = new ImageIcon("./src"+MyArr.get(0).getImage_file_name());
+		Image image2 = image1.getImage().getScaledInstance(180, 230, Image.SCALE_SMOOTH);
+		ad_lb_poster = new JLabel(image1, JLabel.CENTER);
+		image1.setImage(image2);
+		pnMenuImage.add(ad_lb_poster, BorderLayout.CENTER);
+
 		ad_lb_load_poster = new JLabel("no path");
 		ad_lb_load_poster.addMouseListener(new MouseAdapter() {
 			@Override
@@ -129,13 +136,13 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 					dbImgPath = currentDirPath + "/" + imgFile.getName();
 					ad_lb_load_poster.setText(dbImgPath);
 					ad_lb_load_poster.setToolTipText("이미지 경로: " + imgFile.getPath());
-					// 42x42 아이콘
+
 					ImageIcon ic = new ImageIcon(imgFile.getPath());
-					Image icImg = ic.getImage().getScaledInstance(180, 240, Image.SCALE_SMOOTH);
+					Image icImg = ic.getImage().getScaledInstance(180, 230, Image.SCALE_SMOOTH);
 					ic.setImage(icImg);
-					ad_lb_load_poster.setIcon(ic);
-					ad_lb_load_poster.repaint();
-					ppp = currentDirPathDetail + " / " + imgFile.getName();
+					ad_lb_poster.setIcon(ic);
+					ad_lb_poster.repaint();
+					ppp = currentDirPathDetail + "/" + imgFile.getName();
 				}
 			}
 		});
@@ -153,31 +160,14 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		lblNo.setFont(new Font("굴림", Font.BOLD, 15));
 		panel_4.add(lblNo);
 
+		String a[] = MyArr.get(0).getSchedule_date().split(" ");
 		ad_txt_schedule_date = new JTextField();
-		ad_txt_schedule_date.setForeground(Color.LIGHT_GRAY);
-		ad_txt_schedule_date.setText("ex) 2021-01-01");
 		ad_txt_schedule_date.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_schedule_date.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_schedule_date.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_schedule_date.setForeground(Color.black);
-				ad_txt_schedule_date.setBackground(new Color(240, 240, 240));
-				if (ad_txt_schedule_date.getText().equals("ex) 2021-01-01"))
-					ad_txt_schedule_date.setText("");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_schedule_date.setForeground(Color.LIGHT_GRAY);
-				ad_txt_schedule_date.setBackground(Color.WHITE);
-				if (ad_txt_schedule_date.getText().isEmpty())
-					ad_txt_schedule_date.setText("ex) 2021-01-01");
-			}
-		});
 		ad_txt_schedule_date.setColumns(10);
 		ad_txt_schedule_date.setBounds(108, 0, 130, 35);
 		panel_4.add(ad_txt_schedule_date);
+		ad_txt_schedule_date.setText(a[0]);
 
 		JPanel panel_7 = new JPanel();
 		panel_7.setBounds(202, 55, 252, 27);
@@ -193,21 +183,9 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		panel_2.add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
-		textArea.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				textArea.setForeground(Color.black);
-				textArea.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				textArea.setForeground(Color.LIGHT_GRAY);
-				textArea.setBackground(Color.WHITE);
-			}
-		});
 		textArea.setLineWrap(true);
 		scrollPane.setViewportView(textArea);
+		textArea.setText(MyArr.get(0).getStory());
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setLayout(null);
@@ -228,46 +206,21 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		ad_txt_title = new JTextField();
 		ad_txt_title.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_title.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_title.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_title.setForeground(Color.black);
-				ad_txt_title.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_title.setForeground(Color.LIGHT_GRAY);
-				ad_txt_title.setBackground(Color.WHITE);
-			}
-		});
 		panel_9.add(ad_txt_title);
 		ad_txt_title.setColumns(10);
+		ad_txt_title.setText(MyArr.get(0).getTitle());
 
 		JLabel ad_lb_genre = new JLabel("장르");
 		ad_lb_genre.setHorizontalAlignment(SwingConstants.CENTER);
 		ad_lb_genre.setFont(new Font("Dialog", Font.PLAIN, 15));
-		
 		panel_9.add(ad_lb_genre);
 
 		ad_txt_ganre = new JTextField();
 		ad_txt_ganre.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_ganre.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_ganre.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_ganre.setForeground(Color.black);
-				ad_txt_ganre.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_ganre.setForeground(Color.LIGHT_GRAY);
-				ad_txt_ganre.setBackground(Color.WHITE);
-			}
-		});
 		panel_9.add(ad_txt_ganre);
 		ad_txt_ganre.setColumns(10);
+		ad_txt_ganre.setText(MyArr.get(0).getGenre());
 
 		JLabel ad_lb_director = new JLabel("감독");
 		ad_lb_director.setHorizontalAlignment(SwingConstants.CENTER);
@@ -277,21 +230,9 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		ad_txt_director = new JTextField();
 		ad_txt_director.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_director.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_director.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_director.setForeground(Color.black);
-				ad_txt_director.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_director.setForeground(Color.LIGHT_GRAY);
-				ad_txt_director.setBackground(Color.WHITE);
-			}
-		});
 		panel_9.add(ad_txt_director);
 		ad_txt_director.setColumns(10);
+		ad_txt_director.setText(MyArr.get(0).getDirector());
 
 		JLabel ad_lb_age = new JLabel("연령등급");
 		ad_lb_age.setHorizontalAlignment(SwingConstants.CENTER);
@@ -301,62 +242,21 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		ad_txt_age = new JTextField();
 		ad_txt_age.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_age.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_age.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_age.setForeground(Color.black);
-				ad_txt_age.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_age.setForeground(Color.LIGHT_GRAY);
-				ad_txt_age.setBackground(Color.WHITE);
-			}
-		});
 		panel_9.add(ad_txt_age);
 		ad_txt_age.setColumns(10);
-		ad_txt_age.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent ke) {
-				if (((JTextField) ke.getSource()).getText().length() > 1
-						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-					ke.consume();
-				}
-			}
-
-		});
+		ad_txt_age.setText(MyArr.get(0).getAge_group());
 
 		JLabel ad_lb_score = new JLabel("별점");
 		ad_lb_score.setHorizontalAlignment(SwingConstants.CENTER);
 		ad_lb_score.setFont(new Font("Dialog", Font.PLAIN, 15));
-		
 		panel_9.add(ad_lb_score);
 
 		ad_txt_score = new JTextField();
-		ad_txt_score.setForeground(Color.LIGHT_GRAY);
-		ad_txt_score.setText("ex) 1.0 ~ 5.0");
 		ad_txt_score.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		ad_txt_score.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_score.setForeground(Color.black);
-				ad_txt_score.setBackground(new Color(240, 240, 240));
-				if (ad_txt_score.getText().equals("ex) 1.0 ~ 5.0"))
-					ad_txt_score.setText("");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_score.setForeground(Color.LIGHT_GRAY);
-				ad_txt_score.setBackground(Color.WHITE);
-				if (ad_txt_score.getText().isEmpty())
-					ad_txt_score.setText("ex) 1.0 ~ 5.0");
-			}
-		});
 		ad_txt_score.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_9.add(ad_txt_score);
 		ad_txt_score.setColumns(10);
+		ad_txt_score.setText(MyArr.get(0).getAverage_score());
 
 		JLabel ad_lb_gee = new JLabel("등장인물");
 		ad_lb_gee.setHorizontalAlignment(SwingConstants.CENTER);
@@ -366,43 +266,26 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		ad_txt_gee = new JTextField();
 		ad_txt_gee.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_gee.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_gee.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_gee.setForeground(Color.black);
-				ad_txt_gee.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_gee.setForeground(Color.LIGHT_GRAY);
-				ad_txt_gee.setBackground(Color.WHITE);
-			}
-		});
 		panel_9.add(ad_txt_gee);
 		ad_txt_gee.setColumns(10);
+		ad_txt_gee.setText(MyArr.get(0).getGee());
 
 		JLabel ad_lb_openday = new JLabel("개봉일");
 		ad_lb_openday.setHorizontalAlignment(SwingConstants.CENTER);
 		ad_lb_openday.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_9.add(ad_lb_openday);
 
+		String b[] = MyArr.get(0).getOpen_date().split(" ");
 		ad_txt_openday = new JTextField();
-		ad_txt_openday.setForeground(Color.LIGHT_GRAY);
-		ad_txt_openday.setText("ex) 2021-01-01");
 		ad_txt_openday.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				ad_txt_openday.setForeground(Color.black);
-				ad_txt_openday.setBackground(new Color(240, 240, 240));
 				if (ad_txt_openday.getText().equals("ex) 2021-01-01"))
 					ad_txt_openday.setText("");
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				ad_txt_openday.setForeground(Color.LIGHT_GRAY);
-				ad_txt_openday.setBackground(Color.WHITE);
 				if (ad_txt_openday.getText().isEmpty())
 					ad_txt_openday.setText("ex) 2021-01-01");
 			}
@@ -411,6 +294,7 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		ad_txt_openday.setHorizontalAlignment(SwingConstants.CENTER);
 		ad_txt_openday.setColumns(10);
 		panel_9.add(ad_txt_openday);
+		ad_txt_openday.setText(b[0]);
 
 		JLabel ad_lb_production = new JLabel("제작사");
 		ad_lb_production.setHorizontalAlignment(SwingConstants.CENTER);
@@ -419,22 +303,10 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 
 		ad_txt_production = new JTextField();
 		ad_txt_production.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
-		ad_txt_production.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_production.setForeground(Color.black);
-				ad_txt_production.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_production.setForeground(Color.LIGHT_GRAY);
-				ad_txt_production.setBackground(Color.WHITE);
-			}
-		});
 		ad_txt_production.setHorizontalAlignment(SwingConstants.CENTER);
 		ad_txt_production.setColumns(10);
 		panel_9.add(ad_txt_production);
+		ad_txt_production.setText(MyArr.get(0).getProduction());
 
 		JLabel ad_lb_runtime = new JLabel("영화 상영 시간");
 		ad_lb_runtime.setHorizontalAlignment(SwingConstants.CENTER);
@@ -444,21 +316,9 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		ad_txt_runtime = new JTextField();
 		ad_txt_runtime.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		ad_txt_runtime.setHorizontalAlignment(SwingConstants.CENTER);
-		ad_txt_runtime.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				ad_txt_runtime.setForeground(Color.black);
-				ad_txt_runtime.setBackground(new Color(240, 240, 240));
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				ad_txt_runtime.setForeground(Color.LIGHT_GRAY);
-				ad_txt_runtime.setBackground(Color.WHITE);
-			}
-		});
 		ad_txt_runtime.setColumns(10);
 		panel_9.add(ad_txt_runtime);
+		ad_txt_runtime.setText(MyArr.get(0).getRunning_time());
 
 		JLabel label_20 = new JLabel("영화 정보");
 		label_20.setHorizontalAlignment(SwingConstants.CENTER);
@@ -472,34 +332,6 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		label_21.setBounds(232, -10, 232, 40);
 		panel_8.add(label_21);
 
-		JButton ad_btn_up = new JButton("등록");
-		ad_btn_up.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String ad_title = ad_txt_title.getText();
-				String ad_genre = ad_txt_ganre.getText();
-				String ad_director = ad_txt_director.getText();
-				String age_group = ad_txt_age.getText();
-				String ad_story = textArea.getText();
-				String ad_average_score = ad_txt_score.getText();
-				String ad_gee = ad_txt_gee.getText();
-				String ad_open_date = ad_txt_openday.getText();
-				String ad_production = ad_txt_production.getText();
-				String ad_schedule_date = ad_txt_schedule_date.getText();
-				String ad_running_time = ad_txt_runtime.getText();
-				Ad_Film_Data upmovie = new Ad_Film_Data(ad_title, ad_genre, ad_director, age_group, ad_story,
-						ad_average_score, ad_gee, ad_open_date, ad_production, ad_schedule_date, ppp,
-						ad_running_time);
-				boolean r = db.insertNewMovie(upmovie);
-				if (r) {
-					JOptionPane.showMessageDialog(null, "등록성공");
-				} else
-					JOptionPane.showMessageDialog(null, "등록실패");
-
-			}
-		});
-		ad_btn_up.setBounds(7, 707, 107, 48);
-		panel.add(ad_btn_up);
-
 		JButton ad_btn_cancel = new JButton("cancel");
 		ad_btn_cancel.setBounds(364, 707, 107, 48);
 		panel.add(ad_btn_cancel);
@@ -510,5 +342,31 @@ public class Admin_FilmManagement_Enrollment extends JDialog {
 		label_3.setFont(new Font("Candara Light", Font.BOLD, 33));
 		label_3.setBounds(30, 0, 400, 55);
 		panel.add(label_3);
+		JButton btnDown = new JButton("수정");
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String title = ad_txt_title.getText();
+				String genre = ad_txt_ganre.getText();
+				String director = ad_txt_director.getText();
+				String age_group = ad_txt_age.getText();
+				String story = textArea.getText();
+				String average_score = ad_txt_score.getText();
+				String gee = ad_txt_gee.getText();
+				String open_date = ad_txt_openday.getText();
+				String production = ad_txt_production.getText();
+				String schedule_date = ad_txt_schedule_date.getText();
+				String running_time = ad_txt_runtime.getText();
+
+				boolean r = db.changeFilm(film_id, title, genre, director, age_group, story, average_score, gee,
+						open_date, production, schedule_date, ppp, running_time);
+				if (r) {
+					JOptionPane.showMessageDialog(null, "영화정보 수정성공");
+				} else
+					JOptionPane.showMessageDialog(null, "영화정보 수정실패");
+			}
+
+		});
+		btnDown.setBounds(7, 707, 107, 48);
+		panel.add(btnDown);
 	}
 }

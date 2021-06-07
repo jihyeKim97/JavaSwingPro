@@ -1,4 +1,4 @@
-package template.Application.view.member;
+package template.Application.view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,14 +22,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+
+import template.Application.controller.RoundedButtonD;
+import template.Application.controller.RoundedButtonG;
+import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.SIgnUp_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.SignUp_data;
-import template.Application.controller.btn.RoundedButtonD;
-import template.Application.controller.btn.RoundedButtonG;
-import template.Application.controller.btn.RoundedButtonR;
 
 public class SignUp extends JFrame {
 

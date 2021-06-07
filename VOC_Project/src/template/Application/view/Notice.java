@@ -1,4 +1,4 @@
-package template.Application.view.member;
+package template.Application.view;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.SystemColor;
+
+import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.Data.Notice_data;
-import template.Application.controller.btn.RoundedButtonR;
+
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 

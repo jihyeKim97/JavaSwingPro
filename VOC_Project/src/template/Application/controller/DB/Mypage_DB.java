@@ -9,7 +9,7 @@ import java.util.Date;
 import template.Application.controller.Data.Mypage_Member_data;
 import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
-import template.Application.view.member.MyPage;
+import template.Application.view.MyPage;
 
 public class Mypage_DB {
 

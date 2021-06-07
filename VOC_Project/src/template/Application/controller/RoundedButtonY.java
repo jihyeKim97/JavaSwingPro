@@ -1,4 +1,4 @@
-package template.Application.controller.btn;
+package template.Application.controller;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -11,28 +11,28 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-public class RoundedButtonG extends JButton {
-	public RoundedButtonG() {
+public class RoundedButtonY extends JButton {
+	public RoundedButtonY() {
 		super();
 		decorate();
 	}
 
-	public RoundedButtonG(String text) {
+	public RoundedButtonY(String text) {
 		super(text);
 		decorate();
 	}
 
-	public RoundedButtonG(Action action) {
+	public RoundedButtonY(Action action) {
 		super(action);
 		decorate();
 	}
 
-	public RoundedButtonG(Icon icon) {
+	public RoundedButtonY(Icon icon) {
 		super(icon);
 		decorate();
 	}
 
-	public RoundedButtonG(String text, Icon icon) {
+	public RoundedButtonY(String text, Icon icon) {
 		super(text, icon);
 		decorate();
 	}
@@ -44,7 +44,7 @@ public class RoundedButtonG extends JButton {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		Color c = new Color(70, 114, 42); // 배경색 결정
+		Color c = new Color(235, 207, 0); // 배경색 결정
 		Color o = Color.white; // 글자색 결정
 		int width = getWidth();
 		int height = getHeight();
@@ -57,7 +57,7 @@ public class RoundedButtonG extends JButton {
 		} else {
 			graphics.setColor(c);
 		}
-		graphics.fillRoundRect(0, 0, width, height, 10, 10);
+		graphics.fillRoundRect(0, 0, width, height, 15, 15);
 		FontMetrics fontMetrics = graphics.getFontMetrics();
 		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
 		int textX = (width - stringBounds.width) / 2;
