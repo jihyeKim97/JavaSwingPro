@@ -38,10 +38,8 @@ public class Mypage_writePage extends JFrame {
 
 	int sco = 0;
 
-	public Mypage_writePage(MyPage frm, Login_data Ld, int Moviesid) {
+	public Mypage_writePage(MyPage frm, Login_data Ld, Mypage_Review_data ViArr) {
 		this.frm = frm;
-		Mypage_Review_data ViArr = MDB
-				.SelectReviewID(MDB.SelectReservationID(Ld.getMember_id()).get(0).getReservation_id(), Moviesid);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 406, 352);

@@ -69,7 +69,6 @@ public class MyPage extends JFrame {
 	JPanel resdetail_panel;
 	Panel reser_box;
 
-
 	Point fPt;
 	Main mafrm;
 	Mypage_Member_data MyPage;
@@ -79,11 +78,10 @@ public class MyPage extends JFrame {
 	Movie_Data MDT;
 	Movie_DB MD;
 
-
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;
 		Mypage_Member_data MyArr = MDB.SelectMember(Ld.getMember_id());
-		
+
 //		ArrayList<Mypage_Reservation_data> MoveArr = MDB.Selectid(Ld.getMember_id());
 //		for (int i = 0; i < MoveArr.size(); i++) {
 //			System.out.println(MoveArr.get(i).getMovie_id());
@@ -171,9 +169,9 @@ public class MyPage extends JFrame {
 				mem_panel.setVisible(false);
 				res_panel.setVisible(true);
 				lbTitle.setText("Reservtion");
-				 ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
+				ArrayList<Mypage_Reservation_data> ReArr = MDB.SelectReservationID(Ld.getMember_id());
 				if (!ReArr.isEmpty()) {
-					for (int i =  0; i < ReArr.size(); i++) {
+					for (int i = 0; i < ReArr.size(); i++) {
 						MDT = MD.getMovieInformationFromMovieId(ReArr.get(i).getMovie_id());
 						System.out.println(MDT);
 						none_reservation.setVisible(false);
@@ -196,18 +194,20 @@ public class MyPage extends JFrame {
 						JL.repaint();
 						RoundedButtonG wirte_review = new RoundedButtonG("Go to write a review");
 						wirte_review.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
-						wirte_review.setText("한줄평 작성하기");		
+						wirte_review.setText("한줄평 작성하기");
 						int PK = ReArr.get(i).getMovie_id();
+						Mypage_Review_data ViArr = MDB.SelectReviewID(
+								MDB.SelectReservationID(Ld.getMember_id()).get(i).getReservation_id(), PK);
 						wirte_review.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								System.out.println("선택한 영화 인덱스  : "+PK);
-								wirteP = new Mypage_writePage(frm, Ld, PK);
+								System.out.println("선택한 영화 인덱스  : " + PK);
+								wirteP = new Mypage_writePage(frm, Ld, ViArr);
 								fPt = frm.getLocationOnScreen();
 								wirteP.setLocation(fPt.x + frm.getWidth() + 20, fPt.y);
 								wirteP.setVisible(true);
 							}
 						});
-						
+
 						wirte_review.setBounds(133, 131, 259, 34);
 						reser_box.add(wirte_review);
 
