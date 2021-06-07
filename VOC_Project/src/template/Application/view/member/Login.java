@@ -14,7 +14,7 @@ import template.Application.controller.ImagePanel;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.btn.RoundedButtonR;
-import template.Application.view.admin.Admin_AdPage;
+import template.Application.view.admin.AD_Main;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
@@ -48,7 +48,7 @@ public class Login extends JFrame {
 	Main main;
 	Login_DB LDB;
 	Login_data LD;
-	Admin_AdPage ad_page;
+	AD_Main ad_page;
 	ArrayList<Login_data> LoginArr;
 
 	public static void main(String[] args) {
@@ -208,7 +208,7 @@ public class Login extends JFrame {
 								dispose();
 							} else if (memberdata.get(i).getIs_member() == 1) {
 								System.out.println(LD);
-								ad_page = new Admin_AdPage(ln, LD);
+								ad_page = new AD_Main(ln, LD);
 								ad_page.setVisible(true);
 								dispose();
 							} else if (memberdata.get(i).getIs_member() != 1 && memberdata.get(i).getIs_member() != 0) {
