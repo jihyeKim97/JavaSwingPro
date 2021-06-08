@@ -20,7 +20,6 @@ public class Notice_DB {
 		if (connect.conn != null) {
 			String sql = "INSERT INTO notice(notice_id,title,content,viewcount,member_id) VALUES (MEMBER_SEQ.nextval,"
 					+ "'" + title + "', '" + content + "', 0, " + 24 + ")";
-			System.out.println(sql);
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 

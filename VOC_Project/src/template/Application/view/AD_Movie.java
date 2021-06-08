@@ -9,19 +9,29 @@ import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
+import template.Application.controller.DB.Ad_Movie_DB;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Movie_Data;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -36,9 +46,14 @@ public class AD_Movie extends JFrame {
 	JTextField per;
 	JTextField open;
 
+	File imgFile;
+	Admin_FilmManagement_Enrollment dlg;
 	static Login_DB LDB;
 	AD_Movie Mofrm;
-	
+	Ad_Movie_DB AMDB;
+	String dbImgPath;
+	String ppp;
+
 	public AD_Movie(AD_Main frm) {
 		this.Mofrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -75,6 +90,30 @@ public class AD_Movie extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("");
 //		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/images/어바웃타임.jpg")));
 		panel_2.add(lblNewLabel_4);
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				final String currentDirPath = "./src/template/reference/images";
+				final String currentDirPathDetail = "/template/reference/images";
+				System.out.println(currentDirPath);
+				JFileChooser openDlg = new JFileChooser(currentDirPath);
+				if (openDlg.showOpenDialog(dlg) == JFileChooser.APPROVE_OPTION) {
+					imgFile = openDlg.getSelectedFile();
+					System.out.println("선택된 파일명: " + imgFile.getName());
+					System.out.println("선택된 파일경로명: " + imgFile.getPath());
+					dbImgPath = currentDirPath + "/" + imgFile.getName();
+					lblNewLabel_4.setText(dbImgPath);
+					lblNewLabel_4.setToolTipText("이미지 경로: " + imgFile.getPath());
+					// 42x42 아이콘
+					ImageIcon ic = new ImageIcon(imgFile.getPath());
+					Image icImg = ic.getImage().getScaledInstance(180, 240, Image.SCALE_SMOOTH);
+					ic.setImage(icImg);
+					lblNewLabel_4.setIcon(ic);
+					lblNewLabel_4.repaint();
+					ppp = currentDirPathDetail + " / " + imgFile.getName();
+				}
+			}
+		});
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(203, 0, 319, 271);
@@ -205,7 +244,7 @@ public class AD_Movie extends JFrame {
 		com.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		com.setColumns(10);
 
-		JLabel lblNewLabel_6 = new JLabel("  NO PATH");
+		JLabel lblNewLabel_6 = new JLabel("/template/Reference/images/");
 		lblNewLabel_6.setForeground(new Color(255, 0, 0));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
@@ -214,6 +253,14 @@ public class AD_Movie extends JFrame {
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if (!title.getText().equals("") && !ger.getText().equals("") && !dir.getText().equals("")
+						&& !age.getText().equals("") && !per.getText().equals("") && !open.getText().equals("") && !com.getText().equals("")) {
+					lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
+				AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
+						per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
+					JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
+				}else 
+					JOptionPane.showMessageDialog(null, "빈칸을 채워주세요.");
 			}
 		});
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 17));
