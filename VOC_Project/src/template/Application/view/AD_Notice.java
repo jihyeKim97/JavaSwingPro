@@ -9,9 +9,12 @@ import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
+import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.Data.Notice_data;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -28,10 +31,13 @@ public class AD_Notice extends JFrame {
 
 	JPanel contentPane;
 	JTextField textField;
+	JTextArea textArea;
 
 	AD_Notice Nfrm;
+	Notice_DB DB;
+	boolean A = false;
 
-	public AD_Notice(AD_Main frm, Notice_data Nd) {
+	public AD_Notice(AD_Main frm) {
 		this.Nfrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
@@ -71,7 +77,7 @@ public class AD_Notice extends JFrame {
 		panel_2.add(lblNewLabel_1);
 
 		textField = new JTextField();
-		textField.setText(Nd.getTitle());
+		textField.setText("");
 		textField.setBounds(87, 0, 423, 47);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
@@ -82,14 +88,27 @@ public class AD_Notice extends JFrame {
 		scrollPane.setBounds(12, 67, 510, 563);
 		panel_1.add(scrollPane);
 
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea("");
+		textArea.setWrapStyleWord(true);
 		scrollPane.setViewportView(textArea);
-		textArea.setText(Nd.getContent());
+
 
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
+				String title = textField.getText();
+				String content = textArea.getText();
+				if (title.isEmpty())
+					JOptionPane.showMessageDialog(null, "제목을 입력해주세요");
+				else if ( content.isEmpty())
+					JOptionPane.showMessageDialog(null, "내용을 입력해주세요");
+				else {
+					DB.addNotice(title, content);
+						System.out.println("공지사항이 등록되었습니다.");
+						dispose();
+					}
+				}
+			
 		});
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		btnNewButton.setBounds(161, 724, 100, 45);

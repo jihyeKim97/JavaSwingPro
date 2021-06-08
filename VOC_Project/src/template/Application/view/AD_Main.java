@@ -377,18 +377,26 @@ public class AD_Main extends JFrame {
 		button_3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (click_not) {
-					AD_Notice notice = new AD_Notice(frm, selNotice);
-					notice.setVisible(true);
-				} else {
-					JOptionPane.showMessageDialog(null, "선택한 공지사항이 없습니다");
-				}
+					AD_Notice notice = new AD_Notice(frm);
+					notice.setVisible(true);		
 			}
 		});
+		
 		button_3.setBounds(5, 5, 100, 30);
 		panel_2.add(button_3);
 
 		RoundedButtonR button_4 = new RoundedButtonR("삭제");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (click_not) {
+					NDB.deleteNotice(selNotice);
+					System.out.println("삭제되었습니다.");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "공지사항을 선택해주세요");
+				}
+			}
+		});
 		button_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button_4.setBounds(110, 5, 100, 30);
 		panel_2.add(button_4);
