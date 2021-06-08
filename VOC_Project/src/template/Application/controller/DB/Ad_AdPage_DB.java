@@ -20,8 +20,8 @@ import template.Application.controller.Data.Reservation_data;
 import template.Application.controller.Data.Review_Data;
 
 public class Ad_AdPage_DB {
+	
 	static DB_Connect connect;
-	static Connection conn;
 
 	public static boolean deleteNotice(int NOTICE_ID, String TITLE, String CONTENT, int VIEWCOUNT, int MEMBER_ID) {
 
@@ -56,11 +56,14 @@ public class Ad_AdPage_DB {
 		if (connect.conn != null) {
 			String sql = "UPDATE MEMBER SET IS_MEMBER = 2  WHERE MEMBER_ID  = ?";
 			try {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				pstmt.setInt(1, memberID);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
+					System.out.println(memberID+"회원 탈퇴 완료");
 					return true;
+				}else {
+					System.out.println("회원 탈퇴 실패");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -76,7 +79,7 @@ public class Ad_AdPage_DB {
 			ArrayList<Login_data> uiList = new ArrayList<>();
 			String sql = "select * from member ORDER BY MEMBER_ID desc";
 			try {
-				Statement stmt = conn.createStatement();
+				Statement stmt = connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					String userDoB = rs.getString("BIRTHDAY");
@@ -105,7 +108,7 @@ public class Ad_AdPage_DB {
 			ArrayList<Reservation_data> uiList = new ArrayList<>();
 			String sql = "select * from RESERVATION ORDER BY RESERVATION_ID desc";
 			try {
-				Statement stmt = this.conn.createStatement();
+				Statement stmt = connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					int rsMovieId = rs.getInt("MOVIE_ID");

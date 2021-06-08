@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import template.Application.controller.RoundedButtonB;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
@@ -160,7 +161,7 @@ public class AD_Main extends JFrame {
 		roundedButtonG.setBounds(5, 5, 100, 30);
 		panel_3.add(roundedButtonG);
 
-		RoundedButtonY roundedButtonD = new RoundedButtonY("수정");
+		RoundedButtonB roundedButtonD = new RoundedButtonB("수정");
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (click_mem) {
@@ -340,6 +341,15 @@ public class AD_Main extends JFrame {
 		button_2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button_2.setBounds(215, 5, 100, 30);
 		panel_1.add(button_2);
+		
+		RoundedButtonB roundedButtonY = new RoundedButtonB("수정");
+		roundedButtonY.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		roundedButtonY.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		roundedButtonY.setBounds(321, 5, 100, 30);
+		panel_1.add(roundedButtonY);
 
 		JPanel ad_pn_notice = new JPanel();
 		ad_pn_notice.addComponentListener(new ComponentAdapter() {
@@ -388,7 +398,7 @@ public class AD_Main extends JFrame {
 			}
 		});
 		
-		button_3.setBounds(5, 5, 100, 30);
+		button_3.setBounds(109, 5, 100, 30);
 		panel_2.add(button_3);
 
 		RoundedButtonR button_4 = new RoundedButtonR("삭제");
@@ -404,8 +414,13 @@ public class AD_Main extends JFrame {
 			}
 		});
 		button_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		button_4.setBounds(110, 5, 100, 30);
+		button_4.setBounds(214, 5, 100, 30);
 		panel_2.add(button_4);
+		
+		RoundedButtonG roundedButtonG_1 = new RoundedButtonG("조회");
+		roundedButtonG_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		roundedButtonG_1.setBounds(5, 5, 100, 30);
+		panel_2.add(roundedButtonG_1);
 
 		RoundedButtonD ad_btn_AdLogOut = new RoundedButtonD("로그아웃");
 		ad_btn_AdLogOut.setText("LOGOUT");
@@ -437,7 +452,7 @@ public class AD_Main extends JFrame {
 	}
 
 	public void showMemberTableUIFromDB() {
-		final String columnNames[] = { "고유 번호", "아이디", "비밀번호", "이름", "성별", "전화번호", "생년월일" }; // 7
+		final String columnNames[] = { "고유 번호", "아이디", "비밀번호", "이름", "성별", "전화번호", "생년월일","회원여부" }; // 7
 
 		Login_DB mgr = new Login_DB();
 		mList = mgr.selectAllMembers();
@@ -455,6 +470,15 @@ public class AD_Main extends JFrame {
 			data[i][4] = mbl.getGender() == SignUp_data.GENDER_FEMALE ? "여성" : "남성";
 			data[i][5] = mbl.getPhone_number();
 			data[i][6] = mbl.getBirthday();
+			String ISmember = "";
+			if(mbl.getIs_member()==1){
+				ISmember = "관리자";
+			}else if(mbl.getIs_member()==0){
+				ISmember = "회원";
+			}else {
+				ISmember = "탈퇴 회원";
+			}
+			data[i][7] = ISmember;
 
 			DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 			this.ad_tb_MemberTable.setModel(dtm);
