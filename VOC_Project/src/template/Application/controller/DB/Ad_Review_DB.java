@@ -1,6 +1,5 @@
 package template.Application.controller.DB;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import template.Application.controller.Data.Ad_Review_Data;
-import template.Application.controller.Data.Review_Data;
 
 public class Ad_Review_DB {
 

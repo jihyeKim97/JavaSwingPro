@@ -318,12 +318,8 @@ public class AD_Main extends JFrame {
 		RoundedButtonY button_1 = new RoundedButtonY("추가");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (click_moi) {
-					AD_Movie movies = new AD_Movie(frm, selmovie);
+					AD_Movie movies = new AD_Movie(frm);
 					movies.setVisible(true);
-				} else {
-					JOptionPane.showMessageDialog(null, "선택한 영화가  없습니다");
-				}
 			}
 		});
 		button_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -331,6 +327,17 @@ public class AD_Main extends JFrame {
 		panel_1.add(button_1);
 
 		RoundedButtonR button_2 = new RoundedButtonR("삭제");
+		button_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (click_moi) {
+						MDB.deleteMovie(selmovie);
+						System.out.println("삭제되었습니다.");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "영화를  선택해주세요");
+					}
+				}
+			});
 		button_2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button_2.setBounds(215, 5, 100, 30);
 		panel_1.add(button_2);
