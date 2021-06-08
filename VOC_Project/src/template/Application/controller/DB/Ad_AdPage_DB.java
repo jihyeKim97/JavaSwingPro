@@ -51,18 +51,16 @@ public class Ad_AdPage_DB {
 		return false;
 	}
 
-	public boolean updateMembertoNone(int IS_MEMBER, int MEMBER_ID) {
+	public static boolean updateMembertoNone(int memberID) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "update member set IS_MEMBER = '2'  where MEMBER_ID = " + MEMBER_ID;
+			String sql = "UPDATE MEMBER SET IS_MEMBER = 2  WHERE MEMBER_ID  = ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, memberID);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
-					System.out.println(MEMBER_ID + "번 회원 멤버 탈퇴 성공");
 					return true;
-				} else {
-					System.out.println("멤버 탈퇴 실패!");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -42,10 +42,12 @@ public class AD_Member extends JFrame {
 	JLabel label_2, label_3, label_4, label_5, label_1, label, label_11;
 
 	AD_Member Mefrm;
+	
 
 	public AD_Member(AD_Main frm, Login_data ld) {
 		this.Mefrm = this;
-
+		int memberID = ld.getMember_id();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 662);
 		contentPane = new JPanel();
@@ -165,21 +167,24 @@ public class AD_Member extends JFrame {
 		rebtn = new RoundedButtonY("Resign");
 		rebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				Ad_AdPage_DB ADB = new Ad_AdPage_DB();
+				int result = JOptionPane.showConfirmDialog(null, "회원탈퇴를 진행 하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					ADB.updateMembertoNone(memberID);
+					dispose();
+				}
 			}
 		});
 		rebtn.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		rebtn.setBounds(166, 538, 100, 45);
 		panel_1.add(rebtn);
-		System.out.println(ld.getMember_id());
-		System.out.println(nameF.getText() + "" + phoneF.getText());
 
 		okbtn = new RoundedButtonG("Ok");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ad_AdPage_DB ADB = new Ad_AdPage_DB();
 				if (!nameF.getText().isEmpty() && !phoneF.getText().isEmpty()) {
-					ADB.changeAdminMemberInfo(ld.getMember_id(), nameF.getText(), phoneF.getText());
+					ADB.changeAdminMemberInfo(memberID, nameF.getText(), phoneF.getText());
 					System.out.println("관리자 권한으로 수정 완료");
 					dispose();
 				} else {
