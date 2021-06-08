@@ -127,13 +127,17 @@ public class Login_DB {
 		connect.endConnection();
 		return false;
 	}
+
 //어드민 회원 정보 수정
-	public boolean changeAdminMemberInfo(int memberID, String name, String phn) {
+	public static boolean changeAdminMemberInfo(int memberID, String name, String phn) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "UPDATE MEMBER SET PHONE_NUMBER = '"+phn+"' ,  NAME = '"+name+"' WHERE MEMBER_ID =  "+memberID;
+			String sql = "UPDATE MEMBER SET PHONE_NUMBER = ? ,  NAME = ?  WHERE MEMBER_ID = ?";
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, phn);
+				pstmt.setString(2, name);
+				pstmt.setInt(3, memberID);
 				int rs = pstmt.executeUpdate();
 				if (rs == 1) {
 					return true;
