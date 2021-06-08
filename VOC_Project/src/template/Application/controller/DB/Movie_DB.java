@@ -1,6 +1,7 @@
 package template.Application.controller.DB;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Notice_data;
 
 public class Movie_DB {
 
@@ -229,6 +231,20 @@ public class Movie_DB {
 		connect.endConnection();
 		return MovieList;
 
+	}
+	
+	public void deleteMovie(Movie_Data selMovie) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "delete movies where  = movies_id" + selMovie.getMoviesid();
+		try {
+			PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		}
+		connect.endConnection();
 	}
 
 	public static Date transformDate(String date) {
