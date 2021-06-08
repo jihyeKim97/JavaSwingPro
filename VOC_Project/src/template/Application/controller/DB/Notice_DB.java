@@ -114,7 +114,7 @@ public class Notice_DB {
 	public void deleteNotice(Notice_data selNotice) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "delete notice where  = notice_id" + selNotice.getNoticeid();
+			String sql = "delete notice where notice_id = " + selNotice.getNoticeid();
 		try {
 			PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 			int r = pstmt.executeUpdate();

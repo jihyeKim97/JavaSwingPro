@@ -236,7 +236,7 @@ public class Movie_DB {
 	public void deleteMovie(Movie_Data selMovie) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "delete movies where  = movies_id" + selMovie.getMoviesid();
+			String sql = "delete movies where movies_id = " + selMovie.getMoviesid();
 		try {
 			PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 			pstmt.execute();
