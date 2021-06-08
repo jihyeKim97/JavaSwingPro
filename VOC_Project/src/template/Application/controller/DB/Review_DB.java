@@ -45,7 +45,6 @@ public class Review_DB {
 		
 	}
 	
-
 	public static ArrayList<Review_Data> getReviewData(int movieId) {
 		ArrayList<Review_Data> contents = new ArrayList<>();
 		connect.beginConnection();
