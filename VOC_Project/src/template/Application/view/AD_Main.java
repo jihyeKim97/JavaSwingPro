@@ -56,8 +56,8 @@ public class AD_Main extends JFrame {
 	ArrayList<Review_Data> rList;
 	ArrayList<Notice_data> nList;
 	ArrayList<Reservation_data> resList;
-	Notice_DB NDB;
-	Movie_DB MDB;
+	Notice_DB NDB = new Notice_DB();
+	Movie_DB MDB = new Movie_DB();
 	Review_DB RDB;
 	Login_DB LDB;
 	Reservation_DB reservaiton;
@@ -82,7 +82,7 @@ public class AD_Main extends JFrame {
 	Review_Data selReview;
 	Reservation_data selRes;
 	String selNoticeContent;
-	Notice_data selNotice;
+	Notice_data selNotice = new Notice_data();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -334,13 +334,8 @@ public class AD_Main extends JFrame {
 		RoundedButtonR button_2 = new RoundedButtonR("삭제");
 		button_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (click_moi) {
 						MDB.deleteMovie(selmovie);
 						System.out.println("삭제되었습니다.");
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "영화를  선택해주세요");
-					}
 				}
 			});
 		button_2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -377,6 +372,7 @@ public class AD_Main extends JFrame {
 		ad_tb_NoticeTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Notice_data A = new Notice_data();
 				click_not = true;
 				selRow = ad_tb_NoticeTable.getSelectedRow();
 				selNoticeId = (int) ad_tb_NoticeTable.getValueAt(selRow, 0);
