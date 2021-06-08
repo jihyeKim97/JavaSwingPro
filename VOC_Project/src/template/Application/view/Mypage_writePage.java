@@ -114,24 +114,30 @@ public class Mypage_writePage extends JFrame {
 					lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 					lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 					String star = "";
+					int score = 0;
 					switch (ViArr.getStar_score()) {
-					case 1:
+					case 0:
 						star = "★☆☆☆☆";
+						score = 1;
+						break;
+					case 1:
+						star = "★★☆☆☆";
+						score = 2;
 						break;
 					case 2:
-						star = "★★☆☆☆";
+						star = "★★★☆☆";
+						score = 3;
 						break;
 					case 3:
-						star = "★★★☆☆";
+						star = "★★★★☆";
+						score = 4;
 						break;
 					case 4:
-						star = "★★★★☆";
-						break;
-					case 5:
 						star = "★★★★★";
+						score = 5;
 						break;
 					}
-					lblNewLabel_1.setText(star + "  " + ViArr.getStar_score() + " 점");
+					lblNewLabel_1.setText(star + "  " + score + " 점");
 					lblNewLabel_1.setBounds(149, 0, 201, 37);
 					panel_1.add(lblNewLabel_1);
 					btn_success.addActionListener(new ActionListener() {
