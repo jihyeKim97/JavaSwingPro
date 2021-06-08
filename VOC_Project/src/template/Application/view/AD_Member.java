@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.RoundedButtonY;
+import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Login_data;
 
@@ -40,7 +41,6 @@ public class AD_Member extends JFrame {
 	Panel panel_3, panel_1, panel_2;
 	JLabel label_2, label_3, label_4, label_5, label_1, label, label_11;
 
-	Login_DB LDB;
 	AD_Member Mefrm;
 
 	public AD_Member(AD_Main frm, Login_data ld) {
@@ -177,11 +177,12 @@ public class AD_Member extends JFrame {
 		okbtn = new RoundedButtonG("Ok");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!nameF.getText().isEmpty() && !phoneF.getText().isEmpty()) {
-					LDB.changeAdminMemberInfo(ld.getMember_id(), nameF.getText(), phoneF.getText());
+				Ad_AdPage_DB ADB = new Ad_AdPage_DB();
+				if (!nameF.getText().isEmpty() && !phoneF.getText().isEmpty()) {
+					ADB.changeAdminMemberInfo(ld.getMember_id(), nameF.getText(), phoneF.getText());
 					System.out.println("관리자 권한으로 수정 완료");
 					dispose();
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
 				}
 			}

@@ -10,9 +10,10 @@ public class DB_Connect {
 	private static final String account = "VOCPRO";
 	private static final String pw = "1234";
 	static final String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	
+
 	public static Connection getConn() {
-		if( conn != null ) return conn;
+		if (conn != null)
+			return conn;
 		else {
 			boolean c = beginConnection();
 			return c ? conn : null;
@@ -50,8 +51,5 @@ public class DB_Connect {
 		beginConnection();
 		endConnection();
 	}
-
-
-
 
 }

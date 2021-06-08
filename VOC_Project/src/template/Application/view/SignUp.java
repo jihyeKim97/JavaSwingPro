@@ -338,7 +338,7 @@ public class SignUp extends JFrame {
 		});
 
 		btn_DupCheck.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
-		
+
 		JLabel lblNewLabel_1 = new JLabel("생년월일 예시 ) 19990101");
 		lblNewLabel_1.setForeground(Color.DARK_GRAY);
 		lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 11));

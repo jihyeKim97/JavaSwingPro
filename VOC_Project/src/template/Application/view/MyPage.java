@@ -450,7 +450,7 @@ public class MyPage extends JFrame {
 		errortxt = new JLabel("");
 		errortxt.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 10));
 		errortxt.setForeground(Color.RED);
-		errortxt.setBounds(168, 498, 244, 24);	
+		errortxt.setBounds(168, 498, 244, 24);
 		memdetail_panel.add(errortxt);
 
 		btn_logout = new RoundedButtonR("LOGOUT");
@@ -465,7 +465,7 @@ public class MyPage extends JFrame {
 					dispose();
 					mafrm.dispose();
 				}
-				
+
 			}
 		});
 		btn_logout.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
