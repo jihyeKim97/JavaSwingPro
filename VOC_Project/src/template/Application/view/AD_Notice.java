@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
+import template.Application.controller.Data.Notice_data;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -27,10 +28,10 @@ public class AD_Notice extends JFrame {
 
 	JPanel contentPane;
 	JTextField textField;
-	
+
 	AD_Notice Nfrm;
-	
-	public AD_Notice() {
+
+	public AD_Notice(AD_Main frm, Notice_data Nd) {
 		this.Nfrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
@@ -70,6 +71,7 @@ public class AD_Notice extends JFrame {
 		panel_2.add(lblNewLabel_1);
 
 		textField = new JTextField();
+		textField.setText(Nd.getTitle());
 		textField.setBounds(87, 0, 423, 47);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
@@ -82,6 +84,7 @@ public class AD_Notice extends JFrame {
 
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
+		textArea.setText(Nd.getContent());
 
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {

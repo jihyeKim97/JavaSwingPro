@@ -2,11 +2,11 @@ package template.Application.controller.Data;
 
 public class Notice_data {
 
-	private int noticeid;
-	private String title;
-	private String content;
-	private int viewcount;
-	private int memberid;
+	int noticeid;
+	String title;
+	String content;
+	int viewcount;
+	int memberid;
 
 	public Notice_data() {
 	}
