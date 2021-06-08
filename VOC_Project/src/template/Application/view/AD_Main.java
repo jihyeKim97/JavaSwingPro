@@ -152,6 +152,11 @@ public class AD_Main extends JFrame {
 		scrollPane.setViewportView(ad_tb_MemberTable);
 
 		RoundedButtonG roundedButtonG = new RoundedButtonG("조회");
+		roundedButtonG.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frm.showMemberTableUIFromDB();
+			}
+		});
 		roundedButtonG.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		roundedButtonG.setBounds(5, 5, 100, 30);
 		panel_3.add(roundedButtonG);
@@ -197,7 +202,7 @@ public class AD_Main extends JFrame {
 				selReviewId = (int) ad_tb_ReviewTable.getValueAt(selRow, 0);
 				selReviewContent = (String) ad_tb_ReviewTable.getValueAt(selRow, 1);
 				selReview = rList.get(selRow);
-				System.out.println(">> 선택된 리뷰: " + selReviewContent);
+				System.out.println(">> 선택된 리뷰: " + selReview);
 			}
 		});
 
@@ -213,6 +218,7 @@ public class AD_Main extends JFrame {
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frm.showReviewTableUIFromDB();
 			}
 		});
 		btnNewButton.setBounds(5, 5, 100, 30);
@@ -223,7 +229,9 @@ public class AD_Main extends JFrame {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (click_rev) {
-
+					String dis = "관리자에 의해 비활성화 된 리뷰 입니다";
+					Review_DB RDB = new Review_DB();
+					RDB.changeReview(selReview.getReviewid(), dis);
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 리뷰이 없습니다");
 				}
@@ -353,7 +361,7 @@ public class AD_Main extends JFrame {
 				selNoticeId = (int) ad_tb_NoticeTable.getValueAt(selRow, 0);
 				selNoticeContent = (String) ad_tb_NoticeTable.getValueAt(selRow, 1);
 				selNotice = nList.get(selRow);
-				System.out.println(">> 선택된 공지사항: " + selNoticeContent);
+				System.out.println(">> 선택된 공지사항: " + selNotice);
 			}
 		});
 
@@ -370,7 +378,7 @@ public class AD_Main extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (click_not) {
-					AD_Notice notice = new AD_Notice(frm,selNotice);
+					AD_Notice notice = new AD_Notice(frm, selNotice);
 					notice.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 공지사항이 없습니다");

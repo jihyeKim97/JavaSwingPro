@@ -79,27 +79,6 @@ public class Ad_Review_DB {
 		return ReviewArr;
 	}
 
-	public boolean changeReview(int noticeid, String content) {
-		DB.beginConnection();
-		if (DB.conn != null) {
-			String sql = "UPDATE REVIEW SET CONTENT = ? WHERE REVIEW_ID = " + noticeid;
-			try {
-				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
-				pstmt.setString(1, content);
-
-				int rs = pstmt.executeUpdate();
-				if (rs == 1) {
-					System.out.println("db 리뷰 수정");
-					return true;
-				} else {
-					System.out.println("db 리뷰 수정 실패");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		DB.endConnection();
-		return false;
-	}
+	
 
 }

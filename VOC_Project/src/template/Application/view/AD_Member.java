@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 
 public class AD_Member extends JFrame {
 
-	JPanel contentPane, panel,panel_4;
+	JPanel contentPane, panel, panel_4;
 	JTextField phoneF;
 	JTextField nameF;
 	RoundedButtonR canbtn;
@@ -37,10 +37,10 @@ public class AD_Member extends JFrame {
 	JLabel gender;
 	JLabel pw;
 	JLabel id;
-	Panel panel_3, panel_1,  panel_2;
+	Panel panel_3, panel_1, panel_2;
 	JLabel label_2, label_3, label_4, label_5, label_1, label, label_11;
 
-	static Login_DB LDB;
+	Login_DB LDB;
 	AD_Member Mefrm;
 
 	public AD_Member(AD_Main frm, Login_data ld) {
@@ -171,14 +171,18 @@ public class AD_Member extends JFrame {
 		rebtn.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		rebtn.setBounds(166, 538, 100, 45);
 		panel_1.add(rebtn);
+		System.out.println(ld.getMember_id());
+		System.out.println(nameF.getText() + "" + phoneF.getText());
 
 		okbtn = new RoundedButtonG("Ok");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean result = LDB.changeAdminMemberInfo(ld.getMember_id(), nameF.getText(), phoneF.getText());
-				if (result) {
+				if(!nameF.getText().isEmpty() && !phoneF.getText().isEmpty()) {
+					LDB.changeAdminMemberInfo(ld.getMember_id(), nameF.getText(), phoneF.getText());
 					System.out.println("관리자 권한으로 수정 완료");
 					dispose();
+				}else {
+					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
 				}
 			}
 		});
@@ -189,7 +193,7 @@ public class AD_Member extends JFrame {
 		canbtn = new RoundedButtonR("Cancel");
 		canbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				dispose();
 			}
 		});
 		canbtn.setFont(new Font("맑은 고딕", Font.BOLD, 17));

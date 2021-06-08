@@ -1,7 +1,7 @@
 package template.Application.controller.DB;
 
 import java.sql.Date;
-
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -67,4 +67,26 @@ public class Review_DB {
 		return contents;
 	}
 
+	public boolean changeReview(int noticeid, String content) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "UPDATE REVIEW SET CONTENT = ? WHERE REVIEW_ID = " + noticeid;
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, content);
+
+				int rs = pstmt.executeUpdate();
+				if (rs == 1) {
+					System.out.println("db 리뷰 수정");
+					return true;
+				} else {
+					System.out.println("db 리뷰 수정 실패");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
+	}
 }
