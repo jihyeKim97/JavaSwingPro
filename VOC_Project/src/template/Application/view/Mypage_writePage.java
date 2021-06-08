@@ -1,4 +1,4 @@
-package template.Application.view.member;
+package template.Application.view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,12 +10,14 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+
+import template.Application.controller.RoundedButtonG;
 import template.Application.controller.DB.Mypage_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
-import template.Application.controller.btn.RoundedButtonG;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;

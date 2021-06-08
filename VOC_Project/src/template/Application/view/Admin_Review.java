@@ -1,4 +1,4 @@
-package template.Application.view.admin;
+package template.Application.view;
 
 import java.awt.EventQueue;
 

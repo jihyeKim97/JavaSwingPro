@@ -1,4 +1,4 @@
-package template.Application.view.member;
+package template.Application.view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,9 +13,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import template.Application.controller.RoundedButtonG;
+import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.Login_DB;
-import template.Application.controller.btn.RoundedButtonG;
-import template.Application.controller.btn.RoundedButtonR;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
