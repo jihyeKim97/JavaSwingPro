@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
+import template.Application.controller.DB.Login_DB;
+import template.Application.controller.Data.Movie_Data;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -26,17 +28,18 @@ import javax.swing.ImageIcon;
 public class AD_Movie extends JFrame {
 
 	JPanel contentPane;
-	JTextField textField;
-	JTextField textField_1;
-	JTextField textField_2;
-	JTextField textField_3;
-	JTextField textField_4;
-	JTextField textField_5;
-	JTextField textField_6;
+	JTextField title;
+	JTextField ger;
+	JTextField dir;
+	JTextField age;
+	JTextField com;
+	JTextField per;
+	JTextField open;
 
+	static Login_DB LDB;
 	AD_Movie Mofrm;
 	
-	public AD_Movie() {
+	public AD_Movie(AD_Main frm, Movie_Data Md) {
 		this.Mofrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
@@ -89,8 +92,9 @@ public class AD_Movie extends JFrame {
 		scrollPane.setBounds(10, 38, 297, 233);
 		panel_3.add(scrollPane);
 
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		JTextArea contentTA = new JTextArea();
+		scrollPane.setViewportView(contentTA);
+		contentTA.setText(Md.getStory());
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBounds(0, 353, 534, 362);
@@ -152,47 +156,54 @@ public class AD_Movie extends JFrame {
 		panel_6.add(panel_7);
 		panel_7.setLayout(new GridLayout(0, 1, 0, 10));
 
-		textField = new JTextField();
-		panel_7.add(textField);
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		textField.setColumns(10);
+		title = new JTextField();
+		panel_7.add(title);
+		title.setText(Md.getTitle());
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		title.setColumns(10);
 
-		textField_1 = new JTextField();
-		panel_7.add(textField_1);
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		textField_1.setColumns(10);
+		ger = new JTextField();
+		panel_7.add(ger);
+		ger.setText(Md.getGenre());
+		ger.setHorizontalAlignment(SwingConstants.CENTER);
+		ger.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		ger.setColumns(10);
 
-		textField_2 = new JTextField();
-		panel_7.add(textField_2);
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		textField_2.setColumns(10);
+		dir = new JTextField();
+		panel_7.add(dir);
+		dir.setText(Md.getDirector());
+		dir.setHorizontalAlignment(SwingConstants.CENTER);
+		dir.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		dir.setColumns(10);
 
-		textField_3 = new JTextField();
-		panel_7.add(textField_3);
-		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_3.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		textField_3.setColumns(10);
+		age = new JTextField();
+		panel_7.add(age);
+		age.setText(Md.getAgegroup()+"");
+		age.setHorizontalAlignment(SwingConstants.CENTER);
+		age.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		age.setColumns(10);
 
-		textField_5 = new JTextField();
-		panel_7.add(textField_5);
-		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_5.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		textField_5.setColumns(10);
+		per = new JTextField();
+		panel_7.add(per);
+		per.setText(Md.getGee());
+		per.setHorizontalAlignment(SwingConstants.CENTER);
+		per.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		per.setColumns(10);
 
-		textField_6 = new JTextField();
-		panel_7.add(textField_6);
-		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		textField_6.setColumns(10);
+		open = new JTextField();
+		panel_7.add(open);
+		open.setText(Md.getOpendate()+"");
+		open.setHorizontalAlignment(SwingConstants.CENTER);
+		open.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		open.setColumns(10);
 
-		textField_4 = new JTextField();
-		panel_7.add(textField_4);
-		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_4.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		textField_4.setColumns(10);
+		com = new JTextField();
+		panel_7.add(com);
+		com.setText(Md.getProduction());
+		com.setHorizontalAlignment(SwingConstants.CENTER);
+		com.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
+		com.setColumns(10);
 
 		JLabel lblNewLabel_6 = new JLabel("  NO PATH");
 		lblNewLabel_6.setForeground(new Color(255, 0, 0));

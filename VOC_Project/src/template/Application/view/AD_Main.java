@@ -72,16 +72,23 @@ public class AD_Main extends JFrame {
 	boolean click_rev = false;
 	boolean click_not = false;
 
-	int selRow, selMemberId;
+	int selRow, selMemberId, selReviewId, selMovieId, selResId, selResNum, selNoticeId;
+
 	String selMemberName;
 	Login_data selMember;
+	String selMovieName;
+	Movie_Data selmovie;
+	String selReviewContent;
+	Review_Data selReview;
+	Reservation_data selRes;
+	String selNoticeContent;
+	Notice_data selNotice;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					AD_Main frame = new AD_Main(Lg, Ld);
-//					Admin_AdPage frame = new Admin_AdPage();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -91,7 +98,6 @@ public class AD_Main extends JFrame {
 	}
 
 	public AD_Main(Login Lg, Login_data Ld) {
-//	public Admin_AdPage() {
 		this.frm = this;
 		setTitle("Vehicle Outdoor Cinema [ admin page ] ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -187,10 +193,10 @@ public class AD_Main extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click_rev = true;
-				int selRow = ad_tb_ReviewTable.getSelectedRow();
-				int selReviewId = (int) ad_tb_ReviewTable.getValueAt(selRow, 0);
-				String selReviewContent = (String) ad_tb_ReviewTable.getValueAt(selRow, 1);
-				Review_Data selReview = rList.get(selRow);
+				selRow = ad_tb_ReviewTable.getSelectedRow();
+				selReviewId = (int) ad_tb_ReviewTable.getValueAt(selRow, 0);
+				selReviewContent = (String) ad_tb_ReviewTable.getValueAt(selRow, 1);
+				selReview = rList.get(selRow);
 				System.out.println(">> 선택된 리뷰: " + selReviewContent);
 			}
 		});
@@ -246,10 +252,10 @@ public class AD_Main extends JFrame {
 		ad_tb_RaservationTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int selRow = ad_tb_RaservationTable.getSelectedRow();
-				int selResId = (int) ad_tb_RaservationTable.getValueAt(selRow, 0);
-				int selResNum = (int) ad_tb_RaservationTable.getValueAt(selRow, 1);
-				Reservation_data selRes = resList.get(selRow);
+				selRow = ad_tb_RaservationTable.getSelectedRow();
+				selResId = (int) ad_tb_RaservationTable.getValueAt(selRow, 0);
+				selResNum = (int) ad_tb_RaservationTable.getValueAt(selRow, 1);
+				selRes = resList.get(selRow);
 				System.out.println(">> 선택된 예약: " + selResNum);
 			}
 		});
@@ -280,10 +286,10 @@ public class AD_Main extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click_moi = true;
-				int selRow = ad_tb_MovieTable.getSelectedRow();
-				int selMovieId = (int) ad_tb_MovieTable.getValueAt(selRow, 0);
-				String selMovieName = (String) ad_tb_MovieTable.getValueAt(selRow, 1);
-				Movie_Data selmovie = movieList.get(selRow);
+				selRow = ad_tb_MovieTable.getSelectedRow();
+				selMovieId = (int) ad_tb_MovieTable.getValueAt(selRow, 0);
+				selMovieName = (String) ad_tb_MovieTable.getValueAt(selRow, 1);
+				selmovie = movieList.get(selRow);
 				System.out.println(">> 선택된 영화: " + selmovie);
 			}
 		});
@@ -305,7 +311,7 @@ public class AD_Main extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (click_moi) {
-					AD_Movie movies = new AD_Movie();
+					AD_Movie movies = new AD_Movie(frm, selmovie);
 					movies.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 영화가  없습니다");
@@ -343,10 +349,10 @@ public class AD_Main extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click_not = true;
-				int selRow = ad_tb_NoticeTable.getSelectedRow();
-				int selNoticeId = (int) ad_tb_NoticeTable.getValueAt(selRow, 0);
-				String selNoticeContent = (String) ad_tb_NoticeTable.getValueAt(selRow, 1);
-				Notice_data selNotice = nList.get(selRow);
+				selRow = ad_tb_NoticeTable.getSelectedRow();
+				selNoticeId = (int) ad_tb_NoticeTable.getValueAt(selRow, 0);
+				selNoticeContent = (String) ad_tb_NoticeTable.getValueAt(selRow, 1);
+				selNotice = nList.get(selRow);
 				System.out.println(">> 선택된 공지사항: " + selNoticeContent);
 			}
 		});
@@ -364,7 +370,7 @@ public class AD_Main extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (click_not) {
-					AD_Notice notice = new AD_Notice();
+					AD_Notice notice = new AD_Notice(frm,selNotice);
 					notice.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 공지사항이 없습니다");
@@ -396,7 +402,6 @@ public class AD_Main extends JFrame {
 		ad_btn_AdLogOut.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("로그아웃버튼 누름");
 				ad_btn_AdLogOut.setOpaque(true);
 				ad_btn_AdLogOut.setBackground(Color.LIGHT_GRAY);
 				dispose();
