@@ -24,24 +24,19 @@ public class Notice_Detail extends JFrame {
 
 	private JPanel contentPane;
 	Notice NM;
-	Notice_data Notice;
 	ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 	Notice_DB NoticeDB;
 
 	public Notice_Detail(Notice NM, Notice_data Notice) {
 		this.NM = NM;
-		this.Notice = Notice;
 		NoticeArr = NoticeDB.takeNoticetitle();
 		int PK = 0;
-		int i = Notice.getNoticeid();
-		if (i == 4) {
-			i = 2;
-		} else if (i == 5) {
-			i = 3;
-		} else if (i == 6) {
-			i = 4;
+		for (int i = 0; i < NoticeArr.size(); i++) {
+			if(NoticeArr.get(i).getNoticeid() == Notice.getNoticeid()) {
+				PK = i;
+				break;
+			}
 		}
-		PK = i - 1;
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
