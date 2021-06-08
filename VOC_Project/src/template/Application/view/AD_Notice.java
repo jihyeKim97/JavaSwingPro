@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.Notice_DB;
+import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Notice_data;
 
 import javax.swing.JLabel;
