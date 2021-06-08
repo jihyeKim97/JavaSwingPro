@@ -253,11 +253,12 @@ public class AD_Movie extends JFrame {
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
-					AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
-							contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
-					JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
-					dispose();
+				Ad_Movie_DB AMDB = new Ad_Movie_DB();
+				lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
+				AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
+						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
+				JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
+				dispose();
 			}
 		});
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 17));

@@ -97,9 +97,9 @@ public class AD_Notice extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String title = textField.getText();
 				String content = textArea.getText();
-				if (title.isEmpty())
+				if (title.isEmpty() && title == null)
 					JOptionPane.showMessageDialog(null, "제목을 입력해주세요");
-				else if ( content.isEmpty())
+				else if ( content.isEmpty() && content == null)
 					JOptionPane.showMessageDialog(null, "내용을 입력해주세요");
 				else {
 					DB.addNotice(title, content);

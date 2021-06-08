@@ -26,6 +26,7 @@ import template.Application.controller.Data.Notice_data;
 
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import javax.swing.JButton;
 
 public class Notice extends JFrame {
 
@@ -89,39 +90,45 @@ public class Notice extends JFrame {
 		JPanel pn_MovieInformaiton = new JPanel();
 		panel_4.add(pn_MovieInformaiton);
 		pn_MovieInformaiton.setBackground(new Color(70, 114, 42));
-		pn_MovieInformaiton.setLayout(new GridLayout(0, 2, 0, 0));
+		pn_MovieInformaiton.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Movie Theater Introducer");
+		lblNewLabel_1.setBounds(0, 0, 242, 24);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		pn_MovieInformaiton.add(lblNewLabel_1);
 
 		JLabel lb_TheaterNumber = new JLabel("전화번호 : 02 - 333 - 4848 ");
+		lb_TheaterNumber.setBounds(242, 0, 242, 24);
 		lb_TheaterNumber.setForeground(new Color(255, 255, 255));
 		lb_TheaterNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_TheaterNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterNumber);
 
 		JLabel lb_TheaterTime = new JLabel("영업시간 : 18:00 ~ 03:00");
+		lb_TheaterTime.setBounds(0, 24, 242, 24);
 		lb_TheaterTime.setForeground(new Color(255, 255, 255));
 		lb_TheaterTime.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_TheaterTime.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterTime);
 
 		JLabel lb_TheaterCEO = new JLabel("대표자 : 고즐링");
+		lb_TheaterCEO.setBounds(242, 24, 242, 24);
 		lb_TheaterCEO.setForeground(new Color(255, 255, 255));
 		lb_TheaterCEO.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_TheaterCEO.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterCEO);
 
 		JLabel lb_Theater = new JLabel("사업자 번호: 653-25-0698");
+		lb_Theater.setBounds(0, 48, 242, 24);
 		lb_Theater.setForeground(new Color(255, 255, 255));
 		lb_Theater.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_Theater.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_Theater);
 
 		JLabel lb_TheaterLocaiton = new JLabel("위치: 서울 성동구 왕십리로 303");
+		lb_TheaterLocaiton.setBounds(242, 48, 242, 24);
 		lb_TheaterLocaiton.setForeground(new Color(255, 255, 255));
 		lb_TheaterLocaiton.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
@@ -203,7 +210,7 @@ class Locaiton extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon("../template/Reference/icons/VOC.png"));
+			lblNewLabel.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/지도.PNG")));
 			contentPanel.add(lblNewLabel, BorderLayout.CENTER);
 		}
 	}
