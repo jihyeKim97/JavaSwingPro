@@ -424,7 +424,7 @@ public class Movie_Informaiton extends JFrame {
 		for (int i = 0; i < ReviewList.size(); i++) { // 리뷰 개수
 			String text = ReviewList.get(i).getContent();
 			JLabel Review = new JLabel(text);
-			
+
 			Review.setFont(new Font("한컴 고딕", Font.PLAIN, 15));
 			Review.setSize(new Dimension(400, 50));
 			pn_Review.add(Review);
