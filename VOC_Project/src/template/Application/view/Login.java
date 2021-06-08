@@ -203,7 +203,7 @@ public class Login extends JFrame {
 							if (memberdata.get(i).getIs_member() == 0) {
 								System.out.println("회원 로그인 성공\n" + memberdata.get(i));
 								Login_data LD = LDB.SelectMemberFeID(memberdata.get(i).getId());
-								main = new Main(ln, LD);
+								Main main = new Main(ln, LD);
 								main.setVisible(true);
 								dispose();
 							} else if (memberdata.get(i).getIs_member() == 1) {

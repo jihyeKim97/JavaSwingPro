@@ -128,18 +128,23 @@ public class Notice extends JFrame {
 		pn_MovieInformaiton.add(lb_Theater);
 
 		JLabel lb_TheaterLocaiton = new JLabel("위치: 서울 성동구 왕십리로 303");
-		lb_TheaterLocaiton.setBounds(242, 48, 242, 24);
-		lb_TheaterLocaiton.setForeground(new Color(255, 255, 255));
+		lb_TheaterLocaiton.setBounds(242, 48, 196, 24);
+		lb_TheaterLocaiton.setForeground(new Color(0, 255, 255));
 		lb_TheaterLocaiton.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		lb_TheaterLocaiton.addMouseListener(new MouseAdapter() {
+		pn_MovieInformaiton.add(lb_TheaterLocaiton);
+
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent arg0) {
 				Locaiton NL = new Locaiton(NM);
 				NL.setVisible(true);
 			}
 		});
-		pn_MovieInformaiton.add(lb_TheaterLocaiton);
+		lblNewLabel_2.setBounds(439, 52, 24, 15);
+		pn_MovieInformaiton.add(lblNewLabel_2);
+		lblNewLabel_2.setIcon(new ImageIcon(Notice.class.getResource("/template/Reference/icons/map_add.png")));
 
 		JPanel pn_NoticeMain = new JPanel();
 		pn_NoticeMain.setBackground(new Color(255, 255, 255));

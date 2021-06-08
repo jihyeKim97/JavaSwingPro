@@ -418,6 +418,11 @@ public class AD_Main extends JFrame {
 		panel_2.add(button_4);
 		
 		RoundedButtonG roundedButtonG_1 = new RoundedButtonG("조회");
+		roundedButtonG_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frm.showNoticeTableUIFromDB();
+			}
+		});
 		roundedButtonG_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		roundedButtonG_1.setBounds(5, 5, 100, 30);
 		panel_2.add(roundedButtonG_1);
