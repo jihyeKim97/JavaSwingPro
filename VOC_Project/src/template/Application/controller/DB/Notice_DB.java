@@ -15,7 +15,7 @@ public class Notice_DB {
 	static Notice NM;
 	static Notice_data Notice;
 	
-	public void addNotice(String title, String content) {
+	public boolean addNotice(String title, String content) {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "INSERT INTO notice(notice_id,title,content,viewcount,member_id) VALUES (MEMBER_SEQ.nextval,"
@@ -24,6 +24,9 @@ public class Notice_DB {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 
 				int r = pstmt.executeUpdate();
+				if(r==1) {
+					return true;
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -31,6 +34,7 @@ public class Notice_DB {
 			System.out.println("DB error!!");
 		}
 		connect.endConnection();
+		return false;
 	}
 	
 

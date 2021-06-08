@@ -76,8 +76,7 @@ public class AD_Notice extends JFrame {
 		lblNewLabel_1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		panel_2.add(lblNewLabel_1);
 
-		textField = new JTextField();
-		textField.setText("");
+		textField = new JTextField("");
 		textField.setBounds(87, 0, 423, 47);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
