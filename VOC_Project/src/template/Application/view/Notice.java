@@ -128,12 +128,12 @@ public class Notice extends JFrame {
 		pn_MovieInformaiton.add(lb_Theater);
 
 		JLabel lb_TheaterLocaiton = new JLabel("위치: 서울 성동구 왕십리로 303");
-		lb_TheaterLocaiton.setBounds(242, 48, 242, 24);
-		lb_TheaterLocaiton.setForeground(new Color(255, 255, 255));
+		lb_TheaterLocaiton.setBounds(242, 48, 196, 24);
+		lb_TheaterLocaiton.setForeground(new Color(0, 255, 255));
 		lb_TheaterLocaiton.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterLocaiton);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
