@@ -26,6 +26,7 @@ import template.Application.controller.Data.Notice_data;
 
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import javax.swing.JButton;
 
 public class Notice extends JFrame {
 
@@ -127,8 +128,8 @@ public class Notice extends JFrame {
 		pn_MovieInformaiton.add(lb_Theater);
 
 		JLabel lb_TheaterLocaiton = new JLabel("위치: 서울 성동구 왕십리로 303");
-		lb_TheaterLocaiton.setBounds(242, 48, 196, 24);
-		lb_TheaterLocaiton.setForeground(new Color(0, 255, 255));
+		lb_TheaterLocaiton.setBounds(242, 48, 242, 24);
+		lb_TheaterLocaiton.setForeground(new Color(255, 255, 255));
 		lb_TheaterLocaiton.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_TheaterLocaiton.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		pn_MovieInformaiton.add(lb_TheaterLocaiton);
@@ -214,7 +215,7 @@ class Locaiton extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon("../template/Reference/icons/VOC.png"));
+			lblNewLabel.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/지도.PNG")));
 			contentPanel.add(lblNewLabel, BorderLayout.CENTER);
 		}
 	}
