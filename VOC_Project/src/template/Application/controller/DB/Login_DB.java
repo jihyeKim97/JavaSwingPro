@@ -128,27 +128,6 @@ public class Login_DB {
 		return false;
 	}
 
-//어드민 회원 정보 수정
-	public static boolean changeAdminMemberInfo(int memberID, String name, String phn) {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "UPDATE MEMBER SET PHONE_NUMBER = ? ,  NAME = ?  WHERE MEMBER_ID = ?";
-			try {
-				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				pstmt.setString(1, phn);
-				pstmt.setString(2, name);
-				pstmt.setInt(3, memberID);
-				int rs = pstmt.executeUpdate();
-				if (rs == 1) {
-					return true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
-		return false;
-	}
 
 	public Login_data selectOneMemberByLogin(String mbLogin) {
 		connect.beginConnection();

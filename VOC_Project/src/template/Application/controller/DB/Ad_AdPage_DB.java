@@ -132,6 +132,51 @@ public class Ad_AdPage_DB {
 		return null;
 	}
 
+// 리뷰 수정
+	public boolean changeReview(int noticeid, String content) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "UPDATE REVIEW SET CONTENT = ? WHERE REVIEW_ID = " + noticeid;
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, content);
+
+				int rs = pstmt.executeUpdate();
+				if (rs == 1) {
+					System.out.println("db 리뷰 수정");
+					return true;
+				} else {
+					System.out.println("db 리뷰 수정 실패");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
+	}
+
+	// 어드민 회원 정보 수정
+	public static boolean changeAdminMemberInfo(int memberID, String name, String phn) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "UPDATE MEMBER SET PHONE_NUMBER = ? ,  NAME = ?  WHERE MEMBER_ID = ?";
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.setString(1, phn);
+				pstmt.setString(2, name);
+				pstmt.setInt(3, memberID);
+				int rs = pstmt.executeUpdate();
+				if (rs == 1) {
+					return true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
+	}
 //	public ArrayList<Movie_Data> showAllMovie() {
 //		connect.beginConnection();
 //		if (connect.conn != null) {

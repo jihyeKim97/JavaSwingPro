@@ -17,7 +17,6 @@ import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.RoundedButtonY;
 import template.Application.controller.DB.Ad_AdPage_DB;
-import template.Application.controller.DB.Ad_Review_DB;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Notice_DB;
@@ -230,8 +229,8 @@ public class AD_Main extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (click_rev) {
 					String dis = "관리자에 의해 비활성화 된 리뷰 입니다";
-					Review_DB RDB = new Review_DB();
-					RDB.changeReview(selReview.getReviewid(), dis);
+					Ad_AdPage_DB ADB = new Ad_AdPage_DB();
+					ADB.changeReview(selReview.getReviewid(), dis);
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 리뷰이 없습니다");
 				}
