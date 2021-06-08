@@ -36,7 +36,6 @@ public class Admin_Notice {
 	private JFrame frmLotice;
 	private JTextField ad_txt_Notce_title;
 	JTextArea textArea;
-	Ad_Notice_DB db = new Ad_Notice_DB();
 	int Notice_id = 63; 
 	ArrayList<Ad_Notice_data> MyArr = new ArrayList<>();
 	

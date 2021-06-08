@@ -14,6 +14,26 @@ public class Notice_DB {
 	static DB_Connect connect;
 	static Notice NM;
 	static Notice_data Notice;
+	
+	public void addNotice(String title, String content) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "INSERT INTO notice(notice_id,title,content,viewcount,member_id) VALUES (MEMBER_SEQ.nextval,"
+					+ "'" + title + "', '" + content + "', 0, " + 24 + ")";
+			System.out.println(sql);
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+
+				int r = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB error!!");
+		}
+		connect.endConnection();
+	}
+	
 
 	public static ArrayList<Notice_data> takeNoticetitle() {
 		ArrayList<Notice_data> NoticeArr = new ArrayList<>();
@@ -88,4 +108,19 @@ public class Notice_DB {
 		connect.endConnection();
 		return null;
 	}
+	
+	public void deleteNotice(Notice_data selNotice) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "delete notice where  = notice_id" + selNotice.getNoticeid();
+		try {
+			PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		}
+		connect.endConnection();
+	}
+	
 }
