@@ -84,5 +84,28 @@ public class Review_DB {
 		return A;
 
 	}
+	
+	// 영화 리뷰 별점 합산하기
+	public static int starscore(int movieid) {
+		int A = 0;
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "select * from review where member_id =" + movieid;
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					int score = rs.getInt("star_score");
+					
+					A+= score;
+				}
+				return A;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return A;
+	}
 
 }
