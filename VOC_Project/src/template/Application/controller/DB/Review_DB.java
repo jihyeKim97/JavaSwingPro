@@ -13,8 +13,8 @@ public class Review_DB {
 
 	static DB_Connect connect;
 	static Review_Data review;
-	
 
+	// 모든 리뷰정보 가져오기
 	public static ArrayList<Review_Data> AllReviewData() {
 		ArrayList<Review_Data> contents = new ArrayList<>();
 		connect.beginConnection();
@@ -42,6 +42,7 @@ public class Review_DB {
 
 	}
 
+	// 무비ID로 영화 한개의 리뷰만 가져오기
 	public static ArrayList<Review_Data> getReviewData(int movieId) {
 		ArrayList<Review_Data> contents = new ArrayList<>();
 		connect.beginConnection();
@@ -54,7 +55,7 @@ public class Review_DB {
 					int reviewid = rs.getInt("review_id");
 					String content = rs.getString("content");
 					Date date = rs.getDate("review_date");
-					
+
 					contents.add(new Review_Data(reviewid, content, date));
 				}
 				return contents;
@@ -65,8 +66,9 @@ public class Review_DB {
 		connect.endConnection();
 		return contents;
 	}
-	
-	public static ArrayList<Integer> getreviewID(int movieId){
+
+	// 영화ID로 리뷰ID만 가져오기
+	public static ArrayList<Integer> getreviewID(int movieId) {
 		ArrayList<Integer> user = new ArrayList<>();
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -76,7 +78,7 @@ public class Review_DB {
 				ResultSet rs = st.executeQuery(sql);
 				while (rs.next()) {
 					int memberid = rs.getInt("member_id");
-					
+
 					user.add(memberid);
 				}
 				return user;
@@ -87,7 +89,8 @@ public class Review_DB {
 		connect.endConnection();
 		return user;
 	}
-	
+
+	// 영화ID로 회원 멤버ID 가져오기
 	public static String getid(int memberid) {
 		String A = null;
 		connect.beginConnection();
@@ -107,8 +110,7 @@ public class Review_DB {
 		}
 		connect.endConnection();
 		return A;
-		
-		
+
 	}
 
 }

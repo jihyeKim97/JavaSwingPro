@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.DB_Connect;
@@ -108,7 +108,7 @@ public class Movie_Informaiton extends JFrame {
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
 		this.frm = this;
-		Main_Movie_DB MDB = new Main_Movie_DB();
+		Movie_DB MDB = new Movie_DB();
 		MovieList = MDB.getMovieData();
 		intArr = Review.getreviewID(movie.getMoviesid());
 		for (int i = 0; i < intArr.size(); i++) {

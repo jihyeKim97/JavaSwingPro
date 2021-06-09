@@ -14,7 +14,8 @@ public class Notice_DB {
 	static DB_Connect connect;
 	static Notice NM;
 	static Notice_data Notice;
-	
+
+	// 공지사항 추가하기
 	public static boolean addNotice(String title, String content) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -23,7 +24,7 @@ public class Notice_DB {
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				int r = pstmt.executeUpdate();
-				if(r==1) {
+				if (r == 1) {
 					return true;
 				}
 			} catch (SQLException e) {
@@ -35,8 +36,8 @@ public class Notice_DB {
 		connect.endConnection();
 		return false;
 	}
-	
 
+	// 공지사항 제목 가져오기
 	public static ArrayList<Notice_data> takeNoticetitle() {
 		ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 		connect.beginConnection();
@@ -63,6 +64,7 @@ public class Notice_DB {
 		return NoticeArr;
 	}
 
+	// 공지사항 조회수 변경하기
 	public boolean changeViewCount(String title, int Count) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -85,6 +87,7 @@ public class Notice_DB {
 		return false;
 	}
 
+	// 모든 공지사항 가져오기
 	public ArrayList<Notice_data> selectAllNotice() {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -110,21 +113,22 @@ public class Notice_DB {
 		connect.endConnection();
 		return null;
 	}
-	
+
+	// 공지사항 삭제하기
 	public void deleteNotice(Notice_data selNotice) {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "delete notice where notice_id = " + selNotice.getNoticeid();
-		try {
-			PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-			int r = pstmt.executeUpdate();
-			if (r == 1)
-				System.out.println("삭제");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				int r = pstmt.executeUpdate();
+				if (r == 1)
+					System.out.println("삭제");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		connect.endConnection();
 	}
-	
+
 }

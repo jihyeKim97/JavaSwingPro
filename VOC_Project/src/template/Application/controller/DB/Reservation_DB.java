@@ -37,6 +37,7 @@ public class Reservation_DB {
 		return Name;
 	}
 
+	// 모든 예약정보 가져오기
 	public static ArrayList<Reservation_data> AllReservation() {
 		ArrayList<Reservation_data> uiList = new ArrayList<>();
 		connect.beginConnection();
@@ -73,6 +74,7 @@ public class Reservation_DB {
 		return null;
 	}
 
+	// 예약정보 저장하기
 	public static boolean saveResevationData(int A, String shecduledate, String seatNumber, int carType,
 			int paymentPrice, String optionName, int optionPrice, int memberID, int movieID) {
 		connect.beginConnection();
@@ -101,14 +103,15 @@ public class Reservation_DB {
 		return false;
 	}
 
-	public static ArrayList<String> selectedSeat(int movieid){
-		ArrayList<String> selectedSeat = new ArrayList<>(); 
+	//영화 예매된 자리 찾아오기
+	public static ArrayList<String> selectedSeat(int movieid) {
+		ArrayList<String> selectedSeat = new ArrayList<>();
 		connect.beginConnection();
 		String sql = "select * from reservation where movie_id = " + movieid;
 		try {
 			Statement stmt = connect.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				String movieseat = rs.getString("seat_number");
 				selectedSeat.add(movieseat);
 			}
@@ -119,18 +122,5 @@ public class Reservation_DB {
 		connect.endConnection();
 		return selectedSeat;
 	}
-	
-	public static Date StringtoDate(String date) {
-		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
-		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
-		java.util.Date tempDate = null;
-		try {
-			tempDate = beforeFormat.parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		String transDate = afterFormat.format(tempDate);
-		Date d = Date.valueOf(transDate);
-		return d;
-	}
+
 }

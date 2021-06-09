@@ -32,13 +32,13 @@ public class Login extends JFrame {
 	JTextField txt_id;
 	JPasswordField txt_pw;
 	JLabel lb_SignUp;
-	JPanel panel_1;
-	JLabel lblNewLabel_1;
+	JPanel pn_txt;
+	JLabel lb_background;
 	JLabel lb_FindPW;
 	JLabel lb_FindID;
-	JPanel panel;
-	JLabel lblNewLabel;
-	JLabel label;
+	JPanel pn_find;
+	JLabel lb_ID;
+	JLabel lb_PW;
 	RoundedButtonR btn_Login;
 	Login_FindID FindId;
 	Login_FindPW FindPw;
@@ -83,28 +83,28 @@ public class Login extends JFrame {
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		lblNewLabel = new JLabel("ID");
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 23));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(126, 240, 29, 24);
-		contentPane.add(lblNewLabel);
+		lb_ID = new JLabel("ID");
+		lb_ID.setFont(new Font("맑은 고딕", Font.BOLD, 23));
+		lb_ID.setForeground(Color.WHITE);
+		lb_ID.setBounds(126, 240, 29, 24);
+		contentPane.add(lb_ID);
 
-		label = new JLabel("PW");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("맑은 고딕", Font.BOLD, 23));
-		label.setBounds(118, 283, 37, 24);
-		contentPane.add(label);
+		lb_PW = new JLabel("PW");
+		lb_PW.setForeground(Color.WHITE);
+		lb_PW.setFont(new Font("맑은 고딕", Font.BOLD, 23));
+		lb_PW.setBounds(118, 283, 37, 24);
+		contentPane.add(lb_PW);
 
-		panel = new JPanel();
-		panel.setBackground(new Color(70, 114, 42));
-		panel.setBounds(106, 323, 257, 30);
-		contentPane.add(panel);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		pn_find = new JPanel();
+		pn_find.setBackground(new Color(70, 114, 42));
+		pn_find.setBounds(106, 323, 257, 30);
+		contentPane.add(pn_find);
+		pn_find.setLayout(new GridLayout(1, 0, 0, 0));
 
 		lb_FindID = new JLabel("아이디 찾기");
 		lb_FindID.setForeground(Color.WHITE);
 		lb_FindID.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lb_FindID);
+		pn_find.add(lb_FindID);
 		lb_FindID.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -150,7 +150,7 @@ public class Login extends JFrame {
 				lb_FindPW.setForeground(Color.WHITE);
 			}
 		});
-		panel.add(lb_FindPW);
+		pn_find.add(lb_FindPW);
 		lb_FindPW.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
 		lb_SignUp = new JLabel();
@@ -166,25 +166,25 @@ public class Login extends JFrame {
 		lb_SignUp.setForeground(Color.WHITE);
 		lb_SignUp.setText("회원가입");
 		lb_SignUp.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lb_SignUp);
+		pn_find.add(lb_SignUp);
 
 		lb_SignUp.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
-		panel_1 = new JPanel();
-		panel_1.setBackground(new Color(70, 114, 42));
-		panel_1.setBounds(165, 233, 198, 79);
-		contentPane.add(panel_1);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 10));
+		pn_txt = new JPanel();
+		pn_txt.setBackground(new Color(70, 114, 42));
+		pn_txt.setBounds(165, 233, 198, 79);
+		contentPane.add(pn_txt);
+		pn_txt.setLayout(new GridLayout(0, 1, 0, 10));
 
 		txt_id = new JTextField();
 		txt_id.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(txt_id);
+		pn_txt.add(txt_id);
 		txt_id.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		txt_id.setColumns(10);
 
 		txt_pw = new JPasswordField();
 		txt_pw.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(txt_pw);
+		pn_txt.add(txt_pw);
 		txt_pw.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 
 		btn_Login = new RoundedButtonR();
@@ -237,10 +237,10 @@ public class Login extends JFrame {
 		btn_Login.setBounds(106, 363, 257, 43);
 		contentPane.add(btn_Login);
 
-		lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/bg (4).png")));
-		lblNewLabel_1.setBounds(0, 0, 456, 482);
-		contentPane.add(lblNewLabel_1);
+		lb_background = new JLabel("New label");
+		lb_background.setIcon(new ImageIcon(Login.class.getResource("/template/Reference/icons/bg (4).png")));
+		lb_background.setBounds(0, 0, 456, 482);
+		contentPane.add(lb_background);
 
 	}
 }

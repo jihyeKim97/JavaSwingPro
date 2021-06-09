@@ -19,6 +19,7 @@ public class Movie_DB {
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	static ArrayList<Integer> movieidlist = new ArrayList<>();
 
+	// 모든 영화 데이터 가져오기
 	public static ArrayList<Movie_Data> getMovieData() {
 		ArrayList<Movie_Data> MovieList = new ArrayList<>();
 		connect.beginConnection();
@@ -57,6 +58,7 @@ public class Movie_DB {
 		return MovieList;
 	}
 
+	// 이미지 파일로 무비ID 가져오기
 	public static int getMovieIDFromImage(String ImageFile) {
 		connect.beginConnection();
 		int MovieId = 0;
@@ -83,31 +85,7 @@ public class Movie_DB {
 
 	}
 
-	public static int getMovieInformationFromImage(int id) {
-		connect.beginConnection();
-		int MovieId = 0;
-		if (connect.conn != null) {
-			String sql = "SELECT * FROM movies WHERE movies_id = '" + id + "'";
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
-					int movieid = rs.getInt("movies_id");
-
-					MovieId = movieid;
-				}
-				return MovieId;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("DB접속 오류");
-			}
-
-		}
-		connect.endConnection();
-		return MovieId;
-
-	}
-
+	// 무비ID로 영화 정보 가져오기
 	public static Movie_Data getMovieInformationFromMovieId(int id) {
 		connect.beginConnection();
 		Movie_Data MD = new Movie_Data();
@@ -135,30 +113,7 @@ public class Movie_DB {
 
 	}
 
-	public static ArrayList<Integer> getMovie(int year, int month, int day) {
-		connect.beginConnection();
-		int MovieId = 0;
-		if (connect.conn != null) {
-			String sql = "SELECT * FROM movies WHERE schedule_date = '" + year + month + day + "'";
-			System.out.println(sql);
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
-					int movieid = rs.getInt("movies_id");
-					movieidlist.add(movieid);
-				}
-				return movieidlist;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		connect.endConnection();
-		return movieidlist;
-
-	}
-
+	// 오늘 상영하지 않는 영화 찾아오기
 	public static ArrayList<Movie_Data> notTodayMovie(int month, int day) throws SQLException {
 		ArrayList<Movie_Data> MovieList = new ArrayList<>();
 		String years = "2021";
@@ -196,6 +151,7 @@ public class Movie_DB {
 
 	}
 
+	// 오늘 상영하는 영화 찾아오기
 	public static ArrayList<Movie_Data> TodayMovie(int month, int day) throws SQLException {
 		ArrayList<Movie_Data> MovieList = new ArrayList<>();
 		String years = "2021";
@@ -233,6 +189,7 @@ public class Movie_DB {
 
 	}
 	
+	// 영화 삭제하기
 	public void deleteMovie(Movie_Data selMovie) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -247,6 +204,7 @@ public class Movie_DB {
 		connect.endConnection();
 	}
 
+	// 문자를 날자로 변환
 	public static Date transformDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");

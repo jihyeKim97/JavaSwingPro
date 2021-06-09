@@ -6,6 +6,7 @@ import java.sql.SQLException;
 public class SIgnUp_DB {
 	static DB_Connect connect;
 
+	// 회원 등록하기
 	public boolean insertMember(String id, String pw, String name, int gender, String phone, String birth) {
 		connect.beginConnection();
 		if (connect.conn != null) {
