@@ -35,7 +35,7 @@ import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
-public class AD_Movie extends JFrame {
+public class New_AD_Movie extends JFrame {
 
 	JPanel contentPane;
 	JTextField title;
@@ -49,12 +49,12 @@ public class AD_Movie extends JFrame {
 	File imgFile;
 	Admin_FilmManagement_Enrollment dlg;
 	static Login_DB LDB;
-	AD_Movie Mofrm;
+	New_AD_Movie Mofrm;
 	Ad_Movie_DB AMDB;
 	String dbImgPath;
 	String ppp;
 
-	public AD_Movie(AD_Main frm,Movie_Data selmovie) {
+	public New_AD_Movie(AD_Main frm) {
 		this.Mofrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
@@ -88,7 +88,7 @@ public class AD_Movie extends JFrame {
 		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource(selmovie.getImagefilename())));
+//		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/images/어바웃타임.jpg")));
 		panel_2.add(lblNewLabel_4);
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
@@ -133,7 +133,7 @@ public class AD_Movie extends JFrame {
 
 		JTextArea contentTA = new JTextArea();
 		scrollPane.setViewportView(contentTA);
-		contentTA.setText(selmovie.getStory());
+		contentTA.setText("");
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBounds(0, 353, 534, 362);
@@ -197,54 +197,54 @@ public class AD_Movie extends JFrame {
 
 		title = new JTextField();
 		panel_7.add(title);
-		title.setText(selmovie.getTitle());
+		title.setText("");
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		title.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		title.setColumns(10);
 
 		ger = new JTextField();
 		panel_7.add(ger);
-		ger.setText(selmovie.getGee());
+		ger.setText("");
 		ger.setHorizontalAlignment(SwingConstants.CENTER);
 		ger.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		ger.setColumns(10);
 
 		dir = new JTextField();
 		panel_7.add(dir);
-		dir.setText(selmovie.getDirector());
+		dir.setText("");
 		dir.setHorizontalAlignment(SwingConstants.CENTER);
 		dir.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		dir.setColumns(10);
 
 		age = new JTextField();
 		panel_7.add(age);
-		age.setText("" + selmovie.getAgegroup());
+		age.setText("");
 		age.setHorizontalAlignment(SwingConstants.CENTER);
 		age.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		age.setColumns(10);
 
 		per = new JTextField();
 		panel_7.add(per);
-		per.setText(selmovie.getGee());
+		per.setText("");
 		per.setHorizontalAlignment(SwingConstants.CENTER);
 		per.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		per.setColumns(10);
 
 		open = new JTextField();
 		panel_7.add(open);
-		open.setText(selmovie.getOpendate() + "");
+		open.setText("");
 		open.setHorizontalAlignment(SwingConstants.CENTER);
 		open.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		open.setColumns(10);
 
 		com = new JTextField();
 		panel_7.add(com);
-		com.setText(selmovie.getProduction());
+		com.setText("");
 		com.setHorizontalAlignment(SwingConstants.CENTER);
 		com.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		com.setColumns(10);
 
-		JLabel lblNewLabel_6 = new JLabel(selmovie.getImagefilename());
+		JLabel lblNewLabel_6 = new JLabel("/template/Reference/images/");
 		lblNewLabel_6.setForeground(new Color(255, 0, 0));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
@@ -255,9 +255,9 @@ public class AD_Movie extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Ad_Movie_DB AMDB = new Ad_Movie_DB();
 				lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
-				AMDB.changeMovieInfo(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
-						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText(), selmovie.getMoviesid());
-				JOptionPane.showMessageDialog(null, "영화가 수정되었습니다.");
+				AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
+						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
+				JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
 				dispose();
 			}
 		});

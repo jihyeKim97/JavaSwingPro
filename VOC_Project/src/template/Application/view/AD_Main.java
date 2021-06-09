@@ -63,6 +63,7 @@ public class AD_Main extends JFrame {
 	Reservation_DB reservaiton;
 	Ad_AdPage_DB addb;
 	AD_Main frm;
+	New_AD_Movie NADM ;
 	static Login Lg;
 	static Login_data Ld;
 	Review_Data review = new Review_Data();
@@ -323,7 +324,7 @@ public class AD_Main extends JFrame {
 		RoundedButtonY button_1 = new RoundedButtonY("추가");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					AD_Movie movies = new AD_Movie(frm);
+					New_AD_Movie movies = new New_AD_Movie(frm);
 					movies.setVisible(true);
 			}
 		});
@@ -342,14 +343,6 @@ public class AD_Main extends JFrame {
 		button_2.setBounds(215, 5, 100, 30);
 		panel_1.add(button_2);
 		
-		RoundedButtonB roundedButtonY = new RoundedButtonB("수정");
-		roundedButtonY.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		roundedButtonY.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		roundedButtonY.setBounds(321, 5, 100, 30);
-		panel_1.add(roundedButtonY);
 
 		JPanel ad_pn_notice = new JPanel();
 		ad_pn_notice.addComponentListener(new ComponentAdapter() {
@@ -382,6 +375,18 @@ public class AD_Main extends JFrame {
 			}
 		});
 
+		RoundedButtonB roundedButtonY = new RoundedButtonB("수정");
+		roundedButtonY.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AD_Movie movies = new AD_Movie(frm, selmovie);
+				movies.setVisible(true);
+			}
+		});
+		
+		roundedButtonY.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		roundedButtonY.setBounds(321, 5, 100, 30);
+		panel_1.add(roundedButtonY);
+		
 		ad_tb_NoticeTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		scrollPane_4.setViewportView(ad_tb_NoticeTable);
 
@@ -394,7 +399,7 @@ public class AD_Main extends JFrame {
 		button_3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					AD_Notice notice = new AD_Notice(frm);
+					AD_Notice notice = new AD_Notice(frm );
 					notice.setVisible(true);		
 			}
 		});

@@ -14,20 +14,39 @@ public class Ad_Movie_DB {
 			String gee, String opendate, String production, String imagefilename) {
 		DB.beginConnection();
 		if (DB.conn != null) {
-//			String sql = "INSERT INTO movies (title, genre, director, age_group, story, gee, open_date, production, image_file_name) "
-//					+ "values "
-//					+ "(MOVIE_SEQ.nextval,"
-//					+ "'" + title + "', '" + genre + "', '" + director + "', " + agegroup + ", '" + story + "', '" + gee
-//					+ "', '" + opendate + "', '" + production + "', ' " + imagefilename + "')";
 			String sql = "INSERT INTO movies (movies_id, title, genre, director, age_group, story, gee, open_date, production, image_file_name) "
-					+ "values "
-					+ "(MOVIE_SEQ.nextval,"
-					+ "'" + title + "', '" + genre + "', '" + director + "', " + agegroup + ", '" + story + "', '" + gee
-					+ "', '" + opendate + "', '" + production + "', ' " + imagefilename + "')";
-			
+					+ "values " + "(MOVIE_SEQ.nextval," + "'" + title + "', '" + genre + "', '" + director + "', "
+					+ agegroup + ", '" + story + "', '" + gee + "', '" + opendate + "', '" + production + "', ' "
+					+ imagefilename + "')";
+
 			try {
 				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
 
+				int r = pstmt.executeUpdate();
+				if (r == 1) {
+					return true;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB error!!");
+		}
+		DB.endConnection();
+		return false;
+	}
+
+	public static boolean changeMovieInfo(String title, String genre, String director, int agegroup, String story,
+			String gee, String opendate, String production, String imagefilename, int movieid) {
+		DB.beginConnection();
+		if (DB.conn != null) {
+			String sql = "update movies SET title = '" + title + "', genre = '" + genre + "', director = '" + director
+					+ "', age_group = " + agegroup + ", story = '" + story + "', gee = '" + gee + "', open_date = '"
+					+ opendate + "', production = '" + production + "'  ,image_file_name = '" + imagefilename + "' where movies_id = " + movieid;
+
+			try {
+				PreparedStatement pstmt = DB.conn.prepareStatement(sql);
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
 					return true;
