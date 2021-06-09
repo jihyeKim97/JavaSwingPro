@@ -138,6 +138,8 @@ public class Notice extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Locaiton NL = new Locaiton(NM);
+				Point fPt = NM.getLocationOnScreen();
+				NL.setLocation(fPt.x + NM.getWidth() + 20, fPt.y);
 				NL.setVisible(true);
 			}
 		});
@@ -211,10 +213,11 @@ class Locaiton extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		setTitle("Vehicle Outdoor Cinema Location");
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JLabel lblNewLabel = new JLabel("");
-			ImageIcon ic = new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/지도.PNG"));
+			ImageIcon ic = new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/locate.PNG"));
 			Image icImg = ic.getImage().getScaledInstance(450, 300, Image.SCALE_SMOOTH);
 			ic.setImage(icImg);
 			lblNewLabel.setIcon(ic);

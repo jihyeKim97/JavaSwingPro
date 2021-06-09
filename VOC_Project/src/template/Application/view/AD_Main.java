@@ -149,11 +149,15 @@ public class AD_Main extends JFrame {
 		RoundedButtonB roundedButtonD = new RoundedButtonB("수정");
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (click_mem) {
-					AD_Member member = new AD_Member(frm, selMember);
-					member.setVisible(true);
+				if (selMember.getIs_member() != 2) {
+					if (click_mem) {
+						AD_Member member = new AD_Member(frm, selMember);
+						member.setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(null, "선택한 회원이 없습니다");
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "선택한 회원이 없습니다");
+					JOptionPane.showMessageDialog(null, "탈퇴된 회원입니다.");
 				}
 			}
 		});
@@ -454,6 +458,7 @@ public class AD_Main extends JFrame {
 					loginpage.setVisible(true);
 					dispose();
 					frm.dispose();
+					
 				}
 			}
 		});
@@ -593,7 +598,7 @@ public class AD_Main extends JFrame {
 	}
 
 	public void showNoticeTableUIFromDB() {
-		final String columnNames[] = { "공지인덱스", "제목", "내용", "조회수", "회원인덱스" };
+		final String columnNames[] = { "공지인덱스", "제목", "내용", "조회수" };
 
 		nList = NDB.takeNoticetitle();
 		if (nList == null || nList.isEmpty())
@@ -607,7 +612,6 @@ public class AD_Main extends JFrame {
 			data[i][1] = mbl.getTitle();
 			data[i][2] = mbl.getContent();
 			data[i][3] = mbl.getViewcount();
-			data[i][4] = mbl.getMemberid();
 
 			DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 			this.ad_tb_NoticeTable.setModel(dtm);
