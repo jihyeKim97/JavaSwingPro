@@ -24,6 +24,8 @@ import java.awt.Image;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
@@ -223,17 +225,49 @@ public class Reservation_step2 extends JFrame {
 		card_number1.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		card_numbering.add(card_number1);
 		card_number1.setColumns(10);
+		card_number1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
 
 		card_number2 = new JPasswordField();
 		card_numbering.add(card_number2);
+		card_number2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
 
 		card_number3 = new JPasswordField();
 		card_numbering.add(card_number3);
+		card_number3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
 
 		card_number4 = new JTextField();
 		card_number4.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		card_numbering.add(card_number4);
 		card_number4.setColumns(10);
+		card_number4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
 
 		JLabel label_15 = new JLabel("유효 기간");
 		label_15.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
@@ -245,6 +279,15 @@ public class Reservation_step2 extends JFrame {
 		card_date.setColumns(10);
 		card_date.setBounds(51, 109, 86, 30);
 		panel_5.add(card_date);
+		card_date.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
+		
 
 		JLabel label_16 = new JLabel("비밀번호");
 		label_16.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
@@ -261,10 +304,26 @@ public class Reservation_step2 extends JFrame {
 		card_cvc.setColumns(10);
 		card_cvc.setBounds(205, 109, 89, 30);
 		panel_5.add(card_cvc);
+		card_cvc.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 2
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
 
 		card_pw = new JPasswordField();
 		card_pw.setBounds(353, 109, 89, 30);
 		panel_5.add(card_pw);
+		card_pw.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 3
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
 
 		btn_pay = new RoundedButtonG("결제");
 		btn_pay.addActionListener(new ActionListener() {
