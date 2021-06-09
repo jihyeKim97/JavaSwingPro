@@ -93,32 +93,7 @@ public class New_AD_Movie extends JFrame {
 		lblNewLabel_4.setBackground(Color.WHITE);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setIcon(new ImageIcon(New_AD_Movie.class.getResource("/template/Reference/icons/no_image.png")));
-//		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/images/어바웃타임.jpg")));
 		panel_2.add(lblNewLabel_4);
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				final String currentDirPath = "./src/template/reference/images";
-				final String currentDirPathDetail = "/template/reference/images";
-				System.out.println(currentDirPath);
-				JFileChooser openDlg = new JFileChooser(currentDirPath);
-				if (openDlg.showOpenDialog(dlg) == JFileChooser.APPROVE_OPTION) {
-					imgFile = openDlg.getSelectedFile();
-					System.out.println("선택된 파일명: " + imgFile.getName());
-					System.out.println("선택된 파일경로명: " + imgFile.getPath());
-					dbImgPath = currentDirPath + "/" + imgFile.getName();
-					lblNewLabel_4.setText(dbImgPath);
-					lblNewLabel_4.setToolTipText("이미지 경로: " + imgFile.getPath());
-					// 42x42 아이콘
-					ImageIcon ic = new ImageIcon(imgFile.getPath());
-					Image icImg = ic.getImage().getScaledInstance(180, 240, Image.SCALE_SMOOTH);
-					ic.setImage(icImg);
-					lblNewLabel_4.setIcon(ic);
-					lblNewLabel_4.repaint();
-					ppp = currentDirPathDetail + " / " + imgFile.getName();
-				}
-			}
-		});
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
@@ -257,12 +232,38 @@ public class New_AD_Movie extends JFrame {
 		com.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		com.setColumns(10);
 
-		JLabel lblNewLabel_6 = new JLabel("/template/Reference/images/");
+		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setBounds(0, 378, 332, 34);
 		lblNewLabel_6.setForeground(new Color(255, 0, 0));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		panel_7.add(lblNewLabel_6);
+		
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				final String currentDirPath = "./src/template/reference/images";
+				final String currentDirPathDetail = "/template/reference/images";
+				System.out.println(currentDirPath);
+				JFileChooser openDlg = new JFileChooser(currentDirPath);
+				if (openDlg.showOpenDialog(dlg) == JFileChooser.APPROVE_OPTION) {
+					imgFile = openDlg.getSelectedFile();
+					System.out.println("선택된 파일명: " + imgFile.getName());
+					System.out.println("선택된 파일경로명: " + imgFile.getPath());
+					dbImgPath = currentDirPathDetail + "/" + imgFile.getName();
+					lblNewLabel_4.setText(dbImgPath);
+					lblNewLabel_4.setToolTipText("이미지 경로: " + imgFile.getPath());
+					// 42x42 아이콘
+					ImageIcon ic = new ImageIcon(imgFile.getPath());
+					Image icImg = ic.getImage().getScaledInstance(180, 240, Image.SCALE_SMOOTH);
+					ic.setImage(icImg);
+					lblNewLabel_4.setIcon(ic);
+					lblNewLabel_4.repaint();
+					ppp = currentDirPathDetail + " / " + imgFile.getName();
+					lblNewLabel_6.setText(dbImgPath);
+				}
+			}
+		});
 		
 		JLabel label_6 = new JLabel("예 ) 12세 연령제한  =>  12");
 		label_6.setForeground(Color.BLUE);
@@ -280,7 +281,6 @@ public class New_AD_Movie extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ad_Movie_DB AMDB = new Ad_Movie_DB();
-				lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
 				AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
 						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
 				JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
