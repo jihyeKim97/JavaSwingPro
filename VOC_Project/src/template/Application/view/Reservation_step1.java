@@ -42,35 +42,38 @@ public class Reservation_step1 extends JFrame {
 	Panel header, infoContent;
 	JPanel infoDontent, seat_number, seat_detail, option, seat, contentPane, seatContent, content, info;
 	JComboBox car_type, option_type;
+	JLabel lblNewLabel;
+	JLabel label_2;
+	JPanel panel;
+	JLabel label_3;
+	JLabel lblNewLabel_2;
+	JButton btnNewButton;
+	JRadioButton rdbtnNewRadioButton;
+	JToggleButton tglbtnNewToggleButton;
+	JLabel label;
 
-	public static final int MOVIE_PRICE = 30000;
-	Main mainfrm;
 	Reservation_step1 reserStfrm;
+	Main mainfrm;
 	DB_Connect connect;
 	Movie_Data Movie;
-	ArrayList<Movie_Data> MovieList = new ArrayList<>();
-	JLabel label;
 	Login_data Ld;
-	JLabel lblNewLabel;
+	Reservation_DB RDB;
+	Reservation_data RD;
+
+	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	ArrayList<String> ButtonName = new ArrayList<>();
-	JRadioButton rdbtnNewRadioButton;
-	String Car = "";
-	int CarType = 0;
-	JToggleButton tglbtnNewToggleButton;
 	ArrayList<Object> SName = new ArrayList<>();
 	ArrayList<String> SeatNum = new ArrayList<>();
+
+	public static final int MOVIE_PRICE = 30000;
+	String Car = "";
 	String selectOption;
 	String optionName = "";
 	String[] selectP;
 	String[] selectPrice;
-	Reservation_DB RDB;
+	int CarType = 0;
 	int optionPrice = 0;
-	Reservation_data RD;
-	private JButton btnNewButton;
-	private JLabel label_2;
-	private JPanel panel;
-	private JLabel label_3;
-	private JLabel lblNewLabel_2;
+
 
 	public Reservation_step1(Main mainfrm, Movie_Data movie, Login_data Ld) {
 		this.reserStfrm = this;

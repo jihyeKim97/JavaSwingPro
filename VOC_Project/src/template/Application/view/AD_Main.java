@@ -321,11 +321,11 @@ public class AD_Main extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int movieID = selmovie.getMoviesid();
-				if(click_moi) {
+				if (click_moi) {
 					ADB.deleteMovie(movieID);
 					System.out.println("삭제되었습니다.");
 					JOptionPane.showMessageDialog(null, "삭제 완료");
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "선택한 영화가 없습니다");
 				}
 			}
@@ -404,12 +404,12 @@ public class AD_Main extends JFrame {
 		RoundedButtonR button_4 = new RoundedButtonR("삭제");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(click_not) {
-					int noticeID =selNotice.getNoticeid();
+				if (click_not) {
+					int noticeID = selNotice.getNoticeid();
 					ADB.deleteNotice(noticeID);
 					System.out.println("삭제되었습니다.");
 					JOptionPane.showMessageDialog(null, "삭제완료");
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "선택한 공지사항이 없습니다");
 				}
 			}
@@ -537,8 +537,7 @@ public class AD_Main extends JFrame {
 	}
 
 	public void showReviewTableUIFromDB() {
-		final String columnNames[] = { "리뷰인덱스", "리뷰 내용", "별점", "리뷰작성날짜", "예약인덱스", "영화인덱스"
-		};
+		final String columnNames[] = { "리뷰인덱스", "리뷰 내용", "별점", "리뷰작성날짜", "예약인덱스", "영화인덱스" };
 
 		rList = ADB.AllReviewData();
 		if (rList == null || rList.isEmpty())

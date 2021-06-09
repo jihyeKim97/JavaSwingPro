@@ -50,7 +50,6 @@ public class AD_Movie extends JFrame {
 	JTextField open;
 
 	File imgFile;
-	static Login_DB LDB;
 	AD_Movie Mofrm;
 	Ad_AdPage_DB AMDB;
 	String dbImgPath;

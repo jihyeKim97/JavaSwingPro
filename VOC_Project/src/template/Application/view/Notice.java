@@ -32,7 +32,7 @@ import javax.swing.JButton;
 
 public class Notice extends JFrame {
 
-	private JPanel contentPane;
+	JPanel contentPane;
 	Main reserfrm;
 	DB_Connect connect;
 	Notice NM;
@@ -40,9 +40,6 @@ public class Notice extends JFrame {
 	Notice_Detail ND;
 	ArrayList<Notice_data> NoticeArray;
 
-	/**
-	 * Create the frame.
-	 */
 	public Notice(Main reserfrm) {
 		Notice_DB NDB = null;
 		NoticeArray = new ArrayList<>();

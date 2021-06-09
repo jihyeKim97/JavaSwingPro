@@ -42,12 +42,11 @@ public class AD_Member extends JFrame {
 	JLabel label_2, label_3, label_4, label_5, label_1, label, label_11;
 
 	AD_Member Mefrm;
-	
 
 	public AD_Member(AD_Main frm, Login_data ld) {
 		this.Mefrm = this;
 		int memberID = ld.getMember_id();
-		
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 662);
 		contentPane = new JPanel();
@@ -168,7 +167,8 @@ public class AD_Member extends JFrame {
 		rebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ad_AdPage_DB ADB = new Ad_AdPage_DB();
-				int result = JOptionPane.showConfirmDialog(null, "회원탈퇴를 진행 하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "회원탈퇴를 진행 하시겠습니까?", "Confirm",
+						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					ADB.updateMembertoNone(memberID);
 					dispose();

@@ -60,6 +60,8 @@ public class SignUp extends JFrame {
 	JLabel lb_phoneNumber;
 	JPanel panel_phoneNum;
 	JLabel lb_phoneNum2;
+	JLabel duptxt;
+	JLabel checkpwtxt;
 	JLabel lb_phoneNum1;
 	RoundedButtonR btn_cancel;
 	RoundedButtonG btn_userJoin;
@@ -78,8 +80,6 @@ public class SignUp extends JFrame {
 	Login_data lndt;
 	Login_DB dbc2 = new Login_DB();
 	SIgnUp_DB mgr = new SIgnUp_DB();
-	JLabel duptxt;
-	JLabel checkpwtxt;
 
 	public SignUp(Login mln) {
 
