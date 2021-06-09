@@ -76,6 +76,7 @@ public class Reservation_step1 extends JFrame {
 		this.reserStfrm = this;
 		SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
 		sDate.format(new Date());
+		SeatNum = RDB.selectedSeat(movie.getMoviesid());
 
 		Reservation_DB RDB = new Reservation_DB();
 		ButtonName = RDB.ButtonName();
@@ -215,8 +216,17 @@ public class Reservation_step1 extends JFrame {
 
 		int select = 0;
 		for (int i = 0; i < 36; i++) {
+			int SS = 0;
 			JToggleButton tglbtnNewToggleButton = new JToggleButton();
 			tglbtnNewToggleButton.setToolTipText(ButtonName.get(i));
+			for (int j = 0; j < date.length; j++) {
+				if (SeatNum.get(j).equals(tglbtnNewToggleButton.getToolTipText()))
+					SS = 1;
+				else
+					SS = 0;
+			}
+			
+			if ( SS == 0) {
 			ImageIcon ic = new ImageIcon(
 					Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
 			Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -231,18 +241,6 @@ public class Reservation_step1 extends JFrame {
 
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					 //  해당 영화정보에 같은 날짜에 같은 좌석 예약 할때에 예약 못하게 막아야 하는 작업
-					// 	그게 ture면 selected_car.png로 보여지고 그게 아니면 해당 선택작업이 이뤄져야 함
-					 //  DB함수 추가 작업해야함
-					if(true) {
-						ImageIcon ic = new ImageIcon(
-								Reservation_step1.class.getResource("/template/Reference/icons/selected_car.png"));
-						Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-						ic.setImage(icImg);
-						tglbtnNewToggleButton.setIcon(ic);
-						tglbtnNewToggleButton.repaint();
-						SName.add(tglbtnNewToggleButton.getToolTipText());
-					}else {
 						if (tglbtnNewToggleButton.isSelected()) {
 							ImageIcon ic = new ImageIcon(
 									Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
@@ -260,10 +258,27 @@ public class Reservation_step1 extends JFrame {
 							tglbtnNewToggleButton.repaint();
 							SName.remove(tglbtnNewToggleButton.getToolTipText());
 						}
-					}
-
-				}
+						}
 			});
+			} else {
+				ImageIcon ic = new ImageIcon(
+						Reservation_step1.class.getResource("/template/Reference/icons/selected_car.png"));
+				Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+				ic.setImage(icImg);
+				tglbtnNewToggleButton.setIcon(ic);
+				tglbtnNewToggleButton.repaint();
+				tglbtnNewToggleButton.setBorderPainted(false);
+				tglbtnNewToggleButton.setContentAreaFilled(false);
+				tglbtnNewToggleButton.setFocusPainted(false);
+				tglbtnNewToggleButton.setOpaque(false);
+				seat_number.add(tglbtnNewToggleButton);
+
+				tglbtnNewToggleButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, "이미 선택된 자리입니다.");
+					}
+				});
+			}
 			if (tglbtnNewToggleButton.isSelected()) {
 				select = 1;
 			} else {
@@ -283,7 +298,7 @@ public class Reservation_step1 extends JFrame {
 		content.add(sum_price_pay);
 
 		option_type = new JComboBox();
-		option_type.setBounds(201, 57, 275, 37);
+		option_type.setBounds(201, 57, 275, 37);   
 		option.add(option_type);
 		option_type.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		option_type.setModel(new DefaultComboBoxModel(
@@ -322,16 +337,16 @@ public class Reservation_step1 extends JFrame {
 		btn_payment = new RoundedButtonG("결제 하기");
 		btn_payment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int A = 0;
-				SeatNum = RDB.selectedSeat(movie.getMoviesid());
-				for (int j = 0; j < SeatNum.size(); j++) {
-					if (SeatNum.get(j).equals((SName.get(0)))) {
-						A = 1;
-						break;
-					}
-				}
-
-				if (A == 0) {
+//				int A = 0;
+//				SeatNum = RDB.selectedSeat(movie.getMoviesid());
+//				for (int j = 0; j < SeatNum.size(); j++) {
+//					if (SeatNum.get(j).equals((SName.get(0)))) {
+//						A = 1;
+//						break;
+//					}
+//				}
+//
+//				if (A == 0) {
 					if (SName.size() == 1) {
 						RD = new Reservation_data((String) SName.get(0), CarType, MOVIE_PRICE, new Date(), optionName,
 								optionPrice);
@@ -343,9 +358,9 @@ public class Reservation_step1 extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(null, "좌석을 하나만 선택해 주세요");
 					}
-				} else {
-					JOptionPane.showMessageDialog(null, "이미 선택된 자리입니다.");
-				}
+//				} else {
+//					JOptionPane.showMessageDialog(null, "이미 선택된 자리입니다.");
+//				}
 			}
 		});
 		btn_payment.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
