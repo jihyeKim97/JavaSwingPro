@@ -186,6 +186,7 @@ public class AD_Member extends JFrame {
 				if (!nameF.getText().isEmpty() && !phoneF.getText().isEmpty()) {
 					ADB.UpdateAdminMemberInfo(memberID, nameF.getText(), phoneF.getText());
 					System.out.println("관리자 권한으로 수정 완료");
+					JOptionPane.showMessageDialog(null, "관리자 권한으로 수정 완료 되었습니다");
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");

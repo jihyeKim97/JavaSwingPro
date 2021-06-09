@@ -150,6 +150,7 @@ public class Login extends JFrame {
 				lb_FindPW.setForeground(Color.WHITE);
 			}
 		});
+		
 		pn_find.add(lb_FindPW);
 		lb_FindPW.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
@@ -162,7 +163,17 @@ public class Login extends JFrame {
 				sign.setLocation(fPt.x + ln.getWidth() + 20, fPt.y);
 				sign.setVisible(true);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lb_SignUp.setForeground(Color.red);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lb_SignUp.setForeground(Color.WHITE);
+			}
 		});
+		
 		lb_SignUp.setForeground(Color.WHITE);
 		lb_SignUp.setText("회원가입");
 		lb_SignUp.setHorizontalAlignment(SwingConstants.CENTER);
