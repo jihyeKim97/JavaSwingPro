@@ -107,8 +107,9 @@ public class Movie_Informaiton extends JFrame {
 	Movie_Data Movie;
 	DB_Connect connect;
 	Login_DB LDB;
-	Ad_AdPage_DB AADB;
+	Ad_AdPage_DB AADB = new Ad_AdPage_DB();
 	Review_DB Review = new Review_DB();
+	Movie_DB MDB = new Movie_DB();
 	int Score = 0;
 
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
@@ -138,8 +139,10 @@ public class Movie_Informaiton extends JFrame {
 			time = "" + itime;
 		}
 		Score = Review.starscore(movie.getMoviesid());
-		RV = AADB.AllReviewData();
-		movie.setAverageScore((double)Score/(double)RV.size());
+		RV = Review.getReviewData(movie.getMoviesid());
+		double A = (double)Score/(double)RV.size();
+		System.out.println("평균" + A);
+		MDB.changeScore(A, movie.getMoviesid());
 		
 		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -358,7 +361,7 @@ public class Movie_Informaiton extends JFrame {
 		panel_4.setBackground(new Color(255, 255, 255));
 		panel_4.setLayout(new GridLayout(1, 0, 0, 0));
 
-		int star = (int) Math.round(MovieList.get(PK).getAverageScore());
+		double star = Math.round(MovieList.get(PK).getAverageScore());
 		String S = "star0.PNG";
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);

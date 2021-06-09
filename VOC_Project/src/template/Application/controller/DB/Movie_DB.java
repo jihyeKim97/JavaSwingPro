@@ -35,7 +35,7 @@ public class Movie_DB {
 					String director = rs.getString("director");
 					int agegroup = rs.getInt("age_group");
 					String story = rs.getString("story");
-					int averagecsore = rs.getInt("average_score");
+					double averagecsore = rs.getDouble("average_score");
 					String gee = rs.getString("gee");
 					Date openDate = rs.getDate("open_date");
 					String production = rs.getString("production");
@@ -182,6 +182,26 @@ public class Movie_DB {
 		}
 		connect.endConnection();
 		return MovieList;
+	}
+	
+	// 영화에 별점 갱신하기
+	public boolean changeScore(double A, int movieid) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "update movies set average_score = " + A +" where movies_id =" + movieid;
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				int r = pstmt.executeUpdate();
+				if (r == 1) {
+					System.out.println("업데이트 성공");
+					return true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return false;
 	}
 
 	// 영화 삭제하기

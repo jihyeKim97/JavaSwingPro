@@ -90,7 +90,7 @@ public class Review_DB {
 		int A = 0;
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "select * from review where member_id =" + movieid;
+			String sql = "select * from review where movies_id =" + movieid;
 			try {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
@@ -99,6 +99,7 @@ public class Review_DB {
 					
 					A+= score;
 				}
+				System.out.println(A);
 				return A;
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -107,5 +108,6 @@ public class Review_DB {
 		connect.endConnection();
 		return A;
 	}
+
 
 }
