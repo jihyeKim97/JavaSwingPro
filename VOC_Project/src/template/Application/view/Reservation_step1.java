@@ -231,22 +231,32 @@ public class Reservation_step1 extends JFrame {
 
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (tglbtnNewToggleButton.isSelected()) {
+					if(true) {
 						ImageIcon ic = new ImageIcon(
-								Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
+								Reservation_step1.class.getResource("/template/Reference/icons/selected_car.png"));
 						Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
 						SName.add(tglbtnNewToggleButton.getToolTipText());
-					} else {
-						ImageIcon ic = new ImageIcon(
-								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
-						Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-						ic.setImage(icImg);
-						tglbtnNewToggleButton.setIcon(ic);
-						tglbtnNewToggleButton.repaint();
-						SName.remove(tglbtnNewToggleButton.getToolTipText());
+					}else {
+						if (tglbtnNewToggleButton.isSelected()) {
+							ImageIcon ic = new ImageIcon(
+									Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
+							Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+							ic.setImage(icImg);
+							tglbtnNewToggleButton.setIcon(ic);
+							tglbtnNewToggleButton.repaint();
+							SName.add(tglbtnNewToggleButton.getToolTipText());
+						} else {
+							ImageIcon ic = new ImageIcon(
+									Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
+							Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+							ic.setImage(icImg);
+							tglbtnNewToggleButton.setIcon(ic);
+							tglbtnNewToggleButton.repaint();
+							SName.remove(tglbtnNewToggleButton.getToolTipText());
+						}
 					}
 				}
 			});
