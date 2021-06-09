@@ -50,7 +50,6 @@ public class AD_NMovie extends JFrame {
 	JTextField open;
 
 	File imgFile;
-	static Login_DB LDB;
 	AD_NMovie Mofrm;
 	Ad_AdPage_DB AMDB;
 	String dbImgPath;
@@ -208,9 +207,9 @@ public class AD_NMovie extends JFrame {
 		age.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent ke) {
-				 if (((JTextField) ke.getSource()).getText().length() > 2
-		                  || (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
-		               ke.consume();
+				if (((JTextField) ke.getSource()).getText().length() > 2
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
 			}
 		});
 		age.setBounds(0, 162, 332, 34);
@@ -250,7 +249,7 @@ public class AD_NMovie extends JFrame {
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		panel_7.add(lblNewLabel_6);
-		
+
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -276,13 +275,13 @@ public class AD_NMovie extends JFrame {
 				}
 			}
 		});
-		
+
 		JLabel label_6 = new JLabel("예 ) 12세 연령제한  =>  12");
 		label_6.setForeground(Color.BLUE);
 		label_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		label_6.setBounds(5, 197, 313, 15);
 		panel_7.add(label_6);
-		
+
 		JLabel label_7 = new JLabel("예 ) 2020년 5월 24일  =>  2020/05/24 & 2020.05.24");
 		label_7.setForeground(Color.BLUE);
 		label_7.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));

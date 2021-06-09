@@ -35,11 +35,11 @@ import javax.swing.ImageIcon;
 public class Main extends JFrame {
 
 	JPanel contentPane;
-	final Panel header_panel = new Panel();
+	Panel header_panel;
 	Panel mainPanel;
 	Panel main_panel;
 	Panel title_panel;
-	final Panel cpn_panel = new Panel();
+	Panel cpn_panel;
 	Panel mem_panel;
 	Panel mem_detail;
 	Panel screening_panel;
@@ -61,22 +61,23 @@ public class Main extends JFrame {
 	JLabel lb_title2;
 	Panel screen_guid_line;
 	Panel panel_10;
-	Main reserfrm;
-	ArrayList<Movie_Data> toDayMovieList;
-	ArrayList<Movie_Data> notToDayMovieList;
-	Movie_Data movie;
 	JLabel lb_month;
 	JLabel lb_date;
 	JLabel label_2;
-	Main main;
-	static Login Lg;
-	static Login_data Ld;
 	JPanel panel;
 	JLabel label;
 	JLabel Poster;
 
+	ArrayList<Movie_Data> toDayMovieList;
+	ArrayList<Movie_Data> notToDayMovieList;
+
+	Main reserfrm;
+	Login Lg;
+	Movie_Data movie;
+	Login_data Ld;
+
 	public Main(Login Lg, Login_data Ld) {
-		this.main = this;
+		this.reserfrm = this;
 
 		toDayMovieList = new ArrayList<>();
 		notToDayMovieList = new ArrayList<>();

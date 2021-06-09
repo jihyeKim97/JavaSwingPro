@@ -94,14 +94,17 @@ public class Movie_Informaiton extends JFrame {
 	JPanel panel_5;
 	JPanel panel_6;
 
-	DB_Connect connect;
-	Movie_Data Movie;
 	Main refrm;
 	Movie_Informaiton frm;
+
 	ArrayList<Review_Data> ReviewList = new ArrayList<>();
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	ArrayList<Integer> intArr = new ArrayList<>();
 	ArrayList<String> strArr = new ArrayList<>();
+
+	Movie_Data Movie;
+
+	DB_Connect connect;
 	Review_DB Review;
 	Login_DB LDB;
 
@@ -418,7 +421,6 @@ public class Movie_Informaiton extends JFrame {
 			}
 		});
 		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
-		
 
 		for (int i = 0; i < ReviewList.size(); i++) { // 리뷰 개수
 			Review = new Review_DB();
@@ -428,17 +430,17 @@ public class Movie_Informaiton extends JFrame {
 			panel_8.setBounds(10, (10 * (i + 1)) + (50 * i), 452, 50);
 			panel_9.add(panel_8);
 			panel_8.setLayout(null);
-			
+
 			JLabel lb_reviewID = new JLabel(strArr.get(i));
 			lb_reviewID.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 			lb_reviewID.setBounds(10, 5, 110, 15);
 			panel_8.add(lb_reviewID);
-			
+
 			JLabel lb_reviewcontent = new JLabel(ReviewList.get(i).getContent());
 			lb_reviewcontent.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 			lb_reviewcontent.setBounds(10, 30, 430, 15);
 			panel_8.add(lb_reviewcontent);
-			
+
 			JLabel lb_reviewdate = new JLabel("" + ReviewList.get(i).getReviewdate());
 			lb_reviewdate.setHorizontalAlignment(SwingConstants.RIGHT);
 			lb_reviewdate.setFont(new Font("맑은 고딕", Font.PLAIN, 12));

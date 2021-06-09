@@ -30,6 +30,10 @@ import java.awt.BorderLayout;
 
 public class Reservation_step2 extends JFrame {
 
+	Panel header;
+	JLabel label_17;
+	JPanel panel_8;
+	JPanel pay_success;
 	JPanel contentPane;
 	JTextField card_number4;
 	JTextField card_number1;
@@ -38,12 +42,9 @@ public class Reservation_step2 extends JFrame {
 	JPasswordField card_pw;
 	JPasswordField card_number3;
 	JPasswordField card_number2;
-	JPanel pay_success;
-	RoundedButtonR roundedButtonD;
-	Panel header;
-	JLabel label_17;
-	JPanel panel_8;
 	RoundedButtonG btn_pay;
+	RoundedButtonR roundedButtonD;
+
 	Reservation_step1 reserStfrm;
 	Reservation_DB RDB;
 	Movie_DB movie;

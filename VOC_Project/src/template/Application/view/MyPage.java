@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class MyPage extends JFrame {
-	public static ArrayList<Mypage_Reservation_data> ReArr;
 	JPanel contentPane;
 	JLabel lbTitle;
 	JTextField nameField;
@@ -43,10 +42,7 @@ public class MyPage extends JFrame {
 	JTextField newpwField;
 	JTextField newpwckField;
 	Panel header;
-	MyPage frm;
-	RoundedButtonR btn_logout;
-	RoundedButtonG wirte_review;
-	Mypage_writePage wirteP;
+
 	JLabel in_reservationNum;
 	JLabel txtmovietitle;
 	JLabel in_movieTitle;
@@ -55,24 +51,29 @@ public class MyPage extends JFrame {
 	JLabel txttotalprice;
 	JLabel in_totalPrice;
 	JLabel lblReservation;
-	RoundedButtonG btn_meminfo;
-	RoundedButtonG btn_reser;
 	Panel memdetail_panel;
 	Panel lbPanel;
+	RoundedButtonR btn_logout;
+	RoundedButtonG wirte_review;
+	RoundedButtonG btn_meminfo;
+	RoundedButtonG btn_reser;
 	RoundedButtonG btn_edit;
+	RoundedButtonR btn_main;
 	JPanel panel;
 	JLabel txtreservationum;
-	Panel fieldPanel;
-	RoundedButtonR btn_main;
 	JPanel content;
-	Panel detail;
 	JPanel mem_panel;
 	JPanel res_panel;
 	JPanel resdetail_panel;
+	Panel fieldPanel;
 	Panel reser_box;
+	Panel detail;
 
 	Point fPt;
 	Main mafrm;
+	Mypage_writePage wirteP;
+
+	MyPage frm;
 	Mypage_Member_data MyPage;
 	JLabel errortxt;
 	Mypage_DB MDB;
@@ -81,6 +82,7 @@ public class MyPage extends JFrame {
 	Movie_DB MD;
 	int A = 0;
 	int i = 0;
+	public static ArrayList<Mypage_Reservation_data> ReArr;
 
 	public MyPage(Main mafrm, Login_data Ld) {
 		this.frm = this;

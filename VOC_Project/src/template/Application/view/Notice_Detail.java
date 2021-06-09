@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
 
 public class Notice_Detail extends JFrame {
 
-	private JPanel contentPane;
+	JPanel contentPane;
 	Notice NM;
 	ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 	Notice_DB NoticeDB;
@@ -32,7 +32,7 @@ public class Notice_Detail extends JFrame {
 		NoticeArr = NoticeDB.takeNoticetitle();
 		int PK = 0;
 		for (int i = 0; i < NoticeArr.size(); i++) {
-			if(NoticeArr.get(i).getNoticeid() == Notice.getNoticeid()) {
+			if (NoticeArr.get(i).getNoticeid() == Notice.getNoticeid()) {
 				PK = i;
 				break;
 			}
