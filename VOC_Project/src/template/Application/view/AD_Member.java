@@ -184,7 +184,7 @@ public class AD_Member extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Ad_AdPage_DB ADB = new Ad_AdPage_DB();
 				if (!nameF.getText().isEmpty() && !phoneF.getText().isEmpty()) {
-					ADB.changeAdminMemberInfo(memberID, nameF.getText(), phoneF.getText());
+					ADB.UpdateAdminMemberInfo(memberID, nameF.getText(), phoneF.getText());
 					System.out.println("관리자 권한으로 수정 완료");
 					dispose();
 				} else {

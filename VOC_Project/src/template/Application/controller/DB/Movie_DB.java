@@ -47,12 +47,10 @@ public class Movie_DB {
 					MovieList.add(new Movie_Data(moviesid, title, genre, director, agegroup, story, averagecsore, gee,
 							openDate, production, imageFileName, scheduleDate, Scheduletime, runningTime));
 				}
-
 				return MovieList;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			System.out.println("오류");
 		}
 		connect.endConnection();
 		return MovieList;
@@ -179,27 +177,24 @@ public class Movie_DB {
 				Movie_Data MD = new Movie_Data(moviesid, imageFileName, scheduleDate);
 				if (MD.getScheduledate().equals(date))
 					MovieList.add(MD);
-
 			}
-
 			return MovieList;
 		}
 		connect.endConnection();
 		return MovieList;
-
 	}
-	
+
 	// 영화 삭제하기
 	public void deleteMovie(Movie_Data selMovie) {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "delete movies where movies_id = " + selMovie.getMoviesid();
-		try {
-			PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-			pstmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				pstmt.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		connect.endConnection();
 	}

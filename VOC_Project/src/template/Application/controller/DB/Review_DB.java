@@ -14,34 +14,6 @@ public class Review_DB {
 	static DB_Connect connect;
 	static Review_Data review;
 
-	// 모든 리뷰정보 가져오기
-	public static ArrayList<Review_Data> AllReviewData() {
-		ArrayList<Review_Data> contents = new ArrayList<>();
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "SELECT * FROM review";
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
-					int reviewid = rs.getInt("review_id");
-					String content = rs.getString("content");
-					int starscore = rs.getInt("star_score");
-					Date reviewdate = rs.getDate("review_date");
-					int reservationid = rs.getInt("reservation_id");
-					int movieid = rs.getInt("movies_id");
-					contents.add(new Review_Data(reviewid, content, starscore, reviewdate, reservationid, movieid));
-				}
-				return contents;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
-		return contents;
-
-	}
-
 	// 무비ID로 영화 한개의 리뷰만 가져오기
 	public static ArrayList<Review_Data> getReviewData(int movieId) {
 		ArrayList<Review_Data> contents = new ArrayList<>();

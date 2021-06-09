@@ -87,48 +87,4 @@ public class Notice_DB {
 		return false;
 	}
 
-	// 모든 공지사항 가져오기
-	public ArrayList<Notice_data> selectAllNotice() {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			ArrayList<Notice_data> uiList = new ArrayList<>();
-			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
-			try {
-				Statement stmt = connect.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					String userDoB = rs.getString("BIRTHDAY");
-					Notice_data ui = new Notice_data(rs.getInt("NOTICE_ID"), rs.getString("TITLE"),
-							rs.getString("CONTENT"), rs.getInt("VEIWCOUNT"), rs.getInt("MEMBER_ID"));
-					uiList.add(ui);
-				}
-				System.out.println("DBMgr: 연동 성공! 공지사항갯수 => " + uiList.size());
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!!@");
-		}
-		connect.endConnection();
-		return null;
-	}
-
-	// 공지사항 삭제하기
-	public void deleteNotice(Notice_data selNotice) {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "delete notice where notice_id = " + selNotice.getNoticeid();
-			try {
-				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				int r = pstmt.executeUpdate();
-				if (r == 1)
-					System.out.println("삭제");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
-	}
-
 }

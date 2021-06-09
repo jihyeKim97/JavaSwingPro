@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
-import template.Application.controller.DB.Ad_Movie_DB;
+import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Movie_Data;
 
@@ -34,8 +34,11 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.ScrollPaneConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class New_AD_Movie extends JFrame {
+public class AD_NMovie extends JFrame {
 
 	JPanel contentPane;
 	JTextField title;
@@ -47,14 +50,13 @@ public class New_AD_Movie extends JFrame {
 	JTextField open;
 
 	File imgFile;
-	Admin_FilmManagement_Enrollment dlg;
 	static Login_DB LDB;
-	New_AD_Movie Mofrm;
-	Ad_Movie_DB AMDB;
+	AD_NMovie Mofrm;
+	Ad_AdPage_DB AMDB;
 	String dbImgPath;
 	String ppp;
 
-	public New_AD_Movie(AD_Main frm) {
+	public AD_NMovie(AD_Main frm) {
 		this.Mofrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
@@ -92,7 +94,7 @@ public class New_AD_Movie extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setBackground(Color.WHITE);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon(New_AD_Movie.class.getResource("/template/Reference/icons/no_image.png")));
+		lblNewLabel_4.setIcon(new ImageIcon(AD_NMovie.class.getResource("/template/Reference/icons/no_image.png")));
 		panel_2.add(lblNewLabel_4);
 
 		JPanel panel_3 = new JPanel();
@@ -109,10 +111,13 @@ public class New_AD_Movie extends JFrame {
 		panel_3.add(lblNewLabel_2);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 38, 297, 163);
 		panel_3.add(scrollPane);
 
 		JTextArea contentTA = new JTextArea();
+		contentTA.setLineWrap(true);
 		scrollPane.setViewportView(contentTA);
 		contentTA.setText("");
 
@@ -199,8 +204,15 @@ public class New_AD_Movie extends JFrame {
 		dir.setHorizontalAlignment(SwingConstants.CENTER);
 		dir.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		dir.setColumns(10);
-
 		age = new JTextField();
+		age.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				 if (((JTextField) ke.getSource()).getText().length() > 2
+		                  || (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+		               ke.consume();
+			}
+		});
 		age.setBounds(0, 162, 332, 34);
 		panel_7.add(age);
 		age.setText("");
@@ -246,7 +258,7 @@ public class New_AD_Movie extends JFrame {
 				final String currentDirPathDetail = "/template/reference/images";
 				System.out.println(currentDirPath);
 				JFileChooser openDlg = new JFileChooser(currentDirPath);
-				if (openDlg.showOpenDialog(dlg) == JFileChooser.APPROVE_OPTION) {
+				if (openDlg.showOpenDialog(Mofrm) == JFileChooser.APPROVE_OPTION) {
 					imgFile = openDlg.getSelectedFile();
 					System.out.println("선택된 파일명: " + imgFile.getName());
 					System.out.println("선택된 파일경로명: " + imgFile.getPath());
@@ -280,7 +292,7 @@ public class New_AD_Movie extends JFrame {
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Ad_Movie_DB AMDB = new Ad_Movie_DB();
+				Ad_AdPage_DB AMDB = new Ad_AdPage_DB();
 				AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
 						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
 				JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
