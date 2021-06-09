@@ -34,12 +34,13 @@ import javax.swing.ImageIcon;
 
 public class Main extends JFrame {
 
+	final Panel header_panel = new Panel();
+	final Panel cpn_panel = new Panel();;
+
 	JPanel contentPane;
-	Panel header_panel;
 	Panel mainPanel;
 	Panel main_panel;
 	Panel title_panel;
-	Panel cpn_panel;
 	Panel mem_panel;
 	Panel mem_detail;
 	Panel screening_panel;
