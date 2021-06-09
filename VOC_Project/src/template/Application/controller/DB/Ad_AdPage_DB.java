@@ -133,10 +133,10 @@ public class Ad_AdPage_DB {
 			String gee, String opendate, String production, String imagefilename, String time) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "INSERT INTO movies (movies_id, title, genre, director, age_group, story, gee, open_date, production, image_file_name, running_time) "
+			String sql = "INSERT INTO movies (movies_id, title, genre, director, age_group, story, average_score, gee, open_date, production, image_file_name, schedule_date,	 running_time) "
 					+ "values " + "(MOVIE_SEQ.nextval," + "'" + title + "', '" + genre + "', '" + director + "', "
-					+ agegroup + ", '" + story + "', '" + gee + "', '" + opendate + "', '" + production + "', '"
-					+ imagefilename + "', '" + time + "')";
+					+ agegroup + ", '" + story + "', 0,'" + gee + "', '" + opendate + "', '" + production + "', '"
+					+ imagefilename + "', '2021/06/15', '" + time + "')";
 
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
