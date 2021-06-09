@@ -130,10 +130,10 @@ public class Main extends JFrame {
 		title_panel.setBounds(10, 16, 454, 50);
 		main_panel.add(title_panel);
 
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int day = cal.get(Calendar.DAY_OF_MONTH);
+//		Calendar cal = Calendar.getInstance();
+		int year = 2021;
+		int month = 06;
+		int day = 14;
 		title_panel.setLayout(null);
 
 		panel = new JPanel();

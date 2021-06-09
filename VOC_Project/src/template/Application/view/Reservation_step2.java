@@ -170,7 +170,7 @@ public class Reservation_step2 extends JFrame {
 		label_8.setBounds(0, 126, 100, 31);
 		movietxt_div.add(label_8);
 
-		JLabel optionname = new JLabel(RD.getOptionName());
+		JLabel optionname = new JLabel(RD.getOptionName()	);
 		optionname.setHorizontalAlignment(SwingConstants.CENTER);
 		optionname.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 		optionname.setBounds(100, 126, 211, 31);

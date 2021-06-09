@@ -68,7 +68,7 @@ public class Reservation_step1 extends JFrame {
 	public static final int MOVIE_PRICE = 30000;
 	String Car = "";
 	String selectOption;
-	String optionName = "";
+	String optionName = "선택안함";
 	String[] selectP;
 	String[] selectPrice;
 	int CarType = 0;
