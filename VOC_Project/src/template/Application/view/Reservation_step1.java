@@ -231,22 +231,35 @@ public class Reservation_step1 extends JFrame {
 
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (tglbtnNewToggleButton.isSelected()) {
+					 //  해당 영화정보에 같은 날짜에 같은 좌석 예약 할때에 예약 못하게 막아야 하는 작업
+					// 	그게 ture면 selected_car.png로 보여지고 그게 아니면 해당 선택작업이 이뤄져야 함
+					 //  DB함수 추가 작업해야함
+					if(true) {
 						ImageIcon ic = new ImageIcon(
-								Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
+								Reservation_step1.class.getResource("/template/Reference/icons/selected_car.png"));
 						Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 						ic.setImage(icImg);
 						tglbtnNewToggleButton.setIcon(ic);
 						tglbtnNewToggleButton.repaint();
 						SName.add(tglbtnNewToggleButton.getToolTipText());
-					} else {
-						ImageIcon ic = new ImageIcon(
-								Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
-						Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-						ic.setImage(icImg);
-						tglbtnNewToggleButton.setIcon(ic);
-						tglbtnNewToggleButton.repaint();
-						SName.remove(tglbtnNewToggleButton.getToolTipText());
+					}else {
+						if (tglbtnNewToggleButton.isSelected()) {
+							ImageIcon ic = new ImageIcon(
+									Reservation_step1.class.getResource("/template/Reference/icons/select_car.png"));
+							Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+							ic.setImage(icImg);
+							tglbtnNewToggleButton.setIcon(ic);
+							tglbtnNewToggleButton.repaint();
+							SName.add(tglbtnNewToggleButton.getToolTipText());
+						} else {
+							ImageIcon ic = new ImageIcon(
+									Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
+							Image icImg = ic.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+							ic.setImage(icImg);
+							tglbtnNewToggleButton.setIcon(ic);
+							tglbtnNewToggleButton.repaint();
+							SName.remove(tglbtnNewToggleButton.getToolTipText());
+						}
 					}
 
 				}
