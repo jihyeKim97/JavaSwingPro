@@ -17,7 +17,7 @@ public class Ad_AdPage_DB {
 	static DB_Connect connect;
 
 	/* 관리자 - 회원 : 전체 회원 관리 */
-	public ArrayList<Login_data> selectAllMembers() {
+	public static ArrayList<Login_data> selectAllMembers() {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			ArrayList<Login_data> uiList = new ArrayList<>();
@@ -180,7 +180,7 @@ public class Ad_AdPage_DB {
 	}
 
 	/* 관리자 - 영화 : 영화 정보 삭제 관리 */
-	public void deleteMovie(int movieID) {
+	public static void deleteMovie(int movieID) {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "delete movies where movies_id = " + movieID;
@@ -195,7 +195,7 @@ public class Ad_AdPage_DB {
 	}
 
 	/* 관리자 - 공지사항 : 공지사항 정보 전체 관리 */
-	public ArrayList<Notice_data> selectAllNotice() {
+	public static ArrayList<Notice_data> selectAllNotice() {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			ArrayList<Notice_data> uiList = new ArrayList<>();
@@ -267,7 +267,7 @@ public class Ad_AdPage_DB {
 	}
 
 	/* 관리자 - 공지사항 : 공지사항 정보 삭제 관리 */
-	public void deleteNotice(int noticeID) {
+	public static void deleteNotice(int noticeID) {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "delete notice where notice_id = " + noticeID;
@@ -351,7 +351,7 @@ public class Ad_AdPage_DB {
 	}
 
 	/* 관리자 - 리뷰 : 리뷰 정보 수정 관리 */
-	public boolean UpdateReview(int noticeid, String content) {
+	public static boolean UpdateReview(int noticeid, String content) {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "UPDATE REVIEW SET CONTENT = ? WHERE REVIEW_ID = " + noticeid;
