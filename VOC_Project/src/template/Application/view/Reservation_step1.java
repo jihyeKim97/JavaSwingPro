@@ -219,13 +219,14 @@ public class Reservation_step1 extends JFrame {
 			int SS = 0;
 			JToggleButton tglbtnNewToggleButton = new JToggleButton();
 			tglbtnNewToggleButton.setToolTipText(ButtonName.get(i));
-			for (int j = 0; j < date.length; j++) {
-				if (SeatNum.get(j).equals(tglbtnNewToggleButton.getToolTipText()))
+			for (int j = 0; j < SeatNum.size(); j++) {
+				if (SeatNum.get(j).equals(tglbtnNewToggleButton.getToolTipText())) {
 					SS = 1;
+				break;	
+				}
 				else
 					SS = 0;
 			}
-			
 			if ( SS == 0) {
 			ImageIcon ic = new ImageIcon(
 					Reservation_step1.class.getResource("/template/Reference/icons/default_car.png"));
