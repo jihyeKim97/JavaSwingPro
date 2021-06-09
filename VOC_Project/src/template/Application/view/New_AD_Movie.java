@@ -281,7 +281,6 @@ public class New_AD_Movie extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ad_Movie_DB AMDB = new Ad_Movie_DB();
-				lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
 				AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
 						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
 				JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
