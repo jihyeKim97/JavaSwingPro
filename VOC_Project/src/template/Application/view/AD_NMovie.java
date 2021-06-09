@@ -261,7 +261,8 @@ public class AD_NMovie extends JFrame {
 					imgFile = openDlg.getSelectedFile();
 					System.out.println("선택된 파일명: " + imgFile.getName());
 					System.out.println("선택된 파일경로명: " + imgFile.getPath());
-					dbImgPath = currentDirPathDetail + "/" + imgFile.getName();
+					dbImgPath = "/template/reference/images/" + imgFile.getName();
+					dbImgPath.trim();
 					lblNewLabel_4.setText(dbImgPath);
 					lblNewLabel_4.setToolTipText("이미지 경로: " + imgFile.getPath());
 					// 42x42 아이콘
@@ -270,7 +271,7 @@ public class AD_NMovie extends JFrame {
 					ic.setImage(icImg);
 					lblNewLabel_4.setIcon(ic);
 					lblNewLabel_4.repaint();
-					ppp = currentDirPathDetail + " / " + imgFile.getName();
+					ppp = currentDirPathDetail + "/" + imgFile.getName();
 					lblNewLabel_6.setText(dbImgPath);
 				}
 			}
@@ -291,6 +292,7 @@ public class AD_NMovie extends JFrame {
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String runningTime = "120분";
 				if (contentTA.getText().isEmpty() || title.getText().isEmpty() || ger.getText().isEmpty()
 						|| age.getText().isEmpty() || per.getText().isEmpty() || open.getText().isEmpty()
 						|| com.getText().isEmpty()) {
@@ -298,7 +300,7 @@ public class AD_NMovie extends JFrame {
 				} else {
 					Ad_AdPage_DB AMDB = new Ad_AdPage_DB();
 					AMDB.addNewMovie(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
-							contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText());
+							contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText().trim(), runningTime);
 					JOptionPane.showMessageDialog(null, "영화가 등록되었습니다.");
 					dispose();
 				}

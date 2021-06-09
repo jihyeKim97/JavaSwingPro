@@ -95,8 +95,10 @@ public class AD_Movie extends JFrame {
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				final String currentDirPath = "./src/template/reference/images";
-				final String currentDirPathDetail = "/template/reference/images";
+				final String currentDirPath = "./src/template/Reference/images";
+				final String currentDirPathDetail = "/template/Reference/images";
+				currentDirPath.trim();
+				currentDirPathDetail.trim();
 				System.out.println(currentDirPath);
 				JFileChooser openDlg = new JFileChooser(currentDirPath);
 				if (openDlg.showOpenDialog(Mofrm) == JFileChooser.APPROVE_OPTION) {
@@ -112,7 +114,7 @@ public class AD_Movie extends JFrame {
 					ic.setImage(icImg);
 					lblNewLabel_4.setIcon(ic);
 					lblNewLabel_4.repaint();
-					ppp = currentDirPathDetail + " / " + imgFile.getName();
+					ppp = currentDirPathDetail + "/" + imgFile.getName();
 				}
 			}
 		});
@@ -287,7 +289,7 @@ public class AD_Movie extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ad_AdPage_DB AMDB = new Ad_AdPage_DB();
-				lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
+				lblNewLabel_6.setText(lblNewLabel_6.getText());
 				AMDB.UpdateMovieInfo(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
 						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText(),
 						selmovie.getMoviesid());

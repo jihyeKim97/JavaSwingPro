@@ -130,13 +130,13 @@ public class Ad_AdPage_DB {
 
 	/* 관리자 - 영화 : 영화 정보 추가 관리 */
 	public static boolean addNewMovie(String title, String genre, String director, int agegroup, String story,
-			String gee, String opendate, String production, String imagefilename) {
+			String gee, String opendate, String production, String imagefilename, String time) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "INSERT INTO movies (movies_id, title, genre, director, age_group, story, gee, open_date, production, image_file_name) "
+			String sql = "INSERT INTO movies (movies_id, title, genre, director, age_group, story, gee, open_date, production, image_file_name, running_time) "
 					+ "values " + "(MOVIE_SEQ.nextval," + "'" + title + "', '" + genre + "', '" + director + "', "
-					+ agegroup + ", '" + story + "', '" + gee + "', '" + opendate + "', '" + production + "', ' "
-					+ imagefilename + "')";
+					+ agegroup + ", '" + story + "', '" + gee + "', '" + opendate + "', '" + production + "', '"
+					+ imagefilename + "', '" + time + "')";
 
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
@@ -156,12 +156,12 @@ public class Ad_AdPage_DB {
 
 	/* 관리자 - 영화 : 영화 정보 수정 관리 */
 	public static boolean UpdateMovieInfo(String title, String genre, String director, int agegroup, String story,
-			String gee, String opendate, String production, String imagefilename, int movieid) {
+			String gee, String opendate, String production, String imagefilename, int movieid ) {
 		connect.beginConnection();
 		if (connect.conn != null) {
 			String sql = "update movies SET title = '" + title + "', genre = '" + genre + "', director = '" + director
 					+ "', age_group = " + agegroup + ", story = '" + story + "', gee = '" + gee + "', open_date = '"
-					+ opendate + "', production = '" + production + "'  ,image_file_name = '" + imagefilename
+					+ opendate + "', production = '" + production + "'  ,image_file_name = '" + imagefilename 
 					+ "' where movies_id = " + movieid;
 
 			try {
