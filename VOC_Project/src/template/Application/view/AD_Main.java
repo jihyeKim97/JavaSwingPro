@@ -63,7 +63,7 @@ public class AD_Main extends JFrame {
 	Reservation_DB reservaiton;
 	Ad_AdPage_DB addb;
 	AD_Main frm;
-	New_AD_Movie NADM ;
+	New_AD_Movie NADM;
 	static Login Lg;
 	static Login_data Ld;
 	Review_Data review = new Review_Data();
@@ -324,8 +324,8 @@ public class AD_Main extends JFrame {
 		RoundedButtonY button_1 = new RoundedButtonY("추가");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					New_AD_Movie movies = new New_AD_Movie(frm);
-					movies.setVisible(true);
+				New_AD_Movie movies = new New_AD_Movie(frm);
+				movies.setVisible(true);
 			}
 		});
 		button_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -334,15 +334,14 @@ public class AD_Main extends JFrame {
 
 		RoundedButtonR button_2 = new RoundedButtonR("삭제");
 		button_2.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-						MDB.deleteMovie(selmovie);
-						System.out.println("삭제되었습니다.");
-				}
-			});
+			public void actionPerformed(ActionEvent e) {
+				MDB.deleteMovie(selmovie);
+				System.out.println("삭제되었습니다.");
+			}
+		});
 		button_2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		button_2.setBounds(215, 5, 100, 30);
+		button_2.setBounds(320, 5, 100, 30);
 		panel_1.add(button_2);
-		
 
 		JPanel ad_pn_notice = new JPanel();
 		ad_pn_notice.addComponentListener(new ComponentAdapter() {
@@ -378,15 +377,19 @@ public class AD_Main extends JFrame {
 		RoundedButtonB roundedButtonY = new RoundedButtonB("수정");
 		roundedButtonY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AD_Movie movies = new AD_Movie(frm, selmovie);
-				movies.setVisible(true);
+				if (click_moi) {
+					AD_Movie movies = new AD_Movie(frm, selmovie);
+					movies.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "선택한 영화가 없습니다");
+				}
 			}
 		});
-		
+
 		roundedButtonY.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		roundedButtonY.setBounds(321, 5, 100, 30);
+		roundedButtonY.setBounds(215, 5, 100, 30);
 		panel_1.add(roundedButtonY);
-		
+
 		ad_tb_NoticeTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		scrollPane_4.setViewportView(ad_tb_NoticeTable);
 
@@ -399,25 +402,25 @@ public class AD_Main extends JFrame {
 		button_3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					AD_Notice notice = new AD_Notice(frm );
-					notice.setVisible(true);		
+				AD_Notice notice = new AD_Notice(frm);
+				notice.setVisible(true);
 			}
 		});
-		
+
 		button_3.setBounds(109, 5, 100, 30);
 		panel_2.add(button_3);
 
 		RoundedButtonR button_4 = new RoundedButtonR("삭제");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					NDB.deleteNotice(selNotice);
-					System.out.println("삭제되었습니다.");
+				NDB.deleteNotice(selNotice);
+				System.out.println("삭제되었습니다.");
 			}
 		});
 		button_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		button_4.setBounds(214, 5, 100, 30);
 		panel_2.add(button_4);
-		
+
 		RoundedButtonG roundedButtonG_1 = new RoundedButtonG("조회");
 		roundedButtonG_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -458,7 +461,7 @@ public class AD_Main extends JFrame {
 	}
 
 	public void showMemberTableUIFromDB() {
-		final String columnNames[] = { "고유 번호", "아이디", "비밀번호", "이름", "성별", "전화번호", "생년월일","회원여부" }; // 7
+		final String columnNames[] = { "고유 번호", "아이디", "비밀번호", "이름", "성별", "전화번호", "생년월일", "회원여부" }; // 7
 
 		Login_DB mgr = new Login_DB();
 		mList = mgr.selectAllMembers();
@@ -477,11 +480,11 @@ public class AD_Main extends JFrame {
 			data[i][5] = mbl.getPhone_number();
 			data[i][6] = mbl.getBirthday();
 			String ISmember = "";
-			if(mbl.getIs_member()==1){
+			if (mbl.getIs_member() == 1) {
 				ISmember = "관리자";
-			}else if(mbl.getIs_member()==0){
+			} else if (mbl.getIs_member() == 0) {
 				ISmember = "회원";
-			}else {
+			} else {
 				ISmember = "탈퇴 회원";
 			}
 			data[i][7] = ISmember;

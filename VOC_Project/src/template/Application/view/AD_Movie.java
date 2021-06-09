@@ -88,7 +88,8 @@ public class AD_Movie extends JFrame {
 		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource(selmovie.getImagefilename())));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/no_image.png")));
 		panel_2.add(lblNewLabel_4);
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
@@ -148,7 +149,7 @@ public class AD_Movie extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(0, 0, 166, 340);
 		panel_6.add(panel_4);
-		panel_4.setLayout(new GridLayout(0, 1, 0, 10));
+		panel_4.setLayout(new GridLayout(0, 1, 0, 20));
 
 		JLabel lblNewLabel_3 = new JLabel("제목");
 		panel_4.add(lblNewLabel_3);
@@ -193,16 +194,18 @@ public class AD_Movie extends JFrame {
 		JPanel panel_7 = new JPanel();
 		panel_7.setBounds(178, 0, 332, 340);
 		panel_6.add(panel_7);
-		panel_7.setLayout(new GridLayout(0, 1, 0, 10));
+		panel_7.setLayout(null);
 
 		title = new JTextField();
+		title.setBounds(0, 0, 332, 25);
+		title.setColumns(20);
 		panel_7.add(title);
 		title.setText(selmovie.getTitle());
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		title.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
-		title.setColumns(10);
 
 		ger = new JTextField();
+		ger.setBounds(0, 45, 332, 25);
 		panel_7.add(ger);
 		ger.setText(selmovie.getGee());
 		ger.setHorizontalAlignment(SwingConstants.CENTER);
@@ -210,6 +213,7 @@ public class AD_Movie extends JFrame {
 		ger.setColumns(10);
 
 		dir = new JTextField();
+		dir.setBounds(0, 90, 332, 25);
 		panel_7.add(dir);
 		dir.setText(selmovie.getDirector());
 		dir.setHorizontalAlignment(SwingConstants.CENTER);
@@ -217,6 +221,7 @@ public class AD_Movie extends JFrame {
 		dir.setColumns(10);
 
 		age = new JTextField();
+		age.setBounds(0, 135, 332, 25);
 		panel_7.add(age);
 		age.setText("" + selmovie.getAgegroup());
 		age.setHorizontalAlignment(SwingConstants.CENTER);
@@ -224,6 +229,7 @@ public class AD_Movie extends JFrame {
 		age.setColumns(10);
 
 		per = new JTextField();
+		per.setBounds(0, 180, 332, 25);
 		panel_7.add(per);
 		per.setText(selmovie.getGee());
 		per.setHorizontalAlignment(SwingConstants.CENTER);
@@ -231,6 +237,7 @@ public class AD_Movie extends JFrame {
 		per.setColumns(10);
 
 		open = new JTextField();
+		open.setBounds(0, 225, 332, 25);
 		panel_7.add(open);
 		open.setText(selmovie.getOpendate() + "");
 		open.setHorizontalAlignment(SwingConstants.CENTER);
@@ -238,6 +245,7 @@ public class AD_Movie extends JFrame {
 		open.setColumns(10);
 
 		com = new JTextField();
+		com.setBounds(0, 270, 332, 25);
 		panel_7.add(com);
 		com.setText(selmovie.getProduction());
 		com.setHorizontalAlignment(SwingConstants.CENTER);
@@ -245,10 +253,23 @@ public class AD_Movie extends JFrame {
 		com.setColumns(10);
 
 		JLabel lblNewLabel_6 = new JLabel(selmovie.getImagefilename());
+		lblNewLabel_6.setBounds(0, 315, 332, 25);
 		lblNewLabel_6.setForeground(new Color(255, 0, 0));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		panel_7.add(lblNewLabel_6);
+		
+		JLabel label_6 = new JLabel("예 ) 12세 연령제한  =>  12");
+		label_6.setForeground(Color.BLUE);
+		label_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+		label_6.setBounds(5, 160, 313, 15);
+		panel_7.add(label_6);
+		
+		JLabel label_7 = new JLabel("예 ) 2020년 5월 24일  =>  2020/05/24 & 2020.05.24");
+		label_7.setForeground(Color.BLUE);
+		label_7.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
+		label_7.setBounds(0, 250, 313, 15);
+		panel_7.add(label_7);
 
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
