@@ -140,10 +140,11 @@ public class Movie_Informaiton extends JFrame {
 		}
 		Score = Review.starscore(movie.getMoviesid());
 		RV = Review.getReviewData(movie.getMoviesid());
-		double A = (double)Score/(double)RV.size();
-		System.out.println("평균" + A);
-		MDB.changeScore(A, movie.getMoviesid());
-		
+		if (RV.size() > 0) {
+			double A = (double) Score / (double) RV.size();
+			System.out.println("평균" + A);
+			MDB.changeScore(A, movie.getMoviesid());
+		}
 		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 752);
