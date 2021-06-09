@@ -42,8 +42,6 @@ public class Reservation_step1 extends JFrame {
 	Panel header, infoContent;
 	JPanel infoDontent, seat_number, seat_detail, option, seat, contentPane, seatContent, content, info;
 	JComboBox car_type, option_type;
-	JButton A_2, A_3, A_4, A_5, A_6, B_1, B_2, B_3, B_4, B_5, B_6, C_1, C_2, C_3, C_4, C_5, C_6, D_1, D_2, D_3, D_4,
-			D_5, D_6, E_1, E_2, E_3, E_4, E_5, E_6, F_1, F_2, F_3, F_4, F_5, F_6;
 
 	public static final int MOVIE_PRICE = 30000;
 	Main mainfrm;
@@ -60,10 +58,12 @@ public class Reservation_step1 extends JFrame {
 	int CarType = 0;
 	JToggleButton tglbtnNewToggleButton;
 	ArrayList<Object> SName = new ArrayList<>();
+	ArrayList<String> SeatNum = new ArrayList<>();
 	String selectOption;
 	String optionName = "";
 	String[] selectP;
 	String[] selectPrice;
+	Reservation_DB RDB;
 	int optionPrice = 0;
 	Reservation_data RD;
 	private JButton btnNewButton;
@@ -261,6 +261,7 @@ public class Reservation_step1 extends JFrame {
 							SName.remove(tglbtnNewToggleButton.getToolTipText());
 						}
 					}
+
 				}
 			});
 			if (tglbtnNewToggleButton.isSelected()) {
@@ -321,16 +322,29 @@ public class Reservation_step1 extends JFrame {
 		btn_payment = new RoundedButtonG("결제 하기");
 		btn_payment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RD = new Reservation_data((String) SName.get(0), CarType, MOVIE_PRICE, new Date(), optionName,
-						optionPrice);
-				if (SName.size() == 1) {
-					Reservation_step2 reserStep2 = new Reservation_step2(reserStfrm, movie, Ld, RD);
-					Point fPt = reserStfrm.getLocationOnScreen();
-					reserStep2.setLocation(fPt.x, fPt.y);
-					reserStep2.setVisible(true);
-					dispose();
+				int A = 0;
+				SeatNum = RDB.selectedSeat(movie.getMoviesid());
+				for (int j = 0; j < SeatNum.size(); j++) {
+					if (SeatNum.get(j).equals((SName.get(0)))) {
+						A = 1;
+						break;
+					}
+				}
+
+				if (A == 0) {
+					if (SName.size() == 1) {
+						RD = new Reservation_data((String) SName.get(0), CarType, MOVIE_PRICE, new Date(), optionName,
+								optionPrice);
+						Reservation_step2 reserStep2 = new Reservation_step2(reserStfrm, movie, Ld, RD);
+						Point fPt = reserStfrm.getLocationOnScreen();
+						reserStep2.setLocation(fPt.x, fPt.y);
+						reserStep2.setVisible(true);
+						dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "좌석을 하나만 선택해 주세요");
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "좌석을 하나만 선택해 주세요");
+					JOptionPane.showMessageDialog(null, "이미 선택된 자리입니다.");
 				}
 			}
 		});

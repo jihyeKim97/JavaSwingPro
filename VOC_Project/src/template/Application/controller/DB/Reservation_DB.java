@@ -101,6 +101,25 @@ public class Reservation_DB {
 		return false;
 	}
 
+	public static ArrayList<String> selectedSeat(int movieid){
+		ArrayList<String> selectedSeat = new ArrayList<>(); 
+		connect.beginConnection();
+		String sql = "select * from reservation where movie_id = " + movieid;
+		try {
+			Statement stmt = connect.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				String movieseat = rs.getString("seat_number");
+				selectedSeat.add(movieseat);
+			}
+			return selectedSeat;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connect.endConnection();
+		return selectedSeat;
+	}
+	
 	public static Date StringtoDate(String date) {
 		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
