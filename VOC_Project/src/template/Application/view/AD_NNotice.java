@@ -30,17 +30,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
-public class AD_Notice extends JFrame {
+public class AD_NNotice extends JFrame {
 
 	JPanel contentPane;
 	JTextField textField;
 	JTextArea textArea;
 
-	AD_Notice Nfrm;
-	Ad_AdPage_DB NDB;
+	AD_NNotice Nfrm;
+	Ad_AdPage_DB ANDB;
 	boolean A = false;
 
-	public AD_Notice(AD_Main frm) {
+	public AD_NNotice(AD_Main frm, Notice_data selNotice) {
 		this.Nfrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
@@ -80,6 +80,7 @@ public class AD_Notice extends JFrame {
 		panel_2.add(lblNewLabel_1);
 
 		textField = new JTextField("");
+		textField.setText(selNotice.getTitle());
 		textField.setBounds(87, 0, 423, 47);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
@@ -87,12 +88,14 @@ public class AD_Notice extends JFrame {
 		textField.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(12, 67, 510, 563);
 		panel_1.add(scrollPane);
 
 		textArea = new JTextArea("");
 		textArea.setLineWrap(true);
+		textArea.setText(selNotice.getContent());
 		textArea.setWrapStyleWord(true);
 		scrollPane.setViewportView(textArea);
 
@@ -106,8 +109,8 @@ public class AD_Notice extends JFrame {
 				} else if (content.isEmpty() && content == null) {
 					JOptionPane.showMessageDialog(null, "내용을 입력해주세요");
 				} else {
-					NDB.addNotice(title, content);
-					System.out.println("공지사항이 등록되었습니다.");
+					ANDB.updateNotice(selNotice.getNoticeid(), title, content);
+					System.out.println("공지사항이 수정되었습니다.");
 					dispose();
 				}
 			}

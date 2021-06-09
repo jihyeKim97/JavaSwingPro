@@ -57,13 +57,12 @@ public class AD_Main extends JFrame {
 	ArrayList<Notice_data> nList;
 	ArrayList<Reservation_data> resList;
 	Notice_DB NDB = new Notice_DB();
-	Movie_DB MDB = new Movie_DB();
 	Review_DB RDB;
 	Login_DB LDB;
 	Reservation_DB reservaiton;
-	Ad_AdPage_DB addb;
+	Ad_AdPage_DB ADB;
 	AD_Main frm;
-	New_AD_Movie NADM;
+	AD_NMovie NADM;
 	static Login Lg;
 	static Login_data Ld;
 	Review_Data review = new Review_Data();
@@ -232,7 +231,7 @@ public class AD_Main extends JFrame {
 				if (click_rev) {
 					String dis = "관리자에 의해 비활성화 된 리뷰 입니다";
 					Ad_AdPage_DB ADB = new Ad_AdPage_DB();
-					ADB.changeReview(selReview.getReviewid(), dis);
+					ADB.UpdateReview(selReview.getReviewid(), dis);
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 리뷰이 없습니다");
 				}
@@ -324,7 +323,7 @@ public class AD_Main extends JFrame {
 		RoundedButtonY button_1 = new RoundedButtonY("추가");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				New_AD_Movie movies = new New_AD_Movie(frm);
+				AD_NMovie movies = new AD_NMovie(frm);
 				movies.setVisible(true);
 			}
 		});
@@ -335,7 +334,7 @@ public class AD_Main extends JFrame {
 		RoundedButtonR button_2 = new RoundedButtonR("삭제");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MDB.deleteMovie(selmovie);
+				ADB.deleteMovie(selmovie);
 				System.out.println("삭제되었습니다.");
 			}
 		});
@@ -418,7 +417,7 @@ public class AD_Main extends JFrame {
 			}
 		});
 		button_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		button_4.setBounds(214, 5, 100, 30);
+		button_4.setBounds(320, 5, 100, 30);
 		panel_2.add(button_4);
 
 		RoundedButtonG roundedButtonG_1 = new RoundedButtonG("조회");
@@ -430,6 +429,21 @@ public class AD_Main extends JFrame {
 		roundedButtonG_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		roundedButtonG_1.setBounds(5, 5, 100, 30);
 		panel_2.add(roundedButtonG_1);
+
+		RoundedButtonB roundedButtonB = new RoundedButtonB("수정");
+		roundedButtonB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (click_not) {
+					AD_NNotice notice = new AD_NNotice(frm, selNotice);
+					notice.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "선택한 공지사항이 없습니다");
+				}
+			}
+		});
+		roundedButtonB.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		roundedButtonB.setBounds(215, 5, 100, 30);
+		panel_2.add(roundedButtonB);
 
 		RoundedButtonD ad_btn_AdLogOut = new RoundedButtonD("로그아웃");
 		ad_btn_AdLogOut.setText("LOGOUT");
@@ -553,7 +567,7 @@ public class AD_Main extends JFrame {
 		final String columnNames[] = { "영화인덱스", "영화제목", "장르", "감독", "연령등급", "줄거리", "영화평균별점", "등장인물", "개봉일자", "제작사",
 				"이미지 파일경로", "상영 날짜", "상영 시간", "러닝타임" }; // 14개
 
-		movieList = MDB.getMovieData();
+		movieList = ADB.getMovieData();
 		if (movieList == null || movieList.isEmpty())
 			return;
 		final int nDBSize = movieList.size();

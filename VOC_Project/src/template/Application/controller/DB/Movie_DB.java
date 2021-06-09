@@ -19,43 +19,6 @@ public class Movie_DB {
 	static ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	static ArrayList<Integer> movieidlist = new ArrayList<>();
 
-	public static ArrayList<Movie_Data> getMovieData() {
-		ArrayList<Movie_Data> MovieList = new ArrayList<>();
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "select * from Movies";
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				while (rs.next()) {
-					int moviesid = rs.getInt("movies_id");
-					String title = rs.getString("title");
-					String genre = rs.getString("genre");
-					String director = rs.getString("director");
-					int agegroup = rs.getInt("age_group");
-					String story = rs.getString("story");
-					int averagecsore = rs.getInt("average_score");
-					String gee = rs.getString("gee");
-					Date openDate = rs.getDate("open_date");
-					String production = rs.getString("production");
-					String imageFileName = rs.getString("image_file_name");
-					Date scheduleDate = rs.getDate("schedule_date");
-					int Scheduletime = rs.getInt("schedule_time");
-					String runningTime = rs.getString("running_time");
-
-					MovieList.add(new Movie_Data(moviesid, title, genre, director, agegroup, story, averagecsore, gee,
-							openDate, production, imageFileName, scheduleDate, Scheduletime, runningTime));
-				}
-
-				return MovieList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			System.out.println("오류");
-		}
-		connect.endConnection();
-		return MovieList;
-	}
 
 	public static int getMovieIDFromImage(String ImageFile) {
 		connect.beginConnection();
@@ -231,20 +194,6 @@ public class Movie_DB {
 		connect.endConnection();
 		return MovieList;
 
-	}
-	
-	public void deleteMovie(Movie_Data selMovie) {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "delete movies where movies_id = " + selMovie.getMoviesid();
-		try {
-			PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-			pstmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-		}
-		connect.endConnection();
 	}
 
 	public static Date transformDate(String date) {

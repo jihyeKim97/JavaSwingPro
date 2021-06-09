@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
-import template.Application.controller.DB.Ad_Movie_DB;
+import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Movie_Data;
 
@@ -34,6 +34,9 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.ScrollPaneConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AD_Movie extends JFrame {
 
@@ -47,14 +50,13 @@ public class AD_Movie extends JFrame {
 	JTextField open;
 
 	File imgFile;
-	Admin_FilmManagement_Enrollment dlg;
 	static Login_DB LDB;
 	AD_Movie Mofrm;
-	Ad_Movie_DB AMDB;
+	Ad_AdPage_DB AMDB;
 	String dbImgPath;
 	String ppp;
 
-	public AD_Movie(AD_Main frm,Movie_Data selmovie) {
+	public AD_Movie(AD_Main frm, Movie_Data selmovie) {
 		this.Mofrm = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 560, 841);
@@ -98,7 +100,7 @@ public class AD_Movie extends JFrame {
 				final String currentDirPathDetail = "/template/reference/images";
 				System.out.println(currentDirPath);
 				JFileChooser openDlg = new JFileChooser(currentDirPath);
-				if (openDlg.showOpenDialog(dlg) == JFileChooser.APPROVE_OPTION) {
+				if (openDlg.showOpenDialog(Mofrm) == JFileChooser.APPROVE_OPTION) {
 					imgFile = openDlg.getSelectedFile();
 					System.out.println("선택된 파일명: " + imgFile.getName());
 					System.out.println("선택된 파일경로명: " + imgFile.getPath());
@@ -129,10 +131,13 @@ public class AD_Movie extends JFrame {
 		panel_3.add(lblNewLabel_2);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 38, 297, 233);
 		panel_3.add(scrollPane);
 
 		JTextArea contentTA = new JTextArea();
+		contentTA.setLineWrap(true);
 		scrollPane.setViewportView(contentTA);
 		contentTA.setText(selmovie.getStory());
 
@@ -227,6 +232,14 @@ public class AD_Movie extends JFrame {
 		age.setHorizontalAlignment(SwingConstants.CENTER);
 		age.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 14));
 		age.setColumns(10);
+		age.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() > 2
+						|| (ke.getKeyChar() < '0' || ke.getKeyChar() > '9'))
+					ke.consume();
+			}
+		});
 
 		per = new JTextField();
 		per.setBounds(0, 180, 332, 25);
@@ -258,13 +271,13 @@ public class AD_Movie extends JFrame {
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		panel_7.add(lblNewLabel_6);
-		
+
 		JLabel label_6 = new JLabel("예 ) 12세 연령제한  =>  12");
 		label_6.setForeground(Color.BLUE);
 		label_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
 		label_6.setBounds(5, 160, 313, 15);
 		panel_7.add(label_6);
-		
+
 		JLabel label_7 = new JLabel("예 ) 2020년 5월 24일  =>  2020/05/24 & 2020.05.24");
 		label_7.setForeground(Color.BLUE);
 		label_7.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 12));
@@ -274,10 +287,11 @@ public class AD_Movie extends JFrame {
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Ad_Movie_DB AMDB = new Ad_Movie_DB();
+				Ad_AdPage_DB AMDB = new Ad_AdPage_DB();
 				lblNewLabel_6.setText("/template/Reference/images/" + title.getText() + ".png");
-				AMDB.changeMovieInfo(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
-						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText(), selmovie.getMoviesid());
+				AMDB.UpdateMovieInfo(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
+						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText(),
+						selmovie.getMoviesid());
 				JOptionPane.showMessageDialog(null, "영화가 수정되었습니다.");
 				dispose();
 			}
