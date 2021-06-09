@@ -82,19 +82,6 @@ public class AD_Main extends JFrame {
 	String selNoticeContent;
 	Notice_data selNotice = new Notice_data();
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AD_Main frame = new AD_Main(Lg, Ld);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public AD_Main(Login Lg, Login_data Ld) {
 		this.frm = this;
 		setTitle("Vehicle Outdoor Cinema [ admin page ] ");

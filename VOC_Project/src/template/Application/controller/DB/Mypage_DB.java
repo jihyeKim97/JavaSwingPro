@@ -22,7 +22,7 @@ public class Mypage_DB {
 	static ArrayList<Mypage_Reservation_data> ReArr = new ArrayList<>();
 	static ArrayList<Mypage_Review_data> ViArr = new ArrayList<>();
 
-	//  멤버ID로 회원 하나의 정보 가져오기
+	// 멤버ID로 회원 하나의 정보 가져오기
 	public static Mypage_Member_data SelectMember(int memberID) {
 		Mypage_Member_data MMD = new Mypage_Member_data();
 		connect.beginConnection();

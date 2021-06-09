@@ -19,13 +19,14 @@ public class Mypage_Review_data {
 				+ ", reviewDate=" + reviewDate + ", reservationID=" + reservationID + ", moviesID=" + moviesID + "]";
 	}
 
-	public Mypage_Review_data() {}
-	
+	public Mypage_Review_data() {
+	}
+
 	public Mypage_Review_data(String content, int star_score) {
-	super();
-	this.content = content;
-	this.star_score = star_score;
-}
+		super();
+		this.content = content;
+		this.star_score = star_score;
+	}
 
 	public Mypage_Review_data(String content, int star_score, int reservationID, int moviesID) {
 		super();
@@ -34,8 +35,6 @@ public class Mypage_Review_data {
 		this.reservationID = reservationID;
 		this.moviesID = moviesID;
 	}
-	
-	
 
 	public Mypage_Review_data(int reviewID, String content, int star_score, Date reviewDate, int reservationID,
 			int moviesID) {

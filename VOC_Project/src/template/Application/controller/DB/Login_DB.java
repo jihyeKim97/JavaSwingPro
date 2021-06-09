@@ -259,7 +259,7 @@ public class Login_DB {
 		}
 		return sb.toString();
 	}
-	
+
 	// 이름 아이디 핸드폰번호로 비밀번호 찾기
 	public int findpw(String name, String login, String phone_number) {
 		connect.beginConnection();

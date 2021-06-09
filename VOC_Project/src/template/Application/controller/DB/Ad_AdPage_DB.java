@@ -282,7 +282,6 @@ public class Ad_AdPage_DB {
 		}
 		connect.endConnection();
 	}
-	
 
 	/* 관리자 - 예약 : 전체 조회 관리 */
 	public static ArrayList<Reservation_data> AllReservation() {
@@ -320,7 +319,6 @@ public class Ad_AdPage_DB {
 		connect.endConnection();
 		return null;
 	}
-
 
 	/* 관리자 - 리뷰 : 리뷰 정보 전체 관리 */
 	public static ArrayList<Review_Data> AllReviewData() {
