@@ -15,9 +15,6 @@ import template.Application.controller.Data.Review_Data;
 public class Ad_AdPage_DB {
 
 	static DB_Connect connect;
-	static Movie_Data MD;
-	static ArrayList<Review_Data> ReviewArr = new ArrayList<>();
-	static Review_Data ad_Review;
 
 	/* 관리자 - 회원 : 전체 회원 관리 */
 	public ArrayList<Login_data> selectAllMembers() {
