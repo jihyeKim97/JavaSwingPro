@@ -116,23 +116,23 @@ public class Mypage_writePage extends JFrame {
 					String star = "";
 					int score = 0;
 					switch (ViArr.getStar_score()) {
-					case 0:
+					case 1:
 						star = "★☆☆☆☆";
 						score = 1;
 						break;
-					case 1:
+					case 2:
 						star = "★★☆☆☆";
 						score = 2;
 						break;
-					case 2:
+					case 3:
 						star = "★★★☆☆";
 						score = 3;
 						break;
-					case 3:
+					case 4:
 						star = "★★★★☆";
 						score = 4;
 						break;
-					case 4:
+					case 5:
 						star = "★★★★★";
 						score = 5;
 						break;
