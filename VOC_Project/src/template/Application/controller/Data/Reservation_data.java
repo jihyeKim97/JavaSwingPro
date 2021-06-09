@@ -23,14 +23,10 @@ public class Reservation_data {
 				+ ", optionPrice=" + optionPrice + ", memberID=" + memberID + ", movieID=" + movieID + "]";
 	}
 
-	
-	
 	public Reservation_data(String seatNumber) {
 		super();
 		this.seatNumber = seatNumber;
 	}
-
-
 
 	public Reservation_data(int reservationID, int reservationNumber, Date reservationDate, String seatNumber,
 			int carType, int paymentPrice, Date paymentDate, String optionName, int optionPrice, int memberID,

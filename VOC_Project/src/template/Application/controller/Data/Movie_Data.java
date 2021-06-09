@@ -142,8 +142,6 @@ public class Movie_Data {
 				+ ", scheduledate=" + scheduledate + ", scheduletime=" + scheduletime + ", runningtime=" + runningtime
 				+ "]";
 	}
-	
-	
 
 	public Movie_Data(int moviesid, String title, String imagefilename) {
 		super();

@@ -11,15 +11,18 @@ public class Mypage_Member_data {
 	String phoneNumber;
 	int is_Member;
 	String birthday;
-	public Mypage_Member_data() {}
 
- // 회원 정보 수정 시
+	public Mypage_Member_data() {
+	}
+
+	// 회원 정보 수정 시
 	public Mypage_Member_data(String password, String name, String phoneNumber) {
 		super();
 		this.password = password;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 	}
+
 // 회원 모든 정보 불러올 시
 	public Mypage_Member_data(int memberID, String id, String password, String name, int gender, String phoneNumber,
 			int is_Member, String birthday) {
@@ -33,7 +36,7 @@ public class Mypage_Member_data {
 		this.is_Member = is_Member;
 		this.birthday = birthday;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "MyPage_Data [memberID=" + memberID + ", id=" + id + ", password=" + password + ", name=" + name
@@ -44,7 +47,7 @@ public class Mypage_Member_data {
 	public int getMemberID() {
 		return memberID;
 	}
-	
+
 	public void setMemberID(int memberID) {
 		this.memberID = memberID;
 	}
@@ -104,5 +107,5 @@ public class Mypage_Member_data {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	
+
 }

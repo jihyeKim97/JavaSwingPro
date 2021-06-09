@@ -10,10 +10,7 @@ public class Review_Data {
 	private Date reviewdate;
 	private int reservationid;
 	private int moviesid;
-	
-	
-	
-	
+
 	public Review_Data(int reviewid, String content, Date reviewdate) {
 		super();
 		this.reviewid = reviewid;
@@ -21,36 +18,26 @@ public class Review_Data {
 		this.reviewdate = reviewdate;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Review_Data [reviewid=" + reviewid + ", content=" + content + ", star_score=" + star_score
 				+ ", reviewdate=" + reviewdate + ", reservationid=" + reservationid + ", moviesid=" + moviesid + "]";
 	}
 
-	
 	public Review_Data() {
-		
-	}
 
+	}
 
 	public Review_Data(String content) {
 		super();
 		this.content = content;
 	}
 
-
-
-
-
 	public Review_Data(String content, int moviesid) {
 		super();
 		this.content = content;
 		this.moviesid = moviesid;
 	}
-
-
-
 
 	public Review_Data(int reviewid, String content, int star_score, Date reviewdate, int reservationid) {
 		super();
@@ -60,9 +47,6 @@ public class Review_Data {
 		this.reviewdate = reviewdate;
 		this.reservationid = reservationid;
 	}
-
-
-
 
 	public Review_Data(int reviewid, String content, int star_score, Date reviewdate, int reservationid, int moviesid) {
 		super();
@@ -74,91 +58,52 @@ public class Review_Data {
 		this.moviesid = moviesid;
 	}
 
-
-
-
 	public int getReviewid() {
 		return reviewid;
 	}
-
-
-
 
 	public void setReviewid(int reviewid) {
 		this.reviewid = reviewid;
 	}
 
-
-
-
 	public String getContent() {
 		return content;
 	}
-
-
-
 
 	public void setContent(String content) {
 		this.content = content;
 	}
 
-
-
-
 	public int getStar_score() {
 		return star_score;
 	}
-
-
-
 
 	public void setStar_score(int star_score) {
 		this.star_score = star_score;
 	}
 
-
-
-
 	public Date getReviewdate() {
 		return reviewdate;
 	}
-
-
-
 
 	public void setReviewdate(Date reviewdate) {
 		this.reviewdate = reviewdate;
 	}
 
-
-
-
 	public int getReservationid() {
 		return reservationid;
 	}
-
-
-
 
 	public void setReservationid(int reservationid) {
 		this.reservationid = reservationid;
 	}
 
-
-
-
 	public int getMoviesid() {
 		return moviesid;
 	}
 
-
-
-
 	public void setMoviesid(int moviesid) {
 		this.moviesid = moviesid;
 	}
-	
-	
-	
-	
+
 }
