@@ -57,8 +57,6 @@ public class AD_Main extends JFrame {
 	ArrayList<Notice_data> nList;
 	ArrayList<Reservation_data> resList;
 	Notice_DB NDB = new Notice_DB();
-	Review_DB RDB;
-	Login_DB LDB;
 	Reservation_DB reservaiton;
 	Ad_AdPage_DB ADB;
 	AD_Main frm;
@@ -232,6 +230,7 @@ public class AD_Main extends JFrame {
 					String dis = "관리자에 의해 비활성화 된 리뷰 입니다";
 					Ad_AdPage_DB ADB = new Ad_AdPage_DB();
 					ADB.UpdateReview(selReview.getReviewid(), dis);
+					JOptionPane.showMessageDialog(null, "해당 리뷰 비활성화 완료!");
 				} else {
 					JOptionPane.showMessageDialog(null, "선택한 리뷰이 없습니다");
 				}
@@ -334,8 +333,14 @@ public class AD_Main extends JFrame {
 		RoundedButtonR button_2 = new RoundedButtonR("삭제");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ADB.deleteMovie(selmovie);
-				System.out.println("삭제되었습니다.");
+				int movieID = selmovie.getMoviesid();
+				if(click_moi) {
+					ADB.deleteMovie(movieID);
+					System.out.println("삭제되었습니다.");
+					JOptionPane.showMessageDialog(null, "삭제 완료");
+				}else {
+					JOptionPane.showMessageDialog(null, "선택한 영화가 없습니다");
+				}
 			}
 		});
 		button_2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -412,8 +417,14 @@ public class AD_Main extends JFrame {
 		RoundedButtonR button_4 = new RoundedButtonR("삭제");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NDB.deleteNotice(selNotice);
-				System.out.println("삭제되었습니다.");
+				if(click_not) {
+					int noticeID =selNotice.getNoticeid();
+					ADB.deleteNotice(noticeID);
+					System.out.println("삭제되었습니다.");
+					JOptionPane.showMessageDialog(null, "삭제완료");
+				}else {
+					JOptionPane.showMessageDialog(null, "선택한 공지사항이 없습니다");
+				}
 			}
 		});
 		button_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -513,7 +524,7 @@ public class AD_Main extends JFrame {
 		final String columnNames[] = { "예약인덱스", "예약번호", "예약날짜시간", "좌석번호", "차량타입", "결제금액", "결제일시", "옵션이름", "옵션가격",
 				"회원인덱스", "영화인덱스" };
 
-		resList = reservaiton.AllReservation();
+		resList = ADB.AllReservation();
 		if (resList == null || resList.isEmpty())
 			return;
 		final int nDBSize = resList.size();
@@ -540,10 +551,9 @@ public class AD_Main extends JFrame {
 
 	public void showReviewTableUIFromDB() {
 		final String columnNames[] = { "리뷰인덱스", "리뷰 내용", "별점", "리뷰작성날짜", "예약인덱스", "영화인덱스"
-
 		};
 
-		rList = RDB.AllReviewData();
+		rList = ADB.AllReviewData();
 		if (rList == null || rList.isEmpty())
 			return;
 		final int nDBSize = rList.size();

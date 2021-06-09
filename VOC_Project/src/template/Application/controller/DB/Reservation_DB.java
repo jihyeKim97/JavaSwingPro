@@ -37,42 +37,7 @@ public class Reservation_DB {
 		return Name;
 	}
 
-	public static ArrayList<Reservation_data> AllReservation() {
-		ArrayList<Reservation_data> uiList = new ArrayList<>();
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "select * from RESERVATION ";
-			try {
-				Statement stmt = connect.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					int reservationid = rs.getInt("reservation_id");
-					int reservaitonnumber = rs.getInt("reservation_id");
-					Date reservationdate = rs.getDate("reservation_date");
-					String seatnumber = rs.getString("seat_number");
-					int cartype = rs.getInt("car_type");
-					int paymentPrice = rs.getInt("payment_price");
-					Date paymentdate = rs.getDate("payment_date");
-					String optionname = rs.getString("option_name");
-					int optionprice = rs.getInt("option_price");
-					int memberid = rs.getInt("member_id");
-					int MovieId = rs.getInt("MOVIE_ID");
-
-					uiList.add(new Reservation_data(reservationid, reservaitonnumber, reservationdate, seatnumber,
-							cartype, paymentPrice, paymentdate, optionname, optionprice, memberid, MovieId));
-				}
-				System.out.println("DBMgr: 연동 성공=> 예약 개수:" + uiList.size() + "개");
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!~~~");
-		}
-		connect.endConnection();
-		return null;
-	}
-
+	// 예약정보 저장하기
 	public static boolean saveResevationData(int A, String shecduledate, String seatNumber, int carType,
 			int paymentPrice, String optionName, int optionPrice, int memberID, int movieID) {
 		connect.beginConnection();
@@ -101,14 +66,15 @@ public class Reservation_DB {
 		return false;
 	}
 
-	public static ArrayList<String> selectedSeat(int movieid){
-		ArrayList<String> selectedSeat = new ArrayList<>(); 
+	// 영화 예매된 자리 찾아오기
+	public static ArrayList<String> selectedSeat(int movieid) {
+		ArrayList<String> selectedSeat = new ArrayList<>();
 		connect.beginConnection();
 		String sql = "select * from reservation where movie_id = " + movieid;
 		try {
 			Statement stmt = connect.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				String movieseat = rs.getString("seat_number");
 				selectedSeat.add(movieseat);
 			}
@@ -119,18 +85,5 @@ public class Reservation_DB {
 		connect.endConnection();
 		return selectedSeat;
 	}
-	
-	public static Date StringtoDate(String date) {
-		SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
-		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");
-		java.util.Date tempDate = null;
-		try {
-			tempDate = beforeFormat.parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		String transDate = afterFormat.format(tempDate);
-		Date d = Date.valueOf(transDate);
-		return d;
-	}
+
 }

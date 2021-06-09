@@ -23,6 +23,7 @@ public class Login_DB {
 	static ArrayList<Login_data> LogArr = new ArrayList<>();
 	static ArrayList<Login_data> uiList = new ArrayList<>();
 
+	// 모든 회원 데이터 가져오기
 	public static ArrayList<Login_data> selectAllMembers() {
 		ArrayList<Login_data> uiList = new ArrayList<>();
 		connect.beginConnection();
@@ -53,6 +54,7 @@ public class Login_DB {
 		return uiList;
 	}
 
+	// 멤버 아이디로 일부 회원 정보 가져오기
 	public static ArrayList<Login_data> SelectMemberID(int memberID) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -80,6 +82,7 @@ public class Login_DB {
 		return LogArr;
 	}
 
+	// 회원 ID로 회원 정보 가져오기
 	public static Login_data SelectMemberFeID(String id) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -106,6 +109,7 @@ public class Login_DB {
 		return loginDT;
 	}
 
+	// 회원 아이디 핸드폰 번호 이름을 이용하여 비밀번호 번경하기
 	public boolean changeBypass(String mbpassword, String mbid, String phn, String name) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -128,7 +132,7 @@ public class Login_DB {
 		return false;
 	}
 
-
+	// 아이디를 가지고 회원의 정보를 가져오기
 	public Login_data selectOneMemberByLogin(String mbLogin) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -176,6 +180,7 @@ public class Login_DB {
 		return null;
 	}
 
+	// 로그인 판별 함수
 	public int loginProcess(String login, String pw) {
 		connect.beginConnection();
 		if (login == null || pw == null || login.isEmpty() || pw.isEmpty()) {
@@ -209,6 +214,7 @@ public class Login_DB {
 		return LOGIN_ERROR;
 	}
 
+	// 이름과 핸드폰 번호를 이용해 ID찾기
 	public int findid(String name, String phone_number) {
 		connect.beginConnection();
 		if (name == null || phone_number == null || name.isEmpty() || phone_number.isEmpty()) {
@@ -238,6 +244,7 @@ public class Login_DB {
 		return FIND_ERROR;
 	}
 
+	// 임시 비밀번호 발급
 	public static String setPassword(int length) {
 		int num = 0;
 		char[] pwset = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
@@ -252,7 +259,8 @@ public class Login_DB {
 		}
 		return sb.toString();
 	}
-
+	
+	// 이름 아이디 핸드폰번호로 비밀번호 찾기
 	public int findpw(String name, String login, String phone_number) {
 		connect.beginConnection();
 		if (name == null || login == null || phone_number == null || name.isEmpty() || login.isEmpty()

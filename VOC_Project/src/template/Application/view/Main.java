@@ -9,7 +9,7 @@ import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.RoundedButtonY;
-import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 
@@ -80,7 +80,7 @@ public class Main extends JFrame {
 
 		toDayMovieList = new ArrayList<>();
 		notToDayMovieList = new ArrayList<>();
-		Main_Movie_DB MDB = new Main_Movie_DB();
+		Movie_DB MDB = new Movie_DB();
 
 		this.reserfrm = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

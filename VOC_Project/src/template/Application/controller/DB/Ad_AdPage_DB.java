@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
+import template.Application.controller.Data.Notice_data;
 import template.Application.controller.Data.Reservation_data;
 import template.Application.controller.Data.Review_Data;
 
@@ -90,6 +91,7 @@ public class Ad_AdPage_DB {
 		connect.endConnection();
 		return false;
 	}
+
 	/* 관리자 - 영화 : 영화 정보 전체 관리 */
 	public static ArrayList<Movie_Data> getMovieData() {
 		ArrayList<Movie_Data> MovieList = new ArrayList<>();
@@ -175,15 +177,16 @@ public class Ad_AdPage_DB {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		}
 		connect.endConnection();
 		return false;
 	}
+
 	/* 관리자 - 영화 : 영화 정보 삭제 관리 */
-	public void deleteMovie(Movie_Data selMovie) {
+	public void deleteMovie(int movieID) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "delete movies where movies_id = " + selMovie.getMoviesid();
+			String sql = "delete movies where movies_id = " + movieID;
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				pstmt.execute();
@@ -193,7 +196,34 @@ public class Ad_AdPage_DB {
 		}
 		connect.endConnection();
 	}
-	
+
+	/* 관리자 - 공지사항 : 공지사항 정보 전체 관리 */
+	public ArrayList<Notice_data> selectAllNotice() {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			ArrayList<Notice_data> uiList = new ArrayList<>();
+			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
+			try {
+				Statement stmt = connect.conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					String userDoB = rs.getString("BIRTHDAY");
+					Notice_data ui = new Notice_data(rs.getInt("NOTICE_ID"), rs.getString("TITLE"),
+							rs.getString("CONTENT"), rs.getInt("VEIWCOUNT"), rs.getInt("MEMBER_ID"));
+					uiList.add(ui);
+				}
+				System.out.println("DBMgr: 연동 성공! 공지사항갯수 => " + uiList.size());
+				return uiList;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB error!!!@");
+		}
+		connect.endConnection();
+		return null;
+	}
+
 	/* 관리자 - 공지사항 : 공지사항 정보 추가 관리 */
 	public static boolean addNotice(String title, String content) {
 		connect.beginConnection();
@@ -203,7 +233,7 @@ public class Ad_AdPage_DB {
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
 				int r = pstmt.executeUpdate();
-				if(r==1) {
+				if (r == 1) {
 					return true;
 				}
 			} catch (SQLException e) {
@@ -215,7 +245,7 @@ public class Ad_AdPage_DB {
 		connect.endConnection();
 		return false;
 	}
-	
+
 	/* 관리자 - 공지사항 : 공지사항 정보 수정 관리 */
 	public static boolean updateNotice(int noticeID, String title, String content) {
 		connect.beginConnection();
@@ -240,61 +270,87 @@ public class Ad_AdPage_DB {
 	}
 
 	/* 관리자 - 공지사항 : 공지사항 정보 삭제 관리 */
-	public static boolean deleteNotice(int NOTICE_ID, String TITLE, String CONTENT, int VIEWCOUNT, int MEMBER_ID) {
+	public void deleteNotice(int noticeID) {
 		connect.beginConnection();
 		if (connect.conn != null) {
-			String sql = "update notice set NOTICE_ID = 'null' , TITLE = 'null' , CONTENT =  'null', VIEWCOUNT = 'null', MEMBER_ID = 'null' where member_id = ? ";
+			String sql = "delete notice where notice_id = " + noticeID;
 			try {
 				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				pstmt.setInt(1, NOTICE_ID);
-				pstmt.setString(2, TITLE);
-				pstmt.setString(3, CONTENT);
-				pstmt.setInt(4, VIEWCOUNT);
-				pstmt.setInt(5, MEMBER_ID);
-				int rs = pstmt.executeUpdate();
-				if (rs == 1) {
-					System.out.println("공지사항 null로 갱신 성공");
-					System.out
-							.println(NOTICE_ID + " " + TITLE + " " + CONTENT + " " + VIEWCOUNT + " " + MEMBER_ID + " ");
-					return true;
-				} else
-					System.out.println("공지사항 null로 갱신 실패");
+				int r = pstmt.executeUpdate();
+				if (r == 1)
+					System.out.println("삭제");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		connect.endConnection();
-		return false;
 	}
+	
 
 	/* 관리자 - 예약 : 전체 조회 관리 */
-	public ArrayList<Reservation_data> showAllReservation() {
+	public static ArrayList<Reservation_data> AllReservation() {
+		ArrayList<Reservation_data> uiList = new ArrayList<>();
 		connect.beginConnection();
 		if (connect.conn != null) {
-			ArrayList<Reservation_data> uiList = new ArrayList<>();
-			String sql = "select * from RESERVATION ORDER BY RESERVATION_ID desc";
+			String sql = "select * from RESERVATION ";
 			try {
 				Statement stmt = connect.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				while (rs.next()) {
-					int rsMovieId = rs.getInt("MOVIE_ID");
+					int reservationid = rs.getInt("reservation_id");
+					int reservaitonnumber = rs.getInt("reservation_id");
+					Date reservationdate = rs.getDate("reservation_date");
+					String seatnumber = rs.getString("seat_number");
+					int cartype = rs.getInt("car_type");
+					int paymentPrice = rs.getInt("payment_price");
+					Date paymentdate = rs.getDate("payment_date");
+					String optionname = rs.getString("option_name");
+					int optionprice = rs.getInt("option_price");
+					int memberid = rs.getInt("member_id");
+					int MovieId = rs.getInt("MOVIE_ID");
 
-					Reservation_data ui = new Reservation_data(rs.getInt("RESERVATION_ID"),
-							rs.getInt("RESERVATION_NUMBER"), rs.getDate("RESERVATION_DATE"),
-							rs.getString("SEAT_NUMBER"), rs.getInt("CAR_TYPE"), rs.getInt("PAYMENT_PRICE"),
-							rs.getDate("PAYMENT_DATE"), rs.getString("OPTION_NAME"), rs.getInt("OPTION_PRICE"),
-							rs.getInt("MEMBER_ID"), rs.getInt("MOVIE_ID"));
-
-					uiList.add(ui);
+					uiList.add(new Reservation_data(reservationid, reservaitonnumber, reservationdate, seatnumber,
+							cartype, paymentPrice, paymentdate, optionname, optionprice, memberid, MovieId));
 				}
-				System.out.println("예약정보 조회 갯수 : " + uiList.size() + "개");
+				System.out.println("DBMgr: 연동 성공=> 예약 개수:" + uiList.size() + "개");
 				return uiList;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} 
+		} else {
+			System.out.println("DB error!!~~~");
+		}
 		connect.endConnection();
 		return null;
+	}
+
+
+	/* 관리자 - 리뷰 : 리뷰 정보 전체 관리 */
+	public static ArrayList<Review_Data> AllReviewData() {
+		ArrayList<Review_Data> contents = new ArrayList<>();
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "SELECT * FROM review";
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					int reviewid = rs.getInt("review_id");
+					String content = rs.getString("content");
+					int starscore = rs.getInt("star_score");
+					Date reviewdate = rs.getDate("review_date");
+					int reservationid = rs.getInt("reservation_id");
+					int movieid = rs.getInt("movies_id");
+					contents.add(new Review_Data(reviewid, content, starscore, reviewdate, reservationid, movieid));
+				}
+				return contents;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return contents;
+
 	}
 
 	/* 관리자 - 리뷰 : 리뷰 정보 수정 관리 */

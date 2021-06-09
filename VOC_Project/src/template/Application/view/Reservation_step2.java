@@ -9,7 +9,7 @@ import java.awt.Color;
 
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
-import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
@@ -46,12 +46,12 @@ public class Reservation_step2 extends JFrame {
 	RoundedButtonG btn_pay;
 	Reservation_step1 reserStfrm;
 	Reservation_DB RDB;
-	Main_Movie_DB movie;
+	Movie_DB movie;
 	Login_data Ld;
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 
 	public Reservation_step2(Reservation_step1 reserStfrm, Movie_Data movie, Login_data Ld, Reservation_data RD) {
-		Main_Movie_DB MDB = new Main_Movie_DB();
+		Movie_DB MDB = new Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		int PK = 0;

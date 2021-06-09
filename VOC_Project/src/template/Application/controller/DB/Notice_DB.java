@@ -15,6 +15,29 @@ public class Notice_DB {
 	static Notice NM;
 	static Notice_data Notice;
 
+	// 공지사항 추가하기
+	public static boolean addNotice(String title, String content) {
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "INSERT INTO notice (notice_id,title,content,viewcount,member_id) VALUES (NOTICE_SEQ.nextval,"
+					+ "'" + title + "', '" + content + "', 0 , " + 24 + ")";
+			try {
+				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
+				int r = pstmt.executeUpdate();
+				if (r == 1) {
+					return true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("DB error!!");
+		}
+		connect.endConnection();
+		return false;
+	}
+
+	// 공지사항 제목 가져오기
 	public static ArrayList<Notice_data> takeNoticetitle() {
 		ArrayList<Notice_data> NoticeArr = new ArrayList<>();
 		connect.beginConnection();
@@ -41,6 +64,7 @@ public class Notice_DB {
 		return NoticeArr;
 	}
 
+	// 공지사항 조회수 변경하기
 	public boolean changeViewCount(String title, int Count) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -61,48 +85,6 @@ public class Notice_DB {
 		}
 		connect.endConnection();
 		return false;
-	}
-
-	public ArrayList<Notice_data> selectAllNotice() {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			ArrayList<Notice_data> uiList = new ArrayList<>();
-			String sql = "select * from NOTICE ORDER BY NOTICE_ID desc";
-			try {
-				Statement stmt = connect.conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					String userDoB = rs.getString("BIRTHDAY");
-					Notice_data ui = new Notice_data(rs.getInt("NOTICE_ID"), rs.getString("TITLE"),
-							rs.getString("CONTENT"), rs.getInt("VEIWCOUNT"), rs.getInt("MEMBER_ID"));
-					uiList.add(ui);
-				}
-				System.out.println("DBMgr: 연동 성공! 공지사항갯수 => " + uiList.size());
-				return uiList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("DB error!!!@");
-		}
-		connect.endConnection();
-		return null;
-	}
-
-	public void deleteNotice(Notice_data selNotice) {
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "delete notice where notice_id = " + selNotice.getNoticeid();
-			try {
-				PreparedStatement pstmt = connect.conn.prepareStatement(sql);
-				int r = pstmt.executeUpdate();
-				if (r == 1)
-					System.out.println("삭제");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
 	}
 
 }

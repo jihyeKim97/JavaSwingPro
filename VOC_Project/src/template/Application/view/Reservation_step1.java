@@ -7,7 +7,7 @@ import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Color;
 import template.Application.controller.Data.Login_data;
-import template.Application.controller.DB.Main_Movie_DB;
+import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Reservation_DB;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
@@ -80,7 +80,7 @@ public class Reservation_step1 extends JFrame {
 
 		Reservation_DB RDB = new Reservation_DB();
 		ButtonName = RDB.ButtonName();
-		Main_Movie_DB MDB = new Main_Movie_DB();
+		Movie_DB MDB = new Movie_DB();
 		MovieList = MDB.getMovieData();
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		int PK = 0;

@@ -22,37 +22,7 @@ public class Mypage_DB {
 	static ArrayList<Mypage_Reservation_data> ReArr = new ArrayList<>();
 	static ArrayList<Mypage_Review_data> ViArr = new ArrayList<>();
 
-	public static ArrayList<Mypage_Member_data> SelectMemberID(int memberID) {
-
-		connect.beginConnection();
-		if (connect.conn != null) {
-			String sql = "select * from member where member_id =  " + memberID;
-			try {
-				Statement st = connect.conn.createStatement();
-				ResultSet rs = st.executeQuery(sql);
-				if (rs.next()) {
-					int member_id = rs.getInt("member_id");
-					String id = rs.getString("id");
-					String password = rs.getString("password");
-					String name = rs.getString("name");
-					int gender = rs.getInt("gender");
-					String phone_number = rs.getString("phone_number");
-					int is_member = rs.getInt("is_member");
-					String birthday = rs.getString("birthday");
-
-					System.out.println(member_id + " " + id + " " + password + " " + name + " " + gender + " "
-							+ phone_number + " " + birthday + " " + is_member);
-					MyArr.add(new Mypage_Member_data(member_id, id, password, name, gender, phone_number, is_member,
-							birthday));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		connect.endConnection();
-		return MyArr;
-	}
-
+	//  멤버ID로 회원 하나의 정보 가져오기
 	public static Mypage_Member_data SelectMember(int memberID) {
 		Mypage_Member_data MMD = new Mypage_Member_data();
 		connect.beginConnection();
@@ -84,6 +54,7 @@ public class Mypage_DB {
 		return MMD;
 	}
 
+	// 회원 정보 수정하기
 	public static boolean UpdateMemberInfo(int memberID, String name, String phoneNum, String newPassword) {
 
 		connect.beginConnection();
@@ -110,6 +81,7 @@ public class Mypage_DB {
 		return false;
 	}
 
+	// 멤버ID로 회원의 예매정보 가져오기
 	public static ArrayList<Mypage_Reservation_data> SelectReservationID(int memberID) {
 		ReArr = new ArrayList<>();
 		connect.beginConnection();
@@ -144,6 +116,7 @@ public class Mypage_DB {
 		return ReArr;
 	}
 
+	// 멤버ID값으로 예약정보에 있는 무비ID 가져오기
 	public static ArrayList<Mypage_Reservation_data> Selectid(int memberID) {
 		ReArr = new ArrayList<>();
 		connect.beginConnection();
@@ -165,6 +138,7 @@ public class Mypage_DB {
 		return ReArr;
 	}
 
+	// 영화ID로 영화 이름 가져오기
 	public static String AlterMovieIDName(int moviesID) {
 		String title = "";
 
@@ -175,7 +149,6 @@ public class Mypage_DB {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
 				while (rs.next()) {
-					int movies_id = rs.getInt("movies_id");
 					title = rs.getString("title");
 					return title;
 				}
@@ -187,6 +160,7 @@ public class Mypage_DB {
 		return title;
 	}
 
+	// 무비ID와 예약ID로 회원이 쓴 리뷰 가져오기
 	public static Mypage_Review_data SelectReview(int reservationID, int MovieID) {
 
 		connect.beginConnection();
@@ -216,6 +190,7 @@ public class Mypage_DB {
 		return Myoage_viDT;
 	}
 
+	// 무비ID와 예약ID로 리뷰를 쓴 회원 아이디 가져오기
 	public static Mypage_Review_data SelectReviewID(int reservationID, int MovieID) {
 		Mypage_Review_data MRD = new Mypage_Review_data();
 		connect.beginConnection();
@@ -244,6 +219,7 @@ public class Mypage_DB {
 		return MRD;
 	}
 
+	// 리뷰 추가하기
 	public static boolean InsertReviewID(String content, int star_score, int reservationID, int movies_id) {
 		connect.beginConnection();
 		if (connect.conn != null) {
@@ -258,7 +234,7 @@ public class Mypage_DB {
 				int r = pstmt.executeUpdate();
 				if (r == 1) {
 					System.out.println("리뷰 추가 완료");
-					
+
 					return true;
 				}
 			} catch (SQLException e) {
@@ -269,6 +245,7 @@ public class Mypage_DB {
 		return false;
 	}
 
+	// 리뷰 수정하기
 	public static boolean UpdateReviewContent(int reviewID, String content) {
 		connect.beginConnection();
 		if (connect.conn != null) {
