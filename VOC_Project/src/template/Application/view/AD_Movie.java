@@ -90,7 +90,7 @@ public class AD_Movie extends JFrame {
 
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/no_image.png")));
+		lblNewLabel_4.setIcon(new ImageIcon(AD_Movie.class.getResource(selmovie.getImagefilename())));
 		panel_2.add(lblNewLabel_4);
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override

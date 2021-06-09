@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonR;
+import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.DB_Connect;
 import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.Review_DB;
@@ -98,15 +99,17 @@ public class Movie_Informaiton extends JFrame {
 	Movie_Informaiton frm;
 
 	ArrayList<Review_Data> ReviewList = new ArrayList<>();
+	ArrayList<Review_Data> RV = new ArrayList<>();
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
 	ArrayList<Integer> intArr = new ArrayList<>();
 	ArrayList<String> strArr = new ArrayList<>();
 
 	Movie_Data Movie;
-
 	DB_Connect connect;
-	Review_DB Review;
 	Login_DB LDB;
+	Ad_AdPage_DB AADB;
+	Review_DB Review = new Review_DB();
+	int Score = 0;
 
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
@@ -134,6 +137,10 @@ public class Movie_Informaiton extends JFrame {
 		} else {
 			time = "" + itime;
 		}
+		Score = Review.starscore(movie.getMoviesid());
+		RV = AADB.AllReviewData();
+		movie.setAverageScore((double)Score/(double)RV.size());
+		
 		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 752);
