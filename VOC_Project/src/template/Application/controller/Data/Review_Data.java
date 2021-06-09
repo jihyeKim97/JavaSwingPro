@@ -14,6 +14,14 @@ public class Review_Data {
 	
 	
 	
+	public Review_Data(int reviewid, String content, Date reviewdate) {
+		super();
+		this.reviewid = reviewid;
+		this.content = content;
+		this.reviewdate = reviewdate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Review_Data [reviewid=" + reviewid + ", content=" + content + ", star_score=" + star_score

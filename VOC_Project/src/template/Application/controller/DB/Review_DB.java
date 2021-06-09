@@ -13,6 +13,7 @@ public class Review_DB {
 
 	static DB_Connect connect;
 	static Review_Data review;
+	
 
 	public static ArrayList<Review_Data> AllReviewData() {
 		ArrayList<Review_Data> contents = new ArrayList<>();
@@ -50,8 +51,11 @@ public class Review_DB {
 				Statement st = connect.conn.createStatement();
 				ResultSet rs = st.executeQuery(sql);
 				while (rs.next()) {
+					int reviewid = rs.getInt("review_id");
 					String content = rs.getString("content");
-					contents.add(new Review_Data(content));
+					Date date = rs.getDate("review_date");
+					
+					contents.add(new Review_Data(reviewid, content, date));
 				}
 				return contents;
 			} catch (SQLException e) {
@@ -60,6 +64,51 @@ public class Review_DB {
 		}
 		connect.endConnection();
 		return contents;
+	}
+	
+	public static ArrayList<Integer> getreviewID(int movieId){
+		ArrayList<Integer> user = new ArrayList<>();
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "select * from reservation where movie_id =" + movieId;
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					int memberid = rs.getInt("member_id");
+					
+					user.add(memberid);
+				}
+				return user;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return user;
+	}
+	
+	public static String getid(int memberid) {
+		String A = null;
+		connect.beginConnection();
+		if (connect.conn != null) {
+			String sql = "select * from member where member_id =" + memberid;
+			try {
+				Statement st = connect.conn.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while (rs.next()) {
+					String ID = rs.getString("id");
+					A = ID;
+				}
+				return A;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		connect.endConnection();
+		return A;
+		
+		
 	}
 
 }

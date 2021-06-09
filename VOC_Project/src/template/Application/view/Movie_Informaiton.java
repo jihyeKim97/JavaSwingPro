@@ -9,6 +9,7 @@ import template.Application.controller.DB.Main_Movie_DB;
 import template.Application.controller.RoundedButtonD;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.DB_Connect;
+import template.Application.controller.DB.Login_DB;
 import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Review_Data;
@@ -27,6 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.LineBorder;
 
 public class Movie_Informaiton extends JFrame {
 
@@ -79,8 +81,6 @@ public class Movie_Informaiton extends JFrame {
 	JLabel lb_Movietime;
 	JLabel lb_MovieInfomaiton;
 	JPanel panel_9;
-	JScrollPane scrollPane_1;
-	JPanel pn_Review;
 	JLabel lblNewLabel_3;
 	JLabel label_2;
 	JPanel panel;
@@ -100,13 +100,20 @@ public class Movie_Informaiton extends JFrame {
 	Movie_Informaiton frm;
 	ArrayList<Review_Data> ReviewList = new ArrayList<>();
 	ArrayList<Movie_Data> MovieList = new ArrayList<>();
+	ArrayList<Integer> intArr = new ArrayList<>();
+	ArrayList<String> strArr = new ArrayList<>();
 	Review_DB Review;
+	Login_DB LDB;
 
 	public Movie_Informaiton(Main refrm, Movie_Data movie) {
 		setResizable(false);
 		this.frm = this;
 		Main_Movie_DB MDB = new Main_Movie_DB();
 		MovieList = MDB.getMovieData();
+		intArr = Review.getreviewID(movie.getMoviesid());
+		for (int i = 0; i < intArr.size(); i++) {
+			System.out.println(intArr.get(i));
+		}
 		int Num = MDB.getMovieIDFromImage(movie.getImagefilename());
 		ReviewList = Review.getReviewData(Num);
 		int PK = 0;
@@ -319,16 +326,7 @@ public class Movie_Informaiton extends JFrame {
 		panel_9 = new JPanel();
 		panel_9.setBounds(12, 466, 472, 182);
 		content_panel.add(panel_9);
-		panel_9.setLayout(new BorderLayout(0, 0));
-
-		scrollPane_1 = new JScrollPane();
-		panel_9.add(scrollPane_1, BorderLayout.CENTER);
-
-		pn_Review = new JPanel();
-		pn_Review.setBorder(null);
-		pn_Review.setBackground(Color.WHITE);
-		scrollPane_1.setViewportView(pn_Review);
-		pn_Review.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_9.setLayout(null);
 
 		panel_5 = new JPanel();
 		panel_5.setBackground(new Color(255, 255, 255));
@@ -420,14 +418,32 @@ public class Movie_Informaiton extends JFrame {
 			}
 		});
 		roundedButtonD.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 17));
+		
 
 		for (int i = 0; i < ReviewList.size(); i++) { // 리뷰 개수
-			String text = ReviewList.get(i).getContent();
-			JLabel Review = new JLabel(text);
-
-			Review.setFont(new Font("한컴 고딕", Font.PLAIN, 15));
-			Review.setSize(new Dimension(400, 50));
-			pn_Review.add(Review);
+			Review = new Review_DB();
+			strArr.add(Review.getid(intArr.get(i)));
+			JPanel panel_8 = new JPanel();
+			panel_8.setBorder(new LineBorder(new Color(0, 0, 0)));
+			panel_8.setBounds(10, (10 * (i + 1)) + (50 * i), 452, 50);
+			panel_9.add(panel_8);
+			panel_8.setLayout(null);
+			
+			JLabel lb_reviewID = new JLabel(strArr.get(i));
+			lb_reviewID.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+			lb_reviewID.setBounds(10, 5, 110, 15);
+			panel_8.add(lb_reviewID);
+			
+			JLabel lb_reviewcontent = new JLabel(ReviewList.get(i).getContent());
+			lb_reviewcontent.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+			lb_reviewcontent.setBounds(10, 30, 430, 15);
+			panel_8.add(lb_reviewcontent);
+			
+			JLabel lb_reviewdate = new JLabel("" + ReviewList.get(i).getReviewdate());
+			lb_reviewdate.setHorizontalAlignment(SwingConstants.RIGHT);
+			lb_reviewdate.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+			lb_reviewdate.setBounds(330, 6, 110, 15);
+			panel_8.add(lb_reviewdate);
 		}
 
 	}
