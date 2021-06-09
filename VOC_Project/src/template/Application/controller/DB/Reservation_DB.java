@@ -32,7 +32,7 @@ public class Reservation_DB {
 			else if (i < 30)
 				Name.add("E" + (i - 23));
 			else
-				Name.add("D" + (i - 29));
+				Name.add("F" + (i - 29));
 		}
 		return Name;
 	}
