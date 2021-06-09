@@ -26,6 +26,8 @@ import template.Application.controller.Data.Notice_data;
 
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JButton;
 
 public class Notice extends JFrame {
@@ -215,7 +217,10 @@ class Locaiton extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/지도.PNG")));
+			ImageIcon ic = new ImageIcon(AD_Movie.class.getResource("/template/Reference/icons/지도.PNG"));
+			Image icImg = ic.getImage().getScaledInstance(450, 300, Image.SCALE_SMOOTH);
+			ic.setImage(icImg);
+			lblNewLabel.setIcon(ic);
 			contentPanel.add(lblNewLabel, BorderLayout.CENTER);
 		}
 	}
