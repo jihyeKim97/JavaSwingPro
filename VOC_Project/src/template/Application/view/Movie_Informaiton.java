@@ -144,6 +144,7 @@ public class Movie_Informaiton extends JFrame {
 			double A = (double) Score / (double) RV.size();
 			System.out.println("평균" + A);
 			MDB.changeScore(A, movie.getMoviesid());
+			MovieList.get(PK).setAverageScore(A);
 		}
 		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
