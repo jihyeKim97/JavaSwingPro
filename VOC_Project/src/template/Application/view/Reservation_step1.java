@@ -231,6 +231,9 @@ public class Reservation_step1 extends JFrame {
 
 			tglbtnNewToggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					 //  해당 영화정보에 같은 날짜에 같은 좌석 예약 할때에 예약 못하게 막아야 하는 작업
+					// 	그게 ture면 selected_car.png로 보여지고 그게 아니면 해당 선택작업이 이뤄져야 함
+					 //  DB함수 추가 작업해야함
 					if(true) {
 						ImageIcon ic = new ImageIcon(
 								Reservation_step1.class.getResource("/template/Reference/icons/selected_car.png"));
