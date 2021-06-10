@@ -142,15 +142,15 @@ public class AD_Main extends JFrame {
 		RoundedButtonB roundedButtonD = new RoundedButtonB("수정");
 		roundedButtonD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (selMember.getIs_member() != 2) {
-					if (click_mem) {
+				if (click_mem) {
+					if (selMember.getIs_member() != 2) {
 						AD_Member member = new AD_Member(frm, selMember);
 						member.setVisible(true);
 					} else {
-						JOptionPane.showMessageDialog(null, "선택한 회원이 없습니다");
+						JOptionPane.showMessageDialog(null, "탈퇴된 회원입니다.");
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "탈퇴된 회원입니다.");
+					JOptionPane.showMessageDialog(null, "선택한 회원이 없습니다");
 				}
 			}
 		});
@@ -317,8 +317,8 @@ public class AD_Main extends JFrame {
 		RoundedButtonR button_2 = new RoundedButtonR("삭제");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int movieID = selmovie.getMoviesid();
 				if (click_moi) {
+					int movieID = selmovie.getMoviesid();
 					ADB.deleteMovie(movieID);
 					System.out.println("삭제되었습니다.");
 					JOptionPane.showMessageDialog(null, "삭제 완료");
