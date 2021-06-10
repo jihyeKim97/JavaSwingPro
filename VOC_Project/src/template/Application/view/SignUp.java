@@ -373,7 +373,7 @@ public class SignUp extends JFrame {
 				SignUp_data newUI = new SignUp_data(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
 
 				if (!UserId.isEmpty() && !UserPw.isEmpty() && !UserName.isEmpty() && !UserDoB.isEmpty()
-						&& !UserPhoneNum.isEmpty()) {
+						&& !txt_phone1.getText().isEmpty()  &&!txt_phone2.getText().isEmpty()  && !txt_phone3.getText().isEmpty() ) {
 					if (click == 1) {
 						boolean r = mgr.insertMember(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
 						if (r && newUI != null) {
