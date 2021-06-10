@@ -282,18 +282,13 @@ public class AD_Movie extends JFrame {
 
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (!title.getText().isEmpty() && !ger.getText().isEmpty() && !dir.getFocusTraversalKeysEnabled() && !age.getText().isEmpty() && !contentTA.getText().isEmpty()
-						&& !per.getText().isEmpty() && !open.getText().isEmpty() && !com.getText().isEmpty() && !lblNewLabel_6.getText().isEmpty()) {
+			public void actionPerformed(ActionEvent arg0) { 
 					Ad_AdPage_DB AMDB = new Ad_AdPage_DB();
 					AMDB.UpdateMovieInfo(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
 							contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText(),
 							selmovie.getMoviesid());
 					JOptionPane.showMessageDialog(null, "영화가 수정되었습니다.");
 					dispose();
-				}else {
-				JOptionPane.showMessageDialog(null, "빈칸을 채워주세요");
-			}
 			}
 		});
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 17));

@@ -216,7 +216,7 @@ public class AD_Main extends JFrame {
 					ADB.UpdateReview(selReview.getReviewid(), dis);
 					JOptionPane.showMessageDialog(null, "해당 리뷰 비활성화 완료!");
 				} else {
-					JOptionPane.showMessageDialog(null, "선택한 리뷰이 없습니다");
+					JOptionPane.showMessageDialog(null, "선택한 리뷰가 없습니다");
 				}
 			}
 		});
