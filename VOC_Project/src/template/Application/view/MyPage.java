@@ -17,7 +17,6 @@ import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Member_data;
 import template.Application.controller.Data.Mypage_Reservation_data;
-import template.Application.controller.Data.Mypage_Review_data;
 
 import java.awt.Font;
 import javax.swing.JLabel;

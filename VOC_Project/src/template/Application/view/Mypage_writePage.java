@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.DB.Mypage_DB;
 import template.Application.controller.Data.Login_data;
-import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Mypage_Reservation_data;
 import template.Application.controller.Data.Mypage_Review_data;
 

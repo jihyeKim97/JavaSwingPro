@@ -1,7 +1,5 @@
 package template.Application.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,7 +9,6 @@ import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.RoundedButtonY;
 import template.Application.controller.DB.Ad_AdPage_DB;
-import template.Application.controller.DB.Login_DB;
 import template.Application.controller.Data.Login_data;
 
 import java.awt.GridLayout;

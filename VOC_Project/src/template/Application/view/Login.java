@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.GridLayout;
 
 public class Login extends JFrame {
@@ -245,9 +243,10 @@ public class Login extends JFrame {
 					txt_id.setText("");
 					txt_pw.setText("");
 				}
-				else {
+				else if(check == false && ty == 0 && judge == 1){
 					JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다");
 					txt_pw.setText("");
+					judge = 0;
 				}
 			}
 		});

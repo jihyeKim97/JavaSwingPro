@@ -1,10 +1,7 @@
 package template.Application.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,10 +16,8 @@ import template.Application.controller.RoundedButtonR;
 import template.Application.controller.RoundedButtonY;
 import template.Application.controller.DB.Ad_AdPage_DB;
 import template.Application.controller.DB.Login_DB;
-import template.Application.controller.DB.Movie_DB;
 import template.Application.controller.DB.Notice_DB;
 import template.Application.controller.DB.Reservation_DB;
-import template.Application.controller.DB.Review_DB;
 import template.Application.controller.Data.Login_data;
 import template.Application.controller.Data.Movie_Data;
 import template.Application.controller.Data.Notice_data;
@@ -31,7 +26,6 @@ import template.Application.controller.Data.Review_Data;
 import template.Application.controller.Data.SignUp_data;
 
 import javax.swing.JTabbedPane;
-import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -44,7 +38,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Point;
 
 public class AD_Main extends JFrame {
 
