@@ -222,8 +222,9 @@ public class Login extends JFrame {
 								ad_page = new AD_Main(ln, LD);
 								ad_page.setVisible(true);
 								dispose();
-							} else {
+							} else if (LoginArr.get(i).getIs_member() == 2){
 								JOptionPane.showMessageDialog(null, "탈퇴한 회원입니다");
+								break;
 							}
 						}
 					} else {
