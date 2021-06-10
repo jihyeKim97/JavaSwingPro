@@ -211,13 +211,13 @@ public class Login extends JFrame {
 					if (!id.isEmpty() && !pw.isEmpty()) {
 						if (id.equals(LoginArr.get(i).getId()) && pw.equals(LoginArr.get(i).getPassword())) {
 							check = true;
-							if (memberdata.get(i).getIs_member() == 0) {
+							if (LoginArr.get(i).getIs_member() == 0) {
 								System.out.println("회원 로그인 성공\n" + memberdata.get(i));
 								Login_data LD = LDB.SelectMemberFeID(memberdata.get(i).getId());
 								Main main = new Main(ln, LD);
 								main.setVisible(true);
 								dispose();
-							} else if (memberdata.get(i).getIs_member() == 1) {
+							} else if (LoginArr.get(i).getIs_member() == 1) {
 								System.out.println(LD);
 								ad_page = new AD_Main(ln, LD);
 								ad_page.setVisible(true);
