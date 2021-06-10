@@ -69,7 +69,7 @@ public class SignUp extends JFrame {
 	final ButtonGroup genderGrp = new ButtonGroup();
 	final int MEMBER = 0, NOT_MEMBER = 1;
 	boolean bLoginAvail;
-	static int click = 0;
+	boolean click = false;
 
 	SignUp mj;
 	Login mln;
@@ -85,6 +85,7 @@ public class SignUp extends JFrame {
 
 		this.conn = DB_Connect.getConn();
 		this.mj = this;
+		click = false;
 
 		setTitle("Vehicle Outdoor Cinema");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -316,7 +317,7 @@ public class SignUp extends JFrame {
 		panel.add(btn_DupCheck);
 		btn_DupCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				click = 1;
+				click = true;
 				String inLogin = txt_userId.getText();
 				Login_data ld = dbc2.selectOneMemberByLogin(inLogin);
 				if (!inLogin.isEmpty()) {
@@ -329,6 +330,7 @@ public class SignUp extends JFrame {
 						bLoginAvail = false;
 						duptxt.setForeground(Color.red);
 						duptxt.setText("사용불가능한 id 입니다");
+						txt_userId.setText("");
 					}
 				} else {
 					duptxt.setForeground(Color.black);
@@ -373,15 +375,18 @@ public class SignUp extends JFrame {
 				SignUp_data newUI = new SignUp_data(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
 
 				if (!UserId.isEmpty() && !UserPw.isEmpty() && !UserName.isEmpty() && !UserDoB.isEmpty()
-						&& !txt_phone1.getText().isEmpty()  &&!txt_phone2.getText().isEmpty()  && !txt_phone3.getText().isEmpty() ) {
-					if (click == 1) {
+						&& !txt_phone1.getText().isEmpty() && !txt_phone2.getText().isEmpty()
+						&& !txt_phone3.getText().isEmpty()) {
+					if (bLoginAvail && click) {
 						boolean r = mgr.insertMember(UserId, UserPw, UserName, Gender, UserPhoneNum, UserDoB);
 						if (r && newUI != null) {
 							JOptionPane.showMessageDialog(null, "가입이 완료되었습니다.");
 							dispose();
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "중복확인은 필수 입니다");
+						if(!click) {
+							JOptionPane.showMessageDialog(null, "중복확인은 필수 입니다");
+						}
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
