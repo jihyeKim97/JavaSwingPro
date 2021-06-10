@@ -65,6 +65,26 @@ public class Ad_AdPage_DB {
 		connect.endConnection();
 		return false;
 	}
+	
+	
+	/* 관리자 - 회원 : 회원ID로 회원 아이디 찾아오기*/ 
+	public static String getmemberid(int member_id) {
+		String selectedSeat = "";
+		connect.beginConnection();
+		String sql = "select iD from member where member_id = " + member_id;
+		try {
+			Statement stmt = connect.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				selectedSeat = rs.getString("ID");
+			}
+			return selectedSeat;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connect.endConnection();
+		return selectedSeat;
+	}
 
 	/* 관리자 - 회원 : 탈퇴 회원 관리 */
 	public static boolean updateMembertoNone(int memberID) {
@@ -177,6 +197,25 @@ public class Ad_AdPage_DB {
 		}
 		connect.endConnection();
 		return false;
+	}
+	
+	/* 관리자 - 영화 : 무비ID로 이름 가져오기*/ 
+	public static String getMovieTitle(int movieid) {
+		String selectedSeat = "";
+		connect.beginConnection();
+		String sql = "SELECT title from movies where movies_id = " + movieid;
+		try {
+			Statement stmt = connect.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				selectedSeat = rs.getString("title");
+			}
+			return selectedSeat;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connect.endConnection();
+		return selectedSeat;
 	}
 
 	/* 관리자 - 영화 : 영화 정보 삭제 관리 */
@@ -346,6 +385,25 @@ public class Ad_AdPage_DB {
 		connect.endConnection();
 		return contents;
 
+	}
+	
+	/* 관리자 - 리뷰 : 무비ID랑 예약ID로 회원 ID가져오기 */
+	public static int getmemberid(int reservaiton, int member_id) {
+		int selectedSeat = 0;
+		connect.beginConnection();
+		String sql = "select * from reservaiton where member_id = " + member_id + "and reservation_id = " + reservaiton;
+		try {
+			Statement stmt = connect.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				selectedSeat = rs.getInt("member_id");
+			}
+			return selectedSeat;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connect.endConnection();
+		return selectedSeat;
 	}
 
 	/* 관리자 - 리뷰 : 리뷰 정보 수정 관리 */
