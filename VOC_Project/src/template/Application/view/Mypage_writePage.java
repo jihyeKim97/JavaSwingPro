@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
@@ -59,6 +60,7 @@ public class Mypage_writePage extends JFrame {
 		panel.setBounds(0, 0, 400, 323);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -89,6 +91,11 @@ public class Mypage_writePage extends JFrame {
 		});
 
 		btn_success = new RoundedButtonG("완료!");
+		btn_success.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showInternalMessageDialog(null, "리뷰 등록이 완료 되었습니다");
+			}
+		});
 
 		review_tf = new JTextField();
 		review_tf.setBounds(25, 103, 350, 43);

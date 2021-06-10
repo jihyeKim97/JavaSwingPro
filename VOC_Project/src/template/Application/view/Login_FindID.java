@@ -222,19 +222,16 @@ public class Login_FindID extends JFrame {
 				String name = txt_name.getText();
 				Login_DB db = new Login_DB();
 				String Phonenumber = new String(txt_number1.getText() + txt_number2.getText() + txt_number3.getText());
-
 				int find = db.findid(name, Phonenumber);
-				System.out.println(name);
-				System.out.println(Phonenumber);
-				System.out.println(find);
 				switch (find) {
 				case 1:
 					JOptionPane.showMessageDialog(null, "입력하신정보를 확인해주세요");
 					break;
 				case 2:
+					dispose();
 					break;
 				case 3:
-					JOptionPane.showMessageDialog(null, "입력하신정보를 확인");
+					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
 					break;
 				case 4:
 					JOptionPane.showMessageDialog(null, "핸드폰번호를 확인해주세요");
@@ -242,7 +239,6 @@ public class Login_FindID extends JFrame {
 				default:
 					break;
 				}
-				dispose();
 			}
 		});
 		btn_Cancel.addMouseListener(new MouseAdapter() {

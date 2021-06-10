@@ -56,7 +56,7 @@ public class Login_FindPW extends JFrame {
 		getContentPane().setLayout(null);
 
 		panel_2 = new JPanel();
-		panel_2.setBounds(0, 0, 409, 390);
+		panel_2.setBounds(0, 0, 402, 390);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
@@ -249,16 +249,16 @@ public class Login_FindPW extends JFrame {
 				Login_DB db = new Login_DB();
 				String Phonenumber = new String(
 						txt_first.getText() + "" + txt_second.getText() + "" + txt_third.getText());
-				System.out.println(txt_first.getText() + "" + txt_second.getText() + "" + txt_third.getText());
 				int find = db.findpw(name, id, Phonenumber);
 				switch (find) {
 				case 1:
 					JOptionPane.showMessageDialog(null, "입력하신정보를 확인해주세요");
 					break;
 				case 2:
+					dispose();
 					break;
 				case 3:
-					JOptionPane.showMessageDialog(null, "입력하신정보를 확인");
+					JOptionPane.showMessageDialog(null, "빈칸이 존재 합니다");
 					break;
 				case 4:
 					JOptionPane.showMessageDialog(null, "핸드폰번호를 확인해주세요");
@@ -266,7 +266,6 @@ public class Login_FindPW extends JFrame {
 				default:
 					break;
 				}
-				dispose();
 			}
 		});
 	}
