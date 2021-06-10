@@ -33,6 +33,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.awt.event.ActionEvent;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.KeyAdapter;
@@ -93,7 +95,10 @@ public class AD_NMovie extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setBackground(Color.WHITE);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon(AD_NMovie.class.getResource("/template/Reference/icons/no_image.png")));
+		ImageIcon ic = new ImageIcon(Main.class.getResource("/template/Reference/icons/no_image.png"));
+		Image icImg = ic.getImage().getScaledInstance(179, 212, Image.SCALE_SMOOTH);
+		ic.setImage(icImg);
+		lblNewLabel_4.setIcon(ic);
 		panel_2.add(lblNewLabel_4);
 
 		JPanel panel_3 = new JPanel();
