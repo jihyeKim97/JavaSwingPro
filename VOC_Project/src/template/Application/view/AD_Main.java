@@ -514,7 +514,7 @@ public class AD_Main extends JFrame {
 
 	public void showReservationTableUIFromDB() {
 		final String columnNames[] = { "예약인덱스", "예약번호", "예약날짜시간", "좌석번호", "차량타입", "결제금액", "결제일시", "옵션이름", "옵션가격",
-				"회원인덱스", "영화인덱스" };
+				"회원 아이디", "영화 제목" };
 
 		resList = ADB.AllReservation();
 		if (resList == null || resList.isEmpty())
@@ -524,6 +524,8 @@ public class AD_Main extends JFrame {
 
 		for (int i = 0; i < nDBSize; i++) {
 			Reservation_data mbl = resList.get(i);
+			String title = ADB.getMovieTitle(mbl.getMovieID());
+			String ID = ADB.getmemberid(mbl.getMemberID());
 			data[i][0] = mbl.getReservationID();
 			data[i][1] = mbl.getReservationNumber();
 			data[i][2] = mbl.getReservationDate();
@@ -533,8 +535,8 @@ public class AD_Main extends JFrame {
 			data[i][6] = mbl.getPaymentDate();
 			data[i][7] = mbl.getOptionName();
 			data[i][8] = mbl.getOptionPrice();
-			data[i][9] = mbl.getMemberID();
-			data[i][10] = mbl.getMovieID();
+			data[i][9] = ID;
+			data[i][10] = title;
 
 			DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
 			this.ad_tb_RaservationTable.setModel(dtm);
