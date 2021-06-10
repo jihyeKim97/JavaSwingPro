@@ -50,6 +50,7 @@ public class Login extends JFrame {
 	Login_data LD;
 	AD_Main ad_page;
 	ArrayList<Login_data> LoginArr;
+	ArrayList<Login_data> mList;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -232,9 +233,20 @@ public class Login extends JFrame {
 						break;
 					}
 				}
-				if (check == false && ty == 0) {
+				Login_DB mgr = new Login_DB();
+				mList = mgr.selectAllMembers();
+				int judge = 0;
+				for (int i = 0; i < mList.size(); i++) {
+					if(String.valueOf(mList.get(i).getId()).equals(txt_id.getText()))
+						judge = 1;
+				}
+				if (check == false && ty == 0 && judge == 0) {
 					JOptionPane.showMessageDialog(null, "계정이 존재 하지 않습니다");
 					txt_id.setText("");
+					txt_pw.setText("");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다");
 					txt_pw.setText("");
 				}
 			}
