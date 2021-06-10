@@ -364,7 +364,7 @@ public class MyPage extends JFrame {
 		label_5.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		lbPanel.add(label_5);
 
-		JLabel label_6 = new JLabel("세 비밀번호 : ");
+		JLabel label_6 = new JLabel("새 비밀번호 : ");
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
 		label_6.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 16));
 		lbPanel.add(label_6);
