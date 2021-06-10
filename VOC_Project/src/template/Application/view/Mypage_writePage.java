@@ -60,7 +60,6 @@ public class Mypage_writePage extends JFrame {
 		panel.setBounds(0, 0, 400, 323);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -91,11 +90,6 @@ public class Mypage_writePage extends JFrame {
 		});
 
 		btn_success = new RoundedButtonG("완료!");
-		btn_success.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showInternalMessageDialog(null, "리뷰 등록이 완료 되었습니다");
-			}
-		});
 
 		review_tf = new JTextField();
 		review_tf.setBounds(25, 103, 350, 43);
@@ -152,6 +146,7 @@ public class Mypage_writePage extends JFrame {
 							boolean isResult = MDB.UpdateReviewContent(ViArr.getReviewID(), review);
 							if (isResult) {
 								System.out.println("수정완료");
+								JOptionPane.showMessageDialog(null, "수정이 완료되었습니다");
 								dispose();
 							}
 						}
@@ -172,6 +167,7 @@ public class Mypage_writePage extends JFrame {
 							ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getReservation_id(),
 							ReArr.get(Integer.parseInt(reser_box.getToolTipText())).getMovie_id());
 					if (isResult) {
+						JOptionPane.showMessageDialog(null, "등록이 완료되었습니다");
 						dispose();
 					}
 				}
