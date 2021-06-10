@@ -253,15 +253,14 @@ public class AD_NMovie extends JFrame {
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				final String currentDirPath = "./src/template/reference/images";
-				final String currentDirPathDetail = "/template/reference/images";
+				final String currentDirPath = "./VOC_Project/src/template/Reference/images";
 				System.out.println(currentDirPath);
 				JFileChooser openDlg = new JFileChooser(currentDirPath);
 				if (openDlg.showOpenDialog(Mofrm) == JFileChooser.APPROVE_OPTION) {
 					imgFile = openDlg.getSelectedFile();
 					System.out.println("선택된 파일명: " + imgFile.getName());
 					System.out.println("선택된 파일경로명: " + imgFile.getPath());
-					dbImgPath = "/template/reference/images/" + imgFile.getName();
+					dbImgPath = "/template/Reference/images/" + imgFile.getName();
 					dbImgPath.trim();
 					lblNewLabel_4.setText(dbImgPath);
 					lblNewLabel_4.setToolTipText("이미지 경로: " + imgFile.getPath());
@@ -271,7 +270,7 @@ public class AD_NMovie extends JFrame {
 					ic.setImage(icImg);
 					lblNewLabel_4.setIcon(ic);
 					lblNewLabel_4.repaint();
-					ppp = currentDirPathDetail + "/" + imgFile.getName();
+					ppp = currentDirPath + "/" + imgFile.getName();
 					lblNewLabel_6.setText(dbImgPath);
 				}
 			}
