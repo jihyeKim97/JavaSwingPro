@@ -149,7 +149,7 @@ public class Login extends JFrame {
 				lb_FindPW.setForeground(Color.WHITE);
 			}
 		});
-		
+
 		pn_find.add(lb_FindPW);
 		lb_FindPW.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 13));
 
@@ -162,6 +162,7 @@ public class Login extends JFrame {
 				sign.setLocation(fPt.x + ln.getWidth() + 20, fPt.y);
 				sign.setVisible(true);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lb_SignUp.setForeground(Color.red);
@@ -172,7 +173,7 @@ public class Login extends JFrame {
 				lb_SignUp.setForeground(Color.WHITE);
 			}
 		});
-		
+
 		lb_SignUp.setForeground(Color.WHITE);
 		lb_SignUp.setText("회원가입");
 		lb_SignUp.setHorizontalAlignment(SwingConstants.CENTER);
@@ -221,7 +222,7 @@ public class Login extends JFrame {
 								ad_page = new AD_Main(ln, LD);
 								ad_page.setVisible(true);
 								dispose();
-							} else if (memberdata.get(i).getIs_member() != 1 && memberdata.get(i).getIs_member() != 0) {
+							} else {
 								JOptionPane.showMessageDialog(null, "탈퇴한 회원입니다");
 							}
 						}
@@ -235,15 +236,14 @@ public class Login extends JFrame {
 				mList = mgr.selectAllMembers();
 				int judge = 0;
 				for (int i = 0; i < mList.size(); i++) {
-					if(String.valueOf(mList.get(i).getId()).equals(txt_id.getText()))
+					if (String.valueOf(mList.get(i).getId()).equals(txt_id.getText()))
 						judge = 1;
 				}
 				if (check == false && ty == 0 && judge == 0) {
 					JOptionPane.showMessageDialog(null, "계정이 존재 하지 않습니다");
 					txt_id.setText("");
 					txt_pw.setText("");
-				}
-				else if(check == false && ty == 0 && judge == 1){
+				} else if (check == false && ty == 0 && judge == 1) {
 					JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다");
 					txt_pw.setText("");
 					judge = 0;
