@@ -98,13 +98,13 @@ public class AD_NNotice extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String title = textField.getText();
 				String content = textArea.getText();
-				if (title.isEmpty() && title == null) {
+				if (title.isEmpty() ) {
 					JOptionPane.showMessageDialog(null, "제목을 입력해주세요");
-				} else if (content.isEmpty() && content == null) {
+				} else if (content.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "내용을 입력해주세요");
 				} else {
-					ANDB.updateNotice(selNotice.getNoticeid(), title, content);
-					System.out.println("공지사항이 수정되었습니다.");
+					ANDB.updateNotice(selNotice.getNoticeid(),title, content);
+					System.out.println("공지사항이 등록되었습니다.");
 					dispose();
 				}
 			}
