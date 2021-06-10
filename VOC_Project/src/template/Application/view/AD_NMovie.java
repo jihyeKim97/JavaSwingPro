@@ -1,7 +1,6 @@
 package template.Application.view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,8 +9,6 @@ import javax.swing.border.EmptyBorder;
 import template.Application.controller.RoundedButtonG;
 import template.Application.controller.RoundedButtonR;
 import template.Application.controller.DB.Ad_AdPage_DB;
-import template.Application.controller.DB.Login_DB;
-import template.Application.controller.Data.Movie_Data;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,7 +22,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
@@ -34,7 +30,6 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.awt.event.ActionEvent;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.KeyAdapter;

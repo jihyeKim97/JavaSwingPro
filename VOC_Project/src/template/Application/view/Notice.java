@@ -28,8 +28,6 @@ import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
 
-import javax.swing.JButton;
-
 public class Notice extends JFrame {
 
 	JPanel contentPane;
