@@ -133,6 +133,7 @@ public class AD_Main extends JFrame {
 		roundedButtonG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frm.showMemberTableUIFromDB();
+				click_mem = false;
 			}
 		});
 		roundedButtonG.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -201,6 +202,7 @@ public class AD_Main extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frm.showReviewTableUIFromDB();
+				click_rev = false;
 			}
 		});
 		btnNewButton.setBounds(5, 5, 100, 30);
@@ -297,6 +299,7 @@ public class AD_Main extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frm.showMovieTableUIFromDB();
+				click_moi = false;
 			}
 		});
 		button.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -419,6 +422,7 @@ public class AD_Main extends JFrame {
 		roundedButtonG_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frm.showNoticeTableUIFromDB();
+				click_not = false;
 			}
 		});
 		roundedButtonG_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));

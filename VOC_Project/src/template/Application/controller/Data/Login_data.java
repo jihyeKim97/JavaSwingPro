@@ -11,6 +11,8 @@ public class Login_data {
 	int is_member;
 	String birthday;
 
+	public Login_data() {}
+	
 	public Login_data(int is_member) {
 		super();
 		this.is_member = is_member;

@@ -46,7 +46,6 @@ public class AD_Movie extends JFrame {
 	JTextField com;
 	JTextField per;
 	JTextField open;
-
 	File imgFile;
 	AD_Movie Mofrm;
 	Ad_AdPage_DB AMDB;
@@ -282,13 +281,13 @@ public class AD_Movie extends JFrame {
 
 		RoundedButtonG btnNewButton = new RoundedButtonG("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) { 
-					Ad_AdPage_DB AMDB = new Ad_AdPage_DB();
-					AMDB.UpdateMovieInfo(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
-							contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText(),
-							selmovie.getMoviesid());
-					JOptionPane.showMessageDialog(null, "영화가 수정되었습니다.");
-					dispose();
+			public void actionPerformed(ActionEvent arg0) {
+				Ad_AdPage_DB AMDB = new Ad_AdPage_DB();
+				AMDB.UpdateMovieInfo(title.getText(), ger.getText(), dir.getText(), Integer.parseInt(age.getText()),
+						contentTA.getText(), per.getText(), open.getText(), com.getText(), lblNewLabel_6.getText(),
+						selmovie.getMoviesid());
+				JOptionPane.showMessageDialog(null, "영화가 수정되었습니다.");
+				dispose();
 			}
 		});
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 17));
